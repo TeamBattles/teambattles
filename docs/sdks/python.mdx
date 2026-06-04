@@ -1,0 +1,31 @@
+---
+title: Python SDK
+description: Install and use the official TeamBattles Python SDK to call the developer API.
+---
+
+The Python SDK is published to PyPI as `teambattles-sdk`. It is generated from the [OpenAPI spec](/developers/api-reference) with [Microsoft Kiota](https://learn.microsoft.com/en-us/openapi/kiota/) and regenerates on every API change.
+
+## Install
+
+```bash
+pip install teambattles-sdk
+```
+
+## Authenticated first call
+
+```python
+import os
+from teambattles_sdk import create_teambattles_client
+from teambattles_sdk.models import MatchesRequestBody
+
+client = create_teambattles_client(os.environ["TEAMBATTLES_API_KEY"])
+
+# List the authenticated user's matches (requires matches.user_matches: read)
+result = await client.user.matches.post(MatchesRequestBody(num_items=25))
+for match in result.page or []:
+    print(match.id, match.status)
+```
+
+## Authentication
+
+The factory wires an `Authorization: Bearer tb_<your-key>` header on every request. Create keys at [Settings > Developer](https://teambattles.gg/settings/developer) and review scopes in the [authentication guide](/developers/authentication). Treat the `error` machine code in error responses - not the `details` message - as the stable programmatic contract.

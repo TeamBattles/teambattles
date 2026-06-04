@@ -1,0 +1,236 @@
+---
+title: "Battles Record"
+description: "Automatically record live streams from Twitch, YouTube, and Kick"
+---
+
+A desktop application and Docker container for automatically recording live streams from Twitch, YouTube, and Kick. Set up your favorite channels, configure quality preferences, and let Battles Record capture streams whenever they go live.
+
+## Features
+
+<CardGroup cols={2}>
+	<Card title="Multi-Platform" icon="video">
+		Record from Twitch, YouTube, and Kick with a single application
+	</Card>
+	<Card title="Automatic Recording" icon="circle-play">
+		Detect when channels go live and start recording automatically
+	</Card>
+	<Card title="Quality Control" icon="sliders">
+		Choose from source quality down to 360p per channel
+	</Card>
+	<Card title="Post-Processing" icon="wand-magic-sparkles">
+		Re-encode, copy, or concatenate recordings with FFmpeg
+	</Card>
+	<Card title="Storage Management" icon="hard-drive">
+		Set quotas and retention policies to manage disk space
+	</Card>
+	<Card title="Media Server Integration" icon="server">
+		Automatic Jellyfin library updates with NFO metadata
+	</Card>
+	<Card title="Notifications" icon="bell">
+		Discord, Telegram, or webhook alerts for recording events
+	</Card>
+	<Card title="API Access" icon="code">
+		REST API and WebSocket for real-time status and control
+	</Card>
+	<Card title="Extension Integration" icon="puzzle-piece">
+		Connect with Battles Replay for remote downloads and channel management
+	</Card>
+	<Card title="Download Manager" icon="download">
+		Download from 1000+ sites via yt-dlp with queue and format selection
+	</Card>
+</CardGroup>
+
+## Architecture
+
+Battles Record consists of two main components:
+
+1. **br-daemon** - Rust backend service that monitors channels, captures streams, and exposes a REST API + WebSocket for real-time updates
+2. **br-ui** - Tauri 2 + SvelteKit desktop application for managing the daemon
+
+The application can run as:
+
+- **Desktop App** (Windows, Linux) - Tauri-based native application with system tray, sidecar daemon management, and auto-reconnect
+- **Docker Container** - Headless server deployment with REST API access (standard and NVIDIA GPU images)
+
+## Quick Links
+
+<CardGroup cols={2}>
+	<Card title="Installation" icon="download" href="/tools/battles-record/installation">
+		Get started with desktop or Docker deployment
+	</Card>
+	<Card title="Add Channels" icon="plus" href="/tools/battles-record/platforms">
+		Set up Twitch, YouTube, and Kick channels
+	</Card>
+	<Card title="Configure Storage" icon="folder" href="/tools/battles-record/storage">
+		Set up recording directories and quotas
+	</Card>
+	<Card title="Troubleshooting" icon="circle-question" href="/tools/battles-record/troubleshooting">
+		Common issues and solutions
+	</Card>
+</CardGroup>
+
+## System Requirements
+
+### Desktop Application
+
+| Component   | Minimum                  | Recommended                   |
+| ----------- | ------------------------ | ----------------------------- |
+| **OS**      | Windows 10, Ubuntu 20.04 | Latest version                |
+| **RAM**     | 2 GB                     | 4 GB+                         |
+| **Storage** | 10 GB free               | 100 GB+ for recordings        |
+| **CPU**     | Dual-core                | Quad-core for post-processing |
+
+### Docker Container
+
+| Component   | Minimum               | Recommended     |
+| ----------- | --------------------- | --------------- |
+| **Docker**  | 20.10+                | Latest stable   |
+| **RAM**     | 512 MB                | 1 GB+           |
+| **Storage** | Volume mount required | SSD recommended |
+
+## Privacy
+
+**All data stays local.** Recordings, configuration, and credentials are stored on your device or server. No data is sent to TeamBattles.
+
+[View Privacy Policy](https://teambattles.gg/tools/battles-record/privacy)
+
+## Changelog
+
+<Accordion title="v1.4.0 - March 26, 2026">
+### Added
+
+#### Browser Extension Integration
+- Extension WebSocket server with pairing, HMAC authentication, and rate-limited code validation
+- Extension protocol: `add_channel`, `remove_channel`, `channels_state`, `uninstall_library` commands
+- `channels_state` message sent on connect with full channel list (id, name, platform, status, profile image)
+- `channel_added` / `channel_removed` broadcasts to all connected clients (extension and Tauri UI)
+- Channel add from extension persists to config, triggers immediate live check, and starts recording if live
+- Channel remove from extension persists, stops active recording, and broadcasts to all clients
+- Extension connection/disconnection events forwarded to Tauri UI in real time
+- Pair code generation with `has_active_code()` status for UI display
+- Message log viewer with JSON syntax highlighting and inline summary previews
+
+#### Download Manager (yt-dlp)
+- Full download queue with concurrency control, pause/resume/cancel/prioritize
+- yt-dlp subprocess management with progress streaming and cookie forwarding
+- Download storage statistics with per-channel breakdown
+- Filtered download cleanup by age, channel, and platform with dry-run preview
+- Duplicate URL rejection prevents queuing the same video twice
+- Index reconciliation on startup: removes orphans, deduplicates, marks interrupted downloads as failed
+- Audio-only format detection skips incompatible post-processing (mp4 merge, thumbnail embedding)
+- Better yt-dlp error reporting: shows actual stderr output instead of generic messages
+- Enriched PATH for JS runtimes (Node.js, Bun, Deno) needed for YouTube signature extraction
+- Default output template now includes resolution: `%(title)s [%(height)sp].%(ext)s`
+
+#### Library Management
+- FFmpeg update checking via BtbN GitHub API with 24-hour cache
+- FFmpeg downloads switched from nightly master builds to latest stable releases
+- Library uninstall: `DELETE /api/libraries/:name` endpoint and `uninstall_library` extension command
+- Library install/update events now broadcast to all WebSocket and extension clients
+- Per-library Install/Uninstall buttons in settings (replaces bulk "Install Libraries" button)
+- System-wide library detection with info tooltip showing OS-specific uninstall instructions
+- Bun added to library management display alongside yt-dlp and FFmpeg
+
+#### Settings & Storage UI
+- Library Management moved to its own settings section
+- Downloads directory configurable via `--downloads-dir` CLI flag and settings UI
+- Downloads directory stored in Tauri settings (persists across restarts)
+- Download storage stats page with per-channel usage breakdown and progress bars
+- Tabbed cleanup panel (Recordings / Downloads) with filtered cleanup support
+- Extension connection status: "Disconnect" when connected, "Remove" when offline
+- Microsoft Store MSIX packaging support
+
+#### Real-Time Updates
+- `channel_added` / `channel_removed` WebSocket events update Channels page and Dashboard instantly
+- Library status changes (install/update/uninstall) broadcast to all clients
+- Dashboard refreshes channel count on add/remove events
+- Profile cache cleaned up when channels are removed
+
+### Changed
+- Download progress bars use Svelte Tween animation instead of CSS transitions
+- Toast notifications positioned above status bar
+- Pause now works for queued downloads (not just actively downloading ones)
+- FFmpeg update check failures are non-fatal (logged, doesn't block yt-dlp update check)
+- API client handles HTTP 204 No Content responses
+- Download removal is optimistic (removes from UI immediately before API call)
+- Extension `AddChannel` handler validates platform, checks duplicates, persists config
+
+### Fixed
+- FFmpeg version always returned null (`--version` flag not recognized by FFmpeg)
+- FFmpeg BtbN stable builds reported version as `n8.0` instead of `8.0`
+- Downloads directory flashed default `./downloads` before showing configured path
+- "Pause All" showed "download not found" for queued downloads
+- yt-dlp YouTube extraction failed without JS runtime in PATH
+- Audio-only downloads failed with "unsupported filetype for thumbnail embedding"
+- Empty cookie array stripped authentication instead of falling back to persistent cookies
+- Dashboard channel count not updated when channels added/removed via extension
+- Profile cache leaked memory for removed channels
+- Library status not refreshed after uninstall
+</Accordion>
+
+<Accordion title="v1.3.1 - March 14, 2026">
+### Added
+- Stale-while-revalidate pattern for page navigation - existing data shown immediately on return visits instead of loading spinners
+</Accordion>
+
+<Accordion title="v1.3.0 - March 13, 2026">
+### Changed
+- Jellyfin seasons now use year-based grouping (Season 2024) instead of month-based
+- Episode filenames include ISO date for browsability (e.g., `xQc - S2024E001 - 2024-01-05 - Title.mp4`)
+- Season poster shows year and episode count instead of specific date
+
+### Fixed
+- Episode thumbnails now use actual stream thumbnail URL
+- YouTube and Kick recordings are now exported to Jellyfin (previously silently skipped)
+- Season metadata episode count now uses correct platform
+- Jellyfin export no longer skips when profile fetch fails (uses minimal fallback)
+</Accordion>
+
+<Accordion title="v1.2.0 - February 9, 2026">
+	### Added - Automatic update checking for daemon and desktop app via GitHub Releases API (every 6
+	hours) - Update notification banners in UI (dismissible, persisted across sessions) -
+	Client-daemon compatibility validation with `min_client_version` and `max_client_version` fields -
+	Incompatibility warning banner when client version is outside the supported range -
+	`check_for_updates` daemon config option (default: true) - `BR_CHECK_FOR_UPDATES` Docker
+	environment variable - `update` field in `/api/status` response with latest version info
+</Accordion>
+
+<Accordion title="v1.1.0 - February 9, 2026">
+### Fixed
+- Buttons becoming non-interactable in release builds after using the server selector dropdown
+- CSP blocking inline styles in release builds, preventing dropdown and menu positioning
+- CSP blocking Tauri IPC protocol, forcing slower postMessage fallback
+- CSP blocking remote server health checks and data URI images
+- Titlebar drag region race condition caused by duplicate drag handlers
+
+### Changed
+
+- Tray icon "Exit" now uses the same close flow as the X button (instant UI hide, saved preference check, confirmation dialog)
+- Removed `DropdownMenu.Portal` from server selector to avoid WebView2 hit-test corruption on Windows
+- Added `select-none` to button base styles to prevent text selection on click
+- Updated CSP to properly allow inline styles, Tauri IPC, remote connections, and data URIs
+- Toast notifications no longer overflow when message contains long unbreakable strings
+</Accordion>
+
+<Accordion title="v1.0.0 - February 4, 2026">
+Initial release of Battles Record.
+
+### Core Features
+
+- Multi-platform live stream recording (Twitch, YouTube, Kick)
+- HLS segment downloading with crash recovery and atomic writes
+- Post-processing with three output formats (re-encode, copy, concatenate)
+- GPU-accelerated encoding (NVIDIA NVENC, Intel Quick Sync, AMD AMF)
+- Global and per-channel storage quotas with retention policies
+- Per-channel schedules with day/time windows and timezone support
+- Content filters for titles, games, and minimum viewer count
+- Jellyfin integration with TV show structure and rich image generation
+- OAuth 2.0 authentication for Twitch, YouTube, and Kick with bundled credentials
+- YouTube cookie authentication as OAuth alternative
+- Discord, Telegram, and generic webhook notifications
+- JWT authentication with Admin and Viewer roles
+- Tauri 2 desktop application with system tray and sidecar daemon
+- Full REST API and WebSocket for real-time event streaming
+- Docker deployment with standard and NVIDIA GPU images
+- TOML configuration with hot-reload
+</Accordion>

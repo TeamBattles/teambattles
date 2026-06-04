@@ -1,0 +1,229 @@
+---
+title: Match Lifecycle
+description: Query match details, rosters, and status through the TeamBattles API.
+---
+
+## Overview
+
+The Match Lifecycle API allows you to query match information including details, rosters, and current status. Game developers with read-write access can also manage match state.
+
+## Endpoints
+
+### List Matches
+
+```bash
+POST /api/v1/game/matches
+```
+
+**Request Body (JSON):**
+
+| Field    | Type   | Required | Description                                                     |
+| -------- | ------ | -------- | --------------------------------------------------------------- |
+| `gameId` | string | Yes      | Filter by game ID (must match your approved game)               |
+| `status` | string | No       | Filter by status: `IN_PROGRESS`, `COMPLETED`, `CANCELLED`, etc. |
+| `limit`  | number | No       | Results per page (default: 25, max: 100)                        |
+| `cursor` | string | No       | Pagination cursor from previous response                        |
+
+**Example:**
+
+```json
+{
+	"gameId": "call_of_duty_black_ops_7",
+	"status": "IN_PROGRESS",
+	"limit": 25
+}
+```
+
+**Response:**
+
+```json
+{
+	"matches": [
+		{
+			"id": "match_123",
+			"status": "IN_PROGRESS",
+			"gameMode": "hardpoint",
+			"bestOf": 3,
+			"creatorTeam": { "teamId": "team_abc", "name": "Alpha Squad" },
+			"acceptedTeam": { "teamId": "team_def", "name": "Beta Force" },
+			"creatorTeamScore": 1,
+			"acceptedTeamScore": 0,
+			"scheduledAt": null,
+			"startedAt": "2026-02-23T10:05:00.000Z",
+			"completedAt": null,
+			"createdAt": "2026-02-23T10:00:00.000Z"
+		}
+	],
+	"count": 1,
+	"pagination": { "cursor": "25", "hasMore": true },
+	"timestamp": "2026-02-23T10:30:00.000Z"
+}
+```
+
+### Get Match Details
+
+```bash
+GET /api/v1/game/matches/{matchId}
+```
+
+**Response:**
+
+```json
+{
+	"id": "match_123",
+	"gameId": "call_of_duty_black_ops_7",
+	"status": "ACTIVE",
+	"settings": {
+		"teamSize": 4,
+		"gameMode": "hardpoint",
+		"map": "skidrow"
+	},
+	"teams": [
+		{
+			"teamId": "team_abc",
+			"name": "Alpha Squad",
+			"side": "home"
+		},
+		{
+			"teamId": "team_def",
+			"name": "Beta Force",
+			"side": "away"
+		}
+	],
+	"createdAt": "2026-02-23T10:00:00Z",
+	"startedAt": "2026-02-23T10:05:00Z"
+}
+```
+
+### Get Match Rosters
+
+```bash
+GET /api/v1/game/matches/{matchId}/rosters
+```
+
+**Response:**
+
+```json
+{
+	"rosters": [
+		{
+			"teamId": "team_abc",
+			"players": [
+				{
+					"userId": "user_1",
+					"username": "PlayerOne",
+					"role": "captain"
+				},
+				{
+					"userId": "user_2",
+					"username": "PlayerTwo",
+					"role": "member"
+				}
+			]
+		}
+	]
+}
+```
+
+### Get Match Status
+
+```bash
+GET /api/v1/game/matches/{matchId}/status
+```
+
+Returns the current match status and score information.
+
+**Response:**
+
+```json
+{
+	"matchId": "match_123",
+	"status": "ACTIVE",
+	"scores": null,
+	"winner": null,
+	"completedAt": null
+}
+```
+
+### Update Match Status
+
+```bash
+PATCH /api/v1/game/matches/{matchId}/status
+```
+
+Update a match's status. Only specific transitions are allowed.
+
+**Request Body (JSON):**
+
+```json
+{
+	"status": "IN_PROGRESS"
+}
+```
+
+**Allowed status transitions:**
+
+| From          | To                       |
+| ------------- | ------------------------ |
+| `READY`       | `IN_PROGRESS`            |
+| `IN_PROGRESS` | `COMPLETED`, `CANCELLED` |
+| `ACCEPTED`    | `CANCELLED`              |
+
+<Note>
+	`COMPLETED` status is typically set automatically when sufficient map scores are confirmed. To
+	complete a match, submit scores via the score submission endpoints instead of setting the status
+	directly.
+</Note>
+
+**Response:**
+
+```json
+{
+	"success": true,
+	"matchId": "match_123",
+	"previousStatus": "READY",
+	"newStatus": "IN_PROGRESS",
+	"timestamp": "2026-02-23T10:05:00.000Z"
+}
+```
+
+### Submit Player Stats
+
+```bash
+POST /api/v1/game/matches/{matchId}/player-stats
+```
+
+Submit or update player stats for a specific map. The map score must already exist for the given `mapIndex`.
+
+**Request Body (JSON):**
+
+```json
+{
+	"mapIndex": 0,
+	"playerStats": {
+		"userId1": { "kills": 25, "deaths": 15, "assists": 5 },
+		"userId2": { "kills": 18, "deaths": 20, "assists": 8 }
+	}
+}
+```
+
+**Response:**
+
+```json
+{
+	"success": true,
+	"mapIndex": 0,
+	"action": "updated"
+}
+```
+
+## Permissions
+
+| Endpoint            | Required Permission          |
+| ------------------- | ---------------------------- |
+| List matches        | `game.lifecycle: read`       |
+| Get match details   | `game.lifecycle: read`       |
+| Get match rosters   | `game.lifecycle: read`       |
+| Get match status    | `game.lifecycle: read`       |
+| Update match status | `game.lifecycle: read-write` |
+| Submit player stats | `game.scores: write`         |

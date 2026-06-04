@@ -1,0 +1,226 @@
+---
+title: "Notifications"
+description: "Discord, Telegram, and webhook notifications"
+---
+
+Get notified when streams go live, recordings start, or errors occur.
+
+## Notification Types
+
+| Event                   | Description                     |
+| ----------------------- | ------------------------------- |
+| **Stream Live**         | A monitored channel goes live   |
+| **Recording Started**   | Recording has begun             |
+| **Recording Complete**  | Recording finished successfully |
+| **Recording Failed**    | Recording encountered an error  |
+| **Processing Complete** | Post-processing finished        |
+| **Storage Warning**     | Approaching storage limit       |
+| **Storage Full**        | Storage quota reached           |
+
+## Discord Webhooks
+
+Send notifications to a Discord channel.
+
+### Setup
+
+<Steps>
+	<Step title="Create Webhook">
+		In Discord: **Server Settings → Integrations → Webhooks → New Webhook**
+	</Step>
+	<Step title="Copy URL">Copy the webhook URL</Step>
+	<Step title="Add to Battles Record">
+		Navigate to **Settings → Notifications → Discord** and paste the URL
+	</Step>
+	<Step title="Configure Events">Select which events should trigger Discord notifications</Step>
+	<Step title="Test">Click **Send Test** to verify the webhook works</Step>
+</Steps>
+
+### Message Format
+
+Discord notifications include:
+
+| Field            | Description                            |
+| ---------------- | -------------------------------------- |
+| **Title**        | Event type (e.g., "Recording Started") |
+| **Channel**      | Streamer name                          |
+| **Platform**     | Twitch/YouTube/Kick icon               |
+| **Stream Title** | Current stream title                   |
+| **Category**     | Game or category                       |
+| **Quality**      | Recording quality                      |
+| **Thumbnail**    | Stream thumbnail image                 |
+
+### Customization
+
+Customize Discord messages in **Settings → Notifications → Discord → Format**:
+
+| Option                | Description                        |
+| --------------------- | ---------------------------------- |
+| **Include Thumbnail** | Attach stream thumbnail            |
+| **Include Link**      | Add link to stream                 |
+| **Mention Role**      | @mention a role for certain events |
+| **Color**             | Embed color by event type          |
+
+## Telegram
+
+Send notifications to a Telegram chat or channel.
+
+### Setup
+
+<Steps>
+	<Step title="Create Bot">Message [@BotFather](https://t.me/BotFather) and create a new bot</Step>
+	<Step title="Get Token">Copy the bot token provided by BotFather</Step>
+	<Step title="Get Chat ID">
+		Add the bot to your channel/group, then use [@userinfobot](https://t.me/userinfobot) to get the
+		chat ID
+	</Step>
+	<Step title="Configure">
+		Navigate to **Settings → Notifications → Telegram** and enter token + chat ID
+	</Step>
+	<Step title="Test">Click **Send Test** to verify the bot works</Step>
+</Steps>
+
+### Message Format
+
+Telegram notifications include:
+
+- Event type emoji
+- Channel name and platform
+- Stream title
+- Recording details
+- Thumbnail (optional)
+
+### Bot Commands
+
+Your Telegram bot responds to commands:
+
+| Command             | Description             |
+| ------------------- | ----------------------- |
+| `/status`           | Show active recordings  |
+| `/channels`         | List monitored channels |
+| `/storage`          | Show storage usage      |
+| `/pause {channel}`  | Pause recording         |
+| `/resume {channel}` | Resume recording        |
+
+Enable commands in **Settings → Notifications → Telegram → Enable Commands**.
+
+## Generic Webhooks
+
+Send notifications to any HTTP endpoint.
+
+### Setup
+
+<Steps>
+	<Step title="Add Webhook">Navigate to **Settings → Notifications → Webhooks → Add Webhook**</Step>
+	<Step title="Configure Endpoint">Enter the URL and authentication method</Step>
+	<Step title="Select Events">Choose which events trigger the webhook</Step>
+	<Step title="Test">Click **Send Test** to verify the endpoint</Step>
+</Steps>
+
+### Request Format
+
+Webhooks send POST requests with JSON body:
+
+```json
+{
+	"event": "recording.started",
+	"timestamp": "2026-02-02T14:30:00Z",
+	"data": {
+		"channel": "shroud",
+		"platform": "twitch",
+		"title": "Valorant Ranked",
+		"category": "Valorant",
+		"quality": "1080p60",
+		"recording_id": "abc123"
+	}
+}
+```
+
+### Authentication
+
+| Method            | Description                     |
+| ----------------- | ------------------------------- |
+| **None**          | No authentication               |
+| **Bearer Token**  | Authorization header with token |
+| **Basic Auth**    | Username/password               |
+| **Custom Header** | Any custom header               |
+
+### Retry Policy
+
+Failed webhooks are retried:
+
+- 3 attempts with exponential backoff
+- Delays: 1s, 5s, 30s
+- Failed webhooks logged to console
+
+## Push Notifications (Desktop)
+
+Desktop application supports system notifications:
+
+### Windows
+
+Uses Windows Toast notifications. Appears in Action Center.
+
+### Linux
+
+Uses system notification daemon (libnotify).
+
+### Configuration
+
+| Setting    | Description               |
+| ---------- | ------------------------- |
+| **Enable** | Toggle push notifications |
+| **Sound**  | Play notification sound   |
+| **Events** | Which events trigger push |
+
+## Email Notifications
+
+<Note>Email notifications require SMTP configuration.</Note>
+
+<Steps>
+	<Step title="Configure SMTP">
+		Navigate to **Settings → Notifications → Email** and enter: - SMTP server and port - Username
+		and password - From address
+	</Step>
+	<Step title="Add Recipients">Enter email addresses to receive notifications</Step>
+	<Step title="Select Events">Choose which events send emails</Step>
+</Steps>
+
+## Notification Filters
+
+Control notification volume:
+
+### Per-Channel Settings
+
+<Steps>
+	<Step title="Go to Channels">Select a channel</Step>
+	<Step title="Notification Settings">Toggle which notifications this channel triggers</Step>
+</Steps>
+
+### Quiet Hours
+
+Suppress notifications during specific hours:
+
+| Setting        | Description                    |
+| -------------- | ------------------------------ |
+| **Start**      | When quiet hours begin         |
+| **End**        | When quiet hours end           |
+| **Exceptions** | Events that ignore quiet hours |
+
+### Rate Limiting
+
+Prevent notification spam:
+
+| Setting      | Description                              |
+| ------------ | ---------------------------------------- |
+| **Cooldown** | Minimum time between notifications       |
+| **Batch**    | Group notifications within a time window |
+
+## Testing
+
+Test your notification configuration:
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → Notifications**</Step>
+	<Step title="Select Service">Click **Send Test** on any configured service</Step>
+	<Step title="Verify">Check that the test notification arrived</Step>
+</Steps>

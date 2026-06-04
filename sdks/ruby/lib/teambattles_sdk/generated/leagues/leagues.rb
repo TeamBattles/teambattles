@@ -1,0 +1,2 @@
+require_relative 'leagues_post_response'
+require_relative 'leagues_post_response_pagination'

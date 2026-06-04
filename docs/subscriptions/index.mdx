@@ -1,0 +1,77 @@
+---
+title: "Subscriptions"
+description: "Unlock premium features and higher limits on TeamBattles"
+---
+
+TeamBattles offers optional subscription tiers that unlock additional features, higher limits, and faster benefit-action cooldowns. There is no in-app currency - every paid tier is a recurring real-money plan.
+
+## Tier Comparison
+
+| Feature                              | Free     | Basic ($4.99/mo) | Standard ($9.99/mo) | Premium ($19.99/mo) |
+| ------------------------------------ | -------- | ---------------- | ------------------- | ------------------- |
+| **Organizations**                    | 1        | 3                | 5                   | 10                  |
+| **Teams per Org**                    | 2        | 5                | 10                  | 20                  |
+| **Org Members**                      | 20       | 50               | 100                 | 200                 |
+| **Org Teams**                        | 2        | 4                | 8                   | 10                  |
+| **Leagues per user**                 | 1        | 2                | 3                   | 5                   |
+| **API Keys**                         | 2        | 3                | 5                   | 10                  |
+| **Open Tickets**                     | 2        | 3                | 5                   | 10                  |
+| **Saved strategies (Total)**         | 3        | Unlimited        | Unlimited           | Unlimited           |
+| **Saved strategies (Per map)**       | Unlimited| 3                | 5                   | 10                  |
+| **Custom maps**                      | 0        | 0                | 0                   | 50                  |
+| **Strategy boards (per user)**[^1]   | 200      | 200              | 200                 | 200                 |
+| **Discovery Listing**                | No       | Yes              | Yes                 | Yes                 |
+| **Private Visibility**               | No       | Yes              | Yes                 | Yes                 |
+| **OBS overlay watermark removal**    | No       | Yes              | Yes                 | Yes                 |
+| **Strategy GIF export (no watermark)**| No      | Watermarked      | Yes                 | Yes                 |
+| **Mid-Week Roster Update**           | No       | No               | No                  | Yes                 |
+
+[^1]: Strategy boards are not tier-gated. The 200-board cap is a flat anti-abuse constant (`BOARD_CAP = 200` in `src/convex/functions/strategies/boards.ts`), not a per-tier limit.
+
+<Note>
+	**Strategy save limits use dual-axis gating.** On the **default (Free)** tier, `strategiesPerMap` is unlimited and `strategiesTotal` caps you at 3 saved strategies across all maps. On any **paid tier**, `strategiesTotal` is unlimited and `strategiesPerMap` caps how many strategies you can save per map (3 on Basic, 5 on Standard, 10 on Premium). The two limits never apply at the same time.
+</Note>
+
+## Benefit Actions
+
+Some actions are not unlocked outright - your tier sets how **often** you can perform them. Each action has a per-entity cooldown that is anchored permanently, so cancelling and resubscribing never refreshes a cooldown.
+
+| Benefit                       | Scopes            | Free          | Basic           | Standard        | Premium         |
+| ----------------------------- | ----------------- | ------------- | --------------- | --------------- | --------------- |
+| **Change custom URL**         | User, Org, Team   | Locked        | 1x / week       | 1x / week       | 1x / week       |
+| **Rename**                    | User, Org, Team   | 1x / 6 months | 1x / month      | 1x / month      | 1x / month      |
+| **Reset Stats**               | User, Team, Org   | Locked        | 1x / 3 months   | 1x / 2 months   | 1x / month      |
+| **Remove Donut & Breadstick** | User              | Locked        | 1x / month      | 1x / 2 weeks    | 1x / week       |
+| **Feature org listing**       | Org               | Locked        | 1x / month (1 day) | 1x / month (3 days) | 1x / month (7 days) |
+
+<Note>
+	Resetting an organization's stats also resets all of its teams. The cooldown is anchored on the organization, not on the individual teams.
+</Note>
+
+## How Subscriptions Work
+
+- **User-level**: Each subscription belongs to an individual user.
+- **Org assignment**: You assign your subscription to one organization to unlock org-level benefits.
+- **Effective tier**: An organization's tier is the highest among all subscriptions assigned to it; a team inherits its parent org's tier.
+- **Soft limits**: If you downgrade, existing items above the new limit are preserved but you cannot add more.
+- **Subscription badge**: Your tier is displayed on your public profile (can be hidden in billing settings).
+- **Referral trials**: Referring active players grants Premium trial days (see [Referrals](/referrals)).
+
+## The Subscription Sheet
+
+Every subscription moment - a locked feature, an action on cooldown, a plan change, or a limit reached - opens one universal sheet. The sheet explains why the action is unavailable (for example, "available again in 9 days, or upgrade for weekly"), shows the tier you need, and routes you to Polar hosted checkout to subscribe or change plans. On desktop the sheet slides in from the right; on mobile it slides up from the bottom.
+
+## A la Carte Purchases
+
+A small set of one-time, real-money items can be purchased directly (fulfilled through Polar). Today the only such item is **Gift D&B Removal**, which clears another user's Donut and Breadstick counts. You cannot gift it to yourself.
+
+## Getting Started
+
+<CardGroup cols={2}>
+	<Card title="Billing" icon="credit-card" href="/subscriptions/billing">
+		Manage your subscription and payment history
+	</Card>
+	<Card title="Organization" icon="building" href="/subscriptions/organization">
+		Assign your subscription to an organization
+	</Card>
+</CardGroup>

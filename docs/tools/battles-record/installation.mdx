@@ -1,0 +1,222 @@
+---
+title: "Installation"
+description: "Install Battles Record on Windows, Linux, or Docker"
+---
+
+Choose your preferred installation method based on your platform and use case.
+
+## Desktop Application
+
+Download the latest release from [GitHub Releases](https://github.com/TeamBattles/battles-record/releases/latest).
+
+### Available Packages
+
+| Platform    | Package          | Description                                     |
+| ----------- | ---------------- | ----------------------------------------------- |
+| Windows x64 | `.msi`           | Standard installer                              |
+| Windows x64 | `.msi` (youtube) | Bundled with Bun + yt-dlp for YouTube recording |
+| Linux x64   | `.deb`           | Debian/Ubuntu package                           |
+| Linux x64   | `.deb` (youtube) | Bundled with Bun + yt-dlp for YouTube recording |
+| Linux ARM64 | `.deb`           | Debian/Ubuntu ARM package                       |
+| Linux ARM64 | `.deb` (youtube) | Bundled with Bun + yt-dlp for YouTube recording |
+
+<Tip>
+	The `-youtube` variants include Bun and yt-dlp pre-bundled so YouTube recording works out of the
+	box with no additional setup. If you only record from Twitch or Kick, the standard package is
+	sufficient.
+</Tip>
+
+<Tabs>
+	<Tab title="Windows">
+		<Steps>
+			<Step title="Download Installer">
+				Download the latest `.msi` installer from [GitHub Releases](https://github.com/TeamBattles/battles-record/releases/latest)
+			</Step>
+			<Step title="Run Installer">
+				Double-click the MSI file and follow the prompts. Windows Defender may show a warning - click "More info" then "Run anyway"
+			</Step>
+			<Step title="Launch Application">
+				Battles Record will start automatically. The daemon launches as a sidecar process and the app appears in your system tray
+			</Step>
+			<Step title="Start Using">
+				Click the tray icon to open the main window, or left-click the tray icon to show and focus it
+			</Step>
+		</Steps>
+	</Tab>
+    <Tab title="Linux">
+    	<Steps>
+    		<Step title="Download Package">
+    			Download the latest `.deb` package for your architecture from [GitHub Releases](https://github.com/TeamBattles/battles-record/releases/latest)
+    		</Step>
+    		<Step title="Install Package">
+    			```bash
+    			sudo dpkg -i battles-record-*.deb
+    			```
+    		</Step>
+    		<Step title="Launch Application">
+    			Launch Battles Record from your application menu or run it from the terminal
+    		</Step>
+    		<Step title="Start Using">
+    			Click the tray icon to open the main window
+    		</Step>
+    	</Steps>
+    </Tab>
+
+</Tabs>
+
+## Docker
+
+Docker is ideal for headless servers or NAS devices.
+
+### Docker Compose (Recommended)
+
+Create a `docker-compose.yml` file:
+
+```yaml
+services:
+  battles-record:
+    image: ghcr.io/teambattles/battles-record:latest
+    container_name: battles-record
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./recordings:/data/recordings
+      - ./library:/data/library
+      - ./images:/data/images
+      - ./config:/config
+    environment:
+      - BR_JWT_SECRET=your-secret-here
+      - BR_ADMIN_USERNAME=admin
+      - BR_ADMIN_PASSWORD=your-password-here
+```
+
+Start the container:
+
+```bash
+docker compose up -d
+```
+
+### NVIDIA GPU Support
+
+For hardware-accelerated encoding with NVIDIA GPUs, use the `nvidia` tag:
+
+```yaml
+services:
+  battles-record:
+    image: ghcr.io/teambattles/battles-record:nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities:
+                - gpu
+    environment:
+      - BR_PP_VIDEO_CODEC=h264_nvenc
+      - BR_JWT_SECRET=your-secret-here
+      - BR_ADMIN_USERNAME=admin
+      - BR_ADMIN_PASSWORD=your-password-here
+    # ... same volumes and ports as above
+```
+
+### Docker CLI
+
+```bash
+docker run -d \
+  --name battles-record \
+  -p 8080:8080 \
+  -v $(pwd)/recordings:/data/recordings \
+  -v $(pwd)/library:/data/library \
+  -v $(pwd)/images:/data/images \
+  -v $(pwd)/config:/config \
+  -e BR_JWT_SECRET=your-secret-here \
+  -e BR_ADMIN_USERNAME=admin \
+  -e BR_ADMIN_PASSWORD=your-password-here \
+  --restart unless-stopped \
+  ghcr.io/teambattles/battles-record:latest
+```
+
+### Volume Mounts
+
+| Container Path     | Description                           |
+| ------------------ | ------------------------------------- |
+| `/data/recordings` | Raw .ts segments during recording     |
+| `/data/library`    | Processed files and Jellyfin metadata |
+| `/data/images`     | Channel profile and banner images     |
+| `/config`          | Configuration storage                 |
+
+### Environment Variables
+
+| Variable               | Required | Description                                       |
+| ---------------------- | -------- | ------------------------------------------------- |
+| `BR_JWT_SECRET`        | Yes      | Random string for JWT signing                     |
+| `BR_ADMIN_USERNAME`    | Yes      | Initial admin username                            |
+| `BR_ADMIN_PASSWORD`    | Yes      | Initial admin password                            |
+| `BR_CHECK_FOR_UPDATES` | No       | Set to `false` to disable update checking         |
+| `BR_PP_VIDEO_CODEC`    | No       | Video codec override (e.g., `h264_nvenc` for GPU) |
+
+### Image Variants
+
+| Tag      | Base Image           | Use Case                       |
+| -------- | -------------------- | ------------------------------ |
+| `latest` | Debian slim + FFmpeg | Standard CPU encoding          |
+| `nvidia` | NVIDIA CUDA + FFmpeg | GPU-accelerated NVENC encoding |
+
+**Registry:** `ghcr.io/teambattles/battles-record`
+
+## First-Time Setup
+
+**Desktop App:** The daemon starts automatically as a sidecar when you launch the app. No authentication is required in local mode.
+
+**Docker:** Authentication is configured via the `BR_ADMIN_USERNAME` and `BR_ADMIN_PASSWORD` environment variables.
+
+<Steps>
+	<Step title="Configure Storage">Set your recording output directory and storage limits</Step>
+	<Step title="Add Channels">Add Twitch, YouTube, or Kick channels to monitor</Step>
+	<Step title="Connect Platforms (Optional)">
+		Authenticate with Twitch, YouTube, or Kick via OAuth for subscriber-only content
+	</Step>
+	<Step title="Start Recording">
+		The application will automatically record when configured channels go live
+	</Step>
+</Steps>
+
+## Updating
+
+### Desktop Application
+
+The application checks for updates automatically via GitHub Releases (every 6 hours). When an update is available, a dismissible banner appears in the UI with a link to download. The app also validates compatibility with the daemon version and shows a warning if they're out of sync.
+
+### Docker
+
+Pull the latest image and recreate the container:
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
+## Uninstalling
+
+### Windows
+
+Use "Add or remove programs" in Windows Settings, or run the uninstaller from the MSI.
+
+### Linux
+
+```bash
+sudo dpkg -r battles-record
+```
+
+Optionally remove config at `~/.config/BattlesRecord`.
+
+### Docker
+
+```bash
+docker compose down
+docker rmi ghcr.io/teambattles/battles-record
+```
+
+Remove the config and recordings directories if no longer needed.

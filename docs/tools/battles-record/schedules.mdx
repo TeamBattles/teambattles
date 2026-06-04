@@ -1,0 +1,235 @@
+---
+title: "Schedules"
+description: "Configure time-based recording schedules and content filtering"
+---
+
+Control when Battles Record should capture streams with scheduling and content filters.
+
+## Time-Based Schedules
+
+Restrict recording to specific times:
+
+### Channel Schedules
+
+<Steps>
+	<Step title="Go to Channels">Navigate to **Channels** and select a channel</Step>
+	<Step title="Enable Schedule">Toggle **Recording Schedule** on</Step>
+	<Step title="Set Hours">Define the hours during which recording is allowed</Step>
+</Steps>
+
+### Schedule Configuration
+
+| Setting        | Description                     |
+| -------------- | ------------------------------- |
+| **Start Time** | When recording can begin        |
+| **End Time**   | When recording must stop        |
+| **Days**       | Which days the schedule applies |
+| **Timezone**   | Timezone for schedule times     |
+
+### Examples
+
+**Record only during evenings:**
+
+- Start: 6:00 PM
+- End: 12:00 AM
+- Days: Monday - Friday
+
+**Record weekends only:**
+
+- Start: 12:00 AM
+- End: 11:59 PM
+- Days: Saturday, Sunday
+
+**Never record overnight:**
+
+- Start: 6:00 AM
+- End: 2:00 AM (next day)
+- Days: All
+
+## Global Schedule
+
+Apply a schedule to all channels:
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → Recording**</Step>
+	<Step title="Enable Global Schedule">Toggle **Global Recording Schedule** on</Step>
+	<Step title="Configure">Set times and days that apply to all channels</Step>
+</Steps>
+
+<Note>Channel-specific schedules override the global schedule.</Note>
+
+## Content Filtering
+
+Filter recordings by stream content.
+
+### Title Filters
+
+Record only when stream title matches keywords:
+
+<Steps>
+	<Step title="Go to Channels">Navigate to **Channels** and select a channel</Step>
+	<Step title="Add Title Filter">Enter keywords that must appear in the title</Step>
+</Steps>
+
+**Syntax:**
+
+- `keyword` - Title must contain "keyword"
+- `word1, word2` - Title must contain "word1" OR "word2"
+- `!keyword` - Title must NOT contain "keyword"
+
+**Examples:**
+
+```
+ranked, competitive       # Record ranked or competitive streams
+valorant, !unrated        # Record Valorant but not unrated
+```
+
+### Category Filters
+
+Record only specific categories or games:
+
+<Steps>
+	<Step title="Go to Channels">Navigate to **Channels** and select a channel</Step>
+	<Step title="Add Category Filter">Select or enter categories to record</Step>
+</Steps>
+
+**Category syntax:**
+
+- Select from dropdown (auto-populated from platform)
+- Or enter category names manually
+
+**Examples:**
+
+```
+Valorant, Call of Duty: Warzone    # Only these games
+!Just Chatting                      # Exclude Just Chatting
+```
+
+### Viewer Count Filter
+
+Record only when the stream meets a minimum viewer threshold:
+
+| Setting             | Description                                    |
+| ------------------- | ---------------------------------------------- |
+| **Minimum Viewers** | Only record if viewer count meets this minimum |
+
+This is useful for filtering out test streams or low-activity broadcasts.
+
+### Filter Evaluation Order
+
+When a stream goes live, filters are evaluated in this order:
+
+1. If `title excludes` matches any keyword → **Skip**
+2. If `game excludes` matches any keyword → **Skip**
+3. If `title includes` is set and doesn't match → **Skip**
+4. If `game includes` is set and doesn't match → **Skip**
+5. If `minimum viewers` is set and not met → **Skip**
+6. Otherwise → **Record**
+
+Exclude filters always take priority over include filters.
+
+<Note>
+	All text-based filter matching (title and game) is **case-insensitive**. For example, a title
+	filter of `"tournament"` will match `"TOURNAMENT"`, `"Tournament"`, and `"tournament"`.
+</Note>
+
+## Smart Scheduling
+
+Combine schedules with content filters for precise control.
+
+### Example: eSports Recording
+
+Record tournament streams only:
+
+| Setting          | Value                              |
+| ---------------- | ---------------------------------- |
+| **Title Filter** | `tournament, finals, championship` |
+| **Category**     | `Valorant, League of Legends`      |
+| **Schedule**     | Weekends 10 AM - 10 PM             |
+
+### Example: VOD Recording
+
+Record specific content from a variety streamer:
+
+| Setting          | Value               |
+| ---------------- | ------------------- |
+| **Title Filter** | `!react, !watching` |
+| **Category**     | `!Just Chatting`    |
+| **Schedule**     | All times           |
+
+This records gaming content but skips reaction streams.
+
+## Timezone Support
+
+Schedules use your configured timezone:
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → General**</Step>
+	<Step title="Set Timezone">Select your timezone from the dropdown</Step>
+</Steps>
+
+### Docker Timezone
+
+Set timezone via environment variable:
+
+```yaml
+environment:
+  - TZ=America/New_York
+```
+
+Common timezones:
+
+- `America/New_York` - Eastern Time
+- `America/Los_Angeles` - Pacific Time
+- `Europe/London` - UK
+- `Europe/Berlin` - Central Europe
+- `Asia/Tokyo` - Japan
+
+## Schedule Conflicts
+
+When a stream starts during scheduled hours but continues past the end time:
+
+| Behavior     | Description                                    |
+| ------------ | ---------------------------------------------- |
+| **Complete** | Continue recording until stream ends (default) |
+| **Stop**     | Stop recording at schedule end time            |
+
+Configure in **Settings → Recording → Schedule End Behavior**.
+
+## Recording Blackouts
+
+Block recording during specific periods:
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → Recording → Blackouts**</Step>
+	<Step title="Add Blackout">Create a blackout period (e.g., maintenance windows)</Step>
+</Steps>
+
+Blackouts take precedence over all schedules.
+
+## Testing Schedules
+
+Preview when recording would be active:
+
+<Steps>
+	<Step title="Go to Channels">Select a channel with a schedule</Step>
+	<Step title="View Schedule Preview">Click **Preview Schedule** to see a calendar view</Step>
+</Steps>
+
+The preview shows:
+
+- 🟢 Recording active periods
+- 🔴 Recording blocked periods
+- Current time indicator
+
+## Skip Events
+
+When a stream is skipped due to schedule, filters, or quota, the Activity log shows the reason:
+
+| Skip Type         | Description                                                         |
+| ----------------- | ------------------------------------------------------------------- |
+| **Schedule Skip** | Stream was detected outside the recording window                    |
+| **Filter Skip**   | Stream didn't match content criteria (includes the specific reason) |
+| **Quota Skip**    | Channel storage quota exceeded, no room for a new recording         |
+
+Check the **Activity** page to review skip events and understand why specific streams weren't recorded.

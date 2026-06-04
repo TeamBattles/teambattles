@@ -1,0 +1,140 @@
+---
+title: "Editor Guide"
+description: "How to use the overlay editor to customize your stream overlay"
+---
+
+The overlay editor is a visual tool for arranging widgets, customizing styles, and generating your overlay URL. Access it at [/overlay/editor](https://teambattles.gg/overlay/editor).
+
+**Overlay URLs are public** - no API key, no secret handling. You save the config, copy the URL, paste into OBS.
+
+## Editor Layout
+
+The editor is split into two sections:
+
+- **Canvas** (left, ~70%) - Visual preview of your overlay at 1920x1080 resolution
+- **Sidebar** (right, ~30%) - Controls for widgets, styling, and configuration
+
+## Canvas Interaction
+
+The canvas shows a live preview of your overlay layout.
+
+| Action   | How                                          |
+| -------- | -------------------------------------------- |
+| Select   | Click a widget on the canvas                 |
+| Move     | Drag a selected widget to reposition it      |
+| Resize   | Drag the corner handles of a selected widget |
+| Deselect | Click an empty area of the canvas            |
+
+<Tip>
+	Widgets snap to the canvas boundaries so they stay within the visible area of your stream.
+</Tip>
+
+## Grid and Snapping
+
+The editor includes grid and snap tools to help you align widgets precisely.
+
+### Grid
+
+Toggle the **Grid** button in the canvas toolbar to show alignment grid lines on the canvas. The grid uses 120px spacing (at 1920px reference width) and scales with the canvas size. When the grid is hidden, a subtle dot-grid pattern is displayed instead.
+
+### Snap
+
+Toggle the **Snap** button in the canvas toolbar to enable smart snapping. When snap is active:
+
+- **Snap to grid** - Widgets align to grid line intersections as you drag them
+- **Snap to edges** - Widgets align to the edges of other widgets, making it easy to line up multiple widgets
+- **Snap to center** - A center crosshair is displayed, and widgets snap to the horizontal and vertical center of the canvas
+
+When snapping occurs, colored **snap guide lines** appear on the canvas showing the alignment. These guides are visible only during a drag operation and disappear when you release the widget.
+
+## Sidebar Sections
+
+### Widget Toggles
+
+Enable or disable each widget. Only enabled widgets appear on the canvas and in the final overlay.
+
+Each widget row includes:
+
+- **Toggle** - Enable or disable the widget
+- **Copy URL button** - Copy a URL for just this widget (see [Copying Individual Widget URLs](#copying-individual-widget-urls) below)
+- **Style Override dropdown** - Use a different style type for that specific widget (e.g., use Minimal for one widget while the rest use Rounded)
+
+The widget list is split into two tabs:
+
+- **TeamBattles** - Core widgets (User Stats, Team Stats, Org Stats, Active Match, Leaderboard Rank, Top 3, Referral)
+- **Game Specific** - Per-game rank widgets grouped by game (e.g., BO7 Ranked Play, Valorant Competitive). Enter your SR in [Settings > Game Stats](https://teambattles.gg/settings/game-stats).
+
+See the [Widget Reference](/tools/battles-overlay/widgets) for details on each widget.
+
+### Watermark
+
+Free-tier users see a "teambattles.gg" watermark on one widget. You can choose which widget displays it using the watermark dropdown. Upgrading to Basic ($4.99/mo) or higher removes the watermark entirely.
+
+### Context Selectors
+
+Some widgets require you to select a team or organization:
+
+- **Team selector** - Choose which team's stats to display (required for the Team Stats widget). The team must be public.
+- **Organization selector** - Choose which org's stats to display (required for the Organization Stats widget). The org must be public.
+
+### Style Type
+
+Choose a global widget style to set the visual personality of your overlay:
+
+| Style   | Description                                                                                    |
+| ------- | ---------------------------------------------------------------------------------------------- |
+| Rounded | Default style with smooth corners, gradients, and dot-grid patterns                            |
+| Angular | Esports HUD aesthetic with trapezoid shapes, diagonal cuts, and accent-colored border segments |
+| Minimal | Ultra-compact widgets with tiny avatars (20-24px), small text, and tight single-row layouts    |
+
+The style type applies globally, but you can override it per widget using the dropdown next to each widget toggle.
+
+### Style Controls
+
+Customize the visual appearance of your overlay:
+
+| Setting              | Description                                                  | Default |
+| -------------------- | ------------------------------------------------------------ | ------- |
+| Accent color         | Primary color for highlights and borders                     | Red     |
+| Background opacity   | Background transparency (0-100%)                             | 80%     |
+| Text opacity         | Text transparency (10-100%)                                  | 100%    |
+| Theme                | Light or dark mode                                           | Dark    |
+| Scale                | Overall size multiplier (0.5-2x)                             | 1.0     |
+| Animated             | Enable video effects on game widgets (e.g., winstreak flame) | On      |
+| Vertical Orientation | Stack game widget elements vertically                        | Off     |
+
+### Advanced Settings
+
+Additional options for fine-tuning your overlay:
+
+| Setting          | Description                                      | Range    | Default |
+| ---------------- | ------------------------------------------------ | -------- | ------- |
+| Refresh interval | How often the overlay fetches new data (seconds) | 30 - 300 | 60      |
+
+## Saving Configurations
+
+Click **Save** to store your current layout and settings. You can save up to **5 configurations**. Your saved configs appear in a list below the canvas.
+
+## Copying the Overlay URL
+
+After saving, click **Copy URL** to get a URL you can paste into your streaming software as a Browser Source. The URL looks like:
+
+```
+https://teambattles.gg/overlay/render/{configId}
+```
+
+No secrets, no key parameters - it's a straight public URL.
+
+## Copying Individual Widget URLs
+
+Each widget has a **Copy URL** button (the copy icon next to the toggle). This copies a URL that renders only that single widget:
+
+```
+https://teambattles.gg/overlay/render/{configId}?widget=userStats
+```
+
+Useful when you want to position each widget independently in OBS using OBS transform controls instead of the editor canvas.
+
+## Preview Mode
+
+Use the preview button to open a new tab with sample data so you can check layout and styling before going live.

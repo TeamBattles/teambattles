@@ -1,0 +1,135 @@
+---
+title: "Quick Reference"
+description: "Limits, constraints, and quick facts"
+---
+
+Quick reference for limits and constraints across TeamBattles.
+
+## Character Limits
+
+| Field             | Limit                                           |
+| ----------------- | ----------------------------------------------- |
+| Username          | 3-30 characters (letters, numbers, underscores) |
+| Display Name      | 1-50 characters                                 |
+| Bio               | 500 characters max                              |
+| Organization Name | 3-50 characters (letters, numbers, spaces)      |
+| Organization Tag  | 2-6 characters (uppercase letters, numbers)     |
+| Team Tag          | 2-5 characters (uppercase letters, numbers)     |
+
+## File Size Limits
+
+| Type       | Max Size | Max Count    | Notes             |
+| ---------- | -------- | ------------ | ----------------- |
+| Avatar     | 1 MB     | 1            | Replaces previous |
+| Banner     | 2 MB     | 1            | Replaces previous |
+| Screenshot | 2 MB     | 10 per match | For score proof   |
+| Chat Image | 2 MB     | 10 per team  | Per match chat    |
+
+<Note>
+	All uploaded images are automatically scanned for NSFW content. Images flagged as inappropriate
+	are rejected before being stored.
+</Note>
+
+## Tier-Based Limits
+
+Limits vary by subscription tier. See [Subscriptions](/subscriptions) for full tier details.
+
+| Limit                            | Free     | Basic    | Standard | Premium  |
+| -------------------------------- | -------- | -------- | -------- | -------- |
+| Organizations                    | 1        | 3        | 5        | 10       |
+| Teams per Org                    | 2        | 5        | 10       | 20       |
+| Org Members                      | 20       | 50       | 100      | 200      |
+| Org Teams                        | 2        | 4        | 8        | 10       |
+| Leagues per user                 | 1        | 2        | 3        | 5        |
+| API Keys                         | 2        | 3        | 5        | 10       |
+| Open Tickets                     | 2        | 3        | 5        | 10       |
+| Saved strategies (Total)         | 3        | Infinity | Infinity | Infinity |
+| Saved strategies (Per map)       | Infinity | 3        | 5        | 10       |
+| Custom maps                      | 0        | 0        | 0        | 50       |
+| Strategy boards (per user)[^1]   | 200      | 200      | 200      | 200      |
+
+[^1]: Strategy boards are not tier-gated. The 200-board cap is a flat anti-abuse constant (`BOARD_CAP = 200` in `src/convex/functions/strategies/boards.ts`), not a per-tier limit.
+
+<Note>
+	Limits are enforced as soft limits - existing items above the limit are preserved on downgrade,
+	but new additions are blocked. Saved-strategy gating is dual-axis: on the Free tier
+	`strategiesPerMap` is unlimited and `strategiesTotal` caps you at 3; on paid tiers
+	`strategiesTotal` is unlimited and the per-map cap applies. See
+	[Subscriptions](/subscriptions) for the full breakdown.
+</Note>
+
+## Match Constraints
+
+| Setting          | Constraint         |
+| ---------------- | ------------------ |
+| Series options   | BO1, BO3, BO5, BO7 |
+| Schedule minimum | 1 hour from now    |
+| Schedule maximum | 7 days from now    |
+| Minimum roster   | 1 active player    |
+
+## Challenge Constraints
+
+| Setting                            | Constraint                          |
+| ---------------------------------- | ----------------------------------- |
+| Max pending challenges per team    | 5                                   |
+| Max pending per opponent           | 1                                   |
+| League: per opponent per season    | 1                                   |
+| Cancel grace period                | 24 hours (no penalty)               |
+| Base XP - Win                      | +10                                 |
+| Base XP - Loss                     | -3                                  |
+| Base XP - Draw                     | +3                                  |
+| Challenger win bonus (league only) | +25% of base                        |
+| Challenged win bonus (league only) | +100% of base                       |
+| Refuse penalty (league only)       | Base loss + 1.5x base loss + streak |
+
+## Chat Constraints
+
+| Setting         | Constraint                   |
+| --------------- | ---------------------------- |
+| Message length  | 255 characters max           |
+| Images per team | 10 per match                 |
+| Image size      | 2 MB max                     |
+| Rate limit      | 5 messages per minute        |
+| Chat retention  | Deleted 48 hours after match |
+| Reactions       | 6 options                    |
+
+## Support Constraints
+
+| Setting            | Limit                                |
+| ------------------ | ------------------------------------ |
+| Open tickets       | [Varies by tier](#tier-based-limits) |
+| Subject            | 5-100 characters                     |
+| Description        | 10-5000 characters                   |
+| Message            | 10-5000 characters                   |
+| Images per ticket  | 10 total                             |
+| Image size         | 2 MB each                            |
+| Members per ticket | 10 (including creator)               |
+
+## API Key Constraints
+
+| Setting                  | Limit                                |
+| ------------------------ | ------------------------------------ |
+| Keys per user            | [Varies by tier](#tier-based-limits) |
+| Label length             | 1-50 characters                      |
+| Key format               | `tb_` prefix + 64 hex characters     |
+| Matches per API response | 100 max                              |
+
+## OG Image Specifications
+
+Social preview images (Open Graph) for profiles:
+
+| Property       | Value                       |
+| -------------- | --------------------------- |
+| Dimensions     | 1200 × 630 pixels           |
+| Format         | PNG                         |
+| Themes         | Dark (default), Light       |
+| Cache duration | 1 hour (browser)            |
+| Regeneration   | Automatic on profile update |
+
+**Available endpoints:**
+
+| Profile Type | Endpoint                     |
+| ------------ | ---------------------------- |
+| User         | `/og/profile/{username}.png` |
+| Team         | `/og/team/{slug}.png`        |
+| Organization | `/og/org/{slug}.png`         |

@@ -1,0 +1,74 @@
+---
+title: "Calendar"
+description: "Track scheduled matches and subscription events in one visual calendar"
+---
+
+The Calendar gives you a single visual view of your scheduled matches and your subscription renewal or expiration events. Events refresh automatically as data changes, so you do not need to reload to see updates.
+
+## Accessing the Calendar
+
+The Calendar is a top-level entry in the main navigation. Open it from the **Calendar** link in the sidebar, or go directly to `/calendar`.
+
+<Note>
+	The Calendar renders client-side using live data. When you first open it, you will see a brief
+	loading state while events are fetched.
+</Note>
+
+## Views
+
+Use the view toggle in the Calendar header to switch between three layouts:
+
+- **Month** - Overview of the full month with event indicators on each day.
+- **Week** - A week at a glance, showing events across time slots.
+- **Day** - A focused single-day view with all events for that day.
+
+## Event Types
+
+The Calendar shows two kinds of events.
+
+### Match Events
+
+Every match with a scheduled start time that you or your teams are involved in appears on the Calendar. Each event shows the matchup, status, and a link to the match page.
+
+### Subscription Events
+
+Your active subscription can produce up to two events on the Calendar so that you can plan around billing.
+
+| Event                  | When it appears                                                         | Color       | Click target        |
+| ---------------------- | ----------------------------------------------------------------------- | ----------- | ------------------- |
+| Subscription renews    | Subscription status is `active` and a next charge date is set           | Amber       | `/settings/billing` |
+| Subscription expires   | Subscription status is `non_renewing` or `trialing` and an end date is set | Destructive | `/settings/billing` |
+
+<Tip>
+	A non-renewing or trialing subscription does not renew automatically. Use the expiration event as a
+	reminder to update your plan in **Settings -> Billing** before it ends.
+</Tip>
+
+## Filtering Events
+
+Use the filter sidebar to narrow what the Calendar displays. You can filter by:
+
+- Organization
+- Team
+- League
+- Match type
+
+Filters apply to the current view in real time. On smaller screens, open the filter sidebar from the **Filters** button in the Calendar header.
+
+## Real-Time Updates
+
+The Calendar uses live queries, so events refresh automatically as data changes. When a match is scheduled, rescheduled, or cancelled, or when your subscription status changes, the Calendar reflects the update without a refresh.
+
+## Event Interactions
+
+<Steps>
+	<Step title="Click an event">
+		Click any event tile in the Calendar to open it.
+	</Step>
+	<Step title="Match events">
+		Click a match event to open the match page, where you can see the lobby, attendance, and scores.
+	</Step>
+	<Step title="Subscription events">
+		Click a subscription renewal or expiration event to jump to **Settings -> Billing**, where you can review your plan and update payment details.
+	</Step>
+</Steps>

@@ -1,0 +1,218 @@
+---
+title: "Get Organization Matches"
+openapi: "POST /orgs/{identifier}/matches"
+---
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/orgs/Esports_Org/matches \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"leagueTeamsOnly": true, "excludeStatuses": ["CANCELLED"], "numItems": 50}'
+```
+
+```javascript JavaScript
+const orgSlug = "Esports_Org";
+
+const response = await fetch(`https://teambattles.gg/api/v1/orgs/${orgSlug}/matches`, {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify({
+		leagueTeamsOnly: true,
+		excludeStatuses: ["CANCELLED"],
+		numItems: 50
+	})
+});
+
+const { page, isDone, continueCursor } = await response.json();
+
+// Fetch next page if available
+if (!isDone) {
+	const nextPage = await fetch(`https://teambattles.gg/api/v1/orgs/${orgSlug}/matches`, {
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			leagueTeamsOnly: true,
+			excludeStatuses: ["CANCELLED"],
+			numItems: 50,
+			cursor: continueCursor
+		})
+	});
+}
+```
+
+```python Python
+import requests
+
+org_slug = 'Esports_Org'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/orgs/{org_slug}/matches',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'leagueTeamsOnly': True, 'excludeStatuses': ['CANCELLED'], 'numItems': 50}
+)
+
+data = response.json()
+matches = data['page']
+is_done = data['isDone']
+continue_cursor = data['continueCursor']
+```
+
+</RequestExample>
+
+## Permission Required
+
+This endpoint requires the `matches.org_matches` permission on your API key.
+
+## Membership Required
+
+You must be an **active member** of the organization to access its matches. If you're not a member, you'll receive a `403` error with code `error_org_membership_required`.
+
+## Organization Identifier
+
+The `{identifier}` path parameter accepts either:
+
+- **Organization ID**: The Convex document ID (e.g., `kd8xyz789ghi012`)
+- **Organization Slug**: The URL-friendly org name (e.g., `Esports_Org`)
+
+The slug is derived from the organization name by replacing spaces with underscores.
+
+## What's Returned
+
+This endpoint returns matches for **all teams** within the organization. This is useful for organization admins or dashboards that need to see activity across all teams.
+
+## Filtering Options
+
+### League Teams Only
+
+The `leagueTeamsOnly` parameter is unique to this endpoint:
+
+| Parameter         | Type    | Description                                      |
+| ----------------- | ------- | ------------------------------------------------ |
+| `leagueTeamsOnly` | boolean | Only include matches involving LEAGUE type teams |
+
+<Note>
+	LEAGUE teams are teams created for organized league play, as opposed to regular competitive teams.
+</Note>
+
+### Status Filtering
+
+Filter matches by their status:
+
+- **includeStatuses**: Only return matches with these statuses (takes precedence)
+- **excludeStatuses**: Return all matches except those with these statuses
+
+### Date Filtering
+
+Filter by scheduled or creation dates using ISO 8601 format:
+
+- **scheduledAfter** / **scheduledBefore**: Filter by scheduled match time
+- **createdAfter** / **createdBefore**: Filter by when the match was created
+
+### Other Filters
+
+- **gameId**: Filter by a specific game
+- **opponentId**: Filter by opponent team (accepts team ID or slug)
+
+## Pagination
+
+Results are paginated with a default of 25 matches per page (maximum 100).
+
+### Request Fields
+
+| Parameter  | Type   | Description                                           |
+| ---------- | ------ | ----------------------------------------------------- |
+| `numItems` | number | Number of items per page, 1-100, default 25           |
+| `cursor`   | string | Opaque cursor string from a prior response (optional) |
+
+### Response Fields
+
+| Field            | Type    | Description                                        |
+| ---------------- | ------- | -------------------------------------------------- |
+| `page`           | array   | Array of matches for this page                     |
+| `isDone`         | boolean | `true` when there are no more pages to fetch       |
+| `continueCursor` | string  | Pass back as `cursor` on the next request          |
+
+Example response envelope:
+
+```json
+{
+	"page": [],
+	"isDone": false,
+	"continueCursor": "eyJpZCI6Im1hdGNoXzEyMyIsInRzIjoxNzA0MDY3MjAwfQ=="
+}
+```
+
+## Errors
+
+| Code                              | HTTP Status | When                                                              |
+| --------------------------------- | ----------- | ----------------------------------------------------------------- |
+| `error_api_key_required`          | 401         | Missing `Authorization` header                                    |
+| `error_api_key_invalid`           | 401         | API key is unknown, revoked, or expired                           |
+| `error_api_key_permission_denied` | 403         | The key does not hold `matches.org_matches: read`                 |
+| `error_org_membership_required`   | 403         | You are not an active member of the requested organization        |
+| `error_invalid_num_items`         | 400         | `numItems` is outside the allowed `1-100` range                   |
+| `error_invalid_limit`             | 400         | Reserved for `limit`-style page sizes (registry-level error code) |
+| `error_invalid_cursor`            | 400         | `cursor` is malformed or no longer valid                          |
+| `error_invalid_date_format`       | 400         | One of the `scheduled*`/`created*` filters is not ISO 8601        |
+| `error_org_not_found`             | 404         | The `{identifier}` could not be resolved to an organization       |
+| `error_team_not_found`            | 404         | `opponentId` could not be resolved to a team                      |
+| `error_internal`                  | 500         | Unhandled server error - retry or contact support                 |
+
+## Common Use Cases
+
+### Get All League Matches
+
+```json
+{
+	"leagueTeamsOnly": true,
+	"numItems": 50
+}
+```
+
+### Get Active Matches Across All Teams
+
+```json
+{
+	"excludeStatuses": ["PENDING", "COMPLETED", "CANCELLED", "FORFEITED"],
+	"numItems": 50
+}
+```
+
+### Get Completed League Matches for Stats
+
+```json
+{
+	"leagueTeamsOnly": true,
+	"includeStatuses": ["COMPLETED", "FORFEITED"],
+	"numItems": 100
+}
+```
+
+### Get Matches for a Specific Game
+
+```json
+{
+	"gameId": "call_of_duty_bo7",
+	"excludeStatuses": ["CANCELLED"]
+}
+```
+
+### Get Organization Match History for a Season
+
+```json
+{
+	"scheduledAfter": "2024-01-01T00:00:00Z",
+	"scheduledBefore": "2024-06-30T23:59:59Z",
+	"leagueTeamsOnly": true,
+	"includeStatuses": ["COMPLETED"],
+	"numItems": 100
+}
+```

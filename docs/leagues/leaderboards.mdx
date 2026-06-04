@@ -1,0 +1,82 @@
+---
+title: "Leaderboards & Points"
+description: "How league standings and the points system work"
+---
+
+League standings are driven by a configurable points engine. Points are awarded or deducted automatically after each match, and standings update in real time.
+
+<Note>League points are separate from match XP. XP is earned on every match across the platform, while league points only apply within a specific league and season.</Note>
+
+## How Points Work
+
+After a match completes, the points engine calculates awards for both teams based on the match outcome:
+
+- **Wins** award base points to the winner
+- **Losses** deduct base points from the loser
+- **Draws** award draw points to both teams
+- **Bonuses** are added on top of base points for streaks, challenges, and other factors
+- **Penalties** are deducted for forfeits, refused challenges, and admin-issued penalties
+
+If a league allows negative points, a team's score can go below zero. Otherwise, points are floored at zero.
+
+## Points Table
+
+These are the default point values. League admins can customize all of these.
+
+| Event                    | Default Value | Description                                          |
+| ------------------------ | ------------- | ---------------------------------------------------- |
+| **Win**                  | +10           | Base points for winning a match                      |
+| **Loss**                 | -3            | Base points deducted for losing a match              |
+| **Draw**                 | +3            | Points awarded to both teams on a draw               |
+| **Forfeit penalty**      | -3            | Additional deduction when a team forfeits            |
+| **Challenge refuse**     | -4            | Additional penalty for refusing a challenge          |
+| **Challenger win bonus** | +25%          | Bonus for the challenging team when they win         |
+| **Challenged win bonus** | +100%         | Bonus for the challenged team when they win (underdog bonus) |
+
+## Season Selector
+
+{/*
+IMAGE NEEDED: Season selector dropdown on leaderboard
+Type: screenshot
+Shows: The season dropdown with multiple seasons listed
+Notes: Use dark theme
+*/}
+
+The leaderboard includes a season selector that lets you view standings for any season - current or past. Select a season to see the standings snapshot for that period.
+
+If no season is active, you will see **preseason** stats. Preseason matches still award points, but those stats are tracked separately from named seasons.
+
+## Streak Bonuses
+
+Teams on a winning streak earn bonus points on top of their base win award. The bonus percentage increases with longer streaks:
+
+| Streak Length | Bonus    |
+| ------------- | -------- |
+| 3 wins        | +25%     |
+| 5 wins        | +30%     |
+| 7 wins        | +35%     |
+| 9 wins        | +40%     |
+| 12 wins       | +45%     |
+| 15 wins       | +50%     |
+| 20 wins       | +55%     |
+| 25 wins       | +60%     |
+| 50 wins       | +65%     |
+| 100 wins      | +70%     |
+
+<Tip>Streak bonuses can be disabled or customized by league admins. Check your league's point configuration for specifics.</Tip>
+
+## Challenge Bonuses
+
+When a team wins a **challenge match**, bonus points are awarded based on which side initiated the challenge:
+
+- **Challenger wins** - The team that sent the challenge gets a smaller bonus (default +25%) since they chose the matchup
+- **Challenged team wins** - The team that received the challenge gets a larger bonus (default +100%) as an underdog reward
+
+## Anti-Farming
+
+To prevent teams from repeatedly playing each other to inflate points, leagues include anti-farming protections:
+
+- **Matchup cooldown** - Two teams cannot earn points from playing each other again within a configurable window (default: 24 hours)
+- **Scrimmage restriction** - By default, scrimmage matches do not award league points
+
+<Note>If a match occurs during the cooldown window, it still plays out normally - but no league points are awarded or deducted.</Note>

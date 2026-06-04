@@ -1,0 +1,217 @@
+---
+title: "Troubleshooting"
+description: "Solutions to common problems"
+---
+
+## Account Issues
+
+**"I can't log in"**
+
+- Try a different login provider
+- Clear browser cache and cookies
+- Check if the OAuth provider is having issues
+
+**"I can't unlink my Discord/Twitch"**
+
+- Keep at least one provider connected
+- Link a different provider first, then unlink
+
+**"My profile picture won't upload"**
+
+- Check file is under 1 MB
+- Ensure it's an image (JPG, PNG, GIF, WebP)
+- The image may have been flagged as inappropriate by our automatic content filter
+- Try a different browser
+
+## Organization Issues
+
+**"I can't create a team"**
+
+- You must be Owner or Admin
+- Ask an admin to promote you or create the team
+
+**"I can't invite members"**
+
+- Managers can invite, Members cannot
+- Ask an admin to promote you
+
+## Team Issues
+
+**"I can't join this team"**
+
+- You must be in the parent organization first
+- You may be banned from the team
+- The team may be disabled
+
+**"I was demoted when I promoted someone"**
+
+- Each team has only one Captain
+- Promoting someone to Captain makes you Co-Captain
+
+## Match Issues
+
+**"I can't start a match"**
+
+- Only captains can start matches
+- Both teams must have confirmed rosters
+- Match must be "Accepted" status
+
+**"I can't submit scores"**
+
+- Only captains can submit
+- Match must be "In Progress"
+- Verify you have active players
+
+**"I can't accept a match"**
+
+- Your team must be for the same game
+- You must be Captain or Co-Captain
+- Meet platform/input requirements
+
+## Chat Issues
+
+**"I can't send messages"**
+
+- You may be rate limited (5/minute)
+- Wait for countdown timer
+- Keep messages under 255 characters
+
+**"I can't upload images"**
+
+- Team may have reached 10 image limit
+- Images must be under 2 MB
+- The image may have been flagged as inappropriate by our automatic content filter
+
+**"Where did my messages go?"**
+
+- Chat is deleted 48 hours after match completion
+- Screenshot important messages before match ends
+
+## Connection Issues
+
+**"I can't link my Activision"**
+
+- Ensure correct Activision account
+- Log out and back in
+- Clear browser cache
+
+**"I can't play CoD without Activision"**
+
+- Activision is required for Call of Duty
+- Go to Settings > Connections to link
+
+## Achievement Issues
+
+**"My achievement didn't unlock"**
+
+- Achievements unlock automatically
+- Try refreshing the page
+- Some need a short delay
+
+**"The onboarding won't disappear"**
+
+- Complete all tasks in each category
+- Some tasks have specific requirements
+
+## League Issues
+
+**"I can't create a league"**
+
+- League creation requires a TB staff-approved application. Navigate to Discover > Leagues > Create League to submit your application.
+- Check if you have reached your league ownership limit (varies by subscription tier).
+
+**"My team can't join a league"**
+
+- Your team must have at least the minimum roster size required by the league.
+- Check if your team is banned from the league.
+- If you recently left the league, a cooldown period may apply.
+
+**"I can't see my points or standings"**
+
+- Points are only tracked during active seasons. Check if the league has an active season for your game.
+- Scrimmage matches (outside active season) may not award points depending on league settings.
+
+**"My league appears as orphaned"**
+
+- This happens when the league owner's account is banned. Contact TB staff through the support system for assistance.
+
+## Tutorial Issues
+
+**"My tutorial is stuck or not advancing"**
+
+- Make sure you're clicking the highlighted element, not elsewhere on the page
+- If the highlighted element isn't visible, try scrolling or navigating to the expected page
+- Close the tutorial and restart it from the [dashboard](/dashboard)
+
+**"The tutorial badge won't go away"**
+
+- The floating "Tutorial in progress" badge means a tutorial is paused. Click it to cancel, or complete the expected action to resume.
+- Paused tutorials are automatically abandoned after 24 hours.
+
+**"I want to replay a tutorial"**
+
+- Go to your dashboard and find the Tutorials section. Completed tutorials can be started again at any time.
+
+## API Key Issues
+
+**"I can't create more keys"**
+
+- Maximum 5 API keys per account
+- Delete unused keys to free up slots
+
+**"My API key isn't working"**
+
+- Verify key is copied correctly (starts with `tb_`)
+- Check the key has required permissions
+- Use correct header format: `Bearer tb_...`
+
+**"Permission denied errors"**
+
+- Edit the key to add required permissions
+- Connection permissions need platform linked first
+
+**"Can't enable a connection permission"**
+
+- Link that platform in Settings > Connections first
+
+**"I lost my API key"**
+
+- Keys are only shown once at creation
+- Create a new key and update your applications
+
+### Invalid cursor error (`error_invalid_cursor`)
+
+If you receive a `400 error_invalid_cursor` response from `/api/v1/user/matches`,
+`/api/v1/teams/[identifier]/matches`, or `/api/v1/orgs/[identifier]/matches`, the
+cursor you passed was not produced by a recent response from the same endpoint.
+
+**Common causes:**
+- The cursor format changed between versions. If you stored a cursor from the
+  legacy response envelope (`{ matches, pagination: { cursor, hasMore } }`),
+  it will not work against the new native envelope (`{ page, isDone, continueCursor }`).
+  Re-issue a fresh `numItems` request with no cursor to start a new pagination run.
+- The cursor was truncated in storage or transit (e.g., URL length limits).
+- A deploy invalidated server-side pagination state.
+
+**Fix:** drop the stored cursor, call the endpoint again without `cursor`, and
+use the `continueCursor` from the new response for subsequent pages.
+
+## API errors
+
+These error codes may be returned by the public REST API or by the Battles Strategy editor.
+
+| Error code | HTTP status | Meaning |
+| --- | :-: | --- |
+| `error_invalid_num_items` | 400 | The `numItems` parameter was out of the valid range (typically 1-100 for paginated matches endpoints) |
+| `error_invalid_limit` | 400 | The `limit` parameter was out of the valid range |
+| `error_strategy_save_quota_exceeded` | 429 | The per-map or total strategy save cap for your subscription tier has been reached |
+| `error_strategy_board_limit_exceeded` | 429 | The 200-board per-user anti-abuse cap has been reached |
+| `error_custom_map_limit_reached` | 429 | The Premium custom-map per-user cap (50) has been reached |
+
+**Fix `error_invalid_num_items` / `error_invalid_limit`:** clamp the pagination parameter to the documented range and retry.
+
+**Fix `error_strategy_save_quota_exceeded`:** delete unused strategies, move strategies between boards, or upgrade your subscription tier for higher caps.
+
+**Fix `error_strategy_board_limit_exceeded`:** delete unused boards from the Battles Strategy editor before creating new ones.
+
+**Fix `error_custom_map_limit_reached`:** open the Battles Strategy editor's custom maps panel and delete unused custom maps. Custom maps are a Premium feature with a 50-per-user cap.

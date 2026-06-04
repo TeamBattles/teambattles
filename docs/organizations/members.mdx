@@ -1,0 +1,92 @@
+---
+title: "Members & Roles"
+description: "Manage organization members and permissions"
+---
+
+{/_
+IMAGE NEEDED: Organization members tab
+Type: screenshot
+Shows: Member list with roles and actions
+Notes: Show different role badges
+_/}
+
+Organizations have four member roles with different permissions.
+
+## Roles
+
+| Role        | Description                                         |
+| ----------- | --------------------------------------------------- |
+| **Owner**   | Full control, can transfer ownership and delete org |
+| **Admin**   | Manage members, teams, and settings                 |
+| **Manager** | Limited management, can invite members              |
+| **Member**  | Basic access, can join teams                        |
+
+## Permission Matrix
+
+| Action                | Owner | Admin | Manager | Member |
+| --------------------- | :---: | :---: | :-----: | :----: |
+| Delete organization   |   ✓   |       |         |        |
+| Transfer ownership    |   ✓   |       |         |        |
+| Disable/enable org    |   ✓   |       |         |        |
+| Change member roles   |   ✓   |       |         |        |
+| Create teams          |   ✓   |   ✓   |         |        |
+| Invite members        |   ✓   |   ✓   |    ✓    |        |
+| Remove members        |   ✓   |   ✓   |         |        |
+| Approve join requests |   ✓   |   ✓   |         |        |
+| Ban users             |   ✓   |   ✓   |         |        |
+| View members          |   ✓   |   ✓   |    ✓    |   ✓    |
+
+## Managing Members
+
+### Change a Member's Role
+
+1. Go to your organization's **Members** tab
+2. Find the member
+3. Click the role dropdown
+4. Select the new role
+
+<Note>Only the Owner can change roles.</Note>
+
+### Remove a Member
+
+1. Go to **Members** tab
+2. Find the member
+3. Click **Remove**
+
+The member will be removed from the organization and all its teams.
+
+### Leave the Organization
+
+Any member can leave from the **Members** tab. Before you can leave, you must first leave or transfer any teams you belong to within the organization. The leave dialog lists the teams blocking you, with links to each team's roster.
+
+<Note>
+	If a team is locked in an active league match, you can't leave it (and therefore can't leave the
+	organization) until the match ends.
+</Note>
+
+### Ban a User
+
+Prevent a user from rejoining:
+
+1. Go to **Members** tab
+2. Find the member (or search for a former member)
+3. Click **Ban**
+4. Choose ban type:
+   - **Temporary** - Set duration (hours, days, weeks)
+   - **Permanent** - User can never rejoin
+
+**What happens when banned:**
+
+- User is removed from the organization
+- User cannot rejoin or be re-invited
+- User cannot request to join
+- Ban can be lifted by admins
+
+### Transfer Ownership
+
+1. Go to organization **Settings**
+2. Click **Transfer Ownership**
+3. Select the new owner (must be an Admin)
+4. Confirm the transfer
+
+<Warning>This action cannot be undone. You will become an Admin after transferring.</Warning>

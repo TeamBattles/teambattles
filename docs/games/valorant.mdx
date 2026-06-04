@@ -1,0 +1,120 @@
+---
+title: "Valorant"
+description: "Valorant game support on TeamBattles."
+---
+
+Valorant is fully supported on TeamBattles with 4 game modes, competitive and flex map pools, and 13 maps.
+
+## Requirements
+
+<Warning>
+	**Riot Games connection required.** All team members must link their Riot Games account.
+</Warning>
+
+Link your Riot Games account:
+
+1. Go to **Settings > Connections**
+2. Click **Connect** next to Riot Games
+3. Authorize the connection
+
+## Team Size
+
+5 players per team.
+
+## Game Modes
+
+| Mode        | Maps | Notes            |
+| ----------- | ---- | ---------------- |
+| Competitive | 13   | League mode only |
+| Unrated     | 13   | -                |
+| Spike Rush  | 13   | -                |
+| Swiftplay   | 13   | -                |
+
+## Maps
+
+Valorant includes 13 maps, all available across every game mode:
+
+Abyss, Ascent, Bind, Breeze, Fracture, Haven, Icebox, Lotus, Pearl, Split, Sunset, Drift, Waypoint
+
+## Map Selection
+
+During match creation, choose from two map pool types:
+
+| Pool            | Description                                         |
+| --------------- | --------------------------------------------------- |
+| **Competitive** | Tournament-standard maps, curated for balanced play |
+| **Flex**        | All available maps including casual maps            |
+
+Valorant supports Manual map selection mode, allowing you to directly pick the exact maps to play. Manual mode is not available in league matches.
+
+<Note>
+	In league mode, only the Competitive game mode is available and the Competitive map pool is
+	enforced automatically.
+</Note>
+
+## Rank Tracking
+
+Your Valorant competitive rank can be synced automatically from the Riot Games API and displayed on your stream overlay.
+
+**Setup:**
+
+1. Connect your Riot Games account in [Settings > Connections](https://teambattles.gg/settings/connections)
+2. Go to [Settings > Game Stats](https://teambattles.gg/settings/game-stats) and select Valorant
+3. Click **Sync** to fetch your current rank
+
+Your rank, RR (Rating Rating), and peak rank are retrieved automatically. Data is cached for 15 minutes.
+
+**Display on stream:** Enable the Valorant Competitive widget in the [Overlay Editor](/tools/battles-overlay/editor) under the "Game Specific" tab, or use the [Simple Overlay](/tools/battles-overlay/simple) for a quick no-account setup.
+
+## Competitive Rules
+
+<Info>
+	All rules listed below, as well as any situations not explicitly covered, are subject to Admin
+	review and enforcement at their discretion.
+</Info>
+
+### Private Match Settings
+
+| Setting              | Value |
+| -------------------- | ----- |
+| Tournament Mode      | On    |
+| Cheats               | Off   |
+| Overtime: Win by Two | On    |
+| Play Out All Rounds  | Off   |
+
+### Agent Restrictions
+
+- No duplicate agents allowed per team (enforced by the game client)
+- Newly released agents are restricted for 2 weeks from their release date
+- Agents disabled by Riot Games are automatically ineligible for competitive play
+
+### Behavioral Rules
+
+| Rule                                    | Description                                                                                                                                |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Bug and Exploit Abuse                   | Using any bug, glitch, or exploit that provides an unintended competitive advantage is strictly prohibited.                                |
+| One-Way Exploits                        | Using known one-way walls, smokes, or ability placements that allow vision through surfaces intended to block line of sight.               |
+| Stream Sniping                          | Watching an opponent's live stream to gain information about their positioning, economy, or strategy during a match.                       |
+| Intentional Loss and Match Manipulation | Purposeful underperformance, throwing rounds, or any form of match fixing. Teams must compete to the best of their ability in every round. |
+
+### Match Policies
+
+| Policy            | Details                                                                                                                                                                |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Riot ID Required  | All players must have a Riot Games account in good standing connected to their TeamBattles profile. The same account must be used for all matches throughout a season. |
+| Anti-Cheat        | Riot Vanguard must be installed, active, and running on all players' systems. Third-party software, hardware cheats, macros, or modded peripherals are prohibited.     |
+| No-Show (League)  | Teams must be ready within 15 minutes of the scheduled match time. After 15 minutes, the absent team forfeits (recorded as 13-0 per map).                              |
+| Tactical Timeouts | 2 per team per map, 60 seconds each. Can only be called during the buy phase - not mid-round or after the Spike is planted.                                            |
+| Technical Pauses  | Allowed for genuine hardware or software issues. Maximum 10 minutes per incident. Player must announce the reason in match chat before pausing.                        |
+| Disconnects       | Player must reconnect within the pause window. If unable, play continues 4v5. No mid-game substitutions once a game has started.                                       |
+| Substitutions     | Only allowed between maps in a series. Substitutes must be registered on the team roster before the match.                                                             |
+| Proof Submission  | End-game scoreboard screenshot required after each map. Screenshots must be uncropped and clearly show the final score. Replay files should be retained for 7 days.    |
+
+### Penalties
+
+| Tier        | Name            | Description                                       |
+| ----------- | --------------- | ------------------------------------------------- |
+| 1st offense | Warning         | A formal warning is issued and recorded.          |
+| 2nd offense | Point Deduction | Points are deducted from the team's standings.    |
+| 3rd offense | Match Forfeit   | The match is forfeited and recorded as a loss.    |
+| Repeated    | Suspension      | The player or team is suspended from competition. |

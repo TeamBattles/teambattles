@@ -1,0 +1,36 @@
+---
+title: Dart SDK
+description: Install and use the official TeamBattles Dart SDK to call the developer API.
+---
+
+The Dart SDK is published to pub.dev as `teambattles_sdk`. It is generated from the [OpenAPI spec](/developers/api-reference) with [Microsoft Kiota](https://learn.microsoft.com/en-us/openapi/kiota/) and regenerates on every API change.
+
+<Note>Dart is a preview SDK - its Kiota runtime dependencies are still pre-release. See [SDKs overview](/sdks) for maturity details.</Note>
+
+## Install
+
+```bash
+dart pub add teambattles_sdk
+```
+
+## Authenticated first call
+
+```dart
+import 'dart:io';
+import 'package:teambattles_sdk/teambattles_sdk.dart';
+
+final client = createTeamBattlesClient(
+  Platform.environment['TEAMBATTLES_API_KEY']!,
+);
+
+// List the authenticated user's matches (requires matches.user_matches: read)
+final body = MatchesRequestBody()..numItems = 25;
+final result = await client.user.matches.post(body);
+for (final match in result?.page ?? []) {
+  print('${match.id} ${match.status}');
+}
+```
+
+## Authentication
+
+The factory wires an `Authorization: Bearer tb_<your-key>` header on every request. Create keys at [Settings > Developer](https://teambattles.gg/settings/developer) and review scopes in the [authentication guide](/developers/authentication). Treat the `error` machine code in error responses - not the `details` message - as the stable programmatic contract.

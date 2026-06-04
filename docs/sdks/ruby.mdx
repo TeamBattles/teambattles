@@ -1,0 +1,34 @@
+---
+title: Ruby SDK
+description: Install and use the official TeamBattles Ruby SDK to call the developer API.
+---
+
+The Ruby SDK is published to RubyGems as `teambattles_sdk`. It is generated from the [OpenAPI spec](/developers/api-reference) with [Microsoft Kiota](https://learn.microsoft.com/en-us/openapi/kiota/) and regenerates on every API change.
+
+<Note>Ruby is a preview SDK - its Kiota serialization runtime is partially released. See [SDKs overview](/sdks) for maturity details.</Note>
+
+## Install
+
+```bash
+gem install teambattles_sdk
+```
+
+## Authenticated first call
+
+```ruby
+require "teambattles_sdk"
+
+client = TeamBattlesSdk.create_client(ENV.fetch("TEAMBATTLES_API_KEY"))
+
+# List the authenticated user's matches (requires matches.user_matches: read)
+body = TeamBattlesSdk::Models::MatchesRequestBody.new
+body.num_items = 25
+result = client.user.matches.post(body)
+(result.page || []).each do |match|
+  puts "#{match.id} #{match.status}"
+end
+```
+
+## Authentication
+
+The factory wires an `Authorization: Bearer tb_<your-key>` header on every request. Create keys at [Settings > Developer](https://teambattles.gg/settings/developer) and review scopes in the [authentication guide](/developers/authentication). Treat the `error` machine code in error responses - not the `details` message - as the stable programmatic contract.

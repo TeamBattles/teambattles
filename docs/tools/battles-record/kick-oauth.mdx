@@ -1,0 +1,204 @@
+---
+title: "Kick OAuth Proxy"
+description: "Server-side OAuth token exchange for Kick platform authentication"
+---
+
+Battles Record uses a secure OAuth proxy hosted on TeamBattles to authenticate with Kick. This keeps the OAuth client secret secure on the server while allowing the desktop app to complete the authentication flow.
+
+## Why a Proxy?
+
+Kick's OAuth 2.1 implementation requires `client_secret` even when using PKCE. For a public desktop application, we cannot safely bundle the secret (it could be extracted). The proxy:
+
+1. Keeps `client_secret` secure on the server
+2. Accepts authorization codes from the desktop app
+3. Exchanges them with Kick's OAuth server
+4. Returns access tokens to the app
+
+## Endpoints
+
+All endpoints are hosted at `https://teambattles.gg/api/v1/kick/`.
+
+### Token Exchange
+
+Exchange an authorization code for access tokens.
+
+```http
+POST https://teambattles.gg/api/v1/kick/token
+Content-Type: application/json
+```
+
+**Request Body:**
+
+```json
+{
+	"code": "authorization_code_from_kick",
+	"code_verifier": "pkce_code_verifier_43_to_128_chars",
+	"redirect_uri": "battles-record://oauth/callback"
+}
+```
+
+| Field           | Type   | Required | Description                                                                                            |
+| --------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------ |
+| `code`          | string | Yes      | Authorization code received from Kick OAuth redirect                                                   |
+| `code_verifier` | string | Yes      | PKCE code verifier (43-128 characters) that matches the `code_challenge` sent in authorization request |
+| `redirect_uri`  | string | Yes      | Must match the `redirect_uri` used in the authorization request                                        |
+
+**Allowed Redirect URIs:**
+
+- `battles-record://oauth/callback` (production)
+- `http://localhost:1420/auth/callback` (development)
+
+**Success Response (200 OK):**
+
+```json
+{
+	"access_token": "eyJhbGciOiJSUzI1NiIs...",
+	"token_type": "Bearer",
+	"expires_in": 3600,
+	"refresh_token": "eyJhbGciOiJSUzI1NiIs...",
+	"scope": "user:read channel:read"
+}
+```
+
+**Error Responses:**
+
+<ResponseField name="400 Bad Request" type="object">
+  Missing or invalid parameters, or Kick OAuth error.
+  ```json
+  {
+    "error": "invalid_request",
+    "error_description": "Missing required parameter: code_verifier"
+  }
+  ```
+
+Common error codes:
+
+- `invalid_grant` - Code expired, already used, or code_verifier doesn't match
+- `invalid_request` - Malformed request or missing parameters
+  </ResponseField>
+
+<ResponseField name="502 Bad Gateway" type="object">
+  Failed to communicate with Kick OAuth server.
+  ```json
+  {
+    "error": "error_kick_server_error",
+    "details": "Failed to communicate with Kick OAuth server"
+  }
+  ```
+</ResponseField>
+
+### Token Refresh
+
+Refresh an expired access token using a refresh token.
+
+```http
+POST https://teambattles.gg/api/v1/kick/refresh
+Content-Type: application/json
+```
+
+**Request Body:**
+
+```json
+{
+	"refresh_token": "eyJhbGciOiJSUzI1NiIs..."
+}
+```
+
+| Field           | Type   | Required | Description                                        |
+| --------------- | ------ | -------- | -------------------------------------------------- |
+| `refresh_token` | string | Yes      | Refresh token obtained from initial token exchange |
+
+**Success Response (200 OK):**
+
+```json
+{
+	"access_token": "eyJhbGciOiJSUzI1NiIs...",
+	"token_type": "Bearer",
+	"expires_in": 3600,
+	"refresh_token": "eyJhbGciOiJSUzI1NiIs...",
+	"scope": "user:read channel:read"
+}
+```
+
+**Error Responses:**
+
+<ResponseField name="400 Bad Request" type="object">
+  Missing parameter or invalid/expired refresh token.
+  ```json
+  {
+    "error": "invalid_grant",
+    "error_description": "Refresh token is invalid or expired"
+  }
+  ```
+</ResponseField>
+
+## Authentication Flow
+
+Here's how Battles Record authenticates with Kick:
+
+<Steps>
+  <Step title="Generate PKCE">
+    Generate a `code_verifier` (43-128 random characters) and `code_challenge` (Base64URL(SHA256(code_verifier))).
+  </Step>
+
+<Step title="Build Authorization URL">
+	Construct the Kick authorization URL with PKCE parameters: ```
+	https://id.kick.com/oauth/authorize? response_type=code& client_id=YOUR_CLIENT_ID&
+	redirect_uri=battles-record://oauth/callback& scope=user:read%20channel:read&
+	code_challenge=BASE64URL_CHALLENGE& code_challenge_method=S256& state=RANDOM_CSRF_TOKEN ```
+</Step>
+
+<Step title="User Authorizes">
+	Open the URL in the system browser. User logs in and authorizes the app.
+</Step>
+
+<Step title="Receive Callback">
+	App receives the authorization code via deep link: ```
+	battles-record://oauth/callback?code=AUTH_CODE&state=CSRF_TOKEN ```
+</Step>
+
+<Step title="Validate State">
+	Verify the `state` parameter matches what was sent (CSRF protection).
+</Step>
+
+  <Step title="Exchange Code">
+    POST to the token endpoint:
+    ```bash
+    curl -X POST https://teambattles.gg/api/v1/kick/token \
+      -H "Content-Type: application/json" \
+      -d '{
+        "code": "AUTH_CODE",
+        "code_verifier": "ORIGINAL_VERIFIER",
+        "redirect_uri": "battles-record://oauth/callback"
+      }'
+    ```
+  </Step>
+
+  <Step title="Store Tokens">
+    Store the returned `access_token`, `refresh_token`, and `expires_in` securely.
+  </Step>
+</Steps>
+
+## Token Refresh Flow
+
+Refresh tokens before they expire to maintain uninterrupted access:
+
+1. Monitor token expiration (refresh when less than 10 minutes remain)
+2. POST to the refresh endpoint with your refresh token
+3. Store the new tokens (Kick may return a new refresh token)
+4. Update any active API connections
+
+## Comparison with Other Platforms
+
+| Platform    | Token Exchange          | Refresh               | Secret Required   |
+| ----------- | ----------------------- | --------------------- | ----------------- |
+| **Twitch**  | Direct to Twitch (PKCE) | Direct to Twitch      | No                |
+| **YouTube** | Direct to Google (PKCE) | Direct to Google      | No                |
+| **Kick**    | Via TeamBattles proxy   | Via TeamBattles proxy | Yes (server-side) |
+
+## Security Notes
+
+- The proxy validates `redirect_uri` against an allowlist to prevent authorization code injection
+- Tokens and secrets are never logged
+- Requests timeout after 10 seconds to prevent hanging
+- All communication uses HTTPS

@@ -1,0 +1,126 @@
+---
+title: "Get Channel Badges"
+openapi: "GET /twitch/badges/channel"
+---
+
+<RequestExample>
+
+```bash cURL (by username)
+curl "https://teambattles.gg/api/v1/twitch/badges/channel?username=ninja" \
+  -H "Authorization: Bearer tb_your_api_key"
+```
+
+```bash cURL (by ID)
+curl "https://teambattles.gg/api/v1/twitch/badges/channel?id=123456789" \
+  -H "Authorization: Bearer tb_your_api_key"
+```
+
+```javascript JavaScript
+const response = await fetch("https://teambattles.gg/api/v1/twitch/badges/channel?username=ninja", {
+	headers: {
+		Authorization: "Bearer tb_your_api_key"
+	}
+});
+
+const { badges, broadcaster_name } = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://teambattles.gg/api/v1/twitch/badges/channel',
+    params={'username': 'ninja'},
+    headers={'Authorization': 'Bearer tb_your_api_key'}
+)
+
+data = response.json()
+```
+
+</RequestExample>
+
+## Prerequisites
+
+<Warning>
+	This endpoint requires: 1. The `connections.twitch` permission enabled on your API key 2. A Twitch
+	account connected to your TeamBattles account
+</Warning>
+
+## Channel Identification
+
+You must provide exactly **one** of these parameters:
+
+| Parameter  | Description             | Example     |
+| ---------- | ----------------------- | ----------- |
+| `username` | Twitch channel username | `ninja`     |
+| `id`       | Twitch broadcaster ID   | `123456789` |
+
+<Note>
+	Using `id` is more stable since usernames can change. However, `username` is more user-friendly
+	for manual testing.
+</Note>
+
+## What Are Channel Badges?
+
+Channel badges are custom badges specific to a Twitch channel:
+
+- **Subscriber badges** - Tiered badges (Tier 1, 2, 3) with custom artwork
+- **Subscriber tenure badges** - Special badges for long-term subscribers (3, 6, 12+ months)
+- **Bits badges** - Badges for users who've cheered bits
+- **Custom channel badges** - Any other channel-specific badges
+
+## Badge Resolution
+
+When displaying chat badges, use this priority:
+
+1. **Channel badges** (this endpoint) - Check if the channel has a custom badge
+2. **Global badges** ([Get Global Badges](/api-reference/twitch/global-badges)) - Fall back to global badges
+
+For example, a channel might have custom subscriber badges. If the `set_id` is `subscriber`, use the channel's custom images. For `moderator`, use the global badge.
+
+## Caching
+
+The response includes a `Cache-Control: public, max-age=3600` header. Channel badges can change when streamers update their artwork, but caching for 1 hour is generally safe.
+
+## Example Response
+
+```json
+{
+	"broadcaster_id": "123456789",
+	"broadcaster_name": "Ninja",
+	"badges": [
+		{
+			"set_id": "subscriber",
+			"versions": [
+				{
+					"id": "0",
+					"image_url_1x": "https://static-cdn.jtvnw.net/.../1",
+					"image_url_2x": "https://static-cdn.jtvnw.net/.../2",
+					"image_url_4x": "https://static-cdn.jtvnw.net/.../3",
+					"title": "Subscriber",
+					"description": "Subscriber badge"
+				},
+				{
+					"id": "2000",
+					"image_url_1x": "https://static-cdn.jtvnw.net/.../1",
+					"image_url_2x": "https://static-cdn.jtvnw.net/.../2",
+					"image_url_4x": "https://static-cdn.jtvnw.net/.../3",
+					"title": "Tier 2 Subscriber",
+					"description": "Tier 2 subscriber badge"
+				}
+			]
+		},
+		{
+			"set_id": "bits",
+			"versions": [
+				{
+					"id": "1",
+					"title": "1 Bit",
+					"description": "Cheered 1 bit"
+				}
+			]
+		}
+	],
+	"timestamp": "2026-01-23T12:00:00.000Z"
+}
+```

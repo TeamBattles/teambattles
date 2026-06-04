@@ -1,0 +1,272 @@
+---
+title: "Storage"
+description: "Configure recording directories, quotas, and retention policies"
+---
+
+Manage where recordings are stored and how disk space is managed.
+
+## Output Directory
+
+Configure your primary recording destination in **Settings → Storage**.
+
+### Desktop Application
+
+Default locations:
+
+- **Windows**: `C:\Users\{user}\Videos\BattlesRecord`
+- **Linux**: `~/Videos/BattlesRecord`
+
+Click **Browse** to select a different directory.
+
+### Docker
+
+Mount volumes for recordings and library:
+
+```yaml
+volumes:
+  - /path/to/recordings:/data/recordings
+  - /path/to/library:/data/library
+```
+
+<Tip>For NAS deployments, mount your media share directly to avoid network transfer overhead.</Tip>
+
+## Storage Directories
+
+Battles Record uses three main directories:
+
+| Directory      | Purpose                               | Default        |
+| -------------- | ------------------------------------- | -------------- |
+| **Recordings** | Raw .ts segments during recording     | `./recordings` |
+| **Library**    | Processed files and Jellyfin metadata | `./library`    |
+| **Images**     | Channel profile and banner images     | `./images`     |
+
+Images are stored in the `images` directory, organized by channel ID.
+
+## Multiple Output Directories
+
+Configure different directories per channel or platform:
+
+<Steps>
+	<Step title="Go to Channels">Navigate to **Channels** and select a channel</Step>
+	<Step title="Override Output">Enable **Custom Output Directory** and select a path</Step>
+	<Step title="Save">Recordings for this channel will go to the custom directory</Step>
+</Steps>
+
+### Per-Platform Directories
+
+In **Settings → Storage → Advanced**, configure platform-specific defaults:
+
+```
+Twitch: /recordings/twitch
+YouTube: /recordings/youtube
+Kick: /recordings/kick
+```
+
+## Storage Quotas
+
+Prevent recordings from filling your disk:
+
+### Global Quota
+
+Set a maximum total size for all recordings:
+
+| Setting               | Description                  |
+| --------------------- | ---------------------------- |
+| **Max Storage**       | Total GB for recordings      |
+| **Warning Threshold** | Alert when approaching limit |
+
+When the quota is reached:
+
+- New recordings are blocked until space is freed
+- Optionally auto-delete oldest recordings
+
+### Per-Channel Quota
+
+Limit storage per channel:
+
+<Steps>
+	<Step title="Go to Channels">Navigate to **Channels** and select a channel</Step>
+	<Step title="Set Quota">Enable **Storage Quota** and set maximum GB</Step>
+</Steps>
+
+### Quota Status Indicators
+
+| Status        | Meaning                                   |
+| ------------- | ----------------------------------------- |
+| **Ok**        | Under 90% of quota                        |
+| **Warning**   | 90-99% of quota                           |
+| **Exceeded**  | At or over limit - auto-cleanup triggered |
+| **Unlimited** | No quota configured                       |
+
+## Retention Policies
+
+Automatically clean up old recordings:
+
+### Age-Based Retention
+
+Delete recordings older than a specified duration:
+
+| Setting      | Description                          |
+| ------------ | ------------------------------------ |
+| **Keep For** | Days, weeks, or months               |
+| **Apply To** | All, specific channels, or platforms |
+
+Example: Delete recordings older than 30 days.
+
+### Count-Based Retention
+
+Keep only the N most recent recordings:
+
+| Setting         | Description                          |
+| --------------- | ------------------------------------ |
+| **Keep Latest** | Number of recordings to keep         |
+| **Apply To**    | All, specific channels, or platforms |
+
+Example: Keep only the last 10 recordings per channel.
+
+### Combined Policies
+
+Policies can be combined:
+
+- Keep recordings for 30 days
+- OR keep the last 20 recordings (whichever keeps more)
+
+### Per-Channel Retention
+
+Each channel can have its own retention policy, overriding the global setting:
+
+| Setting            | Description                                        |
+| ------------------ | -------------------------------------------------- |
+| **Retention Days** | Maximum age for this channel's recordings          |
+| **Keep Minimum**   | Always keep at least N recordings for this channel |
+
+Even with age-based deletion, at least the configured minimum recordings are preserved per channel. This prevents accidentally deleting all recordings for a low-activity channel.
+
+## Temporary Storage
+
+Configure where segments are stored during recording:
+
+### Location
+
+| Platform    | Default                |
+| ----------- | ---------------------- |
+| **Windows** | `%TEMP%\BattlesRecord` |
+| **Linux**   | `/tmp/BattlesRecord`   |
+| **Docker**  | `/data/temp`           |
+
+Change in **Settings → Storage → Temporary Directory**.
+
+<Warning>
+	Ensure sufficient space in the temp directory. Recording a 1080p stream can use 1-2 GB per hour of
+	segments.
+</Warning>
+
+### Cleanup
+
+Temporary files are automatically cleaned:
+
+- After successful post-processing
+- On application startup (orphaned segments)
+- After configurable timeout (default: 48 hours)
+
+## Storage Monitoring
+
+View storage status in **Settings → Storage**:
+
+| Metric           | Description             |
+| ---------------- | ----------------------- |
+| **Total Used**   | All recordings combined |
+| **Available**    | Free space on drive     |
+| **Per-Channel**  | Breakdown by channel    |
+| **Per-Platform** | Breakdown by platform   |
+
+### Alerts
+
+Configure storage alerts:
+
+| Alert             | Trigger                 |
+| ----------------- | ----------------------- |
+| **Low Space**     | Less than X GB free     |
+| **Quota Warning** | Approaching quota limit |
+| **Quota Reached** | At quota limit          |
+
+Alerts can trigger:
+
+- Dashboard notification
+- Discord/Telegram message (if configured)
+- Automatic cleanup (if enabled)
+
+### Disk Warning Threshold
+
+| Setting           | Default | Description                                        |
+| ----------------- | ------- | -------------------------------------------------- |
+| **Disk Warning**  | 90%     | Warn when total disk usage exceeds this percentage |
+| **Quota Warning** | 80%     | Warn when quota usage exceeds this percentage      |
+
+## Folder Structure
+
+### Default Structure
+
+```
+/recordings
+├── shroud/
+│   ├── 2026-02-01_Valorant Ranked.mp4
+│   └── 2026-02-02_Just Chatting.mp4
+├── pokimane/
+│   └── 2026-02-02_Minecraft.mp4
+└── xqc/
+    └── 2026-02-02_GTA RP.mp4
+```
+
+### By Date Structure
+
+Enable **Organize by Date** in settings:
+
+```
+/recordings
+├── 2026-02-01/
+│   └── shroud_Valorant Ranked.mp4
+└── 2026-02-02/
+    ├── shroud_Just Chatting.mp4
+    ├── pokimane_Minecraft.mp4
+    └── xqc_GTA RP.mp4
+```
+
+### By Platform Structure
+
+Enable **Organize by Platform** in settings:
+
+```
+/recordings
+├── twitch/
+│   ├── shroud/
+│   └── pokimane/
+├── youtube/
+│   └── MrBeast/
+└── kick/
+    └── xqc/
+```
+
+## External Storage
+
+### Network Drives
+
+Mount network drives before starting Battles Record:
+
+- **Windows**: Map as network drive
+- **Linux**: Mount via `/etc/fstab` or systemd
+
+### Cloud Storage
+
+Not recommended for direct recording output due to latency. Consider:
+
+1. Record to local SSD
+2. Use sync software (rclone, Dropbox, etc.) to upload completed recordings
+
+### RAID/ZFS
+
+Battles Record works with any filesystem. For large archives, consider:
+
+- RAID 5/6 for redundancy
+- ZFS for integrity checking
+- Separate drives for temp (fast) and archive (large)

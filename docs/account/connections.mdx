@@ -1,0 +1,133 @@
+---
+title: "Connections"
+description: "Link your gaming and login accounts"
+---
+
+{/_
+IMAGE NEEDED: Connections settings page
+Type: screenshot
+Shows: Settings > Connections with login providers and gaming platforms
+Notes: Show some connected, some not
+_/}
+
+Connect your accounts to log in and participate in matches.
+
+## Login Providers
+
+These accounts let you sign in to TeamBattles:
+
+- Discord
+- Twitch
+- GitHub
+- Battle.net
+
+### Managing Login Providers
+
+**Link a new provider:**
+
+1. Go to **Settings > Connections**
+2. Click **Connect** next to the provider
+3. Authorize in the popup
+
+**Unlink a provider:**
+
+1. Go to **Settings > Connections**
+2. Click **Disconnect** next to the provider
+
+<Warning>
+	You must keep at least one login provider connected. Unlink your last provider by connecting a
+	different one first.
+</Warning>
+
+## Gaming Platforms
+
+Link gaming accounts to verify your identity and join matches:
+
+| Platform            | Required For                |
+| ------------------- | --------------------------- |
+| **Activision**      | Call of Duty matches        |
+| EA                  | EA games                    |
+| Epic Games          | Fortnite, Epic games        |
+| PlayStation Network | Cross-platform verification |
+| Riot Games          | Valorant, League of Legends |
+| Steam               | Steam games                 |
+| Ubisoft             | Ubisoft games               |
+| Xbox Live           | Cross-platform verification |
+
+### Connecting a Gaming Platform
+
+<Steps>
+	<Step title="Go to Settings">Click your avatar and select Settings</Step>
+	<Step title="Open Connections">Navigate to the Connections tab</Step>
+	<Step title="Connect">Click "Connect" next to the platform</Step>
+	<Step title="Authorize">Complete the authorization flow</Step>
+</Steps>
+
+<Warning>
+	**Activision is required** for Call of Duty matches. All team members must connect their
+	Activision account before participating.
+</Warning>
+
+## Connection Visibility
+
+Control whether others can see your connected platforms on your profile. This setting is separate from your profile visibility.
+
+For streaming platforms (Twitch, YouTube, Kick), the **Show on Profile** toggle also gates the [livestream indicator](/account/livestream) - if it is off, your live badge will not appear, even when you are actually live.
+
+## Verified vs. self-reported connections
+
+Each connection shows a shield icon that tells you whether ownership has been proven:
+
+| Shield | Meaning |
+| ------ | ------- |
+| Green ShieldCheck | **Verified** - You completed the platform's OAuth authorization flow, so TeamBattles holds a real token from the platform that proves ownership. |
+| Yellow ShieldAlert | **Self-reported** - You typed in a username manually. There is no proof you own the account. |
+
+Under the hood, every connection carries an `isSelfReported` flag. Connections written by the OAuth connect callback are verified; connections added via the manual "type a username" flow are flagged as self-reported and rendered with the unverified shield wherever they appear on public profiles.
+
+<Tip>
+	If you have a self-reported connection that you can actually authorize, disconnect it and reconnect
+	through the platform's OAuth flow to get the verified shield.
+</Tip>
+
+## Account login conflicts
+
+If you try to log in with an OAuth account whose verified email matches an **existing** TeamBattles account, the login does **not** silently merge into that account. Instead, the server records a short-lived conflict and refuses to authenticate the attempted session.
+
+**How it works:**
+
+1. The OAuth callback detects that the verified email already belongs to another user.
+2. A row is written to the `authConflicts` table with a 5-minute expiry.
+3. While the conflict exists, any authenticated request for the affected user is rejected, so the attempted login cannot act on the existing account.
+4. A cleanup job runs every 5 minutes to drop expired conflict rows.
+
+**When this fires:**
+
+- Conflicts only apply to OAuth providers that return a **verified** email - Discord, Twitch, GitHub, and Google.
+- Battle.net never collides on email because it does not return one.
+
+**What to do:**
+
+1. Sign out of the conflicting OAuth provider.
+2. Log in with the existing account using its original login provider.
+3. Open **Settings > Connections** and link the new provider from there.
+
+This way the new provider becomes an additional login method for your existing account instead of trying to create a separate account on the same email.
+
+<Warning>
+	If you do not control the existing account that owns the email, do not try to "claim" it by
+	repeatedly logging in. Contact support instead.
+</Warning>
+
+## Troubleshooting
+
+**"I can't link my Activision account"**
+
+- Ensure you're logged into the correct Activision account
+- Try logging out of Activision and back in
+- Clear your browser cache
+
+**"I can't unlink my Discord"**
+
+- You must keep at least one login provider
+- Connect a different provider first, then unlink

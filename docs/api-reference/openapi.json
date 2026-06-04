@@ -1,0 +1,4151 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TeamBattles API",
+    "version": "0.1.0",
+    "description": "Public developer API for TeamBattles. Authenticate with an API key: Authorization: Bearer tb_<key>."
+  },
+  "servers": [
+    {
+      "url": "https://teambattles.gg/api/v1",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/game/matches": {
+      "post": {
+        "operationId": "listGameMatches",
+        "tags": [
+          "Game"
+        ],
+        "summary": "List matches for the developer's approved game",
+        "description": "Returns matches for the given game, auto-filtered to the API key owner's approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ListGameMatchesBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Legacy cursor-paginated result. pagination.cursor is null when there are no more pages.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "matches": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/GameMatch"
+                      }
+                    },
+                    "count": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "cursor": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "hasMore": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "cursor",
+                        "hasMore"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "matches",
+                    "count",
+                    "pagination",
+                    "timestamp"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/matches/{matchId}": {
+      "get": {
+        "operationId": "getGameMatch",
+        "tags": [
+          "Game"
+        ],
+        "summary": "Get a single match's details",
+        "description": "Returns detailed info for one match, validated to belong to the API key owner's approved game. Requires the game.lifecycle:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested match plus a response timestamp.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameMatchDetailResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/matches/{matchId}/player-stats": {
+      "post": {
+        "operationId": "submitGamePlayerStats",
+        "tags": [
+          "Game"
+        ],
+        "summary": "Submit or update player stats for a map",
+        "description": "Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GamePlayerStatsBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The player stats were updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GamePlayerStatsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/matches/{matchId}/rosters": {
+      "get": {
+        "operationId": "getGameMatchRosters",
+        "tags": [
+          "Game"
+        ],
+        "summary": "Get a match's team rosters",
+        "description": "Returns the creator and accepted team rosters for a match, validated to belong to the API key owner's approved game. Requires the game.lifecycle:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team rosters grouped by creator and accepted team.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameMatchRostersResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/matches/{matchId}/scores": {
+      "get": {
+        "operationId": "getGameScores",
+        "tags": [
+          "Game"
+        ],
+        "summary": "Read all map scores for a match",
+        "description": "Returns every recorded map score plus the aggregate series tally. Requires the game.scores:write OR game.lifecycle:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All map scores plus the aggregate series tally.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameScoresResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "submitGameScores",
+        "tags": [
+          "Game"
+        ],
+        "summary": "Submit map scores in a batch",
+        "description": "Submits scores for one or more maps; game-developer scores are auto-confirmed. Requires the game.scores:write permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GameBatchScoresBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Per-map submission results. success is true only when every map was confirmed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameBatchScoresResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/matches/{matchId}/scores/{mapIndex}": {
+      "post": {
+        "operationId": "submitGameMapScore",
+        "tags": [
+          "Game"
+        ],
+        "summary": "Submit a single map's score",
+        "description": "Submits the score for one map (mapIndex from the path); game-developer scores are auto-confirmed. Requires the game.scores:write permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          },
+          {
+            "in": "path",
+            "name": "mapIndex",
+            "schema": {
+              "type": "string",
+              "description": "Zero-based index of the map within the series."
+            },
+            "required": true,
+            "description": "Zero-based index of the map within the series."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GameSingleMapScoreBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The map score was submitted and confirmed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameSingleMapScoreResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/matches/{matchId}/status": {
+      "patch": {
+        "operationId": "updateGameMatchStatus",
+        "tags": [
+          "Game"
+        ],
+        "summary": "Update a match's lifecycle status",
+        "description": "Transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GameStatusUpdateBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The match status was transitioned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameStatusUpdateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues": {
+      "post": {
+        "operationId": "discoverLeagues",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Discover public leagues",
+        "description": "Returns a paginated list of public leagues with optional search and game filtering. Requires the leagues.league_public:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscoverLeaguesRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Legacy offset-paginated result (page/limit based).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "leagues": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/LeagueSummary"
+                      }
+                    },
+                    "count": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "limit": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "total": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "totalPages": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "limit",
+                        "total",
+                        "totalPages"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "leagues",
+                    "count",
+                    "pagination",
+                    "timestamp"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}": {
+      "post": {
+        "operationId": "getLeagueProfile",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Get a league profile",
+        "description": "Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The league profile.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueProfileResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/bans": {
+      "post": {
+        "operationId": "getLeagueBans",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Get league team bans",
+        "description": "Returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BansRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Team bans for the league.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueBans"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/members": {
+      "post": {
+        "operationId": "getLeagueMembers",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Get league staff members",
+        "description": "Returns staff members for a league resolved by slug. The API key owner must have a MEMBER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Staff members of the league.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueMembers"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/penalties": {
+      "post": {
+        "operationId": "getLeaguePenalties",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Get league penalties and cooldowns",
+        "description": "Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PenaltiesRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Penalties and cooldowns for the league.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeaguePenalties"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/rules": {
+      "post": {
+        "operationId": "getLeagueRules",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Get league rules and points config",
+        "description": "Returns the game rules and points configuration for a league + game, resolved by league slug. Requires the leagues.league_public:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RulesRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Game rules and points config for the league.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueRules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/seasons": {
+      "post": {
+        "operationId": "getLeagueSeasons",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Get league seasons",
+        "description": "Returns seasons for a league resolved by slug, with optional game and status filtering. Requires the leagues.league_public:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeasonsRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Seasons for the league.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueSeasons"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/standings": {
+      "post": {
+        "operationId": "getLeagueStandings",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Get league standings",
+        "description": "Returns approved teams with their season stats, ranked by standings position, for a league resolved by slug. Requires the leagues.league_public:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StandingsRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "League standings for the requested season.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueStandings"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches/{matchId}/scores": {
+      "get": {
+        "operationId": "getMatchScores",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "Get all map scores",
+        "description": "Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match id."
+            },
+            "required": true,
+            "description": "Match id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All map scores for the match with a series summary.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MapScores"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "confirmMatchScores",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "Confirm a map score",
+        "description": "Confirm a map score submitted by the opposing team. Only the opposing team's captain can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match id."
+            },
+            "required": true,
+            "description": "Match id."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmScoreBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Map score confirmed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScoreSubmissionResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "submitMatchScores",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "Submit a map score",
+        "description": "Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match id."
+            },
+            "required": true,
+            "description": "Match id."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitScoreBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Map score submitted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScoreSubmissionResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{identifier}/matches": {
+      "post": {
+        "operationId": "listOrgMatches",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "List an organization's matches",
+        "description": "Returns matches across all teams in an organization (resolved by id or slug), newest first, with cursor pagination. The authenticated user must be an active member of the organization. Requires the matches.org_matches:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Organization id or slug."
+            },
+            "required": true,
+            "description": "Organization id or slug."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchesRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cursor-paginated result. continueCursor is non-null even when isDone is true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "page": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserMatch"
+                      }
+                    },
+                    "isDone": {
+                      "type": "boolean"
+                    },
+                    "continueCursor": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "page",
+                    "isDone",
+                    "continueCursor"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams/{identifier}/matches": {
+      "post": {
+        "operationId": "listTeamMatches",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "List a team's matches",
+        "description": "Returns matches for a specific team (resolved by id or slug), newest first, with cursor pagination. The authenticated user must be an active member of the team. Requires the matches.team_matches:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Team id or slug."
+            },
+            "required": true,
+            "description": "Team id or slug."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchesRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cursor-paginated result. continueCursor is non-null even when isDone is true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "page": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserMatch"
+                      }
+                    },
+                    "isDone": {
+                      "type": "boolean"
+                    },
+                    "continueCursor": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "page",
+                    "isDone",
+                    "continueCursor"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/twitch/badges/channel": {
+      "get": {
+        "operationId": "getChannelTwitchBadges",
+        "tags": [
+          "Twitch"
+        ],
+        "summary": "Get channel-specific Twitch chat badges",
+        "description": "Returns a Twitch channel's chat badge sets. Provide exactly one of the username or id query parameters. The API key owner must have a linked Twitch connection. Requires the connections.twitch permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "username",
+            "schema": {
+              "description": "Channel login name (e.g. ninja). Provide exactly one of username or id.",
+              "type": "string"
+            },
+            "description": "Channel login name (e.g. ninja). Provide exactly one of username or id."
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "description": "Broadcaster id (e.g. 123456789). Provide exactly one of username or id.",
+              "type": "string"
+            },
+            "description": "Broadcaster id (e.g. 123456789). Provide exactly one of username or id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Channel-specific Twitch chat badge sets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TwitchChannelBadges"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/twitch/badges/global": {
+      "get": {
+        "operationId": "getGlobalTwitchBadges",
+        "tags": [
+          "Twitch"
+        ],
+        "summary": "Get global Twitch chat badges",
+        "description": "Returns Twitch's global chat badge sets. The API key owner must have a linked Twitch connection. Requires the connections.twitch permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Global Twitch chat badge sets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TwitchGlobalBadges"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/matches": {
+      "post": {
+        "operationId": "listUserMatches",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "List the authenticated user's matches",
+        "description": "Returns matches the API key owner participates in, newest first, with cursor pagination. Requires the matches.user_matches:read permission.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchesRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cursor-paginated result. continueCursor is non-null even when isDone is true.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "page": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserMatch"
+                      }
+                    },
+                    "isDone": {
+                      "type": "boolean"
+                    },
+                    "continueCursor": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "page",
+                    "isDone",
+                    "continueCursor"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListGameMatchesBody": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "string",
+            "description": "Game to list matches for. Must be the key's approved game."
+          },
+          "status": {
+            "description": "Optional MatchStatus filter (e.g. IN_PROGRESS).",
+            "type": "string"
+          },
+          "limit": {
+            "description": "Page size (1-100, enforced by the handler). Defaults to the handler's internal default.",
+            "type": "number"
+          },
+          "cursor": {
+            "description": "Opaque continuation cursor from a prior page's pagination.cursor.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "gameId"
+        ],
+        "description": "Filters and cursor pagination for listing a game's matches."
+      },
+      "GamePlayerStatsBody": {
+        "type": "object",
+        "properties": {
+          "mapIndex": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Zero-based index of the map whose stats are being updated."
+          },
+          "playerStats": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {},
+            "description": "Per-player stats keyed by user ID. The map score must already exist."
+          }
+        },
+        "required": [
+          "mapIndex",
+          "playerStats"
+        ],
+        "description": "Request body for submitting or updating player stats for an existing map score."
+      },
+      "GameBatchScoresBody": {
+        "type": "object",
+        "properties": {
+          "maps": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GameMapScoreInput"
+            },
+            "description": "Map scores to submit. Must contain at least one entry."
+          }
+        },
+        "required": [
+          "maps"
+        ],
+        "description": "Request body for submitting one or more map scores in a single call."
+      },
+      "GameMapScoreInput": {
+        "type": "object",
+        "properties": {
+          "mapIndex": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Zero-based index of the map within the series."
+          },
+          "mapId": {
+            "type": "string",
+            "description": "Identifier of the map that was played."
+          },
+          "creatorTeamScore": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Score for the creator team (non-negative)."
+          },
+          "opponentTeamScore": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Score for the opponent (accepted) team (non-negative)."
+          },
+          "screenshotUrls": {
+            "description": "Optional screenshot URLs supporting the reported score.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "playerStats": {
+            "description": "Optional per-player stats keyed by user ID.",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "mapIndex",
+          "mapId",
+          "creatorTeamScore",
+          "opponentTeamScore"
+        ],
+        "description": "One map's score within a batch submission."
+      },
+      "GameSingleMapScoreBody": {
+        "type": "object",
+        "properties": {
+          "mapId": {
+            "type": "string",
+            "description": "Identifier of the map that was played."
+          },
+          "creatorTeamScore": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Score for the creator team (non-negative)."
+          },
+          "opponentTeamScore": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Score for the opponent (accepted) team (non-negative)."
+          },
+          "screenshotUrls": {
+            "description": "Optional screenshot URLs supporting the reported score.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "playerStats": {
+            "description": "Optional per-player stats keyed by user ID.",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "mapId",
+          "creatorTeamScore",
+          "opponentTeamScore"
+        ],
+        "description": "Request body for submitting a single map's score (mapIndex comes from the path)."
+      },
+      "GameStatusUpdateBody": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Target status. Allowed transitions: READY -> IN_PROGRESS, IN_PROGRESS -> COMPLETED|CANCELLED, ACCEPTED -> CANCELLED. COMPLETED is not accepted directly (matches complete automatically once scores are confirmed)."
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "description": "Request body for updating a match's lifecycle status."
+      },
+      "DiscoverLeaguesRequestBody": {
+        "type": "object",
+        "properties": {
+          "search": {
+            "description": "Free-text search across league names.",
+            "type": "string"
+          },
+          "gameId": {
+            "description": "Filter to leagues that include this game id.",
+            "type": "string"
+          },
+          "page": {
+            "default": 1,
+            "description": "1-based page number. Defaults to 1.",
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "limit": {
+            "default": 12,
+            "description": "Page size (1-50). Defaults to 12.",
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "description": "Filters and offset pagination for discovering leagues."
+      },
+      "BansRequestBody": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "description": "Filter bans by computed status. Defaults to all.",
+            "type": "string",
+            "enum": [
+              "active",
+              "expired",
+              "revoked",
+              "all"
+            ]
+          }
+        },
+        "description": "Status filter for league team bans."
+      },
+      "PenaltiesRequestBody": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "default": "all",
+            "description": "Which record kinds to return. Defaults to all.",
+            "type": "string",
+            "enum": [
+              "penalties",
+              "cooldowns",
+              "all"
+            ]
+          },
+          "teamId": {
+            "description": "Filter penalties to a specific team id.",
+            "type": "string"
+          },
+          "gameId": {
+            "description": "Filter penalties to a specific game id.",
+            "type": "string"
+          },
+          "limit": {
+            "default": 50,
+            "description": "Maximum number of penalties to return (1-100). Defaults to 50.",
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "description": "Type, team, game, and limit filters for league penalties and cooldowns."
+      },
+      "RulesRequestBody": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "string",
+            "description": "Game id to fetch rules and points config for. Required."
+          }
+        },
+        "required": [
+          "gameId"
+        ],
+        "description": "Game selector for league rules and points config."
+      },
+      "SeasonsRequestBody": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "description": "Filter seasons to a specific game id.",
+            "type": "string"
+          },
+          "status": {
+            "description": "Filter seasons by lifecycle status.",
+            "type": "string",
+            "enum": [
+              "UPCOMING",
+              "ACTIVE",
+              "COMPLETED"
+            ]
+          }
+        },
+        "description": "Game and status filters for league seasons."
+      },
+      "StandingsRequestBody": {
+        "type": "object",
+        "properties": {
+          "seasonId": {
+            "description": "Filter standings to a specific season id.",
+            "type": "string"
+          },
+          "gameId": {
+            "description": "Filter standings to a specific game id.",
+            "type": "string"
+          },
+          "limit": {
+            "default": 50,
+            "description": "Maximum number of teams to return (1-100). Defaults to 50.",
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "description": "Season and game filters for league standings."
+      },
+      "ConfirmScoreBody": {
+        "type": "object",
+        "properties": {
+          "mapIndex": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Zero-based map index to confirm. Must be a non-negative integer."
+          }
+        },
+        "required": [
+          "mapIndex"
+        ],
+        "description": "Confirmation payload identifying the map score to confirm."
+      },
+      "SubmitScoreBody": {
+        "type": "object",
+        "properties": {
+          "mapIndex": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Zero-based map index. Must be a non-negative integer."
+          },
+          "mapId": {
+            "type": "string",
+            "description": "Map identifier string (e.g. dust2)."
+          },
+          "creatorTeamScore": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Creator team score. Must be a non-negative number."
+          },
+          "opponentTeamScore": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Accepted/opponent team score. Must be a non-negative number."
+          },
+          "screenshotUrls": {
+            "description": "Optional screenshot URLs for the map result.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "mapIndex",
+          "mapId",
+          "creatorTeamScore",
+          "opponentTeamScore"
+        ],
+        "description": "Map score submission payload for a single map."
+      },
+      "MatchesRequestBody": {
+        "type": "object",
+        "properties": {
+          "numItems": {
+            "default": 25,
+            "description": "Page size (1-100). Defaults to 25.",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "cursor": {
+            "description": "Opaque continuation cursor from a prior page's continueCursor.",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "includeStatuses": {
+            "description": "Only include matches with these MatchStatus codes; unknown values are ignored.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excludeStatuses": {
+            "description": "Exclude matches with these MatchStatus codes; unknown values are ignored.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gameId": {
+            "description": "Filter to a single game by id.",
+            "type": "string"
+          },
+          "scheduledAfter": {
+            "description": "ISO 8601; only matches scheduled at or after this time.",
+            "type": "string"
+          },
+          "scheduledBefore": {
+            "description": "ISO 8601; only matches scheduled at or before this time.",
+            "type": "string"
+          },
+          "createdAfter": {
+            "description": "ISO 8601; only matches created at or after this time.",
+            "type": "string"
+          },
+          "createdBefore": {
+            "description": "ISO 8601; only matches created at or before this time.",
+            "type": "string"
+          },
+          "opponentId": {
+            "description": "Filter to matches against this opponent team (team id or slug).",
+            "type": "string"
+          }
+        },
+        "description": "Filters and cursor pagination for listing matches."
+      },
+      "GameMatch": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/MatchStatus"
+          },
+          "gameMode": {
+            "type": "string",
+            "description": "Game mode identifier (from the match's gameModeId)."
+          },
+          "bestOf": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Number of maps in the series (1, 3, 5, or 7)."
+          },
+          "creatorTeam": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Team"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "acceptedTeam": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Team"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "creatorTeamScore": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "acceptedTeamScore": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "scheduledAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Scheduled start time (ISO 8601)."
+          },
+          "startedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Actual start time (ISO 8601)."
+          },
+          "completedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Completion time (ISO 8601)."
+          },
+          "createdAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Creation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "gameMode",
+          "bestOf",
+          "creatorTeam",
+          "acceptedTeam",
+          "creatorTeamScore",
+          "acceptedTeamScore",
+          "scheduledAt",
+          "startedAt",
+          "completedAt",
+          "createdAt"
+        ],
+        "additionalProperties": false,
+        "description": "Match as returned by the game-developer endpoints (includes scores, omits the game object)."
+      },
+      "MatchStatus": {
+        "type": "string",
+        "enum": [
+          "PENDING",
+          "ACCEPTED",
+          "READY",
+          "IN_PROGRESS",
+          "COMPLETED",
+          "CANCELLED",
+          "DISPUTED",
+          "FORFEITED"
+        ],
+        "description": "Lifecycle status of a match."
+      },
+      "Team": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Team ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "Team name."
+          },
+          "tag": {
+            "type": "string",
+            "description": "Team tag (short identifier)."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "tag"
+        ],
+        "additionalProperties": false,
+        "description": "A team participating in a match."
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Stable machine-readable error code (e.g. error_api_key_invalid). Treat this, not the message, as the programmatic contract."
+          },
+          "details": {
+            "description": "Optional human-readable explanation. Often absent on auth/permission errors.",
+            "x-ms-primary-error-message": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "additionalProperties": false,
+        "description": "Standard API error response."
+      },
+      "GameMatchDetailResponse": {
+        "type": "object",
+        "properties": {
+          "match": {
+            "$ref": "#/components/schemas/GameMatchDetail"
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Server response time (ISO 8601)."
+          }
+        },
+        "required": [
+          "match",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Envelope for GET /game/matches/{matchId}: the match plus a response timestamp."
+      },
+      "GameMatchDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "gameId": {
+            "type": "string",
+            "description": "Game ID the match belongs to."
+          },
+          "gameMode": {
+            "type": "string",
+            "description": "Game mode identifier (from the match's gameModeId)."
+          },
+          "status": {
+            "$ref": "#/components/schemas/MatchStatus"
+          },
+          "bestOf": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Number of maps in the series (1, 3, 5, or 7)."
+          },
+          "creatorTeam": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameDetailTeam"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "acceptedTeam": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameDetailTeam"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "creatorTeamScore": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "acceptedTeamScore": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "winnerTeamId": {
+            "description": "Winning team ID once the match completes.",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "loserTeamId": {
+            "description": "Losing team ID once the match completes.",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "scheduledAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Scheduled start time (ISO 8601)."
+          },
+          "startedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Actual start time (ISO 8601)."
+          },
+          "completedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Completion time (ISO 8601)."
+          },
+          "createdAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Creation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "id",
+          "gameId",
+          "gameMode",
+          "status",
+          "bestOf",
+          "creatorTeam",
+          "acceptedTeam",
+          "creatorTeamScore",
+          "acceptedTeamScore",
+          "scheduledAt",
+          "startedAt",
+          "completedAt",
+          "createdAt"
+        ],
+        "additionalProperties": false,
+        "description": "Detailed match payload returned inside the game-developer match-detail response."
+      },
+      "GameDetailTeam": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Team ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "Team name."
+          },
+          "tag": {
+            "type": "string",
+            "description": "Team tag (short identifier)."
+          }
+        },
+        "required": [
+          "_id",
+          "name",
+          "tag"
+        ],
+        "additionalProperties": false,
+        "description": "A team as embedded in the game-developer match-detail response ({ _id, name, tag })."
+      },
+      "GamePlayerStatsResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "mapIndex": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Index of the map whose stats were updated."
+          },
+          "action": {
+            "type": "string",
+            "description": "Operation performed, always \"updated\" on success."
+          }
+        },
+        "required": [
+          "success",
+          "mapIndex",
+          "action"
+        ],
+        "additionalProperties": false,
+        "description": "Result of a successful player-stats update."
+      },
+      "GameMatchRostersResponse": {
+        "type": "object",
+        "properties": {
+          "creatorTeamId": {
+            "type": "string",
+            "description": "ID of the team that created the match."
+          },
+          "acceptedTeamId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "ID of the team that accepted the match, or null if unaccepted."
+          },
+          "creatorRoster": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GameRosterPlayer"
+            },
+            "description": "Players on the creator team."
+          },
+          "acceptedRoster": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GameRosterPlayer"
+            },
+            "description": "Players on the accepted team (empty when unaccepted)."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Server response time (ISO 8601)."
+          }
+        },
+        "required": [
+          "creatorTeamId",
+          "acceptedTeamId",
+          "creatorRoster",
+          "acceptedRoster",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Team rosters for a match, grouped by creator and accepted team."
+      },
+      "GameRosterPlayer": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "Player's user ID."
+          },
+          "teamId": {
+            "type": "string",
+            "description": "ID of the team the player belongs to."
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Player's username, or null if unset."
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Player's display name, or null if unset."
+          },
+          "isCheckedIn": {
+            "type": "boolean",
+            "description": "Whether the player has checked in for the match."
+          }
+        },
+        "required": [
+          "userId",
+          "teamId",
+          "username",
+          "name",
+          "isCheckedIn"
+        ],
+        "additionalProperties": false,
+        "description": "A single player entry on a match roster."
+      },
+      "GameScoresResponse": {
+        "type": "object",
+        "properties": {
+          "scores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GameScore"
+            },
+            "description": "All recorded map scores for the match."
+          },
+          "seriesScore": {
+            "$ref": "#/components/schemas/GameSeriesScore"
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Server response time (ISO 8601)."
+          }
+        },
+        "required": [
+          "scores",
+          "seriesScore",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "All map scores for a match plus the aggregate series tally."
+      },
+      "GameScore": {
+        "type": "object",
+        "properties": {
+          "mapIndex": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Zero-based index of the map within the series."
+          },
+          "mapId": {
+            "type": "string",
+            "description": "Identifier of the map that was played."
+          },
+          "creatorTeamScore": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Score for the creator team."
+          },
+          "opponentTeamScore": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Score for the opponent (accepted) team."
+          },
+          "scoreStatus": {
+            "type": "string",
+            "description": "Confirmation state: \"CONFIRMED\" or \"PENDING\"."
+          },
+          "playerStats": {
+            "anyOf": [
+              {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {}
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Per-player stats keyed by user ID, or null when none recorded."
+          },
+          "submittedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the score was submitted (ISO 8601)."
+          },
+          "confirmedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the score was confirmed (ISO 8601)."
+          }
+        },
+        "required": [
+          "mapIndex",
+          "mapId",
+          "creatorTeamScore",
+          "opponentTeamScore",
+          "scoreStatus",
+          "playerStats",
+          "submittedAt",
+          "confirmedAt"
+        ],
+        "additionalProperties": false,
+        "description": "A single map score as returned when reading scores."
+      },
+      "GameSeriesScore": {
+        "type": "object",
+        "properties": {
+          "creatorMapWins": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Confirmed map wins for the creator team."
+          },
+          "opponentMapWins": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Confirmed map wins for the opponent team."
+          }
+        },
+        "required": [
+          "creatorMapWins",
+          "opponentMapWins"
+        ],
+        "additionalProperties": false,
+        "description": "Aggregate map-win tally across the series."
+      },
+      "GameBatchScoresResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "True only when every submitted map score was confirmed."
+          },
+          "submitted": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GameBatchScoreResult"
+            },
+            "description": "Per-map results, in submission order."
+          },
+          "count": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Number of map scores that were confirmed."
+          }
+        },
+        "required": [
+          "success",
+          "submitted",
+          "count"
+        ],
+        "additionalProperties": false,
+        "description": "Result of a batch map-score submission."
+      },
+      "GameBatchScoreResult": {
+        "type": "object",
+        "properties": {
+          "mapIndex": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Index of the map this result refers to."
+          },
+          "status": {
+            "type": "string",
+            "description": "Per-map outcome: \"confirmed\" on success, \"failed\" otherwise."
+          },
+          "error": {
+            "description": "Failure reason, present only when status is failed.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mapIndex",
+          "status"
+        ],
+        "additionalProperties": false,
+        "description": "Outcome for a single submitted map score."
+      },
+      "GameSingleMapScoreResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "mapIndex": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Index of the map that was scored."
+          },
+          "scoreStatus": {
+            "type": "string",
+            "description": "Confirmation state, always \"CONFIRMED\" on success."
+          }
+        },
+        "required": [
+          "success",
+          "mapIndex",
+          "scoreStatus"
+        ],
+        "additionalProperties": false,
+        "description": "Result of submitting a single map score."
+      },
+      "GameStatusUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "matchId": {
+            "type": "string",
+            "description": "ID of the updated match."
+          },
+          "previousStatus": {
+            "type": "string",
+            "description": "Match status before the transition."
+          },
+          "newStatus": {
+            "type": "string",
+            "description": "Match status after the transition."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Server response time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "matchId",
+          "previousStatus",
+          "newStatus",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Result of a successful match status transition."
+      },
+      "LeagueSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "League ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "League display name."
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL-friendly league identifier."
+          },
+          "description": {
+            "type": "string",
+            "description": "League description."
+          },
+          "avatarUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "League avatar image URL."
+          },
+          "bannerUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "League banner image URL."
+          },
+          "isVerified": {
+            "type": "boolean",
+            "description": "Whether the league is verified."
+          },
+          "isFeatured": {
+            "type": "boolean",
+            "description": "Whether the league is featured."
+          },
+          "games": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": {}
+            },
+            "description": "Games associated with the league."
+          },
+          "teamCount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Number of teams in the league."
+          },
+          "seasonStatus": {
+            "type": "string",
+            "enum": [
+              "active",
+              "upcoming",
+              "none"
+            ],
+            "description": "Aggregate season state across the league's games."
+          },
+          "createdAt": {
+            "type": "number",
+            "description": "Creation timestamp (epoch milliseconds)."
+          },
+          "status": {
+            "description": "League status.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "description",
+          "avatarUrl",
+          "bannerUrl",
+          "isVerified",
+          "isFeatured",
+          "games",
+          "teamCount",
+          "seasonStatus",
+          "createdAt"
+        ],
+        "additionalProperties": false,
+        "description": "Summary view of a league for discovery results."
+      },
+      "LeagueProfileResponse": {
+        "type": "object",
+        "properties": {
+          "league": {
+            "$ref": "#/components/schemas/LeagueProfile"
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "league",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "League profile response envelope."
+      },
+      "LeagueProfile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "League ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "League display name."
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL-friendly league identifier."
+          },
+          "description": {
+            "type": "string",
+            "description": "League description."
+          },
+          "avatarUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "League avatar image URL."
+          },
+          "bannerUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "League banner image URL."
+          },
+          "status": {
+            "type": "string",
+            "description": "League status (e.g. active, inactive)."
+          },
+          "isVerified": {
+            "type": "boolean",
+            "description": "Whether the league is verified."
+          },
+          "isFeatured": {
+            "type": "boolean",
+            "description": "Whether the league is featured."
+          },
+          "teamCount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Number of teams in the league."
+          },
+          "staffCount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Number of staff members."
+          },
+          "games": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": {}
+            },
+            "description": "Games associated with the league."
+          },
+          "activeSeasons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": {}
+            },
+            "description": "Currently active seasons."
+          },
+          "socials": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": {}
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Social media links."
+          },
+          "createdAt": {
+            "type": "number",
+            "description": "Creation timestamp (epoch milliseconds)."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "description",
+          "avatarUrl",
+          "bannerUrl",
+          "status",
+          "isVerified",
+          "isFeatured",
+          "teamCount",
+          "staffCount",
+          "games",
+          "activeSeasons",
+          "socials",
+          "createdAt"
+        ],
+        "additionalProperties": false,
+        "description": "Public profile for a single league."
+      },
+      "LeagueBans": {
+        "type": "object",
+        "properties": {
+          "bans": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": {}
+            },
+            "description": "Enriched team ban records with computed status."
+          },
+          "count": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Number of bans returned."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "bans",
+          "count",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Team bans for a league."
+      },
+      "LeagueMembers": {
+        "type": "object",
+        "properties": {
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": {}
+            },
+            "description": "Enriched league staff member records."
+          },
+          "count": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Number of members returned."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "members",
+          "count",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Staff members of a league."
+      },
+      "LeaguePenalties": {
+        "type": "object",
+        "properties": {
+          "penalties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": {}
+            },
+            "description": "Enriched penalty records (empty when type is cooldowns)."
+          },
+          "cooldowns": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": {}
+            },
+            "description": "Enriched member cooldown records (empty when type is penalties)."
+          },
+          "count": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Combined number of penalties and cooldowns returned."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "penalties",
+          "cooldowns",
+          "count",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Penalties and cooldowns for a league."
+      },
+      "LeagueRules": {
+        "type": "object",
+        "properties": {
+          "rules": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": {}
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Game rules document for the league + game, or null if unset."
+          },
+          "pointsConfig": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": {}
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Points configuration document for the league + game, or null if unset."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "rules",
+          "pointsConfig",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Game rules and points config for a league."
+      },
+      "LeagueSeasons": {
+        "type": "object",
+        "properties": {
+          "seasons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": {}
+            },
+            "description": "Season documents for the league."
+          },
+          "count": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Number of seasons returned."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "seasons",
+          "count",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Seasons for a league."
+      },
+      "LeagueStandings": {
+        "type": "object",
+        "properties": {
+          "standings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "rank": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "1-based standings position."
+                }
+              },
+              "required": [
+                "rank"
+              ],
+              "additionalProperties": {}
+            },
+            "description": "Approved teams with season stats, ordered by standings position. Each item is a team-with-stats document plus a computed rank."
+          },
+          "count": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Number of teams returned."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "standings",
+          "count",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "League standings for a season."
+      },
+      "MapScores": {
+        "type": "object",
+        "properties": {
+          "scores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MapScoreItem"
+            }
+          },
+          "seriesScore": {
+            "type": "object",
+            "properties": {
+              "creatorMapWins": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "opponentMapWins": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "creatorMapWins",
+              "opponentMapWins"
+            ],
+            "additionalProperties": false
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response timestamp (ISO 8601)."
+          }
+        },
+        "required": [
+          "scores",
+          "seriesScore",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "All map scores for a match with a series summary."
+      },
+      "MapScoreItem": {
+        "type": "object",
+        "properties": {
+          "mapIndex": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "mapId": {
+            "type": "string"
+          },
+          "creatorTeamScore": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "opponentTeamScore": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "screenshotUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "scoreStatus": {
+            "type": "string",
+            "description": "CONFIRMED or PENDING."
+          },
+          "submittedBy": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ScoreSubmitter"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confirmedBy": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ScoreConfirmer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Creation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "mapIndex",
+          "mapId",
+          "creatorTeamScore",
+          "opponentTeamScore",
+          "screenshotUrls",
+          "scoreStatus",
+          "submittedBy",
+          "confirmedBy",
+          "createdAt"
+        ],
+        "additionalProperties": false,
+        "description": "A single map's score entry."
+      },
+      "ScoreSubmitter": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "string"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "userId",
+          "teamId",
+          "name"
+        ],
+        "additionalProperties": false,
+        "description": "Identity of the captain who submitted a score."
+      },
+      "ScoreConfirmer": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "string"
+          },
+          "confirmedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Confirmation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "userId",
+          "teamId",
+          "confirmedAt"
+        ],
+        "additionalProperties": false,
+        "description": "Identity of the captain who confirmed a score."
+      },
+      "ScoreSubmissionResult": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "action": {
+            "type": "string",
+            "description": "Action performed, e.g. \"submitted\" or \"confirmed\"."
+          },
+          "mapIndex": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Zero-based map index that was affected."
+          },
+          "scoreStatus": {
+            "type": "string",
+            "description": "Resulting score status, e.g. PENDING or CONFIRMED."
+          }
+        },
+        "required": [
+          "success",
+          "action",
+          "mapIndex",
+          "scoreStatus"
+        ],
+        "additionalProperties": false,
+        "description": "Result of submitting or confirming a map score."
+      },
+      "UserMatch": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/MatchStatus"
+          },
+          "game": {
+            "$ref": "#/components/schemas/Game"
+          },
+          "gameMode": {
+            "type": "string",
+            "description": "Game mode (e.g. HARDPOINT, SEARCH_AND_DESTROY)."
+          },
+          "creatorTeam": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Team"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "acceptedTeam": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Team"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "scheduledAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Scheduled start time (ISO 8601)."
+          },
+          "startedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Actual start time (ISO 8601)."
+          },
+          "completedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Completion time (ISO 8601)."
+          },
+          "bestOf": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Number of maps in the series (1, 3, 5, or 7)."
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "game",
+          "gameMode",
+          "creatorTeam",
+          "acceptedTeam",
+          "scheduledAt",
+          "startedAt",
+          "completedAt",
+          "bestOf"
+        ],
+        "additionalProperties": false,
+        "description": "Match as returned by the user/team/org match-listing endpoints."
+      },
+      "Game": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Game ID."
+          },
+          "nameKey": {
+            "type": "string",
+            "description": "Game name key for i18n lookup."
+          }
+        },
+        "required": [
+          "id",
+          "nameKey"
+        ],
+        "additionalProperties": false,
+        "description": "Game definition."
+      },
+      "TwitchChannelBadges": {
+        "type": "object",
+        "properties": {
+          "broadcaster_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Resolved broadcaster (channel) id."
+          },
+          "broadcaster_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Resolved broadcaster display name or login."
+          },
+          "badges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TwitchBadgeSet"
+            },
+            "description": "Channel-specific Twitch chat badge sets."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "broadcaster_id",
+          "broadcaster_name",
+          "badges",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Channel-specific Twitch chat badges."
+      },
+      "TwitchBadgeSet": {
+        "type": "object",
+        "properties": {
+          "set_id": {
+            "type": "string",
+            "description": "Badge set identifier (e.g. subscriber, moderator)."
+          },
+          "versions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TwitchBadgeVersion"
+            },
+            "description": "Available versions within this badge set."
+          }
+        },
+        "required": [
+          "set_id",
+          "versions"
+        ],
+        "additionalProperties": false,
+        "description": "A set of related Twitch chat badge versions."
+      },
+      "TwitchBadgeVersion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Badge version id (e.g. tier level or numeric id)."
+          },
+          "image_url_1x": {
+            "type": "string",
+            "description": "Badge image URL at 1x resolution."
+          },
+          "image_url_2x": {
+            "type": "string",
+            "description": "Badge image URL at 2x resolution."
+          },
+          "image_url_4x": {
+            "type": "string",
+            "description": "Badge image URL at 4x resolution."
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable badge title."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable badge description."
+          },
+          "click_action": {
+            "description": "Optional click action identifier.",
+            "type": "string"
+          },
+          "click_url": {
+            "description": "Optional URL opened when the badge is clicked.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "image_url_1x",
+          "image_url_2x",
+          "image_url_4x",
+          "title",
+          "description"
+        ],
+        "additionalProperties": false,
+        "description": "A single version of a Twitch chat badge."
+      },
+      "TwitchGlobalBadges": {
+        "type": "object",
+        "properties": {
+          "badges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TwitchBadgeSet"
+            },
+            "description": "Global Twitch chat badge sets."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "badges",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Global Twitch chat badges."
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "API Key",
+        "description": "Send your API key as: Authorization: Bearer tb_<key>"
+      }
+    }
+  }
+}

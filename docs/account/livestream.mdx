@@ -1,0 +1,70 @@
+---
+title: "Livestream indicators"
+description: "How TeamBattles detects and displays your live status on Twitch, YouTube, and Kick"
+---
+
+When you go live on a connected streaming platform, TeamBattles shows a "LIVE" badge on your profile, your avatar across the app, and your connection chips. This lets teammates and opponents discover ongoing streams without leaving the platform.
+
+## What you see
+
+Live indicators appear in several places once you start streaming:
+
+- **Profile hero** - A badge and a stream card with title, viewer count, game, and thumbnail
+- **Profile cards** - A live ring on avatars in friend lists, match rosters, and team pages
+- **Connection chips** - A platform-colored "LIVE" tag next to the streaming connection on your profile
+
+## How detection works
+
+TeamBattles polls each streaming platform on two schedules.
+
+### Background polling (cron, every 2 minutes)
+
+A scheduled job runs every 2 minutes and checks the live status of every user who is currently in a `PENDING`, `ACCEPTED`, `READY`, or `IN_PROGRESS` match. This keeps the indicator current during competitive play without polling the entire user base.
+
+The cron only checks **Twitch** and **YouTube**. Kick is excluded because its public API sits behind Cloudflare and is not reliable for frequent server-side polling.
+
+### On-demand polling (profile view)
+
+Whenever someone opens your profile page, the app fires a one-off live-status check for your account. This pass covers **all three** platforms - Twitch, YouTube, and Kick - so your viewers see your current status the moment they land on your page.
+
+### Time-to-live (TTL)
+
+Each platform has a minimum re-check interval. If the cached row is fresher than the TTL, the next poll is skipped:
+
+| Platform | TTL |
+| -------- | --- |
+| Twitch | 2 minutes |
+| YouTube | 2 minutes |
+| Kick | 10 minutes |
+
+The longer Kick TTL reflects its rate-limit and Cloudflare characteristics.
+
+## Privacy and visibility
+
+Live badges only render when **Show on Profile** is enabled for the streaming connection. The toggle is per-platform and lives in **Settings > Connections**.
+
+When **Show on Profile** is off:
+
+- The connection itself does not appear in your public profile
+- The live badge does not show, even if you are actually live
+- The platform is excluded from livestream polling
+
+Disconnecting the streaming account also removes the indicator immediately.
+
+<Note>
+	Connection visibility is independent of your overall **Profile Visibility**. You can keep a public
+	profile while hiding a specific streaming connection, and vice versa.
+</Note>
+
+## Implementation notes
+
+For those who want the technical context:
+
+- **Twitch** uses an app access token (Client Credentials grant) and the Helix `streams` endpoint. The cron batches up to 100 usernames per API call.
+- **YouTube** uses each user's own OAuth refresh token (via Google login with the `youtube.readonly` scope) and the YouTube Data API v3. Checks are per-user because there is no app-level read token for this API.
+- **Kick** uses the public v2 channel endpoint - no auth, no per-user token. Cloudflare 403/429/503 responses are treated as "not live" so a transient block never raises an error to the user.
+
+## Related
+
+- [Connections](/account/connections) - Link, unlink, and toggle profile visibility for your streaming accounts.
+- [Settings > Connections](/settings/connections) - Manage login providers, gaming platforms, and streaming connections in one place.

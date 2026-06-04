@@ -1,0 +1,76 @@
+---
+title: "Match Subscriptions"
+description: "Follow matches you're interested in and control how you receive updates"
+---
+
+{/_
+IMAGE NEEDED: Subscribe button on match
+Type: screenshot
+Shows: Match page with subscribe toggle
+Notes: Show both subscribed and unsubscribed states
+_/}
+
+Subscribe to matches to receive updates even if you're not participating.
+
+## How Subscriptions Work
+
+Each subscription stores a small record that links you to a match and tracks how the subscription was created. The record has the following shape:
+
+| Field       | Description                                                              |
+| ----------- | ------------------------------------------------------------------------ |
+| `matchId`   | The match you are subscribed to                                          |
+| `userId`    | Your user account                                                        |
+| `source`    | `ROSTER` (auto-subscribed) or `MANUAL` (you clicked Subscribe)           |
+| `createdAt` | Timestamp of when the subscription was created                           |
+
+The `source` value lets the app distinguish subscriptions you opted into manually from ones created automatically when you were added to a roster.
+
+## Automatic Subscriptions (source: ROSTER)
+
+You are automatically subscribed - with `source: "ROSTER"` - when you are added to a match roster, whether as active or bench. This is how participants stay informed without needing to opt in.
+
+## Manual Subscriptions (source: MANUAL)
+
+To follow a match you are not part of:
+
+<Steps>
+	<Step title="Open the match page">
+		Navigate to any match you want to follow.
+	</Step>
+	<Step title="Click Subscribe">
+		Click the **Subscribe** button. Your subscription is stored with `source: "MANUAL"`.
+	</Step>
+	<Step title="Receive updates">
+		You will start receiving notifications for that match.
+	</Step>
+</Steps>
+
+## What Subscribers Receive
+
+- Score updates
+- Status changes
+- Match completion
+- Dispute notifications
+
+## Unsubscribing
+
+To stop receiving notifications:
+
+1. Go to the match page
+2. Click **Unsubscribe**
+
+<Note>
+	Unsubscribing from a match you're participating in still sends you critical notifications (like
+	when it's your turn to confirm scores).
+</Note>
+
+## Use Cases
+
+**Following a tournament:**
+Subscribe to matches in a tournament you're interested in.
+
+**Watching friends:**
+Subscribe to your friends' matches to follow their progress.
+
+**Scouting opponents:**
+Subscribe to potential opponents' matches to learn their strategies.

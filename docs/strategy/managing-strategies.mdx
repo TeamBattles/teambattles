@@ -1,0 +1,295 @@
+---
+title: "Managing your strategies"
+description: "Open the editor with the welcome overlay, keep unlimited local strategies in your browser, and browse, open, rename, duplicate, share, and delete your saved strategies."
+---
+
+When you open the strategy editor you start from the welcome overlay, where you can begin a new strategy or pick up a recent one. Once you have strategies in progress you can manage them all without leaving the editor. To group related strategies into a folder, see [Managing your boards](/strategy/managing-boards).
+
+## Welcome overlay
+
+Opening `/strategy/editor` shows the **Strategy Board** welcome overlay over the canvas. From here you can:
+
+<Steps>
+	<Step title="Start a new strategy">
+		Choose a game, then a map (or a custom map if your plan includes them) to open a fresh strategy on the canvas.
+	</Step>
+	<Step title="Continue working">
+		Pick up a recent strategy from the grid. Each card shows a thumbnail, a **Local** or **Saved** badge, and when it was last updated, with a menu to **Open**, **Rename**, **Duplicate**, or **Delete**.
+	</Step>
+</Steps>
+
+The **What's this?** link on the overlay opens the keyboard-shortcuts and help reference.
+
+<Note>
+	You no longer pick the game and map from a separate first-open dialog. To switch the map on a strategy you already have open, use the **Change map** action in the Layers panel.
+</Note>
+
+### Starter tokens on supported maps
+
+When you start a new strategy on a map that ships with spawn data - currently every Black Ops 6 and Black Ops 7 map - the canvas opens with player tokens pre-placed at the two spawn areas instead of being empty. Counter-Strike 2, League of Legends, and custom maps open empty for now; you can drag tokens from the **Tokens** panel as usual.
+
+The starter tokens follow a few rules:
+
+- **One coloured team per side.** Tokens at one spawn are blue and tokens at the other are red so the two sides are visually distinct from the first glance. On Black Ops 7 the blue side is JSOC and the red side is Guild; on Black Ops 6 the blue side is Crimson One and the red side is Pantheon. You can recolor any token from the **Properties** panel.
+- **Tokens per side match the game.** Black Ops 6 and Black Ops 7 both use 4 players per side, so the canvas opens with 8 tokens in two compact grids (4 blue, 4 red).
+- **Each side faces the opposite spawn (snapped to a cardinal direction).** Both teams open pointed toward the other spawn, with the facing snapped to the nearest of the four cardinal directions (north, south, east, west). The bigger of the horizontal and vertical distance between the two spawns picks the axis, so an opponent that's mostly east of you puts your tokens facing east. On a small number of maps (Plaza is the worked example) the facing is authored explicitly via per-spawn overrides in the map's spawn data file instead of being computed from the opposite-spawn axis - those maps' tokens face the direction the operator chose for the map's natural orientation. Drag a token to rotate it to any angle like any other.
+- **One undo to clear them all.** Press <kbd>Ctrl</kbd>+<kbd>Z</kbd> (<kbd>Cmd</kbd>+<kbd>Z</kbd> on macOS) once to remove every auto-placed token in a single step. Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> to bring them back.
+- **Only on brand-new strategies.** Auto-placement fires once when you create the strategy. It never re-fires when you change the map on an existing strategy, duplicate a strategy, or reopen a saved one.
+
+<Note>
+	Move, recolor, number, or delete the starter tokens just like any other token. They're standard player tokens - they only differ in how they got onto the canvas.
+</Note>
+
+### Local strategies
+
+Strategies you create are saved in your browser automatically, and the editor keeps an unlimited number of them - starting a new strategy no longer overwrites the last one. Local strategies carry a **Local** badge in the **Continue working** grid.
+
+<Note>
+	Local strategies are **saved in this browser only**. They survive reloads and an accidental tab-close, but they are not tied to your account and will not appear in another browser or on another device. Sign in and save a strategy to keep it on your account.
+</Note>
+
+The strategy you are working on is tracked in the editor URL (`?local=<id>`), so reloading the page reopens the same strategy.
+
+If you are signed in, your account-saved strategies appear in the same **Continue working** grid alongside your local strategies, each marked with a **Saved** badge.
+
+## Saving a strategy
+
+Click **Save** in the editor header to open the Save dialog. What you see depends on whether you are signed in and whether the strategy already lives on your account.
+
+### Choosing where a strategy is saved
+
+When you are signed in and saving a strategy that is not yet on your account, you pick where it should live:
+
+<Steps>
+	<Step title="Save to my account">
+		Saves the strategy to your account. This counts toward your saved-strategy limit, and it unlocks a share link so you can [share and embed](/strategy/embedding) the strategy. You then set the name, description, and visibility, and choose whether to auto-save.
+	</Step>
+	<Step title="Keep on this device">
+		Leaves the strategy as a local-only strategy in this browser. Device strategies are unlimited and private to you.
+	</Step>
+</Steps>
+
+<Warning>
+	Strategies kept on this device can't be shared or embedded - there is no share link - and may be lost if you clear your browser data. Save a strategy to your account when you want a link or a backup that follows you across devices.
+</Warning>
+
+Once a strategy is already saved to your account, the Save dialog skips this choice and goes straight to the settings form, so saving again just updates the existing strategy.
+
+### If you are signed out
+
+If you are not signed in, your strategy is already saved on this device. The Save dialog reminds you of this and lets you **Sign in** to save the strategy to your account, share it, and embed it - or **Keep on device** to carry on without an account. Signed-out strategies are always device-only.
+
+### If you have hit your save limit
+
+If you are at your plan's saved-strategy limit, the **Save** button shows a small upgrade spark, and the Save dialog offers a choice instead of the form:
+
+- **Upgrade** - Move to a higher plan so you can save more strategies to your account. See [Subscriptions](/subscriptions) for tier limits.
+- **Keep on device** - Keep this strategy as a local-only strategy so you don't lose your work.
+
+<Note>
+	If a save is blocked because you are over your limit, the dialog stays open and offers the same upgrade-or-keep-on-device choice rather than failing silently.
+</Note>
+
+## Exporting and importing a project
+
+Alongside exporting a single frame or an animation, you can export a whole strategy as a re-importable project file with the `.tbstrat` extension. Open the **Export** menu in the editor header and choose **Export Project**, then pick one of two modes:
+
+<Steps>
+	<Step title="Online copy">
+		A small file that links back to your saved strategy. When someone imports it, the editor pulls the latest version from the server and forks it as a new, editable copy. You must save the strategy to your account first, because there is nothing to link to otherwise. Anyone you share the file with can import it as long as the strategy is **Unlisted** or **Public** - a **Private** strategy's online copy can only be imported by you.
+	</Step>
+	<Step title="Offline copy">
+		A fully standalone file with everything embedded - frames, drawings, tokens, and, if the strategy uses a [custom map](/strategy/custom-maps), the map image itself. It works across accounts and deployments, so it is the right choice when you want to hand a strategy to someone else.
+	</Step>
+</Steps>
+
+<Note>
+	Exporting is free in both modes. Use an online copy to share an up-to-date link to your own strategy, and an offline copy when you need a self-contained file that does not depend on the original staying online.
+</Note>
+
+<Warning>
+	A custom-map strategy's online copy only renders the map for you (the map is owner-gated). To share a strategy built on a custom map, export an **offline copy** instead so the map image travels with the file.
+</Warning>
+
+### Importing a project
+
+On the editor's welcome screen, choose **Import from file** and pick a `.tbstrat` file. The imported strategy opens on the canvas, starts as **Private**, and counts against your saved-strategy quota.
+
+<Note>
+	Importing an offline copy that uses a custom map requires a **Premium** plan, because custom-map uploads are a premium feature. The embedded map is also re-scanned for inappropriate content before the strategy is created, the same way a [custom map upload](/strategy/custom-maps) is scanned.
+</Note>
+
+## My Boards library
+
+Click the **My boards** button (grid icon) at the left of the editor header to open the library panel. The panel is a two-level sheet: the top level lists your **boards** (folders of strategies) plus an **Ungrouped** bucket for strategies that aren't filed into a board. Tap a row to drill into that board (or the Ungrouped bucket) and see the strategies inside.
+
+Each strategy card shows a thumbnail, the game and map it was built on, when it was last updated, and a visibility badge. The strategy you currently have open is marked **Editing**.
+
+The list updates live - changes you make are reflected immediately, with no refresh.
+
+<Note>
+	For boards (folders) themselves - creating a board, filing strategies into it, sharing a board, and deleting a board - see [Managing your boards](/strategy/managing-boards).
+</Note>
+
+## Strategy actions
+
+Open the actions menu on any strategy card (the `...` button) to:
+
+<Steps>
+	<Step title="Open">
+		Switch the editor to that strategy. If you have unsaved changes on your current strategy, they are saved automatically before switching so nothing is lost.
+	</Step>
+	<Step title="Rename">
+		Give the strategy a new name (up to 120 characters).
+	</Step>
+	<Step title="Change visibility">
+		Pick **Private** (only you), **Unlisted** (anyone with the link), or **Public** (discoverable by anyone). The badge on the card updates right away.
+	</Step>
+	<Step title="Duplicate">
+		Create a private copy of the strategy and open it. The copy starts as **Private** regardless of the original's visibility.
+	</Step>
+	<Step title="Copy link">
+		Copy the strategy's shareable view link to your clipboard.
+	</Step>
+	<Step title="Delete">
+		Permanently delete the strategy and all of its frames after a confirmation. If you delete the strategy you are currently editing, you are returned to a fresh editor.
+	</Step>
+</Steps>
+
+<Note>
+	Duplicating a strategy counts against your save quota and is rate-limited. If you hit your plan's save limit, you'll be prompted to upgrade.
+</Note>
+
+## Keeping saved strategies in sync
+
+If you edit a strategy that is saved to your account while you are offline - or with auto-save turned off - and leave without saving, those edits are held on this device and the strategy is marked **Unsynced changes**. You'll see the indicator on the strategy's card in both the welcome overlay's **Continue working** grid and the **My Boards** library.
+
+When you next open an unsynced strategy, the editor asks how to reconcile the two copies:
+
+<Steps>
+	<Step title="Sync to account">
+		Push the local changes up to your saved strategy. The most recent edit wins, and the device copy is cleared once the sync succeeds.
+	</Step>
+	<Step title="Discard local changes">
+		Keep the copy that is already on your account and drop the local changes on this device.
+	</Step>
+</Steps>
+
+The prompt shows when the local copy was edited and when your saved copy was last saved, so you can tell which is newer before you choose.
+
+<Note>
+	The reconcile prompt appears whether you open the strategy from its own link or from the **My Boards** library. Only strategies saved to your account can fall out of sync - device-only strategies are never reconciled, because they have no account copy.
+</Note>
+
+## Editor header at a glance
+
+The editor header runs across the top of the canvas. A few elements show up everywhere and are worth knowing about up front.
+
+### Status pill
+
+A small pill next to the strategy name tells you where the current strategy stands:
+
+- **Saved** - The strategy is persisted (on your account or on this device) with no pending changes.
+- **Unsaved** - The strategy is persisted but has edits that have not yet been saved.
+- **Local draft** - You are signed out (or have never saved this strategy), so the strategy lives only as a draft in this browser.
+
+### Stage chips
+
+Each frame of the play is a **stage**. The header shows a window of three stage chips around the chip you currently have selected; click a chip to switch to that stage. Each chip is interactive:
+
+<Steps>
+	<Step title="Reorder">
+		Drag a chip onto another chip to reorder the timeline. The drop slot highlights as you drag.
+	</Step>
+	<Step title="Rename">
+		Stage labels are editable inline from the header so you can name a stage "Entry", "Post-plant", etc.
+	</Step>
+	<Step title="Set duration">
+		Open a chip's `...` menu and pick **Set duration** to control how long the stage holds during animated playback. Durations are clamped to 0.5-60 seconds, and brand-new stages default to 2 seconds.
+	</Step>
+	<Step title="Duplicate or delete">
+		The same menu has **Duplicate** (adds a new stage on the end) and **Delete** (with a confirmation; blocked when only one stage remains).
+	</Step>
+</Steps>
+
+When there are more than three stages, a **Jump to** popover appears so you can hop to any stage outside the visible window. Use the `+` button at the end of the row to add a stage.
+
+### Loop toggle
+
+The **Loop** toggle in the header makes the Play button jump back to stage 1 after the last stage instead of stopping. The loop setting is saved on the strategy and is honored by the [embed iframe](/strategy/embedding) when its URL `loop` param is absent.
+
+## Tokens
+
+The **Tokens** panel on the right of the editor is a single scrollable list of the active game's tokens, ordered by their asset subfolder. The catalog is computed from the active game's icon assets, so each game shows its own set of tokens.
+
+### Catalog
+
+- **Call of Duty (Black Ops 6, Black Ops 7)** - 2 player variants (alive, dead) + 16 equipment icons (frag, semtex, flash, concussion, decoy, gas, thermite, molotov, C4, claymore, mine, RC-XD, snapshot, tactical-cover, trophy system, artillery strike) + 5 generic markers (bomb, explosion, objective-point, overload-bomb, pin). Per-game extras layer on top.
+- **Counter-Strike 2** - 2 player variants (alive, dead) + 4 equipment icons (frag, flash, gas, molotov) + 3 generic markers (bomb, explosion, pin).
+- **League of Legends** - 2 player variants (alive, dead) plus the full roster of ~170 champion tokens (drag a champion portrait onto the map). League of Legends and Valorant now share the **Riot Games** category.
+
+Switching the active game swaps the catalog automatically.
+
+### Placing tokens
+
+Drag a token from the panel onto the canvas, or click a token to arm it and then click on the canvas to place it. On mobile, tap a token then tap the canvas (no drag required). Player tokens are placed with a default color of red; recolor to blue or neutral from the **Properties** panel. You can also give a player token a jersey number from the same panel.
+
+### FOV (vision) cones
+
+Every live player token (every player token except the dead marker) can render a vision cone showing what direction the player is looking. The default cone is **60 degrees of arc, 150 px long, at 0.25 opacity**, and is on by default for every player token you place.
+
+From the **Properties** panel you can:
+
+- Toggle the cone on or off for the selected token.
+- Adjust the arc (10-180 degrees).
+- Adjust the length (30-400 px in the token's local space).
+- Adjust the opacity (0-1).
+- Rotate the cone with the token using the standard rotation handle.
+
+<Note>
+	The cone follows the token as you drag and as it tweens between stages, so a player's facing direction reads correctly through animated playback.
+</Note>
+
+### Multi-select
+
+You can act on more than one token at a time:
+
+- **Shift-drag** on empty canvas opens a marquee selection. The default mode is "fully contained" (only shapes entirely inside the marquee are selected); hold <kbd>Ctrl</kbd> or <kbd>Cmd</kbd> while you drag to switch to "any intersection".
+- **Shift-click** (or <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>-click) on a token to toggle it in or out of the current selection without clearing the rest.
+
+Once you have a multi-selection, the transformer attaches to the bounding box of the whole group: dragging any selected shape moves the entire group, and a single undo reverts the group action as one step.
+
+### Ghost trails on cross-stage transitions
+
+When a token's `tokenId` changes between stages (for example, a player throws a frag in stage 1 and then has no frag in stage 2), the editor renders a translucent **ghost** of the previous-stage token plus a motion arrow as you scrub through the timeline. Arrows for authored type-changes render dashed so they stand out from straight-line motion. This makes it easy to spot a token's path and any cross-stage state change without having to play the animation.
+
+## Overlay filters
+
+The header **Overlays** button opens the overlay-filters panel. The panel only shows toggles for layers the active game actually ships with, so a CS2 strategy and a BO7 strategy see very different rows.
+
+| Group       | Toggle                | Notes                                            |
+| ----------- | --------------------- | ------------------------------------------------ |
+| Spawn       | Spawn markers         | Black Ops 7 only.                                |
+| POI         | POI labels            | Black Ops 7 only.                                |
+| Objectives  | Domination            | Per-game; surfaced where the data exists.        |
+| Objectives  | Hardpoint             | Per-game; surfaced where the data exists.        |
+| Objectives  | Search & Destroy      | Per-game; surfaced where the data exists.        |
+| Layers      | Domination zone       | Image overlay; rendered when the game ships it.  |
+| Layers      | Hardpoint zone        | Image overlay; rendered when the game ships it.  |
+| Layers      | Search & Destroy zone | Image overlay; rendered when the game ships it.  |
+| Layers      | Spawn zone            | Image overlay; rendered when the game ships it.  |
+| Layers      | Areas                 | Image overlay; rendered when the game ships it.  |
+| Layers      | Headquarters          | Image overlay; rendered when the game ships it.  |
+| Layers      | `buyzones`            | Counter-Strike 2 only.                           |
+
+Toggles save with the strategy, so each play remembers which overlays it should render.
+
+## Using the editor on mobile
+
+On screens narrower than 1024px the editor rearranges so everything stays reachable:
+
+- **Side panels become a drawer** - The Tokens, Layers, and Properties panels move into a bottom drawer. Tap the **Panels** button in the header to open it and switch between the three tabs.
+- **Placing tokens by tap** - Tap a token in the Tokens tab, then tap the canvas to place it (no drag required).
+- **Overflow menu** - Less-used header actions (Share, Collab, Change map, Help, Settings, Loop, Zoom) collapse into a `...` menu. Save, Export, Overlays, Panels, and My boards stay directly on the header.
+
+On desktop (1024px and wider) the side panels remain pinned to the right and the full header toolbar is shown.

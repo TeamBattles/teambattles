@@ -1,0 +1,143 @@
+---
+title: "League of Legends"
+description: "League of Legends game support on TeamBattles."
+---
+
+League of Legends is supported on TeamBattles with 2 game modes.
+
+## Requirements
+
+<Warning>
+	**Riot Games connection required.** All team members must link their Riot Games account.
+</Warning>
+
+Link your Riot Games account:
+
+1. Go to **Settings > Connections**
+2. Click **Connect** next to Riot Games
+3. Authorize the connection
+
+## Team Size
+
+5 players per team.
+
+## Game Modes
+
+| Mode            | Notes                      |
+| --------------- | -------------------------- |
+| Summoner's Rift | League mode only           |
+| ARAM            | Optional Draft Pick toggle |
+
+## Maps
+
+| Map             | Game Mode       |
+| --------------- | --------------- |
+| Summoner's Rift | Summoner's Rift |
+| Howling Abyss   | ARAM            |
+
+The map is determined by the selected game mode - there is no manual map selection for League of Legends.
+
+## ARAM Draft Pick
+
+When creating an ARAM match, you can enable **Draft Pick** mode. This allows teams to select their champions instead of the standard All Random mechanic.
+
+<Note>
+	Draft Pick is an optional toggle that appears during match creation when ARAM is selected as the
+	game mode.
+</Note>
+
+## Rank Tracking
+
+Your League of Legends ranked stats can be synced automatically from the Riot Games API and displayed on your stream overlay.
+
+**Setup:**
+
+1. Connect your Riot Games account in [Settings > Connections](https://teambattles.gg/settings/connections)
+2. Go to [Settings > Game Stats](https://teambattles.gg/settings/game-stats) and select League of Legends
+3. Choose your queue (Solo/Duo or Flex) and click **Sync**
+
+Your rank, LP (League Points), wins, and losses are retrieved automatically. Data is cached for 15 minutes.
+
+**Display on stream:** Enable the LoL Solo/Duo or Flex widget in the [Overlay Editor](/tools/battles-overlay/editor) under the "Game Specific" tab, or use the [Simple Overlay](/tools/battles-overlay/simple) for a quick no-account setup.
+
+## Competitive Rules
+
+<Info>
+	All rules listed below, as well as any situations not explicitly covered, are subject to Admin
+	review and enforcement at their discretion.
+</Info>
+
+### Summoner's Rift Settings
+
+| Setting        | Value                                           |
+| -------------- | ----------------------------------------------- |
+| Game Mode      | Tournament Draft                                |
+| Bans Per Team  | 5 (3 in Phase 1, 2 in Phase 2)                  |
+| Side Selection | Higher seed or match creator selects for game 1 |
+
+- Loser of each game in a series selects their side for the next game
+- Champion swaps are only permitted during the 60-second Finalization Phase
+
+### ARAM Settings
+
+| Setting    | Value                                |
+| ---------- | ------------------------------------ |
+| Game Mode  | All Random                           |
+| Draft Pick | Optional (enable via match settings) |
+
+- When Draft Pick is disabled, standard All Random champion assignment applies
+- When Draft Pick is enabled, Tournament Draft is used on Howling Abyss
+- Champion bench swaps follow standard ARAM mechanics
+
+### Champion and Item Restrictions
+
+- Newly released or reworked champions are restricted for the release patch (approximately 2 weeks)
+- Newly released items are restricted for the release patch (approximately 2 weeks)
+- Champions or items disabled by Riot Games in live service are automatically ineligible
+- New runes or summoner spells are restricted for the release patch (approximately 2 weeks)
+
+**Banned Skins:**
+
+| Skin                        | Reason                       |
+| --------------------------- | ---------------------------- |
+| iBlitzcrank                 | Hitbox/animation mismatch    |
+| Dragon Trainer Heimerdinger | Turret animation differences |
+| Elementalist Lux            | Unclear particle effects     |
+| Pax Sivir                   | Limited availability         |
+| Riot Singed                 | Limited availability         |
+| Draven Draven               | Limited availability         |
+
+<Warning>Using a banned skin is treated as exploit abuse and may result in a game forfeit.</Warning>
+
+### Behavioral Rules
+
+| Rule                             | Description                                                                                                                                     |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Intentional Feeding              | Deliberately dying to enemy players or turrets to provide the opposing team with gold and experience advantages.                                |
+| AFK and Going Idle               | Leaving the game or going idle during an active match. All players must remain actively participating for the entire duration.                  |
+| Bug and Exploit Abuse            | Using any champion ability, item interaction, or game mechanic that creates an unintended game-breaking advantage.                              |
+| Ghosting                         | Having any third party relay game information from a spectator feed, stream, or broadcast to an active player during the match.                 |
+| Emote and Voice Line Spam (ARAM) | Excessive taunting via champion emotes, voice lines, or mastery badge displays. Casual use is fine; persistent spam to harass opponents is not. |
+
+### Match Policies
+
+| Policy                | Details                                                                                                                                                                                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Riot Account Required | All players must have a valid Riot Games account in good standing connected to their TeamBattles profile. The same account must be used for all matches throughout a season.                                                    |
+| Anti-Cheat            | Riot Vanguard must be installed and active. Scripts, macros, map hacks, wallhacks, or programs modifying game files are prohibited.                                                                                             |
+| No-Show (League)      | Teams must be ready within 15 minutes of the scheduled match time. After 15 minutes, the absent team forfeits.                                                                                                                  |
+| Pause Rules           | 2 pauses per team per game, 10 minutes total pause time per game. Valid reasons: player disconnect, hardware malfunction, software crash. Strategic pausing is prohibited.                                                      |
+| Disconnects           | Player must reconnect within the pause time. If unable, play continues 4v5. No mid-game substitutions after Game of Record is established.                                                                                      |
+| Game of Record        | Established when any attack or ability lands on minions, jungle creeps, structures, or enemy champions, or when the game timer reaches 2 minutes. Before GOR, restarts can be requested; after GOR, admin approval is required. |
+| Substitutions         | Only allowed between games in a series. Substitutes must be registered on the team roster. Substitution must be communicated before champion select begins.                                                                     |
+| Side Selection        | Game 1: Higher seed or match creator selects their preferred side. Subsequent games: Loser of the previous game selects. Blue Side provides first pick; Red Side provides last counter-pick.                                    |
+| Proof Submission      | Post-game scoreboard screenshot or replay file (.rofl) required. Replay files should be retained for 7 days. In disputes, replay files serve as definitive evidence.                                                            |
+
+### Penalties
+
+| Tier        | Name            | Description                                       |
+| ----------- | --------------- | ------------------------------------------------- |
+| 1st offense | Warning         | A formal warning is issued and recorded.          |
+| 2nd offense | Point Deduction | Points are deducted from the team's standings.    |
+| 3rd offense | Match Forfeit   | The match is forfeited and recorded as a loss.    |
+| Repeated    | Suspension      | The player or team is suspended from competition. |

@@ -1,0 +1,77 @@
+---
+title: Authentication
+description: Learn how to authenticate with the TeamBattles API using API keys and bearer tokens.
+---
+
+## API Keys
+
+All API requests require authentication via an API key passed as a Bearer token in the `Authorization` header.
+
+```bash
+curl -H "Authorization: Bearer tb_your_api_key_here" \
+  https://teambattles.gg/api/v1/matches
+```
+
+### Creating an API Key
+
+1. Go to [Settings > Developer](https://teambattles.gg/settings/developer)
+2. Click "Create API Key"
+3. Enter a descriptive label (e.g., "Production Server")
+4. Select the permissions your integration needs
+5. Click "Save" - the full API key is shown only once
+
+<Warning>
+	Copy your API key immediately after creation. It cannot be retrieved later. If you lose it, you
+	must create a new one.
+</Warning>
+
+### Permission Scopes
+
+Each API key has granular permissions across four categories:
+
+| Category        | Scope                                      | Values                 | Description                         |
+| --------------- | ------------------------------------------ | ---------------------- | ----------------------------------- |
+| **Matches**     | `user_matches`                             | none, read             | Access your match history           |
+| **Matches**     | `team_matches`                             | none, read             | Access team match history           |
+| **Matches**     | `org_matches`                              | none, read             | Access organization match history   |
+| **Connections** | `discord`, `twitch`, `github`, `battlenet` | none, enabled          | Access linked platform data         |
+| **Game**        | `scores`                                   | none, write            | Submit scores via API               |
+| **Game**        | `lifecycle`                                | none, read, read-write | Query/manage match lifecycle        |
+| **Webhooks**    | `manage`                                   | none, enabled          | Create and manage webhook endpoints |
+
+<Note>
+	Game API permissions (scores, lifecycle) are only available to approved Game Developers. Webhook
+	management requires General Developer access.
+</Note>
+
+### Key Prefix
+
+API keys start with `tb_` followed by a random string. When viewing your keys in the dashboard, only the prefix is shown for security.
+
+## Error Responses
+
+Authentication and API errors return standard HTTP status codes with a consistent format:
+
+```json
+{
+	"error": "error_code",
+	"details": "Additional information (optional)"
+}
+```
+
+### Common Error Codes
+
+| Code                              | HTTP Status | Description                                      |
+| --------------------------------- | ----------- | ------------------------------------------------ |
+| `error_api_key_required`          | 401         | No API key provided in Authorization header      |
+| `error_api_key_invalid`           | 401         | API key is invalid or revoked                    |
+| `error_api_key_permission_denied` | 403         | API key lacks required permission                |
+| `error_team_membership_required`  | 403         | User is not an active member of the team         |
+| `error_org_membership_required`   | 403         | User is not an active member of the organization |
+| `error_team_not_found`            | 404         | Team ID or slug not found                        |
+| `error_org_not_found`             | 404         | Organization ID or slug not found                |
+| `error_invalid_request`           | 400         | Request body or parameters are invalid           |
+| `error_invalid_cursor`            | 400         | Pagination cursor is invalid or expired          |
+| `error_invalid_limit`             | 400         | Limit must be between 1 and 100                  |
+| `error_invalid_date_format`       | 400         | Date parameter is not valid ISO 8601             |
+| `error_internal`                  | 500         | Internal server error                            |

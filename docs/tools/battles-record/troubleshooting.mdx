@@ -1,0 +1,278 @@
+---
+title: "Troubleshooting"
+description: "Common issues and solutions"
+---
+
+Solutions to common problems with Battles Record.
+
+## Installation Issues
+
+### Windows Defender Blocks Installation
+
+Windows SmartScreen may warn about the installer:
+
+<Steps>
+	<Step title="Click More Info">On the SmartScreen popup, click "More info"</Step>
+	<Step title="Run Anyway">Click "Run anyway" to proceed with installation</Step>
+</Steps>
+
+### Linux Package Won't Install
+
+If the `.deb` package fails to install:
+
+```bash
+# Fix missing dependencies
+sudo apt --fix-broken install
+
+# Or install with dependencies
+sudo apt install ./battles-record-*.deb
+```
+
+If the app won't launch, check for missing dependencies:
+
+```bash
+sudo apt install libwebkit2gtk-4.1-0
+```
+
+### YouTube Dependencies Missing
+
+YouTube recording requires **Bun** and **yt-dlp**. If YouTube channels aren't recording:
+
+<Steps>
+	<Step title="Check Dependencies">Navigate to **Settings** or the dependency checker page</Step>
+	<Step title="Install Missing">Click **Install** for any missing dependencies (Bun, yt-dlp)</Step>
+	<Step title="Verify">
+		Binaries are downloaded from GitHub releases and stored in the app data directory
+	</Step>
+</Steps>
+
+If already installed system-wide (on PATH), the app uses the existing installation.
+
+<Note>
+	The bundled variant of the desktop app ships with Bun and yt-dlp embedded and extracts them
+	automatically on first launch.
+</Note>
+
+### Docker Container Won't Start
+
+Check logs for errors:
+
+```bash
+docker logs battles-record
+```
+
+Common issues:
+
+- **Port conflict**: Change the host port in docker-compose.yml
+- **Permission denied**: Check volume mount permissions
+- **Out of memory**: Increase container memory limit
+
+## Recording Issues
+
+### Stream Not Detected
+
+1. **Verify channel name** - Check spelling, try the full URL
+2. **Check platform status** - Twitch/YouTube/Kick may be experiencing issues
+3. **Authentication** - Some streams require platform login
+4. **Geographic restriction** - Use a VPN if the stream is geo-blocked
+
+### Recording Starts But No Data
+
+1. **Quality unavailable** - Try a lower quality setting
+2. **Network issues** - Check your internet connection
+3. **Firewall blocking** - Allow Battles Record through firewall
+4. **Platform rate limit** - Wait a few minutes and try again
+
+### Recording Stops Unexpectedly
+
+1. **Stream ended** - Check if the streamer went offline
+2. **Disk full** - Check storage space
+3. **Memory exhausted** - Reduce concurrent recordings
+4. **Network timeout** - Check connection stability
+
+### Recording Not Starting (Channel Shows "Live")
+
+If a channel shows as live but isn't recording:
+
+1. **Schedule restriction** - Recording may be outside the configured schedule window
+2. **Filter exclusion** - Stream title or game may match exclusion filters
+3. **Quota exceeded** - Channel storage quota may be full
+4. **Channel disabled** - Check if the channel is enabled
+
+**How to diagnose:**
+
+- Check the **Activity** page for skip events - they show the exact reason (schedule skip, filter skip, or quota skip)
+- Review schedule rules in the channel settings
+- Check filter configuration for unintended exclusions
+- Review quota status on the **Storage** page
+
+### Audio/Video Out of Sync
+
+This usually happens with segment concatenation:
+
+1. Use **Copy** or **Re-encode** post-processing instead of Concatenate
+2. Re-process the recording with sync fix enabled
+3. Use external tools like FFmpeg or Handbrake to fix
+
+## Post-Processing Issues
+
+### Processing Takes Forever
+
+1. **Enable GPU acceleration** - Check Settings → Post-Processing
+2. **Use Copy mode** - Fastest option if re-encoding isn't needed
+3. **Reduce quality preset** - Lower CRF values take longer
+4. **Check CPU usage** - Other processes may be competing
+
+### FFmpeg Error
+
+Check the error message in logs:
+
+| Error               | Solution                           |
+| ------------------- | ---------------------------------- |
+| "No such file"      | Segments were deleted prematurely  |
+| "Invalid data"      | Corrupted segment, re-download     |
+| "Encoder not found" | Install required codecs            |
+| "Permission denied" | Check output directory permissions |
+
+### GPU Encoding Fails
+
+1. **Update drivers** - Install latest GPU drivers
+2. **Check compatibility** - Verify GPU supports NVENC/QSV/AMF
+3. **Memory** - GPU may be out of memory
+4. **Fallback** - Disable GPU and use CPU encoding
+
+### Output File Is Corrupted
+
+1. Check FFmpeg logs for specific errors
+2. Try re-processing with **Copy** mode
+3. Verify segments weren't partially deleted
+4. Check disk for errors
+
+## Storage Issues
+
+### "Disk Full" Error
+
+1. **Check actual space** - Verify with system tools
+2. **Clear temp files** - Delete orphaned segments
+3. **Reduce quota** - Lower storage limits
+4. **Run cleanup** - Trigger retention policy manually
+
+### Recordings Not Appearing
+
+1. **Check output directory** - Verify the path is correct
+2. **Permissions** - Ensure write access to directory
+3. **Library refresh** - Refresh the recordings library
+4. **Filters** - Check if filters are hiding recordings
+
+### Files Disappear
+
+1. **Retention policy** - Check if auto-cleanup is removing files
+2. **Quota exceeded** - Oldest files may be deleted automatically
+3. **External deletion** - Check if other software is modifying files
+
+## Network Issues
+
+### Connection Timeouts
+
+1. **Check internet** - Verify general connectivity
+2. **DNS issues** - Try using 8.8.8.8 or 1.1.1.1
+3. **Firewall** - Allow Battles Record network access
+4. **VPN** - Some VPNs interfere with streaming
+
+### 403/Forbidden Errors
+
+1. **Authentication expired** - Re-authenticate with platform
+2. **IP blocked** - Platform may have rate-limited your IP
+3. **Geographic restriction** - Stream may be geo-blocked
+
+### 404/Not Found Errors
+
+1. **Channel deleted/renamed** - Update channel name
+2. **VOD unavailable** - Stream may have been deleted
+3. **Platform issue** - Check platform status page
+
+## Dashboard Issues
+
+### Can't Access Dashboard
+
+1. **Wrong URL** - Default is http://localhost:8080
+2. **Port conflict** - Check if another app is using port 8080
+3. **Firewall** - Allow incoming connections on port 8080
+4. **Container not running** - Check Docker container status
+
+### Login Not Working
+
+1. **Wrong credentials** - Verify username and password
+2. **Caps lock** - Check keyboard settings
+3. **Browser cache** - Clear cookies and try again
+4. **Reset password** - Use CLI to reset if locked out
+
+### Dashboard Slow/Unresponsive
+
+1. **Many recordings** - Archive or delete old recordings
+2. **Large library** - Enable pagination
+3. **Browser** - Try a different browser
+4. **Memory** - Application may be low on memory
+
+## Notification Issues
+
+### Discord Webhook Not Working
+
+1. **Webhook URL** - Verify the URL is correct
+2. **Webhook deleted** - Check if it still exists in Discord
+3. **Rate limited** - Discord may be rate limiting
+4. **Test** - Use the test button to verify
+
+### Telegram Bot Not Responding
+
+1. **Bot token** - Verify token is correct
+2. **Chat ID** - Ensure correct chat/channel ID
+3. **Bot permissions** - Bot must be admin in channels
+4. **Test** - Send a test message
+
+## Getting Help
+
+If you can't resolve an issue:
+
+1. **Check logs** - Settings → Logs for detailed error messages
+2. **Search issues** - Check [GitHub Issues](https://github.com/teambattles/battles-record/issues)
+3. **Discord** - Ask in the [TeamBattles Discord](https://teambattles.gg/discord)
+4. **Report bug** - Open a new GitHub issue with:
+   - Version number
+   - Operating system
+   - Steps to reproduce
+   - Error logs
+
+## FAQ
+
+### Can I record multiple streams at once?
+
+Yes, configure `Max Concurrent Recordings` in settings. Default is 3.
+
+### Does recording use a lot of bandwidth?
+
+Yes, recording at source quality uses the same bandwidth as watching. Lower quality = less bandwidth.
+
+### Can I record subscriber-only streams?
+
+Yes, if you authenticate with a subscribed account.
+
+### Are recordings DRM protected?
+
+No, recordings are standard video files with no DRM.
+
+### Can I schedule recordings?
+
+Yes, use the schedule feature to record only during specific times.
+
+### How do I back up my configuration?
+
+Copy the `config` directory (or volume for Docker) to a safe location.
+
+### What happens if the daemon crashes during recording?
+
+The daemon uses crash recovery - on restart, it scans for the highest segment sequence number and resumes where it left off. Segments are written atomically (to `.tmp` files first), so no data is corrupted.
+
+### Can multiple clients connect to the daemon?
+
+Yes, the daemon supports multiple concurrent WebSocket connections and API clients simultaneously.

@@ -1,0 +1,128 @@
+---
+title: "Setup Guide"
+description: "Step-by-step guide to setting up your Battles Overlay in OBS, Streamlabs, XSplit, and other streaming software"
+---
+
+This guide walks you through configuring your overlay in the editor and adding it to OBS Studio. **No API key is required** - overlay URLs are public.
+
+## Prerequisites
+
+- A [TeamBattles](https://teambattles.gg) account
+- [OBS Studio](https://obsproject.com/) or compatible streaming software (Streamlabs, XSplit, etc.)
+- Your profile, team, or organization must have a visibility setting that allows public access for the corresponding widgets. See [API Permissions](/tools/battles-overlay/api-permissions) for details.
+
+## Setup Steps
+
+<Steps>
+	<Step title="Open the editor">
+		Navigate to [/overlay/editor](https://teambattles.gg/overlay/editor) and sign in. You'll see a blank canvas and a sidebar with configuration options.
+	</Step>
+	<Step title="Configure widgets">
+		Toggle on the widgets you want to display. Each widget appears on the canvas where you can:
+
+    	- **Click** to select a widget
+    	- **Drag** to reposition it
+    	- Use the **Grid** toggle for alignment guidelines
+    	- Use the **Snap** toggle to snap widgets to the canvas center or other widget edges
+
+    	See the [Widget Reference](/tools/battles-overlay/widgets) for details on each widget.
+    </Step>
+    <Step title="Customize style">
+    	Use the sidebar style controls to adjust:
+
+    	- **Accent color** - Matches your brand or stream theme
+    	- **Opacity** - Background transparency (0-100%)
+    	- **Theme** - Light or dark mode
+    	- **Scale** - Overall size multiplier
+    </Step>
+    <Step title="Save and copy URL">
+    	Click **Save** to store your configuration, then click **Copy URL** to get the overlay URL. The URL follows the pattern `https://teambattles.gg/overlay/render/{configId}` and contains only the config id - no secrets, no API key.
+
+    	<Tip>
+    		You can also copy individual widget URLs by clicking the copy icon next to each widget toggle. This lets you add each widget as a separate browser source.
+    	</Tip>
+    </Step>
+    <Step title="Add to OBS">
+    	In OBS Studio:
+
+    	1. Click the **+** button in the Sources panel
+    	2. Select **Browser**
+    	3. Give it a name like "Battles Overlay"
+    	4. Paste the overlay URL
+    	5. Set **Width** to `1920` and **Height** to `1080`
+    	6. In the **Custom CSS** field, enter:
+
+    	```css
+    	body { background: transparent; }
+    	```
+
+    	7. Click **OK**
+    </Step>
+
+</Steps>
+
+## Other Streaming Software
+
+<AccordionGroup>
+	<Accordion title="Streamlabs Desktop">
+		1. In Streamlabs Desktop, click the **+** button in the **Sources** panel
+		2. Select **Browser Source** from the source list
+		3. Give it a name like "Battles Overlay"
+		4. Paste your overlay URL into the **URL** field
+		5. Set **Width** to `1920` and **Height** to `1080`
+		6. Ensure **Custom CSS** contains:
+
+    	```css
+    	body { background: transparent; }
+    	```
+
+    	7. Click **Done**
+
+    	<Tip>
+    		Streamlabs Desktop uses the same Browser Source system as OBS Studio, so all overlay features work identically.
+    	</Tip>
+    </Accordion>
+    <Accordion title="XSplit Broadcaster">
+    	1. In XSplit Broadcaster, click **Add Source** in the scene editor
+    	2. Select **Webpage URL**
+    	3. Paste your overlay URL
+    	4. In the source properties, set the resolution to `1920 x 1080`
+    	5. Enable **Transparent** background if available
+    </Accordion>
+    <Accordion title="Meld Studio">
+    	1. In your scene, click the **+** button in the **Scene Layers** sidebar
+    	2. Select **Browser** to add a browser layer
+    	3. Paste your overlay URL into the URL field
+    	4. Set the resolution to `1920 x 1080`
+    </Accordion>
+    <Accordion title="Prism Live Studio">
+    	1. In Prism Live Studio, click **Add Source**
+    	2. Select **Browser**
+    	3. Paste your overlay URL into the URL field
+    	4. Set the resolution to `1920 x 1080`
+    </Accordion>
+    <Accordion title="TikTok LIVE Studio">
+    	1. In TikTok LIVE Studio, click the **+** button beside **Sources**
+    	2. Select **Link** from the source type list
+    	3. Paste your overlay URL into the link field
+    	4. Adjust the size and position on the canvas
+    </Accordion>
+
+</AccordionGroup>
+
+## Tips
+
+<Tip>
+	**Refresh interval**: The default refresh interval is 60 seconds, which works well for most use
+	cases. You can lower it for faster updates during active matches.
+</Tip>
+
+<Tip>
+	**Positioning in OBS**: After adding the Browser Source, you can further adjust its position and
+	size within OBS using the transform controls. The overlay is designed for a 1920x1080 canvas, but
+	it scales to other resolutions.
+</Tip>
+
+<Note>
+	User-scoped widgets (stats, rank, referral, game rank, active match) only render when the overlay owner's profile visibility is `public` or `limited`. Team/org widgets require the underlying entity to be public. See [API Permissions](/tools/battles-overlay/api-permissions).
+</Note>

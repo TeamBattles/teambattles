@@ -1,0 +1,132 @@
+---
+title: "OBS Dock"
+description: "Manage your Battles Overlay directly from inside OBS Studio with the built-in dock panel"
+---
+
+The OBS Dock is a built-in panel that lets you manage your Battles Overlay directly from within OBS Studio. Toggle widgets, adjust styles, and automatically add or remove overlay browser sources - all without leaving OBS.
+
+## Prerequisites
+
+- An [OBS Studio](https://obsproject.com/) installation (v28+ recommended)
+- A [TeamBattles](https://teambattles.gg) account. The dock mints its own API key during authorization - no manual setup required.
+
+## Quick Start
+
+<Steps>
+	<Step title="Add the dock to OBS">
+		In OBS Studio, go to **Docks > Custom Browser Docks**. Enter a name (e.g., "Battles Overlay") and the URL:
+
+    	```
+    	https://teambattles.gg/overlay/dock
+    	```
+
+    	Click **Apply**, and the dock panel will appear in your OBS layout.
+    </Step>
+    <Step title="Authorize the dock">
+    	The dock will display a 6-character authorization code. Open the link shown in the dock panel (or go to [teambattles.gg/overlay/dock/authorize](https://teambattles.gg/overlay/dock/authorize)) and enter the code to connect the dock to your account.
+    </Step>
+    <Step title="Select a configuration">
+    	Once authorized, the dock loads your saved overlay configurations. Select one to start managing it.
+    </Step>
+    <Step title="Toggle widgets and style">
+    	Use the dock to enable or disable widgets, change accent colors, switch between styles, and adjust scale or opacity - all in real time.
+    </Step>
+
+</Steps>
+
+## Tabs
+
+The dock has two tabs for different workflows:
+
+### Simple Tab
+
+The Simple tab provides the same quick game rank overlay as the [Simple Overlay](/tools/battles-overlay/simple) - select a game, enter your details, and get a browser source URL. No API key required.
+
+### Full Tab
+
+The Full tab gives you complete control over your overlay configuration:
+
+- **Widget toggles** - Enable or disable individual widgets
+- **Style controls** - Accent color, opacity, theme, scale, and layout style
+- **Context selectors** - Choose which team or organization to display stats for
+- **Source management** - Automatically add or remove OBS browser sources (requires WebSocket connection)
+
+## OBS WebSocket Connection
+
+The dock can connect to OBS via WebSocket to automatically manage browser sources. This means toggling a widget on in the dock will automatically create or show the corresponding browser source in your active scene.
+
+### How to Connect
+
+1. In OBS, go to **Tools > WebSocket Server Settings**
+2. Enable the WebSocket server
+3. Click **Show Connect Info** to see the port and password
+4. In the dock panel, enter the port if it differs from the default (`4455`) and click **Connect**
+5. If a password is required, enter it when prompted - the password is shown in **Show Connect Info**
+
+### What WebSocket Enables
+
+| Feature         | Without WebSocket            | With WebSocket           |
+| --------------- | ---------------------------- | ------------------------ |
+| Toggle widgets  | Manual browser source setup  | Auto-creates sources     |
+| Disable widgets | Must remove sources manually | Auto-hides sources       |
+| URL updates     | Must update each source URL  | Auto-updates all sources |
+
+<Note>
+	The WebSocket connection is optional. Without it, the dock still functions as a configuration
+	panel - you just need to manage browser sources manually.
+</Note>
+
+## Dock vs Manual Browser Source Setup
+
+| Feature                | OBS Dock              | Manual Setup                           |
+| ---------------------- | --------------------- | -------------------------------------- |
+| Configuration location | Inside OBS            | Browser tab                            |
+| Widget management      | Toggle on/off in dock | Add/remove browser sources manually    |
+| Auto source creation   | Yes (with WebSocket)  | No                                     |
+| Style changes          | Real-time in dock     | Save in editor, refresh in OBS         |
+| Account required       | Yes                   | Yes (for full overlay)                 |
+| OBS Studio required    | Yes                   | No (works with any streaming software) |
+
+<Tip>
+	The OBS Dock is best for streamers who use OBS Studio exclusively and want to manage everything
+	from one place. If you use multiple streaming platforms or prefer a visual editor, the [full
+	overlay editor](/tools/battles-overlay/editor) is a better fit.
+</Tip>
+
+## Authorization Details
+
+The dock uses a one-time 6-character code for authorization:
+
+1. The dock generates a code and displays it in the panel
+2. You open [teambattles.gg/overlay/dock/authorize](https://teambattles.gg/overlay/dock/authorize) in your browser
+3. Enter the code while logged into your TeamBattles account
+4. The dock authenticates and loads your configurations
+
+Codes expire after **10 minutes**. If a code expires, the dock will generate a new one automatically.
+
+<Warning>
+	You must be logged into your TeamBattles account in your browser before entering the authorization
+	code. The dock links to the account that authorizes the code.
+</Warning>
+
+### How the device flow works
+
+The authorization is a two-code RFC 8628-style split, so a scraper who sees the short user-facing code can't claim the resulting API key.
+
+| Field | Format | Notes |
+| --- | --- | --- |
+| User code | 6 characters from `A-Z2-9` | Shown in OBS and typed in the browser. The alphabet excludes `I`, `O`, `0`, and `1` to avoid look-alike confusion. |
+| Device code | 64 hex characters (32 random bytes) | Stays inside the dock, never displayed. Used to poll for the issued API key. |
+| Lifetime | 10 minutes (`CODE_TTL_MS`) | Both codes expire together; the dock generates a new pair automatically. |
+| Poll cadence | Every 3 seconds | The dock polls `checkDockAuthStatus` directly against Convex while the panel is open. |
+| Cleanup | Every 5 minutes | A server cron deletes expired codes from the dock-auth table. |
+
+### Permissions granted to the dock key
+
+When you authorize the dock, the server creates (or refreshes) an API key labeled **OBS Dock** on your account. The key is intentionally narrow: only the `matches.user_matches: read` scope is enabled, with every other scope set to `none`.
+
+The dock-only endpoints it uses - `configs`, `config/[configId]` PATCH, `user/teams`, `user/orgs` - don't gate on scopes at all; they only check that the key belongs to the caller. See the [API Permissions](/tools/battles-overlay/api-permissions) reference for the full public-vs-key endpoint split.
+
+<Note>
+	The dock key is owner-scoped and minted per device. Revoking it from [Developer Settings](https://teambattles.gg/settings/developer) instantly logs the dock out; re-authorizing creates a fresh key on the same `OBS Dock` row (the label is reused so you don't accumulate stale entries).
+</Note>

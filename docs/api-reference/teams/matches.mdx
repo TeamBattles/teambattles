@@ -1,0 +1,188 @@
+---
+title: "Get Team Matches"
+openapi: "POST /teams/{identifier}/matches"
+---
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/teams/Team_Alpha/matches \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"excludeStatuses": ["CANCELLED", "FORFEITED"], "numItems": 25}'
+```
+
+```javascript JavaScript
+const teamSlug = "Team_Alpha";
+
+const response = await fetch(`https://teambattles.gg/api/v1/teams/${teamSlug}/matches`, {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify({
+		excludeStatuses: ["CANCELLED", "FORFEITED"],
+		numItems: 25
+	})
+});
+
+const { page, isDone, continueCursor } = await response.json();
+
+// Fetch next page if available
+if (!isDone) {
+	const nextPage = await fetch(`https://teambattles.gg/api/v1/teams/${teamSlug}/matches`, {
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			excludeStatuses: ["CANCELLED", "FORFEITED"],
+			numItems: 25,
+			cursor: continueCursor
+		})
+	});
+}
+```
+
+```python Python
+import requests
+
+team_slug = 'Team_Alpha'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/teams/{team_slug}/matches',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'excludeStatuses': ['CANCELLED', 'FORFEITED'], 'numItems': 25}
+)
+
+data = response.json()
+matches = data['page']
+is_done = data['isDone']
+continue_cursor = data['continueCursor']
+```
+
+</RequestExample>
+
+## Permission Required
+
+This endpoint requires the `matches.team_matches` permission on your API key.
+
+## Membership Required
+
+You must be an **active member** of the team to access its matches. If you're not a member, you'll receive a `403` error with code `error_team_membership_required`.
+
+## Team Identifier
+
+The `{identifier}` path parameter accepts either:
+
+- **Team ID**: The Convex document ID (e.g., `jh7abc123def456`)
+- **Team Slug**: The URL-friendly team name (e.g., `Team_Alpha`)
+
+The slug is derived from the team name by replacing spaces with underscores.
+
+## Filtering Options
+
+### Status Filtering
+
+Filter matches by their status:
+
+- **includeStatuses**: Only return matches with these statuses (takes precedence)
+- **excludeStatuses**: Return all matches except those with these statuses
+
+### Date Filtering
+
+Filter by scheduled or creation dates using ISO 8601 format:
+
+- **scheduledAfter** / **scheduledBefore**: Filter by scheduled match time
+- **createdAfter** / **createdBefore**: Filter by when the match was created
+
+### Other Filters
+
+- **gameId**: Filter by a specific game
+- **opponentId**: Filter by opponent team (accepts team ID or slug)
+
+## Pagination
+
+Results are paginated with a default of 25 matches per page (maximum 100).
+
+### Request Fields
+
+| Parameter  | Type   | Description                                           |
+| ---------- | ------ | ----------------------------------------------------- |
+| `numItems` | number | Number of items per page, 1-100, default 25           |
+| `cursor`   | string | Opaque cursor string from a prior response (optional) |
+
+### Response Fields
+
+| Field            | Type    | Description                                        |
+| ---------------- | ------- | -------------------------------------------------- |
+| `page`           | array   | Array of matches for this page                     |
+| `isDone`         | boolean | `true` when there are no more pages to fetch       |
+| `continueCursor` | string  | Pass back as `cursor` on the next request          |
+
+Example response envelope:
+
+```json
+{
+	"page": [],
+	"isDone": false,
+	"continueCursor": "eyJpZCI6Im1hdGNoXzEyMyIsInRzIjoxNzA0MDY3MjAwfQ=="
+}
+```
+
+## Errors
+
+| Code                              | HTTP Status | When                                                              |
+| --------------------------------- | ----------- | ----------------------------------------------------------------- |
+| `error_api_key_required`          | 401         | Missing `Authorization` header                                    |
+| `error_api_key_invalid`           | 401         | API key is unknown, revoked, or expired                           |
+| `error_api_key_permission_denied` | 403         | The key does not hold `matches.team_matches: read`                |
+| `error_team_membership_required`  | 403         | You are not an active member of the requested team                |
+| `error_invalid_num_items`         | 400         | `numItems` is outside the allowed `1-100` range                   |
+| `error_invalid_limit`             | 400         | Reserved for `limit`-style page sizes (registry-level error code) |
+| `error_invalid_cursor`            | 400         | `cursor` is malformed or no longer valid                          |
+| `error_invalid_date_format`       | 400         | One of the `scheduled*`/`created*` filters is not ISO 8601        |
+| `error_team_not_found`            | 404         | The `{identifier}` or `opponentId` could not be resolved          |
+| `error_internal`                  | 500         | Unhandled server error - retry or contact support                 |
+
+## Common Use Cases
+
+### Get Active Team Matches
+
+```json
+{
+	"excludeStatuses": ["PENDING", "COMPLETED", "CANCELLED", "FORFEITED"],
+	"numItems": 25
+}
+```
+
+### Get Matches Against a Specific Opponent
+
+```json
+{
+	"opponentId": "Team_Beta",
+	"includeStatuses": ["COMPLETED"]
+}
+```
+
+### Get Upcoming Scheduled Matches
+
+```json
+{
+	"scheduledAfter": "2024-01-15T00:00:00Z",
+	"includeStatuses": ["ACCEPTED", "READY"]
+}
+```
+
+### Get Match History for a Date Range
+
+```json
+{
+	"scheduledAfter": "2024-01-01T00:00:00Z",
+	"scheduledBefore": "2024-03-31T23:59:59Z",
+	"includeStatuses": ["COMPLETED", "FORFEITED"],
+	"numItems": 100
+}
+```

@@ -1,0 +1,245 @@
+---
+title: "Jellyfin Integration"
+description: "Automatic media library updates with Jellyfin"
+---
+
+Battles Record integrates with Jellyfin to automatically update your media library when recordings complete.
+
+## Overview
+
+When a recording finishes:
+
+1. File is moved to output directory
+2. NFO metadata file is created
+3. Jellyfin library scan is triggered
+4. Recording appears in Jellyfin
+
+## Setup
+
+<Steps>
+	<Step title="Configure Jellyfin Connection">
+		Navigate to **Settings → Integrations → Jellyfin**
+	</Step>
+	<Step title="Enter Server URL">
+		Your Jellyfin server address (e.g., `http://localhost:8096` or `https://jellyfin.example.com`)
+	</Step>
+	<Step title="Add API Key">Create an API key in Jellyfin: **Dashboard → API Keys → New**</Step>
+	<Step title="Select Library">Choose which Jellyfin library should receive recordings</Step>
+	<Step title="Test Connection">Click **Test** to verify the connection works</Step>
+</Steps>
+
+## Library Configuration
+
+### Jellyfin Library Type
+
+Create a dedicated library for stream recordings:
+
+<Steps>
+	<Step title="Open Jellyfin Dashboard">Go to **Dashboard → Libraries → Add Media Library**</Step>
+	<Step title="Select Type">Choose **Shows** or **Mixed Content**</Step>
+	<Step title="Add Folder">Point to your Battles Record output directory</Step>
+	<Step title="Configure Metadata">
+		Disable internet metadata fetchers (recordings use local NFO files)
+	</Step>
+</Steps>
+
+<Tip>Using **Shows** type organizes recordings as episodes under each channel (series).</Tip>
+
+### Folder Structure for Jellyfin
+
+Enable Jellyfin-compatible folder structure in Battles Record:
+
+```
+{library_dir}/
+└── {platform}/
+    └── {channel}/
+        ├── tvshow.nfo
+        ├── poster.jpg
+        ├── banner.jpg
+        ├── logo.png
+        ├── fanart.jpg
+        ├── landscape.jpg
+        └── Season XX/
+            ├── season.nfo
+            ├── poster.jpg
+            ├── {channel} - S01E001 - {title}.mp4
+            ├── {channel} - S01E001 - {title}.nfo
+            └── {channel} - S01E001 - {title}-thumb.jpg
+```
+
+Recordings are organized as a TV show structure - platform and channel as the show, months as seasons (S01 = January, S12 = December), and individual recordings as episodes.
+
+Enable in **Settings → Integrations → Jellyfin → Use Jellyfin Folder Structure**.
+
+## NFO Metadata
+
+Battles Record generates NFO files for each recording:
+
+### Episode NFO
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<episodedetails>
+  <title>Valorant Ranked</title>
+  <showtitle>Shroud</showtitle>
+  <season>2026</season>
+  <episode>0201</episode>
+  <aired>2026-02-01</aired>
+  <runtime>180</runtime>
+  <plot>Recorded from Twitch on February 1, 2026. Category: Valorant</plot>
+  <genre>Gaming</genre>
+  <studio>Twitch</studio>
+</episodedetails>
+```
+
+### Series NFO
+
+Created once per channel:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<tvshow>
+  <title>Shroud</title>
+  <plot>Stream recordings from Twitch channel Shroud</plot>
+  <genre>Gaming</genre>
+  <studio>Twitch</studio>
+</tvshow>
+```
+
+## Artwork & Rich Image Generation
+
+When enabled, Battles Record generates a full set of artwork for each channel using platform profile and banner images.
+
+### Color Palette Extraction
+
+Dominant colors are extracted from the channel's profile image using k-means clustering. A 5-color palette is derived automatically:
+
+| Color          | Usage                                     |
+| -------------- | ----------------------------------------- |
+| **Primary**    | Main accent color for headers and titles  |
+| **Secondary**  | Supporting color for backgrounds          |
+| **Accent**     | Highlight color for badges and indicators |
+| **Text**       | Primary text color                        |
+| **Muted Text** | Secondary text and labels                 |
+
+All generated images use this palette for a cohesive look per channel. If image loading fails, a default dark zinc palette is used as fallback.
+
+### Show-Level Images
+
+Generated once per channel:
+
+| Image             | Size      | Description                                                                  |
+| ----------------- | --------- | ---------------------------------------------------------------------------- |
+| **poster.jpg**    | 680x1000  | Portrait poster with profile image, channel name, platform, and metadata     |
+| **banner.jpg**    | 758x140   | Wide header with banner background, profile image, and channel name          |
+| **logo.png**      | 800x310   | Horizontal logo with large channel name and platform text                    |
+| **fanart.jpg**    | 1920x1080 | Cinematic background with vignette overlay, profile image, and game category |
+| **landscape.jpg** | 500x281   | Thumbnail card with diagonal gradient and profile image                      |
+
+### Season-Level Images
+
+Generated once per month:
+
+| Image          | Size     | Description                                                                    |
+| -------------- | -------- | ------------------------------------------------------------------------------ |
+| **poster.jpg** | 680x1000 | Season poster with prominent date display (month, day, year) and episode count |
+
+### Episode-Level Images
+
+Generated per recording:
+
+| Image         | Size      | Description                                                                                                     |
+| ------------- | --------- | --------------------------------------------------------------------------------------------------------------- |
+| **thumb.jpg** | 3840x2160 | 4K thumbnail with stream screenshot background, title overlay, viewer count, game, duration, and episode number |
+
+<Note>
+	All images use embedded **JetBrains Mono** (Regular and Bold), matching the application's
+	monospace design system.
+</Note>
+
+Enable artwork generation in **Settings → Integrations → Jellyfin → Download Artwork**.
+
+## Library Refresh
+
+### Automatic Refresh
+
+After each recording completes, Battles Record triggers a library scan:
+
+| Method          | Description                                 |
+| --------------- | ------------------------------------------- |
+| **Full Scan**   | Scan entire library (slower, more thorough) |
+| **Folder Scan** | Scan only the recording's folder (faster)   |
+
+Configure in **Settings → Integrations → Jellyfin → Refresh Method**.
+
+### Manual Refresh
+
+Force a library refresh:
+
+- Click **Refresh Library** in Settings → Integrations → Jellyfin
+- Or use the API: `POST /api/jellyfin/refresh`
+
+## Naming Format
+
+Customize how recordings appear in Jellyfin:
+
+### Season/Episode Numbering
+
+| Format      | Example    | Description                                                           |
+| ----------- | ---------- | --------------------------------------------------------------------- |
+| **Monthly** | S01E001    | Seasons by month (S01 = January, S12 = December), sequential episodes |
+| **Year**    | S2026E0201 | Year as season, date as episode                                       |
+| **Date**    | 2026-02-01 | Date in filename (requires Jellyfin date parsing)                     |
+
+### Title Format
+
+| Format               | Example                      |
+| -------------------- | ---------------------------- |
+| **Stream Title**     | Valorant Ranked              |
+| **Date + Title**     | 2026-02-01 - Valorant Ranked |
+| **Category + Title** | Valorant - Ranked            |
+
+## Multiple Jellyfin Servers
+
+Configure multiple Jellyfin instances:
+
+<Steps>
+	<Step title="Add Server">Click **Add Jellyfin Server** in settings</Step>
+	<Step title="Configure">Enter URL, API key, and library</Step>
+	<Step title="Assign Channels">Choose which channels sync to which server</Step>
+</Steps>
+
+## Troubleshooting
+
+### Recordings Don't Appear
+
+1. Verify Jellyfin connection in settings
+2. Check API key has library write permissions
+3. Ensure output directory is accessible to Jellyfin
+4. Try manual library refresh
+
+### Wrong Metadata
+
+1. Check NFO file was created alongside video
+2. Verify Jellyfin is using local metadata (not internet scrapers)
+3. Delete `.nfo` and let Battles Record regenerate
+
+### Permission Errors
+
+For Docker deployments, ensure user IDs match:
+
+```yaml
+environment:
+  - PUID=1000
+  - PGID=1000
+```
+
+These should match your Jellyfin container's user.
+
+### Duplicate Entries
+
+If recordings appear twice:
+
+1. Disable duplicate metadata providers in Jellyfin
+2. Ensure only one folder structure format is enabled
+3. Run library scan with **Replace all metadata** option

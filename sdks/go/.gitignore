@@ -1,0 +1,12 @@
+# The generated client (src/generated) is its own module named `teambattles`, but Kiota wipes that
+# dir on every regeneration (`kiota generate --clean-output`). Its go.mod/go.sum are materialized at
+# build time by build.sh (`go mod init teambattles`), so they must NOT be committed - committing them
+# would leave the working tree dirty after a regen and break the sdk-drift CI job.
+src/generated/go.mod
+src/generated/go.sum
+
+# go.sum is resolved at build time (`go mod tidy`, network) and not committed; go.work IS committed
+# (it is part of the hand-written two-module dev layout that lets `go build ./...` find the local
+# generated module).
+go.sum
+go.work.sum

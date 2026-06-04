@@ -1,0 +1,164 @@
+---
+title: "Your Profile"
+description: "Customize your profile and control your visibility"
+---
+
+{/_
+IMAGE NEEDED: Profile page
+Type: screenshot
+Shows: User profile with avatar, banner, bio, stats, and achievements
+Notes: Use dark theme
+_/}
+
+Your profile represents you on TeamBattles. Customize it to stand out and control who can see your information.
+
+## Profile Fields
+
+### Required Fields
+
+| Field        | Requirements                                         |
+| ------------ | ---------------------------------------------------- |
+| Display Name | 1-50 characters                                      |
+| Username     | 3-30 characters (letters, numbers, underscores only) |
+
+### Optional Fields
+
+| Field     | Limit             |
+| --------- | ----------------- |
+| Bio       | 500 characters    |
+| Pronouns  | 50 characters     |
+| Birthday  | Date              |
+| Country   | 2-letter code     |
+| Timezone  | Standard timezone |
+| Languages | Up to 10          |
+
+## Profile Images
+
+{/_
+IMAGE NEEDED: Image upload interface
+Type: screenshot
+Shows: Avatar and banner upload sections
+Notes: Show file size limits
+_/}
+
+| Image  | Size Limit | Behavior          |
+| ------ | ---------- | ----------------- |
+| Avatar | 1 MB       | Replaces previous |
+| Banner | 2 MB       | Replaces previous |
+
+<Note>
+	When you upload a new image, the old one is automatically replaced. There's no image history.
+</Note>
+
+All uploaded images are automatically scanned for inappropriate content. If an image is flagged as NSFW, the upload is rejected. This keeps the platform safe for all users.
+
+### How avatars and banners are stored
+
+Avatars and banners are stored in TeamBattles' own file storage (Convex storage IDs), not as external links. This applies to images you upload **and** to avatars supplied by OAuth providers when you sign in or link a new login - the OAuth-provided avatar is fetched and copied into TeamBattles storage so your profile keeps working even if the upstream URL rotates.
+
+To keep that fetch safe, the server-side avatar persistence path enforces several rules before storing anything:
+
+- Only `https://` URLs are accepted - other schemes are rejected at the boundary.
+- Private, loopback, and link-local IP destinations are blocked.
+- The response must have an `image/*` content-type.
+- The image must be 5 MB or smaller.
+- The fetch times out after 10 seconds.
+
+If any check fails, the avatar persist quietly skips and your existing avatar is preserved.
+
+## Profile Visibility
+
+Control who sees your profile:
+
+| Level       | What Others See                               |
+| ----------- | --------------------------------------------- |
+| **Public**  | Full profile: bio, stats, teams, achievements |
+| **Limited** | Basic info: name, username, avatar            |
+| **Private** | Nothing (only you can see)                    |
+
+To change visibility:
+
+1. Go to **Settings > General**
+2. Find **Profile Visibility**
+3. Select your preferred level
+
+## Your Statistics
+
+Your profile displays your competitive performance:
+
+- **Experience** - Earned from matches and objectives
+- **Wins / Losses / Draws** - Your match record
+- **Current Streak** - Consecutive results (positive = wins)
+- **Best Streak** - Your longest win streak
+
+## Profile URLs
+
+Share your profile with others:
+
+| Type         | URL Format            |
+| ------------ | --------------------- |
+| Your Profile | `/profile/{username}` |
+| Team Profile | `/team/{id}`          |
+| Organization | `/org/{id}`           |
+| Match        | `/matches/{id}`       |
+
+<Tip>Your username creates a clean, shareable URL like `teambattles.gg/profile/your_name`.</Tip>
+
+## Sharing Your Profile
+
+When you share your profile link on social media, messaging apps, or platforms like Discord, a rich preview card is automatically generated showing your profile information.
+
+### What's Included in the Preview
+
+The social preview card displays:
+
+- **Your avatar** - Profile picture
+- **Your banner** - Background image (if set)
+- **Display name** - Your public name
+- **Username** - Your @handle
+- **Win/Loss record** - Your match statistics
+
+### Using the Share Menu
+
+{/_
+IMAGE NEEDED: Share profile menu
+Type: screenshot
+Shows: Share menu dropdown with Copy Link and Download Image options
+Notes: Show the menu open on a profile page
+_/}
+
+To share your profile:
+
+1. Visit any profile page (yours or another user's)
+2. Click the **Share** button
+3. Choose an option:
+   - **Copy Link** - Copies the profile URL to your clipboard
+   - **Download Image** - Downloads the preview image directly
+
+### Direct OG Image URLs
+
+You can also access profile preview images directly:
+
+| Profile Type | URL Format                   |
+| ------------ | ---------------------------- |
+| User         | `/og/profile/{username}.png` |
+| Team         | `/og/team/{slug}.png`        |
+| Organization | `/og/org/{slug}.png`         |
+
+**Query Parameters:**
+
+| Parameter  | Values          | Default | Description            |
+| ---------- | --------------- | ------- | ---------------------- |
+| `theme`    | `dark`, `light` | `dark`  | Image color theme      |
+| `download` | `true`          | -       | Triggers file download |
+
+**Example:**
+
+```
+https://teambattles.gg/og/profile/your_name.png?theme=light
+```
+
+<Note>
+	Preview images are automatically cached and regenerate when you update your profile picture,
+	banner, or display name.
+</Note>

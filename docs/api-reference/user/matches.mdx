@@ -1,0 +1,193 @@
+---
+title: "Get User Matches"
+openapi: "POST /user/matches"
+---
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/user/matches \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"excludeStatuses": ["PENDING", "COMPLETED"], "numItems": 25}'
+```
+
+```javascript JavaScript
+const response = await fetch("https://teambattles.gg/api/v1/user/matches", {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify({
+		excludeStatuses: ["PENDING", "COMPLETED"],
+		numItems: 25
+	})
+});
+
+const { page, isDone, continueCursor } = await response.json();
+
+// Fetch next page if available
+if (!isDone) {
+	const nextPage = await fetch("https://teambattles.gg/api/v1/user/matches", {
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			excludeStatuses: ["PENDING", "COMPLETED"],
+			numItems: 25,
+			cursor: continueCursor
+		})
+	});
+}
+```
+
+```python Python
+import requests
+
+response = requests.post(
+    'https://teambattles.gg/api/v1/user/matches',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'excludeStatuses': ['PENDING', 'COMPLETED'], 'numItems': 25}
+)
+
+data = response.json()
+matches = data['page']
+is_done = data['isDone']
+continue_cursor = data['continueCursor']
+```
+
+</RequestExample>
+
+## Permission Required
+
+This endpoint requires the `matches.user_matches` permission on your API key.
+
+## What's Returned
+
+This endpoint returns matches where you are **on the roster** - meaning you were specifically added as a player for that match. Being a member of a team is not enough; you must be on the actual match roster.
+
+<Note>
+	If you're a team member but weren't added to a specific match's roster, that match won't appear in
+	your results.
+</Note>
+
+## Filtering Options
+
+### Status Filtering
+
+You can filter matches by their status using two mutually exclusive parameters:
+
+- **includeStatuses**: Only return matches with these statuses (takes precedence)
+- **excludeStatuses**: Return all matches except those with these statuses
+
+### Date Filtering
+
+Filter by scheduled or creation dates using ISO 8601 format:
+
+- **scheduledAfter** / **scheduledBefore**: Filter by scheduled match time
+- **createdAfter** / **createdBefore**: Filter by when the match was created
+
+### Other Filters
+
+- **gameId**: Filter by a specific game
+- **opponentId**: Filter by opponent team (accepts team ID or slug)
+
+## Pagination
+
+Results are paginated with a default of 25 matches per page (maximum 100).
+
+### Request Fields
+
+| Parameter  | Type   | Description                                           |
+| ---------- | ------ | ----------------------------------------------------- |
+| `numItems` | number | Number of items per page, 1-100, default 25           |
+| `cursor`   | string | Opaque cursor string from a prior response (optional) |
+
+### Response Fields
+
+| Field            | Type    | Description                                        |
+| ---------------- | ------- | -------------------------------------------------- |
+| `page`           | array   | Array of matches for this page                     |
+| `isDone`         | boolean | `true` when there are no more pages to fetch       |
+| `continueCursor` | string  | Pass back as `cursor` on the next request          |
+
+Example response envelope:
+
+```json
+{
+	"page": [],
+	"isDone": false,
+	"continueCursor": "eyJpZCI6Im1hdGNoXzEyMyIsInRzIjoxNzA0MDY3MjAwfQ=="
+}
+```
+
+## Errors
+
+| Code                          | HTTP Status | When                                                              |
+| ----------------------------- | ----------- | ----------------------------------------------------------------- |
+| `error_api_key_required`      | 401         | Missing `Authorization` header                                    |
+| `error_api_key_invalid`       | 401         | API key is unknown, revoked, or expired                           |
+| `error_api_key_permission_denied` | 403     | The key does not hold `matches.user_matches: read`                |
+| `error_invalid_num_items`     | 400         | `numItems` is outside the allowed `1-100` range                   |
+| `error_invalid_limit`         | 400         | Reserved for `limit`-style page sizes (registry-level error code) |
+| `error_invalid_cursor`        | 400         | `cursor` is malformed or no longer valid                          |
+| `error_invalid_date_format`   | 400         | One of the `scheduled*`/`created*` filters is not ISO 8601        |
+| `error_team_not_found`        | 404         | `opponentId` could not be resolved to a team                      |
+| `error_internal`              | 500         | Unhandled server error - retry or contact support                 |
+
+## Match Statuses
+
+| Status        | Description                                              |
+| ------------- | -------------------------------------------------------- |
+| `PENDING`     | Match is waiting for an opponent to accept               |
+| `ACCEPTED`    | Match has been accepted, waiting for players to be ready |
+| `READY`       | All players are ready, match can be started              |
+| `IN_PROGRESS` | Match is currently being played                          |
+| `COMPLETED`   | Match has finished normally                              |
+| `CANCELLED`   | Match was cancelled before completion                    |
+| `DISPUTED`    | Match result is being disputed                           |
+| `FORFEITED`   | One team forfeited the match                             |
+
+## Common Use Cases
+
+### Get Active Matches Only
+
+Filter out pending and completed matches to show only active ones:
+
+```json
+{
+	"excludeStatuses": ["PENDING", "COMPLETED", "CANCELLED", "FORFEITED"],
+	"numItems": 25
+}
+```
+
+### Get Matches in a Date Range
+
+```json
+{
+	"scheduledAfter": "2024-01-01T00:00:00Z",
+	"scheduledBefore": "2024-12-31T23:59:59Z",
+	"numItems": 50
+}
+```
+
+### Get Matches Against a Specific Opponent
+
+```json
+{
+	"opponentId": "Team_Alpha",
+	"includeStatuses": ["COMPLETED"]
+}
+```
+
+### Paginate Through All Matches
+
+```json
+{
+	"numItems": 25,
+	"cursor": "eyJpZCI6Im1hdGNoXzEyMyIsInRzIjoxNzA0MDY3MjAwfQ=="
+}
+```

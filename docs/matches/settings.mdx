@@ -1,0 +1,96 @@
+---
+title: "Match Settings"
+description: "Maps, series length, and hosting"
+---
+
+Configure your match with various settings for competitive play.
+
+## Series Length
+
+| Option    | Maps to Win | Use Case             |
+| --------- | ----------- | -------------------- |
+| Best of 1 | 1           | Quick matches        |
+| Best of 3 | 2           | Standard competitive |
+| Best of 5 | 3           | Extended series      |
+| Best of 7 | 4           | Tournament finals    |
+
+## Map Selection
+
+{/_
+IMAGE NEEDED: Map selection interface
+Type: screenshot
+Shows: Map veto/preference interface
+Notes: Show both teams' selections
+_/}
+
+### Selection Type
+
+| Type            | Description                         |
+| --------------- | ----------------------------------- |
+| **Competitive** | Tournament-standard maps only       |
+| **Flex**        | All available maps including casual |
+
+### Preference Mode
+
+| Mode               | How It Works                           |
+| ------------------ | -------------------------------------- |
+| **Veto** (Default) | Teams ban maps they don't want         |
+| **Preferred**      | Teams select maps they want to play    |
+| **Manual**         | Directly select the exact maps to play |
+
+<Note>
+	Manual mode requires exactly ceil(bestOf / 2) maps. For example: BO1 needs 1 map, BO3 needs 2, BO5
+	needs 3, BO7 needs 4. Manual mode is not available in league matches.
+</Note>
+
+### How Map Pools Are Calculated
+
+When both teams have preferences:
+
+1. System analyzes both teams' selections
+2. Weighted random selection determines final maps
+3. Maps preferred by both teams are more likely
+4. Final pool fairly represents both teams
+
+## Hosting
+
+The host team controls the lobby for each map:
+
+- Sets lobby code for opponents to join
+- Can pass hosting to opponent using "Pass Host"
+- Hosting typically alternates between maps
+
+### Setting a Lobby Code
+
+After a match is accepted:
+
+1. Go to the match page
+2. Enter lobby code in the designated field
+3. Opponent sees the code and joins
+
+<Note>Only the hosting team can set/update the lobby code for their maps.</Note>
+
+## Roster Selection
+
+When creating a match:
+
+1. Select **Active Roster** players (minimum 1)
+2. Select **Bench** players as backups (optional)
+3. Set bench priority
+
+<Warning>
+	Players must have required gaming connections linked (e.g., Activision for CoD, Riot Games for
+	Valorant).
+</Warning>
+
+## Attendance Status
+
+Players can set their availability:
+
+| Status            | Meaning            |
+| ----------------- | ------------------ |
+| **Attending**     | Confirmed to play  |
+| **Not Attending** | Cannot participate |
+| **Tentative**     | Might be available |
+
+When a player sets "Not Attending," the highest priority bench player is automatically promoted.

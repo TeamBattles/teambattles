@@ -1,0 +1,95 @@
+---
+title: "Get League Profile"
+openapi: "POST /leagues/{identifier}"
+---
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/leagues/my-league \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json"
+```
+
+```javascript JavaScript
+const leagueSlug = "my-league";
+
+const response = await fetch(`https://teambattles.gg/api/v1/leagues/${leagueSlug}`, {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	}
+});
+
+const { league } = await response.json();
+console.log(league.name, league.status, league.teamCount);
+```
+
+```python Python
+import requests
+
+league_slug = 'my-league'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/leagues/{league_slug}',
+    headers={'Authorization': 'Bearer tb_your_api_key'}
+)
+
+data = response.json()
+league = data['league']
+print(league['name'], league['status'])
+```
+
+</RequestExample>
+
+## Permission Required
+
+This endpoint requires the `leagues.league_public` permission on your API key.
+
+## League Identifier
+
+The `{identifier}` path parameter accepts the league slug - the URL-friendly league name (e.g., `my-league`).
+
+## What's Returned
+
+Returns the public profile for a specific league, including metadata, team and staff counts, associated games, active seasons, and social links.
+
+## Response Fields
+
+| Field           | Type     | Description                                    |
+| --------------- | -------- | ---------------------------------------------- |
+| `id`            | string   | League ID                                      |
+| `name`          | string   | League display name                            |
+| `slug`          | string   | URL-friendly league identifier                 |
+| `description`   | string   | League description                             |
+| `avatarUrl`     | string   | League avatar image URL                        |
+| `bannerUrl`     | string   | League banner image URL                        |
+| `status`        | string   | League status (e.g., `active`, `inactive`)     |
+| `isVerified`    | boolean  | Whether the league is verified                 |
+| `isFeatured`    | boolean  | Whether the league is featured                 |
+| `teamCount`     | number   | Number of teams in the league                  |
+| `staffCount`    | number   | Number of staff members                        |
+| `games`         | array    | Games associated with the league               |
+| `activeSeasons` | array    | Currently active seasons                       |
+| `socials`       | object   | Social media links                             |
+| `createdAt`     | string   | Creation timestamp (ISO 8601)                  |
+
+## Common Use Cases
+
+### Get a League's Public Profile
+
+```bash
+curl -X POST https://teambattles.gg/api/v1/leagues/pro-cod-league \
+  -H "Authorization: Bearer tb_your_api_key"
+```
+
+### Check League Status and Team Count
+
+```javascript
+const { league } = await response.json();
+
+if (league.status === "active") {
+	console.log(`${league.name} has ${league.teamCount} teams`);
+}
+```

@@ -1,0 +1,20 @@
+name: teambattles_sdk
+description: Official Dart SDK for the TeamBattles public developer API.
+version: 0.1.0
+homepage: https://teambattles.gg
+publish_to: https://pub.dev
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  # Every package the generated client and wrapper actually import.
+  microsoft_kiota_abstractions: ^0.4.0
+  microsoft_kiota_http: ^0.4.0
+  microsoft_kiota_serialization_form: ^0.4.0
+  microsoft_kiota_serialization_json: ^0.4.0
+  microsoft_kiota_serialization_multipart: ^0.4.0
+  microsoft_kiota_serialization_text: ^0.4.0
+
+dev_dependencies:
+  lints: ^4.0.0

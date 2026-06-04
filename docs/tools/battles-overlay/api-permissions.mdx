@@ -1,0 +1,71 @@
+---
+title: "API Permissions"
+description: "Overlays do not require an API key"
+---
+
+**Overlays are public.** You no longer need an API key or any overlay-specific permissions to use the Battles Overlay.
+
+## What Changed
+
+Every widget in the overlay editor now fetches public, profile-keyed data:
+
+| Widget             | Data scoped to                      |
+| ------------------ | ----------------------------------- |
+| User Stats         | Overlay owner's profile             |
+| Team Stats         | Selected team (must be public)      |
+| Organization Stats | Selected org (must be public)       |
+| Active Match       | Overlay owner's profile             |
+| Leaderboard Rank   | Overlay owner's profile             |
+| Top 3 Players      | Global (public leaderboard)         |
+| Referral Code      | Overlay owner's profile             |
+| Game Rank          | Overlay owner's profile             |
+
+As long as the underlying entity is public, the widget loads - no authentication, no scopes.
+
+## Profile Visibility
+
+User-scoped widgets (user stats, user rank, active match, referral, game rank) require the overlay owner's `profileVisibility` to be `public` or `limited`. If the profile is `private`, those widgets will not render.
+
+Team and organization widgets require the team's `profileVisibility === "public"` or the org's `isPublic === true` respectively.
+
+## OBS Setup
+
+Copy the overlay URL from the editor and paste it into OBS Browser Source. No key, no header auth, nothing else required.
+
+## Endpoint Reference
+
+Behind the scenes the overlay is split into two groups of endpoints. The render URL and every widget data source it loads are public; the management endpoints used by the editor and OBS Dock require your API key.
+
+### Public endpoints (no API key)
+
+These power what OBS actually loads in the browser source. They are entity-keyed and gated only by the underlying visibility flags described above.
+
+| Endpoint | Used by |
+| --- | --- |
+| `GET /api/v1/overlay/config/[configId]` | Render URL fetches the overlay configuration |
+| `GET /api/v1/overlay/user/[userId]/stats` | User Stats widget |
+| `GET /api/v1/overlay/user/[userId]/active-match` | Active Match widget |
+| `GET /api/v1/overlay/user/[userId]/rank` | Leaderboard Rank widget |
+| `GET /api/v1/overlay/user/[userId]/game-rank/[gameId]` | Game Rank widgets |
+| `GET /api/v1/overlay/user/[userId]/referral` | Referral Code widget |
+| `GET /api/v1/overlay/team/[id]/stats` | Team Stats widget |
+| `GET /api/v1/overlay/org/[id]/stats` | Organization Stats widget |
+| `GET /api/v1/overlay/leaderboard/top-players` | Top 3 Players widget |
+| `GET /api/v1/overlay/simple/[gameId]` | Simple Overlay (no-account flow) |
+| `POST /api/v1/overlay/dock/auth` | OBS Dock device-flow request |
+| `GET /api/v1/overlay/dock/auth` | OBS Dock device-flow poll |
+
+### API-key-required endpoints (owner management)
+
+These manage your own overlay configurations and selectors and require an `Authorization: Bearer tb_...` header. The OBS Dock mints a key for itself during authorization; the visual editor uses your signed-in session, not a manually pasted key.
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /api/v1/overlay/configs` | List your saved overlay configurations |
+| `PATCH /api/v1/overlay/config/[configId]` | Update one of your overlay configurations |
+| `GET /api/v1/overlay/user/teams` | Team selector data for the editor and dock |
+| `GET /api/v1/overlay/user/orgs` | Organization selector data for the editor and dock |
+
+<Note>
+	`config/[configId]` appears in both tables - the public `GET` is what the render URL uses to load a config by id, while the API-key-required `PATCH` is what saves changes to it. The two methods are intentionally on the same path.
+</Note>

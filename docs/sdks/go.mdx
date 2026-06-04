@@ -1,0 +1,47 @@
+---
+title: Go SDK
+description: Install and use the official TeamBattles Go SDK to call the developer API.
+---
+
+The Go SDK is consumed via its module path `github.com/teambattles/sdk-go`. Go has no central package registry - the module is fetched directly from its VCS path at a version tag. It is generated from the [OpenAPI spec](/developers/api-reference) with [Microsoft Kiota](https://learn.microsoft.com/en-us/openapi/kiota/) and regenerates on every API change.
+
+## Install
+
+```bash
+go get github.com/teambattles/sdk-go
+```
+
+## Authenticated first call
+
+```go
+import (
+    "context"
+    "fmt"
+    "log"
+    "os"
+
+    sdk "github.com/teambattles/sdk-go"
+    "github.com/teambattles/sdk-go/models"
+)
+
+client, err := sdk.CreateTeamBattlesClient(os.Getenv("TEAMBATTLES_API_KEY"))
+if err != nil {
+    log.Fatal(err)
+}
+
+// List the authenticated user's matches (requires matches.user_matches: read)
+body := models.NewMatchesRequestBody()
+numItems := int32(25)
+body.SetNumItems(&numItems)
+result, err := client.User().Matches().Post(context.Background(), body, nil)
+if err != nil {
+    log.Fatal(err)
+}
+for _, match := range result.GetPage() {
+    fmt.Println(*match.GetId(), match.GetStatus())
+}
+```
+
+## Authentication
+
+The factory wires an `Authorization: Bearer tb_<your-key>` header on every request. Create keys at [Settings > Developer](https://teambattles.gg/settings/developer) and review scopes in the [authentication guide](/developers/authentication). Treat the `error` machine code in error responses - not the `details` message - as the stable programmatic contract.

@@ -1,0 +1,337 @@
+{
+	"$schema": "https://mintlify.com/docs.json",
+	"theme": "mint",
+	"name": "TeamBattles",
+	"openapi": [
+		"api-reference/openapi.json"
+	],
+	"colors": {
+		"primary": "#fb2c36",
+		"light": "#fb2c36",
+		"dark": "#fb2c36"
+	},
+	"favicon": "/favicon.svg",
+	"navigation": {
+		"tabs": [
+			{
+				"tab": "Guides",
+				"groups": [
+					{
+						"group": "Getting Started",
+						"pages": [
+							"index",
+							"quickstart",
+							"dashboard",
+							"tutorials",
+							"calendar"
+						]
+					},
+					{
+						"group": "Your Account",
+						"pages": [
+							"account/profile",
+							"account/connections",
+							"account/livestream",
+							"account/xp"
+						]
+					},
+					{
+						"group": "Organizations",
+						"pages": [
+							"organizations/index",
+							"organizations/create",
+							"organizations/members",
+							"organizations/invites"
+						]
+					},
+					{
+						"group": "Teams",
+						"pages": [
+							"teams/index",
+							"teams/create",
+							"teams/roster",
+							"teams/roles"
+						]
+					},
+					{
+						"group": "Matches",
+						"pages": [
+							"matches/index",
+							"matches/create",
+							"matches/settings",
+							"matches/accepting",
+							"matches/scores",
+							"challenges"
+						]
+					},
+					{
+						"group": "Match Chat",
+						"pages": [
+							"chat/index",
+							"chat/messages",
+							"chat/settings"
+						]
+					},
+					{
+						"group": "Leagues",
+						"pages": [
+							"leagues/index",
+							"leagues/discover",
+							"leagues/joining",
+							"leagues/profiles",
+							"leagues/leaderboards",
+							"leagues/rules",
+							"leagues/admin",
+							"leagues/seasons"
+						]
+					},
+					{
+						"group": "Discovery",
+						"pages": [
+							"discovery/index",
+							"discovery/matches"
+						]
+					},
+					{
+						"group": "Notifications",
+						"pages": [
+							"notifications/index",
+							"notifications/subscriptions"
+						]
+					},
+					{
+						"group": "Achievements",
+						"pages": [
+							"achievements/index",
+							"achievements/categories",
+							"achievements/onboarding"
+						]
+					},
+					{
+						"group": "Referrals",
+						"pages": [
+							"referrals/index"
+						]
+					},
+					{
+						"group": "Settings",
+						"pages": [
+							"settings/index",
+							"settings/appearance",
+							"settings/connections",
+							"settings/notifications",
+							"settings/game-stats"
+						]
+					},
+					{
+						"group": "Subscriptions & Billing",
+						"pages": [
+							"subscriptions/index",
+							"subscriptions/billing",
+							"subscriptions/organization"
+						]
+					},
+					{
+						"group": "Tools",
+						"pages": [
+							"tools/index",
+							"tools/battles-replay",
+							{
+								"group": "Battles Record",
+								"pages": [
+									"tools/battles-record/index",
+									"tools/battles-record/installation",
+									"tools/battles-record/platforms",
+									"tools/battles-record/recordings",
+									"tools/battles-record/post-processing",
+									"tools/battles-record/storage",
+									"tools/battles-record/schedules",
+									"tools/battles-record/jellyfin",
+									"tools/battles-record/notifications",
+									"tools/battles-record/users",
+									"tools/battles-record/api",
+									"tools/battles-record/kick-oauth",
+									"tools/battles-record/troubleshooting"
+								]
+							},
+							{
+								"group": "Battles Overlay",
+								"pages": [
+									"tools/battles-overlay/index",
+									"tools/battles-overlay/simple",
+									"tools/battles-overlay/dock",
+									"tools/battles-overlay/setup",
+									"tools/battles-overlay/widgets",
+									"tools/battles-overlay/editor",
+									"tools/battles-overlay/api-permissions",
+									"tools/battles-overlay/troubleshooting"
+								]
+							},
+							{
+								"group": "Battles Strategy",
+								"pages": [
+									"strategy/managing-strategies",
+									"strategy/managing-boards",
+									"strategy/collab",
+									"strategy/custom-maps",
+									"strategy/motion-paths",
+									"strategy/embedding",
+									"strategy/keybinds",
+									"strategy/drawing-tool-styles"
+								]
+							}
+						]
+					},
+					{
+						"group": "Support",
+						"pages": [
+							"support/index",
+							"support/create",
+							"support/manage"
+						]
+					},
+					{
+						"group": "Games",
+						"pages": [
+							"games/index",
+							"games/cod-bo6",
+							"games/cod-bo7",
+							"games/cs2",
+							"games/league-of-legends",
+							"games/valorant"
+						]
+					},
+					{
+						"group": "Reference",
+						"pages": [
+							"reference/index",
+							"reference/glossary",
+							"reference/troubleshooting"
+						]
+					}
+				]
+			},
+			{
+				"tab": "Developers",
+				"groups": [
+					{
+						"group": "Getting Started",
+						"pages": [
+							"developers/index",
+							"developers/authentication"
+						]
+					},
+					{
+						"group": "Guides",
+						"pages": [
+							"developers/score-submission",
+							"developers/match-lifecycle",
+							"developers/webhooks"
+						]
+					},
+					{
+						"group": "Endpoints",
+						"pages": [
+							"api-reference/user/matches",
+							"api-reference/teams/matches",
+							"api-reference/orgs/matches",
+							"api-reference/twitch/global-badges",
+							"api-reference/twitch/channel-badges"
+						]
+					},
+					{
+						"group": "League Endpoints",
+						"pages": [
+							"api-reference/leagues/discover",
+							"api-reference/leagues/profile",
+							"api-reference/leagues/standings",
+							"api-reference/leagues/seasons",
+							"api-reference/leagues/rules",
+							"api-reference/leagues/members",
+							"api-reference/leagues/bans",
+							"api-reference/leagues/penalties"
+						]
+					},
+					{
+						"group": "SDKs",
+						"pages": [
+							"sdks/index",
+							"sdks/python",
+							"sdks/csharp",
+							"sdks/go",
+							"sdks/java",
+							"sdks/php",
+							"sdks/typescript",
+							"sdks/ruby",
+							"sdks/dart"
+						]
+					},
+					{
+						"group": "Reference",
+						"pages": [
+							"developers/api-reference"
+						]
+					}
+				]
+			},
+			{
+				"tab": "Legal",
+				"groups": [
+					{
+						"group": "Legal Documents",
+						"pages": [
+							"legal/terms",
+							"legal/privacy"
+						]
+					}
+				]
+			}
+		],
+		"global": {
+			"anchors": [
+				{
+					"anchor": "Discord",
+					"href": "https://teambattles.gg/discord",
+					"icon": "discord"
+				},
+				{
+					"anchor": "App",
+					"href": "https://teambattles.gg",
+					"icon": "gamepad"
+				}
+			]
+		}
+	},
+	"redirects": [
+		{
+			"source": "/api-reference/introduction",
+			"destination": "/developers"
+		}
+	],
+	"logo": {
+		"dark": "/logo/dark.svg",
+		"light": "/logo/light.svg"
+	},
+	"navbar": {
+		"links": [
+			{
+				"label": "Support",
+				"href": "https://teambattles.gg/support"
+			}
+		],
+		"primary": {
+			"type": "button",
+			"label": "Open App",
+			"href": "https://teambattles.gg"
+		}
+	},
+	"footer": {
+		"socials": {
+			"discord": "https://teambattles.gg/discord"
+		}
+	},
+	"fonts": {
+		"family": "Geist"
+	},
+	"css": "custom.css"
+}

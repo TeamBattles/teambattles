@@ -1,0 +1,177 @@
+---
+title: "Widget Reference"
+description: "Detailed reference for all overlay widgets"
+---
+
+The Battles Overlay includes 7 core widgets plus game-specific rank widgets you can toggle on and arrange on your stream. Each widget displays different competitive data.
+
+Overlay URLs are public - no API key required. User-scoped widgets require your profile visibility be `public` or `limited` (not `private`). Team and organization widgets require the selected entity to be public. See [Visibility & Privacy](/tools/battles-overlay/api-permissions) for details.
+
+## Widget Overview
+
+| Widget             | Default Size | Description                        |
+| ------------------ | ------------ | ---------------------------------- |
+| User Stats         | ~300x120px   | Your personal competitive stats    |
+| Team Stats         | ~300x120px   | Your selected team's stats         |
+| Organization Stats | ~280x100px   | Your selected organization's stats |
+| Active Match       | ~400x150px   | Live match scores and status       |
+| Leaderboard Rank   | ~200x80px    | Your position on the leaderboard   |
+| Top 3 Players      | ~250x180px   | Top 3 players on the leaderboard   |
+| Referral Code      | ~200x80px    | Your referral code and count       |
+
+## User Stats
+
+Displays your personal competitive statistics.
+
+**Data shown:**
+
+- Wins and losses
+- Win rate percentage
+- Current win/loss streak
+- Experience points (XP)
+
+**Default size:** ~300x120px
+
+**Requirement:** Your profile visibility must be `public` or `limited`.
+
+## Team Stats
+
+Displays stats for your selected team. You must select a team in the editor for this widget to populate.
+
+**Data shown:**
+
+- Team name, tag, and logo
+- Game the team competes in
+- Wins and losses
+- Win rate percentage
+- Current streak
+
+**Default size:** ~300x120px
+
+**Requirement:** The selected team's `profileVisibility` must be `public`.
+
+## Organization Stats
+
+Displays stats for your selected organization. You must select an organization in the editor for this widget to populate.
+
+**Data shown:**
+
+- Organization name and logo
+- Member count
+- Wins and losses
+- Win rate percentage
+
+**Default size:** ~280x100px
+
+**Requirement:** The selected organization must be marked public.
+
+## Active Match
+
+Displays your current live match in a VS layout. This widget automatically shows and hides based on whether you have an active match.
+
+**Data shown:**
+
+- Team logos and names (VS layout)
+- Current scores
+- Match type and best-of series (e.g., "Best of 3")
+- Current map name (when applicable)
+- Match status label: **LIVE**, **READY**, or **UPCOMING**
+- Pulsing live indicator dot when the match is in progress
+
+**Default size:** ~400x150px
+
+**Requirement:** Your profile visibility must be `public` or `limited`.
+
+<Note>
+	This widget auto-hides when you have no active match. It reappears automatically when a match
+	starts or is scheduled. The status label changes as the match progresses - from UPCOMING to READY
+	to LIVE.
+</Note>
+
+## Leaderboard Rank
+
+Displays your current rank on the global leaderboard.
+
+**Data shown:**
+
+- Your rank position (e.g., "#12")
+- Total players on the leaderboard
+- Win rate
+- XP
+
+**Default size:** ~200x80px
+
+**Requirement:** Your profile visibility must be `public` or `limited`.
+
+## Top 3 Players
+
+Displays the top 3 players from the global leaderboard.
+
+**Data shown (per player):**
+
+- Rank position
+- Player name
+- Avatar
+- Win rate
+
+**Default size:** ~250x180px
+
+**Requirement:** None - always available. The underlying leaderboard query already filters out users whose profile visibility is `private`.
+
+## Referral Code
+
+Displays your referral code and total referral count. Useful for streamers who want viewers to sign up using their code.
+
+**Data shown:**
+
+- Your unique referral code (monospace, accent-colored)
+- Total number of referrals
+
+**Default size:** ~200x80px
+
+**Requirement:** Your profile visibility must be `public` or `limited`, and you must have generated a referral code.
+
+<Note>
+	You must have a referral code generated for this widget to display data. Visit the
+	[Referrals](/referrals) page to get your code.
+</Note>
+
+## Game Rank Widgets
+
+Game-specific rank widgets display your competitive rank for supported games. These are found in the **Game Specific** tab of the editor.
+
+**Data shown:**
+
+- Rank badge/icon for the game
+- Tier or division name
+- Skill Rating (SR) value
+- Progress bar toward next rank (when applicable)
+
+**Default size:** ~320x100px
+
+**Requirement:** Your profile visibility must be `public` or `limited`.
+
+Each supported game can have multiple rank modes (e.g., Ranked Play, Warzone Ranked). You can enable each mode independently and they appear as separate widgets.
+
+<Note>
+	For manual games (BO7), you must enter your SR in [Settings > Game Stats](https://teambattles.gg/settings/game-stats).
+	For API games (Valorant, LoL), connect your Riot Games account in Settings > Connections, then sync your rank in Game Stats.
+</Note>
+
+Game rank widgets also support:
+
+- **Animation** - Toggle video effects like winstreak flames on or off in the editor's style controls
+- **Orientation** - Display the widget horizontally (default) or vertically via the style controls
+
+## Visibility Summary
+
+| Widget             | Gate                                                       |
+| ------------------ | ---------------------------------------------------------- |
+| User Stats         | `user.profileVisibility !== "private"`                     |
+| Team Stats         | `team.profileVisibility === "public"` + team selected      |
+| Organization Stats | `org.isPublic === true` + org selected                     |
+| Active Match       | `user.profileVisibility !== "private"`                     |
+| Leaderboard Rank   | `user.profileVisibility !== "private"`                     |
+| Top 3 Players      | None (query filters private users internally)              |
+| Referral Code      | `user.profileVisibility !== "private"` + code generated    |
+| Game Rank          | `user.profileVisibility !== "private"` + SR/connection set |

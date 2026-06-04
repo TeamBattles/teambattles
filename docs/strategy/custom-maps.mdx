@@ -1,0 +1,80 @@
+---
+title: "Custom Maps"
+description: "Upload your own maps for the strategy editor with calibration markers and NSFW protection"
+---
+
+Custom maps let you bring any image into the strategy editor as a backdrop. Use them for game maps that are not natively supported, scrim diagrams, scenario whiteboards, or anything else you want to plan on top of.
+
+<Note>
+	**Premium-only feature.** Custom map upload is gated behind a Premium subscription. Existing
+	strategies that reference custom maps continue to render for everyone who can view them.
+</Note>
+
+## File requirements
+
+| Requirement | Limit |
+| ----------- | ----- |
+| Formats     | PNG, JPEG, WebP |
+| Max dimensions | 2048 x 2048 |
+| Max file size | 10 MB |
+| Maps per user | 50 (soft cap) |
+
+## Scale-down prompt
+
+If your image is larger than 1440 x 1440 but within the 2048 x 2048 hard cap, the uploader prompts you to scale it down to 1440 on the longest edge before upload. Smaller maps render faster on lower-end devices and stay well under the storage cap.
+
+You can decline the prompt and upload at full resolution if you need pixel-accurate detail.
+
+## NSFW scan
+
+Every upload runs through a server-side NSFW scan after the file lands in storage. The map stays hidden from your library and the picker dialog until the scan returns clean. Most scans complete in under 5 seconds.
+
+<Note>
+	The scan uses a WASM-based nsfwjs model that runs on the server. Maps that fail the scan are
+	deleted automatically and not visible in your library.
+</Note>
+
+## Calibration markers
+
+After uploading, you can add up to 8 calibration markers per map. Markers are pure visual annotations: spawn points, callouts, labels, anything you want pinned in a fixed position on the map.
+
+Markers are not interactive coordinates and do not participate in shape selection. They are there to make your map readable.
+
+## Using a custom map in a strategy
+
+<Steps>
+	<Step title="Open the map picker">
+		Open the map picker - either by choosing **Start a new strategy** in the welcome overlay, or
+		via the **Change map** action in the Layers panel of a board you already have open. Custom maps
+		live in their own **Custom Maps** tab alongside the per-game tabs.
+	</Step>
+	<Step title="Pick your map">
+		Choose a custom map you previously uploaded. The strategy now uses that image as its backdrop.
+	</Step>
+	<Step title="Save the strategy">
+		Save as usual. The strategy is permanently linked to that custom map.
+	</Step>
+</Steps>
+
+## Deleting custom maps
+
+Deleting a custom map will fail if any of your strategies still reference it. Either re-point those strategies to a different map, or delete them first. Once you delete a map, the storage is freed immediately and the deletion is permanent.
+
+If you want to fully replace a map, upload the new version, update the affected strategies to point at it, and then delete the old map.
+
+<Tip>
+	If you bump up against the 50-map soft cap, prune unused maps first. You will need to repoint or
+	remove any strategies that reference a map before you can delete it.
+</Tip>
+
+## Exporting strategies that use custom maps
+
+Strategies built on a custom map export the same way as strategies on built-in maps. The Export menu's **Export Frame** (PNG) and **Export Animation** (MP4, WebM, GIF) options both work, including when the strategy was authored on a custom upload.
+
+<Note>
+	Custom map images render through a same-origin proxy
+	(`/api/strategy/custom-map-image/<id>`) so the export canvas is never
+	tainted. You do not need to do anything special - exports just work.
+</Note>
+
+If a custom map image fails to load at export time (for example, the upload was deleted between authoring and exporting), the export still completes: the canvas paints a neutral fallback rectangle where the image would have been, and the rest of the strategy (tokens, paths, ink) renders on top of it.

@@ -1,0 +1,261 @@
+---
+title: "Users & Authentication"
+description: "User roles, authentication, and session management"
+---
+
+Battles Record includes a user system for managing access to the dashboard.
+
+## User Roles
+
+| Role       | Permissions                                        |
+| ---------- | -------------------------------------------------- |
+| **Admin**  | Full access: channels, recordings, settings, users |
+| **Viewer** | View-only: recordings library, active recordings   |
+
+### Admin Permissions
+
+- Add, edit, and delete channels
+- Start, stop, and delete recordings
+- Configure all settings
+- Manage users
+- Access API with full permissions
+
+### Viewer Permissions
+
+- Browse recording library
+- View active recordings
+- Stream/download recordings
+- View (not change) channel list
+
+## First-Time Setup
+
+On first launch, create an admin account:
+
+<Steps>
+	<Step title="Open Dashboard">Navigate to http://localhost:8080</Step>
+	<Step title="Create Admin">Enter username and password for the admin account</Step>
+	<Step title="Login">Use your new credentials to access the dashboard</Step>
+</Steps>
+
+<Warning>
+	Store your admin password securely. If forgotten, you'll need to reset via the command line or
+	config file.
+</Warning>
+
+## Managing Users
+
+### Add User
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → Users**</Step>
+	<Step title="Click Add User">Enter username, password, and role</Step>
+	<Step title="Save">The new user can now log in</Step>
+</Steps>
+
+### Edit User
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → Users**</Step>
+	<Step title="Select User">Click on the user to edit</Step>
+	<Step title="Modify">Change password, role, or disable account</Step>
+</Steps>
+
+### Delete User
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → Users**</Step>
+	<Step title="Select User">Click on the user to delete</Step>
+	<Step title="Delete">Click **Delete User** and confirm</Step>
+</Steps>
+
+<Note>You cannot delete the last admin account.</Note>
+
+### View & Revoke Sessions
+
+Admins can manage active sessions for any user:
+
+<Steps>
+	<Step title="Go to Users">Navigate to **Settings → Users** and select a user</Step>
+	<Step title="View Sessions">See all active sessions with login time and last activity</Step>
+	<Step title="Revoke">Revoke a specific session or all sessions for the user</Step>
+</Steps>
+
+## Authentication
+
+### Session Management
+
+| Setting                  | Description                                      | Default                  |
+| ------------------------ | ------------------------------------------------ | ------------------------ |
+| **Session Duration**     | Token validity period                            | 24 hours (86400 seconds) |
+| **Refresh Grace Period** | Time after expiry where refresh is still allowed | 1 hour (3600 seconds)    |
+| **Max Sessions**         | Concurrent logins per user                       | Unlimited                |
+
+### Token Refresh Flow
+
+Battles Record uses proactive token refresh to maintain sessions seamlessly:
+
+1. **Proactive refresh** - The client automatically refreshes tokens 5 minutes before they expire
+2. **Request retry** - If a request fails with `TOKEN_EXPIRED`, the client attempts a refresh and retries
+3. **Grace period** - Expired tokens can still be refreshed for up to 1 hour after expiry
+4. **Session expired** - If refresh fails (beyond the grace period), the user sees a session expired modal and must re-authenticate
+
+<Tip>
+	Under normal usage, token refresh happens transparently in the background. Users only need to
+	re-authenticate if they've been inactive for longer than the grace period.
+</Tip>
+
+### Password Requirements
+
+Configure password policy in **Settings → Security**:
+
+| Setting               | Description               | Default |
+| --------------------- | ------------------------- | ------- |
+| **Min Length**        | Minimum characters        | 8       |
+| **Require Uppercase** | At least one A-Z          | No      |
+| **Require Number**    | At least one 0-9          | No      |
+| **Require Symbol**    | At least one special char | No      |
+
+### Two-Factor Authentication
+
+<Note>2FA is optional and can be enabled per-user.</Note>
+
+<Steps>
+	<Step title="Go to Profile">Click your username → **Profile**</Step>
+	<Step title="Enable 2FA">Click **Enable Two-Factor Authentication**</Step>
+	<Step title="Scan QR Code">Use an authenticator app (Google Authenticator, Authy, etc.)</Step>
+	<Step title="Verify">Enter the code to confirm setup</Step>
+</Steps>
+
+## Access Control
+
+### IP Allowlist
+
+Restrict dashboard access to specific IPs:
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → Security → IP Allowlist**</Step>
+	<Step title="Add IPs">Enter allowed IP addresses or CIDR ranges</Step>
+	<Step title="Enable">Toggle on to enforce the allowlist</Step>
+</Steps>
+
+<Warning>
+	Be careful not to lock yourself out. Ensure your current IP is in the allowlist before enabling.
+</Warning>
+
+### Reverse Proxy
+
+When behind a reverse proxy:
+
+1. Configure proxy to pass `X-Forwarded-For` header
+2. In **Settings → Security**, enable **Trust Proxy Headers**
+3. Add proxy IP to trusted proxies list
+
+## API Authentication
+
+### API Keys
+
+Create API keys for programmatic access:
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → API → API Keys**</Step>
+	<Step title="Create Key">Click **Create API Key** and enter a label</Step>
+	<Step title="Set Permissions">Choose read-only or full access</Step>
+	<Step title="Copy Key">Copy the key immediately - it won't be shown again</Step>
+</Steps>
+
+Use in requests:
+
+```bash
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+  http://localhost:8080/api/channels
+```
+
+### JWT Tokens
+
+Login to receive a JWT token:
+
+```bash
+curl -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username": "admin", "password": "yourpassword"}'
+```
+
+Response:
+
+```json
+{
+	"token": "eyJhbGciOiJIUzI1NiIs...",
+	"expires_at": "2026-02-03T14:30:00Z"
+}
+```
+
+Use in subsequent requests:
+
+```bash
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..." \
+  http://localhost:8080/api/channels
+```
+
+## Password Reset
+
+### As Admin
+
+Reset another user's password:
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → Users**</Step>
+	<Step title="Select User">Click on the user</Step>
+	<Step title="Reset Password">Click **Reset Password** and enter new password</Step>
+</Steps>
+
+### Self-Service
+
+If enabled, users can reset their own password:
+
+<Steps>
+	<Step title="Go to Login">Click **Forgot Password** on login page</Step>
+	<Step title="Enter Username">Enter your username</Step>
+	<Step title="Check Email">If email notifications are configured, receive reset link</Step>
+</Steps>
+
+### CLI Reset
+
+If locked out, reset via command line:
+
+**Desktop:**
+
+```bash
+battles-record --reset-password admin
+```
+
+**Docker:**
+
+```bash
+docker exec -it battles-record /app/battles-record --reset-password admin
+```
+
+## Session Security
+
+| Setting            | Description                      |
+| ------------------ | -------------------------------- |
+| **Secure Cookies** | Require HTTPS for auth cookies   |
+| **Same-Site**      | Cookie same-site policy          |
+| **HTTP Only**      | Prevent JavaScript cookie access |
+
+Enable **Secure Cookies** when using HTTPS (required for production).
+
+## Local-Only Mode
+
+When running as a desktop app sidecar, the daemon operates in local-only mode:
+
+| Setting            | Behavior                                                             |
+| ------------------ | -------------------------------------------------------------------- |
+| **Authentication** | No login required                                                    |
+| **Permissions**    | All requests treated as Admin                                        |
+| **Access**         | Only accessible from localhost                                       |
+| **Shutdown**       | `POST /api/shutdown` endpoint available for graceful daemon shutdown |
+
+<Note>
+	Local-only mode is automatically enabled when the desktop app manages the daemon as a sidecar
+	process. It is not available in Docker or standalone daemon deployments.
+</Note>

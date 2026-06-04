@@ -1,0 +1,83 @@
+---
+title: "Team Roles"
+description: "Understand team permissions and captaincy"
+---
+
+Teams have three member roles with different permissions.
+
+## Roles
+
+| Role           | Description                           |
+| -------------- | ------------------------------------- |
+| **Captain**    | Full control of team, can delete team |
+| **Co-Captain** | Most management except deletion       |
+| **Member**     | Participate in matches                |
+
+<Warning>
+	Each team can have only **one Captain**. Promoting someone to Captain automatically demotes you to
+	Co-Captain.
+</Warning>
+
+## Permission Matrix
+
+| Action                 | Captain | Co-Captain | Member |
+| ---------------------- | :-----: | :--------: | :----: |
+| Delete team            |   Yes   |            |        |
+| Edit team settings     |   Yes   |    Yes     |        |
+| Manage roster          |   Yes   |    Yes     |        |
+| Invite members         |   Yes   |    Yes     |        |
+| Remove members         |   Yes   |    Yes     |        |
+| Approve join requests  |   Yes   |    Yes     |        |
+| Create matches         |   Yes   |    Yes     |        |
+| Submit scores          |   Yes   |            |        |
+| Confirm scores         |   Yes   |            |        |
+| Pass host              |   Yes   |            |        |
+| Participate in matches |   Yes   |    Yes     |  Yes   |
+
+## Managing Roles
+
+### Promote a Member
+
+1. Go to your team's **Members** tab
+2. Find the member
+3. Click the role dropdown
+4. Select the new role
+
+### Promote to Captain
+
+<Warning>
+	When you promote someone to Captain, you become a Co-Captain. This cannot be undone except by the
+	new Captain.
+</Warning>
+
+### Captain Succession
+
+If the Captain leaves the team:
+
+- The longest-serving Co-Captain becomes Captain
+- If no Co-Captains exist, the longest-serving Member becomes Captain
+
+## Join Requests
+
+Users can request to join your team:
+
+1. User visits your team profile
+2. User clicks "Request to Join"
+3. Captain or Co-Captain reviews the request
+4. Approve or deny
+
+<Note>Join requests remain pending until reviewed - they don't auto-expire.</Note>
+
+## Inviting Members
+
+Invite organization members to your team:
+
+1. Go to **Members** tab
+2. Click **Invite**
+3. Search for organization members
+4. Or create a shareable invite link
+
+| Setting    | Default                 |
+| ---------- | ----------------------- |
+| Max uses   | 1                       |
+| Expiration | None (can be permanent) |

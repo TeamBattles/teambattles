@@ -1,0 +1,275 @@
+---
+title: "Post-Processing"
+description: "Configure FFmpeg post-processing for recordings"
+---
+
+Battles Record uses FFmpeg for post-processing recorded streams. Configure how recordings are processed after capture.
+
+## Processing Modes
+
+### Concatenate (Fastest)
+
+Joins HLS segments directly without re-encoding:
+
+```
+Segment 1 + Segment 2 + ... → Output.ts
+```
+
+- **Pros**: Fastest, no quality loss, minimal CPU usage
+- **Cons**: Output is TS format, larger file size
+- **Use when**: You need recordings quickly or will process later
+
+### Copy (Recommended)
+
+Remuxes segments into a container without re-encoding:
+
+```
+Segments → FFmpeg (copy codec) → Output.mp4
+```
+
+- **Pros**: Fast, no quality loss, MP4 output
+- **Cons**: Slightly slower than concatenate
+- **Use when**: You want MP4 files without re-encoding
+
+### Re-encode
+
+Transcodes the recording to a different format or quality:
+
+```
+Segments → FFmpeg (encode) → Output.mp4
+```
+
+- **Pros**: Smaller files, consistent quality, custom settings
+- **Cons**: CPU/GPU intensive, takes longer
+- **Use when**: You need smaller files or specific format requirements
+
+## Configuration
+
+Navigate to **Settings → Post-Processing** to configure:
+
+### Output Format
+
+| Format  | Extension | Description                                 |
+| ------- | --------- | ------------------------------------------- |
+| **MP4** | `.mp4`    | Most compatible, recommended for sharing    |
+| **MKV** | `.mkv`    | Better metadata support, good for archiving |
+| **TS**  | `.ts`     | Raw transport stream, fastest processing    |
+
+### Video Codec
+
+When re-encoding:
+
+| Codec          | Description                       | GPU Support        |
+| -------------- | --------------------------------- | ------------------ |
+| **H.264**      | Universal compatibility           | NVENC, QSV, AMF    |
+| **H.265/HEVC** | Better compression, smaller files | NVENC, QSV, AMF    |
+| **VP9**        | Open format, good compression     | None               |
+| **AV1**        | Best compression, newer           | NVENC (40-series+) |
+
+### Audio Codec
+
+| Codec    | Description                     |
+| -------- | ------------------------------- |
+| **AAC**  | Standard, compatible everywhere |
+| **Opus** | Better quality at low bitrates  |
+| **Copy** | Keep original audio unchanged   |
+
+## GPU Acceleration
+
+Enable hardware acceleration for faster encoding:
+
+### NVIDIA (NVENC)
+
+<Steps>
+	<Step title="Requirements">NVIDIA GPU with NVENC support (most GTX 900 series and newer)</Step>
+	<Step title="Enable in Settings">
+		Go to **Settings → Post-Processing → Hardware Acceleration** and select **NVENC**
+	</Step>
+	<Step title="Verify">Check the post-processing logs to confirm NVENC is being used</Step>
+</Steps>
+
+### Intel Quick Sync (QSV)
+
+<Steps>
+	<Step title="Requirements">Intel CPU with integrated graphics (most 6th gen and newer)</Step>
+	<Step title="Enable in Settings">
+		Go to **Settings → Post-Processing → Hardware Acceleration** and select **QSV**
+	</Step>
+</Steps>
+
+### AMD (AMF)
+
+<Steps>
+	<Step title="Requirements">AMD GPU with VCE/VCN support (most RX 400 series and newer)</Step>
+	<Step title="Enable in Settings">
+		Go to **Settings → Post-Processing → Hardware Acceleration** and select **AMF**
+	</Step>
+</Steps>
+
+<Note>
+	Docker users need to pass through GPU devices. See the [installation
+	guide](/tools/battles-record/installation) for GPU passthrough configuration.
+</Note>
+
+## Quality Presets
+
+When re-encoding, choose a quality preset:
+
+| Preset       | CRF | Description                           |
+| ------------ | --- | ------------------------------------- |
+| **Lossless** | 0   | No quality loss, large files          |
+| **High**     | 18  | Visually lossless, recommended        |
+| **Medium**   | 23  | Good balance of quality and size      |
+| **Low**      | 28  | Smaller files, some quality loss      |
+| **Tiny**     | 35  | Minimum size, noticeable quality loss |
+
+<Tip>
+	For archiving, use **High** or **Lossless**. For sharing, **Medium** provides good results with
+	reasonable file sizes.
+</Tip>
+
+### CRF Quality Guide
+
+| CRF Range | Quality           | Recommended Use Case                        |
+| --------- | ----------------- | ------------------------------------------- |
+| **0-17**  | Visually lossless | Archival, video editing source material     |
+| **18-23** | High quality      | General viewing, recommended for most users |
+| **24-28** | Medium quality    | Space-constrained storage, sharing          |
+| **29-51** | Low quality       | Preview files, mobile viewing               |
+
+<Note>
+	Lower CRF values produce larger files with better quality. A CRF of 0 is truly lossless and can
+	produce very large files. For most users, CRF 18-23 provides an excellent balance.
+</Note>
+
+## Custom FFmpeg Arguments
+
+For advanced users, specify custom FFmpeg arguments:
+
+```
+-c:v libx264 -preset slow -crf 20 -c:a aac -b:a 192k
+```
+
+Enter custom arguments in **Settings → Post-Processing → Custom FFmpeg Arguments**.
+
+<Warning>
+	Custom arguments override preset settings. Make sure you understand FFmpeg syntax before using
+	this feature.
+</Warning>
+
+## Custom FFmpeg Path
+
+By default, the daemon uses whichever `ffmpeg` is found on the system PATH. To use a specific FFmpeg binary:
+
+| Setting         | Default     | Description                    |
+| --------------- | ----------- | ------------------------------ |
+| **ffmpeg_path** | System PATH | Path to a custom FFmpeg binary |
+
+Configure in **Settings → Post-Processing → FFmpeg Path** or via TOML config:
+
+```toml
+[post_processing]
+ffmpeg_path = "/usr/local/bin/ffmpeg"
+```
+
+## Segment Handling
+
+Configure how segments are handled after processing:
+
+| Option      | Description                                 |
+| ----------- | ------------------------------------------- |
+| **Delete**  | Remove segments after successful processing |
+| **Keep**    | Retain segments for potential reprocessing  |
+| **Archive** | Move segments to an archive directory       |
+
+Segments are stored in the temporary directory configured in **Settings → Storage**.
+
+## Processing Queue
+
+When multiple recordings finish simultaneously:
+
+- Recordings are queued for processing
+- Process one at a time to avoid CPU overload
+- View queue status in **Recordings → Processing Queue**
+
+### Queue Priority
+
+Higher priority channels are processed first. Adjust priority in channel settings.
+
+### Concurrent Processing
+
+For powerful systems, enable concurrent processing:
+
+| Concurrent | Description                     |
+| ---------- | ------------------------------- |
+| **1**      | Process one at a time (default) |
+| **2**      | Process two simultaneously      |
+| **3+**     | For high-end systems only       |
+
+<Warning>
+	High concurrent processing requires significant CPU/GPU resources. Monitor system performance and
+	reduce if needed.
+</Warning>
+
+## Background Reconciliation
+
+A background worker periodically scans for recordings that need post-processing:
+
+| Setting            | Default    | Description                                  |
+| ------------------ | ---------- | -------------------------------------------- |
+| **Check Interval** | 15 minutes | How often to scan for unprocessed recordings |
+
+**How it works:**
+
+- Runs an initial scan on daemon startup, then periodically at the configured interval
+- Finds recordings in `completed` status and queues them for processing
+- Updates missing stats (duration, size) for processed recordings by probing output files with FFmpeg
+- Retries failed recordings up to **5 attempts** before permanently giving up
+- Skips recordings for channels that are currently actively recording
+- Estimates duration from segment count (~2 seconds per segment) when FFmpeg metadata is unavailable
+
+<Tip>
+	This ensures recordings are never stuck in `completed` status - even if a processing job was
+	missed or the daemon was restarted.
+</Tip>
+
+## Per-Channel Overrides
+
+Individual channels can override the global post-processing settings:
+
+| Setting               | Description                                               |
+| --------------------- | --------------------------------------------------------- |
+| **Enable/Disable**    | Enable or disable post-processing for this channel        |
+| **Output Format**     | Override the output format (re-encode, copy, concatenate) |
+| **Segment Handling**  | Override segment handling (delete, concatenate, keep)     |
+| **Filename Template** | Custom output filename template                           |
+
+Configure per-channel overrides in the channel detail panel under the **Post-Processing** tab.
+
+<Note>
+	Per-channel settings take precedence over global settings. If a channel doesn't have an override,
+	the global settings apply.
+</Note>
+
+## Troubleshooting
+
+### Processing Takes Too Long
+
+- Enable GPU acceleration
+- Use **Copy** mode instead of re-encoding
+- Reduce concurrent recording count
+- Lower quality preset
+
+### Output File Is Corrupted
+
+- Check FFmpeg logs for errors
+- Try re-processing with **Copy** mode
+- Ensure segments weren't deleted prematurely
+- Verify sufficient disk space
+
+### GPU Encoding Fails
+
+- Verify GPU driver is up to date
+- Check GPU is supported
+- Try software encoding as fallback
+- Review FFmpeg error output

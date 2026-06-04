@@ -1,0 +1,75 @@
+---
+title: "League Rules"
+description: "Game rules and match enforcement in leagues"
+---
+
+Leagues define rules for each supported game. These rules are enforced automatically when matches are created and accepted, ensuring all competition follows the league's standards.
+
+## What Rules Can Be Set
+
+League admins configure rules per game. The following rule categories are available:
+
+| Category            | Examples                                                                 |
+| ------------------- | ------------------------------------------------------------------------ |
+| **Playlists**       | Restrict which game modes teams can play (e.g., Hardpoint only)          |
+| **Maps**            | Limit matches to specific maps                                          |
+| **Match format**    | Set the format (e.g., Best of 3, Best of 5)                             |
+| **Team size**       | Define minimum and maximum players per team                              |
+| **Competitive mode**| Force competitive/ranked mode for all matches                            |
+| **Scheduling**      | Allow or block specific days, set time windows, and configure timezones  |
+| **Challenges**      | Enable/disable challenges, set limits per season or per day              |
+| **Wagers**          | Allow or disallow wagers, set min/max amounts                            |
+| **Roster**          | Set min/max roster size, enable roster locks, limit roster changes       |
+
+<Note>Not all rules need to be set. Any unset rule uses the platform default, giving teams full flexibility in that area.</Note>
+
+## How Rules Are Enforced
+
+Rules are validated at two key moments:
+
+### At Match Creation
+
+When a team creates a match within a league context, the system checks:
+
+- Is the selected playlist allowed?
+- Is the selected map allowed?
+- Does the team meet roster size requirements?
+- Is the match scheduled on an allowed day and within the time window?
+- Are challenge limits respected?
+- Are wager amounts within bounds?
+
+If any rule is violated, the match cannot be created and the team sees an error explaining which rule was not met.
+
+### At Match Acceptance
+
+When the opposing team accepts a match, the system re-validates rules to ensure nothing has changed (e.g., roster changes between creation and acceptance).
+
+<Tip>If you are getting errors when creating matches, check the league's rules page to see what restrictions are in place.</Tip>
+
+## Display Rules
+
+In addition to enforced rules, leagues can publish **display rules** - guidelines and expectations shown on the league's rules page. These are informational and not enforced by the system.
+
+Display rules are organized into categories with icons and can cover topics like:
+
+- Communication expectations
+- Sportsmanship guidelines
+- Streaming requirements
+- Dispute resolution processes
+
+## Rule Templates
+
+{/*
+IMAGE NEEDED: Rule template selection in admin panel
+Type: screenshot
+Shows: Template picker when configuring game rules
+Notes: Use dark theme, show official and custom templates
+*/}
+
+TeamBattles provides **official rule templates** for popular games. League admins can:
+
+- **Apply a template** to quickly configure rules for a game
+- **Customize after applying** - Templates set a starting point that can be modified
+- **Create custom templates** - Save your own rule configurations for reuse
+
+<Note>Templates are game-specific. A template created for one game cannot be applied to a different game.</Note>

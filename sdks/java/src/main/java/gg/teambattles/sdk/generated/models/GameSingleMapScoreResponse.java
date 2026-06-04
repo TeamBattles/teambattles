@@ -1,0 +1,103 @@
+package gg.teambattles.sdk.generated.models;
+
+import com.microsoft.kiota.serialization.Parsable;
+import com.microsoft.kiota.serialization.ParseNode;
+import com.microsoft.kiota.serialization.SerializationWriter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+/**
+ * Result of submitting a single map score.
+ */
+@jakarta.annotation.Generated("com.microsoft.kiota")
+public class GameSingleMapScoreResponse implements Parsable {
+    /**
+     * Index of the map that was scored.
+     */
+    private Integer mapIndex;
+    /**
+     * Confirmation state, always &quot;CONFIRMED&quot; on success.
+     */
+    private String scoreStatus;
+    /**
+     * The success property
+     */
+    private Boolean success;
+    /**
+     * Creates a new instance of the appropriate class based on discriminator value
+     * @param parseNode The parse node to use to read the discriminator value and create the object
+     * @return a {@link GameSingleMapScoreResponse}
+     */
+    @jakarta.annotation.Nonnull
+    public static GameSingleMapScoreResponse createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
+        Objects.requireNonNull(parseNode);
+        return new GameSingleMapScoreResponse();
+    }
+    /**
+     * The deserialization information for the current model
+     * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
+     */
+    @jakarta.annotation.Nonnull
+    public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
+        deserializerMap.put("mapIndex", (n) -> { this.setMapIndex(n.getIntegerValue()); });
+        deserializerMap.put("scoreStatus", (n) -> { this.setScoreStatus(n.getStringValue()); });
+        deserializerMap.put("success", (n) -> { this.setSuccess(n.getBooleanValue()); });
+        return deserializerMap;
+    }
+    /**
+     * Gets the mapIndex property value. Index of the map that was scored.
+     * @return a {@link Integer}
+     */
+    @jakarta.annotation.Nullable
+    public Integer getMapIndex() {
+        return this.mapIndex;
+    }
+    /**
+     * Gets the scoreStatus property value. Confirmation state, always &quot;CONFIRMED&quot; on success.
+     * @return a {@link String}
+     */
+    @jakarta.annotation.Nullable
+    public String getScoreStatus() {
+        return this.scoreStatus;
+    }
+    /**
+     * Gets the success property value. The success property
+     * @return a {@link Boolean}
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getSuccess() {
+        return this.success;
+    }
+    /**
+     * Serializes information the current object
+     * @param writer Serialization writer to use to serialize this model
+     */
+    public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
+        Objects.requireNonNull(writer);
+        writer.writeIntegerValue("mapIndex", this.getMapIndex());
+        writer.writeStringValue("scoreStatus", this.getScoreStatus());
+        writer.writeBooleanValue("success", this.getSuccess());
+    }
+    /**
+     * Sets the mapIndex property value. Index of the map that was scored.
+     * @param value Value to set for the mapIndex property.
+     */
+    public void setMapIndex(@jakarta.annotation.Nullable final Integer value) {
+        this.mapIndex = value;
+    }
+    /**
+     * Sets the scoreStatus property value. Confirmation state, always &quot;CONFIRMED&quot; on success.
+     * @param value Value to set for the scoreStatus property.
+     */
+    public void setScoreStatus(@jakarta.annotation.Nullable final String value) {
+        this.scoreStatus = value;
+    }
+    /**
+     * Sets the success property value. The success property
+     * @param value Value to set for the success property.
+     */
+    public void setSuccess(@jakarta.annotation.Nullable final Boolean value) {
+        this.success = value;
+    }
+}

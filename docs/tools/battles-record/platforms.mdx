@@ -1,0 +1,322 @@
+---
+title: "Platforms & Channels"
+description: "Add and configure Twitch, YouTube, and Kick channels"
+---
+
+Battles Record supports three streaming platforms. Add channels from any platform and configure per-channel recording settings.
+
+## Adding Channels
+
+<Tabs>
+	<Tab title="Twitch">
+		<Steps>
+			<Step title="Go to Channels">
+				Open the dashboard and navigate to **Channels** in the sidebar
+			</Step>
+			<Step title="Click Add Channel">
+				Click the **+ Add Channel** button and select **Twitch**
+			</Step>
+			<Step title="Enter Channel Name">
+				Enter the Twitch username (e.g., `shroud` or the full URL `https://twitch.tv/shroud`)
+			</Step>
+			<Step title="Configure Settings">
+				Set quality preference and optional filters (see below)
+			</Step>
+			<Step title="Save">
+				Click **Add Channel** to start monitoring
+			</Step>
+		</Steps>
+	</Tab>
+	<Tab title="YouTube">
+		<Steps>
+			<Step title="Go to Channels">
+				Open the dashboard and navigate to **Channels** in the sidebar
+			</Step>
+			<Step title="Click Add Channel">
+				Click the **+ Add Channel** button and select **YouTube**
+			</Step>
+			<Step title="Enter Channel URL">
+				Enter the YouTube channel URL (e.g., `https://youtube.com/@MrBeast` or channel ID)
+			</Step>
+			<Step title="Configure Settings">
+				Set quality preference and optional filters (see below)
+			</Step>
+			<Step title="Save">
+				Click **Add Channel** to start monitoring
+			</Step>
+		</Steps>
+
+    	<Note>
+    		YouTube channel detection may take a few minutes as it polls for live streams.
+    	</Note>
+    </Tab>
+    <Tab title="Kick">
+    	<Steps>
+    		<Step title="Go to Channels">
+    			Open the dashboard and navigate to **Channels** in the sidebar
+    		</Step>
+    		<Step title="Click Add Channel">
+    			Click the **+ Add Channel** button and select **Kick**
+    		</Step>
+    		<Step title="Enter Channel Name">
+    			Enter the Kick username (e.g., `xqc` or the full URL `https://kick.com/xqc`)
+    		</Step>
+    		<Step title="Configure Settings">
+    			Set quality preference and optional filters (see below)
+    		</Step>
+    		<Step title="Save">
+    			Click **Add Channel** to start monitoring
+    		</Step>
+    	</Steps>
+    </Tab>
+
+</Tabs>
+
+## Channel Settings
+
+Each channel has configurable recording options:
+
+| Setting             | Description                            | Default |
+| ------------------- | -------------------------------------- | ------- |
+| **Quality**         | Video quality preference               | Source  |
+| **Enabled**         | Whether to record this channel         | On      |
+| **Title Filter**    | Only record if title contains keywords | None    |
+| **Category Filter** | Only record specific categories/games  | All     |
+| **Schedule**        | Only record during specific hours      | Always  |
+
+### Quality Options
+
+| Quality        | Description                          |
+| -------------- | ------------------------------------ |
+| **Source**     | Original broadcast quality (highest) |
+| **1080p60**    | 1080p at 60fps if available          |
+| **1080p**      | 1080p at 30fps                       |
+| **720p60**     | 720p at 60fps                        |
+| **720p**       | 720p at 30fps                        |
+| **480p**       | Standard definition                  |
+| **360p**       | Low bandwidth option                 |
+| **Audio Only** | Audio track only                     |
+
+<Tip>
+	If your selected quality isn't available, the recorder will automatically fall back to the next
+	best quality.
+</Tip>
+
+### Content Filters
+
+Filter recordings by stream content:
+
+#### Title Filter
+
+Record only when the stream title contains specific keywords:
+
+```
+keywords: valorant, ranked, competitive
+```
+
+This would record streams with titles like "Valorant Ranked Grind" but skip "Just Chatting".
+
+#### Category Filter
+
+Record only specific categories or games:
+
+```
+categories: Valorant, Just Chatting, Call of Duty
+```
+
+Leave empty to record all categories.
+
+## Platform Authentication
+
+Some features require platform authentication:
+
+### Twitch
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → Platforms** in the dashboard</Step>
+	<Step title="Click Connect Twitch">Authorize Battles Record to access your Twitch account</Step>
+	<Step title="Benefits">
+		- Access to subscriber-only streams - Reduced rate limiting - Additional stream metadata
+	</Step>
+</Steps>
+
+### YouTube
+
+YouTube authentication uses browser cookies or an API key:
+
+<Steps>
+	<Step title="Cookie Method (Recommended)">
+		Export your YouTube cookies using a browser extension and import into Battles Record
+	</Step>
+	<Step title="API Key Method">
+		Create a YouTube Data API key in Google Cloud Console and enter it in Settings
+	</Step>
+</Steps>
+
+<Warning>
+	The cookie method grants access to member-only streams but may require periodic renewal.
+</Warning>
+
+### Kick
+
+Kick doesn't require authentication for public streams. Member-only content requires:
+
+<Steps>
+	<Step title="Go to Settings">Navigate to **Settings → Platforms** in the dashboard</Step>
+	<Step title="Enter Kick Credentials">
+		Provide your Kick account email and password (stored locally)
+	</Step>
+</Steps>
+
+## Bulk Import
+
+Import multiple channels at once using CSV:
+
+```csv
+platform,channel,quality,enabled
+twitch,shroud,source,true
+twitch,pokimane,1080p60,true
+youtube,@MrBeast,source,true
+kick,xqc,source,true
+```
+
+Go to **Channels → Import** and upload your CSV file.
+
+## Channel Status
+
+The dashboard shows real-time channel status:
+
+| Status          | Description                             |
+| --------------- | --------------------------------------- |
+| 🟢 **Live**     | Channel is streaming and being recorded |
+| 🟡 **Starting** | Stream detected, recording starting     |
+| ⚪ **Offline**  | Channel is not streaming                |
+| 🔴 **Error**    | Recording failed (check logs)           |
+| ⏸️ **Paused**   | Recording paused by user                |
+| 🚫 **Disabled** | Channel monitoring disabled             |
+
+## Channel Name Handling
+
+### YouTube Name Normalization
+
+When adding a YouTube channel, names are automatically normalized:
+
+- The `@` prefix is added to YouTube handles if not already present (e.g., `BaianotTV1` becomes `@BaianotTV1`)
+- Full YouTube URLs (starting with `http://` or `https://`) are preserved as-is
+- Twitch and Kick names are not modified
+
+### Duplicate Detection
+
+Channel names are compared case-insensitively after normalization. For example, `BaianotTV1` and `@BaianotTV1` are detected as duplicates on YouTube.
+
+### On Channel Add
+
+When a new channel is added, two background tasks run automatically:
+
+1. **Immediate live check** - the daemon checks if the channel is currently live and starts recording if so
+2. **Profile image fetch** - profile and banner images are fetched from the platform API and stored locally
+
+## Managing Channels
+
+### Edit Channel
+
+Click on any channel to modify its settings. Changes take effect immediately.
+
+### Pause/Resume
+
+Temporarily pause recording without removing the channel:
+
+- Click the pause icon on the channel card
+- Recording will resume when you unpause
+
+### Delete Channel
+
+Remove a channel from monitoring:
+
+- Click the trash icon on the channel card
+- Existing recordings are not deleted
+
+### Priority
+
+When multiple channels go live simultaneously, priority determines recording order if resources are limited:
+
+- Drag channels to reorder priority
+- Higher priority channels are recorded first
+
+## Channel Images
+
+Each channel can have associated images for display in the UI:
+
+- **Profile Image** - Avatar/profile picture from the platform
+- **Banner Image** - Channel banner from the platform
+- **Custom Images** - Upload your own images to override platform images
+
+### Automatic Fetching
+
+Images are automatically fetched from platform APIs when a channel is added.
+
+### Image Management
+
+| Action                  | Description                                       |
+| ----------------------- | ------------------------------------------------- |
+| **Fetch from Platform** | Re-download images from the streaming platform    |
+| **Upload Custom**       | Upload your own image to override platform images |
+| **Delete Custom**       | Remove custom image, revert to platform image     |
+
+### Upload Limits
+
+| Image Type  | Max File Size | Auto-Resize To |
+| ----------- | ------------- | -------------- |
+| **Profile** | 5 MB          | 300x300 px     |
+| **Banner**  | 10 MB         | 1200x400 px    |
+
+**Supported Formats:** PNG, JPEG, GIF, WebP
+
+Images are stored in the `images_dir` directory, organized by channel ID.
+
+## Testing Platform Connections
+
+After configuring authentication for any platform, verify the connection is working:
+
+<Steps>
+	<Step title="Go to Platform Auth">Navigate to the Platform Auth page</Step>
+	<Step title="Test Connection">Click **Test Connection** for the platform</Step>
+	<Step title="Verify Results">
+		Success shows the authenticated username, or an error with details
+	</Step>
+</Steps>
+
+## OAuth Authentication (Recommended)
+
+For the best experience, use OAuth to connect your streaming platform accounts. OAuth credentials are bundled with the application - no developer portal setup needed.
+
+| Platform    | OAuth Support | Notes                                       |
+| ----------- | ------------- | ------------------------------------------- |
+| **Twitch**  | Full OAuth2   | Automatic token refresh                     |
+| **YouTube** | Google OAuth2 | Automatic token refresh, or use cookie auth |
+| **Kick**    | Full OAuth2   | Automatic token refresh                     |
+
+<Note>
+	Bundled credentials route through a secure proxy at teambattles.gg for client secret handling. All
+	OAuth flows use PKCE with CSRF state validation for security.
+</Note>
+
+### Token Refresh
+
+Platform tokens are automatically refreshed 10 minutes before they expire. No manual intervention is needed once connected. If refresh fails, you'll be prompted to reconnect.
+
+### Custom OAuth Credentials
+
+For self-hosted deployments, you can configure your own OAuth credentials:
+
+<Steps>
+	<Step title="Go to Auth Page">
+		On the Platform Auth page, click **Advanced OAuth** for the platform
+	</Step>
+	<Step title="Enter Credentials">
+		Enter your Client ID and Client Secret from the platform's developer portal
+	</Step>
+	<Step title="Save and Connect">Save credentials and proceed with the OAuth flow</Step>
+</Steps>
+
+Custom credentials override the bundled defaults when set.

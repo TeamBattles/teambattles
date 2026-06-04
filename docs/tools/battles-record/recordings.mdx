@@ -1,0 +1,220 @@
+---
+title: "Recordings"
+description: "Managing recordings and the recording lifecycle"
+---
+
+Understand how Battles Record captures and manages stream recordings.
+
+## Recording Lifecycle
+
+```
+Stream Detected → Recording Started → Segments Downloaded → Post-Processing → Complete
+```
+
+### 1. Stream Detection
+
+Battles Record polls configured channels at regular intervals:
+
+- **Twitch**: Every 30 seconds
+- **YouTube**: Every 60 seconds
+- **Kick**: Every 30 seconds
+
+When a channel goes live, recording starts automatically.
+
+### 2. Recording
+
+The recorder downloads HLS segments as they become available:
+
+- Segments are stored in a temporary directory
+- Progress is tracked in real-time
+- Recording continues until the stream ends
+
+**Data Integrity:**
+
+- **Atomic writes** - Segments are written to `.tmp` files first, fsynced to disk, then renamed to their final filename. This prevents corrupted segments if the process crashes mid-write.
+- **Crash recovery** - If the daemon restarts during a recording, it scans the segment directory for the highest sequence number and resumes from where it left off. No data is lost.
+
+**Segment Priorities:**
+
+Segments at the live edge of the stream are downloaded with high priority, while backfill segments (filling gaps) are downloaded at normal priority. This ensures the recording stays as close to real-time as possible.
+
+### 3. Post-Processing
+
+After the stream ends, recordings are processed based on your settings:
+
+- **Concatenate** - Join segments into a single file (fastest)
+- **Copy** - Remux without re-encoding
+- **Re-encode** - Transcode to a different format/quality
+
+### 4. Completion
+
+Finished recordings are moved to your output directory and indexed in the library.
+
+## Recording Status
+
+View recording status in the **Recordings** tab:
+
+| Status         | Description                                      |
+| -------------- | ------------------------------------------------ |
+| **Recording**  | Actively capturing stream segments               |
+| **Completed**  | Stream ended, raw segments available on disk     |
+| **Processing** | FFmpeg post-processing in progress               |
+| **Processed**  | Final output file is ready                       |
+| **Failed**     | An error occurred during recording or processing |
+
+### Recording Actions by Status
+
+| Status         | Can Process? | Can Delete? | Can Reprocess? |
+| -------------- | ------------ | ----------- | -------------- |
+| **Recording**  | No           | No          | No             |
+| **Completed**  | Yes          | Yes         | No             |
+| **Processing** | No           | No          | No             |
+| **Processed**  | No           | Yes         | Yes            |
+| **Failed**     | Yes          | Yes         | Yes            |
+
+## Active Recordings
+
+The dashboard shows all active recordings with:
+
+- Channel name and platform
+- Stream title
+- Duration and file size
+- Quality level
+- Real-time segment count
+
+### Controls
+
+During recording:
+
+- **Pause** - Temporarily stop recording (may cause gaps)
+- **Stop** - End recording early and start post-processing
+- **Cancel** - Abort recording and delete segments
+
+## Recording Library
+
+Browse completed recordings in the **Library** tab:
+
+### Filtering
+
+Filter recordings by:
+
+- **Platform** - Twitch, YouTube, Kick
+- **Channel** - Specific channel
+- **Date Range** - Recording date
+- **Duration** - Minimum/maximum length
+- **Quality** - Recording quality level
+
+### Sorting
+
+Sort by:
+
+- Date (newest/oldest)
+- Duration (longest/shortest)
+- File size (largest/smallest)
+- Channel name (A-Z)
+
+## Recording Details
+
+Click any recording to view details:
+
+| Field          | Description                       |
+| -------------- | --------------------------------- |
+| **Title**      | Stream title at time of recording |
+| **Channel**    | Streamer name                     |
+| **Platform**   | Twitch, YouTube, or Kick          |
+| **Start Time** | When recording began              |
+| **Duration**   | Total recording length            |
+| **File Size**  | Final file size                   |
+| **Quality**    | Recorded quality level            |
+| **File Path**  | Location on disk                  |
+| **Category**   | Stream category/game              |
+
+### Actions
+
+- **Play** - Open in default media player
+- **Open Folder** - Show file location
+- **Rename** - Change recording filename
+- **Delete** - Remove recording and file
+- **Re-process** - Run post-processing again
+
+## File Naming
+
+Configure recording filenames in **Settings → Output**:
+
+### Variables
+
+| Variable     | Description     | Example               |
+| ------------ | --------------- | --------------------- |
+| `{channel}`  | Channel name    | `shroud`              |
+| `{title}`    | Stream title    | `Ranked Valorant`     |
+| `{date}`     | Recording date  | `2026-02-02`          |
+| `{time}`     | Recording time  | `14-30-00`            |
+| `{datetime}` | Date and time   | `2026-02-02_14-30-00` |
+| `{platform}` | Platform name   | `twitch`              |
+| `{quality}`  | Quality level   | `1080p60`             |
+| `{category}` | Stream category | `Valorant`            |
+
+### Default Template
+
+```
+{channel}/{date}_{title}
+```
+
+Produces: `shroud/2026-02-02_Ranked Valorant.mp4`
+
+### Custom Template Examples
+
+**By Date**:
+
+```
+{date}/{channel}_{title}
+```
+
+Produces: `2026-02-02/shroud_Ranked Valorant.mp4`
+
+**With Platform**:
+
+```
+{platform}/{channel}/{datetime}_{title}
+```
+
+Produces: `twitch/shroud/2026-02-02_14-30-00_Ranked Valorant.mp4`
+
+## Duplicate Handling
+
+When a recording with the same filename already exists:
+
+| Option            | Description                    |
+| ----------------- | ------------------------------ |
+| **Append Number** | Add (1), (2), etc. to filename |
+| **Overwrite**     | Replace existing file          |
+| **Skip**          | Don't save the new recording   |
+
+## Partial Recordings
+
+Recordings may be incomplete due to:
+
+- Stream going offline briefly
+- Internet connection issues
+- Application restart
+
+Partial recordings are marked with a warning icon. Options:
+
+- Keep as-is
+- Attempt to resume (if stream continues)
+- Delete
+
+## Recording Limits
+
+Protect your system with recording limits:
+
+| Setting            | Description                     | Default   |
+| ------------------ | ------------------------------- | --------- |
+| **Max Duration**   | Stop recording after X hours    | Unlimited |
+| **Max File Size**  | Stop recording after X GB       | Unlimited |
+| **Max Concurrent** | Maximum simultaneous recordings | 3         |
+
+<Tip>
+	If you have limited bandwidth, consider lowering max concurrent recordings or choosing lower
+	quality settings.
+</Tip>

@@ -1,0 +1,124 @@
+<?php
+
+namespace TeamBattles\Sdk\Generated\Leagues\Item;
+
+use Exception;
+use Http\Promise\Promise;
+use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
+use Microsoft\Kiota\Abstractions\HttpMethod;
+use Microsoft\Kiota\Abstractions\RequestAdapter;
+use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Leagues\Item\Bans\BansRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Members\MembersRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Penalties\PenaltiesRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Rules\RulesRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Seasons\SeasonsRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Standings\StandingsRequestBuilder;
+use TeamBattles\Sdk\Generated\Models\Error;
+use TeamBattles\Sdk\Generated\Models\LeagueProfileResponse;
+
+/**
+ * Builds and executes requests for operations under /leagues/{identifier}
+*/
+class WithIdentifierItemRequestBuilder extends BaseRequestBuilder 
+{
+    /**
+     * The bans property
+    */
+    public function bans(): BansRequestBuilder {
+        return new BansRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The members property
+    */
+    public function members(): MembersRequestBuilder {
+        return new MembersRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The penalties property
+    */
+    public function penalties(): PenaltiesRequestBuilder {
+        return new PenaltiesRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The rules property
+    */
+    public function rules(): RulesRequestBuilder {
+        return new RulesRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The seasons property
+    */
+    public function seasons(): SeasonsRequestBuilder {
+        return new SeasonsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The standings property
+    */
+    public function standings(): StandingsRequestBuilder {
+        return new StandingsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * Instantiates a new WithIdentifierItemRequestBuilder and sets the default values.
+     * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
+     * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
+    */
+    public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
+        parent::__construct($requestAdapter, [], '{+baseurl}/leagues/{identifier}');
+        if (is_array($pathParametersOrRawUrl)) {
+            $this->pathParameters = $pathParametersOrRawUrl;
+        } else {
+            $this->pathParameters = ['request-raw-url' => $pathParametersOrRawUrl];
+        }
+    }
+
+    /**
+     * Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+     * @param WithIdentifierItemRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return Promise<LeagueProfileResponse|null>
+     * @throws Exception
+    */
+    public function post(?WithIdentifierItemRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toPostRequestInformation($requestConfiguration);
+        $errorMappings = [
+                '401' => [Error::class, 'createFromDiscriminatorValue'],
+                '403' => [Error::class, 'createFromDiscriminatorValue'],
+                '404' => [Error::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [LeagueProfileResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
+    }
+
+    /**
+     * Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+     * @param WithIdentifierItemRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return RequestInformation
+    */
+    public function toPostRequestInformation(?WithIdentifierItemRequestBuilderPostRequestConfiguration $requestConfiguration = null): RequestInformation {
+        $requestInfo = new RequestInformation();
+        $requestInfo->urlTemplate = $this->urlTemplate;
+        $requestInfo->pathParameters = $this->pathParameters;
+        $requestInfo->httpMethod = HttpMethod::POST;
+        if ($requestConfiguration !== null) {
+            $requestInfo->addHeaders($requestConfiguration->headers);
+            $requestInfo->addRequestOptions(...$requestConfiguration->options);
+        }
+        $requestInfo->tryAddHeader('Accept', "application/json");
+        return $requestInfo;
+    }
+
+    /**
+     * Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+     * @param string $rawUrl The raw URL to use for the request builder.
+     * @return WithIdentifierItemRequestBuilder
+    */
+    public function withUrl(string $rawUrl): WithIdentifierItemRequestBuilder {
+        return new WithIdentifierItemRequestBuilder($rawUrl, $this->requestAdapter);
+    }
+
+}

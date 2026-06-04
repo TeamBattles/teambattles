@@ -1,0 +1,80 @@
+---
+title: "XP & Stats"
+description: "Understanding experience points and statistics"
+---
+
+{/_
+IMAGE NEEDED: XP display on team profile
+Type: screenshot
+Shows: Team stats card with XP/points display
+Notes: Show both regular and league team examples
+_/}
+
+TeamBattles uses experience points to track team progression and performance.
+
+## How Experience Works
+
+Experience (XP) is earned by:
+
+- **Winning matches** - Primary source of XP
+- **Completing objectives** - +5 XP per objective
+- **Signup bonus** - New accounts start with bonus XP
+
+## Display by Team Type
+
+Experience displays differently based on team type:
+
+| Team Type | Display          | Example    |
+| --------- | ---------------- | ---------- |
+| Regular   | XP               | "150 XP"   |
+| League    | Points (XP ÷ 10) | "15.0 pts" |
+
+<Note>
+	The underlying value is the same - only the display changes. A league team with "15.0 pts" has
+	earned 150 XP.
+</Note>
+
+## Match Objectives
+
+Complete optional challenges for bonus experience:
+
+| Objective | Description     | XP Earned        |
+| --------- | --------------- | ---------------- |
+| Sluggish  | Complete slowly | +5 XP (+0.5 pts) |
+| Assassin  | Stealth kills   | +5 XP (+0.5 pts) |
+| Bullseye  | Precision       | +5 XP (+0.5 pts) |
+
+Objectives are selected when creating a match. Both teams attempt to complete them.
+
+## Your Statistics
+
+Track your competitive performance:
+
+| Stat           | Description                              |
+| -------------- | ---------------------------------------- |
+| Experience     | Total earned from matches and objectives |
+| Wins           | Total match wins                         |
+| Losses         | Total match losses                       |
+| Draws          | Total draws                              |
+| Current Streak | Consecutive wins (+) or losses (-)       |
+| Best Streak    | Longest winning streak                   |
+
+## Leaderboard Sorting
+
+Teams can be sorted by:
+
+| Sort          | Primary         | Tiebreaker          |
+| ------------- | --------------- | ------------------- |
+| By Wins       | Total wins      | Fewer losses        |
+| By Win Rate   | Win percentage  | More matches played |
+| By Experience | Total XP/points | -                   |
+
+## Win Rate Calculation
+
+Win rate is calculated as:
+
+```
+Win Rate = (Wins ÷ Total Matches) × 100
+```
+
+Where Total Matches = Wins + Losses + Draws

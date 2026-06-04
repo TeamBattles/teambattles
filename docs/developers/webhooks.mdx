@@ -1,0 +1,155 @@
+---
+title: Webhooks
+description: Receive real-time event notifications from TeamBattles via webhook endpoints.
+---
+
+## Overview
+
+Webhooks allow your application to receive real-time HTTP POST notifications when events occur on TeamBattles. Instead of polling the API, you register an endpoint URL and select which events to receive.
+
+## Setup
+
+### Register an Endpoint
+
+Go to [Settings > Developer](https://teambattles.gg/settings/developer) and click "Add Endpoint" in the Webhooks section, or use the API:
+
+```bash
+POST /api/user/webhooks
+```
+
+**Body:**
+
+```json
+{
+	"url": "https://your-server.com/webhooks/teambattles",
+	"events": ["match.started", "match.completed", "score.submitted"],
+	"label": "Production Server"
+}
+```
+
+### Webhook Secret
+
+When you create an endpoint, a signing secret is generated. This secret is used to verify that webhook deliveries are from TeamBattles.
+
+<Warning>
+	The webhook secret is shown only once when the endpoint is created. Store it securely.
+</Warning>
+
+## Events
+
+### Match Events
+
+| Event             | Description                                      |
+| ----------------- | ------------------------------------------------ |
+| `match.created`   | A new match was created                          |
+| `match.published` | Match was published and visible to opponents     |
+| `match.accepted`  | An opponent accepted the match                   |
+| `match.ready`     | Match is ready to begin (all check-ins complete) |
+| `match.started`   | Match began                                      |
+| `match.completed` | Match finished with a result                     |
+| `match.cancelled` | Match was cancelled                              |
+| `match.forfeited` | A team forfeited the match                       |
+
+### Score Events
+
+| Event             | Description                           |
+| ----------------- | ------------------------------------- |
+| `score.submitted` | A score was submitted                 |
+| `score.confirmed` | A score was confirmed by the opponent |
+| `score.disputed`  | A submitted score was disputed        |
+
+### Team & Player Events
+
+| Event               | Description                       |
+| ------------------- | --------------------------------- |
+| `roster.updated`    | Match roster was changed          |
+| `player.checked_in` | A player checked in for the match |
+| `team.joined`       | A team joined the match           |
+| `team.left`         | A team left the match             |
+
+## Payload Format
+
+All webhook deliveries use the following format:
+
+```json
+{
+	"id": "evt_abc123",
+	"event": "match.completed",
+	"timestamp": "2026-02-23T15:30:00Z",
+	"data": {
+		"matchId": "match_123",
+		"gameId": "call_of_duty_black_ops_7",
+		"winner": "team_abc",
+		"scores": {
+			"team_abc": 250,
+			"team_def": 180
+		}
+	}
+}
+```
+
+## Signature Verification
+
+Every webhook delivery includes an `X-TeamBattles-Signature` header containing an HMAC-SHA256 signature of the request body. The header value is prefixed with `sha256=` followed by the hex digest (for example, `sha256=abc123...`). Strip the prefix before comparing against your computed digest.
+
+### Verifying in Node.js
+
+```javascript
+import crypto from "crypto";
+
+function verifyWebhookSignature(body, signatureHeader, secret) {
+	// Header is "sha256=<hex>"; strip the scheme prefix before comparing.
+	const signature = signatureHeader.startsWith("sha256=")
+		? signatureHeader.slice("sha256=".length)
+		: signatureHeader;
+	const expected = crypto.createHmac("sha256", secret).update(body, "utf8").digest("hex");
+	return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+}
+
+// In your webhook handler
+app.post("/webhooks/teambattles", (req, res) => {
+	const signature = req.headers["x-teambattles-signature"];
+	const isValid = verifyWebhookSignature(req.rawBody, signature, process.env.WEBHOOK_SECRET);
+
+	if (!isValid) {
+		return res.status(401).send("Invalid signature");
+	}
+
+	const event = req.body;
+	console.log(`Received ${event.event}:`, event.data);
+	res.status(200).send("OK");
+});
+```
+
+### Verifying in Python
+
+```python
+import hmac
+import hashlib
+
+def verify_signature(body: bytes, signature: str, secret: str) -> bool:
+    expected = hmac.new(
+        secret.encode(),
+        body,
+        hashlib.sha256
+    ).hexdigest()
+    return hmac.compare_digest(signature, expected)
+```
+
+## Delivery
+
+Each event is delivered exactly once. Requests use a 10-second timeout and do not follow redirects - a `3xx` response is treated as a failure. There are no automatic retries: if your endpoint times out or returns a non-2xx response, the delivery is recorded as failed.
+
+- Webhooks are delivered within seconds of the event
+- Your endpoint must respond with a `2xx` status within 10 seconds
+- Requests are sent with `redirect: 'manual'`; any `3xx` response counts as a failed delivery
+- After **50 consecutive failed deliveries**, the endpoint is automatically disabled and you will receive an in-app notification
+
+<Note>
+	Successful deliveries reset the consecutive-failure counter. Re-enable a disabled endpoint from
+	Settings &gt; Developer once your server is healthy again.
+</Note>
+
+## Testing
+
+Use the "Test" button next to any webhook endpoint in the dashboard to send a test event. This sends a `test.ping` event to verify your endpoint is working.

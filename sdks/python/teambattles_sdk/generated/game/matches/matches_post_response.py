@@ -1,0 +1,65 @@
+from __future__ import annotations
+from collections.abc import Callable
+from dataclasses import dataclass, field
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from typing import Any, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from ...models.game_match import GameMatch
+    from .matches_post_response_pagination import MatchesPostResponse_pagination
+
+@dataclass
+class MatchesPostResponse(Parsable):
+    # The count property
+    count: Optional[int] = None
+    # The matches property
+    matches: Optional[list[GameMatch]] = None
+    # The pagination property
+    pagination: Optional[MatchesPostResponse_pagination] = None
+    # The timestamp property
+    timestamp: Optional[str] = None
+    
+    @staticmethod
+    def create_from_discriminator_value(parse_node: ParseNode) -> MatchesPostResponse:
+        """
+        Creates a new instance of the appropriate class based on discriminator value
+        param parse_node: The parse node to use to read the discriminator value and create the object
+        Returns: MatchesPostResponse
+        """
+        if parse_node is None:
+            raise TypeError("parse_node cannot be null.")
+        return MatchesPostResponse()
+    
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
+        """
+        The deserialization information for the current model
+        Returns: dict[str, Callable[[ParseNode], None]]
+        """
+        from ...models.game_match import GameMatch
+        from .matches_post_response_pagination import MatchesPostResponse_pagination
+
+        from ...models.game_match import GameMatch
+        from .matches_post_response_pagination import MatchesPostResponse_pagination
+
+        fields: dict[str, Callable[[Any], None]] = {
+            "count": lambda n : setattr(self, 'count', n.get_int_value()),
+            "matches": lambda n : setattr(self, 'matches', n.get_collection_of_object_values(GameMatch)),
+            "pagination": lambda n : setattr(self, 'pagination', n.get_object_value(MatchesPostResponse_pagination)),
+            "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
+        }
+        return fields
+    
+    def serialize(self,writer: SerializationWriter) -> None:
+        """
+        Serializes information the current object
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
+        """
+        if writer is None:
+            raise TypeError("writer cannot be null.")
+        writer.write_int_value("count", self.count)
+        writer.write_collection_of_object_values("matches", self.matches)
+        writer.write_object_value("pagination", self.pagination)
+        writer.write_str_value("timestamp", self.timestamp)
+    
+

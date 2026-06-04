@@ -1,0 +1,172 @@
+---
+title: "Challenges"
+description: "Directly challenge a specific team, in regular play or league competition"
+---
+
+A challenge is a one-on-one match invitation aimed at a specific opponent. Instead of publishing an open match for anyone to accept, you pick the team you want to play and they receive an explicit Accept or Refuse prompt.
+
+Challenges run on the same lifecycle as regular matches once accepted (rosters, check-in, scoring), but they have their own creation rules, XP shape, and refusal/cancellation penalties.
+
+## Overview
+
+Any active team captain can create a challenge from the **Create Match** wizard:
+
+<Steps>
+	<Step title="Toggle Challenge mode">
+		On step 1 of the match wizard, enable **Challenge** and pick the opponent team.
+	</Step>
+	<Step title="Configure the match">
+		Choose game mode, maps, series length, and your roster the same way you would for an open match.
+	</Step>
+	<Step title="Submit">The challenged team receives a notification and can Accept or Refuse.</Step>
+</Steps>
+
+You cannot challenge yourself, the opponent must play the same game as you, and only the **captain** of the challenged team can respond.
+
+## Regular vs League Challenges
+
+Challenges work in two flavors that differ in XP, points, and refusal behavior.
+
+| Feature                  | Regular challenge       | League challenge                                            |
+| ------------------------ | ----------------------- | ----------------------------------------------------------- |
+| XP on win/loss           | Standard base XP        | Base XP, plus a challenger/challenged bonus                 |
+| League points            | None                    | Yes, when an active season exists                           |
+| Refuse penalty           | None                    | XP penalty (see [Refuse Penalty](#refuse-penalty))          |
+| Cancel grace period      | 24 hours fixed          | Per-league override allowed                                 |
+| Season tracking          | None                    | One challenge per opponent per season                       |
+| Scrimmage detection      | Not applicable          | Triggers automatically when no active season is configured  |
+
+## Challenge Limits
+
+| Constraint                                  | Limit                            |
+| ------------------------------------------- | -------------------------------- |
+| Max pending challenges per team             | 5                                |
+| Max pending challenges per opponent         | 1                                |
+| Same opponent, same season (league)         | 1 challenge                      |
+| Cancel grace period (regular)               | 24 hours                         |
+| Cancel grace period (league)                | League can override per game     |
+
+Exceeding either pending cap surfaces `MAX_OPEN_CHALLENGES_REACHED` or `CHALLENGE_ALREADY_PENDING` as a toast on submit.
+
+## XP and Points Calculation
+
+Challenges use the same streak-based XP system as regular matches. The breakpoints and bonus percentages are fixed in code.
+
+### Base XP
+
+| Outcome | XP Change |
+| ------- | --------- |
+| Win     | +10       |
+| Draw    | +3        |
+| Loss    | -3        |
+
+### Win / Loss Streak Bonus
+
+Streak bonuses apply as an additive percentage of the base XP. Both win streaks and loss streaks use the same breakpoint and bonus tables.
+
+| Streak threshold | Bonus on base XP |
+| ---------------- | ---------------- |
+| 3                | 25%              |
+| 5                | 30%              |
+| 7                | 35%              |
+| 9                | 40%              |
+| 12               | 45%              |
+| 15               | 50%              |
+| 20               | 55%              |
+| 25               | 60%              |
+| 50               | 65%              |
+| 100              | 70%              |
+
+For a 9-win streak, a win awards `floor(10 + 10 * 0.40) = 14 XP`. For a 9-loss streak, a loss costs `floor(3 + 3 * 0.40) = 4 XP`.
+
+<Tip>
+	Streak bonuses cap at 70%. Wins and losses cannot grow indefinitely; the curve flattens past a
+	100-streak.
+</Tip>
+
+### XP Floor
+
+- Regular teams cannot fall below 0 XP.
+- League teams can go negative.
+
+## Forfeit Mechanics
+
+A captain on either team can forfeit an active match (`ACCEPTED`, `READY`, or `IN_PROGRESS`). The forfeiting team takes the loss and the other team takes the win.
+
+| Context                                | XP penalty                                |
+| -------------------------------------- | ----------------------------------------- |
+| League team, any stage                 | Base loss plus loss-streak bonus          |
+| Regular team, match already started    | Base loss plus loss-streak bonus          |
+| Regular team, before match starts      | Half of base loss (no streak bonus)       |
+| Scrimmage (league, no active season)   | No penalty                                |
+
+The pre-match forfeit ratio for regular teams is `0.5`, so the half-base penalty is `floor(3 * 0.5) = 1 XP`.
+
+## Refuse Penalty
+
+Refuse penalties apply **only to league challenges**. Refusing a regular challenge cancels the match with no XP change.
+
+When a league captain refuses, the penalty formula is:
+
+```
+penalty = -(BASE_LOSS_XP + floor(BASE_LOSS_XP * lossStreakBonus) + floor(BASE_LOSS_XP * 1.5))
+```
+
+With `BASE_LOSS_XP = 3` and the refuse multiplier `1.5`, the second floor term is `floor(3 * 1.5) = 4`.
+
+| Loss streak | Streak bonus | Streak addend `floor(3 * bonus)` | Refuse penalty |
+| ----------- | ------------ | -------------------------------- | -------------- |
+| 0           | 0%           | 0                                | -7 XP          |
+| 3           | 25%          | 0                                | -7 XP          |
+| 9           | 40%          | 1                                | -8 XP          |
+| 25          | 60%          | 1                                | -8 XP          |
+| 100         | 70%          | 2                                | -9 XP          |
+
+<Note>
+	Because `BASE_LOSS_XP` is small, the streak addend floors to 0 or 1 across the entire bonus
+	curve. Expect refuse penalties to land between -7 and -8 XP in practice.
+</Note>
+
+## Cancel Grace Period
+
+The challenger's captain can cancel a pending challenge.
+
+- **Regular challenge** - A fixed 24-hour grace window after creation. Cancelling inside the window is free; cancelling after applies the standard forfeit penalty to the challenger and credits the win to the challenged team.
+- **League challenge** - The league can override the grace window per game via `leaguePointsConfig.challengeCancelGracePeriodHours`. If no override exists, it falls back to 24 hours.
+
+The grace clock starts at match creation, not at acceptance.
+
+## Seasons and Challenges
+
+League seasons scope league challenge tracking and points awards.
+
+- Each game inside a league can have one active season at a time.
+- League admins create, activate, and end seasons from the league admin panel.
+- League challenges are tracked **per season**: each pair of teams can only challenge each other once per active season.
+- When no active season exists for the game, league challenges become **scrimmages** automatically.
+
+## Scrimmage Detection
+
+Scrimmage detection is automatic. A league match becomes a scrimmage when:
+
+1. The match is a league match (carries `leagueId`).
+2. No active season exists for the league's game at challenge time.
+
+Scrimmage matches do not award league points by default. A league may opt into scrimmage point awards by setting `scrimmageAwardsPoints: true` in its `leaguePointsConfig` for that game; otherwise both win and loss deltas are skipped with reason `scrimmage_no_points`.
+
+## Related
+
+<CardGroup cols={2}>
+	<Card title="Creating a Match" icon="plus" href="/matches/create">
+		Open the match wizard and toggle Challenge mode
+	</Card>
+	<Card title="XP & Levels" icon="star" href="/account/xp">
+		How match XP rolls up into your account level
+	</Card>
+	<Card title="League Rules" icon="trophy" href="/leagues/rules">
+		Per-league configuration, including grace overrides
+	</Card>
+	<Card title="Scores & Disputes" icon="check" href="/matches/scores">
+		Captain-only score submission once the match is played
+	</Card>
+</CardGroup>

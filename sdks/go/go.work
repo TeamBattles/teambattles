@@ -1,0 +1,11 @@
+// Joins the hand-written wrapper module (github.com/teambattles/sdk-go, this dir) with the
+// Kiota-generated module (teambattles, ./src/generated) so `go build ./...` resolves the generated
+// package locally without a network fetch. The generated dir is wiped on every regeneration
+// (`kiota generate --clean-output`) and therefore cannot carry a committed go.mod; build.sh runs
+// `go mod init teambattles` there before building, which is what this workspace `use` points at.
+go 1.22
+
+use (
+	.
+	./src/generated
+)

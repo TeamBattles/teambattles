@@ -1,0 +1,18 @@
+/* Fix API playground select dropdown contrast in dark mode */
+/* Native select elements need explicit background/color for options */
+.dark select.text-playground-input,
+.dark select.text-playground-input option {
+	background-color: #18181b !important;
+	color: #f4f4f5 !important;
+}
+
+select.text-playground-input option {
+	background-color: #ffffff;
+	color: #18181b;
+}
+
+.dark select.text-playground-input option:checked,
+.dark select.text-playground-input option:hover {
+	background-color: #27272a !important;
+	color: #ffffff !important;
+}

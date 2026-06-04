@@ -1,0 +1,43 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'gg.teambattles'
+version = '0.1.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    withSourcesJar()
+    withJavadocJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api 'com.microsoft.kiota:microsoft-kiota-abstractions:1.+'
+    api 'com.microsoft.kiota:microsoft-kiota-http-okHttp:1.+'
+    api 'com.microsoft.kiota:microsoft-kiota-serialization-json:1.+'
+    api 'com.microsoft.kiota:microsoft-kiota-serialization-text:1.+'
+    api 'com.microsoft.kiota:microsoft-kiota-serialization-form:1.+'
+    api 'com.microsoft.kiota:microsoft-kiota-serialization-multipart:1.+'
+    api 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+}
+
+// Javadoc on the generated sources is noisy; do not fail the build on lint warnings.
+tasks.withType(Javadoc).configureEach {
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId = 'sdk'
+        }
+    }
+}

@@ -1,0 +1,127 @@
+---
+title: "Collab Sessions"
+description: "Plan strategies live with up to 16 teammates in real time"
+---
+
+Collab sessions turn the strategy editor into a shared whiteboard. Invite teammates, draw together, and use the laser pointer to talk through plays in real time.
+
+<Note>
+	**Premium-only hosting.** You need a Premium subscription to start a collab session. Guests can
+	join any session you host without a subscription.
+</Note>
+
+## Starting a session
+
+<Steps>
+	<Step title="Open the strategy editor">
+		Go to [/strategy](https://teambattles.gg/strategy) and open or create a strategy.
+	</Step>
+	<Step title="Click the collab button in the toolbar">
+		Click **Start collab session** in the editor toolbar. You will see the session config dialog.
+	</Step>
+	<Step title="Pick a mode, display name, and color">
+		Choose **Collab** or **Presenter** mode, set the display name guests will see for you, and pick
+		a color from the 16-color palette.
+	</Step>
+	<Step title="Share the session link">
+		The session link appears in the participants popover. It is hidden by default for streamer
+		safety. Toggle reveal when you are ready to share, then copy and send the link.
+	</Step>
+</Steps>
+
+<Note>
+	If your board has not been saved yet, starting a session saves it to your account automatically.
+	Hosting needs an owned, saved strategy, so there is no separate save step - just click the collab
+	button.
+</Note>
+
+## Collab vs Presenter mode
+
+<Tabs>
+	<Tab title="Collab">
+		Every participant can draw, select shapes, and move tokens on the canvas. Use this when you and
+		your team are planning together.
+	</Tab>
+	<Tab title="Presenter">
+		Only you, the host, drive the canvas by default. Presenter mode is built for walkthroughs and
+		coaching sessions. You can selectively grant guests these permissions:
+
+		- **Guests can draw** - Lets guests add shapes without granting selection.
+		- **Guests can select** - Lets guests select and move shapes you have placed.
+
+		As the host you can grant or revoke either permission at any time during the session from the
+		participants popover - see **Changing mode mid-session** below.
+	</Tab>
+</Tabs>
+
+## Changing mode mid-session (host)
+
+You do not have to restart a session to change how guests participate. As the host, open the participants popover and use the **Mode** control:
+
+- Switch between **Collab** and **Presenter** at any time. Only you, the host, see this control.
+- In **Presenter** mode, toggle **Guests can draw** and **Guests can select** independently. Guests gain or lose the ability within about a second.
+- Switching to **Collab** re-enables drawing and selection for everyone, so the two sub-toggles only appear in Presenter mode.
+
+This is separate from the **Lock board** toggle (below), a one-click freeze that does not change the session mode.
+
+## Joining a session
+
+Anyone with the session link can join, signed in or anonymous. There is no separate invite list.
+
+<Steps>
+	<Step title="Open the session link">
+		The host shares a link of the form `https://teambattles.gg/strategy/session/...`.
+	</Step>
+	<Step title="Pick a display name and color">
+		Enter the name other participants will see and pick an available color. If two people grab the
+		same color at the same time, your client retries with the next free color automatically.
+	</Step>
+	<Step title="Start collaborating">
+		You will see live cursors for every participant. If you are allowed to edit, your tokens,
+		shapes, and pen drawings persist to the board and appear for everyone within about a second.
+	</Step>
+</Steps>
+
+<Note>
+	A session holds **up to 16 participants** at once. The 16-color palette is what enforces the cap:
+	once every color is claimed, new joins are blocked until someone leaves.
+</Note>
+
+## Drawing together
+
+In Collab mode (or Presenter mode with **Guests can draw** enabled), everyone allowed to edit shares one board. Tokens you place, shapes you draw, and pen strokes are saved to the host's strategy and sync to every participant within about a second, so a guest drawing a box is immediately visible to the host and vice versa.
+
+A few things to know:
+
+- The **pen draws a permanent line** on the board, not a temporary laser trail.
+- A teammate's edits to shapes you are **not** touching appear immediately; only the specific shapes you are mid-editing are held back for the moment until your change saves.
+- Only the host can add, remove, or rename **stages**; everyone allowed to edit works on the existing stages.
+- In Presenter mode with drawing turned off, guests view the board read-only - but everyone can still use the laser pointer (below).
+
+## Laser pointer
+
+Pick the **Laser** tool from the editor's tool rail and drag on the canvas to broadcast a fading pointer trail to everyone in the session. It draws nothing permanent, so unlike the pen it is available to **all** participants - including view-only spectators in Presenter mode. Use it to point at a spot or trace a route while you talk. Hold **Space** and drag to pan while the laser tool is selected.
+
+## Locking the board (host)
+
+As the host you can freeze every guest's edits with one click: toggle **Lock board** in the participants popover. While locked, guests cannot place tokens, draw, or move shapes - their editing panels hide and they see a notice that you locked the board. You can still edit, and everyone (including guests) can still use the laser pointer. Toggle it off to resume co-editing. Locking is a quick freeze that does not change the session mode.
+
+## Streamer-safe link reveal
+
+The session URL is hidden behind a reveal toggle in the participants popover. This keeps it off camera if you are streaming the editor. Click reveal only when you are ready to copy or share, then click again to hide.
+
+## Removing participants
+
+As the host, find the participant in the participants popover and click the remove icon next to their name (your own row has no remove control). They are dropped from the session immediately. While the session is still active they can rejoin with the link, so remove someone only when you also intend to stop sharing the link - or end the session for everyone.
+
+## Ending a session
+
+You have two ways to end a session:
+
+- **End manually.** Click **End session** in the participants popover. All guests are returned to the strategy view.
+- **Auto-end on host idle.** A cleanup cron runs every 5 minutes. If you, the host, have been idle for 5 minutes, the session ends automatically. Stale presence rows older than 2 minutes are also pruned in the same pass.
+
+<Tip>
+	Edits made during a collab session are saved to the host's strategy as they happen, so they
+	remain on the board after the session ends. There is no separate "save" step for session edits.
+</Tip>

@@ -1,0 +1,45 @@
+---
+title: Java SDK
+description: Install and use the official TeamBattles Java SDK to call the developer API.
+---
+
+The Java SDK is published to Maven Central as `gg.teambattles:sdk`. It is generated from the [OpenAPI spec](/developers/api-reference) with [Microsoft Kiota](https://learn.microsoft.com/en-us/openapi/kiota/) and regenerates on every API change.
+
+## Install
+
+Gradle:
+
+```groovy
+implementation "gg.teambattles:sdk:0.1.0"
+```
+
+Maven:
+
+```xml
+<dependency>
+  <groupId>gg.teambattles</groupId>
+  <artifactId>sdk</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
+
+## Authenticated first call
+
+```java
+import gg.teambattles.sdk.TeamBattlesClientFactory;
+import gg.teambattles.sdk.models.MatchesRequestBody;
+
+var client = TeamBattlesClientFactory.create(System.getenv("TEAMBATTLES_API_KEY"));
+
+// List the authenticated user's matches (requires matches.user_matches: read)
+var body = new MatchesRequestBody();
+body.setNumItems(25);
+var result = client.user().matches().post(body);
+for (var match : result.getPage()) {
+    System.out.println(match.getId() + " " + match.getStatus());
+}
+```
+
+## Authentication
+
+The factory wires an `Authorization: Bearer tb_<your-key>` header on every request. Create keys at [Settings > Developer](https://teambattles.gg/settings/developer) and review scopes in the [authentication guide](/developers/authentication). Treat the `error` machine code in error responses - not the `details` message - as the stable programmatic contract.

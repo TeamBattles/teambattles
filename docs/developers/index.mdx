@@ -1,0 +1,141 @@
+---
+title: Overview
+description: Build integrations with the TeamBattles API to submit scores, manage matches, and receive real-time event notifications.
+---
+
+## Overview
+
+The TeamBattles Developer Platform provides APIs for game developers and third-party integrations to interact with the competitive gaming platform programmatically.
+
+### Two-Tier Access
+
+A developer account is one of exactly two types - `general` or `game`. Both are subject to staff review.
+
+<CardGroup cols={2}>
+  <Card title="General Developer" icon="key">
+    `type: "general"`. Access webhook events and basic match data. Apply through Settings > Developer tab.
+  </Card>
+  <Card title="Game Developer" icon="gamepad">
+    `type: "game"`. Submit scores, manage match lifecycle, and receive game-specific events. Requires approval for each game.
+  </Card>
+</CardGroup>
+
+### What You Can Do
+
+- **Submit Scores** - Game servers can automatically submit match scores via API
+- **Manage Match Lifecycle** - Query match details, rosters, and status
+- **Receive Webhooks** - Get real-time notifications for match events, score submissions, and roster changes
+- **Integrate Connections** - Access linked platform data (Discord, Twitch, GitHub, Battle.net)
+
+## Getting Started
+
+<Steps>
+  <Step title="Apply for Developer Access">
+    Go to [Settings > Developer](https://teambattles.gg/settings/developer) and submit an application. Choose "General Developer" (`type: "general"`) for webhook and match-data access, or "Game Developer" (`type: "game"`) for score submission and match lifecycle. There are no other account types.
+  </Step>
+  <Step title="Wait for Approval">
+    Staff will review your application. You will be notified when it is approved.
+  </Step>
+  <Step title="Create an API Key">
+    Once approved, create an API key with the permissions you need. The key is shown only once - copy it immediately.
+  </Step>
+  <Step title="Start Building">
+    Use your API key to authenticate requests. See the [Authentication](/developers/authentication) guide for details.
+  </Step>
+</Steps>
+
+## Base URL
+
+All API requests use the following base URL:
+
+```
+https://teambattles.gg/api/v1
+```
+
+## Rate Limits
+
+| Tier              | Requests per minute |
+| ----------------- | ------------------- |
+| General Developer | 60                  |
+| Game Developer    | 120                 |
+
+Rate limit headers are included in every response:
+
+- `X-RateLimit-Limit` - Maximum requests per window
+- `X-RateLimit-Remaining` - Remaining requests in current window
+- `X-RateLimit-Reset` - Unix timestamp when the window resets
+
+## OpenAPI Specification
+
+The full API schema is available as an OpenAPI 3.1 JSON file. Use it to generate client libraries, import into tools like Postman, or build your own integrations.
+
+<Card title="Download OpenAPI Spec" icon="file-code" href="/api-reference/openapi.json">
+	OpenAPI 3.1 JSON - compatible with Postman, Swagger, and other API tools
+</Card>
+
+## SDKs & Libraries
+
+We publish official, auto-generated SDKs for eight languages (Python, C#, Go, Java, PHP, TypeScript, Ruby, and Dart). They are generated from the OpenAPI spec above, so they never drift from the live API.
+
+<Card title="Browse the SDKs" icon="cubes" href="/sdks">
+	Install commands and authenticated first-call snippets for all eight languages.
+</Card>
+
+Prefer a raw HTTP client? The API is straightforward to use directly:
+
+<CodeGroup>
+```javascript JavaScript (fetch)
+const response = await fetch('https://teambattles.gg/api/v1/user/matches', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer tb_your_api_key',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    numItems: 25,
+    excludeStatuses: ['COMPLETED', 'CANCELLED']
+  })
+});
+
+const data = await response.json();
+console.log(`Found ${data.page.length} matches (isDone: ${data.isDone})`);
+if (!data.isDone) {
+  console.log(`Next page cursor: ${data.continueCursor}`);
+}
+
+````
+
+```python Python (requests)
+import requests
+
+response = requests.post(
+    'https://teambattles.gg/api/v1/user/matches',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'numItems': 25, 'excludeStatuses': ['COMPLETED', 'CANCELLED']}
+)
+
+data = response.json()
+print(f"Found {len(data['page'])} matches (isDone: {data['isDone']})")
+if not data['isDone']:
+    print(f"Next page cursor: {data['continueCursor']}")
+````
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/user/matches \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"numItems": 25, "excludeStatuses": ["COMPLETED", "CANCELLED"]}'
+```
+
+</CodeGroup>
+
+## Need Help?
+
+<CardGroup cols={2}>
+	<Card title="Support" icon="headset" href="https://teambattles.gg/support">
+		Contact our support team
+	</Card>
+	<Card title="Discord" icon="discord" href="https://teambattles.gg/discord">
+		Join our Discord community
+	</Card>
+</CardGroup>

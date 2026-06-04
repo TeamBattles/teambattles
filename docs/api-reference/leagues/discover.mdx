@@ -1,0 +1,123 @@
+---
+title: "Discover Leagues"
+openapi: "POST /leagues"
+---
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/leagues \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"search": "competitive", "limit": 12}'
+```
+
+```javascript JavaScript
+const response = await fetch("https://teambattles.gg/api/v1/leagues", {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify({
+		search: "competitive",
+		limit: 12
+	})
+});
+
+const { leagues, pagination } = await response.json();
+
+// Fetch next page if available
+if (pagination.hasMore) {
+	const nextPage = await fetch("https://teambattles.gg/api/v1/leagues", {
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			search: "competitive",
+			limit: 12,
+			page: 2
+		})
+	});
+}
+```
+
+```python Python
+import requests
+
+response = requests.post(
+    'https://teambattles.gg/api/v1/leagues',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'search': 'competitive', 'limit': 12}
+)
+
+data = response.json()
+leagues = data['leagues']
+pagination = data['pagination']
+```
+
+</RequestExample>
+
+## Permission Required
+
+This endpoint requires the `leagues.league_public` permission on your API key.
+
+## What's Returned
+
+Returns a paginated list of public leagues with optional search and game filtering. Each league includes its name, slug, description, status, and other public metadata.
+
+## Filtering Options
+
+### Search
+
+Use the `search` parameter to search leagues by name or description.
+
+### Game Filtering
+
+Use `gameId` to filter leagues associated with a specific game.
+
+## Request Body
+
+| Parameter | Type   | Required | Description                                    |
+| --------- | ------ | -------- | ---------------------------------------------- |
+| `search`  | string | No       | Search term to filter leagues by name           |
+| `gameId`  | string | No       | Filter by game ID                              |
+| `page`    | number | No       | Page number, starting from 1 (default 1)       |
+| `limit`   | number | No       | Results per page (1-50, default 12)            |
+
+## Pagination
+
+Results are paginated with a default of 12 leagues per page (maximum 50). Use the `page` parameter to navigate through results.
+
+The response includes a `pagination` object with page metadata.
+
+## Common Use Cases
+
+### Search for Leagues by Name
+
+```json
+{
+	"search": "Call of Duty",
+	"limit": 12
+}
+```
+
+### Filter by Game
+
+```json
+{
+	"gameId": "call_of_duty",
+	"limit": 25
+}
+```
+
+### Paginate Through All Leagues
+
+```json
+{
+	"page": 2,
+	"limit": 50
+}
+```

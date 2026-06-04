@@ -1,0 +1,166 @@
+---
+title: Endpoint Reference
+description: Complete endpoint reference for the TeamBattles Developer API.
+---
+
+## Interactive Endpoints
+
+Try out the API directly from the docs:
+
+<CardGroup cols={2}>
+	<Card title="User Matches" icon="user" href="/api-reference/user/matches">
+		Retrieve matches where you're on the roster
+	</Card>
+	<Card title="Team Matches" icon="users" href="/api-reference/teams/matches">
+		Retrieve matches for a specific team
+	</Card>
+	<Card title="Organization Matches" icon="building" href="/api-reference/orgs/matches">
+		Retrieve matches for all teams in an organization
+	</Card>
+	<Card title="Twitch Global Badges" icon="twitch" href="/api-reference/twitch/global-badges">
+		Access global Twitch badge data
+	</Card>
+	<Card title="Twitch Channel Badges" icon="twitch" href="/api-reference/twitch/channel-badges">
+		Access channel-specific Twitch badge data
+	</Card>
+</CardGroup>
+
+<Note>
+	The OpenAPI specification at `/api-reference/openapi.json` covers 13 paths: three match listing endpoints (user / team / org), two Twitch badge endpoints, and eight league endpoints. Game-developer score and lifecycle endpoints, overlay endpoints, and OAuth-proxy routes are intentionally excluded from the public spec.
+</Note>
+
+## API Key Permissions
+
+API keys carry a 5-category permission object. Every category appears in the create/edit dialog at `/settings/developer`. The `leagues` category is `v.optional()` in `src/convex/schema/validators.ts:735` - older keys may lack it on disk, and the dialog auto-fills it from `defaultLeagues` (`src/routes/(app)/settings/developer/(components)/api-key-edit-dialog.svelte:134-137`) so all five categories remain editable.
+
+| Category    | Scopes                                  | Values                          |
+| ----------- | --------------------------------------- | ------------------------------- |
+| Matches     | user_matches, team_matches, org_matches | none / read / read-write        |
+| Connections | discord, twitch, github, battlenet      | none / enabled                  |
+| Game        | scores, lifecycle                       | none / write (scores), none / read / read-write (lifecycle) |
+| Webhooks    | manage                                  | none / enabled                  |
+| Leagues     | league_public, league_admin             | none / read                     |
+
+### Presets
+
+The create-key dialog ships with two one-click permission presets (`src/routes/(app)/settings/developer/(components)/api-key-edit-dialog.svelte:98-130`). A preset is only selectable when every connection in its `requiredConnections` list is linked on the user's account.
+
+| Preset           | Scopes set                                                                                | Required connections |
+| ---------------- | ----------------------------------------------------------------------------------------- | -------------------- |
+| `battles-replay` | `matches.user_matches: read`, `connections.twitch: enabled`                               | Twitch               |
+| `league-manager` | `matches.team_matches: read`, `leagues.league_public: read`, `leagues.league_admin: read` | none                 |
+
+## Captain Score Endpoints
+
+These endpoints allow team captains to submit and manage scores.
+
+| Method  | Endpoint                    | Description              | Permission                         |
+| ------- | --------------------------- | ------------------------ | ---------------------------------- |
+| `POST`  | `/matches/{matchId}/scores` | Submit a map score       | `matches.team_matches: read-write` |
+| `PATCH` | `/matches/{matchId}/scores` | Confirm opponent's score | `matches.team_matches: read-write` |
+| `GET`   | `/matches/{matchId}/scores` | Get all map scores       | `matches.team_matches: read`       |
+
+## Game Developer Endpoints
+
+These endpoints are for approved game developers.
+
+### Score Submission
+
+| Method | Endpoint                         | Description           | Permission           |
+| ------ | -------------------------------- | --------------------- | -------------------- |
+| `POST` | `/game/matches/{matchId}/scores` | Submit verified score | `game.scores: write` |
+
+### Match Lifecycle
+
+| Method  | Endpoint                          | Description                          | Permission                   |
+| ------- | --------------------------------- | ------------------------------------ | ---------------------------- |
+| `POST`  | `/game/matches`                   | List matches (JSON body with gameId) | `game.lifecycle: read`       |
+| `GET`   | `/game/matches/{matchId}`         | Get match details                    | `game.lifecycle: read`       |
+| `GET`   | `/game/matches/{matchId}/rosters` | Get match rosters                    | `game.lifecycle: read`       |
+| `GET`   | `/game/matches/{matchId}/status`  | Get match status                     | `game.lifecycle: read`       |
+| `PATCH` | `/game/matches/{matchId}/status`  | Update match status                  | `game.lifecycle: read-write` |
+
+### Player Stats
+
+| Method | Endpoint                               | Description                   | Permission           |
+| ------ | -------------------------------------- | ----------------------------- | -------------------- |
+| `POST` | `/game/matches/{matchId}/player-stats` | Submit player stats for a map | `game.scores: write` |
+
+## Common Response Codes
+
+| Status | Description                               |
+| ------ | ----------------------------------------- |
+| `200`  | Success                                   |
+| `201`  | Created                                   |
+| `400`  | Bad request - invalid parameters          |
+| `401`  | Unauthorized - missing or invalid API key |
+| `403`  | Forbidden - insufficient permissions      |
+| `404`  | Resource not found                        |
+| `409`  | Conflict - duplicate or invalid state     |
+| `429`  | Rate limited                              |
+| `500`  | Internal server error                     |
+
+## Error Format
+
+All errors follow a consistent format:
+
+```json
+{
+	"error": "ERROR_CODE",
+	"details": "Human-readable description"
+}
+```
+
+Treat the `error` machine code - not the `details` message - as the stable programmatic contract: parse and branch on `error`, and surface `details` only for human-readable context (it may be absent on auth and permission errors).
+
+### Common Error Codes
+
+The `error` field uses a stable machine-readable identifier. The most common pagination-related codes are:
+
+| Error code           | HTTP | When it occurs                                                                                                              |
+| -------------------- | ---- | --------------------------------------------------------------------------------------------------------------------------- |
+| `INVALID_NUM_ITEMS`  | 400  | Returned by the match listing endpoints when `numItems` is outside `1-100`. See `src/routes/api/v1/user/matches/+server.ts`. |
+| `INVALID_LIMIT`      | 400  | Returned by the league listing endpoints and `/game/matches` when `limit` is outside the supported range (`1-50` for `/leagues`, `1-100` elsewhere). |
+
+Both codes map to HTTP 400 with the canonical Convex error identifiers `error_invalid_num_items` and `error_invalid_limit` (`src/convex/_helpers/errors.ts:21-22`). Clients should treat the `error` field, not the message, as the stable contract.
+
+## Pagination
+
+The v1 API is mid-migration and currently exposes two pagination envelope shapes. Check each endpoint's reference page for its exact response shape.
+
+### Native envelope (match listing endpoints)
+
+The three match listing endpoints use Convex's native pagination envelope:
+
+- `POST /api/v1/user/matches` - see [User Matches](/api-reference/user/matches)
+- `POST /api/v1/teams/{teamId}/matches` - see [Team Matches](/api-reference/teams/matches)
+- `POST /api/v1/orgs/{orgId}/matches` - see [Organization Matches](/api-reference/orgs/matches)
+
+**Request fields:** `numItems` (page size, default 25) and `cursor` (opaque string from the previous response, or omit/`null` for the first page).
+
+**Response shape:** `{ page, isDone, continueCursor }`. Iterate `page` for results, check `isDone` to know when you've reached the end, and pass `continueCursor` as `cursor` in the next request.
+
+```bash
+POST /api/v1/user/matches
+Content-Type: application/json
+
+{
+  "numItems": 25,
+  "cursor": "g2wAAAACYQJhAmo="
+}
+```
+
+### Legacy envelope (all other v1 endpoints)
+
+Most remaining v1 paginated endpoints still wrap results in a legacy envelope: `{ matches, pagination: { cursor, hasMore }, timestamp }`. Pass `cursor` (and typically `limit`) in the request body to get the next page. This shape will be migrated to the native envelope in a follow-up release.
+
+```bash
+POST /api/v1/game/matches
+Content-Type: application/json
+
+{
+  "gameId": "call_of_duty_black_ops_7",
+  "cursor": "25",
+  "limit": 25
+}
+```

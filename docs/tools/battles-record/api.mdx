@@ -1,0 +1,521 @@
+---
+title: "API Reference"
+description: "REST API and WebSocket for programmatic access"
+---
+
+Battles Record provides a REST API and WebSocket endpoint for programmatic control and monitoring.
+
+## Base URL
+
+| Deployment | Base URL                    |
+| ---------- | --------------------------- |
+| **Local**  | `http://localhost:8080/api` |
+| **Docker** | `http://{host}:8080/api`    |
+
+## Authentication
+
+All endpoints require authentication via API key or JWT token.
+
+### API Key
+
+```bash
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+  http://localhost:8080/api/channels
+```
+
+### JWT Token
+
+Obtain a token via login:
+
+```bash
+curl -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username": "admin", "password": "yourpassword"}'
+```
+
+### Refresh Token
+
+```http
+POST /api/auth/refresh
+```
+
+Refresh an expired or near-expiry token. Tokens can be refreshed for up to 1 hour after expiry (grace period).
+
+**Response:**
+
+```json
+{
+	"token": "eyJhbGciOiJIUzI1NiIs...",
+	"expires_at": "2026-02-04T14:30:00Z"
+}
+```
+
+## Channels
+
+### List Channels
+
+```http
+GET /api/channels
+```
+
+**Response:**
+
+```json
+{
+	"channels": [
+		{
+			"id": "ch_abc123",
+			"platform": "twitch",
+			"name": "shroud",
+			"enabled": true,
+			"quality": "source",
+			"status": "offline"
+		}
+	]
+}
+```
+
+### Get Channel
+
+```http
+GET /api/channels/{id}
+```
+
+### Add Channel
+
+```http
+POST /api/channels
+```
+
+**Body:**
+
+```json
+{
+	"platform": "twitch",
+	"name": "shroud",
+	"quality": "source",
+	"enabled": true
+}
+```
+
+### Update Channel
+
+```http
+PATCH /api/channels/{id}
+```
+
+**Body:**
+
+```json
+{
+	"quality": "1080p60",
+	"enabled": false
+}
+```
+
+### Delete Channel
+
+```http
+DELETE /api/channels/{id}
+```
+
+### Check Channel Live Status
+
+```http
+POST /api/channels/{id}/check
+```
+
+Trigger an immediate live check for a channel.
+
+### Stop Channel Recording
+
+```http
+POST /api/channels/{id}/stop-recording
+```
+
+Stop an active recording and pause the channel.
+
+### Channel Images
+
+#### Get Channel Profile
+
+```http
+GET /api/channels/{id}/profile
+```
+
+Returns channel profile data including image URLs.
+
+#### Fetch Platform Images
+
+```http
+POST /api/channels/{id}/images/fetch-platform
+```
+
+Re-download profile and banner images from the streaming platform.
+
+#### Profile Image
+
+```http
+GET /api/channels/{id}/images/profile
+POST /api/channels/{id}/images/profile
+DELETE /api/channels/{id}/images/profile
+```
+
+Get, upload (multipart), or delete the custom profile image.
+
+#### Banner Image
+
+```http
+GET /api/channels/{id}/images/banner
+POST /api/channels/{id}/images/banner
+DELETE /api/channels/{id}/images/banner
+```
+
+Get, upload (multipart), or delete the custom banner image.
+
+## Recordings
+
+### List Recordings
+
+```http
+GET /api/recordings
+```
+
+**Query Parameters:**
+| Parameter | Description |
+|-----------|-------------|
+| `channel` | Filter by channel ID |
+| `platform` | Filter by platform |
+| `status` | Filter by status |
+| `from` | Start date (ISO 8601) |
+| `to` | End date (ISO 8601) |
+| `limit` | Results per page (default: 50) |
+| `offset` | Pagination offset |
+
+**Response:**
+
+```json
+{
+	"recordings": [
+		{
+			"id": "rec_xyz789",
+			"channel_id": "ch_abc123",
+			"channel_name": "shroud",
+			"platform": "twitch",
+			"title": "Valorant Ranked",
+			"status": "complete",
+			"started_at": "2026-02-02T14:30:00Z",
+			"duration": 10800,
+			"file_size": 5368709120,
+			"file_path": "/recordings/shroud/2026-02-02_Valorant Ranked.mp4"
+		}
+	],
+	"total": 150,
+	"limit": 50,
+	"offset": 0
+}
+```
+
+### Get Recording
+
+```http
+GET /api/recordings/{id}
+```
+
+### Delete Recording
+
+```http
+DELETE /api/recordings/{id}
+```
+
+**Query Parameters:**
+| Parameter | Description |
+|-----------|-------------|
+| `delete_file` | Also delete the file (default: true) |
+
+### Re-process Recording
+
+```http
+POST /api/recordings/{id}/reprocess
+```
+
+## Active Recordings
+
+### List Active
+
+```http
+GET /api/recordings/active
+```
+
+**Response:**
+
+```json
+{
+	"active": [
+		{
+			"id": "rec_active123",
+			"channel_name": "shroud",
+			"platform": "twitch",
+			"title": "Valorant Ranked",
+			"started_at": "2026-02-02T14:30:00Z",
+			"duration": 3600,
+			"segments": 720,
+			"quality": "1080p60"
+		}
+	]
+}
+```
+
+### Stop Recording
+
+```http
+POST /api/recordings/{id}/stop
+```
+
+### Pause Recording
+
+```http
+POST /api/recordings/{id}/pause
+```
+
+### Resume Recording
+
+```http
+POST /api/recordings/{id}/resume
+```
+
+## Storage
+
+### Get Storage Info
+
+```http
+GET /api/storage
+```
+
+**Response:**
+
+```json
+{
+	"total_used": 107374182400,
+	"total_available": 536870912000,
+	"quota": 214748364800,
+	"quota_used_percent": 50,
+	"by_channel": {
+		"ch_abc123": 53687091200
+	}
+}
+```
+
+### Trigger Cleanup
+
+```http
+POST /api/storage/cleanup
+```
+
+Runs retention policies immediately.
+
+## Settings
+
+### Get Settings
+
+```http
+GET /api/settings
+```
+
+### Update Settings
+
+```http
+PATCH /api/settings
+```
+
+**Body:**
+
+```json
+{
+	"output_directory": "/new/path",
+	"max_concurrent_recordings": 5
+}
+```
+
+## System
+
+### Health Check
+
+```http
+GET /api/health
+```
+
+**Response:**
+
+```json
+{
+	"status": "healthy",
+	"version": "1.0.0",
+	"uptime": 86400
+}
+```
+
+### Logs
+
+```http
+GET /api/logs
+```
+
+**Query Parameters:**
+| Parameter | Description |
+|-----------|-------------|
+| `level` | Filter by level (error, warn, info, debug) |
+| `from` | Start timestamp |
+| `to` | End timestamp |
+| `limit` | Results per page |
+
+### System Dependencies
+
+```http
+GET /api/system/dependencies
+```
+
+Check status of system dependencies (FFmpeg, Bun, yt-dlp).
+
+## Platform Authentication
+
+```http
+GET /api/auth/platforms
+GET /api/auth/platforms/{platform}
+PUT /api/auth/platforms/{platform}
+DELETE /api/auth/platforms/{platform}
+POST /api/auth/platforms/{platform}/test
+POST /api/auth/platforms/{platform}/oauth/start
+POST /api/auth/platforms/{platform}/oauth/callback
+POST /api/auth/platforms/youtube/cookies
+GET /api/auth/platforms/oauth/availability
+```
+
+Manage platform authentication credentials, OAuth flows, and YouTube cookie uploads.
+
+## Graceful Shutdown (Local-Only)
+
+```http
+POST /api/shutdown
+```
+
+Gracefully shut down the daemon. Only available in local-only mode (desktop sidecar).
+
+## WebSocket
+
+Connect for real-time updates:
+
+```javascript
+const ws = new WebSocket("ws://localhost:8080/api/ws");
+
+ws.onopen = () => {
+	// Authenticate
+	ws.send(
+		JSON.stringify({
+			type: "auth",
+			token: "YOUR_API_KEY"
+		})
+	);
+};
+
+ws.onmessage = (event) => {
+	const message = JSON.parse(event.data);
+	console.log(message);
+};
+```
+
+### Event Types
+
+| Event                   | Description                            |
+| ----------------------- | -------------------------------------- |
+| `connected`             | Initial connection with full state     |
+| `channel_status`        | Channel status changed                 |
+| `channel_error`         | Channel encountered an error           |
+| `recording_started`     | New recording began                    |
+| `segment_downloaded`    | Segment captured                       |
+| `recording_ended`       | Recording finished                     |
+| `processing_started`    | Post-processing began                  |
+| `processing_progress`   | Processing progress update             |
+| `processing_complete`   | Processing finished successfully       |
+| `processing_failed`     | Processing encountered error           |
+| `schedule_skip`         | Stream skipped due to schedule         |
+| `filter_skip`           | Stream skipped due to content filters  |
+| `quota_skip`            | Stream skipped due to storage quota    |
+| `quota_status_changed`  | Channel quota status changed           |
+| `disk_warning`          | Disk space warning threshold exceeded  |
+| `config_reloaded`       | Configuration file reloaded            |
+| `platform_auth_updated` | Platform auth connected or refreshed   |
+| `platform_auth_expired` | Platform auth expired (refresh failed) |
+
+### Event Payload
+
+```json
+{
+	"type": "recording.started",
+	"timestamp": "2026-02-02T14:30:00Z",
+	"data": {
+		"id": "rec_xyz789",
+		"channel": "shroud",
+		"platform": "twitch",
+		"title": "Valorant Ranked"
+	}
+}
+```
+
+### Subscribe to Channels
+
+Filter events by channel:
+
+```json
+{
+	"type": "subscribe",
+	"channels": ["ch_abc123", "ch_def456"]
+}
+```
+
+### Unsubscribe
+
+```json
+{
+	"type": "unsubscribe",
+	"channels": ["ch_abc123"]
+}
+```
+
+## Error Responses
+
+All errors return consistent format:
+
+```json
+{
+	"error": {
+		"code": "CHANNEL_NOT_FOUND",
+		"message": "Channel with ID ch_invalid does not exist"
+	}
+}
+```
+
+### Error Codes
+
+| Code               | HTTP Status | Description              |
+| ------------------ | ----------- | ------------------------ |
+| `UNAUTHORIZED`     | 401         | Missing or invalid auth  |
+| `FORBIDDEN`        | 403         | Insufficient permissions |
+| `NOT_FOUND`        | 404         | Resource not found       |
+| `VALIDATION_ERROR` | 400         | Invalid request body     |
+| `CONFLICT`         | 409         | Resource already exists  |
+| `INTERNAL_ERROR`   | 500         | Server error             |
+
+## Rate Limiting
+
+| Endpoint            | Limit       |
+| ------------------- | ----------- |
+| **Auth endpoints**  | 10 req/min  |
+| **Read endpoints**  | 100 req/min |
+| **Write endpoints** | 30 req/min  |
+
+Rate limit headers:
+
+- `X-RateLimit-Limit`: Max requests
+- `X-RateLimit-Remaining`: Remaining requests
+- `X-RateLimit-Reset`: Reset timestamp

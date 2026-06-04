@@ -1,0 +1,101 @@
+---
+title: "Joining a League"
+description: "Apply with your team to join a competitive league"
+---
+
+Teams join leagues through an application process. League staff reviews each application and decides whether to approve or deny it.
+
+## Prerequisites
+
+Before applying, make sure you have:
+
+- An existing **team** for the game the league supports
+- **Captain** or **Co-Captain** role on that team
+- Your team is not currently banned from the league
+
+<Note>You apply as a team - not as an individual player. Each team applies separately.</Note>
+
+## Applying to Join
+
+{/*
+IMAGE NEEDED: League join application form
+Type: screenshot
+Shows: The team application form with message field
+Notes: Use dark theme
+*/}
+
+### Button states
+
+The "Apply to Join" button on a league profile renders in one of four states, based on the viewer and their teams:
+
+1. **Hidden** when you are already part of the league. This covers three cases: you hold a league membership (owner, admin, manager, member), you are a staff viewer for this league, or one of your teams is already approved here.
+2. **Apply to Join (enabled)** when at least one of your teams is eligible to apply. Clicking opens the apply dialog.
+3. **Application Pending (disabled)** when one of your teams already has a pending application to this league and you have no other eligible team.
+4. **Disabled with tooltip** otherwise. The tooltip reads "No eligible team for this league" if you are logged in, or "Log in to apply" if you are not.
+
+<Note>While the eligibility query is loading, the button shows the "Apply to Join" label in a disabled state. It resolves into one of the four states above once data arrives.</Note>
+
+### Eligibility
+
+The profile's eligibility query returns four pieces of information about you: whether you are signed in, whether you already have a team approved in this league, the list of your teams with a pending application here, and the list of your teams that are eligible to apply.
+
+A team of yours is eligible to apply to this league when **all** of the following are true:
+
+- You are the team's **captain** or **co-captain** (up to 50 of your active leader memberships are scanned).
+- The team is **active and not disabled** (admin- or org-disabled teams are excluded).
+- The league **actively supports** the team's game.
+- The team holds **no approved league standing anywhere** and **no pending application** in this league.
+
+<Steps>
+	<Step title="Visit the League Profile">
+		Navigate to the league's profile page. You can find leagues through the [Discover page](/leagues/discover). Each league profile page has a join/apply button for eligible teams.
+	</Step>
+	<Step title="Click Apply to Join">
+		Click the "Apply" or "Join" button on the league profile page. This button appears directly on the profile when you have an eligible team.
+	</Step>
+	<Step title="Select Your Team">
+		Choose which of your teams you want to register. The team must be for a game the league supports.
+	</Step>
+	<Step title="Write an Application Message (Optional)">
+		Add a message to your application. This helps league staff understand your team and why you want to join. Messages are capped at **500 characters**.
+	</Step>
+	<Step title="Submit">
+		Submit your application. Your team's status will be set to **Pending** while league staff reviews it.
+	</Step>
+</Steps>
+
+<Note>Ban, cooldown, team-limit, and game-mismatch errors are **not** reflected in the button state. They are checked at submit time by the apply mutation and surface as toast errors on the dialog. If you see the button as enabled but cannot submit, the toast explains why.</Note>
+
+## Application Review
+
+After you submit, league staff (Owners, Admins, or Managers) will review your application. There are three possible outcomes:
+
+| Outcome      | What Happens                                                        |
+| ------------ | ------------------------------------------------------------------- |
+| **Approved** | Your team is added to the league and can start competing            |
+| **Denied**   | Your application is rejected. A reason may be provided.             |
+| **Withdrawn**| You cancel your own application before a decision is made           |
+
+<Tip>If your application is denied, check the denial reason. You may be able to address the issue and reapply.</Tip>
+
+## Leaving a League
+
+A team captain can choose to leave a league at any time. When a team leaves:
+
+- The team's status changes to **Left**
+- Season stats are preserved but the team no longer appears in active standings
+- A cooldown may apply before rejoining
+
+## Cooldowns After Leaving
+
+Leagues enforce cooldown periods to prevent teams from repeatedly leaving and rejoining. There are three types of cooldowns:
+
+| Cooldown Type   | Trigger                     | Description                                             |
+| --------------- | --------------------------- | ------------------------------------------------------- |
+| **Self-leave**  | Team voluntarily leaves     | A waiting period before the team can rejoin              |
+| **Kicked**      | Team removed by league staff| A waiting period after being removed                    |
+| **Manual**      | Set by league staff         | A custom cooldown issued directly by an admin or manager |
+
+Leagues can also enable a **repeat leave penalty** - each successive leave multiplies the cooldown duration, up to a configured maximum.
+
+<Note>Cooldown durations are configured by the league. Each league may have different cooldown settings.</Note>

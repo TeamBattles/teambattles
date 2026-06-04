@@ -1,0 +1,83 @@
+---
+title: "Managing Seasons"
+description: "Create and manage competitive seasons for your league"
+---
+
+Seasons divide league competition into distinct time periods. Each season tracks its own standings, stats, and leaderboards independently.
+
+## Season States
+
+A season progresses through three states:
+
+| State         | Description                                                                       |
+| ------------- | --------------------------------------------------------------------------------- |
+| **UPCOMING**  | The season has been created but is not yet active. No stats are tracked.           |
+| **ACTIVE**    | The season is live. Match results award points and update standings.               |
+| **COMPLETED** | The season has ended. Standings are finalized and no new points are awarded.       |
+
+<Note>Only one season per game can be active at a time. You must complete the current season before activating a new one.</Note>
+
+## Creating a Season
+
+{/*
+IMAGE NEEDED: Create season form
+Type: screenshot
+Shows: Season creation dialog with name and date fields
+Notes: Use dark theme
+*/}
+
+<Steps>
+	<Step title="Go to the Competition Tab">
+		Open your league's admin panel and navigate to the **Competition** tab.
+	</Step>
+	<Step title="Select the Game">
+		Choose which game this season is for using the game selector.
+	</Step>
+	<Step title="Click Create Season">
+		Find the Seasons section and click the create button.
+	</Step>
+	<Step title="Enter Season Details">
+		- **Name** - A descriptive name (e.g., "Season 1", "Summer 2026")
+		- **Start date** - When the season is scheduled to begin
+		- **End date** - When the season is scheduled to end
+	</Step>
+	<Step title="Save">
+		The season is created in the **UPCOMING** state. It will not track any stats until activated.
+	</Step>
+</Steps>
+
+## Activating a Season
+
+When you are ready to start tracking stats, activate the season:
+
+1. Find the season in the Competition tab
+2. Click **Activate**
+3. The season moves to **ACTIVE** and all future match results for that game will award points under this season
+
+<Tip>You can create a season ahead of time and activate it later when you are ready to begin competition.</Tip>
+
+Any matches played before a season is activated are tracked as **preseason** stats (see below).
+
+## Completing a Season
+
+When a season ends:
+
+1. Navigate to the active season in the Competition tab
+2. Click **Complete**
+3. The season moves to **COMPLETED** and standings are finalized
+
+After completion:
+
+- The season's leaderboard becomes a permanent historical record
+- No further points are awarded under this season
+- You can create and activate a new season for the next period
+
+## Preseason Stats
+
+Matches played when no season is active are tracked as **preseason** stats. Preseason stats:
+
+- Still award and deduct points using the league's points configuration
+- Appear in the leaderboard under the "Preseason" option in the season selector
+- Are tracked separately from named seasons - they do not carry over
+
+<Note>Preseason is useful for letting teams warm up or test the league's rule settings before an official season begins.</Note>

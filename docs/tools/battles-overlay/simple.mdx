@@ -1,0 +1,91 @@
+---
+title: "Simple Overlay"
+description: "Add your game rank to your stream in seconds with no account required"
+---
+
+The Simple Overlay is a lightweight, no-account-required way to display your game rank on stream. No API key, no login - just select your game, enter your details, and get a URL.
+
+Access it at [/overlay/simple](https://teambattles.gg/overlay/simple).
+
+## Quick Start
+
+<Steps>
+	<Step title="Select your game">
+		Choose from the supported games: Call of Duty: Black Ops 7, Valorant, or League of Legends. Then
+		pick your game mode.
+	</Step>
+	<Step title="Enter your details">
+		Fill in your username and configure the appearance: layout style, orientation, theme, animation,
+		and scale. For manual games (BO7), enter your SR. For API games (Valorant, LoL), select your
+		region.
+	</Step>
+	<Step title="Copy your URL">
+		Your overlay URL is generated automatically. Copy it and add it as a Browser Source in your
+		streaming software.
+	</Step>
+</Steps>
+
+## Supported Games
+
+| Game                      | Source | Modes                       |
+| ------------------------- | ------ | --------------------------- |
+| Call of Duty: Black Ops 7 | Manual | Ranked Play, Warzone Ranked |
+| Valorant                  | API    | Competitive                 |
+| League of Legends         | API    | Solo/Duo, Flex              |
+
+- **Manual** games use the SR value you enter directly in the form.
+- **API** games fetch your rank from the Riot Games API using your username and region.
+
+## Configuration Options
+
+| Option      | Values                    | Default    |
+| ----------- | ------------------------- | ---------- |
+| Layout      | Rounded, Angular, Minimal | Rounded    |
+| Orientation | Horizontal, Vertical      | Horizontal |
+| Theme       | Dark, Light               | Dark       |
+| Animated    | On, Off                   | On         |
+| Scale       | 0.5x - 2.0x               | 1.0x       |
+
+## URL Parameters
+
+The render URL accepts the following query parameters:
+
+| Parameter     | Required | Description                            | Example                   |
+| ------------- | -------- | -------------------------------------- | ------------------------- |
+| `game`        | Yes      | Game short ID                          | `val`, `lol`, `bo7`       |
+| `mode`        | Yes      | Game mode ID                           | `competitive`, `solo_duo` |
+| `username`    | Yes      | Your in-game name                      | `Player%23NA1`            |
+| `layout`      | No       | Widget style type                      | `rounded`                 |
+| `orientation` | No       | Widget orientation                     | `horizontal`              |
+| `theme`       | No       | Color theme                            | `dark`                    |
+| `animated`    | No       | Enable animation effects               | `true`                    |
+| `scale`       | No       | Size multiplier                        | `1`                       |
+| `sr`          | No       | Skill Rating (manual games only)       | `2500`                    |
+| `winstreak`   | No       | Current winstreak count (manual games) | `5`                       |
+| `region`      | No       | Player region (API games)              | `NA`                      |
+| `platform`    | No       | Player platform (API games)            | `pc`                      |
+
+## Data Refresh
+
+- **Manual games (BO7):** Data comes from the URL parameters and does not refresh automatically. Update the URL to change your SR.
+- **API games (Valorant, LoL):** Data refreshes every **5 minutes** (300 seconds) by polling the API.
+
+## Simple Overlay vs Full Editor
+
+| Feature                 | Simple Overlay | Full Editor        |
+| ----------------------- | -------------- | ------------------ |
+| Account required        | No             | Yes                |
+| API key required        | No             | No                 |
+| Widgets per overlay     | 1              | 7+ core + game     |
+| Custom accent colors    | No             | Yes                |
+| Custom color overrides  | No             | Yes                |
+| Refresh interval        | 5 minutes      | 30-300 seconds     |
+| Watermark               | Always shown   | Removable (Basic+) |
+| Drag-and-drop editor    | No             | Yes                |
+| Multiple configurations | No             | Up to 5            |
+
+<Tip>
+	The Simple Overlay is perfect for a quick setup. If you want faster refresh rates, multiple
+	widgets, custom colors, or watermark removal, use the [full overlay
+	editor](/tools/battles-overlay/editor).
+</Tip>

@@ -1,0 +1,61 @@
+---
+title: SDKs Overview
+description: Official, auto-generated TeamBattles API client SDKs for eight languages, regenerated from the OpenAPI spec on every API change.
+---
+
+The TeamBattles SDKs are strongly-typed, fully-documented client libraries for the [public developer API](/developers). They are generated with [Microsoft Kiota](https://learn.microsoft.com/en-us/openapi/kiota/) directly from the API's OpenAPI 3.1 specification, so they never drift from the live contract - every API change regenerates the spec and all eight SDKs together.
+
+Each SDK ships a one-line `createTeamBattlesClient(apiKey)` factory that wires bearer-token authentication, so you can make your first authenticated call in a few lines.
+
+## Supported languages
+
+Stable languages are fully supported. Preview languages depend on Kiota runtime packages that are still pre-release, so their generated output may lag behind.
+
+| Language                       | Package               | Registry      | Maturity |
+| ------------------------------ | --------------------- | ------------- | -------- |
+| [Python](/sdks/python)         | `teambattles-sdk`     | PyPI          | Stable   |
+| [C#](/sdks/csharp)             | `TeamBattles.Sdk`     | NuGet         | Stable   |
+| [Go](/sdks/go)                 | `sdk-go`              | Go modules    | Stable   |
+| [Java](/sdks/java)             | `gg.teambattles:sdk`  | Maven Central | Stable   |
+| [PHP](/sdks/php)               | `teambattles/sdk`     | Packagist     | Stable   |
+| [TypeScript](/sdks/typescript) | `@teambattles/sdk`    | npm           | Preview  |
+| [Ruby](/sdks/ruby)             | `teambattles_sdk`     | RubyGems      | Preview  |
+| [Dart](/sdks/dart)             | `teambattles_sdk`     | pub.dev       | Preview  |
+
+## Install and first call
+
+Every SDK follows the same shape: install the package, create a client with your API key, then call an endpoint. For example, in TypeScript:
+
+```bash
+npm install @teambattles/sdk
+```
+
+```ts
+import { createTeamBattlesClient } from "@teambattles/sdk";
+
+const client = createTeamBattlesClient(process.env.TEAMBATTLES_API_KEY!);
+
+// List the authenticated user's matches (requires matches.user_matches: read)
+const result = await client.user.matches.post({ numItems: 25 });
+for (const match of result?.page ?? []) {
+	console.log(match.id, match.status);
+}
+```
+
+See each language page for the install command and an authenticated first-call snippet.
+
+## Authentication
+
+All SDKs authenticate with an API key sent as a bearer token:
+
+```
+Authorization: Bearer tb_<your-key>
+```
+
+Create and manage keys at [Settings > Developer](https://teambattles.gg/settings/developer), and review the scopes in the [authentication guide](/developers/authentication). Listing the authenticated user's matches requires the `matches.user_matches: read` scope.
+
+Errors return a JSON body of the form `{ "error": "<machine_code>", "details": "<optional message>" }`. Treat the `error` machine code - not the `details` message - as the stable programmatic contract.
+
+## How the SDKs stay in sync
+
+The SDKs are not hand-written. The API's route code is the source of truth: it produces the [OpenAPI specification](/developers/api-reference), and Kiota regenerates all eight clients from that spec on every API change. This keeps types, models, and doc-comments aligned with the live API.

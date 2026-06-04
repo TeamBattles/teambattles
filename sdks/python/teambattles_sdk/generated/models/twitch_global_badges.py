@@ -1,0 +1,57 @@
+from __future__ import annotations
+from collections.abc import Callable
+from dataclasses import dataclass, field
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from typing import Any, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from .twitch_badge_set import TwitchBadgeSet
+
+@dataclass
+class TwitchGlobalBadges(Parsable):
+    """
+    Global Twitch chat badges.
+    """
+    # Global Twitch chat badge sets.
+    badges: Optional[list[TwitchBadgeSet]] = None
+    # Response generation time (ISO 8601).
+    timestamp: Optional[str] = None
+    
+    @staticmethod
+    def create_from_discriminator_value(parse_node: ParseNode) -> TwitchGlobalBadges:
+        """
+        Creates a new instance of the appropriate class based on discriminator value
+        param parse_node: The parse node to use to read the discriminator value and create the object
+        Returns: TwitchGlobalBadges
+        """
+        if parse_node is None:
+            raise TypeError("parse_node cannot be null.")
+        return TwitchGlobalBadges()
+    
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
+        """
+        The deserialization information for the current model
+        Returns: dict[str, Callable[[ParseNode], None]]
+        """
+        from .twitch_badge_set import TwitchBadgeSet
+
+        from .twitch_badge_set import TwitchBadgeSet
+
+        fields: dict[str, Callable[[Any], None]] = {
+            "badges": lambda n : setattr(self, 'badges', n.get_collection_of_object_values(TwitchBadgeSet)),
+            "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
+        }
+        return fields
+    
+    def serialize(self,writer: SerializationWriter) -> None:
+        """
+        Serializes information the current object
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
+        """
+        if writer is None:
+            raise TypeError("writer cannot be null.")
+        writer.write_collection_of_object_values("badges", self.badges)
+        writer.write_str_value("timestamp", self.timestamp)
+    
+

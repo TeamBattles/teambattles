@@ -1,0 +1,61 @@
+---
+title: "Game Stats"
+description: "Track and display your competitive ranks across supported games"
+---
+
+Game Stats lets you track your competitive rank for supported games and display it on your stream overlay. Access it at **Settings > Game Stats**.
+
+## Supported Games
+
+| Game                      | Source | Modes                       | Rank System                             |
+| ------------------------- | ------ | --------------------------- | --------------------------------------- |
+| Call of Duty: Black Ops 7 | Manual | Ranked Play, Warzone Ranked | SR-based (Bronze through Top 250)       |
+| Valorant                  | API    | Competitive                 | Tier-based (Iron 1 through Radiant)     |
+| League of Legends         | API    | Solo/Duo, Flex              | Tier-based (Iron IV through Challenger) |
+
+- **Manual** games require you to enter your Skill Rating (SR) directly.
+- **API** games sync your rank automatically from the Riot Games API.
+
+## Setting Up Manual Ranks (BO7)
+
+<Steps>
+	<Step title="Go to Game Stats">Navigate to **Settings > Game Stats**</Step>
+	<Step title="Select game and mode">Choose Call of Duty: Black Ops 7 and your preferred mode (Ranked Play or Warzone Ranked)</Step>
+	<Step title="Enter your SR">Type your current Skill Rating. A live preview shows your rank badge, tier name, and progress bar.</Step>
+</Steps>
+
+## Setting Up API Ranks (Valorant, LoL)
+
+<Steps>
+	<Step title="Connect Riot Games">Go to **Settings > Connections** and connect your Riot Games account if you haven't already</Step>
+	<Step title="Go to Game Stats">Navigate to **Settings > Game Stats**</Step>
+	<Step title="Select game and mode">Choose Valorant or League of Legends and your preferred mode</Step>
+	<Step title="Sync your rank">Click **Sync** to fetch your current rank from the Riot API. Your rank badge, tier, and rating will appear automatically.</Step>
+</Steps>
+
+<Note>
+	API rank data is cached for 15 minutes. If you click Sync again within that window, the cached
+	data is returned. After 15 minutes, a fresh fetch is performed.
+</Note>
+
+## What's Displayed
+
+Each game rank shows:
+
+- **Rank badge** - The official rank icon for your tier
+- **Tier name** - Your current rank (e.g., "Diamond 2", "Gold I")
+- **Rating** - SR for BO7, RR (Rating Rating) for Valorant, LP (League Points) for LoL
+- **Progress bar** - Visual progress toward the next rank tier
+- **Peak rank** (Valorant only) - Your highest achieved rank
+
+## Displaying Ranks on Stream
+
+Once your rank data is set, you can display it on your stream using the overlay:
+
+1. **Full overlay editor** - Enable game widgets in the [Overlay Editor](/tools/battles-overlay/editor) under the "Game Specific" tab
+2. **Simple overlay** - Use the [Simple Overlay](/tools/battles-overlay/simple) for a quick, no-account-required setup
+
+<Tip>
+	Game rank widgets support animation effects (like winstreak flames) and horizontal or vertical
+	orientation. Configure these in the overlay editor's style controls.
+</Tip>

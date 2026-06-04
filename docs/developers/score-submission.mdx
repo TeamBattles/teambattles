@@ -1,0 +1,178 @@
+---
+title: Score Submission
+description: Submit match scores programmatically using the TeamBattles API for both captain and game developer flows.
+---
+
+## Overview
+
+TeamBattles supports two score submission flows:
+
+1. **Captain Score Submission** - Team captains submit scores on behalf of their team
+2. **Game Developer Score Submission** - Game servers submit verified scores directly
+
+Both flows use the same base endpoint but differ in authentication and auto-confirmation behavior.
+
+## Captain Score Submission
+
+Captains submit scores for their team. The opposing team must confirm the score.
+
+### Submit Score
+
+```bash
+POST /api/v1/matches/{matchId}/scores
+```
+
+**Headers:**
+
+```
+Authorization: Bearer tb_your_api_key
+Content-Type: application/json
+```
+
+**Body:**
+
+```json
+{
+	"mapIndex": 0,
+	"mapId": "dust2",
+	"creatorTeamScore": 13,
+	"opponentTeamScore": 7,
+	"screenshotUrls": ["https://example.com/screenshot.png"]
+}
+```
+
+| Field               | Type     | Required | Description                  |
+| ------------------- | -------- | -------- | ---------------------------- |
+| `mapIndex`          | number   | Yes      | Zero-based map index         |
+| `mapId`             | string   | Yes      | Map identifier string        |
+| `creatorTeamScore`  | number   | Yes      | Creator team's score (>= 0)  |
+| `opponentTeamScore` | number   | Yes      | Accepted team's score (>= 0) |
+| `screenshotUrls`    | string[] | No       | Array of screenshot URLs     |
+
+**Response:**
+
+```json
+{
+	"success": true,
+	"action": "submitted",
+	"mapIndex": 0,
+	"scoreStatus": "PENDING"
+}
+```
+
+### Confirm Score
+
+The opposing team's captain confirms a submitted score using PATCH on the same endpoint.
+
+```bash
+PATCH /api/v1/matches/{matchId}/scores
+```
+
+**Body:**
+
+```json
+{
+	"mapIndex": 0
+}
+```
+
+**Response:**
+
+```json
+{
+	"success": true,
+	"action": "confirmed",
+	"mapIndex": 0,
+	"scoreStatus": "CONFIRMED"
+}
+```
+
+### Get Scores
+
+Retrieve all map scores for a match, including series score summary.
+
+```bash
+GET /api/v1/matches/{matchId}/scores
+```
+
+**Response:**
+
+```json
+{
+	"scores": [
+		{
+			"mapIndex": 0,
+			"mapId": "dust2",
+			"creatorTeamScore": 13,
+			"opponentTeamScore": 7,
+			"screenshotUrls": [],
+			"scoreStatus": "CONFIRMED",
+			"submittedBy": { "userId": "...", "teamId": "...", "name": "Player" },
+			"confirmedBy": { "userId": "...", "teamId": "...", "confirmedAt": "..." },
+			"createdAt": "2024-01-15T12:00:00.000Z"
+		}
+	],
+	"seriesScore": {
+		"creatorMapWins": 1,
+		"opponentMapWins": 0
+	},
+	"timestamp": "2024-01-15T12:30:00.000Z"
+}
+```
+
+## Game Developer Score Submission
+
+<Note>
+	Requires Game Developer approval for the specific game. Scores submitted via this endpoint are
+	automatically confirmed.
+</Note>
+
+### Submit Verified Score
+
+```bash
+POST /api/v1/game/matches/{matchId}/scores
+```
+
+**Headers:**
+
+```
+Authorization: Bearer tb_your_game_api_key
+Content-Type: application/json
+```
+
+**Body:**
+
+```json
+{
+	"scores": {
+		"team_123": 250,
+		"team_456": 180
+	},
+	"metadata": {
+		"map": "dust2",
+		"duration": 2400,
+		"rounds": 24
+	}
+}
+```
+
+**Response:**
+
+```json
+{
+	"success": true,
+	"scoreId": "score_789",
+	"status": "CONFIRMED",
+	"autoConfirmed": true
+}
+```
+
+### Key Differences
+
+| Feature             | Captain Submission                 | Game Developer Submission |
+| ------------------- | ---------------------------------- | ------------------------- |
+| Authentication      | User API key                       | Game developer API key    |
+| Auto-confirmation   | No (requires opponent)             | Yes                       |
+| Metadata support    | No                                 | Yes                       |
+| Game scope          | Any                                | Approved games only       |
+| Permission required | `matches.team_matches: read-write` | `game.scores: write`      |

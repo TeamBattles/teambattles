@@ -1,0 +1,79 @@
+---
+title: "League Administration"
+description: "Managing your league through the admin panel"
+---
+
+The league admin panel gives league staff the tools to manage every aspect of their league. Access the admin panel from your league's profile page.
+
+<Note>Your access level depends on your [league role](/leagues#league-roles). Owners and Admins have full access, while Managers and Members have limited permissions.</Note>
+
+## Dashboard
+
+{/*
+IMAGE NEEDED: League admin dashboard
+Type: screenshot
+Shows: Dashboard with stat cards and activity feed
+Notes: Use dark theme
+*/}
+
+The dashboard provides an at-a-glance overview:
+
+- **Stat cards** - Total teams, active season info, pending applications, recent matches
+- **Activity feed** - A chronological log of all admin actions (team approvals, penalties, setting changes, etc.)
+
+## Competition
+
+The Competition tab manages the competitive structure of your league:
+
+- **Seasons** - Create, activate, and complete seasons. See [Managing Seasons](/leagues/seasons) for details.
+- **Rules** - Configure enforced game rules per game (playlists, maps, team size, scheduling, etc.)
+- **Display Rules** - Add informational guidelines shown on the league's rules page
+- **Points Configuration** - Customize point values for wins, losses, draws, streaks, and challenge bonuses
+
+<Tip>Each game in your league has its own rules and points configuration. Switch between games using the game selector.</Tip>
+
+<Note>
+	**Roster lock toggle and tier gating.** The roster-lock setting on a league's game rules is visible to every league admin, including free-tier owners. The tier gate only fires when you try to **turn an enabled roster lock off** - that is, the `true -> false` transition. Both the rules update path and the template-apply path enforce this; if the current rules have `rosterLockEnabled: true` and you save with it disabled, the save is blocked with a toast and no fields are written. The same gate applies when applying a rules template whose `rosterLockEnabled` is `false` over existing rules where it is `true`. The underlying feature is **midWeekRosterUpdate**, which is Premium-only. All other fields on the rules form remain editable for any tier.
+</Note>
+
+## Challenge configuration
+
+Challenge-specific knobs (the cancel grace-period override, scrimmage point eligibility, and forfeit/refuse penalty overrides) live on the league's points configuration alongside the points engine. See the [Challenge System](/challenges) docs for what each setting controls and how it interacts with default challenge rules:
+
+- `challengeCancelGracePeriodHours` - override how long after acceptance challenged teams may cancel without penalty
+- `scrimmageAwardsPoints` - whether challenge matches outside an active season award league points
+- Forfeit and refuse penalty overrides - tune the point deductions a team incurs for forfeiting or refusing a challenge match
+
+## Management
+
+The Management tab handles teams and staff:
+
+- **Teams** - View all teams by status (pending, approved, removed). Approve or deny applications, remove teams, and issue bans.
+- **Staff** - Invite new staff members, change roles, and remove staff. Transfer league ownership.
+- **Penalties** - Issue point deductions, match forfeits, or warnings to teams
+- **Cooldowns** - View and manage team cooldowns. Clear cooldowns or issue manual ones.
+
+## Settings
+
+The Settings tab controls the league's identity and configuration:
+
+- **Branding** - Update league name, description, avatar, and banner
+- **Social Links** - Add or edit social media links (Discord, Twitter, etc.)
+- **Games** - Add or remove supported games, toggle game active status
+- **Cooldown Config** - Set self-leave and kick cooldown durations, enable repeat leave penalties
+- **Status** - Request league shutdown (requires TeamBattles staff approval)
+
+## Support
+
+{/*
+IMAGE NEEDED: League support ticket queue
+Type: screenshot
+Shows: Support ticket list in admin panel
+Notes: Use dark theme
+*/}
+
+The Support tab provides a ticket queue for handling team inquiries and disputes. League staff can:
+
+- View and respond to support tickets
+- Assign tickets to specific staff members
+- Track ticket status and resolution

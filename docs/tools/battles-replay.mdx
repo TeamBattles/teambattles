@@ -1,0 +1,577 @@
+---
+title: "Battles Replay"
+description: "Download VODs, record live streams, and replay chat from Twitch, Kick, and 1000+ sites"
+---
+
+A browser extension for downloading Twitch and Kick VODs, recording live streams, replaying chat, and downloading from 1000+ sites via Battles Record integration. Local processing in your browser or remote downloads through the Battles Record desktop app.
+
+## Features
+
+<Note>
+	All features work on both **Twitch** and **Kick** streaming platforms unless otherwise noted.
+	Battles Record integration enables downloads from 1000+ additional sites.
+</Note>
+
+### VOD Downloads
+
+- **Download full VODs** - Save entire broadcasts in one click
+- **Custom time ranges** - Clip specific segments with precise start/end times
+- **Unpublished VOD discovery** - Find and download VODs that streamers haven't made public yet _(Twitch only)_
+- **Multiple formats** - Export as MP4, MKV, TS, or MP3 (audio only)
+- **Quality selection** - Choose from Source, 1080p, 720p, 480p, 360p, or Audio Only
+- **Download queue** - Queue multiple downloads and track progress
+
+### Live Stream Recording
+
+- **Rolling buffer** - Continuously buffers the last 10 minutes to 5 hours of a live stream
+- **Create clips** - Save specific moments from the buffer (up to 30 minutes)
+- **Save full buffer** - Download the entire buffer when the stream ends
+- **Ad-free playback** - CDN bypass module for ad-free live stream playback with automatic commercial skipping
+- **Auto quality with adaptive bitrate** - Streams default to Auto quality; HLS.js selects optimal quality based on bandwidth with dynamic indicator (e.g. "Auto (720p60)")
+- **In-player quality selector** - Gear icon in player controls opens a popover with all available qualities plus Auto option
+- **Low-memory buffer** - Buffer stores URL metadata instead of binary data, reducing RAM usage by ~1.8 GB at Source quality
+- **Buffer memory tracking** - Monitor buffer memory usage with 1 GB warning threshold
+- **Chat history backfill** - Live chat loads up to 100 recent messages when opened
+
+### Chat Replay
+
+- **Synchronized chat** - View historical chat messages alongside VOD playback
+- **Floating overlay** - Draggable, resizable chat window that works in fullscreen
+- **Customizable appearance** - Adjust colors, opacity, font size, and message limits
+- **Standalone mode** - Use chat overlay with Twitch's native player
+
+### Live Chat <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded ml-2">New in v2.0</span>
+
+- **Send messages** - Chat in live streams directly from the overlay
+- **Emote picker** - Browse channel, global, and subscriber emotes with search
+- **@Mention autocomplete** - Type @ to autocomplete usernames from recent chat
+- **Follow button** - Follow channels directly from follower-only chat notices
+- **Room state indicators** - See slow mode, sub-only, follower-only, and emote-only restrictions
+
+### Mini Player
+
+- **Picture-in-Picture** - Continue watching in a floating window while browsing
+- **Drag and resize** - Position the player anywhere on screen
+- **Persists across pages** - Mini player stays open as you navigate Twitch
+- **Audio visualizer** - Visual feedback when playing audio-only streams
+- **Snap-to-edge** - Mini player snaps to the nearest screen edge when released
+
+### Battles Record Integration <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded ml-2">New in v2.1.4</span>
+
+- **Remote downloads via yt-dlp** - Download from YouTube, Instagram, TikTok, and 1000+ sites through the Battles Record desktop app
+- **WebSocket connection** - Real-time communication between the extension and Battles Record
+- **OTP pairing** - Secure 6-digit one-time password to pair the extension with your desktop app
+- **Format picker** - Choose resolution, codec, file size, or audio-only for remote downloads
+- **Cookie forwarding** - Authenticated downloads using your browser session cookies
+- **Connection badge** - Real-time connection status indicator in the extension header
+- **Library management** - Install and update yt-dlp and FFmpeg from extension settings
+- **VodPlayer BR toggle** - "Download via Battles Record" option for Twitch/Kick VODs
+- **Auto-extract video info** - Automatic metadata extraction when visiting supported sites
+- **Add/Remove channel recording** - Add the current live channel to Battles Record's recording list directly from the player
+- **Channel state sync** - Recording channel list syncs in real time across all connected Battles Record clients
+- **Custom connection address** - Configure IP and port for connecting to a Battles Record instance on another machine
+
+### Cross-Platform Browsing <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded ml-2">New in v2.1.4</span>
+
+- **Website dropdown** - Switch between Twitch, Kick, or Other to browse content from any site
+- **Non-native site playback** - VODs and live streams play when the extension is opened from any page (e.g. toolbar button on google.com)
+- **Platform badges** - Download items display platform-specific badges (Twitch, Kick, YouTube, Instagram, TikTok, etc.)
+- **Download filter bar** - Filter downloads by type: All, Local, or Remote
+- **Remote download tracking** - Remote downloads appear in the Downloads tab alongside local downloads
+
+## Installation
+
+<Tabs>
+	<Tab title="Chrome">
+		<Steps>
+			<Step title="Visit Chrome Web Store">
+				Go to the [Battles Replay
+				listing](https://chromewebstore.google.com/detail/battles-replay/nflmjobnbnoheaideapdmlcpiecckeoa)
+			</Step>
+			<Step title="Click Add to Chrome">Install the extension and grant required permissions</Step>
+			<Step title="Start Using">Navigate to any Twitch channel or VOD page</Step>
+		</Steps>
+	</Tab>
+	<Tab title="Firefox">
+		<Steps>
+			<Step title="Visit Firefox Add-ons">
+				Go to the [Battles Replay
+				listing](https://addons.mozilla.org/en-US/firefox/addon/battles-replay/)
+			</Step>
+			<Step title="Click Add to Firefox">Install the extension and grant required permissions</Step>
+			<Step title="Start Using">Navigate to any Twitch channel or VOD page</Step>
+		</Steps>
+	</Tab>
+</Tabs>
+
+<Note>
+	After installation, the extension works on both Twitch and Kick. Navigate to either platform to
+	start using Battles Replay.
+</Note>
+
+## How to Use
+
+### Downloading VODs
+
+<Steps>
+	<Step title="Open a channel">Navigate to any channel page or VOD on Twitch or Kick</Step>
+	<Step title="Click the Battles button">Find the Battles button in the page header</Step>
+	<Step title="Browse and select a VOD">
+		Use the search or browse the channel's VOD library (unpublished stream discovery is Twitch-only)
+	</Step>
+	<Step title="Set your options">
+		Choose quality, format, and optionally set a custom time range
+	</Step>
+	<Step title="Download">Click download and wait for processing to complete in your browser</Step>
+</Steps>
+
+### Recording Live Streams
+
+<Steps>
+	<Step title="Open a live channel">Navigate to a channel that's currently streaming</Step>
+	<Step title="Open Battles Replay">The extension will detect the live stream automatically</Step>
+	<Step title="Watch and buffer">
+		The stream buffers continuously in the background (configurable duration)
+	</Step>
+	<Step title="Create clips or save buffer">
+		Use the clip tool for specific moments, or save the entire buffer
+	</Step>
+</Steps>
+
+### Downloading via Battles Record
+
+<Steps>
+	<Step title="Install Battles Record">
+		Download and install the [Battles Record](/tools/battles-record) desktop app
+	</Step>
+	<Step title="Pair the extension">
+		Open Battles Replay settings, find the Battles Record section, and enter the 6-digit OTP code shown in the desktop app
+	</Step>
+	<Step title="Browse or paste a URL">
+		Use the website dropdown to select a platform (Twitch, Kick, or Other), or navigate to any supported site
+	</Step>
+	<Step title="Pick format">
+		Choose resolution, codec, file size, or audio-only from the format picker
+	</Step>
+	<Step title="Download">
+		The download is handled by Battles Record on your desktop. Track progress in the Downloads tab with the Remote filter
+	</Step>
+</Steps>
+
+## Platform Authentication <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded ml-2">Updated in v2.1</span>
+
+Connect your Twitch or Kick account to unlock interactive chat features:
+
+<Tabs>
+	<Tab title="Twitch">
+		<Steps>
+			<Step title="Open Settings">Click the gear icon in the extension</Step>
+			<Step title="Click Connect with Twitch">
+				Authorize the extension to access your Twitch account
+			</Step>
+			<Step title="Start Chatting">Live chat features are now available on Twitch streams</Step>
+		</Steps>
+	</Tab>
+	<Tab title="Kick">
+		<Steps>
+			<Step title="Open Settings">Click the gear icon in the extension</Step>
+			<Step title="Click Connect with Kick">
+				Authorize the extension to access your Kick account
+			</Step>
+			<Step title="Start Chatting">Live chat features are now available on Kick streams</Step>
+		</Steps>
+	</Tab>
+</Tabs>
+
+### What's Enabled
+
+| Feature             | Description                                |
+| ------------------- | ------------------------------------------ |
+| **Send messages**   | Chat in live streams from the overlay      |
+| **Emote picker**    | Access channel and global emotes           |
+| **Follow channels** | Follow directly from follower-only notices |
+| **@Mentions**       | Autocomplete usernames when typing @       |
+
+<Note>
+	OAuth tokens are stored securely in the extension's sandboxed storage and never transmitted
+	externally. You can connect both Twitch and Kick accounts simultaneously.
+</Note>
+
+## Authorization
+
+<Info>
+	API keys are **not required** for core functionality. Adding them enables enhanced features like
+	badge images and additional metadata.
+</Info>
+
+The Authorization section in Settings allows you to configure optional API keys:
+
+### Twitch User Access Token
+
+An OAuth token for accessing the Twitch Helix API. This enables:
+
+- Full badge images in chat replay (instead of letter abbreviations)
+- Additional user metadata
+
+You can either connect with Twitch (recommended) or manually provide a token with the appropriate scopes.
+
+### TeamBattles API Key
+
+Uses your linked Twitch account for authenticated API requests to TeamBattles services.
+
+<Tip>
+	**Quick setup with presets**: In [Developer Settings](https://teambattles.gg/settings/developer),
+	click **Create API Key** and select the **Battles Replay** preset. This automatically configures
+	the correct permissions (Matches: Read, Twitch: Enabled) with one click.
+</Tip>
+
+To create an API key manually:
+
+<Steps>
+	<Step title="Go to Developer Settings">
+		Navigate to [Settings → Developer](https://teambattles.gg/settings/developer)
+	</Step>
+	<Step title="Click Create API Key">Enter a label like "Battles Replay Extension"</Step>
+	<Step title="Set Permissions">
+		- **Matches → User Matches**: Read - **Connections → Twitch**: Enabled
+	</Step>
+	<Step title="Copy Your Key">Copy the generated key immediately - it won't be shown again</Step>
+	<Step title="Paste in Extension">
+		Open the extension settings and paste your API key in the Authorization section
+	</Step>
+</Steps>
+
+<Note>
+	Your keys are stored in the extension's sandboxed storage and are never shared or transmitted
+	externally.
+</Note>
+
+## Download Formats
+
+Choose the output format based on your needs:
+
+| Format  | Best For    | Notes                                                |
+| ------- | ----------- | ---------------------------------------------------- |
+| **MP4** | General use | Universal compatibility, works everywhere            |
+| **MKV** | Archiving   | Better metadata support, same quality as MP4         |
+| **TS**  | Large files | No processing needed, fastest download, plays in VLC |
+| **MP3** | Audio only  | Extracts and encodes audio track                     |
+
+<Tip>
+	For downloads over 1.2 GB, **TS format** is recommended. It uses minimal memory and creates a
+	single file regardless of size.
+</Tip>
+
+## Large Downloads
+
+Downloads estimated over 1.2 GB trigger a special prompt with format options:
+
+- **TS (recommended)** - Single file, binary concatenation, minimal memory usage (~50 MB peak)
+- **MP4/MKV** - Split into multiple part files (configurable chunk size: 500 MB - 1.7 GB)
+
+Downloads over 30 GB are blocked to prevent browser memory issues.
+
+### Configuring Chunk Size
+
+In Settings, you can adjust the chunk size for large MP4/MKV downloads:
+
+- **Range**: 500 MB - 1700 MB
+- **Default**: 1000 MB (1 GB)
+- **Warning**: Values above 1200 MB may cause memory issues
+
+## Chat Replay
+
+Chat replay displays historical chat messages synchronized with VOD playback.
+
+### Features
+
+- **Draggable overlay** - Position anywhere on screen
+- **Resizable** - Adjust width (280-600px) and height (200-800px)
+- **Auto-scroll** - Automatically scrolls to new messages
+- **Fullscreen support** - Chat overlay works in fullscreen mode
+
+### Customization Options
+
+Access chat settings via the gear icon in the overlay header:
+
+| Setting          | Description                        | Default |
+| ---------------- | ---------------------------------- | ------- |
+| Timestamps       | Show VOD offset time per message   | Off     |
+| Badges           | Display user badges                | On      |
+| Fade when idle   | Hide UI elements when not hovering | Off     |
+| Background color | Overlay background                 | #18181B |
+| Text color       | Message text color                 | #FAFAFA |
+| Opacity          | Overlay transparency               | 90%     |
+| Font size        | Message text size                  | 14px    |
+| Max messages     | Maximum messages displayed         | 200     |
+
+### Limitations
+
+- Chat replay is only available for **published VODs** (Twitch doesn't retain chat for deleted/unpublished streams)
+- Sending messages only available for **live streams** (VOD chat is read-only)
+
+## Settings
+
+Configure the extension behavior in the Settings tab:
+
+| Setting              | Description                                | Default       |
+| -------------------- | ------------------------------------------ | ------------- |
+| Auto mini player     | Enter PiP when closing modal while playing | Off           |
+| Chunk size           | Part size for large MP4/MKV downloads      | 1000 MB       |
+| Buffer duration      | Rolling buffer for live streams (discrete steps) | 30 min        |
+| Auto-download buffer | Save buffer when stream ends               | Off           |
+| Player button        | Inject chat button into native player      | On            |
+| Twitch connection    | Connect your Twitch account for live chat  | Not connected |
+| Kick connection      | Connect your Kick account for live chat    | Not connected |
+| Battles Record       | Connect to Battles Record desktop app      | Not connected |
+| Download filter      | Filter downloads by type (All, Local, Remote) | All           |
+
+## Privacy
+
+**No personal data collected.** All video processing happens locally in your browser. Downloaded content is saved directly to your device.
+
+[View Privacy Policy](https://teambattles.gg/tools/battles-replay/privacy)
+
+## Requirements
+
+- **Chrome** 121+ or **Firefox** 112+
+- Internet connection for streaming and downloading
+- Sufficient disk space for downloaded videos
+- For large downloads: adequate available RAM (TS format uses minimal memory)
+
+## Changelog
+
+<Accordion title="v2.2.2 - March 31, 2026">
+### Other
+- **Uninstall Survey** - Opening a feedback page when the extension is uninstalled
+</Accordion>
+
+<Accordion title="v2.2.1 - March 29, 2026">
+### Added
+- **Non-Native Site Playback** - VODs and live streams now play when the extension is opened from any page (e.g. toolbar button on google.com) via background service worker proxy to bypass CORS
+
+### Changed
+- **Live Buffer Memory** - Buffer stores URL metadata instead of full binary segment data, reducing RAM usage by ~1.8 GB at Source quality
+- **Platform Resolution** - VodPlayer uses user-selected platform instead of relying solely on site detection; live chat and ad filtering work on non-native sites
+
+### Fixed
+- **HLS Error Recovery** - Network and media errors now retry with limits (3 network, 2 media) instead of looping infinitely
+- **CDN Bypass Cleanup** - Old HLS instance and blob URL properly destroyed before falling back to video-weaver
+- **Seeking Listener Leak** - Previous seeking listener removed before attaching new one on stream reload
+- **Downloads Tab Bulk Actions** - Clear All, Resume All, and Pause All now work correctly with Battles Record remote downloads
+- **Remote Download Tracking** - Progress events from other devices now add unknown downloads to the list instead of silently dropping them
+</Accordion>
+
+<Accordion title="v2.2.0 - March 26, 2026">
+### Added
+- **Auto Quality with Adaptive Bitrate** - Live streams default to Auto quality; HLS.js selects optimal quality based on bandwidth with dynamic indicator (e.g. "Auto (720p60)")
+- **In-Player Quality Selector** - Gear icon in player controls opens a popover with all available qualities plus Auto option
+- **Add/Remove Channel on Battles Record** - Add the current channel to Battles Record's recording list directly from the live player
+- **Channel State Sync** - Recording channel list syncs automatically across all connected Battles Record clients
+- **Custom Connection Address** - IP and port fields in Battles Record settings for connecting to an instance on another machine
+- **What's New Page** - Interactive 3-slide carousel shown on first install and after updates
+- **New Extension Icon** - Crossed swords and replay arrow design
+
+### Changed
+- **~50% Live Stream Bandwidth Reduction** - HLS.js FRAG_LOADED event captures segments at zero extra network cost, replacing the live-poller that independently downloaded every segment
+- **Smoother Ad Break Transitions** - Secondary ad-free stream awaits readiness before switching
+- **Gradual Catch-up** - Playback speeds up to 1.1x instead of hard-seeking when falling behind live edge
+- **Ad-Free Playback** - CDN bypass now matches selected quality and recovers mid-break
+- **FFmpeg Version** - Battles Record settings panel shows the installed FFmpeg version when connected
+</Accordion>
+
+<Accordion title="v2.1.4 - March 24, 2026">
+### Added
+- **Battles Record Integration** - WebSocket connection to the Battles Record desktop app for remote downloads
+- **Cross-Platform Browsing** - Website dropdown (Twitch/Kick/Other) for browsing content from any supported site
+- **Remote Downloads via yt-dlp** - Download from YouTube, Instagram, TikTok, and 1000+ sites through Battles Record
+- **Format Picker** - Resolution, codec, file size, and audio-only options when downloading via Battles Record
+- **Remote Download Tracking** - Remote downloads appear in the Downloads tab with platform badges
+- **Download Filter Bar** - Filter downloads by type (All, Local, Remote)
+- **Connection Badge** - Real-time Battles Record connection status indicator in the extension header
+- **VodPlayer BR Toggle** - "Download via Battles Record" option for Twitch/Kick VODs
+- **OTP Pairing Flow** - Secure 6-digit one-time password to pair with Battles Record
+- **Library Management** - Install and update yt-dlp and FFmpeg from extension settings
+- **WebSocket Connection Log** - Debug log for Battles Record connection troubleshooting
+- **Cookie Forwarding** - Authenticated downloads using browser session cookies
+- **Auto-Extract Video Info** - Automatic metadata extraction on supported sites
+- **Platform Badges** - Download items display platform-specific badges
+
+### Changed
+- **Settings Page** - New Battles Record section with pairing, library management, and connection log
+- **Downloads Tab** - Supports mixed local and remote downloads with a filter bar
+- **Browse Tab** - Website dropdown for cross-platform content browsing
+</Accordion>
+
+<Accordion title="v2.1.3 - March 13, 2026">
+### Added
+- **Toolbar Icon Toggle** - Click the extension icon to toggle the modal
+- **Badge Image Scraping** - Badge images scraped from platform DOM with API fallback
+- **Battles Record Promo Banner** - Buffer warning with Battles Record feature highlights
+- **CDN Bypass Module** - Ad-free live stream URL detection with CDN URL construction
+- **Ad-Free Live Stream Playback** - Auto-skip commercials during Twitch live streams
+- **Chat History Backfill** - Live chat loads up to 100 recent messages when opened
+- **Download Queue Persistence** - Download queue survives browser and service worker restarts
+- **FFmpeg Loading Timeout** - 30-second timeout to prevent indefinite FFmpeg loading hangs
+- **Live Buffer Memory Tracking** - Monitor memory usage with 1 GB warning threshold
+- **Bundled Fonts** - Inter and Bebas Neue loaded locally instead of Google Fonts
+- **MiniPlayer Snap-to-Edge** - Mini player snaps to nearest screen edge on drag release
+
+### Changed
+- **Buffer Duration Slider** - Changed to discrete steps (1, 2, 3, 5, 10, 15, 20, 30, 45, 60, 70, 80, 90, 100, 110, 120 min)
+- **WhatsNew Page** - Rendered as an embedded page instead of a floating dialog
+
+### Fixed
+- Modal reopen tab state no longer triggers unwanted live stream search
+- Various stability improvements for chat, downloads, and live buffer
+</Accordion>
+
+<Accordion title="v2.1.2 - January 29, 2026">
+### Changed
+- **Audio-Only Large Downloads** - Improved handling when audio downloads exceed 30 GB threshold
+  - Shows "Large Download Detected" modal instead of blocking error
+  - MP4 option disabled with explanation when it exceeds limit
+  - MP3 automatically selected as the recommended format
+
+### Fixed
+
+- **MP3 Size Estimation** - MP3 downloads now show correct size estimate (~1.25 GB instead of ~26 GB for long VODs)
+</Accordion>
+
+<Accordion title="v2.1.1 - January 29, 2026">
+### Fixed
+
+- **Keyboard Input Hijacking** - Kick and other host pages can no longer capture keyboard events from extension input fields
+</Accordion>
+
+<Accordion title="v2.1.0 - January 29, 2026">
+### Added
+- **Kick Platform Support** - Full support for the Kick streaming platform
+  - VOD browsing with thumbnails, durations, and categories
+  - VOD playback with quality selection
+  - Live stream playback with ad-free viewing
+  - Time range selection for partial VOD downloads
+  - Download queue integration (same features as Twitch)
+  - Live chat overlay with real-time messages
+  - VOD chat replay with emote rendering
+  - OAuth authentication for sending chat messages
+  - Picture-in-Picture support
+  - Audio visualizer for audio-only streams
+- **Platform Abstraction Layer** - New architecture for multi-platform support
+
+### Changed
+
+- Extension now works on both Twitch and Kick domains
+- Settings include separate connection options for each platform
+
+### Notes
+
+- Unpublished VOD recovery remains Twitch-only (requires SullyGnome integration)
+</Accordion>
+
+<Accordion title="v2.0.0 - January 24, 2026">
+### Added
+- **Twitch OAuth Authentication** - Connect with Twitch for authenticated features
+- **Live Chat Sending** - Send messages in live chat overlays with room state indicators
+- **Emote Picker** - Browse channel, global, and subscriber emotes with search
+- **@Mention Autocomplete** - Type @ to autocomplete usernames from recent chat
+- **Follow Button** - Follow channels directly from follower-only chat notices
+
+### Changed
+
+- Updated extension description to better reflect full feature set
+- Follower-only chat indicator now clearer and more compact
+
+### Fixed
+
+- Firefox OAuth authentication now works correctly
+- Badge API 401 errors when authenticated via OAuth
+</Accordion>
+
+<Accordion title="v1.9.0 - January 23, 2026">
+### Added
+- **Badge Images** - Displays actual Twitch badge images when API credentials configured
+- **Live Stream Recording** - Rolling buffer (5-120 min), clips, buffer save, stream end detection
+- **Native Chat Overlay** - Live chat on native Twitch player for fullscreen/theater mode
+- Reply indicators and action message styling in live chat
+- Authorization settings for optional API keys
+
+### Fixed
+
+- Standalone and modal chat overlays no longer overlap
+- Channel and subscriber emotes now render in live chat
+- Live buffer save handles fMP4 segments correctly
+</Accordion>
+
+<Accordion title="v1.8.0 - January 22, 2026">
+### Added
+- **IndexedDB Segment Storage** - Crash recovery with 48-hour auto-cleanup
+- **Large File Support (up to 30 GB)** - Format selection, chunked downloads
+- **TS Format Option** - Fast binary concatenation, minimal memory
+- **Configurable Chunk Size** - 500 MB to 1.7 GB
+
+### Changed
+
+- Segments persist to disk instead of RAM
+- Dramatically reduced memory usage
+</Accordion>
+
+<Accordion title="v1.7.0 - January 22, 2026">
+### Added
+- **Memory Usage Display** - Global and per-download indicators with color coding
+
+### Changed
+
+- Reduced peak memory usage during merge by ~50%
+- Merge progress shows percentage
+</Accordion>
+
+<Accordion title="v1.6.0 - January 21, 2026">
+	### Added - **Standalone Chat Overlay** - Use with Twitch's native player - Text color setting for
+	chat overlay - Fullscreen support for standalone chat
+</Accordion>
+
+<Accordion title="v1.5.0 - January 21, 2026">
+	### Added - **Chat Replay Overlay** - Synchronized, draggable, resizable - **Inline Chat
+	Settings** - Timestamps, badges, colors, opacity, font size - Pre-fetches messages 30 seconds
+	ahead
+</Accordion>
+
+<Accordion title="v1.4.0 - January 21, 2026">
+	### Added - **Picture-in-Picture Mini Player** - Floating player that persists across navigation -
+	Vertical volume slider - Settings tab with auto-PiP toggle - Volume persistence across sessions
+</Accordion>
+
+<Accordion title="v1.3.0 - January 20, 2026">
+	### Added - **Firefox Browser Support** (MV3) - Separate builds for Chrome and Firefox
+</Accordion>
+
+<Accordion title="v1.2.0 - January 20, 2026">
+	### Added - Support button linking to Ko-fi - Compact channel card with follower count and join
+	date
+</Accordion>
+
+<Accordion title="v1.1.0 - January 20, 2026">
+### Added
+- **Audio Visualizer** - 6 types: Bars, Wave, Mirrored, Mountain, Circular, Dots
+
+### Fixed
+
+- Audio Only quality now appears in dropdown
+- Modal close pauses playback
+</Accordion>
+
+<Accordion title="v1.0.0 - January 20, 2025">
+Initial release of Battles Replay.
+
+### Core Features
+
+- Channel search with smart input detection
+- VOD browsing with thumbnail grid and pagination
+- Unpublished VOD discovery via SullyGnome
+- HLS player with quality selection
+- Time range selection for partial downloads
+- Download queue with pause/resume/prioritize
+- FFmpeg.wasm for MP4 remuxing
+- Copy M3U8 URL for external players
+</Accordion>
