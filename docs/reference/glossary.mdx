@@ -9,6 +9,7 @@ description: "Terms and definitions"
 | **Achievement Tier**     | Level within a tiered achievement (Bronze, Silver, Gold, Platinum)                          |
 | **Active Roster**        | Players selected to participate in a specific match                                         |
 | **Anti-farming**         | Matchup cooldown mechanism that prevents teams from repeatedly playing each other to manipulate league points |
+| **API Error Code**       | A stable, machine-readable `error_*` string returned in the `error` field of a failed API response; the programmatic contract to branch on (not the human-readable `details` message) |
 | **API Key**              | Authentication token for external applications to access your data                          |
 | **API Key Preset**       | One-click permission configuration for common use cases                                     |
 | **Apply-to-join**        | The league team application flow with eligibility check, team picker, and optional message |
@@ -32,6 +33,7 @@ description: "Terms and definitions"
 | **League**               | An organized competitive group with standings, rules, and seasons managed by league staff   |
 | **League Admin Panel**   | Dashboard for league owners and staff to manage competition settings, teams, and support    |
 | **League Application**   | A request submitted by a user to create a new league, reviewed by TB staff                  |
+| **League Capability**    | A write-only API permission under `leagues.capabilities` (scores, seasons, teams, members, bans, penalties, cooldowns, rules, points, branding, games, display_rules) that grants its league action only when set to `write` |
 | **League Points**        | Configurable score awarded to teams based on match outcomes within a league, separate from XP |
 | **League Staff**         | Users with Owner, Admin, or Manager roles who manage a league                               |
 | **League Team**          | Teams for organized league play; XP displayed as "points"                                   |
@@ -56,6 +58,7 @@ description: "Terms and definitions"
 | **Tool**                 | Official TeamBattles utility or extension                                                   |
 | **Veto Mode**            | Map selection where teams ban unwanted maps                                                 |
 | **Webhook**              | An HTTP callback that delivers real-time event notifications to external applications       |
+| **Webhook Event Catalog** | The set of event names a webhook can subscribe to. The foundation set has 15 events: `match.created`, `match.published`, `match.accepted`, `match.ready`, `match.started`, `match.completed`, `match.cancelled`, `match.forfeited`, `score.submitted`, `score.confirmed`, `score.disputed`, `roster.updated`, `player.checked_in`, `team.joined`, `team.left` |
 | **Welcome overlay**      | The in-canvas first-open screen in the Battles Strategy editor that shows recent boards and lets you start a new one |
 | **Widget**               | An individual data display component within a stream overlay                                |
 | **XP**                   | Experience points; can be decimal                                                           |

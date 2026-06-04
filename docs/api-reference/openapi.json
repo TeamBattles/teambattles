@@ -2078,6 +2078,323 @@
       }
     }
   },
+  "webhooks": {
+    "match.accepted": {
+      "post": {
+        "operationId": "webhook_match_accepted",
+        "summary": "match.accepted webhook delivery",
+        "description": "Delivered to a registered endpoint when a match.accepted event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "match.cancelled": {
+      "post": {
+        "operationId": "webhook_match_cancelled",
+        "summary": "match.cancelled webhook delivery",
+        "description": "Delivered to a registered endpoint when a match.cancelled event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "match.completed": {
+      "post": {
+        "operationId": "webhook_match_completed",
+        "summary": "match.completed webhook delivery",
+        "description": "Delivered to a registered endpoint when a match.completed event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "match.created": {
+      "post": {
+        "operationId": "webhook_match_created",
+        "summary": "match.created webhook delivery",
+        "description": "Delivered to a registered endpoint when a match.created event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "match.forfeited": {
+      "post": {
+        "operationId": "webhook_match_forfeited",
+        "summary": "match.forfeited webhook delivery",
+        "description": "Delivered to a registered endpoint when a match.forfeited event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "match.published": {
+      "post": {
+        "operationId": "webhook_match_published",
+        "summary": "match.published webhook delivery",
+        "description": "Delivered to a registered endpoint when a match.published event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "match.ready": {
+      "post": {
+        "operationId": "webhook_match_ready",
+        "summary": "match.ready webhook delivery",
+        "description": "Delivered to a registered endpoint when a match.ready event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "match.started": {
+      "post": {
+        "operationId": "webhook_match_started",
+        "summary": "match.started webhook delivery",
+        "description": "Delivered to a registered endpoint when a match.started event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "player.checked_in": {
+      "post": {
+        "operationId": "webhook_player_checked_in",
+        "summary": "player.checked_in webhook delivery",
+        "description": "Delivered to a registered endpoint when a player.checked_in event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "roster.updated": {
+      "post": {
+        "operationId": "webhook_roster_updated",
+        "summary": "roster.updated webhook delivery",
+        "description": "Delivered to a registered endpoint when a roster.updated event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "score.confirmed": {
+      "post": {
+        "operationId": "webhook_score_confirmed",
+        "summary": "score.confirmed webhook delivery",
+        "description": "Delivered to a registered endpoint when a score.confirmed event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "score.disputed": {
+      "post": {
+        "operationId": "webhook_score_disputed",
+        "summary": "score.disputed webhook delivery",
+        "description": "Delivered to a registered endpoint when a score.disputed event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "score.submitted": {
+      "post": {
+        "operationId": "webhook_score_submitted",
+        "summary": "score.submitted webhook delivery",
+        "description": "Delivered to a registered endpoint when a score.submitted event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "team.joined": {
+      "post": {
+        "operationId": "webhook_team_joined",
+        "summary": "team.joined webhook delivery",
+        "description": "Delivered to a registered endpoint when a team.joined event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "team.left": {
+      "post": {
+        "operationId": "webhook_team_left",
+        "summary": "team.left webhook delivery",
+        "description": "Delivered to a registered endpoint when a team.left event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEnvelope"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    }
+  },
   "components": {
     "schemas": {
       "ListGameMatchesBody": {
@@ -2489,6 +2806,53 @@
           }
         },
         "description": "Filters and cursor pagination for listing matches."
+      },
+      "WebhookEnvelope": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable delivery id, reused across retries (idempotency key)."
+          },
+          "event": {
+            "type": "string",
+            "enum": [
+              "match.created",
+              "match.published",
+              "match.accepted",
+              "match.ready",
+              "match.started",
+              "match.completed",
+              "match.cancelled",
+              "match.forfeited",
+              "score.submitted",
+              "score.confirmed",
+              "score.disputed",
+              "roster.updated",
+              "player.checked_in",
+              "team.joined",
+              "team.left"
+            ],
+            "description": "The event name from the TeamBattles catalog."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO-8601 timestamp the event was emitted."
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": {},
+            "description": "Event-specific payload (generic in this wave; modeled per event in SP-1B)."
+          }
+        },
+        "required": [
+          "id",
+          "event",
+          "created_at",
+          "data"
+        ],
+        "description": "Shared envelope for all TeamBattles webhook deliveries."
       },
       "GameMatch": {
         "type": "object",
@@ -4137,6 +4501,30 @@
         ],
         "additionalProperties": false,
         "description": "Global Twitch chat badges."
+      },
+      "ApiErrorCode": {
+        "type": "string",
+        "enum": [
+          "error_api_key_invalid",
+          "error_api_key_expired",
+          "error_api_key_muted",
+          "error_api_rate_limited",
+          "error_api_key_permission_denied",
+          "error_api_key_required",
+          "error_api_plan_required",
+          "error_api_feature_required",
+          "error_game_scope_mismatch",
+          "error_league_scope_mismatch",
+          "error_unauthorized",
+          "error_user_banned",
+          "error_invalid_input",
+          "error_invalid_request",
+          "error_invalid_limit",
+          "error_invalid_cursor",
+          "error_league_not_found",
+          "error_internal"
+        ],
+        "description": "Stable machine-readable API error code (documentation enum)."
       }
     },
     "securitySchemes": {

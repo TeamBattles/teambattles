@@ -27,21 +27,39 @@ curl -H "Authorization: Bearer tb_your_api_key_here" \
 
 ### Permission Scopes
 
-Each API key has granular permissions across four categories:
+Each API key carries granular permission scopes. Most scopes use access levels (`none`, `read`, `read-write`); connection scopes use `none`/`enabled`; write-only scopes use `none`/`write`.
 
-| Category        | Scope                                      | Values                 | Description                         |
-| --------------- | ------------------------------------------ | ---------------------- | ----------------------------------- |
-| **Matches**     | `user_matches`                             | none, read             | Access your match history           |
-| **Matches**     | `team_matches`                             | none, read             | Access team match history           |
-| **Matches**     | `org_matches`                              | none, read             | Access organization match history   |
-| **Connections** | `discord`, `twitch`, `github`, `battlenet` | none, enabled          | Access linked platform data         |
-| **Game**        | `scores`                                   | none, write            | Submit scores via API               |
-| **Game**        | `lifecycle`                                | none, read, read-write | Query/manage match lifecycle        |
-| **Webhooks**    | `manage`                                   | none, enabled          | Create and manage webhook endpoints |
+| Category        | Scope                                      | Values                 | Description                            |
+| --------------- | ------------------------------------------ | ---------------------- | -------------------------------------- |
+| **Matches**     | `user_matches`                             | none, read, read-write | Access your match history              |
+| **Matches**     | `team_matches`                             | none, read, read-write | Access team match history              |
+| **Matches**     | `org_matches`                              | none, read, read-write | Access organization match history      |
+| **Connections** | `discord`, `twitch`, `github`, `battlenet` | none, enabled          | Access linked platform data            |
+| **Game**        | `scores`                                   | none, write            | Submit scores via API                  |
+| **Game**        | `lifecycle`                                | none, read, read-write | Query/manage match lifecycle           |
+| **Game**        | `ranks`                                    | none, read             | Read player game ranks                 |
+| **Users**       | `profile`                                  | none, read             | Read user profile data                 |
+| **Teams**       | `profile`, `roster`                        | none, read, read-write | Read or manage team profile and roster |
+| **Orgs**        | `profile`                                  | none, read, read-write | Read or manage organization profile    |
+| **Billing**     | `read`                                     | none, read             | Read your billing and subscription     |
+| **Tickets**     | `read`                                     | none, read             | Read your support tickets              |
+| **Tickets**     | `write`                                    | none, write            | Create or update support tickets       |
+| **Strategies**  | `read`                                     | none, read             | Read your saved strategies             |
+| **Chat**        | `read`                                     | none, read             | Read match chat                        |
+| **Chat**        | `write`                                    | none, write            | Send match chat messages               |
+| **Stream**      | `read`                                     | none, read             | Read overlay and streaming config      |
+| **Webhooks**    | `manage`                                   | none, enabled          | Create and manage webhook endpoints    |
+
+#### League capabilities
+
+Keys bound to a league (a League developer account) also carry a `leagues` block with three access scopes - `league_public` (read), `league_admin` (read or read-write), and `settings_read` (read) - plus an optional `leagues.capabilities` allowlist. Each capability is **write-only**: it grants its action only when explicitly set to `write`. The 12 capability keys are:
+
+`scores`, `seasons`, `teams`, `members`, `bans`, `penalties`, `cooldowns`, `rules`, `points`, `branding`, `games`, `display_rules`.
 
 <Note>
-	Game API permissions (scores, lifecycle) are only available to approved Game Developers. Webhook
-	management requires General Developer access.
+	Game API permissions (scores, lifecycle, ranks) are only available to approved Game Developers,
+	and league capabilities only to approved League Developers. Webhook management requires General
+	Developer access. League capabilities are write-only - they are ignored unless set to `write`.
 </Note>
 
 ### Key Prefix
@@ -59,19 +77,42 @@ Authentication and API errors return standard HTTP status codes with a consisten
 }
 ```
 
+The `error` field is a stable, machine-readable code. Branch on `error`, not on the human-readable `details` message (which is optional and frequently absent on auth and permission failures).
+
 ### Common Error Codes
 
-| Code                              | HTTP Status | Description                                      |
-| --------------------------------- | ----------- | ------------------------------------------------ |
-| `error_api_key_required`          | 401         | No API key provided in Authorization header      |
-| `error_api_key_invalid`           | 401         | API key is invalid or revoked                    |
-| `error_api_key_permission_denied` | 403         | API key lacks required permission                |
-| `error_team_membership_required`  | 403         | User is not an active member of the team         |
-| `error_org_membership_required`   | 403         | User is not an active member of the organization |
-| `error_team_not_found`            | 404         | Team ID or slug not found                        |
-| `error_org_not_found`             | 404         | Organization ID or slug not found                |
-| `error_invalid_request`           | 400         | Request body or parameters are invalid           |
-| `error_invalid_cursor`            | 400         | Pagination cursor is invalid or expired          |
-| `error_invalid_limit`             | 400         | Limit must be between 1 and 100                  |
-| `error_invalid_date_format`       | 400         | Date parameter is not valid ISO 8601             |
-| `error_internal`                  | 500         | Internal server error                            |
+| Code                              | HTTP Status | Description                                          |
+| --------------------------------- | ----------- | --------------------------------------------------- |
+| `error_api_key_required`          | 401         | No API key provided in Authorization header         |
+| `error_api_key_invalid`           | 401         | API key is invalid or revoked                       |
+| `error_api_key_expired`           | 401         | API key has passed its expiry date                  |
+| `error_api_key_muted`             | 403         | API key is temporarily muted                        |
+| `error_api_key_permission_denied` | 403         | API key lacks required permission                   |
+| `error_api_plan_required`         | 403         | Endpoint requires a higher API subscription plan    |
+| `error_api_feature_required`      | 403         | Endpoint requires an API feature not on your plan   |
+| `error_game_scope_mismatch`       | 403         | API key is not approved for the requested game      |
+| `error_league_scope_mismatch`     | 403         | API key is bound to a different league              |
+| `error_api_rate_limited`          | 429         | Rate limit exceeded (see rate-limit headers below)  |
+| `error_team_membership_required`  | 403         | User is not an active member of the team            |
+| `error_org_membership_required`   | 403         | User is not an active member of the organization    |
+| `error_team_not_found`            | 404         | Team ID or slug not found                           |
+| `error_org_not_found`             | 404         | Organization ID or slug not found                   |
+| `error_league_not_found`          | 404         | League ID or slug not found                         |
+| `error_invalid_request`           | 400         | Request body or parameters are invalid              |
+| `error_invalid_cursor`            | 400         | Pagination cursor is invalid or expired             |
+| `error_invalid_limit`             | 400         | Limit must be between 1 and 100                     |
+| `error_invalid_date_format`       | 400         | Date parameter is not valid ISO 8601                |
+| `error_internal`                  | 500         | Internal server error                               |
+
+### Rate Limiting
+
+API responses carry rate-limit headers on both allowed and rejected requests:
+
+| Header                  | Description                                              |
+| ----------------------- | ------------------------------------------------------- |
+| `X-RateLimit-Limit`     | Maximum requests allowed in the current window          |
+| `X-RateLimit-Remaining` | Requests remaining in the current window                |
+| `X-RateLimit-Reset`     | Seconds until the window resets                         |
+| `Retry-After`           | Seconds to wait before retrying (only on a 429 response) |
+
+When the limit is exceeded, the API returns `429` with `error_api_rate_limited`. Wait `Retry-After` seconds before retrying.

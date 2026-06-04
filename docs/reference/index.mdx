@@ -114,6 +114,8 @@ Limits vary by subscription tier. See [Subscriptions](/subscriptions) for full t
 | Key format               | `tb_` prefix + 64 hex characters     |
 | Matches per API response | 100 max                              |
 
+API keys carry granular permission scopes (matches, connections, game, users, teams, orgs, billing, tickets, strategies, chat, stream, webhooks) plus an optional league capability allowlist for League developer keys. Responses include `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` headers (plus `Retry-After` on a `429`). See [Authentication](/developers/authentication) for the full scope vocabulary, error codes, and rate-limit details.
+
 ## OG Image Specifications
 
 Social preview images (Open Graph) for profiles:
