@@ -75,7 +75,7 @@ All webhook deliveries use the following format:
 {
 	"id": "evt_abc123",
 	"event": "match.completed",
-	"timestamp": "2026-02-23T15:30:00Z",
+	"created_at": "2026-02-23T15:30:00Z",
 	"data": {
 		"matchId": "match_123",
 		"gameId": "call_of_duty_black_ops_7",
@@ -90,31 +90,48 @@ All webhook deliveries use the following format:
 
 ## Signature Verification
 
-Every webhook delivery includes an `X-TeamBattles-Signature` header containing an HMAC-SHA256 signature of the request body. The header value is prefixed with `sha256=` followed by the hex digest (for example, `sha256=abc123...`). Strip the prefix before comparing against your computed digest.
+Every delivery is signed using the [Standard Webhooks](https://www.standardwebhooks.com/) scheme via three headers:
+
+| Header              | Description                                                                                                                                                       |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `webhook-id`        | The stable delivery id (also the envelope `id`), reused across retries. Use it to process events idempotently.                                                   |
+| `webhook-timestamp` | Unix timestamp (seconds) of this attempt. Reject deliveries outside a tolerance window (e.g. 5 minutes) for replay protection.                                    |
+| `webhook-signature` | One or more space-separated `v1,<base64>` signatures. During a signing-secret rotation grace window both the new and previous secret sign, so accept ANY of them. |
+
+The signed content is `${webhook-id}.${webhook-timestamp}.${rawBody}`, HMAC-SHA256 with your endpoint's signing secret, base64-encoded. The `X-TeamBattles-Event` header carries the event name for convenience.
 
 ### Verifying in Node.js
 
 ```javascript
 import crypto from "crypto";
 
-function verifyWebhookSignature(body, signatureHeader, secret) {
-	// Header is "sha256=<hex>"; strip the scheme prefix before comparing.
-	const signature = signatureHeader.startsWith("sha256=")
-		? signatureHeader.slice("sha256=".length)
-		: signatureHeader;
-	const expected = crypto.createHmac("sha256", secret).update(body, "utf8").digest("hex");
-	return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+function verifyWebhookSignature(headers, rawBody, secret) {
+	const id = headers["webhook-id"];
+	const timestamp = headers["webhook-timestamp"];
+	const sigHeader = headers["webhook-signature"]; // "v1,<base64> [v1,<base64>]"
+
+	// Reject stale deliveries (replay protection).
+	if (Math.abs(Math.floor(Date.now() / 1000) - Number(timestamp)) > 300) return false;
+
+	const signedContent = `${id}.${timestamp}.${rawBody}`;
+	const expected = crypto.createHmac("sha256", secret).update(signedContent, "utf8").digest("base64");
+
+	// Accept if ANY provided v1 signature matches (covers the rotation grace window).
+	return sigHeader.split(" ").some((token) => {
+		const [version, sig] = token.split(",");
+		return (
+			version === "v1" &&
+			sig.length === expected.length &&
+			crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected))
+		);
+	});
 }
 
 // In your webhook handler
 app.post("/webhooks/teambattles", (req, res) => {
-	const signature = req.headers["x-teambattles-signature"];
-	const isValid = verifyWebhookSignature(req.rawBody, signature, process.env.WEBHOOK_SECRET);
-
-	if (!isValid) {
+	if (!verifyWebhookSignature(req.headers, req.rawBody, process.env.WEBHOOK_SECRET)) {
 		return res.status(401).send("Invalid signature");
 	}
-
 	const event = req.body;
 	console.log(`Received ${event.event}:`, event.data);
 	res.status(200).send("OK");
@@ -124,30 +141,37 @@ app.post("/webhooks/teambattles", (req, res) => {
 ### Verifying in Python
 
 ```python
-import hmac
-import hashlib
+import hmac, hashlib, base64, time
 
-def verify_signature(body: bytes, signature: str, secret: str) -> bool:
-    expected = hmac.new(
-        secret.encode(),
-        body,
-        hashlib.sha256
-    ).hexdigest()
-    return hmac.compare_digest(signature, expected)
+def verify_signature(headers, raw_body: bytes, secret: str) -> bool:
+    webhook_id = headers["webhook-id"]
+    timestamp = headers["webhook-timestamp"]
+    sig_header = headers["webhook-signature"]  # "v1,<base64> [v1,<base64>]"
+
+    if abs(int(time.time()) - int(timestamp)) > 300:
+        return False
+
+    signed = f"{webhook_id}.{timestamp}.".encode() + raw_body
+    expected = base64.b64encode(hmac.new(secret.encode(), signed, hashlib.sha256).digest()).decode()
+    return any(
+        t.split(",", 1)[0] == "v1" and hmac.compare_digest(t.split(",", 1)[1], expected)
+        for t in sig_header.split(" ")
+    )
 ```
 
 ## Delivery
 
-Each event is delivered exactly once. Requests use a 10-second timeout and do not follow redirects - a `3xx` response is treated as a failure. There are no automatic retries: if your endpoint times out or returns a non-2xx response, the delivery is recorded as failed.
+Deliveries use **at-least-once** semantics with automatic retries. Every attempt carries a stable `webhook-id` (the envelope `id`) reused across retries, so process events idempotently (dedupe on `webhook-id`).
 
-- Webhooks are delivered within seconds of the event
-- Your endpoint must respond with a `2xx` status within 10 seconds
-- Requests are sent with `redirect: 'manual'`; any `3xx` response counts as a failed delivery
-- After **50 consecutive failed deliveries**, the endpoint is automatically disabled and you will receive an in-app notification
+- Webhooks are delivered within seconds of the event. Your endpoint must respond with a `2xx` status within a 10-second timeout.
+- Requests are sent with `redirect: 'manual'`; any `3xx` response counts as a failed attempt.
+- **Retries:** a transient failure (network error, timeout, `5xx`, or `429`) is retried with exponential backoff (10s, 20s, 40s, ... capped at 6h) for up to **6 attempts**. A non-retriable `4xx` (other than `429`) fails immediately.
+- **Dead-letter:** once retries are exhausted (or on a permanent failure) the delivery is marked `dead_lettered`. You can replay a dead-lettered delivery from the API once your endpoint is healthy.
+- After **50 consecutive dead-lettered deliveries**, the endpoint is automatically disabled and you receive an in-app notification.
 
 <Note>
-	Successful deliveries reset the consecutive-failure counter. Re-enable a disabled endpoint from
-	Settings &gt; Developer once your server is healthy again.
+	A successful delivery resets the consecutive-failure counter. Re-enable a disabled endpoint from
+	Settings &gt; Developer (or via the API) once your server is healthy again.
 </Note>
 
 ## Testing
