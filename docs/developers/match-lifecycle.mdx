@@ -19,16 +19,19 @@ POST /api/v1/game/matches
 
 | Field    | Type   | Required | Description                                                     |
 | -------- | ------ | -------- | --------------------------------------------------------------- |
-| `gameId` | string | Yes      | Filter by game ID (must match your approved game)               |
 | `status` | string | No       | Filter by status: `IN_PROGRESS`, `COMPLETED`, `CANCELLED`, etc. |
 | `limit`  | number | No       | Results per page (default: 25, max: 100)                        |
 | `cursor` | string | No       | Pagination cursor from previous response                        |
+
+<Note>
+	The game is derived from your bound API key - do not send a `gameId` in the body. A
+	game-developer key only ever lists matches for the single game it is approved for.
+</Note>
 
 **Example:**
 
 ```json
 {
-	"gameId": "call_of_duty_black_ops_7",
 	"status": "IN_PROGRESS",
 	"limit": 25
 }
@@ -73,6 +76,8 @@ GET /api/v1/game/matches/{matchId}
 	"id": "match_123",
 	"gameId": "call_of_duty_black_ops_7",
 	"status": "ACTIVE",
+	"leagueId": "kg2...",
+	"leagueSeasonId": "ks7...",
 	"settings": {
 		"teamSize": 4,
 		"gameMode": "hardpoint",
@@ -94,6 +99,12 @@ GET /api/v1/game/matches/{matchId}
 	"startedAt": "2026-02-23T10:05:00Z"
 }
 ```
+
+<Note>
+	`leagueId` and `leagueSeasonId` are present only for matches that belong to a league
+	season; for non-league (ad-hoc) matches both are `null`. Use them to attribute a match to
+	its league standings.
+</Note>
 
 ### Get Match Rosters
 
@@ -170,9 +181,12 @@ Update a match's status. Only specific transitions are allowed.
 | `ACCEPTED`    | `CANCELLED`              |
 
 <Note>
-	`COMPLETED` status is typically set automatically when sufficient map scores are confirmed. To
-	complete a match, submit scores via the score submission endpoints instead of setting the status
-	directly.
+	`COMPLETED` is a **derived** status - it is never set directly. A match completes
+	automatically when a team's confirmed map wins reach `ceil(bestOf / 2)`. A `PATCH`
+	to `COMPLETED` via the status endpoint is rejected with `error_match_not_in_valid_state`
+	("Matches complete automatically when sufficient map scores are confirmed. Submit
+	scores via /api/v1/game/matches/{matchId}/scores instead."). To finish a match, submit
+	scores - do not set the status.
 </Note>
 
 **Response:**
@@ -186,6 +200,102 @@ Update a match's status. Only specific transitions are allowed.
 	"timestamp": "2026-02-23T10:05:00.000Z"
 }
 ```
+
+### Forfeit Match
+
+```bash
+POST /api/v1/game/matches/{matchId}/forfeit
+```
+
+Forfeit a match on behalf of one team. The match must be in `ACCEPTED`, `READY`, or `IN_PROGRESS` state. The win is awarded to the other team and the match transitions to `FORFEITED`. Unlike the captain forfeit flow, the game-developer endpoint takes the forfeiting team explicitly (game keys have no captain identity).
+
+**Headers:**
+
+```
+Authorization: Bearer tb_your_game_api_key
+Content-Type: application/json
+Idempotency-Key: 8f1c4b6e-...   # optional - see Idempotency below
+```
+
+**Request Body (JSON):**
+
+| Field              | Type   | Required | Description                                                           |
+| ------------------ | ------ | -------- | --------------------------------------------------------------------- |
+| `forfeitingTeamId` | string | Yes      | The team that forfeits - must be the match's creator or accepted team |
+| `reason`           | string | No       | Free-text reason recorded with the forfeit                            |
+
+**Response:**
+
+```json
+{
+	"success": true
+}
+```
+
+**Errors:**
+
+| Error code                     | HTTP | When it occurs                                                  |
+| ------------------------------ | ---- | -------------------------------------------------------------- |
+| `error_match_not_forfeitable`  | 400  | The match is not in `ACCEPTED`, `READY`, or `IN_PROGRESS` state |
+| `error_match_no_accepted_team` | 400  | The match has no accepted team to award the win to             |
+| `error_invalid_input`          | 400  | `forfeitingTeamId` is not one of the match's two teams          |
+| `error_game_scope_mismatch`    | 403  | The match does not belong to your bound game                   |
+
+Requires `game.lifecycle: read-write`.
+
+### Create Match
+
+```bash
+POST /api/v1/game/matches/create
+```
+
+Originate a two-sided match directly from your game server. Both teams must be active teams in your bound game. The match is created in the `ACCEPTED` state (both teams known) and published immediately; rosters check in separately. The game is always your bound game - you cannot create a match for a game your key is not approved for.
+
+**Headers:**
+
+```
+Authorization: Bearer tb_your_game_api_key
+Content-Type: application/json
+Idempotency-Key: 8f1c4b6e-...   # optional but recommended for create
+```
+
+**Request Body (JSON):**
+
+| Field                | Type     | Required | Description                                         |
+| -------------------- | -------- | -------- | --------------------------------------------------- |
+| `creatorTeamId`      | string   | Yes      | An active team in your bound game (the "home" team) |
+| `acceptedTeamId`     | string   | Yes      | An active team in your bound game (the "away" team) |
+| `gameModeId`         | string   | Yes      | Game mode identifier                                |
+| `bestOf`             | number   | Yes      | Series length (1, 3, 5, ...)                        |
+| `teamSize`           | number   | Yes      | Players per team                                    |
+| `platform`          | string   | Yes      | Allowed platform                                    |
+| `inputDevice`       | string   | Yes      | Allowed input device                                |
+| `region`            | string   | Yes      | Match region                                        |
+| `mapSelectionType`  | string   | Yes      | Map selection mode                                  |
+| `mapPreferenceMode` | string   | Yes      | Map preference mode                                 |
+| `selectedMaps`      | string[] | No       | Pre-selected map ids                                |
+| `selectedObjectives` | string[] | No       | Pre-selected objective ids                          |
+| `scheduledAt`       | number   | No       | Epoch ms scheduled start                            |
+
+**Response:**
+
+```json
+{
+	"success": true,
+	"matchId": "match_123",
+	"timestamp": "2026-02-23T10:00:00.000Z"
+}
+```
+
+**Errors:**
+
+| Error code                  | HTTP | When it occurs                                     |
+| --------------------------- | ---- | -------------------------------------------------- |
+| `error_team_not_active`     | 400  | A supplied team is inactive or disabled            |
+| `error_game_scope_mismatch` | 403  | A supplied team does not belong to your bound game |
+| `error_invalid_input`       | 400  | A required field is missing or invalid             |
+
+Requires `game.lifecycle: read-write`.
 
 ### Submit Player Stats
 
@@ -226,4 +336,24 @@ Submit or update player stats for a specific map. The map score must already exi
 | Get match rosters   | `game.lifecycle: read`       |
 | Get match status    | `game.lifecycle: read`       |
 | Update match status | `game.lifecycle: read-write` |
+| Forfeit match       | `game.lifecycle: read-write` |
+| Create match        | `game.lifecycle: read-write` |
 | Submit player stats | `game.scores: write`         |
+
+## Idempotency
+
+The **Create Match** and **Forfeit Match** endpoints accept an optional `Idempotency-Key` header. Supply a unique key (a UUID is ideal) per logical operation and safely retry on a network failure: the first request is processed and its response is stored; a retry with the **same key and the same body** replays the stored response instead of repeating the work (so a retried create never produces a duplicate match, and a retried forfeit never double-applies stats).
+
+```
+Idempotency-Key: 8f1c4b6e-2d3a-4f5b-9c1e-0a2b3c4d5e6f
+```
+
+| Behavior                     | Result                                                       |
+| ---------------------------- | ------------------------------------------------------------ |
+| Same key, same body          | The original response is replayed (no duplicate side effect) |
+| Same key, **different** body | `409 error_idempotency_key_conflict`                         |
+| No `Idempotency-Key` header  | Normal processing                                            |
+
+Idempotency keys are retained for 24 hours.
+
+**Score submission is naturally idempotent.** The score endpoints (**Submit Verified Score** single + per-map, and **Batch Match Scores**) do not need - and do not store - an `Idempotency-Key`: re-submitting an **unconfirmed** map overwrites it, and re-submitting a **confirmed** map returns `error_score_already_submitted_by_game`. So a retried score submission is always safe. State-guarded transitions (`start`/`cancel`/status PATCH, player-stats) are likewise naturally idempotent - re-running on an already-transitioned match returns `error_match_not_in_valid_state`.

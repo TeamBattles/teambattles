@@ -167,6 +167,61 @@ Content-Type: application/json
 }
 ```
 
+### Batch Match Scores
+
+Submit map scores for **multiple matches** in one request. Each item is independently scope-checked and processed; the request always returns `200` with a per-item result, so a single bad item does not fail the whole batch.
+
+```bash
+POST /api/v1/game/matches/batch-scores
+```
+
+**Headers:**
+
+```
+Authorization: Bearer tb_your_game_api_key
+Content-Type: application/json
+```
+
+Batch submission is naturally idempotent (re-submitting an unconfirmed map overwrites it; a confirmed map returns `error_score_already_submitted_by_game`), so it does not use an `Idempotency-Key`.
+
+**Body:** an `items` array (1-50 items). Each item:
+
+| Field               | Type     | Required | Description                  |
+| ------------------- | -------- | -------- | ---------------------------- |
+| `matchId`           | string   | Yes      | Match to submit for          |
+| `mapIndex`          | number   | Yes      | Zero-based map index (>= 0)  |
+| `mapId`             | string   | Yes      | Map identifier               |
+| `creatorTeamScore`  | number   | Yes      | Creator team score (>= 0)    |
+| `opponentTeamScore` | number   | Yes      | Accepted team score (>= 0)   |
+| `screenshotUrls`    | string[] | No       | Screenshot URLs              |
+| `playerStats`       | object   | No       | Per-player stats for the map |
+
+```json
+{
+	"items": [
+		{ "matchId": "match_123", "mapIndex": 0, "mapId": "dust2", "creatorTeamScore": 13, "opponentTeamScore": 7 },
+		{ "matchId": "match_456", "mapIndex": 1, "mapId": "mirage", "creatorTeamScore": 10, "opponentTeamScore": 13 }
+	]
+}
+```
+
+**Response (always 200):**
+
+```json
+{
+	"success": true,
+	"submitted": [
+		{ "matchId": "match_123", "mapIndex": 0, "status": "confirmed" },
+		{ "matchId": "match_456", "mapIndex": 1, "status": "failed", "error": "error_game_scope_mismatch" }
+	],
+	"count": 1
+}
+```
+
+`success` is `true` only when every item is `confirmed`; `count` is the number of confirmed items. A failed item carries a bare machine `error` code (an item for a match outside your bound game yields `error_game_scope_mismatch`). A body with more than 50 items is rejected with `400 error_invalid_num_items`.
+
+Requires `game.scores: write`.
+
 ### Key Differences
 
 | Feature             | Captain Submission                 | Game Developer Submission |

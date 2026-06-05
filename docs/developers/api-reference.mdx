@@ -26,7 +26,7 @@ Try out the API directly from the docs:
 </CardGroup>
 
 <Note>
-	The OpenAPI specification at `/api-reference/openapi.json` covers 13 paths: three match listing endpoints (user / team / org), two Twitch badge endpoints, and eight league endpoints. Game-developer score and lifecycle endpoints, overlay endpoints, and OAuth-proxy routes are intentionally excluded from the public spec.
+	The OpenAPI specification at `/api-reference/openapi.json` covers 30 paths: three match listing endpoints (user / team / org), two Twitch badge endpoints, eight league endpoints, the game-developer score and lifecycle endpoints, and the webhook management endpoints. Game-developer score and lifecycle endpoints (including forfeit, batch-scores, and game-originated create) are now documented in the spec; overlay endpoints and OAuth-proxy routes remain intentionally excluded.
 </Note>
 
 ## API Key Permissions
@@ -66,19 +66,22 @@ These endpoints are for approved game developers.
 
 ### Score Submission
 
-| Method | Endpoint                         | Description           | Permission           |
-| ------ | -------------------------------- | --------------------- | -------------------- |
-| `POST` | `/game/matches/{matchId}/scores` | Submit verified score | `game.scores: write` |
+| Method | Endpoint                         | Description                        | Permission           |
+| ------ | -------------------------------- | ---------------------------------- | -------------------- |
+| `POST` | `/game/matches/{matchId}/scores` | Submit verified score              | `game.scores: write` |
+| `POST` | `/game/matches/batch-scores`     | Submit scores for up to 50 matches | `game.scores: write` |
 
 ### Match Lifecycle
 
 | Method  | Endpoint                          | Description                          | Permission                   |
 | ------- | --------------------------------- | ------------------------------------ | ---------------------------- |
-| `POST`  | `/game/matches`                   | List matches (JSON body with gameId) | `game.lifecycle: read`       |
+| `POST`  | `/game/matches`                   | List matches (game from bound key)   | `game.lifecycle: read`       |
 | `GET`   | `/game/matches/{matchId}`         | Get match details                    | `game.lifecycle: read`       |
 | `GET`   | `/game/matches/{matchId}/rosters` | Get match rosters                    | `game.lifecycle: read`       |
 | `GET`   | `/game/matches/{matchId}/status`  | Get match status                     | `game.lifecycle: read`       |
 | `PATCH` | `/game/matches/{matchId}/status`  | Update match status                  | `game.lifecycle: read-write` |
+| `POST`  | `/game/matches/create`            | Create a two-sided match             | `game.lifecycle: read-write` |
+| `POST`  | `/game/matches/{matchId}/forfeit` | Forfeit a match (explicit team)      | `game.lifecycle: read-write` |
 
 ### Player Stats
 
@@ -121,6 +124,7 @@ The `error` field uses a stable machine-readable identifier. The most common pag
 | -------------------- | ---- | --------------------------------------------------------------------------------------------------------------------------- |
 | `INVALID_NUM_ITEMS`  | 400  | Returned by the match listing endpoints when `numItems` is outside `1-100`. See `src/routes/api/v1/user/matches/+server.ts`. |
 | `INVALID_LIMIT`      | 400  | Returned by the league listing endpoints and `/game/matches` when `limit` is outside the supported range (`1-50` for `/leagues`, `1-100` elsewhere). |
+| `IDEMPOTENCY_KEY_CONFLICT` | 409  | An `Idempotency-Key` was reused with a different request body. See `src/convex/_helpers/errors.ts`. |
 
 Both codes map to HTTP 400 with the canonical Convex error identifiers `error_invalid_num_items` and `error_invalid_limit` (`src/convex/_helpers/errors.ts:21-22`). Clients should treat the `error` field, not the message, as the stable contract.
 
@@ -159,7 +163,6 @@ POST /api/v1/game/matches
 Content-Type: application/json
 
 {
-  "gameId": "call_of_duty_black_ops_7",
   "cursor": "25",
   "limit": 25
 }
