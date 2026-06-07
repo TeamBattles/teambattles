@@ -54,6 +54,14 @@ public class GameMatchDetail implements Parsable {
      */
     private String id;
     /**
+     * League this match belongs to, if any (SP-7 league wave).
+     */
+    private GameMatchDetailLeagueId leagueId;
+    /**
+     * League season this match belongs to, if any.
+     */
+    private GameMatchDetailLeagueSeasonId leagueSeasonId;
+    /**
      * Losing team ID once the match completes.
      */
     private GameMatchDetailLoserTeamId loserTeamId;
@@ -145,7 +153,7 @@ public class GameMatchDetail implements Parsable {
      */
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(15);
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(17);
         deserializerMap.put("acceptedTeam", (n) -> { this.setAcceptedTeam(n.getObjectValue(GameDetailTeam::createFromDiscriminatorValue)); });
         deserializerMap.put("acceptedTeamScore", (n) -> { this.setAcceptedTeamScore(n.getObjectValue(GameMatchDetailAcceptedTeamScore::createFromDiscriminatorValue)); });
         deserializerMap.put("bestOf", (n) -> { this.setBestOf(n.getIntegerValue()); });
@@ -156,6 +164,8 @@ public class GameMatchDetail implements Parsable {
         deserializerMap.put("gameId", (n) -> { this.setGameId(n.getStringValue()); });
         deserializerMap.put("gameMode", (n) -> { this.setGameMode(n.getStringValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
+        deserializerMap.put("leagueId", (n) -> { this.setLeagueId(n.getObjectValue(GameMatchDetailLeagueId::createFromDiscriminatorValue)); });
+        deserializerMap.put("leagueSeasonId", (n) -> { this.setLeagueSeasonId(n.getObjectValue(GameMatchDetailLeagueSeasonId::createFromDiscriminatorValue)); });
         deserializerMap.put("loserTeamId", (n) -> { this.setLoserTeamId(n.getObjectValue(GameMatchDetailLoserTeamId::createFromDiscriminatorValue)); });
         deserializerMap.put("scheduledAt", (n) -> { this.setScheduledAt(n.getObjectValue(GameMatchDetailScheduledAt::createFromDiscriminatorValue)); });
         deserializerMap.put("startedAt", (n) -> { this.setStartedAt(n.getObjectValue(GameMatchDetailStartedAt::createFromDiscriminatorValue)); });
@@ -186,6 +196,22 @@ public class GameMatchDetail implements Parsable {
     @jakarta.annotation.Nullable
     public String getId() {
         return this.id;
+    }
+    /**
+     * Gets the leagueId property value. League this match belongs to, if any (SP-7 league wave).
+     * @return a {@link GameMatchDetailLeagueId}
+     */
+    @jakarta.annotation.Nullable
+    public GameMatchDetailLeagueId getLeagueId() {
+        return this.leagueId;
+    }
+    /**
+     * Gets the leagueSeasonId property value. League season this match belongs to, if any.
+     * @return a {@link GameMatchDetailLeagueSeasonId}
+     */
+    @jakarta.annotation.Nullable
+    public GameMatchDetailLeagueSeasonId getLeagueSeasonId() {
+        return this.leagueSeasonId;
     }
     /**
      * Gets the loserTeamId property value. Losing team ID once the match completes.
@@ -243,6 +269,8 @@ public class GameMatchDetail implements Parsable {
         writer.writeStringValue("gameId", this.getGameId());
         writer.writeStringValue("gameMode", this.getGameMode());
         writer.writeStringValue("id", this.getId());
+        writer.writeObjectValue("leagueId", this.getLeagueId());
+        writer.writeObjectValue("leagueSeasonId", this.getLeagueSeasonId());
         writer.writeObjectValue("loserTeamId", this.getLoserTeamId());
         writer.writeObjectValue("scheduledAt", this.getScheduledAt());
         writer.writeObjectValue("startedAt", this.getStartedAt());
@@ -318,6 +346,20 @@ public class GameMatchDetail implements Parsable {
      */
     public void setId(@jakarta.annotation.Nullable final String value) {
         this.id = value;
+    }
+    /**
+     * Sets the leagueId property value. League this match belongs to, if any (SP-7 league wave).
+     * @param value Value to set for the leagueId property.
+     */
+    public void setLeagueId(@jakarta.annotation.Nullable final GameMatchDetailLeagueId value) {
+        this.leagueId = value;
+    }
+    /**
+     * Sets the leagueSeasonId property value. League season this match belongs to, if any.
+     * @param value Value to set for the leagueSeasonId property.
+     */
+    public void setLeagueSeasonId(@jakarta.annotation.Nullable final GameMatchDetailLeagueSeasonId value) {
+        this.leagueSeasonId = value;
     }
     /**
      * Sets the loserTeamId property value. Losing team ID once the match completes.
@@ -684,6 +726,172 @@ public class GameMatchDetail implements Parsable {
          */
         public void setInteger(@jakarta.annotation.Nullable final Integer value) {
             this.integer = value;
+        }
+    }
+    /**
+     * Composed type wrapper for classes {@link GameMatchDetailLeagueIdMember1}, {@link String}
+     */
+    @jakarta.annotation.Generated("com.microsoft.kiota")
+    public static class GameMatchDetailLeagueId implements ComposedTypeWrapper, Parsable {
+        /**
+         * Composed type representation for type {@link GameMatchDetailLeagueIdMember1}
+         */
+        private GameMatchDetailLeagueIdMember1 gameMatchDetailLeagueIdMember1;
+        /**
+         * Composed type representation for type {@link String}
+         */
+        private String string;
+        /**
+         * Creates a new instance of the appropriate class based on discriminator value
+         * @param parseNode The parse node to use to read the discriminator value and create the object
+         * @return a {@link GameMatchDetailLeagueId}
+         */
+        @jakarta.annotation.Nonnull
+        public static GameMatchDetailLeagueId createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
+            Objects.requireNonNull(parseNode);
+            final GameMatchDetailLeagueId result = new GameMatchDetailLeagueId();
+            if (parseNode.getStringValue() != null) {
+                result.setString(parseNode.getStringValue());
+            } else {
+                result.setGameMatchDetailLeagueIdMember1(new GameMatchDetailLeagueIdMember1());
+            }
+            return result;
+        }
+        /**
+         * The deserialization information for the current model
+         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
+         */
+        @jakarta.annotation.Nonnull
+        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
+            if (this.getGameMatchDetailLeagueIdMember1() != null) {
+                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getGameMatchDetailLeagueIdMember1());
+            }
+            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
+        }
+        /**
+         * Gets the GameMatchDetail_leagueIdMember1 property value. Composed type representation for type {@link GameMatchDetailLeagueIdMember1}
+         * @return a {@link GameMatchDetailLeagueIdMember1}
+         */
+        @jakarta.annotation.Nullable
+        public GameMatchDetailLeagueIdMember1 getGameMatchDetailLeagueIdMember1() {
+            return this.gameMatchDetailLeagueIdMember1;
+        }
+        /**
+         * Gets the string property value. Composed type representation for type {@link String}
+         * @return a {@link String}
+         */
+        @jakarta.annotation.Nullable
+        public String getString() {
+            return this.string;
+        }
+        /**
+         * Serializes information the current object
+         * @param writer Serialization writer to use to serialize this model
+         */
+        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
+            Objects.requireNonNull(writer);
+            if (this.getString() != null) {
+                writer.writeStringValue(null, this.getString());
+            } else {
+                writer.writeObjectValue(null, this.getGameMatchDetailLeagueIdMember1());
+            }
+        }
+        /**
+         * Sets the GameMatchDetail_leagueIdMember1 property value. Composed type representation for type {@link GameMatchDetailLeagueIdMember1}
+         * @param value Value to set for the GameMatchDetail_leagueIdMember1 property.
+         */
+        public void setGameMatchDetailLeagueIdMember1(@jakarta.annotation.Nullable final GameMatchDetailLeagueIdMember1 value) {
+            this.gameMatchDetailLeagueIdMember1 = value;
+        }
+        /**
+         * Sets the string property value. Composed type representation for type {@link String}
+         * @param value Value to set for the string property.
+         */
+        public void setString(@jakarta.annotation.Nullable final String value) {
+            this.string = value;
+        }
+    }
+    /**
+     * Composed type wrapper for classes {@link GameMatchDetailLeagueSeasonIdMember1}, {@link String}
+     */
+    @jakarta.annotation.Generated("com.microsoft.kiota")
+    public static class GameMatchDetailLeagueSeasonId implements ComposedTypeWrapper, Parsable {
+        /**
+         * Composed type representation for type {@link GameMatchDetailLeagueSeasonIdMember1}
+         */
+        private GameMatchDetailLeagueSeasonIdMember1 gameMatchDetailLeagueSeasonIdMember1;
+        /**
+         * Composed type representation for type {@link String}
+         */
+        private String string;
+        /**
+         * Creates a new instance of the appropriate class based on discriminator value
+         * @param parseNode The parse node to use to read the discriminator value and create the object
+         * @return a {@link GameMatchDetailLeagueSeasonId}
+         */
+        @jakarta.annotation.Nonnull
+        public static GameMatchDetailLeagueSeasonId createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
+            Objects.requireNonNull(parseNode);
+            final GameMatchDetailLeagueSeasonId result = new GameMatchDetailLeagueSeasonId();
+            if (parseNode.getStringValue() != null) {
+                result.setString(parseNode.getStringValue());
+            } else {
+                result.setGameMatchDetailLeagueSeasonIdMember1(new GameMatchDetailLeagueSeasonIdMember1());
+            }
+            return result;
+        }
+        /**
+         * The deserialization information for the current model
+         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
+         */
+        @jakarta.annotation.Nonnull
+        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
+            if (this.getGameMatchDetailLeagueSeasonIdMember1() != null) {
+                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getGameMatchDetailLeagueSeasonIdMember1());
+            }
+            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
+        }
+        /**
+         * Gets the GameMatchDetail_leagueSeasonIdMember1 property value. Composed type representation for type {@link GameMatchDetailLeagueSeasonIdMember1}
+         * @return a {@link GameMatchDetailLeagueSeasonIdMember1}
+         */
+        @jakarta.annotation.Nullable
+        public GameMatchDetailLeagueSeasonIdMember1 getGameMatchDetailLeagueSeasonIdMember1() {
+            return this.gameMatchDetailLeagueSeasonIdMember1;
+        }
+        /**
+         * Gets the string property value. Composed type representation for type {@link String}
+         * @return a {@link String}
+         */
+        @jakarta.annotation.Nullable
+        public String getString() {
+            return this.string;
+        }
+        /**
+         * Serializes information the current object
+         * @param writer Serialization writer to use to serialize this model
+         */
+        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
+            Objects.requireNonNull(writer);
+            if (this.getString() != null) {
+                writer.writeStringValue(null, this.getString());
+            } else {
+                writer.writeObjectValue(null, this.getGameMatchDetailLeagueSeasonIdMember1());
+            }
+        }
+        /**
+         * Sets the GameMatchDetail_leagueSeasonIdMember1 property value. Composed type representation for type {@link GameMatchDetailLeagueSeasonIdMember1}
+         * @param value Value to set for the GameMatchDetail_leagueSeasonIdMember1 property.
+         */
+        public void setGameMatchDetailLeagueSeasonIdMember1(@jakarta.annotation.Nullable final GameMatchDetailLeagueSeasonIdMember1 value) {
+            this.gameMatchDetailLeagueSeasonIdMember1 = value;
+        }
+        /**
+         * Sets the string property value. Composed type representation for type {@link String}
+         * @param value Value to set for the string property.
+         */
+        public void setString(@jakarta.annotation.Nullable final String value) {
+            this.string = value;
         }
     }
     /**

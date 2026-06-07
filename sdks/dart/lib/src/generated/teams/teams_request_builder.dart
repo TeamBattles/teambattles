@@ -6,7 +6,7 @@ import './item/with_identifier_item_request_builder.dart';
 /// Builds and executes requests for operations under \teams
 class TeamsRequestBuilder extends BaseRequestBuilder<TeamsRequestBuilder> {
     /// Gets an item from the teambattles.teams.item collection
-    ///  [identifier] Team id or slug.
+    ///  [identifier] Team slug or Convex team ID.
     WithIdentifierItemRequestBuilder byIdentifier(String identifier) {
         var urlTplParams = Map.of(pathParameters);
         urlTplParams.putIfAbsent('identifier', () => identifier);

@@ -6,6 +6,8 @@ import { createErrorEscapedFromDiscriminatorValue, createLeagueSummaryFromDiscri
 // @ts-ignore
 import { type WithIdentifierItemRequestBuilder, WithIdentifierItemRequestBuilderNavigationMetadata, WithIdentifierItemRequestBuilderRequestsMetadata } from './item/index.js';
 // @ts-ignore
+import { TemplatesRequestBuilderRequestsMetadata, type TemplatesRequestBuilder } from './templates/index.js';
+// @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
 
 /**
@@ -95,8 +97,12 @@ export interface LeaguesPostResponse_pagination extends Parsable {
  */
 export interface LeaguesRequestBuilder extends BaseRequestBuilder<LeaguesRequestBuilder> {
     /**
+     * The templates property
+     */
+    get templates(): TemplatesRequestBuilder;
+    /**
      * Gets an item from the teambattles.leagues.item collection
-     * @param identifier League slug.
+     * @param identifier League slug or Convex league ID.
      * @returns {WithIdentifierItemRequestBuilder}
      */
      byIdentifier(identifier: string) : WithIdentifierItemRequestBuilder;
@@ -158,6 +164,9 @@ export const LeaguesRequestBuilderNavigationMetadata: Record<Exclude<keyof Leagu
         requestsMetadata: WithIdentifierItemRequestBuilderRequestsMetadata,
         navigationMetadata: WithIdentifierItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["identifier"],
+    },
+    templates: {
+        requestsMetadata: TemplatesRequestBuilderRequestsMetadata,
     },
 };
 /**

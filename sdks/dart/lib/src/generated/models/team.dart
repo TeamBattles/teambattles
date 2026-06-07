@@ -1,9 +1,12 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
+import './team_avatar_url.dart';
 
 /// auto generated
 /// A team participating in a match.
 class Team implements Parsable {
+    ///  Team avatar URL.
+    TeamAvatarUrl? avatarUrl;
     ///  Team ID.
     String? id;
     ///  Team name.
@@ -19,6 +22,7 @@ class Team implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
+        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getObjectValue<TeamAvatarUrl>(TeamAvatarUrl.createFromDiscriminatorValue);
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['name'] = (node) => name = node.getStringValue();
         deserializerMap['tag'] = (node) => tag = node.getStringValue();
@@ -28,6 +32,7 @@ class Team implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
+        writer.writeObjectValue<TeamAvatarUrl>('avatarUrl', avatarUrl);
         writer.writeStringValue('id', id);
         writer.writeStringValue('name', name);
         writer.writeStringValue('tag', tag);

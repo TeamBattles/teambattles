@@ -4,6 +4,10 @@
 // @ts-ignore
 import { createErrorEscapedFromDiscriminatorValue, createGameMatchFromDiscriminatorValue, serializeGameMatch, serializeListGameMatchesBody, type ErrorEscaped, type GameMatch, type ListGameMatchesBody } from '../../models/index.js';
 // @ts-ignore
+import { BatchScoresRequestBuilderRequestsMetadata, type BatchScoresRequestBuilder } from './batchScores/index.js';
+// @ts-ignore
+import { CreateRequestBuilderRequestsMetadata, type CreateRequestBuilder } from './create/index.js';
+// @ts-ignore
 import { type WithMatchItemRequestBuilder, WithMatchItemRequestBuilderNavigationMetadata, WithMatchItemRequestBuilderRequestsMetadata } from './item/index.js';
 // @ts-ignore
 import { type AdditionalDataHolder, type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
@@ -128,14 +132,22 @@ export interface MatchesPostResponse_pagination_cursorMember1 extends Additional
  */
 export interface MatchesRequestBuilder extends BaseRequestBuilder<MatchesRequestBuilder> {
     /**
+     * The batchScores property
+     */
+    get batchScores(): BatchScoresRequestBuilder;
+    /**
+     * The create property
+     */
+    get create(): CreateRequestBuilder;
+    /**
      * Gets an item from the teambattles.game.matches.item collection
      * @param matchId Match ID.
      * @returns {WithMatchItemRequestBuilder}
      */
      byMatchId(matchId: string) : WithMatchItemRequestBuilder;
     /**
-     * Returns matches for the given game, auto-filtered to the API key owner's approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
-     * @param body Filters and cursor pagination for listing a game's matches.
+     * Returns matches for the API key owner's approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+     * @param body Status filter and cursor pagination for listing the bound key's game matches. The game is derived from the developer-app key's bound game (not a body field).
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<MatchesPostResponse>}
      * @throws {ErrorEscaped} error when the service returns a 400 status code
@@ -144,8 +156,8 @@ export interface MatchesRequestBuilder extends BaseRequestBuilder<MatchesRequest
      */
      post(body: ListGameMatchesBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<MatchesPostResponse | undefined>;
     /**
-     * Returns matches for the given game, auto-filtered to the API key owner's approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
-     * @param body Filters and cursor pagination for listing a game's matches.
+     * Returns matches for the API key owner's approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+     * @param body Status filter and cursor pagination for listing the bound key's game matches. The game is derived from the developer-app key's bound game (not a body field).
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
@@ -215,6 +227,12 @@ export const MatchesRequestBuilderNavigationMetadata: Record<Exclude<keyof Match
         requestsMetadata: WithMatchItemRequestBuilderRequestsMetadata,
         navigationMetadata: WithMatchItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["matchId"],
+    },
+    batchScores: {
+        requestsMetadata: BatchScoresRequestBuilderRequestsMetadata,
+    },
+    create: {
+        requestsMetadata: CreateRequestBuilderRequestsMetadata,
     },
 };
 /**

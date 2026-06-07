@@ -12,7 +12,7 @@ import java.util.Objects;
 public class TeamsRequestBuilder extends BaseRequestBuilder {
     /**
      * Gets an item from the gg.teambattles.sdk.generated.teams.item collection
-     * @param identifier Team id or slug.
+     * @param identifier Team slug or Convex team ID.
      * @return a {@link WithIdentifierItemRequestBuilder}
      */
     @jakarta.annotation.Nonnull

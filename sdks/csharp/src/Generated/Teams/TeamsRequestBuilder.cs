@@ -16,7 +16,7 @@ namespace TeamBattles.Sdk.Teams
     public partial class TeamsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the TeamBattles.Sdk.teams.item collection</summary>
-        /// <param name="position">Team id or slug.</param>
+        /// <param name="position">Team slug or Convex team ID.</param>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Teams.Item.WithIdentifierItemRequestBuilder"/></returns>
         public global::TeamBattles.Sdk.Teams.Item.WithIdentifierItemRequestBuilder this[string position]
         {

@@ -37,39 +37,148 @@ When you create an endpoint, a signing secret is generated. This secret is used 
 
 ## Events
 
-### Match Events
+<Note>
+	The catalog lists every subscribable event name. Some lower-priority families are cataloged
+	before their runtime emitters are wired; those events start delivering once the owning
+	product surface emits them.
+</Note>
+
+### Match
 
 | Event             | Description                                      |
 | ----------------- | ------------------------------------------------ |
-| `match.created`   | A new match was created                          |
-| `match.published` | Match was published and visible to opponents     |
 | `match.accepted`  | An opponent accepted the match                   |
+| `match.cancelled` | Match was cancelled                              |
+| `match.completed` | Match finished with a result                     |
+| `match.created`   | A new match was created                          |
+| `match.forfeited` | A team forfeited the match                       |
+| `match.published` | Match was published and visible to opponents     |
 | `match.ready`     | Match is ready to begin (all check-ins complete) |
 | `match.started`   | Match began                                      |
-| `match.completed` | Match finished with a result                     |
-| `match.cancelled` | Match was cancelled                              |
-| `match.forfeited` | A team forfeited the match                       |
 
-### Score Events
+### Score
 
-| Event             | Description                           |
-| ----------------- | ------------------------------------- |
-| `score.submitted` | A score was submitted                 |
-| `score.confirmed` | A score was confirmed by the opponent |
-| `score.disputed`  | A submitted score was disputed        |
+| Event                    | Description                           |
+| ------------------------ | ------------------------------------- |
+| `score.confirmed`        | A score was confirmed by the opponent |
+| `score.dispute_resolved` | A score dispute was resolved          |
+| `score.disputed`         | A submitted score was disputed        |
+| `score.submitted`        | A score was submitted                 |
 
-### Team & Player Events
+### Roster / Player
 
-| Event               | Description                       |
-| ------------------- | --------------------------------- |
-| `roster.updated`    | Match roster was changed          |
-| `player.checked_in` | A player checked in for the match |
-| `team.joined`       | A team joined the match           |
-| `team.left`         | A team left the match             |
+| Event                  | Description                       |
+| ---------------------- | --------------------------------- |
+| `roster.updated`       | Match roster was changed          |
+| `player.checked_in`    | A player checked in for the match |
+| `player.stats_updated` | Player stats changed              |
+
+### Team
+
+| Event                      | Description                 |
+| -------------------------- | --------------------------- |
+| `team.banned`              | A team was banned           |
+| `team.created`             | A team was created          |
+| `team.disbanded`           | A team was disbanded        |
+| `team.joined`              | A team joined a match       |
+| `team.left`                | A team left a match         |
+| `team.member_role_changed` | A team member role changed  |
+| `team.updated`             | Team details were updated   |
+
+### Organization
+
+| Event                                     | Description                          |
+| ----------------------------------------- | ------------------------------------ |
+| `organization.created`                    | An organization was created          |
+| `organization.disabled`                   | An organization was disabled         |
+| `organization.enabled`                    | An organization was enabled          |
+| `organization.member_added`               | An organization member was added     |
+| `organization.member_removed`             | An organization member was removed   |
+| `organization.member_role_changed`        | An organization member role changed  |
+| `organization.ownership_transferred`      | Organization ownership changed       |
+| `organization.removed`                    | An organization was removed          |
+| `organization.unbanned`                   | An organization user ban was revoked |
+| `organization.updated`                    | Organization details were updated    |
+| `organization.user_banned`                | A user was banned from an org        |
+
+### League
+
+| Event                            | Description                             |
+| -------------------------------- | --------------------------------------- |
+| `league.ban_revoked`             | A league ban was revoked                |
+| `league.cooldown_cleared`        | A league cooldown was cleared           |
+| `league.cooldown_issued`         | A league cooldown was issued            |
+| `league.created`                 | A league was created                    |
+| `league.display_rules_updated`   | League display rules changed            |
+| `league.featured`                | A league was featured                   |
+| `league.game_added`              | A game was added to a league            |
+| `league.game_removed`            | A game was removed from a league        |
+| `league.game_toggled`            | A league game was toggled               |
+| `league.ownership_transferred`   | League ownership changed                |
+| `league.penalty_issued`          | A league penalty was issued             |
+| `league.points_updated`          | League points configuration changed     |
+| `league.rules_updated`           | League rules changed                    |
+| `league.season_activated`        | A league season was activated           |
+| `league.season_completed`        | A league season was completed           |
+| `league.season_created`          | A league season was created             |
+| `league.season_removed`          | A league season was removed             |
+| `league.settings_updated`        | League settings changed                 |
+| `league.shutdown`                | A league was shut down                  |
+| `league.shutdown_requested`      | League shutdown was requested           |
+| `league.staff_invited`           | League staff was invited                |
+| `league.staff_removed`           | League staff was removed                |
+| `league.staff_role_changed`      | A league staff role changed             |
+| `league.standings_updated`       | League standings changed                |
+| `league.suspended`               | A league was suspended                  |
+| `league.team_approved`           | A league team application was approved  |
+| `league.team_banned`             | A league team was banned                |
+| `league.team_denied`             | A league team application was denied    |
+| `league.team_removed`            | A league team was removed               |
+| `league.unfeatured`              | A league was unfeatured                 |
+| `league.unsuspended`             | A league was unsuspended                |
+| `league.verified`                | A league was verified                   |
+
+### Rank / Stream
+
+| Event            | Description          |
+| ---------------- | -------------------- |
+| `rank.updated`   | A user rank changed  |
+| `stream.offline` | A stream went offline |
+| `stream.online`  | A stream went online |
+
+### Subscription / Payment
+
+| Event                    | Description                  |
+| ------------------------ | ---------------------------- |
+| `subscription.cancelled` | A subscription was cancelled |
+| `subscription.created`   | A subscription was created   |
+| `subscription.updated`   | A subscription changed       |
+| `payment.failed`         | A payment failed             |
+| `payment.refunded`       | A payment was refunded       |
+| `payment.succeeded`      | A payment succeeded          |
+
+### Ticket / Moderation
+
+| Event                   | Description                 |
+| ----------------------- | --------------------------- |
+| `ticket.closed`         | A support ticket was closed |
+| `ticket.created`        | A support ticket was created |
+| `ticket.reopened`       | A support ticket was reopened |
+| `ticket.updated`        | A support ticket changed    |
+| `chat.message_reported` | A chat message was reported |
+
+### Assets / Rewards
+
+| Event                      | Description                    |
+| -------------------------- | ------------------------------ |
+| `custommap.scan_completed` | A custom map scan completed    |
+| `achievement.unlocked`     | A user unlocked an achievement |
+| `referral.milestone`       | A referral milestone was reached |
+| `trophy.awarded`           | A trophy was awarded           |
 
 ## Payload Format
 
-All webhook deliveries use the following format:
+Every delivery uses the same envelope. The `data` object is event-specific and is documented in the OpenAPI `webhooks` section with a named payload component for each event.
 
 ```json
 {
@@ -78,12 +187,9 @@ All webhook deliveries use the following format:
 	"created_at": "2026-02-23T15:30:00Z",
 	"data": {
 		"matchId": "match_123",
-		"gameId": "call_of_duty_black_ops_7",
-		"winner": "team_abc",
-		"scores": {
-			"team_abc": 250,
-			"team_def": 180
-		}
+		"gameId": "game_abc",
+		"winnerTeamId": "team_abc",
+		"loserTeamId": "team_def"
 	}
 }
 ```

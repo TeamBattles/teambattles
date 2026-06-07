@@ -1,0 +1,1 @@
+require_relative 'members_get_response'

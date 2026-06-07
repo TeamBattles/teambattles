@@ -3,6 +3,7 @@ package gg.teambattles.sdk.generated.user;
 import com.microsoft.kiota.BaseRequestBuilder;
 import com.microsoft.kiota.RequestAdapter;
 import gg.teambattles.sdk.generated.user.matches.MatchesRequestBuilder;
+import gg.teambattles.sdk.generated.user.ongoingmatches.OngoingMatchesRequestBuilder;
 import java.util.HashMap;
 import java.util.Objects;
 /**
@@ -17,6 +18,14 @@ public class UserRequestBuilder extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public MatchesRequestBuilder matches() {
         return new MatchesRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The ongoingMatches property
+     * @return a {@link OngoingMatchesRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public OngoingMatchesRequestBuilder ongoingMatches() {
+        return new OngoingMatchesRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * Instantiates a new {@link UserRequestBuilder} and sets the default values.

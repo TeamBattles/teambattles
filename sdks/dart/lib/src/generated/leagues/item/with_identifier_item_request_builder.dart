@@ -2,19 +2,35 @@
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../models/error.dart';
 import '../../models/league_profile_response.dart';
+import './applyEligibility/apply_eligibility_request_builder.dart';
 import './bans/bans_request_builder.dart';
+import './displayRules/display_rules_request_builder.dart';
+import './games/games_request_builder.dart';
 import './members/members_request_builder.dart';
 import './penalties/penalties_request_builder.dart';
 import './rules/rules_request_builder.dart';
+import './seasonOptions/season_options_request_builder.dart';
 import './seasons/seasons_request_builder.dart';
 import './standings/standings_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \leagues\{identifier}
 class WithIdentifierItemRequestBuilder extends BaseRequestBuilder<WithIdentifierItemRequestBuilder> {
+    ///  The applyEligibility property
+    ApplyEligibilityRequestBuilder get applyEligibility {
+        return ApplyEligibilityRequestBuilder(pathParameters, requestAdapter);
+    }
     ///  The bans property
     BansRequestBuilder get bans {
         return BansRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The displayRules property
+    DisplayRulesRequestBuilder get displayRules {
+        return DisplayRulesRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The games property
+    GamesRequestBuilder get games {
+        return GamesRequestBuilder(pathParameters, requestAdapter);
     }
     ///  The members property
     MembersRequestBuilder get members {
@@ -27,6 +43,10 @@ class WithIdentifierItemRequestBuilder extends BaseRequestBuilder<WithIdentifier
     ///  The rules property
     RulesRequestBuilder get rules {
         return RulesRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The seasonOptions property
+    SeasonOptionsRequestBuilder get seasonOptions {
+        return SeasonOptionsRequestBuilder(pathParameters, requestAdapter);
     }
     ///  The seasons property
     SeasonsRequestBuilder get seasons {
@@ -49,7 +69,7 @@ class WithIdentifierItemRequestBuilder extends BaseRequestBuilder<WithIdentifier
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     WithIdentifierItemRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+    /// Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<LeagueProfileResponse?> postAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toPostRequestInformation(requestConfiguration);
@@ -60,7 +80,7 @@ class WithIdentifierItemRequestBuilder extends BaseRequestBuilder<WithIdentifier
         };
         return await requestAdapter.send<LeagueProfileResponse>(requestInfo, LeagueProfileResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+    /// Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.post, urlTemplate : urlTemplate, pathParameters :  pathParameters);

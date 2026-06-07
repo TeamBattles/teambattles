@@ -36,3 +36,8 @@ func NewOrgsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1
     urlParams["request-raw-url"] = rawUrl
     return NewOrgsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Discover the discover property
+// returns a *DiscoverRequestBuilder when successful
+func (m *OrgsRequestBuilder) Discover()(*DiscoverRequestBuilder) {
+    return NewDiscoverRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}

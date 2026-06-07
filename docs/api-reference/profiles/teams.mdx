@@ -1,0 +1,16 @@
+---
+title: "Get Team Profile"
+description: "Read API-safe team profile and roster resources."
+openapi: "GET /teams/{identifier}"
+---
+
+## Permission Required
+
+Team profile reads require `teams.profile`. Team member roster reads require `teams.roster`.
+
+## Related Endpoints
+
+- `GET /teams/{identifier}`
+- `GET /teams/{identifier}/members`
+
+Private team rosters are only returned to active team members.

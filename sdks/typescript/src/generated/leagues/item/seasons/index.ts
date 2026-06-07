@@ -4,12 +4,20 @@
 // @ts-ignore
 import { createErrorEscapedFromDiscriminatorValue, createLeagueSeasonsFromDiscriminatorValue, serializeLeagueSeasons, serializeSeasonsRequestBody, type ErrorEscaped, type LeagueSeasons, type SeasonsRequestBody } from '../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { type WithSeasonItemRequestBuilder, WithSeasonItemRequestBuilderRequestsMetadata } from './item/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/seasons
  */
 export interface SeasonsRequestBuilder extends BaseRequestBuilder<SeasonsRequestBuilder> {
+    /**
+     * Gets an item from the teambattles.leagues.item.seasons.item collection
+     * @param seasonId League season ID.
+     * @returns {WithSeasonItemRequestBuilder}
+     */
+     bySeasonId(seasonId: string) : WithSeasonItemRequestBuilder;
     /**
      * Returns seasons for a league resolved by slug, with optional game and status filtering. Requires the leagues.league_public:read permission.
      * @param body Game and status filters for league seasons.
@@ -33,6 +41,15 @@ export interface SeasonsRequestBuilder extends BaseRequestBuilder<SeasonsRequest
  * Uri template for the request builder.
  */
 export const SeasonsRequestBuilderUriTemplate = "{+baseurl}/leagues/{identifier}/seasons";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const SeasonsRequestBuilderNavigationMetadata: Record<Exclude<keyof SeasonsRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    bySeasonId: {
+        requestsMetadata: WithSeasonItemRequestBuilderRequestsMetadata,
+        pathParametersMappings: ["seasonId"],
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

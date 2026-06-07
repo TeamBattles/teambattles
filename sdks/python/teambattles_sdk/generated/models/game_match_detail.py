@@ -10,6 +10,8 @@ if TYPE_CHECKING:
     from .game_match_detail_completed_at import GameMatchDetail_completedAt
     from .game_match_detail_created_at import GameMatchDetail_createdAt
     from .game_match_detail_creator_team_score import GameMatchDetail_creatorTeamScore
+    from .game_match_detail_league_id import GameMatchDetail_leagueId
+    from .game_match_detail_league_season_id import GameMatchDetail_leagueSeasonId
     from .game_match_detail_loser_team_id import GameMatchDetail_loserTeamId
     from .game_match_detail_scheduled_at import GameMatchDetail_scheduledAt
     from .game_match_detail_started_at import GameMatchDetail_startedAt
@@ -41,6 +43,10 @@ class GameMatchDetail(Parsable):
     game_mode: Optional[str] = None
     # The id property
     id: Optional[str] = None
+    # League this match belongs to, if any (SP-7 league wave).
+    league_id: Optional[GameMatchDetail_leagueId] = None
+    # League season this match belongs to, if any.
+    league_season_id: Optional[GameMatchDetail_leagueSeasonId] = None
     # Losing team ID once the match completes.
     loser_team_id: Optional[GameMatchDetail_loserTeamId] = None
     # Scheduled start time (ISO 8601).
@@ -51,7 +57,7 @@ class GameMatchDetail(Parsable):
     status: Optional[MatchStatus] = None
     # Winning team ID once the match completes.
     winner_team_id: Optional[GameMatchDetail_winnerTeamId] = None
-    
+
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GameMatchDetail:
         """
@@ -62,7 +68,7 @@ class GameMatchDetail(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return GameMatchDetail()
-    
+
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -73,6 +79,8 @@ class GameMatchDetail(Parsable):
         from .game_match_detail_completed_at import GameMatchDetail_completedAt
         from .game_match_detail_created_at import GameMatchDetail_createdAt
         from .game_match_detail_creator_team_score import GameMatchDetail_creatorTeamScore
+        from .game_match_detail_league_id import GameMatchDetail_leagueId
+        from .game_match_detail_league_season_id import GameMatchDetail_leagueSeasonId
         from .game_match_detail_loser_team_id import GameMatchDetail_loserTeamId
         from .game_match_detail_scheduled_at import GameMatchDetail_scheduledAt
         from .game_match_detail_started_at import GameMatchDetail_startedAt
@@ -84,6 +92,8 @@ class GameMatchDetail(Parsable):
         from .game_match_detail_completed_at import GameMatchDetail_completedAt
         from .game_match_detail_created_at import GameMatchDetail_createdAt
         from .game_match_detail_creator_team_score import GameMatchDetail_creatorTeamScore
+        from .game_match_detail_league_id import GameMatchDetail_leagueId
+        from .game_match_detail_league_season_id import GameMatchDetail_leagueSeasonId
         from .game_match_detail_loser_team_id import GameMatchDetail_loserTeamId
         from .game_match_detail_scheduled_at import GameMatchDetail_scheduledAt
         from .game_match_detail_started_at import GameMatchDetail_startedAt
@@ -101,6 +111,8 @@ class GameMatchDetail(Parsable):
             "gameId": lambda n : setattr(self, 'game_id', n.get_str_value()),
             "gameMode": lambda n : setattr(self, 'game_mode', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
+            "leagueId": lambda n : setattr(self, 'league_id', n.get_object_value(GameMatchDetail_leagueId)),
+            "leagueSeasonId": lambda n : setattr(self, 'league_season_id', n.get_object_value(GameMatchDetail_leagueSeasonId)),
             "loserTeamId": lambda n : setattr(self, 'loser_team_id', n.get_object_value(GameMatchDetail_loserTeamId)),
             "scheduledAt": lambda n : setattr(self, 'scheduled_at', n.get_object_value(GameMatchDetail_scheduledAt)),
             "startedAt": lambda n : setattr(self, 'started_at', n.get_object_value(GameMatchDetail_startedAt)),
@@ -108,7 +120,7 @@ class GameMatchDetail(Parsable):
             "winnerTeamId": lambda n : setattr(self, 'winner_team_id', n.get_object_value(GameMatchDetail_winnerTeamId)),
         }
         return fields
-    
+
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -127,10 +139,12 @@ class GameMatchDetail(Parsable):
         writer.write_str_value("gameId", self.game_id)
         writer.write_str_value("gameMode", self.game_mode)
         writer.write_str_value("id", self.id)
+        writer.write_object_value("leagueId", self.league_id)
+        writer.write_object_value("leagueSeasonId", self.league_season_id)
         writer.write_object_value("loserTeamId", self.loser_team_id)
         writer.write_object_value("scheduledAt", self.scheduled_at)
         writer.write_object_value("startedAt", self.started_at)
         writer.write_enum_value("status", self.status)
         writer.write_object_value("winnerTeamId", self.winner_team_id)
-    
+
 

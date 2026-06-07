@@ -8,6 +8,7 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.leagues.item.seasons.item.WithSeasonItemRequestBuilder;
 import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.models.LeagueSeasons;
 import gg.teambattles.sdk.generated.models.SeasonsRequestBody;
@@ -20,6 +21,18 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class SeasonsRequestBuilder extends BaseRequestBuilder {
+    /**
+     * Gets an item from the gg.teambattles.sdk.generated.leagues.item.seasons.item collection
+     * @param seasonId League season ID.
+     * @return a {@link WithSeasonItemRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public WithSeasonItemRequestBuilder bySeasonId(@jakarta.annotation.Nonnull final String seasonId) {
+        Objects.requireNonNull(seasonId);
+        final HashMap<String, Object> urlTplParams = new HashMap<String, Object>(this.pathParameters);
+        urlTplParams.put("seasonId", seasonId);
+        return new WithSeasonItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /**
      * Instantiates a new {@link SeasonsRequestBuilder} and sets the default values.
      * @param pathParameters Path parameters for the request

@@ -1,6 +1,8 @@
 require 'microsoft_kiota_abstractions'
 require 'microsoft_kiota_serialization_json'
 require_relative './game/game_request_builder'
+require_relative './games/games_request_builder'
+require_relative './leaderboards/leaderboards_request_builder'
 require_relative './leagues/leagues_request_builder'
 require_relative './matches/matches_request_builder'
 require_relative './orgs/orgs_request_builder'
@@ -8,53 +10,75 @@ require_relative './teams/teams_request_builder'
 require_relative './team_battles_sdk::_generated'
 require_relative './twitch/twitch_request_builder'
 require_relative './user/user_request_builder'
+require_relative './users/users_request_builder'
+require_relative './webhooks/webhooks_request_builder'
 
 module TeamBattlesSdk
     module Generated
-        ## 
+        ##
         # The main entry point of the SDK, exposes the configuration and the fluent API.
         class TeamBattlesApiClient < MicrosoftKiotaAbstractions::BaseRequestBuilder
-            
-            ## 
+
+            ##
             # The game property
             def game()
                 return TeamBattlesSdk::Generated::Game::GameRequestBuilder.new(@path_parameters, @request_adapter)
             end
-            ## 
+            ##
+            # The games property
+            def games()
+                return TeamBattlesSdk::Generated::Games::GamesRequestBuilder.new(@path_parameters, @request_adapter)
+            end
+            ##
+            # The leaderboards property
+            def leaderboards()
+                return TeamBattlesSdk::Generated::Leaderboards::LeaderboardsRequestBuilder.new(@path_parameters, @request_adapter)
+            end
+            ##
             # The leagues property
             def leagues()
                 return TeamBattlesSdk::Generated::Leagues::LeaguesRequestBuilder.new(@path_parameters, @request_adapter)
             end
-            ## 
+            ##
             # The matches property
             def matches()
                 return TeamBattlesSdk::Generated::Matches::MatchesRequestBuilder.new(@path_parameters, @request_adapter)
             end
-            ## 
+            ##
             # The orgs property
             def orgs()
                 return TeamBattlesSdk::Generated::Orgs::OrgsRequestBuilder.new(@path_parameters, @request_adapter)
             end
-            ## 
+            ##
             # The teams property
             def teams()
                 return TeamBattlesSdk::Generated::Teams::TeamsRequestBuilder.new(@path_parameters, @request_adapter)
             end
-            ## 
+            ##
             # The twitch property
             def twitch()
                 return TeamBattlesSdk::Generated::Twitch::TwitchRequestBuilder.new(@path_parameters, @request_adapter)
             end
-            ## 
+            ##
             # The user property
             def user()
                 return TeamBattlesSdk::Generated::User::UserRequestBuilder.new(@path_parameters, @request_adapter)
             end
-            ## 
+            ##
+            # The users property
+            def users()
+                return TeamBattlesSdk::Generated::Users::UsersRequestBuilder.new(@path_parameters, @request_adapter)
+            end
+            ##
+            # The webhooks property
+            def webhooks()
+                return TeamBattlesSdk::Generated::Webhooks::WebhooksRequestBuilder.new(@path_parameters, @request_adapter)
+            end
+            ##
             ## Instantiates a new TeamBattlesApiClient and sets the default values.
             ## @param request_adapter The request adapter to use to execute the requests.
             ## @return a void
-            ## 
+            ##
             def initialize(request_adapter)
                 super(Hash.new, request_adapter, "{+baseurl}")
                 MicrosoftKiotaAbstractions::ApiClientBuilder.register_default_serializer(MicrosoftKiotaSerializationJson::JsonSerializationWriterFactory)

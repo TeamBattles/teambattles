@@ -7,14 +7,12 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// ListGameMatchesBody filters and cursor pagination for listing a game's matches.
+// ListGameMatchesBody status filter and cursor pagination for listing the bound key's game matches. The game is derived from the developer-app key's bound game (not a body field).
 type ListGameMatchesBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // Opaque continuation cursor from a prior page's pagination.cursor.
     cursor *string
-    // Game to list matches for. Must be the key's approved game.
-    gameId *string
     // Page size (1-100, enforced by the handler). Defaults to the handler's internal default.
     limit *float64
     // Optional MatchStatus filter (e.g. IN_PROGRESS).
@@ -56,16 +54,6 @@ func (m *ListGameMatchesBody) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
-    res["gameId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGameId(val)
-        }
-        return nil
-    }
     res["limit"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetFloat64Value()
         if err != nil {
@@ -88,11 +76,6 @@ func (m *ListGameMatchesBody) GetFieldDeserializers()(map[string]func(i878a80d23
     }
     return res
 }
-// GetGameId gets the gameId property value. Game to list matches for. Must be the key's approved game.
-// returns a *string when successful
-func (m *ListGameMatchesBody) GetGameId()(*string) {
-    return m.gameId
-}
 // GetLimit gets the limit property value. Page size (1-100, enforced by the handler). Defaults to the handler's internal default.
 // returns a *float64 when successful
 func (m *ListGameMatchesBody) GetLimit()(*float64) {
@@ -107,12 +90,6 @@ func (m *ListGameMatchesBody) GetStatus()(*string) {
 func (m *ListGameMatchesBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("cursor", m.GetCursor())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("gameId", m.GetGameId())
         if err != nil {
             return err
         }
@@ -145,10 +122,6 @@ func (m *ListGameMatchesBody) SetAdditionalData(value map[string]any)() {
 func (m *ListGameMatchesBody) SetCursor(value *string)() {
     m.cursor = value
 }
-// SetGameId sets the gameId property value. Game to list matches for. Must be the key's approved game.
-func (m *ListGameMatchesBody) SetGameId(value *string)() {
-    m.gameId = value
-}
 // SetLimit sets the limit property value. Page size (1-100, enforced by the handler). Defaults to the handler's internal default.
 func (m *ListGameMatchesBody) SetLimit(value *float64)() {
     m.limit = value
@@ -161,11 +134,9 @@ type ListGameMatchesBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetCursor()(*string)
-    GetGameId()(*string)
     GetLimit()(*float64)
     GetStatus()(*string)
     SetCursor(value *string)()
-    SetGameId(value *string)()
     SetLimit(value *float64)()
     SetStatus(value *string)()
 }

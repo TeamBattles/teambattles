@@ -2,6 +2,7 @@ package gg.teambattles.sdk.generated.orgs;
 
 import com.microsoft.kiota.BaseRequestBuilder;
 import com.microsoft.kiota.RequestAdapter;
+import gg.teambattles.sdk.generated.orgs.discover.DiscoverRequestBuilder;
 import gg.teambattles.sdk.generated.orgs.item.WithIdentifierItemRequestBuilder;
 import java.util.HashMap;
 import java.util.Objects;
@@ -11,8 +12,16 @@ import java.util.Objects;
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class OrgsRequestBuilder extends BaseRequestBuilder {
     /**
+     * The discover property
+     * @return a {@link DiscoverRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public DiscoverRequestBuilder discover() {
+        return new DiscoverRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
      * Gets an item from the gg.teambattles.sdk.generated.orgs.item collection
-     * @param identifier Organization id or slug.
+     * @param identifier Organization slug or Convex organization ID.
      * @return a {@link WithIdentifierItemRequestBuilder}
      */
     @jakarta.annotation.Nonnull

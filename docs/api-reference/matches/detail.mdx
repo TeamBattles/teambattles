@@ -1,0 +1,13 @@
+---
+title: "Get Match Detail"
+description: "Read participant-gated match detail without lobby codes."
+openapi: "GET /matches/{matchId}"
+---
+
+## Permission Required
+
+This endpoint requires one of `matches.user_matches`, `matches.team_matches`, or `matches.org_matches` with `read` access.
+
+## Access Rules
+
+TeamBattles staff can read any match. Active members of creator or accepted teams can read the match. Active members of a challenged team can read pending challenge details. Draft matches are limited to creator-team captains and staff.

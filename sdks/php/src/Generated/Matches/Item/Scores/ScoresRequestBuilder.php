@@ -17,7 +17,7 @@ use TeamBattles\Sdk\Generated\Models\SubmitScoreBody;
 /**
  * Builds and executes requests for operations under /matches/{matchId}/scores
 */
-class ScoresRequestBuilder extends BaseRequestBuilder 
+class ScoresRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Instantiates a new ScoresRequestBuilder and sets the default values.
@@ -34,7 +34,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+     * Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
      * @param ScoresRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<MapScores|null>
      * @throws Exception
@@ -86,7 +86,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+     * Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
      * @param ScoresRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

@@ -2,6 +2,7 @@
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../../models/error.dart';
 import '../../../models/game_match_detail_response.dart';
+import './forfeit/forfeit_request_builder.dart';
 import './playerStats/player_stats_request_builder.dart';
 import './rosters/rosters_request_builder.dart';
 import './scores/scores_request_builder.dart';
@@ -10,6 +11,10 @@ import './status/status_request_builder.dart';
 /// auto generated
 /// Builds and executes requests for operations under \game\matches\{matchId}
 class WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatchItemRequestBuilder> {
+    ///  The forfeit property
+    ForfeitRequestBuilder get forfeit {
+        return ForfeitRequestBuilder(pathParameters, requestAdapter);
+    }
     ///  The playerStats property
     PlayerStatsRequestBuilder get playerStats {
         return PlayerStatsRequestBuilder(pathParameters, requestAdapter);

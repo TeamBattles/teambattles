@@ -8,10 +8,14 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Leagues.Item.ApplyEligibility;
 using TeamBattles.Sdk.Leagues.Item.Bans;
+using TeamBattles.Sdk.Leagues.Item.DisplayRules;
+using TeamBattles.Sdk.Leagues.Item.Games;
 using TeamBattles.Sdk.Leagues.Item.Members;
 using TeamBattles.Sdk.Leagues.Item.Penalties;
 using TeamBattles.Sdk.Leagues.Item.Rules;
+using TeamBattles.Sdk.Leagues.Item.SeasonOptions;
 using TeamBattles.Sdk.Leagues.Item.Seasons;
 using TeamBattles.Sdk.Leagues.Item.Standings;
 using TeamBattles.Sdk.Models;
@@ -23,10 +27,25 @@ namespace TeamBattles.Sdk.Leagues.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithIdentifierItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The applyEligibility property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.ApplyEligibility.ApplyEligibilityRequestBuilder ApplyEligibility
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.ApplyEligibility.ApplyEligibilityRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The bans property</summary>
         public global::TeamBattles.Sdk.Leagues.Item.Bans.BansRequestBuilder Bans
         {
             get => new global::TeamBattles.Sdk.Leagues.Item.Bans.BansRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The displayRules property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.DisplayRules.DisplayRulesRequestBuilder DisplayRules
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.DisplayRules.DisplayRulesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The games property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Games.GamesRequestBuilder Games
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Games.GamesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The members property</summary>
         public global::TeamBattles.Sdk.Leagues.Item.Members.MembersRequestBuilder Members
@@ -42,6 +61,11 @@ namespace TeamBattles.Sdk.Leagues.Item
         public global::TeamBattles.Sdk.Leagues.Item.Rules.RulesRequestBuilder Rules
         {
             get => new global::TeamBattles.Sdk.Leagues.Item.Rules.RulesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The seasonOptions property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.SeasonOptions.SeasonOptionsRequestBuilder SeasonOptions
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.SeasonOptions.SeasonOptionsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The seasons property</summary>
         public global::TeamBattles.Sdk.Leagues.Item.Seasons.SeasonsRequestBuilder Seasons
@@ -70,7 +94,7 @@ namespace TeamBattles.Sdk.Leagues.Item
         {
         }
         /// <summary>
-        /// Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+        /// Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.LeagueProfileResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -97,7 +121,7 @@ namespace TeamBattles.Sdk.Leagues.Item
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.LeagueProfileResponse>(requestInfo, global::TeamBattles.Sdk.Models.LeagueProfileResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+        /// Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

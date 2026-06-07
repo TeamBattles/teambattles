@@ -5,11 +5,12 @@ namespace TeamBattles\Sdk\Generated\User;
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use TeamBattles\Sdk\Generated\User\Matches\MatchesRequestBuilder;
+use TeamBattles\Sdk\Generated\User\OngoingMatches\OngoingMatchesRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /user
 */
-class UserRequestBuilder extends BaseRequestBuilder 
+class UserRequestBuilder extends BaseRequestBuilder
 {
     /**
      * The matches property
@@ -17,7 +18,14 @@ class UserRequestBuilder extends BaseRequestBuilder
     public function matches(): MatchesRequestBuilder {
         return new MatchesRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-    
+
+    /**
+     * The ongoingMatches property
+    */
+    public function ongoingMatches(): OngoingMatchesRequestBuilder {
+        return new OngoingMatchesRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+
     /**
      * Instantiates a new UserRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

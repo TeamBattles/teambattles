@@ -9,83 +9,93 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Detailed match payload returned inside the game-developer match-detail response.
 */
-class GameMatchDetail implements Parsable 
+class GameMatchDetail implements Parsable
 {
     /**
      * @var GameDetailTeam|null $acceptedTeam The acceptedTeam property
     */
     private ?GameDetailTeam $acceptedTeam = null;
-    
+
     /**
      * @var GameMatchDetail_acceptedTeamScore|null $acceptedTeamScore The acceptedTeamScore property
     */
     private ?GameMatchDetail_acceptedTeamScore $acceptedTeamScore = null;
-    
+
     /**
      * @var int|null $bestOf Number of maps in the series (1, 3, 5, or 7).
     */
     private ?int $bestOf = null;
-    
+
     /**
      * @var GameMatchDetail_completedAt|null $completedAt Completion time (ISO 8601).
     */
     private ?GameMatchDetail_completedAt $completedAt = null;
-    
+
     /**
      * @var GameMatchDetail_createdAt|null $createdAt Creation time (ISO 8601).
     */
     private ?GameMatchDetail_createdAt $createdAt = null;
-    
+
     /**
      * @var GameDetailTeam|null $creatorTeam The creatorTeam property
     */
     private ?GameDetailTeam $creatorTeam = null;
-    
+
     /**
      * @var GameMatchDetail_creatorTeamScore|null $creatorTeamScore The creatorTeamScore property
     */
     private ?GameMatchDetail_creatorTeamScore $creatorTeamScore = null;
-    
+
     /**
      * @var string|null $gameId Game ID the match belongs to.
     */
     private ?string $gameId = null;
-    
+
     /**
      * @var string|null $gameMode Game mode identifier (from the match's gameModeId).
     */
     private ?string $gameMode = null;
-    
+
     /**
      * @var string|null $id The id property
     */
     private ?string $id = null;
-    
+
+    /**
+     * @var GameMatchDetail_leagueId|null $leagueId League this match belongs to, if any (SP-7 league wave).
+    */
+    private ?GameMatchDetail_leagueId $leagueId = null;
+
+    /**
+     * @var GameMatchDetail_leagueSeasonId|null $leagueSeasonId League season this match belongs to, if any.
+    */
+    private ?GameMatchDetail_leagueSeasonId $leagueSeasonId = null;
+
     /**
      * @var GameMatchDetail_loserTeamId|null $loserTeamId Losing team ID once the match completes.
     */
     private ?GameMatchDetail_loserTeamId $loserTeamId = null;
-    
+
     /**
      * @var GameMatchDetail_scheduledAt|null $scheduledAt Scheduled start time (ISO 8601).
     */
     private ?GameMatchDetail_scheduledAt $scheduledAt = null;
-    
+
     /**
      * @var GameMatchDetail_startedAt|null $startedAt Actual start time (ISO 8601).
     */
     private ?GameMatchDetail_startedAt $startedAt = null;
-    
+
     /**
      * @var MatchStatus|null $status Lifecycle status of a match.
     */
     private ?MatchStatus $status = null;
-    
+
     /**
      * @var GameMatchDetail_winnerTeamId|null $winnerTeamId Winning team ID once the match completes.
     */
     private ?GameMatchDetail_winnerTeamId $winnerTeamId = null;
-    
+
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
@@ -168,6 +178,8 @@ class GameMatchDetail implements Parsable
             'gameId' => fn(ParseNode $n) => $o->setGameId($n->getStringValue()),
             'gameMode' => fn(ParseNode $n) => $o->setGameMode($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
+            'leagueId' => fn(ParseNode $n) => $o->setLeagueId($n->getObjectValue([GameMatchDetail_leagueId::class, 'createFromDiscriminatorValue'])),
+            'leagueSeasonId' => fn(ParseNode $n) => $o->setLeagueSeasonId($n->getObjectValue([GameMatchDetail_leagueSeasonId::class, 'createFromDiscriminatorValue'])),
             'loserTeamId' => fn(ParseNode $n) => $o->setLoserTeamId($n->getObjectValue([GameMatchDetail_loserTeamId::class, 'createFromDiscriminatorValue'])),
             'scheduledAt' => fn(ParseNode $n) => $o->setScheduledAt($n->getObjectValue([GameMatchDetail_scheduledAt::class, 'createFromDiscriminatorValue'])),
             'startedAt' => fn(ParseNode $n) => $o->setStartedAt($n->getObjectValue([GameMatchDetail_startedAt::class, 'createFromDiscriminatorValue'])),
@@ -198,6 +210,22 @@ class GameMatchDetail implements Parsable
     */
     public function getId(): ?string {
         return $this->id;
+    }
+
+    /**
+     * Gets the leagueId property value. League this match belongs to, if any (SP-7 league wave).
+     * @return GameMatchDetail_leagueId|null
+    */
+    public function getLeagueId(): ?GameMatchDetail_leagueId {
+        return $this->leagueId;
+    }
+
+    /**
+     * Gets the leagueSeasonId property value. League season this match belongs to, if any.
+     * @return GameMatchDetail_leagueSeasonId|null
+    */
+    public function getLeagueSeasonId(): ?GameMatchDetail_leagueSeasonId {
+        return $this->leagueSeasonId;
     }
 
     /**
@@ -255,6 +283,8 @@ class GameMatchDetail implements Parsable
         $writer->writeStringValue('gameId', $this->getGameId());
         $writer->writeStringValue('gameMode', $this->getGameMode());
         $writer->writeStringValue('id', $this->getId());
+        $writer->writeObjectValue('leagueId', $this->getLeagueId());
+        $writer->writeObjectValue('leagueSeasonId', $this->getLeagueSeasonId());
         $writer->writeObjectValue('loserTeamId', $this->getLoserTeamId());
         $writer->writeObjectValue('scheduledAt', $this->getScheduledAt());
         $writer->writeObjectValue('startedAt', $this->getStartedAt());
@@ -340,6 +370,22 @@ class GameMatchDetail implements Parsable
     */
     public function setId(?string $value): void {
         $this->id = $value;
+    }
+
+    /**
+     * Sets the leagueId property value. League this match belongs to, if any (SP-7 league wave).
+     * @param GameMatchDetail_leagueId|null $value Value to set for the leagueId property.
+    */
+    public function setLeagueId(?GameMatchDetail_leagueId $value): void {
+        $this->leagueId = $value;
+    }
+
+    /**
+     * Sets the leagueSeasonId property value. League season this match belongs to, if any.
+     * @param GameMatchDetail_leagueSeasonId|null $value Value to set for the leagueSeasonId property.
+    */
+    public function setLeagueSeasonId(?GameMatchDetail_leagueSeasonId $value): void {
+        $this->leagueSeasonId = $value;
     }
 
     /**

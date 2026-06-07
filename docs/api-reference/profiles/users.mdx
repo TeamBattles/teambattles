@@ -1,0 +1,19 @@
+---
+title: "Get User Profile"
+description: "Read API-safe user profile resources."
+openapi: "GET /users/{identifier}"
+---
+
+## Permission Required
+
+This endpoint and its child resources require the `users.profile` permission on your API key.
+
+## Related Endpoints
+
+- `GET /users/{identifier}/stats`
+- `GET /users/{identifier}/trophies`
+- `GET /users/{identifier}/connections`
+- `GET /users/{identifier}/teams`
+- `GET /users/{identifier}/organizations`
+
+Private profiles return the base profile envelope only. Child resources return `error_forbidden` unless the API key owner is reading their own profile.

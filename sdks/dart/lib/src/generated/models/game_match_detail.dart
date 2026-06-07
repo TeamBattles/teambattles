@@ -5,6 +5,8 @@ import './game_match_detail_accepted_team_score.dart';
 import './game_match_detail_completed_at.dart';
 import './game_match_detail_created_at.dart';
 import './game_match_detail_creator_team_score.dart';
+import './game_match_detail_league_id.dart';
+import './game_match_detail_league_season_id.dart';
 import './game_match_detail_loser_team_id.dart';
 import './game_match_detail_scheduled_at.dart';
 import './game_match_detail_started_at.dart';
@@ -34,6 +36,10 @@ class GameMatchDetail implements Parsable {
     String? gameMode;
     ///  The id property
     String? id;
+    ///  League this match belongs to, if any (SP-7 league wave).
+    GameMatchDetailLeagueId? leagueId;
+    ///  League season this match belongs to, if any.
+    GameMatchDetailLeagueSeasonId? leagueSeasonId;
     ///  Losing team ID once the match completes.
     GameMatchDetailLoserTeamId? loserTeamId;
     ///  Scheduled start time (ISO 8601).
@@ -63,6 +69,8 @@ class GameMatchDetail implements Parsable {
         deserializerMap['gameId'] = (node) => gameId = node.getStringValue();
         deserializerMap['gameMode'] = (node) => gameMode = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
+        deserializerMap['leagueId'] = (node) => leagueId = node.getObjectValue<GameMatchDetailLeagueId>(GameMatchDetailLeagueId.createFromDiscriminatorValue);
+        deserializerMap['leagueSeasonId'] = (node) => leagueSeasonId = node.getObjectValue<GameMatchDetailLeagueSeasonId>(GameMatchDetailLeagueSeasonId.createFromDiscriminatorValue);
         deserializerMap['loserTeamId'] = (node) => loserTeamId = node.getObjectValue<GameMatchDetailLoserTeamId>(GameMatchDetailLoserTeamId.createFromDiscriminatorValue);
         deserializerMap['scheduledAt'] = (node) => scheduledAt = node.getObjectValue<GameMatchDetailScheduledAt>(GameMatchDetailScheduledAt.createFromDiscriminatorValue);
         deserializerMap['startedAt'] = (node) => startedAt = node.getObjectValue<GameMatchDetailStartedAt>(GameMatchDetailStartedAt.createFromDiscriminatorValue);
@@ -84,6 +92,8 @@ class GameMatchDetail implements Parsable {
         writer.writeStringValue('gameId', gameId);
         writer.writeStringValue('gameMode', gameMode);
         writer.writeStringValue('id', id);
+        writer.writeObjectValue<GameMatchDetailLeagueId>('leagueId', leagueId);
+        writer.writeObjectValue<GameMatchDetailLeagueSeasonId>('leagueSeasonId', leagueSeasonId);
         writer.writeObjectValue<GameMatchDetailLoserTeamId>('loserTeamId', loserTeamId);
         writer.writeObjectValue<GameMatchDetailScheduledAt>('scheduledAt', scheduledAt);
         writer.writeObjectValue<GameMatchDetailStartedAt>('startedAt', startedAt);

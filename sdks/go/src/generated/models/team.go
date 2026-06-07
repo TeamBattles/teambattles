@@ -9,12 +9,98 @@ import (
 
 // Team a team participating in a match.
 type Team struct {
+    // Team avatar URL.
+    avatarUrl Team_Team_avatarUrlable
     // Team ID.
     id *string
     // Team name.
     name *string
     // Team tag (short identifier).
     tag *string
+}
+// Team_Team_avatarUrl composed type wrapper for classes string, Team_avatarUrlMember1able
+type Team_Team_avatarUrl struct {
+    // Composed type representation for type string
+    string *string
+    // Composed type representation for type Team_avatarUrlMember1able
+    team_avatarUrlMember1 Team_avatarUrlMember1able
+}
+// NewTeam_Team_avatarUrl instantiates a new Team_Team_avatarUrl and sets the default values.
+func NewTeam_Team_avatarUrl()(*Team_Team_avatarUrl) {
+    m := &Team_Team_avatarUrl{
+    }
+    return m
+}
+// CreateTeam_Team_avatarUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// returns a Parsable when successful
+func CreateTeam_Team_avatarUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    result := NewTeam_Team_avatarUrl()
+    if parseNode != nil {
+        if val, err := parseNode.GetStringValue(); val != nil {
+            if err != nil {
+                return nil, err
+            }
+            result.SetString(val)
+        } else if val, err := parseNode.GetObjectValue(CreateTeam_avatarUrlMember1FromDiscriminatorValue); val != nil {
+            if err != nil {
+                return nil, err
+            }
+            if cast, ok := val.(Team_avatarUrlMember1able); ok {
+                result.SetTeamAvatarUrlMember1(cast)
+            }
+        }
+    }
+    return result, nil
+}
+// GetFieldDeserializers the deserialization information for the current model
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
+func (m *Team_Team_avatarUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+}
+// GetIsComposedType determines if the current object is a wrapper around a composed type
+// returns a bool when successful
+func (m *Team_Team_avatarUrl) GetIsComposedType()(bool) {
+    return true
+}
+// GetString gets the string property value. Composed type representation for type string
+// returns a *string when successful
+func (m *Team_Team_avatarUrl) GetString()(*string) {
+    return m.string
+}
+// GetTeamAvatarUrlMember1 gets the Team_avatarUrlMember1 property value. Composed type representation for type Team_avatarUrlMember1able
+// returns a Team_avatarUrlMember1able when successful
+func (m *Team_Team_avatarUrl) GetTeamAvatarUrlMember1()(Team_avatarUrlMember1able) {
+    return m.team_avatarUrlMember1
+}
+// Serialize serializes information the current object
+func (m *Team_Team_avatarUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetString() != nil {
+        err := writer.WriteStringValue("", m.GetString())
+        if err != nil {
+            return err
+        }
+    } else if m.GetTeamAvatarUrlMember1() != nil {
+        err := writer.WriteObjectValue("", m.GetTeamAvatarUrlMember1())
+        if err != nil {
+            return err
+        }
+    }
+    return nil
+}
+// SetString sets the string property value. Composed type representation for type string
+func (m *Team_Team_avatarUrl) SetString(value *string)() {
+    m.string = value
+}
+// SetTeamAvatarUrlMember1 sets the Team_avatarUrlMember1 property value. Composed type representation for type Team_avatarUrlMember1able
+func (m *Team_Team_avatarUrl) SetTeamAvatarUrlMember1(value Team_avatarUrlMember1able)() {
+    m.team_avatarUrlMember1 = value
+}
+type Team_Team_avatarUrlable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetString()(*string)
+    GetTeamAvatarUrlMember1()(Team_avatarUrlMember1able)
+    SetString(value *string)()
+    SetTeamAvatarUrlMember1(value Team_avatarUrlMember1able)()
 }
 // NewTeam instantiates a new Team and sets the default values.
 func NewTeam()(*Team) {
@@ -27,10 +113,25 @@ func NewTeam()(*Team) {
 func CreateTeamFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewTeam(), nil
 }
+// GetAvatarUrl gets the avatarUrl property value. Team avatar URL.
+// returns a Team_Team_avatarUrlable when successful
+func (m *Team) GetAvatarUrl()(Team_Team_avatarUrlable) {
+    return m.avatarUrl
+}
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *Team) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["avatarUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateTeam_Team_avatarUrlFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAvatarUrl(val.(Team_Team_avatarUrlable))
+        }
+        return nil
+    }
     res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -81,6 +182,12 @@ func (m *Team) GetTag()(*string) {
 // Serialize serializes information the current object
 func (m *Team) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteObjectValue("avatarUrl", m.GetAvatarUrl())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("id", m.GetId())
         if err != nil {
             return err
@@ -100,6 +207,10 @@ func (m *Team) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     }
     return nil
 }
+// SetAvatarUrl sets the avatarUrl property value. Team avatar URL.
+func (m *Team) SetAvatarUrl(value Team_Team_avatarUrlable)() {
+    m.avatarUrl = value
+}
 // SetId sets the id property value. Team ID.
 func (m *Team) SetId(value *string)() {
     m.id = value
@@ -114,9 +225,11 @@ func (m *Team) SetTag(value *string)() {
 }
 type Teamable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAvatarUrl()(Team_Team_avatarUrlable)
     GetId()(*string)
     GetName()(*string)
     GetTag()(*string)
+    SetAvatarUrl(value Team_Team_avatarUrlable)()
     SetId(value *string)()
     SetName(value *string)()
     SetTag(value *string)()

@@ -4,12 +4,21 @@
 package matches
 
 import (
+    "context"
+    i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb "teambattles/models"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // WithMatchItemRequestBuilder builds and executes requests for operations under \matches\{matchId}
 type WithMatchItemRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+}
+// WithMatchItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type WithMatchItemRequestBuilderGetRequestConfiguration struct {
+    // Request headers
+    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+    // Request options
+    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
 // NewWithMatchItemRequestBuilderInternal instantiates a new WithMatchItemRequestBuilder and sets the default values.
 func NewWithMatchItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*WithMatchItemRequestBuilder) {
@@ -24,8 +33,57 @@ func NewWithMatchItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee
     urlParams["request-raw-url"] = rawUrl
     return NewWithMatchItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Get returns a participant-gated match detail projection. Lobby codes and raw match documents are intentionally omitted. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
+// returns a ApiMatchDetailResponseable when successful
+// returns a ErrorEscaped error when the service returns a 401 status code
+// returns a ErrorEscaped error when the service returns a 403 status code
+// returns a ErrorEscaped error when the service returns a 404 status code
+// returns a ErrorEscaped error when the service returns a 429 status code
+// returns a ErrorEscaped error when the service returns a 500 status code
+func (m *WithMatchItemRequestBuilder) Get(ctx context.Context, requestConfiguration *WithMatchItemRequestBuilderGetRequestConfiguration)(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.ApiMatchDetailResponseable, error) {
+    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
+    if err != nil {
+        return nil, err
+    }
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "401": i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateErrorEscapedFromDiscriminatorValue,
+        "403": i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateErrorEscapedFromDiscriminatorValue,
+        "404": i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateErrorEscapedFromDiscriminatorValue,
+        "429": i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateErrorEscapedFromDiscriminatorValue,
+        "500": i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateErrorEscapedFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateApiMatchDetailResponseFromDiscriminatorValue, errorMapping)
+    if err != nil {
+        return nil, err
+    }
+    if res == nil {
+        return nil, nil
+    }
+    return res.(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.ApiMatchDetailResponseable), nil
+}
+// Players the players property
+// returns a *ItemPlayersRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) Players()(*ItemPlayersRequestBuilder) {
+    return NewItemPlayersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Scores the scores property
 // returns a *ItemScoresRequestBuilder when successful
 func (m *WithMatchItemRequestBuilder) Scores()(*ItemScoresRequestBuilder) {
     return NewItemScoresRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// ToGetRequestInformation returns a participant-gated match detail projection. Lobby codes and raw match documents are intentionally omitted. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
+// returns a *RequestInformation when successful
+func (m *WithMatchItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *WithMatchItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+    if requestConfiguration != nil {
+        requestInfo.Headers.AddAll(requestConfiguration.Headers)
+        requestInfo.AddRequestOptions(requestConfiguration.Options)
+    }
+    requestInfo.Headers.TryAdd("Accept", "application/json")
+    return requestInfo, nil
+}
+// WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+// returns a *WithMatchItemRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) WithUrl(rawUrl string)(*WithMatchItemRequestBuilder) {
+    return NewWithMatchItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
 }

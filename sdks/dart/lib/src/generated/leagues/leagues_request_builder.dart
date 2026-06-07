@@ -4,12 +4,17 @@ import '../models/discover_leagues_request_body.dart';
 import '../models/error.dart';
 import './item/with_identifier_item_request_builder.dart';
 import './leagues_post_response.dart';
+import './templates/templates_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \leagues
 class LeaguesRequestBuilder extends BaseRequestBuilder<LeaguesRequestBuilder> {
+    ///  The templates property
+    TemplatesRequestBuilder get templates {
+        return TemplatesRequestBuilder(pathParameters, requestAdapter);
+    }
     /// Gets an item from the teambattles.leagues.item collection
-    ///  [identifier] League slug.
+    ///  [identifier] League slug or Convex league ID.
     WithIdentifierItemRequestBuilder byIdentifier(String identifier) {
         var urlTplParams = Map.of(pathParameters);
         urlTplParams.putIfAbsent('identifier', () => identifier);

@@ -8,6 +8,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Game.Matches.BatchScores;
+using TeamBattles.Sdk.Game.Matches.Create;
 using TeamBattles.Sdk.Game.Matches.Item;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Game.Matches
@@ -18,6 +20,16 @@ namespace TeamBattles.Sdk.Game.Matches
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MatchesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The batchScores property</summary>
+        public global::TeamBattles.Sdk.Game.Matches.BatchScores.BatchScoresRequestBuilder BatchScores
+        {
+            get => new global::TeamBattles.Sdk.Game.Matches.BatchScores.BatchScoresRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The create property</summary>
+        public global::TeamBattles.Sdk.Game.Matches.Create.CreateRequestBuilder Create
+        {
+            get => new global::TeamBattles.Sdk.Game.Matches.Create.CreateRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the TeamBattles.Sdk.game.matches.item collection</summary>
         /// <param name="position">Match ID.</param>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Game.Matches.Item.WithMatchItemRequestBuilder"/></returns>
@@ -47,10 +59,10 @@ namespace TeamBattles.Sdk.Game.Matches
         {
         }
         /// <summary>
-        /// Returns matches for the given game, auto-filtered to the API key owner&apos;s approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+        /// Returns matches for the API key owner&apos;s approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Game.Matches.MatchesPostResponse"/></returns>
-        /// <param name="body">Filters and cursor pagination for listing a game&apos;s matches.</param>
+        /// <param name="body">Status filter and cursor pagination for listing the bound key&apos;s game matches. The game is derived from the developer-app key&apos;s bound game (not a body field).</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 400 status code</exception>
@@ -76,10 +88,10 @@ namespace TeamBattles.Sdk.Game.Matches
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Game.Matches.MatchesPostResponse>(requestInfo, global::TeamBattles.Sdk.Game.Matches.MatchesPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns matches for the given game, auto-filtered to the API key owner&apos;s approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+        /// Returns matches for the API key owner&apos;s approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Game.Matches.MatchesResponse"/></returns>
-        /// <param name="body">Filters and cursor pagination for listing a game&apos;s matches.</param>
+        /// <param name="body">Status filter and cursor pagination for listing the bound key&apos;s game matches. The game is derived from the developer-app key&apos;s bound game (not a body field).</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 400 status code</exception>
@@ -106,10 +118,10 @@ namespace TeamBattles.Sdk.Game.Matches
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Game.Matches.MatchesResponse>(requestInfo, global::TeamBattles.Sdk.Game.Matches.MatchesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns matches for the given game, auto-filtered to the API key owner&apos;s approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+        /// Returns matches for the API key owner&apos;s approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">Filters and cursor pagination for listing a game&apos;s matches.</param>
+        /// <param name="body">Status filter and cursor pagination for listing the bound key&apos;s game matches. The game is derived from the developer-app key&apos;s bound game (not a body field).</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

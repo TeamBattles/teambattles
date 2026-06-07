@@ -1,0 +1,1 @@
+require_relative 'organizations_get_response'

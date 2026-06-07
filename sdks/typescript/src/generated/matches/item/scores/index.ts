@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBuilder> {
     /**
-     * Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+     * Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<MapScores>}
      * @throws {ErrorEscaped} error when the service returns a 401 status code
@@ -42,7 +42,7 @@ export interface ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBu
      */
      post(body: SubmitScoreBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ScoreSubmissionResult | undefined>;
     /**
-     * Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+     * Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

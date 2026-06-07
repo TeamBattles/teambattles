@@ -1,0 +1,13 @@
+---
+title: "List Player Leaderboard"
+description: "Read the global player leaderboard and the API key owner's player rank."
+openapi: "GET /leaderboards/players"
+---
+
+## Permission Required
+
+Player leaderboard reads require `users.profile`.
+
+## Related Endpoint
+
+Use `GET /leaderboards/players/me/rank` to get the API key owner's rank. Player leaderboards are global; `gameSlug` is rejected on player leaderboard routes.

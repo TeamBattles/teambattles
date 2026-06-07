@@ -6,8 +6,12 @@ package teambattles
 import (
     i0551826914af7eccfbb1c25b31b491f975bb232fcbea4e592c9f37e142a5da94 "teambattles/game"
     i2f560de9d1c32c9bd590a389c056bc6c09d1bb8f75d153f633b06c7eb1ecdfed "teambattles/leagues"
+    i3131276c3ed30dce58393a35c3deb46bf7ab47b302d47f58f2b1c4c2cb43fe43 "teambattles/webhooks"
+    i358d93f51ccd58f4a3754625dfb2551d1ec6171ba52b25cc08cebee8a891acdb "teambattles/leaderboards"
     i4c580ef7d92dfe7e46464fe5e9ffb55b2b1b05058bf90dd1ada5046984ef65ef "teambattles/twitch"
+    i52adf305be906c7d066d21159f6266be17d93c880fa03ee296c0b63f5bfb23a5 "teambattles/games"
     i95be576408178562eb7b80596d1e996bb17dfd4f3bf71c5fee64b2a86ca04e39 "teambattles/matches"
+    ia1bc9500962db2ea32fe169abf96990b4e2fb8edc1086c957ee3082d7e266c9f "teambattles/users"
     iab24f14bab9c6de72a50238a22977c580274338bb39d7d3157293a48a4c78289 "teambattles/orgs"
     ic031e2f2d66bd2feef12669758a522b283a7828fe85855c0ad7b4cea342a7fec "teambattles/teams"
     id651a60d2feea29a5e0296db84faf6c6f4429ad9c9c767e5ae06525da696b24c "teambattles/user"
@@ -46,6 +50,16 @@ func NewTeamBattlesApiClient(requestAdapter i2ae4187f7daee263371cb1c977df639813a
 func (m *TeamBattlesApiClient) Game()(*i0551826914af7eccfbb1c25b31b491f975bb232fcbea4e592c9f37e142a5da94.GameRequestBuilder) {
     return i0551826914af7eccfbb1c25b31b491f975bb232fcbea4e592c9f37e142a5da94.NewGameRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Games the games property
+// returns a *GamesRequestBuilder when successful
+func (m *TeamBattlesApiClient) Games()(*i52adf305be906c7d066d21159f6266be17d93c880fa03ee296c0b63f5bfb23a5.GamesRequestBuilder) {
+    return i52adf305be906c7d066d21159f6266be17d93c880fa03ee296c0b63f5bfb23a5.NewGamesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Leaderboards the leaderboards property
+// returns a *LeaderboardsRequestBuilder when successful
+func (m *TeamBattlesApiClient) Leaderboards()(*i358d93f51ccd58f4a3754625dfb2551d1ec6171ba52b25cc08cebee8a891acdb.LeaderboardsRequestBuilder) {
+    return i358d93f51ccd58f4a3754625dfb2551d1ec6171ba52b25cc08cebee8a891acdb.NewLeaderboardsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Leagues the leagues property
 // returns a *LeaguesRequestBuilder when successful
 func (m *TeamBattlesApiClient) Leagues()(*i2f560de9d1c32c9bd590a389c056bc6c09d1bb8f75d153f633b06c7eb1ecdfed.LeaguesRequestBuilder) {
@@ -75,4 +89,14 @@ func (m *TeamBattlesApiClient) Twitch()(*i4c580ef7d92dfe7e46464fe5e9ffb55b2b1b05
 // returns a *UserRequestBuilder when successful
 func (m *TeamBattlesApiClient) User()(*id651a60d2feea29a5e0296db84faf6c6f4429ad9c9c767e5ae06525da696b24c.UserRequestBuilder) {
     return id651a60d2feea29a5e0296db84faf6c6f4429ad9c9c767e5ae06525da696b24c.NewUserRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Users the users property
+// returns a *UsersRequestBuilder when successful
+func (m *TeamBattlesApiClient) Users()(*ia1bc9500962db2ea32fe169abf96990b4e2fb8edc1086c957ee3082d7e266c9f.UsersRequestBuilder) {
+    return ia1bc9500962db2ea32fe169abf96990b4e2fb8edc1086c957ee3082d7e266c9f.NewUsersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Webhooks the webhooks property
+// returns a *WebhooksRequestBuilder when successful
+func (m *TeamBattlesApiClient) Webhooks()(*i3131276c3ed30dce58393a35c3deb46bf7ab47b302d47f58f2b1c4c2cb43fe43.WebhooksRequestBuilder) {
+    return i3131276c3ed30dce58393a35c3deb46bf7ab47b302d47f58f2b1c4c2cb43fe43.NewWebhooksRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

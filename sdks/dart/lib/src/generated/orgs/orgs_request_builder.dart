@@ -1,12 +1,17 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
+import './discover/discover_request_builder.dart';
 import './item/with_identifier_item_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \orgs
 class OrgsRequestBuilder extends BaseRequestBuilder<OrgsRequestBuilder> {
+    ///  The discover property
+    DiscoverRequestBuilder get discover {
+        return DiscoverRequestBuilder(pathParameters, requestAdapter);
+    }
     /// Gets an item from the teambattles.orgs.item collection
-    ///  [identifier] Organization id or slug.
+    ///  [identifier] Organization slug or Convex organization ID.
     WithIdentifierItemRequestBuilder byIdentifier(String identifier) {
         var urlTplParams = Map.of(pathParameters);
         urlTplParams.putIfAbsent('identifier', () => identifier);

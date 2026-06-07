@@ -4,6 +4,8 @@
 // @ts-ignore
 import { MatchesRequestBuilderRequestsMetadata, type MatchesRequestBuilder } from './matches/index.js';
 // @ts-ignore
+import { OngoingMatchesRequestBuilderRequestsMetadata, type OngoingMatchesRequestBuilder } from './ongoingMatches/index.js';
+// @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata } from '@microsoft/kiota-abstractions';
 
 /**
@@ -14,6 +16,10 @@ export interface UserRequestBuilder extends BaseRequestBuilder<UserRequestBuilde
      * The matches property
      */
     get matches(): MatchesRequestBuilder;
+    /**
+     * The ongoingMatches property
+     */
+    get ongoingMatches(): OngoingMatchesRequestBuilder;
 }
 /**
  * Uri template for the request builder.
@@ -25,6 +31,9 @@ export const UserRequestBuilderUriTemplate = "{+baseurl}/user";
 export const UserRequestBuilderNavigationMetadata: Record<Exclude<keyof UserRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     matches: {
         requestsMetadata: MatchesRequestBuilderRequestsMetadata,
+    },
+    ongoingMatches: {
+        requestsMetadata: OngoingMatchesRequestBuilderRequestsMetadata,
     },
 };
 /* tslint:enable */

@@ -9,6 +9,7 @@ import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
 import gg.teambattles.sdk.generated.leagues.item.WithIdentifierItemRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.templates.TemplatesRequestBuilder;
 import gg.teambattles.sdk.generated.models.DiscoverLeaguesRequestBody;
 import gg.teambattles.sdk.generated.models.Error;
 import java.util.Collection;
@@ -21,8 +22,16 @@ import java.util.Objects;
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class LeaguesRequestBuilder extends BaseRequestBuilder {
     /**
+     * The templates property
+     * @return a {@link TemplatesRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public TemplatesRequestBuilder templates() {
+        return new TemplatesRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
      * Gets an item from the gg.teambattles.sdk.generated.leagues.item collection
-     * @param identifier League slug.
+     * @param identifier League slug or Convex league ID.
      * @return a {@link WithIdentifierItemRequestBuilder}
      */
     @jakarta.annotation.Nonnull

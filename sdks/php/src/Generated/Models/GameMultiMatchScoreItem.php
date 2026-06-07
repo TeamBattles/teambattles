@@ -1,0 +1,239 @@
+<?php
+
+namespace TeamBattles\Sdk\Generated\Models;
+
+use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
+use Microsoft\Kiota\Abstractions\Serialization\Parsable;
+use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
+use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
+use Microsoft\Kiota\Abstractions\Types\TypeUtils;
+
+/**
+ * One match's single map score within a multi-match batch submission.
+*/
+class GameMultiMatchScoreItem implements AdditionalDataHolder, Parsable
+{
+    /**
+     * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    */
+    private ?array $additionalData = null;
+
+    /**
+     * @var float|null $creatorTeamScore Score for the creator team (non-negative).
+    */
+    private ?float $creatorTeamScore = null;
+
+    /**
+     * @var string|null $mapId Identifier of the map that was played.
+    */
+    private ?string $mapId = null;
+
+    /**
+     * @var int|null $mapIndex Zero-based index of the map within the series.
+    */
+    private ?int $mapIndex = null;
+
+    /**
+     * @var string|null $matchId ID of the match this map score belongs to.
+    */
+    private ?string $matchId = null;
+
+    /**
+     * @var float|null $opponentTeamScore Score for the opponent (accepted) team (non-negative).
+    */
+    private ?float $opponentTeamScore = null;
+
+    /**
+     * @var GameMultiMatchScoreItem_playerStats|null $playerStats Optional per-player stats keyed by user ID.
+    */
+    private ?GameMultiMatchScoreItem_playerStats $playerStats = null;
+
+    /**
+     * @var array<string>|null $screenshotUrls Optional screenshot URLs supporting the reported score.
+    */
+    private ?array $screenshotUrls = null;
+
+    /**
+     * Instantiates a new GameMultiMatchScoreItem and sets the default values.
+    */
+    public function __construct() {
+        $this->setAdditionalData([]);
+    }
+
+    /**
+     * Creates a new instance of the appropriate class based on discriminator value
+     * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
+     * @return GameMultiMatchScoreItem
+    */
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): GameMultiMatchScoreItem {
+        return new GameMultiMatchScoreItem();
+    }
+
+    /**
+     * Gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     * @return array<string, mixed>|null
+    */
+    public function getAdditionalData(): ?array {
+        return $this->additionalData;
+    }
+
+    /**
+     * Gets the creatorTeamScore property value. Score for the creator team (non-negative).
+     * @return float|null
+    */
+    public function getCreatorTeamScore(): ?float {
+        return $this->creatorTeamScore;
+    }
+
+    /**
+     * The deserialization information for the current model
+     * @return array<string, callable(ParseNode): void>
+    */
+    public function getFieldDeserializers(): array {
+        $o = $this;
+        return  [
+            'creatorTeamScore' => fn(ParseNode $n) => $o->setCreatorTeamScore($n->getFloatValue()),
+            'mapId' => fn(ParseNode $n) => $o->setMapId($n->getStringValue()),
+            'mapIndex' => fn(ParseNode $n) => $o->setMapIndex($n->getIntegerValue()),
+            'matchId' => fn(ParseNode $n) => $o->setMatchId($n->getStringValue()),
+            'opponentTeamScore' => fn(ParseNode $n) => $o->setOpponentTeamScore($n->getFloatValue()),
+            'playerStats' => fn(ParseNode $n) => $o->setPlayerStats($n->getObjectValue([GameMultiMatchScoreItem_playerStats::class, 'createFromDiscriminatorValue'])),
+            'screenshotUrls' => function (ParseNode $n) {
+                $val = $n->getCollectionOfPrimitiveValues();
+                if (is_array($val)) {
+                    TypeUtils::validateCollectionValues($val, 'string');
+                }
+                /** @var array<string>|null $val */
+                $this->setScreenshotUrls($val);
+            },
+        ];
+    }
+
+    /**
+     * Gets the mapId property value. Identifier of the map that was played.
+     * @return string|null
+    */
+    public function getMapId(): ?string {
+        return $this->mapId;
+    }
+
+    /**
+     * Gets the mapIndex property value. Zero-based index of the map within the series.
+     * @return int|null
+    */
+    public function getMapIndex(): ?int {
+        return $this->mapIndex;
+    }
+
+    /**
+     * Gets the matchId property value. ID of the match this map score belongs to.
+     * @return string|null
+    */
+    public function getMatchId(): ?string {
+        return $this->matchId;
+    }
+
+    /**
+     * Gets the opponentTeamScore property value. Score for the opponent (accepted) team (non-negative).
+     * @return float|null
+    */
+    public function getOpponentTeamScore(): ?float {
+        return $this->opponentTeamScore;
+    }
+
+    /**
+     * Gets the playerStats property value. Optional per-player stats keyed by user ID.
+     * @return GameMultiMatchScoreItem_playerStats|null
+    */
+    public function getPlayerStats(): ?GameMultiMatchScoreItem_playerStats {
+        return $this->playerStats;
+    }
+
+    /**
+     * Gets the screenshotUrls property value. Optional screenshot URLs supporting the reported score.
+     * @return array<string>|null
+    */
+    public function getScreenshotUrls(): ?array {
+        return $this->screenshotUrls;
+    }
+
+    /**
+     * Serializes information the current object
+     * @param SerializationWriter $writer Serialization writer to use to serialize this model
+    */
+    public function serialize(SerializationWriter $writer): void {
+        $writer->writeFloatValue('creatorTeamScore', $this->getCreatorTeamScore());
+        $writer->writeStringValue('mapId', $this->getMapId());
+        $writer->writeIntegerValue('mapIndex', $this->getMapIndex());
+        $writer->writeStringValue('matchId', $this->getMatchId());
+        $writer->writeFloatValue('opponentTeamScore', $this->getOpponentTeamScore());
+        $writer->writeObjectValue('playerStats', $this->getPlayerStats());
+        $writer->writeCollectionOfPrimitiveValues('screenshotUrls', $this->getScreenshotUrls());
+        $writer->writeAdditionalData($this->getAdditionalData());
+    }
+
+    /**
+     * Sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     * @param array<string,mixed> $value Value to set for the AdditionalData property.
+    */
+    public function setAdditionalData(?array $value): void {
+        $this->additionalData = $value;
+    }
+
+    /**
+     * Sets the creatorTeamScore property value. Score for the creator team (non-negative).
+     * @param float|null $value Value to set for the creatorTeamScore property.
+    */
+    public function setCreatorTeamScore(?float $value): void {
+        $this->creatorTeamScore = $value;
+    }
+
+    /**
+     * Sets the mapId property value. Identifier of the map that was played.
+     * @param string|null $value Value to set for the mapId property.
+    */
+    public function setMapId(?string $value): void {
+        $this->mapId = $value;
+    }
+
+    /**
+     * Sets the mapIndex property value. Zero-based index of the map within the series.
+     * @param int|null $value Value to set for the mapIndex property.
+    */
+    public function setMapIndex(?int $value): void {
+        $this->mapIndex = $value;
+    }
+
+    /**
+     * Sets the matchId property value. ID of the match this map score belongs to.
+     * @param string|null $value Value to set for the matchId property.
+    */
+    public function setMatchId(?string $value): void {
+        $this->matchId = $value;
+    }
+
+    /**
+     * Sets the opponentTeamScore property value. Score for the opponent (accepted) team (non-negative).
+     * @param float|null $value Value to set for the opponentTeamScore property.
+    */
+    public function setOpponentTeamScore(?float $value): void {
+        $this->opponentTeamScore = $value;
+    }
+
+    /**
+     * Sets the playerStats property value. Optional per-player stats keyed by user ID.
+     * @param GameMultiMatchScoreItem_playerStats|null $value Value to set for the playerStats property.
+    */
+    public function setPlayerStats(?GameMultiMatchScoreItem_playerStats $value): void {
+        $this->playerStats = $value;
+    }
+
+    /**
+     * Sets the screenshotUrls property value. Optional screenshot URLs supporting the reported score.
+     * @param array<string>|null $value Value to set for the screenshotUrls property.
+    */
+    public function setScreenshotUrls(?array $value): void {
+        $this->screenshotUrls = $value;
+    }
+
+}

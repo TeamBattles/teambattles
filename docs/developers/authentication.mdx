@@ -34,6 +34,7 @@ Each API key carries granular permission scopes. Most scopes use access levels (
 | **Matches**     | `user_matches`                             | none, read, read-write | Access your match history              |
 | **Matches**     | `team_matches`                             | none, read, read-write | Access team match history              |
 | **Matches**     | `org_matches`                              | none, read, read-write | Access organization match history      |
+| **Matches**     | `public_matches`                           | none, read             | Discover published open matches        |
 | **Connections** | `discord`, `twitch`, `github`, `battlenet` | none, enabled          | Access linked platform data            |
 | **Game**        | `scores`                                   | none, write            | Submit scores via API                  |
 | **Game**        | `lifecycle`                                | none, read, read-write | Query/manage match lifecycle           |
@@ -92,12 +93,15 @@ The `error` field is a stable, machine-readable code. Branch on `error`, not on 
 | `error_api_feature_required`      | 403         | Endpoint requires an API feature not on your plan   |
 | `error_game_scope_mismatch`       | 403         | API key is not approved for the requested game      |
 | `error_league_scope_mismatch`     | 403         | API key is bound to a different league              |
+| `error_not_match_participant`     | 403         | User is not allowed to read that match              |
 | `error_api_rate_limited`          | 429         | Rate limit exceeded (see rate-limit headers below)  |
 | `error_team_membership_required`  | 403         | User is not an active member of the team            |
 | `error_org_membership_required`   | 403         | User is not an active member of the organization    |
 | `error_team_not_found`            | 404         | Team ID or slug not found                           |
 | `error_org_not_found`             | 404         | Organization ID or slug not found                   |
 | `error_league_not_found`          | 404         | League ID or slug not found                         |
+| `error_league_game_not_found`     | 404         | League game configuration was not found             |
+| `error_league_season_not_found`   | 404         | League season ID was not found for that league      |
 | `error_invalid_request`           | 400         | Request body or parameters are invalid              |
 | `error_invalid_cursor`            | 400         | Pagination cursor is invalid or expired             |
 | `error_invalid_limit`             | 400         | Limit must be between 1 and 100                     |

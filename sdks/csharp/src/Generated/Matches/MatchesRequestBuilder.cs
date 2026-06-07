@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System;
+using TeamBattles.Sdk.Matches.Discover;
 using TeamBattles.Sdk.Matches.Item;
 namespace TeamBattles.Sdk.Matches
 {
@@ -15,8 +16,13 @@ namespace TeamBattles.Sdk.Matches
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MatchesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The discover property</summary>
+        public global::TeamBattles.Sdk.Matches.Discover.DiscoverRequestBuilder Discover
+        {
+            get => new global::TeamBattles.Sdk.Matches.Discover.DiscoverRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the TeamBattles.Sdk.matches.item collection</summary>
-        /// <param name="position">Match id.</param>
+        /// <param name="position">Match ID.</param>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Matches.Item.WithMatchItemRequestBuilder"/></returns>
         public global::TeamBattles.Sdk.Matches.Item.WithMatchItemRequestBuilder this[string position]
         {

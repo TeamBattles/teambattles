@@ -1,0 +1,13 @@
+---
+title: "Get League Apply Eligibility"
+description: "Check which of the API key owner's teams can apply to a league."
+openapi: "POST /leagues/{identifier}/apply-eligibility"
+---
+
+## Permission Required
+
+This endpoint requires `leagues.league_public`.
+
+## Team-Specific Checks
+
+If you include `teamId`, the API key owner must be a captain or co-captain of that team.

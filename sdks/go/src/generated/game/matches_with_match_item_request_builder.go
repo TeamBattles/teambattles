@@ -33,6 +33,11 @@ func NewMatchesWithMatchItemRequestBuilder(rawUrl string, requestAdapter i2ae418
     urlParams["request-raw-url"] = rawUrl
     return NewMatchesWithMatchItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Forfeit the forfeit property
+// returns a *MatchesItemForfeitRequestBuilder when successful
+func (m *MatchesWithMatchItemRequestBuilder) Forfeit()(*MatchesItemForfeitRequestBuilder) {
+    return NewMatchesItemForfeitRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Get returns detailed info for one match, validated to belong to the API key owner's approved game. Requires the game.lifecycle:read permission.
 // returns a GameMatchDetailResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code

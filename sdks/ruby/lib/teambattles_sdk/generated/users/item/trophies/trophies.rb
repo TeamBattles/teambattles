@@ -1,0 +1,1 @@
+require_relative 'trophies_get_response'

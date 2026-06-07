@@ -8,35 +8,30 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * Filters and cursor pagination for listing a game's matches.
+ * Status filter and cursor pagination for listing the bound key's game matches. The game is derived from the developer-app key's bound game (not a body field).
 */
-class ListGameMatchesBody implements AdditionalDataHolder, Parsable 
+class ListGameMatchesBody implements AdditionalDataHolder, Parsable
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-    
+
     /**
      * @var string|null $cursor Opaque continuation cursor from a prior page's pagination.cursor.
     */
     private ?string $cursor = null;
-    
-    /**
-     * @var string|null $gameId Game to list matches for. Must be the key's approved game.
-    */
-    private ?string $gameId = null;
-    
+
     /**
      * @var float|null $limit Page size (1-100, enforced by the handler). Defaults to the handler's internal default.
     */
     private ?float $limit = null;
-    
+
     /**
      * @var string|null $status Optional MatchStatus filter (e.g. IN_PROGRESS).
     */
     private ?string $status = null;
-    
+
     /**
      * Instantiates a new ListGameMatchesBody and sets the default values.
     */
@@ -77,18 +72,9 @@ class ListGameMatchesBody implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'cursor' => fn(ParseNode $n) => $o->setCursor($n->getStringValue()),
-            'gameId' => fn(ParseNode $n) => $o->setGameId($n->getStringValue()),
             'limit' => fn(ParseNode $n) => $o->setLimit($n->getFloatValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getStringValue()),
         ];
-    }
-
-    /**
-     * Gets the gameId property value. Game to list matches for. Must be the key's approved game.
-     * @return string|null
-    */
-    public function getGameId(): ?string {
-        return $this->gameId;
     }
 
     /**
@@ -113,7 +99,6 @@ class ListGameMatchesBody implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('cursor', $this->getCursor());
-        $writer->writeStringValue('gameId', $this->getGameId());
         $writer->writeFloatValue('limit', $this->getLimit());
         $writer->writeStringValue('status', $this->getStatus());
         $writer->writeAdditionalData($this->getAdditionalData());
@@ -133,14 +118,6 @@ class ListGameMatchesBody implements AdditionalDataHolder, Parsable
     */
     public function setCursor(?string $value): void {
         $this->cursor = $value;
-    }
-
-    /**
-     * Sets the gameId property value. Game to list matches for. Must be the key's approved game.
-     * @param string|null $value Value to set for the gameId property.
-    */
-    public function setGameId(?string $value): void {
-        $this->gameId = $value;
     }
 
     /**

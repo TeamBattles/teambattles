@@ -20,6 +20,11 @@ type MatchesRequestBuilderPostRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// BatchScores the batchScores property
+// returns a *MatchesBatchScoresRequestBuilder when successful
+func (m *MatchesRequestBuilder) BatchScores()(*MatchesBatchScoresRequestBuilder) {
+    return NewMatchesBatchScoresRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ByMatchId gets an item from the teambattles.game.matches.item collection
 // returns a *MatchesWithMatchItemRequestBuilder when successful
 func (m *MatchesRequestBuilder) ByMatchId(matchId string)(*MatchesWithMatchItemRequestBuilder) {
@@ -45,7 +50,12 @@ func NewMatchesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371
     urlParams["request-raw-url"] = rawUrl
     return NewMatchesRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post returns matches for the given game, auto-filtered to the API key owner's approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+// Create the create property
+// returns a *MatchesCreateRequestBuilder when successful
+func (m *MatchesRequestBuilder) Create()(*MatchesCreateRequestBuilder) {
+    return NewMatchesCreateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Post returns matches for the API key owner's approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
 // Deprecated: This method is obsolete. Use PostAsMatchesPostResponse instead.
 // returns a MatchesResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
@@ -70,7 +80,7 @@ func (m *MatchesRequestBuilder) Post(ctx context.Context, body i9ac5c274a78aacc6
     }
     return res.(MatchesResponseable), nil
 }
-// PostAsMatchesPostResponse returns matches for the given game, auto-filtered to the API key owner's approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+// PostAsMatchesPostResponse returns matches for the API key owner's approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
 // returns a MatchesPostResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -94,7 +104,7 @@ func (m *MatchesRequestBuilder) PostAsMatchesPostResponse(ctx context.Context, b
     }
     return res.(MatchesPostResponseable), nil
 }
-// ToPostRequestInformation returns matches for the given game, auto-filtered to the API key owner's approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+// ToPostRequestInformation returns matches for the API key owner's approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
 // returns a *RequestInformation when successful
 func (m *MatchesRequestBuilder) ToPostRequestInformation(ctx context.Context, body i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.ListGameMatchesBodyable, requestConfiguration *MatchesRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

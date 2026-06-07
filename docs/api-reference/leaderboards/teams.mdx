@@ -1,0 +1,13 @@
+---
+title: "List Team Leaderboard"
+description: "Read public team leaderboard entries and team rank lookups."
+openapi: "GET /leaderboards/teams"
+---
+
+## Permission Required
+
+Team leaderboard reads require `teams.profile`.
+
+## Related Endpoint
+
+Use `GET /leaderboards/teams/{identifier}/rank` to get a team's rank. Private teams are excluded from API leaderboard rows.

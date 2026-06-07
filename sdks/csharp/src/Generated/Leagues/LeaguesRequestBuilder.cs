@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using TeamBattles.Sdk.Leagues.Item;
+using TeamBattles.Sdk.Leagues.Templates;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Leagues
 {
@@ -18,8 +19,13 @@ namespace TeamBattles.Sdk.Leagues
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class LeaguesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The templates property</summary>
+        public global::TeamBattles.Sdk.Leagues.Templates.TemplatesRequestBuilder Templates
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Templates.TemplatesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the TeamBattles.Sdk.leagues.item collection</summary>
-        /// <param name="position">League slug.</param>
+        /// <param name="position">League slug or Convex league ID.</param>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Leagues.Item.WithIdentifierItemRequestBuilder"/></returns>
         public global::TeamBattles.Sdk.Leagues.Item.WithIdentifierItemRequestBuilder this[string position]
         {

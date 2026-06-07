@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Leagues\Item\Seasons\Item\WithSeasonItemRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\Error;
 use TeamBattles\Sdk\Generated\Models\LeagueSeasons;
 use TeamBattles\Sdk\Generated\Models\SeasonsRequestBody;
@@ -15,8 +16,19 @@ use TeamBattles\Sdk\Generated\Models\SeasonsRequestBody;
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/seasons
 */
-class SeasonsRequestBuilder extends BaseRequestBuilder 
+class SeasonsRequestBuilder extends BaseRequestBuilder
 {
+    /**
+     * Gets an item from the TeamBattles/Sdk/Generated.leagues.item.seasons.item collection
+     * @param string $seasonId League season ID.
+     * @return WithSeasonItemRequestBuilder
+    */
+    public function bySeasonId(string $seasonId): WithSeasonItemRequestBuilder {
+        $urlTplParams = $this->pathParameters;
+        $urlTplParams['seasonId'] = $seasonId;
+        return new WithSeasonItemRequestBuilder($urlTplParams, $this->requestAdapter);
+    }
+
     /**
      * Instantiates a new SeasonsRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

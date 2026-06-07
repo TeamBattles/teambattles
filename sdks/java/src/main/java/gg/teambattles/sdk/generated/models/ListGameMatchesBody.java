@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * Filters and cursor pagination for listing a game&apos;s matches.
+ * Status filter and cursor pagination for listing the bound key&apos;s game matches. The game is derived from the developer-app key&apos;s bound game (not a body field).
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class ListGameMatchesBody implements AdditionalDataHolder, Parsable {
@@ -20,10 +20,6 @@ public class ListGameMatchesBody implements AdditionalDataHolder, Parsable {
      * Opaque continuation cursor from a prior page&apos;s pagination.cursor.
      */
     private String cursor;
-    /**
-     * Game to list matches for. Must be the key&apos;s approved game.
-     */
-    private String gameId;
     /**
      * Page size (1-100, enforced by the handler). Defaults to the handler&apos;s internal default.
      */
@@ -70,20 +66,11 @@ public class ListGameMatchesBody implements AdditionalDataHolder, Parsable {
      */
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
         deserializerMap.put("cursor", (n) -> { this.setCursor(n.getStringValue()); });
-        deserializerMap.put("gameId", (n) -> { this.setGameId(n.getStringValue()); });
         deserializerMap.put("limit", (n) -> { this.setLimit(n.getDoubleValue()); });
         deserializerMap.put("status", (n) -> { this.setStatus(n.getStringValue()); });
         return deserializerMap;
-    }
-    /**
-     * Gets the gameId property value. Game to list matches for. Must be the key&apos;s approved game.
-     * @return a {@link String}
-     */
-    @jakarta.annotation.Nullable
-    public String getGameId() {
-        return this.gameId;
     }
     /**
      * Gets the limit property value. Page size (1-100, enforced by the handler). Defaults to the handler&apos;s internal default.
@@ -108,7 +95,6 @@ public class ListGameMatchesBody implements AdditionalDataHolder, Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeStringValue("cursor", this.getCursor());
-        writer.writeStringValue("gameId", this.getGameId());
         writer.writeDoubleValue("limit", this.getLimit());
         writer.writeStringValue("status", this.getStatus());
         writer.writeAdditionalData(this.getAdditionalData());
@@ -126,13 +112,6 @@ public class ListGameMatchesBody implements AdditionalDataHolder, Parsable {
      */
     public void setCursor(@jakarta.annotation.Nullable final String value) {
         this.cursor = value;
-    }
-    /**
-     * Sets the gameId property value. Game to list matches for. Must be the key&apos;s approved game.
-     * @param value Value to set for the gameId property.
-     */
-    public void setGameId(@jakarta.annotation.Nullable final String value) {
-        this.gameId = value;
     }
     /**
      * Sets the limit property value. Page size (1-100, enforced by the handler). Defaults to the handler&apos;s internal default.

@@ -1,0 +1,13 @@
+---
+title: "List Ongoing Matches"
+description: "List ongoing matches for the API key owner's active teams."
+openapi: "GET /user/ongoing-matches"
+---
+
+## Permission Required
+
+This endpoint requires `matches.user_matches`.
+
+## User Scope
+
+The user is always derived from the API key. The endpoint does not accept a `userId` parameter.

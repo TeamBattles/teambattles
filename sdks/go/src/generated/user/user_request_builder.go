@@ -29,3 +29,8 @@ func NewUserRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1
 func (m *UserRequestBuilder) Matches()(*MatchesRequestBuilder) {
     return NewMatchesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// OngoingMatches the ongoingMatches property
+// returns a *OngoingMatchesRequestBuilder when successful
+func (m *UserRequestBuilder) OngoingMatches()(*OngoingMatchesRequestBuilder) {
+    return NewOngoingMatchesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}

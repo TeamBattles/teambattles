@@ -9,11 +9,11 @@ use TeamBattles\Sdk\Generated\Teams\Item\WithIdentifierItemRequestBuilder;
 /**
  * Builds and executes requests for operations under /teams
 */
-class TeamsRequestBuilder extends BaseRequestBuilder 
+class TeamsRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.teams.item collection
-     * @param string $identifier Team id or slug.
+     * @param string $identifier Team slug or Convex team ID.
      * @return WithIdentifierItemRequestBuilder
     */
     public function byIdentifier(string $identifier): WithIdentifierItemRequestBuilder {

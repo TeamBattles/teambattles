@@ -4,16 +4,24 @@ namespace TeamBattles\Sdk\Generated\Orgs;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
+use TeamBattles\Sdk\Generated\Orgs\Discover\DiscoverRequestBuilder;
 use TeamBattles\Sdk\Generated\Orgs\Item\WithIdentifierItemRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /orgs
 */
-class OrgsRequestBuilder extends BaseRequestBuilder 
+class OrgsRequestBuilder extends BaseRequestBuilder
 {
     /**
+     * The discover property
+    */
+    public function discover(): DiscoverRequestBuilder {
+        return new DiscoverRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+
+    /**
      * Gets an item from the TeamBattles/Sdk/Generated.orgs.item collection
-     * @param string $identifier Organization id or slug.
+     * @param string $identifier Organization slug or Convex organization ID.
      * @return WithIdentifierItemRequestBuilder
     */
     public function byIdentifier(string $identifier): WithIdentifierItemRequestBuilder {

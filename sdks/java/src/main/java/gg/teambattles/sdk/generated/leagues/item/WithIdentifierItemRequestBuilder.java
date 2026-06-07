@@ -8,10 +8,14 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.leagues.item.applyeligibility.ApplyEligibilityRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.bans.BansRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.displayrules.DisplayRulesRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.games.GamesRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.members.MembersRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.penalties.PenaltiesRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.rules.RulesRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.seasonoptions.SeasonOptionsRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.seasons.SeasonsRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.standings.StandingsRequestBuilder;
 import gg.teambattles.sdk.generated.models.Error;
@@ -26,12 +30,36 @@ import java.util.Objects;
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
     /**
+     * The applyEligibility property
+     * @return a {@link ApplyEligibilityRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ApplyEligibilityRequestBuilder applyEligibility() {
+        return new ApplyEligibilityRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
      * The bans property
      * @return a {@link BansRequestBuilder}
      */
     @jakarta.annotation.Nonnull
     public BansRequestBuilder bans() {
         return new BansRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The displayRules property
+     * @return a {@link DisplayRulesRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public DisplayRulesRequestBuilder displayRules() {
+        return new DisplayRulesRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The games property
+     * @return a {@link GamesRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public GamesRequestBuilder games() {
+        return new GamesRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * The members property
@@ -56,6 +84,14 @@ public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public RulesRequestBuilder rules() {
         return new RulesRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The seasonOptions property
+     * @return a {@link SeasonOptionsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public SeasonOptionsRequestBuilder seasonOptions() {
+        return new SeasonOptionsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * The seasons property
@@ -90,7 +126,7 @@ public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}", rawUrl);
     }
     /**
-     * Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+     * Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
      * @return a {@link LeagueProfileResponse}
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
@@ -101,7 +137,7 @@ public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
         return post(null);
     }
     /**
-     * Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+     * Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link LeagueProfileResponse}
      * @throws Error When receiving a 401 status code
@@ -118,7 +154,7 @@ public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, LeagueProfileResponse::createFromDiscriminatorValue);
     }
     /**
-     * Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+     * Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -126,7 +162,7 @@ public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(null);
     }
     /**
-     * Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+     * Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

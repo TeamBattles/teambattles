@@ -8,7 +8,7 @@ using System;
 namespace TeamBattles.Sdk.Models
 {
     /// <summary>
-    /// Filters and cursor pagination for listing a game&apos;s matches.
+    /// Status filter and cursor pagination for listing the bound key&apos;s game matches. The game is derived from the developer-app key&apos;s bound game (not a body field).
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ListGameMatchesBody : IAdditionalDataHolder, IParsable
@@ -22,14 +22,6 @@ namespace TeamBattles.Sdk.Models
 #nullable restore
 #else
         public string Cursor { get; set; }
-#endif
-        /// <summary>Game to list matches for. Must be the key&apos;s approved game.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? GameId { get; set; }
-#nullable restore
-#else
-        public string GameId { get; set; }
 #endif
         /// <summary>Page size (1-100, enforced by the handler). Defaults to the handler&apos;s internal default.</summary>
         public double? Limit { get; set; }
@@ -67,7 +59,6 @@ namespace TeamBattles.Sdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "cursor", n => { Cursor = n.GetStringValue(); } },
-                { "gameId", n => { GameId = n.GetStringValue(); } },
                 { "limit", n => { Limit = n.GetDoubleValue(); } },
                 { "status", n => { Status = n.GetStringValue(); } },
             };
@@ -80,7 +71,6 @@ namespace TeamBattles.Sdk.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("cursor", Cursor);
-            writer.WriteStringValue("gameId", GameId);
             writer.WriteDoubleValue("limit", Limit);
             writer.WriteStringValue("status", Status);
             writer.WriteAdditionalData(AdditionalData);

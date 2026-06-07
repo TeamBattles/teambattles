@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Leagues.Item.Seasons.Item;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Leagues.Item.Seasons
 {
@@ -17,6 +18,18 @@ namespace TeamBattles.Sdk.Leagues.Item.Seasons
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SeasonsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>Gets an item from the TeamBattles.Sdk.leagues.item.seasons.item collection</summary>
+        /// <param name="position">League season ID.</param>
+        /// <returns>A <see cref="global::TeamBattles.Sdk.Leagues.Item.Seasons.Item.WithSeasonItemRequestBuilder"/></returns>
+        public global::TeamBattles.Sdk.Leagues.Item.Seasons.Item.WithSeasonItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("seasonId", position);
+                return new global::TeamBattles.Sdk.Leagues.Item.Seasons.Item.WithSeasonItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Leagues.Item.Seasons.SeasonsRequestBuilder"/> and sets the default values.
         /// </summary>

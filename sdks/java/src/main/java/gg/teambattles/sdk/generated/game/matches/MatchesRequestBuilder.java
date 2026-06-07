@@ -8,6 +8,8 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.game.matches.batchscores.BatchScoresRequestBuilder;
+import gg.teambattles.sdk.generated.game.matches.create.CreateRequestBuilder;
 import gg.teambattles.sdk.generated.game.matches.item.WithMatchItemRequestBuilder;
 import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.models.ListGameMatchesBody;
@@ -20,6 +22,22 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class MatchesRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The batchScores property
+     * @return a {@link BatchScoresRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public BatchScoresRequestBuilder batchScores() {
+        return new BatchScoresRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The create property
+     * @return a {@link CreateRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public CreateRequestBuilder create() {
+        return new CreateRequestBuilder(pathParameters, requestAdapter);
+    }
     /**
      * Gets an item from the gg.teambattles.sdk.generated.game.matches.item collection
      * @param matchId Match ID.
@@ -49,8 +67,8 @@ public class MatchesRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/game/matches", rawUrl);
     }
     /**
-     * Returns matches for the given game, auto-filtered to the API key owner&apos;s approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
-     * @param body Filters and cursor pagination for listing a game&apos;s matches.
+     * Returns matches for the API key owner&apos;s approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+     * @param body Status filter and cursor pagination for listing the bound key&apos;s game matches. The game is derived from the developer-app key&apos;s bound game (not a body field).
      * @return a {@link MatchesPostResponse}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -61,8 +79,8 @@ public class MatchesRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Returns matches for the given game, auto-filtered to the API key owner&apos;s approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
-     * @param body Filters and cursor pagination for listing a game&apos;s matches.
+     * Returns matches for the API key owner&apos;s approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+     * @param body Status filter and cursor pagination for listing the bound key&apos;s game matches. The game is derived from the developer-app key&apos;s bound game (not a body field).
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link MatchesPostResponse}
      * @throws Error When receiving a 400 status code
@@ -80,8 +98,8 @@ public class MatchesRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, MatchesPostResponse::createFromDiscriminatorValue);
     }
     /**
-     * Returns matches for the given game, auto-filtered to the API key owner&apos;s approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
-     * @param body Filters and cursor pagination for listing a game&apos;s matches.
+     * Returns matches for the API key owner&apos;s approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+     * @param body Status filter and cursor pagination for listing the bound key&apos;s game matches. The game is derived from the developer-app key&apos;s bound game (not a body field).
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -89,8 +107,8 @@ public class MatchesRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Returns matches for the given game, auto-filtered to the API key owner&apos;s approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
-     * @param body Filters and cursor pagination for listing a game&apos;s matches.
+     * Returns matches for the API key owner&apos;s approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+     * @param body Status filter and cursor pagination for listing the bound key&apos;s game matches. The game is derived from the developer-app key&apos;s bound game (not a body field).
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

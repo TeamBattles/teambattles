@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Game.Matches.Item.Forfeit;
 using TeamBattles.Sdk.Game.Matches.Item.PlayerStats;
 using TeamBattles.Sdk.Game.Matches.Item.Rosters;
 using TeamBattles.Sdk.Game.Matches.Item.Scores;
@@ -21,6 +22,11 @@ namespace TeamBattles.Sdk.Game.Matches.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithMatchItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The forfeit property</summary>
+        public global::TeamBattles.Sdk.Game.Matches.Item.Forfeit.ForfeitRequestBuilder Forfeit
+        {
+            get => new global::TeamBattles.Sdk.Game.Matches.Item.Forfeit.ForfeitRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The playerStats property</summary>
         public global::TeamBattles.Sdk.Game.Matches.Item.PlayerStats.PlayerStatsRequestBuilder PlayerStats
         {

@@ -29,6 +29,10 @@ type GameMatchDetail struct {
     gameMode *string
     // The id property
     id *string
+    // League this match belongs to, if any (SP-7 league wave).
+    leagueId GameMatchDetail_GameMatchDetail_leagueIdable
+    // League season this match belongs to, if any.
+    leagueSeasonId GameMatchDetail_GameMatchDetail_leagueSeasonIdable
     // Losing team ID once the match completes.
     loserTeamId GameMatchDetail_GameMatchDetail_loserTeamIdable
     // Scheduled start time (ISO 8601).
@@ -347,6 +351,160 @@ func (m *GameMatchDetail_GameMatchDetail_creatorTeamScore) SetGameMatchDetailCre
 // SetInteger sets the integer property value. Composed type representation for type int32
 func (m *GameMatchDetail_GameMatchDetail_creatorTeamScore) SetInteger(value *int32)() {
     m.integer = value
+}
+// GameMatchDetail_GameMatchDetail_leagueId composed type wrapper for classes GameMatchDetail_leagueIdMember1able, string
+type GameMatchDetail_GameMatchDetail_leagueId struct {
+    // Composed type representation for type GameMatchDetail_leagueIdMember1able
+    gameMatchDetail_leagueIdMember1 GameMatchDetail_leagueIdMember1able
+    // Composed type representation for type string
+    string *string
+}
+// NewGameMatchDetail_GameMatchDetail_leagueId instantiates a new GameMatchDetail_GameMatchDetail_leagueId and sets the default values.
+func NewGameMatchDetail_GameMatchDetail_leagueId()(*GameMatchDetail_GameMatchDetail_leagueId) {
+    m := &GameMatchDetail_GameMatchDetail_leagueId{
+    }
+    return m
+}
+// CreateGameMatchDetail_GameMatchDetail_leagueIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// returns a Parsable when successful
+func CreateGameMatchDetail_GameMatchDetail_leagueIdFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    result := NewGameMatchDetail_GameMatchDetail_leagueId()
+    if parseNode != nil {
+        if val, err := parseNode.GetStringValue(); val != nil {
+            if err != nil {
+                return nil, err
+            }
+            result.SetString(val)
+        } else if val, err := parseNode.GetObjectValue(CreateGameMatchDetail_leagueIdMember1FromDiscriminatorValue); val != nil {
+            if err != nil {
+                return nil, err
+            }
+            if cast, ok := val.(GameMatchDetail_leagueIdMember1able); ok {
+                result.SetGameMatchDetailLeagueIdMember1(cast)
+            }
+        }
+    }
+    return result, nil
+}
+// GetFieldDeserializers the deserialization information for the current model
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
+func (m *GameMatchDetail_GameMatchDetail_leagueId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+}
+// GetGameMatchDetailLeagueIdMember1 gets the GameMatchDetail_leagueIdMember1 property value. Composed type representation for type GameMatchDetail_leagueIdMember1able
+// returns a GameMatchDetail_leagueIdMember1able when successful
+func (m *GameMatchDetail_GameMatchDetail_leagueId) GetGameMatchDetailLeagueIdMember1()(GameMatchDetail_leagueIdMember1able) {
+    return m.gameMatchDetail_leagueIdMember1
+}
+// GetIsComposedType determines if the current object is a wrapper around a composed type
+// returns a bool when successful
+func (m *GameMatchDetail_GameMatchDetail_leagueId) GetIsComposedType()(bool) {
+    return true
+}
+// GetString gets the string property value. Composed type representation for type string
+// returns a *string when successful
+func (m *GameMatchDetail_GameMatchDetail_leagueId) GetString()(*string) {
+    return m.string
+}
+// Serialize serializes information the current object
+func (m *GameMatchDetail_GameMatchDetail_leagueId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetString() != nil {
+        err := writer.WriteStringValue("", m.GetString())
+        if err != nil {
+            return err
+        }
+    } else if m.GetGameMatchDetailLeagueIdMember1() != nil {
+        err := writer.WriteObjectValue("", m.GetGameMatchDetailLeagueIdMember1())
+        if err != nil {
+            return err
+        }
+    }
+    return nil
+}
+// SetGameMatchDetailLeagueIdMember1 sets the GameMatchDetail_leagueIdMember1 property value. Composed type representation for type GameMatchDetail_leagueIdMember1able
+func (m *GameMatchDetail_GameMatchDetail_leagueId) SetGameMatchDetailLeagueIdMember1(value GameMatchDetail_leagueIdMember1able)() {
+    m.gameMatchDetail_leagueIdMember1 = value
+}
+// SetString sets the string property value. Composed type representation for type string
+func (m *GameMatchDetail_GameMatchDetail_leagueId) SetString(value *string)() {
+    m.string = value
+}
+// GameMatchDetail_GameMatchDetail_leagueSeasonId composed type wrapper for classes GameMatchDetail_leagueSeasonIdMember1able, string
+type GameMatchDetail_GameMatchDetail_leagueSeasonId struct {
+    // Composed type representation for type GameMatchDetail_leagueSeasonIdMember1able
+    gameMatchDetail_leagueSeasonIdMember1 GameMatchDetail_leagueSeasonIdMember1able
+    // Composed type representation for type string
+    string *string
+}
+// NewGameMatchDetail_GameMatchDetail_leagueSeasonId instantiates a new GameMatchDetail_GameMatchDetail_leagueSeasonId and sets the default values.
+func NewGameMatchDetail_GameMatchDetail_leagueSeasonId()(*GameMatchDetail_GameMatchDetail_leagueSeasonId) {
+    m := &GameMatchDetail_GameMatchDetail_leagueSeasonId{
+    }
+    return m
+}
+// CreateGameMatchDetail_GameMatchDetail_leagueSeasonIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// returns a Parsable when successful
+func CreateGameMatchDetail_GameMatchDetail_leagueSeasonIdFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    result := NewGameMatchDetail_GameMatchDetail_leagueSeasonId()
+    if parseNode != nil {
+        if val, err := parseNode.GetStringValue(); val != nil {
+            if err != nil {
+                return nil, err
+            }
+            result.SetString(val)
+        } else if val, err := parseNode.GetObjectValue(CreateGameMatchDetail_leagueSeasonIdMember1FromDiscriminatorValue); val != nil {
+            if err != nil {
+                return nil, err
+            }
+            if cast, ok := val.(GameMatchDetail_leagueSeasonIdMember1able); ok {
+                result.SetGameMatchDetailLeagueSeasonIdMember1(cast)
+            }
+        }
+    }
+    return result, nil
+}
+// GetFieldDeserializers the deserialization information for the current model
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
+func (m *GameMatchDetail_GameMatchDetail_leagueSeasonId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+}
+// GetGameMatchDetailLeagueSeasonIdMember1 gets the GameMatchDetail_leagueSeasonIdMember1 property value. Composed type representation for type GameMatchDetail_leagueSeasonIdMember1able
+// returns a GameMatchDetail_leagueSeasonIdMember1able when successful
+func (m *GameMatchDetail_GameMatchDetail_leagueSeasonId) GetGameMatchDetailLeagueSeasonIdMember1()(GameMatchDetail_leagueSeasonIdMember1able) {
+    return m.gameMatchDetail_leagueSeasonIdMember1
+}
+// GetIsComposedType determines if the current object is a wrapper around a composed type
+// returns a bool when successful
+func (m *GameMatchDetail_GameMatchDetail_leagueSeasonId) GetIsComposedType()(bool) {
+    return true
+}
+// GetString gets the string property value. Composed type representation for type string
+// returns a *string when successful
+func (m *GameMatchDetail_GameMatchDetail_leagueSeasonId) GetString()(*string) {
+    return m.string
+}
+// Serialize serializes information the current object
+func (m *GameMatchDetail_GameMatchDetail_leagueSeasonId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetString() != nil {
+        err := writer.WriteStringValue("", m.GetString())
+        if err != nil {
+            return err
+        }
+    } else if m.GetGameMatchDetailLeagueSeasonIdMember1() != nil {
+        err := writer.WriteObjectValue("", m.GetGameMatchDetailLeagueSeasonIdMember1())
+        if err != nil {
+            return err
+        }
+    }
+    return nil
+}
+// SetGameMatchDetailLeagueSeasonIdMember1 sets the GameMatchDetail_leagueSeasonIdMember1 property value. Composed type representation for type GameMatchDetail_leagueSeasonIdMember1able
+func (m *GameMatchDetail_GameMatchDetail_leagueSeasonId) SetGameMatchDetailLeagueSeasonIdMember1(value GameMatchDetail_leagueSeasonIdMember1able)() {
+    m.gameMatchDetail_leagueSeasonIdMember1 = value
+}
+// SetString sets the string property value. Composed type representation for type string
+func (m *GameMatchDetail_GameMatchDetail_leagueSeasonId) SetString(value *string)() {
+    m.string = value
 }
 // GameMatchDetail_GameMatchDetail_loserTeamId composed type wrapper for classes GameMatchDetail_loserTeamIdMember1able, string
 type GameMatchDetail_GameMatchDetail_loserTeamId struct {
@@ -684,6 +842,20 @@ type GameMatchDetail_GameMatchDetail_creatorTeamScoreable interface {
     SetGameMatchDetailCreatorTeamScoreMember1(value GameMatchDetail_creatorTeamScoreMember1able)()
     SetInteger(value *int32)()
 }
+type GameMatchDetail_GameMatchDetail_leagueIdable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetGameMatchDetailLeagueIdMember1()(GameMatchDetail_leagueIdMember1able)
+    GetString()(*string)
+    SetGameMatchDetailLeagueIdMember1(value GameMatchDetail_leagueIdMember1able)()
+    SetString(value *string)()
+}
+type GameMatchDetail_GameMatchDetail_leagueSeasonIdable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetGameMatchDetailLeagueSeasonIdMember1()(GameMatchDetail_leagueSeasonIdMember1able)
+    GetString()(*string)
+    SetGameMatchDetailLeagueSeasonIdMember1(value GameMatchDetail_leagueSeasonIdMember1able)()
+    SetString(value *string)()
+}
 type GameMatchDetail_GameMatchDetail_loserTeamIdable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetGameMatchDetailLoserTeamIdMember1()(GameMatchDetail_loserTeamIdMember1able)
@@ -862,6 +1034,26 @@ func (m *GameMatchDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         }
         return nil
     }
+    res["leagueId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateGameMatchDetail_GameMatchDetail_leagueIdFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLeagueId(val.(GameMatchDetail_GameMatchDetail_leagueIdable))
+        }
+        return nil
+    }
+    res["leagueSeasonId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateGameMatchDetail_GameMatchDetail_leagueSeasonIdFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLeagueSeasonId(val.(GameMatchDetail_GameMatchDetail_leagueSeasonIdable))
+        }
+        return nil
+    }
     res["loserTeamId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreateGameMatchDetail_GameMatchDetail_loserTeamIdFromDiscriminatorValue)
         if err != nil {
@@ -928,6 +1120,16 @@ func (m *GameMatchDetail) GetGameMode()(*string) {
 // returns a *string when successful
 func (m *GameMatchDetail) GetId()(*string) {
     return m.id
+}
+// GetLeagueId gets the leagueId property value. League this match belongs to, if any (SP-7 league wave).
+// returns a GameMatchDetail_GameMatchDetail_leagueIdable when successful
+func (m *GameMatchDetail) GetLeagueId()(GameMatchDetail_GameMatchDetail_leagueIdable) {
+    return m.leagueId
+}
+// GetLeagueSeasonId gets the leagueSeasonId property value. League season this match belongs to, if any.
+// returns a GameMatchDetail_GameMatchDetail_leagueSeasonIdable when successful
+func (m *GameMatchDetail) GetLeagueSeasonId()(GameMatchDetail_GameMatchDetail_leagueSeasonIdable) {
+    return m.leagueSeasonId
 }
 // GetLoserTeamId gets the loserTeamId property value. Losing team ID once the match completes.
 // returns a GameMatchDetail_GameMatchDetail_loserTeamIdable when successful
@@ -1017,6 +1219,18 @@ func (m *GameMatchDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
         }
     }
     {
+        err := writer.WriteObjectValue("leagueId", m.GetLeagueId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("leagueSeasonId", m.GetLeagueSeasonId())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteObjectValue("loserTeamId", m.GetLoserTeamId())
         if err != nil {
             return err
@@ -1089,6 +1303,14 @@ func (m *GameMatchDetail) SetGameMode(value *string)() {
 func (m *GameMatchDetail) SetId(value *string)() {
     m.id = value
 }
+// SetLeagueId sets the leagueId property value. League this match belongs to, if any (SP-7 league wave).
+func (m *GameMatchDetail) SetLeagueId(value GameMatchDetail_GameMatchDetail_leagueIdable)() {
+    m.leagueId = value
+}
+// SetLeagueSeasonId sets the leagueSeasonId property value. League season this match belongs to, if any.
+func (m *GameMatchDetail) SetLeagueSeasonId(value GameMatchDetail_GameMatchDetail_leagueSeasonIdable)() {
+    m.leagueSeasonId = value
+}
 // SetLoserTeamId sets the loserTeamId property value. Losing team ID once the match completes.
 func (m *GameMatchDetail) SetLoserTeamId(value GameMatchDetail_GameMatchDetail_loserTeamIdable)() {
     m.loserTeamId = value
@@ -1121,6 +1343,8 @@ type GameMatchDetailable interface {
     GetGameId()(*string)
     GetGameMode()(*string)
     GetId()(*string)
+    GetLeagueId()(GameMatchDetail_GameMatchDetail_leagueIdable)
+    GetLeagueSeasonId()(GameMatchDetail_GameMatchDetail_leagueSeasonIdable)
     GetLoserTeamId()(GameMatchDetail_GameMatchDetail_loserTeamIdable)
     GetScheduledAt()(GameMatchDetail_GameMatchDetail_scheduledAtable)
     GetStartedAt()(GameMatchDetail_GameMatchDetail_startedAtable)
@@ -1136,6 +1360,8 @@ type GameMatchDetailable interface {
     SetGameId(value *string)()
     SetGameMode(value *string)()
     SetId(value *string)()
+    SetLeagueId(value GameMatchDetail_GameMatchDetail_leagueIdable)()
+    SetLeagueSeasonId(value GameMatchDetail_GameMatchDetail_leagueSeasonIdable)()
     SetLoserTeamId(value GameMatchDetail_GameMatchDetail_loserTeamIdable)()
     SetScheduledAt(value GameMatchDetail_GameMatchDetail_scheduledAtable)()
     SetStartedAt(value GameMatchDetail_GameMatchDetail_startedAtable)()

@@ -13,12 +13,16 @@ import com.microsoft.kiota.serialization.SerializationWriterFactoryRegistry;
 import com.microsoft.kiota.serialization.TextParseNodeFactory;
 import com.microsoft.kiota.serialization.TextSerializationWriterFactory;
 import gg.teambattles.sdk.generated.game.GameRequestBuilder;
+import gg.teambattles.sdk.generated.games.GamesRequestBuilder;
+import gg.teambattles.sdk.generated.leaderboards.LeaderboardsRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.LeaguesRequestBuilder;
 import gg.teambattles.sdk.generated.matches.MatchesRequestBuilder;
 import gg.teambattles.sdk.generated.orgs.OrgsRequestBuilder;
 import gg.teambattles.sdk.generated.teams.TeamsRequestBuilder;
 import gg.teambattles.sdk.generated.twitch.TwitchRequestBuilder;
 import gg.teambattles.sdk.generated.user.UserRequestBuilder;
+import gg.teambattles.sdk.generated.users.UsersRequestBuilder;
+import gg.teambattles.sdk.generated.webhooks.WebhooksRequestBuilder;
 import java.util.HashMap;
 import java.util.Objects;
 /**
@@ -33,6 +37,22 @@ public class TeamBattlesApiClient extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public GameRequestBuilder game() {
         return new GameRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The games property
+     * @return a {@link GamesRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public GamesRequestBuilder games() {
+        return new GamesRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The leaderboards property
+     * @return a {@link LeaderboardsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public LeaderboardsRequestBuilder leaderboards() {
+        return new LeaderboardsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * The leagues property
@@ -81,6 +101,22 @@ public class TeamBattlesApiClient extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public UserRequestBuilder user() {
         return new UserRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The users property
+     * @return a {@link UsersRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public UsersRequestBuilder users() {
+        return new UsersRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The webhooks property
+     * @return a {@link WebhooksRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public WebhooksRequestBuilder webhooks() {
+        return new WebhooksRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * Instantiates a new {@link TeamBattlesApiClient} and sets the default values.

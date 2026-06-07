@@ -11,6 +11,15 @@ Try out the API directly from the docs:
 	<Card title="User Matches" icon="user" href="/api-reference/user/matches">
 		Retrieve matches where you're on the roster
 	</Card>
+	<Card title="Game Catalog" icon="gamepad-2" href="/api-reference/games/list">
+		List public games, playlists, modes, maps, and objectives
+	</Card>
+	<Card title="Public Profiles" icon="id-card" href="/api-reference/profiles/users">
+		Read user, team, and organization profile resources
+	</Card>
+	<Card title="Leaderboards" icon="trophy" href="/api-reference/leaderboards/players">
+		Read player, team, and organization rankings
+	</Card>
 	<Card title="Team Matches" icon="users" href="/api-reference/teams/matches">
 		Retrieve matches for a specific team
 	</Card>
@@ -26,20 +35,24 @@ Try out the API directly from the docs:
 </CardGroup>
 
 <Note>
-	The OpenAPI specification at `/api-reference/openapi.json` covers 30 paths: three match listing endpoints (user / team / org), two Twitch badge endpoints, eight league endpoints, the game-developer score and lifecycle endpoints, and the webhook management endpoints. Game-developer score and lifecycle endpoints (including forfeit, batch-scores, and game-originated create) are now documented in the spec; overlay endpoints and OAuth-proxy routes remain intentionally excluded.
+	The OpenAPI specification at `/api-reference/openapi.json` covers the documented v1 developer API: profile reads, game catalog reads, leaderboards, match reads, league reads, Twitch badge reads, game-developer score and lifecycle endpoints, and webhook management endpoints. Overlay endpoints and OAuth-proxy routes remain intentionally excluded.
 </Note>
 
 ## API Key Permissions
 
-API keys carry a 5-category permission object. Every category appears in the create/edit dialog at `/settings/developer`. The `leagues` category is `v.optional()` in `src/convex/schema/validators.ts:735` - older keys may lack it on disk, and the dialog auto-fills it from `defaultLeagues` (`src/routes/(app)/settings/developer/(components)/api-key-edit-dialog.svelte:134-137`) so all five categories remain editable.
+API keys carry a granular permission object. Every category appears in the create/edit dialog at `/settings/developer`; older keys are normalized to the current default shape before editing.
 
-| Category    | Scopes                                  | Values                          |
-| ----------- | --------------------------------------- | ------------------------------- |
-| Matches     | user_matches, team_matches, org_matches | none / read / read-write        |
-| Connections | discord, twitch, github, battlenet      | none / enabled                  |
-| Game        | scores, lifecycle                       | none / write (scores), none / read / read-write (lifecycle) |
-| Webhooks    | manage                                  | none / enabled                  |
-| Leagues     | league_public, league_admin             | none / read                     |
+| Category    | Scopes                                           | Values                          |
+| ----------- | ------------------------------------------------ | ------------------------------- |
+| Matches     | user_matches, team_matches, org_matches          | none / read / read-write        |
+| Matches     | public_matches                                   | none / read                     |
+| Connections | discord, twitch, github, battlenet               | none / enabled                  |
+| Game        | scores, lifecycle, ranks                         | none / write (scores), none / read / read-write (lifecycle), none / read (ranks) |
+| Users       | profile                                          | none / read                     |
+| Teams       | profile, roster                                  | none / read / read-write        |
+| Orgs        | profile                                          | none / read / read-write        |
+| Webhooks    | manage                                           | none / enabled                  |
+| Leagues     | league_public, league_admin, settings_read       | none / read, or none / read / read-write for league_admin |
 
 ### Presets
 
@@ -50,6 +63,18 @@ The create-key dialog ships with two one-click permission presets (`src/routes/(
 | `battles-replay` | `matches.user_matches: read`, `connections.twitch: enabled`                               | Twitch               |
 | `league-manager` | `matches.team_matches: read`, `leagues.league_public: read`, `leagues.league_admin: read` | none                 |
 
+## Read Expansion Endpoints
+
+SP-2 adds API-key read coverage for resources that were already public or participant-visible in the web app. The routes use the same durable API key wrapper and rate-limit headers as the existing v1 surface.
+
+| Family       | Endpoints                                                                                         | Permission |
+| ------------ | ------------------------------------------------------------------------------------------------- | ---------- |
+| Game catalog | `GET /games`, `GET /games/{id}/playlists`                                                         | Valid API key |
+| Profiles     | `GET /users/{identifier}/*`, `GET /teams/{identifier}/*`, `GET /orgs/*`                           | `users.profile`, `teams.profile`, `teams.roster`, or `orgs.profile` |
+| Leaderboards | `GET /leaderboards/{players|teams|organizations}`, rank lookups                                   | Matching profile scope |
+| Matches      | `GET /matches/{matchId}`, `GET /matches/{matchId}/players`, `POST /matches/discover`, `GET /user/ongoing-matches` | Match read scopes |
+| Leagues      | Existing league reads plus games, season detail/options, display rules, templates, apply eligibility | `leagues.league_public` |
+
 ## Captain Score Endpoints
 
 These endpoints allow team captains to submit and manage scores.
@@ -58,7 +83,7 @@ These endpoints allow team captains to submit and manage scores.
 | ------- | --------------------------- | ------------------------ | ---------------------------------- |
 | `POST`  | `/matches/{matchId}/scores` | Submit a map score       | `matches.team_matches: read-write` |
 | `PATCH` | `/matches/{matchId}/scores` | Confirm opponent's score | `matches.team_matches: read-write` |
-| `GET`   | `/matches/{matchId}/scores` | Get all map scores       | `matches.team_matches: read`       |
+| `GET`   | `/matches/{matchId}/scores` | Get all map scores       | Any match read scope               |
 
 ## Game Developer Endpoints
 

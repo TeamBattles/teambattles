@@ -1,0 +1,19 @@
+---
+title: "Get Organization Profile"
+description: "Read API-safe organization discovery, profile, members, teams, and stats."
+openapi: "GET /orgs/{identifier}"
+---
+
+## Permission Required
+
+Organization profile reads require `orgs.profile`.
+
+## Related Endpoints
+
+- `GET /orgs/discover`
+- `GET /orgs/{identifier}`
+- `GET /orgs/{identifier}/members`
+- `GET /orgs/{identifier}/teams`
+- `GET /orgs/{identifier}/stats`
+
+Discovery is neutral: it does not hide organizations the API key owner already belongs to and does not include join-request flags.

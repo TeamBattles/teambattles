@@ -39,7 +39,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/matches/{matchId}/scores", rawUrl);
     }
     /**
-     * Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+     * Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
      * @return a {@link MapScores}
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
@@ -50,7 +50,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+     * Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link MapScores}
      * @throws Error When receiving a 401 status code
@@ -135,7 +135,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, ScoreSubmissionResult::createFromDiscriminatorValue);
     }
     /**
-     * Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+     * Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -143,7 +143,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+     * Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

@@ -20,6 +20,11 @@ type WithIdentifierItemRequestBuilderPostRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// ApplyEligibility the applyEligibility property
+// returns a *ItemApplyEligibilityRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) ApplyEligibility()(*ItemApplyEligibilityRequestBuilder) {
+    return NewItemApplyEligibilityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Bans the bans property
 // returns a *ItemBansRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) Bans()(*ItemBansRequestBuilder) {
@@ -38,6 +43,16 @@ func NewWithIdentifierItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams["request-raw-url"] = rawUrl
     return NewWithIdentifierItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+// DisplayRules the displayRules property
+// returns a *ItemDisplayRulesRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) DisplayRules()(*ItemDisplayRulesRequestBuilder) {
+    return NewItemDisplayRulesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Games the games property
+// returns a *ItemGamesRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Games()(*ItemGamesRequestBuilder) {
+    return NewItemGamesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Members the members property
 // returns a *ItemMembersRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) Members()(*ItemMembersRequestBuilder) {
@@ -48,7 +63,7 @@ func (m *WithIdentifierItemRequestBuilder) Members()(*ItemMembersRequestBuilder)
 func (m *WithIdentifierItemRequestBuilder) Penalties()(*ItemPenaltiesRequestBuilder) {
     return NewItemPenaltiesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Post returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+// Post returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
 // returns a LeagueProfileResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
 // returns a ErrorEscaped error when the service returns a 403 status code
@@ -77,6 +92,11 @@ func (m *WithIdentifierItemRequestBuilder) Post(ctx context.Context, requestConf
 func (m *WithIdentifierItemRequestBuilder) Rules()(*ItemRulesRequestBuilder) {
     return NewItemRulesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// SeasonOptions the seasonOptions property
+// returns a *ItemSeasonOptionsRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) SeasonOptions()(*ItemSeasonOptionsRequestBuilder) {
+    return NewItemSeasonOptionsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Seasons the seasons property
 // returns a *ItemSeasonsRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) Seasons()(*ItemSeasonsRequestBuilder) {
@@ -87,7 +107,7 @@ func (m *WithIdentifierItemRequestBuilder) Seasons()(*ItemSeasonsRequestBuilder)
 func (m *WithIdentifierItemRequestBuilder) Standings()(*ItemStandingsRequestBuilder) {
     return NewItemStandingsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// ToPostRequestInformation returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+// ToPostRequestInformation returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
 // returns a *RequestInformation when successful
 func (m *WithIdentifierItemRequestBuilder) ToPostRequestInformation(ctx context.Context, requestConfiguration *WithIdentifierItemRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

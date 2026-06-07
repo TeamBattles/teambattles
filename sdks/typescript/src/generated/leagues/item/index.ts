@@ -4,7 +4,13 @@
 // @ts-ignore
 import { createErrorEscapedFromDiscriminatorValue, createLeagueProfileResponseFromDiscriminatorValue, type ErrorEscaped, type LeagueProfileResponse } from '../../models/index.js';
 // @ts-ignore
+import { ApplyEligibilityRequestBuilderRequestsMetadata, type ApplyEligibilityRequestBuilder } from './applyEligibility/index.js';
+// @ts-ignore
 import { BansRequestBuilderRequestsMetadata, type BansRequestBuilder } from './bans/index.js';
+// @ts-ignore
+import { DisplayRulesRequestBuilderRequestsMetadata, type DisplayRulesRequestBuilder } from './displayRules/index.js';
+// @ts-ignore
+import { GamesRequestBuilderRequestsMetadata, type GamesRequestBuilder } from './games/index.js';
 // @ts-ignore
 import { MembersRequestBuilderRequestsMetadata, type MembersRequestBuilder } from './members/index.js';
 // @ts-ignore
@@ -12,7 +18,9 @@ import { PenaltiesRequestBuilderRequestsMetadata, type PenaltiesRequestBuilder }
 // @ts-ignore
 import { RulesRequestBuilderRequestsMetadata, type RulesRequestBuilder } from './rules/index.js';
 // @ts-ignore
-import { SeasonsRequestBuilderRequestsMetadata, type SeasonsRequestBuilder } from './seasons/index.js';
+import { SeasonOptionsRequestBuilderRequestsMetadata, type SeasonOptionsRequestBuilder } from './seasonOptions/index.js';
+// @ts-ignore
+import { SeasonsRequestBuilderNavigationMetadata, SeasonsRequestBuilderRequestsMetadata, type SeasonsRequestBuilder } from './seasons/index.js';
 // @ts-ignore
 import { StandingsRequestBuilderRequestsMetadata, type StandingsRequestBuilder } from './standings/index.js';
 // @ts-ignore
@@ -23,9 +31,21 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  */
 export interface WithIdentifierItemRequestBuilder extends BaseRequestBuilder<WithIdentifierItemRequestBuilder> {
     /**
+     * The applyEligibility property
+     */
+    get applyEligibility(): ApplyEligibilityRequestBuilder;
+    /**
      * The bans property
      */
     get bans(): BansRequestBuilder;
+    /**
+     * The displayRules property
+     */
+    get displayRules(): DisplayRulesRequestBuilder;
+    /**
+     * The games property
+     */
+    get games(): GamesRequestBuilder;
     /**
      * The members property
      */
@@ -39,6 +59,10 @@ export interface WithIdentifierItemRequestBuilder extends BaseRequestBuilder<Wit
      */
     get rules(): RulesRequestBuilder;
     /**
+     * The seasonOptions property
+     */
+    get seasonOptions(): SeasonOptionsRequestBuilder;
+    /**
      * The seasons property
      */
     get seasons(): SeasonsRequestBuilder;
@@ -47,7 +71,7 @@ export interface WithIdentifierItemRequestBuilder extends BaseRequestBuilder<Wit
      */
     get standings(): StandingsRequestBuilder;
     /**
-     * Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+     * Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeagueProfileResponse>}
      * @throws {ErrorEscaped} error when the service returns a 401 status code
@@ -56,7 +80,7 @@ export interface WithIdentifierItemRequestBuilder extends BaseRequestBuilder<Wit
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeagueProfileResponse | undefined>;
     /**
-     * Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+     * Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
@@ -70,8 +94,17 @@ export const WithIdentifierItemRequestBuilderUriTemplate = "{+baseurl}/leagues/{
  * Metadata for all the navigation properties in the request builder.
  */
 export const WithIdentifierItemRequestBuilderNavigationMetadata: Record<Exclude<keyof WithIdentifierItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    applyEligibility: {
+        requestsMetadata: ApplyEligibilityRequestBuilderRequestsMetadata,
+    },
     bans: {
         requestsMetadata: BansRequestBuilderRequestsMetadata,
+    },
+    displayRules: {
+        requestsMetadata: DisplayRulesRequestBuilderRequestsMetadata,
+    },
+    games: {
+        requestsMetadata: GamesRequestBuilderRequestsMetadata,
     },
     members: {
         requestsMetadata: MembersRequestBuilderRequestsMetadata,
@@ -82,8 +115,12 @@ export const WithIdentifierItemRequestBuilderNavigationMetadata: Record<Exclude<
     rules: {
         requestsMetadata: RulesRequestBuilderRequestsMetadata,
     },
+    seasonOptions: {
+        requestsMetadata: SeasonOptionsRequestBuilderRequestsMetadata,
+    },
     seasons: {
         requestsMetadata: SeasonsRequestBuilderRequestsMetadata,
+        navigationMetadata: SeasonsRequestBuilderNavigationMetadata,
     },
     standings: {
         requestsMetadata: StandingsRequestBuilderRequestsMetadata,

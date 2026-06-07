@@ -1,0 +1,13 @@
+---
+title: "Get Game Playlists"
+description: "List playlists, modes, maps, and map pools for a game."
+openapi: "GET /games/{id}/playlists"
+---
+
+## Permission Required
+
+This endpoint requires a valid API key, but no additional permission scope.
+
+## Game Identifier
+
+The `{id}` path parameter is the public static game ID or slug from `GET /games`, not a Convex document ID.

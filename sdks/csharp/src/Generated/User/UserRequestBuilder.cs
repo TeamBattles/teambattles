@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using TeamBattles.Sdk.User.Matches;
+using TeamBattles.Sdk.User.OngoingMatches;
 namespace TeamBattles.Sdk.User
 {
     /// <summary>
@@ -19,6 +20,11 @@ namespace TeamBattles.Sdk.User
         public global::TeamBattles.Sdk.User.Matches.MatchesRequestBuilder Matches
         {
             get => new global::TeamBattles.Sdk.User.Matches.MatchesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The ongoingMatches property</summary>
+        public global::TeamBattles.Sdk.User.OngoingMatches.OngoingMatchesRequestBuilder OngoingMatches
+        {
+            get => new global::TeamBattles.Sdk.User.OngoingMatches.OngoingMatchesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.User.UserRequestBuilder"/> and sets the default values.

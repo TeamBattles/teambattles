@@ -32,10 +32,10 @@ class ScoresRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/matches/{matchId}/scores", path_parameters)
-    
+
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MapScores]:
         """
-        Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+        Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MapScores]
         """
@@ -50,11 +50,11 @@ class ScoresRequestBuilder(BaseRequestBuilder):
             "404": Error,
         }
         if not self.request_adapter:
-            raise Exception("Http core is null") 
+            raise Exception("Http core is null")
         from ....models.map_scores import MapScores
 
         return await self.request_adapter.send_async(request_info, MapScores, error_mapping)
-    
+
     async def patch(self,body: ConfirmScoreBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ScoreSubmissionResult]:
         """
         Confirm a map score submitted by the opposing team. Only the opposing team's captain can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
@@ -76,11 +76,11 @@ class ScoresRequestBuilder(BaseRequestBuilder):
             "404": Error,
         }
         if not self.request_adapter:
-            raise Exception("Http core is null") 
+            raise Exception("Http core is null")
         from ....models.score_submission_result import ScoreSubmissionResult
 
         return await self.request_adapter.send_async(request_info, ScoreSubmissionResult, error_mapping)
-    
+
     async def post(self,body: SubmitScoreBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ScoreSubmissionResult]:
         """
         Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
@@ -102,14 +102,14 @@ class ScoresRequestBuilder(BaseRequestBuilder):
             "404": Error,
         }
         if not self.request_adapter:
-            raise Exception("Http core is null") 
+            raise Exception("Http core is null")
         from ....models.score_submission_result import ScoreSubmissionResult
 
         return await self.request_adapter.send_async(request_info, ScoreSubmissionResult, error_mapping)
-    
+
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+        Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,7 +117,7 @@ class ScoresRequestBuilder(BaseRequestBuilder):
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
-    
+
     def to_patch_request_information(self,body: ConfirmScoreBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Confirm a map score submitted by the opposing team. Only the opposing team's captain can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
@@ -132,7 +132,7 @@ class ScoresRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
+
     def to_post_request_information(self,body: SubmitScoreBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
@@ -147,7 +147,7 @@ class ScoresRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
+
     def with_url(self,raw_url: str) -> ScoresRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
@@ -157,26 +157,26 @@ class ScoresRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ScoresRequestBuilder(self.request_adapter, raw_url)
-    
+
     @dataclass
     class ScoresRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
-    
+
     @dataclass
     class ScoresRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
-    
+
     @dataclass
     class ScoresRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
-    
+
 

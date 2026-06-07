@@ -9,17 +9,25 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use TeamBattles\Sdk\Generated\Leagues\Item\WithIdentifierItemRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Templates\TemplatesRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\DiscoverLeaguesRequestBody;
 use TeamBattles\Sdk\Generated\Models\Error;
 
 /**
  * Builds and executes requests for operations under /leagues
 */
-class LeaguesRequestBuilder extends BaseRequestBuilder 
+class LeaguesRequestBuilder extends BaseRequestBuilder
 {
     /**
+     * The templates property
+    */
+    public function templates(): TemplatesRequestBuilder {
+        return new TemplatesRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+
+    /**
      * Gets an item from the TeamBattles/Sdk/Generated.leagues.item collection
-     * @param string $identifier League slug.
+     * @param string $identifier League slug or Convex league ID.
      * @return WithIdentifierItemRequestBuilder
     */
     public function byIdentifier(string $identifier): WithIdentifierItemRequestBuilder {

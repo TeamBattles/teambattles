@@ -1,0 +1,13 @@
+---
+title: "List Organization Leaderboard"
+description: "Read public organization leaderboard entries and organization rank lookups."
+openapi: "GET /leaderboards/organizations"
+---
+
+## Permission Required
+
+Organization leaderboard reads require `orgs.profile`.
+
+## Related Endpoint
+
+Use `GET /leaderboards/organizations/{identifier}/rank` to get an organization's rank. Organization stats are computed from active, non-disabled, non-private teams.

@@ -22,7 +22,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ScoresRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/matches/{matchId}/scores", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+    /// Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<MapScores?> getAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toGetRequestInformation(requestConfiguration);
@@ -59,7 +59,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBuilder> {
         };
         return await requestAdapter.send<ScoreSubmissionResult>(requestInfo, ScoreSubmissionResult.createFromDiscriminatorValue, errorMapping);
     }
-    /// Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+    /// Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toGetRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.get, urlTemplate : urlTemplate, pathParameters :  pathParameters);

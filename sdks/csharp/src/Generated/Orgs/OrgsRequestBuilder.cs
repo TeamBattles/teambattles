@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System;
+using TeamBattles.Sdk.Orgs.Discover;
 using TeamBattles.Sdk.Orgs.Item;
 namespace TeamBattles.Sdk.Orgs
 {
@@ -15,8 +16,13 @@ namespace TeamBattles.Sdk.Orgs
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class OrgsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The discover property</summary>
+        public global::TeamBattles.Sdk.Orgs.Discover.DiscoverRequestBuilder Discover
+        {
+            get => new global::TeamBattles.Sdk.Orgs.Discover.DiscoverRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the TeamBattles.Sdk.orgs.item collection</summary>
-        /// <param name="position">Organization id or slug.</param>
+        /// <param name="position">Organization slug or Convex organization ID.</param>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Orgs.Item.WithIdentifierItemRequestBuilder"/></returns>
         public global::TeamBattles.Sdk.Orgs.Item.WithIdentifierItemRequestBuilder this[string position]
         {

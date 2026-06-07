@@ -5,6 +5,1144 @@
 import { createUntypedNodeFromDiscriminatorValue, type AdditionalDataHolder, type ApiError, type Parsable, type ParseNode, type SerializationWriter, type UntypedNode } from '@microsoft/kiota-abstractions';
 
 /**
+ * Static public game catalog entry.
+ */
+export interface ApiGameCatalogEntry extends Parsable {
+    /**
+     * The bannerImage property
+     */
+    bannerImage?: ApiGameCatalogEntry_bannerImageMember1 | string | null;
+    /**
+     * The category property
+     */
+    category?: string | null;
+    /**
+     * Active Convex games-table ID, when available for match APIs.
+     */
+    convexId?: ApiGameCatalogEntry_convexIdMember1 | string | null;
+    /**
+     * The coverImage property
+     */
+    coverImage?: ApiGameCatalogEntry_coverImageMember1 | string | null;
+    /**
+     * The defaultTeamSize property
+     */
+    defaultTeamSize?: number | null;
+    /**
+     * The descriptionKey property
+     */
+    descriptionKey?: ApiGameCatalogEntry_descriptionKeyMember1 | string | null;
+    /**
+     * The hasCompetitiveMode property
+     */
+    hasCompetitiveMode?: boolean | null;
+    /**
+     * Static public game ID/slug.
+     */
+    id?: string | null;
+    /**
+     * The isAvailableForMatchApi property
+     */
+    isAvailableForMatchApi?: boolean | null;
+    /**
+     * The isComingSoon property
+     */
+    isComingSoon?: boolean | null;
+    /**
+     * The maps property
+     */
+    maps?: ApiGameMap[] | null;
+    /**
+     * The modeMapPools property
+     */
+    modeMapPools?: ApiGameModeMapPool[] | null;
+    /**
+     * The modes property
+     */
+    modes?: ApiGameMode[] | null;
+    /**
+     * The nameKey property
+     */
+    nameKey?: string | null;
+    /**
+     * The playlists property
+     */
+    playlists?: ApiGamePlaylist[] | null;
+    /**
+     * The rulesLink property
+     */
+    rulesLink?: ApiGameCatalogEntry_rulesLinkMember1 | string | null;
+    /**
+     * The shortNameKey property
+     */
+    shortNameKey?: ApiGameCatalogEntry_shortNameKeyMember1 | string | null;
+}
+export type ApiGameCatalogEntry_bannerImage = ApiGameCatalogEntry_bannerImageMember1 | string;
+export interface ApiGameCatalogEntry_bannerImageMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiGameCatalogEntry_convexId = ApiGameCatalogEntry_convexIdMember1 | string;
+export interface ApiGameCatalogEntry_convexIdMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiGameCatalogEntry_coverImage = ApiGameCatalogEntry_coverImageMember1 | string;
+export interface ApiGameCatalogEntry_coverImageMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiGameCatalogEntry_descriptionKey = ApiGameCatalogEntry_descriptionKeyMember1 | string;
+export interface ApiGameCatalogEntry_descriptionKeyMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiGameCatalogEntry_rulesLink = ApiGameCatalogEntry_rulesLinkMember1 | string;
+export interface ApiGameCatalogEntry_rulesLinkMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiGameCatalogEntry_shortNameKey = ApiGameCatalogEntry_shortNameKeyMember1 | string;
+export interface ApiGameCatalogEntry_shortNameKeyMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Game catalog list response.
+ */
+export interface ApiGameCatalogResponse extends Parsable {
+    /**
+     * The games property
+     */
+    games?: ApiGameCatalogEntry[] | null;
+    /**
+     * The objectives property
+     */
+    objectives?: ApiObjective[] | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+/**
+ * Static game map definition.
+ */
+export interface ApiGameMap extends Parsable {
+    /**
+     * The coverImage property
+     */
+    coverImage?: ApiGameMap_coverImageMember1 | string | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The isReleased property
+     */
+    isReleased?: boolean | null;
+    /**
+     * The minimapImage property
+     */
+    minimapImage?: ApiGameMap_minimapImageMember1 | string | null;
+    /**
+     * The nameKey property
+     */
+    nameKey?: string | null;
+}
+export type ApiGameMap_coverImage = ApiGameMap_coverImageMember1 | string;
+export interface ApiGameMap_coverImageMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiGameMap_minimapImage = ApiGameMap_minimapImageMember1 | string;
+export interface ApiGameMap_minimapImageMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Static game mode definition.
+ */
+export interface ApiGameMode extends Parsable {
+    /**
+     * The descriptionKey property
+     */
+    descriptionKey?: ApiGameMode_descriptionKeyMember1 | string | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The image property
+     */
+    image?: ApiGameMode_imageMember1 | string | null;
+    /**
+     * The mapIds property
+     */
+    mapIds?: string[] | null;
+    /**
+     * The nameKey property
+     */
+    nameKey?: string | null;
+    /**
+     * The rewardBonus property
+     */
+    rewardBonus?: ApiGameMode_rewardBonusMember1 | number | null;
+    /**
+     * The shortName property
+     */
+    shortName?: ApiGameMode_shortNameMember1 | string | null;
+    /**
+     * The supportsDraftToggle property
+     */
+    supportsDraftToggle?: boolean | null;
+}
+export type ApiGameMode_descriptionKey = ApiGameMode_descriptionKeyMember1 | string;
+export interface ApiGameMode_descriptionKeyMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiGameMode_image = ApiGameMode_imageMember1 | string;
+export interface ApiGameMode_imageMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiGameMode_rewardBonus = ApiGameMode_rewardBonusMember1 | number;
+export interface ApiGameMode_rewardBonusMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiGameMode_shortName = ApiGameMode_shortNameMember1 | string;
+export interface ApiGameMode_shortNameMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Game-scoped map pool for a single mode.
+ */
+export interface ApiGameModeMapPool extends Parsable {
+    /**
+     * The mapIds property
+     */
+    mapIds?: string[] | null;
+    /**
+     * The modeId property
+     */
+    modeId?: string | null;
+}
+/**
+ * Game-scoped playlist definition.
+ */
+export interface ApiGamePlaylist extends Parsable {
+    /**
+     * The allowedGameModeIds property
+     */
+    allowedGameModeIds?: string[] | null;
+    /**
+     * The descriptionKey property
+     */
+    descriptionKey?: ApiGamePlaylist_descriptionKeyMember1 | string | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The image property
+     */
+    image?: ApiGamePlaylist_imageMember1 | string | null;
+    /**
+     * The nameKey property
+     */
+    nameKey?: string | null;
+}
+export type ApiGamePlaylist_descriptionKey = ApiGamePlaylist_descriptionKeyMember1 | string;
+export interface ApiGamePlaylist_descriptionKeyMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiGamePlaylist_image = ApiGamePlaylist_imageMember1 | string;
+export interface ApiGamePlaylist_imageMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Game-scoped playlist response.
+ */
+export interface ApiGamePlaylistsResponse extends Parsable {
+    /**
+     * Static public game catalog entry.
+     */
+    game?: ApiGameCatalogEntry | null;
+    /**
+     * The playlists property
+     */
+    playlists?: ApiGamePlaylist[] | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+/**
+ * Participant-gated SP-2 match detail. Lobby codes are intentionally omitted.
+ */
+export interface ApiMatchDetail extends Parsable {
+    /**
+     * The acceptedTeam property
+     */
+    acceptedTeam?: ApiMatchTeam | null;
+    /**
+     * The bestOf property
+     */
+    bestOf?: number | null;
+    /**
+     * The challengedTeam property
+     */
+    challengedTeam?: ApiMatchTeam | null;
+    /**
+     * The completedAt property
+     */
+    completedAt?: ApiMatchDetail_completedAtMember1 | string | null;
+    /**
+     * The createdAt property
+     */
+    createdAt?: ApiMatchDetail_createdAtMember1 | string | null;
+    /**
+     * The creatorTeam property
+     */
+    creatorTeam?: ApiMatchTeam | null;
+    /**
+     * Game definition.
+     */
+    game?: Game | null;
+    /**
+     * The gameMode property
+     */
+    gameMode?: string | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The leagueId property
+     */
+    leagueId?: ApiMatchDetail_leagueIdMember1 | string | null;
+    /**
+     * The leagueSeasonId property
+     */
+    leagueSeasonId?: ApiMatchDetail_leagueSeasonIdMember1 | string | null;
+    /**
+     * The matchType property
+     */
+    matchType?: ApiMatchDetail_matchTypeMember1 | string | null;
+    /**
+     * The platform property
+     */
+    platform?: ApiMatchDetail_platformMember1 | string | null;
+    /**
+     * The publishStatus property
+     */
+    publishStatus?: string | null;
+    /**
+     * The region property
+     */
+    region?: ApiMatchDetail_regionMember1 | string | null;
+    /**
+     * The scheduledAt property
+     */
+    scheduledAt?: ApiMatchDetail_scheduledAtMember1 | string | null;
+    /**
+     * The selectedMaps property
+     */
+    selectedMaps?: string[] | null;
+    /**
+     * The selectedObjectives property
+     */
+    selectedObjectives?: string[] | null;
+    /**
+     * The startedAt property
+     */
+    startedAt?: ApiMatchDetail_startedAtMember1 | string | null;
+    /**
+     * Lifecycle status of a match.
+     */
+    status?: MatchStatus | null;
+    /**
+     * The teamSize property
+     */
+    teamSize?: number | null;
+    /**
+     * The winnerTeamId property
+     */
+    winnerTeamId?: ApiMatchDetail_winnerTeamIdMember1 | string | null;
+}
+export type ApiMatchDetail_completedAt = ApiMatchDetail_completedAtMember1 | string;
+export interface ApiMatchDetail_completedAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchDetail_createdAt = ApiMatchDetail_createdAtMember1 | string;
+export interface ApiMatchDetail_createdAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchDetail_leagueId = ApiMatchDetail_leagueIdMember1 | string;
+export interface ApiMatchDetail_leagueIdMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchDetail_leagueSeasonId = ApiMatchDetail_leagueSeasonIdMember1 | string;
+export interface ApiMatchDetail_leagueSeasonIdMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchDetail_matchType = ApiMatchDetail_matchTypeMember1 | string;
+export interface ApiMatchDetail_matchTypeMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchDetail_platform = ApiMatchDetail_platformMember1 | string;
+export interface ApiMatchDetail_platformMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchDetail_region = ApiMatchDetail_regionMember1 | string;
+export interface ApiMatchDetail_regionMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchDetail_scheduledAt = ApiMatchDetail_scheduledAtMember1 | string;
+export interface ApiMatchDetail_scheduledAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchDetail_startedAt = ApiMatchDetail_startedAtMember1 | string;
+export interface ApiMatchDetail_startedAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchDetail_winnerTeamId = ApiMatchDetail_winnerTeamIdMember1 | string;
+export interface ApiMatchDetail_winnerTeamIdMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * SP-2 match detail response.
+ */
+export interface ApiMatchDetailResponse extends Parsable {
+    /**
+     * Participant-gated SP-2 match detail. Lobby codes are intentionally omitted.
+     */
+    match?: ApiMatchDetail | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+/**
+ * Player row for a participant-gated match.
+ */
+export interface ApiMatchPlayer extends Parsable {
+    /**
+     * The attendanceStatus property
+     */
+    attendanceStatus?: ApiMatchPlayer_attendanceStatus | null;
+    /**
+     * The avatarUrl property
+     */
+    avatarUrl?: ApiMatchPlayer_avatarUrlMember1 | string | null;
+    /**
+     * The checkedInAt property
+     */
+    checkedInAt?: ApiMatchPlayer_checkedInAtMember1 | string | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The isCheckedIn property
+     */
+    isCheckedIn?: boolean | null;
+    /**
+     * The name property
+     */
+    name?: ApiMatchPlayer_nameMember1 | string | null;
+    /**
+     * The rosterType property
+     */
+    rosterType?: ApiMatchPlayer_rosterType | null;
+    /**
+     * The teamId property
+     */
+    teamId?: string | null;
+    /**
+     * The userId property
+     */
+    userId?: string | null;
+    /**
+     * The username property
+     */
+    username?: ApiMatchPlayer_usernameMember1 | string | null;
+}
+export type ApiMatchPlayer_attendanceStatus = (typeof ApiMatchPlayer_attendanceStatusObject)[keyof typeof ApiMatchPlayer_attendanceStatusObject];
+export type ApiMatchPlayer_avatarUrl = ApiMatchPlayer_avatarUrlMember1 | string;
+export interface ApiMatchPlayer_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchPlayer_checkedInAt = ApiMatchPlayer_checkedInAtMember1 | string;
+export interface ApiMatchPlayer_checkedInAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchPlayer_name = ApiMatchPlayer_nameMember1 | string;
+export interface ApiMatchPlayer_nameMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchPlayer_rosterType = (typeof ApiMatchPlayer_rosterTypeObject)[keyof typeof ApiMatchPlayer_rosterTypeObject];
+export type ApiMatchPlayer_username = ApiMatchPlayer_usernameMember1 | string;
+export interface ApiMatchPlayer_usernameMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * SP-2 match player rows response.
+ */
+export interface ApiMatchPlayersResponse extends Parsable {
+    /**
+     * The matchId property
+     */
+    matchId?: string | null;
+    /**
+     * The players property
+     */
+    players?: ApiMatchPlayer[] | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+/**
+ * Team summary embedded in SP-2 match reads.
+ */
+export interface ApiMatchTeam extends Parsable {
+    /**
+     * Team avatar URL.
+     */
+    avatarUrl?: ApiMatchTeam_avatarUrlMember1 | string | null;
+    /**
+     * Team ID.
+     */
+    id?: string | null;
+    /**
+     * Team name.
+     */
+    name?: string | null;
+    /**
+     * The score property
+     */
+    score?: ApiMatchTeam_scoreMember1 | number | null;
+    /**
+     * Team tag (short identifier).
+     */
+    tag?: string | null;
+}
+export type ApiMatchTeam_avatarUrl = ApiMatchTeam_avatarUrlMember1 | string;
+export interface ApiMatchTeam_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiMatchTeam_score = ApiMatchTeam_scoreMember1 | number;
+export interface ApiMatchTeam_scoreMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * API-safe team or organization member.
+ */
+export interface ApiMember extends Parsable {
+    /**
+     * Membership row ID.
+     */
+    id?: string | null;
+    /**
+     * The joinedAt property
+     */
+    joinedAt?: ApiMember_joinedAtMember1 | string | null;
+    /**
+     * Role label within the team or organization.
+     */
+    role?: string | null;
+    /**
+     * API-safe public user profile.
+     */
+    user?: ApiUserProfile | null;
+}
+export type ApiMember_joinedAt = ApiMember_joinedAtMember1 | string;
+export interface ApiMember_joinedAtMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Server-safe objective DTO. UI icon components are intentionally omitted.
+ */
+export interface ApiObjective extends Parsable {
+    /**
+     * Machine-readable completion rule.
+     */
+    completionRule?: string | null;
+    /**
+     * i18n key for the objective description.
+     */
+    descriptionKey?: string | null;
+    /**
+     * Experience awarded by this objective.
+     */
+    exp?: number | null;
+    /**
+     * Objective definition ID.
+     */
+    id?: string | null;
+    /**
+     * Objective completion scope.
+     */
+    scope?: string | null;
+    /**
+     * i18n key for the objective title.
+     */
+    titleKey?: string | null;
+}
+/**
+ * API-safe organization profile.
+ */
+export interface ApiOrganizationProfile extends Parsable {
+    /**
+     * The avatarUrl property
+     */
+    avatarUrl?: ApiOrganizationProfile_avatarUrlMember1 | string | null;
+    /**
+     * The bannerUrl property
+     */
+    bannerUrl?: ApiOrganizationProfile_bannerUrlMember1 | string | null;
+    /**
+     * The createdAt property
+     */
+    createdAt?: ApiOrganizationProfile_createdAtMember1 | string | null;
+    /**
+     * The description property
+     */
+    description?: ApiOrganizationProfile_descriptionMember1 | string | null;
+    /**
+     * The draws property
+     */
+    draws?: number | null;
+    /**
+     * Organization ID.
+     */
+    id?: string | null;
+    /**
+     * The isMember property
+     */
+    isMember?: boolean | null;
+    /**
+     * The isVerified property
+     */
+    isVerified?: boolean | null;
+    /**
+     * The losses property
+     */
+    losses?: number | null;
+    /**
+     * The matchesPlayed property
+     */
+    matchesPlayed?: number | null;
+    /**
+     * The memberCount property
+     */
+    memberCount?: number | null;
+    /**
+     * Organization name.
+     */
+    name?: string | null;
+    /**
+     * The slug property
+     */
+    slug?: ApiOrganizationProfile_slugMember1 | string | null;
+    /**
+     * The tag property
+     */
+    tag?: ApiOrganizationProfile_tagMember1 | string | null;
+    /**
+     * The teamCount property
+     */
+    teamCount?: number | null;
+    /**
+     * Public profile visibility setting.
+     */
+    visibility?: ProfileVisibility | null;
+    /**
+     * The wins property
+     */
+    wins?: number | null;
+}
+export type ApiOrganizationProfile_avatarUrl = ApiOrganizationProfile_avatarUrlMember1 | string;
+export interface ApiOrganizationProfile_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiOrganizationProfile_bannerUrl = ApiOrganizationProfile_bannerUrlMember1 | string;
+export interface ApiOrganizationProfile_bannerUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiOrganizationProfile_createdAt = ApiOrganizationProfile_createdAtMember1 | string;
+export interface ApiOrganizationProfile_createdAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiOrganizationProfile_description = ApiOrganizationProfile_descriptionMember1 | string;
+export interface ApiOrganizationProfile_descriptionMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiOrganizationProfile_slug = ApiOrganizationProfile_slugMember1 | string;
+export interface ApiOrganizationProfile_slugMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiOrganizationProfile_tag = ApiOrganizationProfile_tagMember1 | string;
+export interface ApiOrganizationProfile_tagMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * API-safe organization aggregate stats.
+ */
+export interface ApiOrganizationStats extends Parsable {
+    /**
+     * The losses property
+     */
+    losses?: number | null;
+    /**
+     * The matchesPlayed property
+     */
+    matchesPlayed?: number | null;
+    /**
+     * The members property
+     */
+    members?: number | null;
+    /**
+     * The organizationId property
+     */
+    organizationId?: string | null;
+    /**
+     * The teams property
+     */
+    teams?: number | null;
+    /**
+     * The winRate property
+     */
+    winRate?: number | null;
+    /**
+     * The wins property
+     */
+    wins?: number | null;
+}
+/**
+ * Small API-safe organization summary.
+ */
+export interface ApiOrganizationSummary extends Parsable {
+    /**
+     * The avatarUrl property
+     */
+    avatarUrl?: ApiOrganizationSummary_avatarUrlMember1 | string | null;
+    /**
+     * Organization ID.
+     */
+    id?: string | null;
+    /**
+     * Organization name.
+     */
+    name?: string | null;
+    /**
+     * The slug property
+     */
+    slug?: ApiOrganizationSummary_slugMember1 | string | null;
+    /**
+     * The tag property
+     */
+    tag?: ApiOrganizationSummary_tagMember1 | string | null;
+    /**
+     * Public profile visibility setting.
+     */
+    visibility?: ProfileVisibility | null;
+}
+export type ApiOrganizationSummary_avatarUrl = ApiOrganizationSummary_avatarUrlMember1 | string;
+export interface ApiOrganizationSummary_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiOrganizationSummary_slug = ApiOrganizationSummary_slugMember1 | string;
+export interface ApiOrganizationSummary_slugMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiOrganizationSummary_tag = ApiOrganizationSummary_tagMember1 | string;
+export interface ApiOrganizationSummary_tagMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * API-safe team profile.
+ */
+export interface ApiTeamProfile extends Parsable {
+    /**
+     * The avatarUrl property
+     */
+    avatarUrl?: ApiTeamProfile_avatarUrlMember1 | string | null;
+    /**
+     * The bannerUrl property
+     */
+    bannerUrl?: ApiTeamProfile_bannerUrlMember1 | string | null;
+    /**
+     * The createdAt property
+     */
+    createdAt?: ApiTeamProfile_createdAtMember1 | string | null;
+    /**
+     * The description property
+     */
+    description?: ApiTeamProfile_descriptionMember1 | string | null;
+    /**
+     * The draws property
+     */
+    draws?: number | null;
+    /**
+     * The experience property
+     */
+    experience?: number | null;
+    /**
+     * The gameId property
+     */
+    gameId?: ApiTeamProfile_gameIdMember1 | string | null;
+    /**
+     * Team ID.
+     */
+    id?: string | null;
+    /**
+     * The isMember property
+     */
+    isMember?: boolean | null;
+    /**
+     * The losses property
+     */
+    losses?: number | null;
+    /**
+     * The matchesPlayed property
+     */
+    matchesPlayed?: number | null;
+    /**
+     * The memberCount property
+     */
+    memberCount?: number | null;
+    /**
+     * Team name.
+     */
+    name?: string | null;
+    /**
+     * The organizationId property
+     */
+    organizationId?: ApiTeamProfile_organizationIdMember1 | string | null;
+    /**
+     * The slug property
+     */
+    slug?: ApiTeamProfile_slugMember1 | string | null;
+    /**
+     * The tag property
+     */
+    tag?: ApiTeamProfile_tagMember1 | string | null;
+    /**
+     * Public profile visibility setting.
+     */
+    visibility?: ProfileVisibility | null;
+    /**
+     * The wins property
+     */
+    wins?: number | null;
+}
+export type ApiTeamProfile_avatarUrl = ApiTeamProfile_avatarUrlMember1 | string;
+export interface ApiTeamProfile_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiTeamProfile_bannerUrl = ApiTeamProfile_bannerUrlMember1 | string;
+export interface ApiTeamProfile_bannerUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiTeamProfile_createdAt = ApiTeamProfile_createdAtMember1 | string;
+export interface ApiTeamProfile_createdAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiTeamProfile_description = ApiTeamProfile_descriptionMember1 | string;
+export interface ApiTeamProfile_descriptionMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiTeamProfile_gameId = ApiTeamProfile_gameIdMember1 | string;
+export interface ApiTeamProfile_gameIdMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiTeamProfile_organizationId = ApiTeamProfile_organizationIdMember1 | string;
+export interface ApiTeamProfile_organizationIdMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiTeamProfile_slug = ApiTeamProfile_slugMember1 | string;
+export interface ApiTeamProfile_slugMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiTeamProfile_tag = ApiTeamProfile_tagMember1 | string;
+export interface ApiTeamProfile_tagMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Small API-safe team summary.
+ */
+export interface ApiTeamSummary extends Parsable {
+    /**
+     * The avatarUrl property
+     */
+    avatarUrl?: ApiTeamSummary_avatarUrlMember1 | string | null;
+    /**
+     * Team ID.
+     */
+    id?: string | null;
+    /**
+     * Team name.
+     */
+    name?: string | null;
+    /**
+     * The slug property
+     */
+    slug?: ApiTeamSummary_slugMember1 | string | null;
+    /**
+     * The tag property
+     */
+    tag?: ApiTeamSummary_tagMember1 | string | null;
+    /**
+     * Public profile visibility setting.
+     */
+    visibility?: ProfileVisibility | null;
+}
+export type ApiTeamSummary_avatarUrl = ApiTeamSummary_avatarUrlMember1 | string;
+export interface ApiTeamSummary_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiTeamSummary_slug = ApiTeamSummary_slugMember1 | string;
+export interface ApiTeamSummary_slugMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiTeamSummary_tag = ApiTeamSummary_tagMember1 | string;
+export interface ApiTeamSummary_tagMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * API-safe public account connection.
+ */
+export interface ApiUserConnection extends Parsable {
+    /**
+     * The connectedAt property
+     */
+    connectedAt?: ApiUserConnection_connectedAtMember1 | string | null;
+    /**
+     * Connection ID.
+     */
+    id?: string | null;
+    /**
+     * The isPrimary property
+     */
+    isPrimary?: boolean | null;
+    /**
+     * The isVerified property
+     */
+    isVerified?: boolean | null;
+    /**
+     * Connected platform.
+     */
+    platform?: string | null;
+    /**
+     * The url property
+     */
+    url?: ApiUserConnection_urlMember1 | string | null;
+    /**
+     * The username property
+     */
+    username?: ApiUserConnection_usernameMember1 | string | null;
+}
+export type ApiUserConnection_connectedAt = ApiUserConnection_connectedAtMember1 | string;
+export interface ApiUserConnection_connectedAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserConnection_url = ApiUserConnection_urlMember1 | string;
+export interface ApiUserConnection_urlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserConnection_username = ApiUserConnection_usernameMember1 | string;
+export interface ApiUserConnection_usernameMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * API-safe organization affiliation row on a user profile.
+ */
+export interface ApiUserOrganizationMembership extends Parsable {
+    /**
+     * The avatarUrl property
+     */
+    avatarUrl?: ApiUserOrganizationMembership_avatarUrlMember1 | string | null;
+    /**
+     * Organization ID.
+     */
+    id?: string | null;
+    /**
+     * The joinedAt property
+     */
+    joinedAt?: ApiUserOrganizationMembership_joinedAtMember1 | string | null;
+    /**
+     * Organization name.
+     */
+    name?: string | null;
+    /**
+     * The role property
+     */
+    role?: string | null;
+    /**
+     * The slug property
+     */
+    slug?: ApiUserOrganizationMembership_slugMember1 | string | null;
+    /**
+     * The tag property
+     */
+    tag?: ApiUserOrganizationMembership_tagMember1 | string | null;
+    /**
+     * Public profile visibility setting.
+     */
+    visibility?: ProfileVisibility | null;
+}
+export type ApiUserOrganizationMembership_avatarUrl = ApiUserOrganizationMembership_avatarUrlMember1 | string;
+export interface ApiUserOrganizationMembership_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserOrganizationMembership_joinedAt = ApiUserOrganizationMembership_joinedAtMember1 | string;
+export interface ApiUserOrganizationMembership_joinedAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserOrganizationMembership_slug = ApiUserOrganizationMembership_slugMember1 | string;
+export interface ApiUserOrganizationMembership_slugMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserOrganizationMembership_tag = ApiUserOrganizationMembership_tagMember1 | string;
+export interface ApiUserOrganizationMembership_tagMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * API-safe public user profile.
+ */
+export interface ApiUserProfile extends Parsable {
+    /**
+     * Avatar image URL, when set.
+     */
+    avatarUrl?: ApiUserProfile_avatarUrlMember1 | string | null;
+    /**
+     * Banner image URL, when set.
+     */
+    bannerUrl?: ApiUserProfile_bannerUrlMember1 | string | null;
+    /**
+     * Public profile bio.
+     */
+    bio?: ApiUserProfile_bioMember1 | string | null;
+    /**
+     * The createdAt property
+     */
+    createdAt?: ApiUserProfile_createdAtMember1 | string | null;
+    /**
+     * User ID.
+     */
+    id?: string | null;
+    /**
+     * The isVerified property
+     */
+    isVerified?: boolean | null;
+    /**
+     * Display name, when set.
+     */
+    name?: ApiUserProfile_nameMember1 | string | null;
+    /**
+     * User handle, when set.
+     */
+    username?: ApiUserProfile_usernameMember1 | string | null;
+    /**
+     * Public profile visibility setting.
+     */
+    visibility?: ProfileVisibility | null;
+}
+export type ApiUserProfile_avatarUrl = ApiUserProfile_avatarUrlMember1 | string;
+export interface ApiUserProfile_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserProfile_bannerUrl = ApiUserProfile_bannerUrlMember1 | string;
+export interface ApiUserProfile_bannerUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserProfile_bio = ApiUserProfile_bioMember1 | string;
+export interface ApiUserProfile_bioMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserProfile_createdAt = ApiUserProfile_createdAtMember1 | string;
+export interface ApiUserProfile_createdAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserProfile_name = ApiUserProfile_nameMember1 | string;
+export interface ApiUserProfile_nameMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserProfile_username = ApiUserProfile_usernameMember1 | string;
+export interface ApiUserProfile_usernameMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * API-safe aggregate user stats.
+ */
+export interface ApiUserStats extends Parsable {
+    /**
+     * The bestStreak property
+     */
+    bestStreak?: number | null;
+    /**
+     * The currentStreak property
+     */
+    currentStreak?: number | null;
+    /**
+     * The draws property
+     */
+    draws?: number | null;
+    /**
+     * The experience property
+     */
+    experience?: number | null;
+    /**
+     * The losses property
+     */
+    losses?: number | null;
+    /**
+     * The matchesPlayed property
+     */
+    matchesPlayed?: number | null;
+    /**
+     * User ID these stats belong to.
+     */
+    userId?: string | null;
+    /**
+     * The winRate property
+     */
+    winRate?: number | null;
+    /**
+     * The wins property
+     */
+    wins?: number | null;
+}
+/**
+ * API-safe team affiliation row on a user profile.
+ */
+export interface ApiUserTeamMembership extends Parsable {
+    /**
+     * The avatarUrl property
+     */
+    avatarUrl?: ApiUserTeamMembership_avatarUrlMember1 | string | null;
+    /**
+     * Team ID.
+     */
+    id?: string | null;
+    /**
+     * The joinedAt property
+     */
+    joinedAt?: ApiUserTeamMembership_joinedAtMember1 | string | null;
+    /**
+     * Team name.
+     */
+    name?: string | null;
+    /**
+     * The organization property
+     */
+    organization?: ApiOrganizationSummary | null;
+    /**
+     * The role property
+     */
+    role?: string | null;
+    /**
+     * The slug property
+     */
+    slug?: ApiUserTeamMembership_slugMember1 | string | null;
+    /**
+     * The tag property
+     */
+    tag?: ApiUserTeamMembership_tagMember1 | string | null;
+    /**
+     * Public profile visibility setting.
+     */
+    visibility?: ProfileVisibility | null;
+}
+export type ApiUserTeamMembership_avatarUrl = ApiUserTeamMembership_avatarUrlMember1 | string;
+export interface ApiUserTeamMembership_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserTeamMembership_joinedAt = ApiUserTeamMembership_joinedAtMember1 | string;
+export interface ApiUserTeamMembership_joinedAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserTeamMembership_slug = ApiUserTeamMembership_slugMember1 | string;
+export interface ApiUserTeamMembership_slugMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserTeamMembership_tag = ApiUserTeamMembership_tagMember1 | string;
+export interface ApiUserTeamMembership_tagMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * API-safe user trophy. Event linkage fields are intentionally omitted.
+ */
+export interface ApiUserTrophy extends Parsable {
+    /**
+     * The awardedAt property
+     */
+    awardedAt?: ApiUserTrophy_awardedAtMember1 | string | null;
+    /**
+     * The description property
+     */
+    description?: ApiUserTrophy_descriptionMember1 | string | null;
+    /**
+     * The iconUrl property
+     */
+    iconUrl?: ApiUserTrophy_iconUrlMember1 | string | null;
+    /**
+     * Trophy award ID.
+     */
+    id?: string | null;
+    /**
+     * The rarity property
+     */
+    rarity?: ApiUserTrophy_rarityMember1 | string | null;
+    /**
+     * The title property
+     */
+    title?: ApiUserTrophy_titleMember1 | string | null;
+    /**
+     * Trophy definition ID.
+     */
+    trophyId?: string | null;
+}
+export type ApiUserTrophy_awardedAt = ApiUserTrophy_awardedAtMember1 | string;
+export interface ApiUserTrophy_awardedAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserTrophy_description = ApiUserTrophy_descriptionMember1 | string;
+export interface ApiUserTrophy_descriptionMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserTrophy_iconUrl = ApiUserTrophy_iconUrlMember1 | string;
+export interface ApiUserTrophy_iconUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserTrophy_rarity = ApiUserTrophy_rarityMember1 | string;
+export interface ApiUserTrophy_rarityMember1 extends AdditionalDataHolder, Parsable {
+}
+export type ApiUserTrophy_title = ApiUserTrophy_titleMember1 | string;
+export interface ApiUserTrophy_titleMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
  * Status filter for league team bans.
  */
 export interface BansRequestBody extends AdditionalDataHolder, Parsable {
@@ -22,6 +1160,1545 @@ export interface ConfirmScoreBody extends AdditionalDataHolder, Parsable {
      * Zero-based map index to confirm. Must be a non-negative integer.
      */
     mapIndex?: number | null;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_bannerImageMember1 | string}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_bannerImageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_bannerImage;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_bannerImageMember1}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_bannerImageMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_bannerImageMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_convexIdMember1 | string}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_convexIdFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_convexId;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_convexIdMember1}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_convexIdMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_convexIdMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_coverImageMember1 | string}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_coverImageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_coverImage;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_coverImageMember1}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_coverImageMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_coverImageMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_descriptionKeyMember1 | string}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_descriptionKeyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_descriptionKey;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_descriptionKeyMember1}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_descriptionKeyMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_descriptionKeyMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_rulesLinkMember1 | string}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_rulesLinkFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_rulesLink;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_rulesLinkMember1}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_rulesLinkMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_rulesLinkMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_shortNameKeyMember1 | string}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_shortNameKeyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_shortNameKey;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry_shortNameKeyMember1}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntry_shortNameKeyMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry_shortNameKeyMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogEntry}
+ */
+// @ts-ignore
+export function createApiGameCatalogEntryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogEntry;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameCatalogResponse}
+ */
+// @ts-ignore
+export function createApiGameCatalogResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameCatalogResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMap_coverImageMember1 | string}
+ */
+// @ts-ignore
+export function createApiGameMap_coverImageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMap_coverImage;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMap_coverImageMember1}
+ */
+// @ts-ignore
+export function createApiGameMap_coverImageMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMap_coverImageMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMap_minimapImageMember1 | string}
+ */
+// @ts-ignore
+export function createApiGameMap_minimapImageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMap_minimapImage;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMap_minimapImageMember1}
+ */
+// @ts-ignore
+export function createApiGameMap_minimapImageMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMap_minimapImageMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMap}
+ */
+// @ts-ignore
+export function createApiGameMapFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMap;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMode_descriptionKeyMember1 | string}
+ */
+// @ts-ignore
+export function createApiGameMode_descriptionKeyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMode_descriptionKey;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMode_descriptionKeyMember1}
+ */
+// @ts-ignore
+export function createApiGameMode_descriptionKeyMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMode_descriptionKeyMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMode_imageMember1 | string}
+ */
+// @ts-ignore
+export function createApiGameMode_imageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMode_image;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMode_imageMember1}
+ */
+// @ts-ignore
+export function createApiGameMode_imageMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMode_imageMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMode_rewardBonusMember1 | number}
+ */
+// @ts-ignore
+export function createApiGameMode_rewardBonusFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMode_rewardBonus;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMode_rewardBonusMember1}
+ */
+// @ts-ignore
+export function createApiGameMode_rewardBonusMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMode_rewardBonusMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMode_shortNameMember1 | string}
+ */
+// @ts-ignore
+export function createApiGameMode_shortNameFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMode_shortName;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMode_shortNameMember1}
+ */
+// @ts-ignore
+export function createApiGameMode_shortNameMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMode_shortNameMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameMode}
+ */
+// @ts-ignore
+export function createApiGameModeFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameMode;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGameModeMapPool}
+ */
+// @ts-ignore
+export function createApiGameModeMapPoolFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGameModeMapPool;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGamePlaylist_descriptionKeyMember1 | string}
+ */
+// @ts-ignore
+export function createApiGamePlaylist_descriptionKeyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGamePlaylist_descriptionKey;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGamePlaylist_descriptionKeyMember1}
+ */
+// @ts-ignore
+export function createApiGamePlaylist_descriptionKeyMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGamePlaylist_descriptionKeyMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGamePlaylist_imageMember1 | string}
+ */
+// @ts-ignore
+export function createApiGamePlaylist_imageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGamePlaylist_image;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGamePlaylist_imageMember1}
+ */
+// @ts-ignore
+export function createApiGamePlaylist_imageMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGamePlaylist_imageMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGamePlaylist}
+ */
+// @ts-ignore
+export function createApiGamePlaylistFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGamePlaylist;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiGamePlaylistsResponse}
+ */
+// @ts-ignore
+export function createApiGamePlaylistsResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiGamePlaylistsResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_completedAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchDetail_completedAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_completedAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_completedAtMember1}
+ */
+// @ts-ignore
+export function createApiMatchDetail_completedAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_completedAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_createdAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchDetail_createdAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_createdAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_createdAtMember1}
+ */
+// @ts-ignore
+export function createApiMatchDetail_createdAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_createdAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_leagueIdMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchDetail_leagueIdFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_leagueId;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_leagueIdMember1}
+ */
+// @ts-ignore
+export function createApiMatchDetail_leagueIdMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_leagueIdMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_leagueSeasonIdMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchDetail_leagueSeasonIdFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_leagueSeasonId;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_leagueSeasonIdMember1}
+ */
+// @ts-ignore
+export function createApiMatchDetail_leagueSeasonIdMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_leagueSeasonIdMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_matchTypeMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchDetail_matchTypeFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_matchType;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_matchTypeMember1}
+ */
+// @ts-ignore
+export function createApiMatchDetail_matchTypeMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_matchTypeMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_platformMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchDetail_platformFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_platform;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_platformMember1}
+ */
+// @ts-ignore
+export function createApiMatchDetail_platformMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_platformMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_regionMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchDetail_regionFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_region;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_regionMember1}
+ */
+// @ts-ignore
+export function createApiMatchDetail_regionMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_regionMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_scheduledAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchDetail_scheduledAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_scheduledAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_scheduledAtMember1}
+ */
+// @ts-ignore
+export function createApiMatchDetail_scheduledAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_scheduledAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_startedAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchDetail_startedAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_startedAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_startedAtMember1}
+ */
+// @ts-ignore
+export function createApiMatchDetail_startedAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_startedAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_winnerTeamIdMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchDetail_winnerTeamIdFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_winnerTeamId;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail_winnerTeamIdMember1}
+ */
+// @ts-ignore
+export function createApiMatchDetail_winnerTeamIdMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail_winnerTeamIdMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetail}
+ */
+// @ts-ignore
+export function createApiMatchDetailFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetail;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchDetailResponse}
+ */
+// @ts-ignore
+export function createApiMatchDetailResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchDetailResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchPlayer_avatarUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchPlayer_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchPlayer_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchPlayer_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createApiMatchPlayer_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchPlayer_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchPlayer_checkedInAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchPlayer_checkedInAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchPlayer_checkedInAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchPlayer_checkedInAtMember1}
+ */
+// @ts-ignore
+export function createApiMatchPlayer_checkedInAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchPlayer_checkedInAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchPlayer_nameMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchPlayer_nameFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchPlayer_name;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchPlayer_nameMember1}
+ */
+// @ts-ignore
+export function createApiMatchPlayer_nameMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchPlayer_nameMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchPlayer_usernameMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchPlayer_usernameFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchPlayer_username;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchPlayer_usernameMember1}
+ */
+// @ts-ignore
+export function createApiMatchPlayer_usernameMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchPlayer_usernameMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchPlayer}
+ */
+// @ts-ignore
+export function createApiMatchPlayerFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchPlayer;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchPlayersResponse}
+ */
+// @ts-ignore
+export function createApiMatchPlayersResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchPlayersResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchTeam_avatarUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiMatchTeam_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchTeam_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchTeam_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createApiMatchTeam_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchTeam_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchTeam_scoreMember1 | number}
+ */
+// @ts-ignore
+export function createApiMatchTeam_scoreFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchTeam_score;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchTeam_scoreMember1}
+ */
+// @ts-ignore
+export function createApiMatchTeam_scoreMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchTeam_scoreMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMatchTeam}
+ */
+// @ts-ignore
+export function createApiMatchTeamFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMatchTeam;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMember_joinedAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiMember_joinedAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMember_joinedAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMember_joinedAtMember1}
+ */
+// @ts-ignore
+export function createApiMember_joinedAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMember_joinedAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiMember}
+ */
+// @ts-ignore
+export function createApiMemberFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiMember;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiObjective}
+ */
+// @ts-ignore
+export function createApiObjectiveFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiObjective;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_avatarUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_bannerUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_bannerUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_bannerUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_bannerUrlMember1}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_bannerUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_bannerUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_createdAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_createdAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_createdAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_createdAtMember1}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_createdAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_createdAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_descriptionMember1 | string}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_descriptionFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_description;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_descriptionMember1}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_descriptionMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_descriptionMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_slugMember1 | string}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_slugFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_slug;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_slugMember1}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_slugMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_slugMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_tagMember1 | string}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_tagFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_tag;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile_tagMember1}
+ */
+// @ts-ignore
+export function createApiOrganizationProfile_tagMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile_tagMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationProfile}
+ */
+// @ts-ignore
+export function createApiOrganizationProfileFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationProfile;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationStats}
+ */
+// @ts-ignore
+export function createApiOrganizationStatsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationStats;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationSummary_avatarUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiOrganizationSummary_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationSummary_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationSummary_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createApiOrganizationSummary_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationSummary_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationSummary_slugMember1 | string}
+ */
+// @ts-ignore
+export function createApiOrganizationSummary_slugFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationSummary_slug;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationSummary_slugMember1}
+ */
+// @ts-ignore
+export function createApiOrganizationSummary_slugMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationSummary_slugMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationSummary_tagMember1 | string}
+ */
+// @ts-ignore
+export function createApiOrganizationSummary_tagFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationSummary_tag;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationSummary_tagMember1}
+ */
+// @ts-ignore
+export function createApiOrganizationSummary_tagMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationSummary_tagMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiOrganizationSummary}
+ */
+// @ts-ignore
+export function createApiOrganizationSummaryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiOrganizationSummary;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_avatarUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiTeamProfile_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createApiTeamProfile_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_bannerUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiTeamProfile_bannerUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_bannerUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_bannerUrlMember1}
+ */
+// @ts-ignore
+export function createApiTeamProfile_bannerUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_bannerUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_createdAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiTeamProfile_createdAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_createdAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_createdAtMember1}
+ */
+// @ts-ignore
+export function createApiTeamProfile_createdAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_createdAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_descriptionMember1 | string}
+ */
+// @ts-ignore
+export function createApiTeamProfile_descriptionFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_description;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_descriptionMember1}
+ */
+// @ts-ignore
+export function createApiTeamProfile_descriptionMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_descriptionMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_gameIdMember1 | string}
+ */
+// @ts-ignore
+export function createApiTeamProfile_gameIdFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_gameId;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_gameIdMember1}
+ */
+// @ts-ignore
+export function createApiTeamProfile_gameIdMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_gameIdMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_organizationIdMember1 | string}
+ */
+// @ts-ignore
+export function createApiTeamProfile_organizationIdFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_organizationId;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_organizationIdMember1}
+ */
+// @ts-ignore
+export function createApiTeamProfile_organizationIdMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_organizationIdMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_slugMember1 | string}
+ */
+// @ts-ignore
+export function createApiTeamProfile_slugFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_slug;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_slugMember1}
+ */
+// @ts-ignore
+export function createApiTeamProfile_slugMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_slugMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_tagMember1 | string}
+ */
+// @ts-ignore
+export function createApiTeamProfile_tagFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_tag;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile_tagMember1}
+ */
+// @ts-ignore
+export function createApiTeamProfile_tagMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile_tagMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamProfile}
+ */
+// @ts-ignore
+export function createApiTeamProfileFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamProfile;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamSummary_avatarUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiTeamSummary_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamSummary_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamSummary_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createApiTeamSummary_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamSummary_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamSummary_slugMember1 | string}
+ */
+// @ts-ignore
+export function createApiTeamSummary_slugFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamSummary_slug;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamSummary_slugMember1}
+ */
+// @ts-ignore
+export function createApiTeamSummary_slugMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamSummary_slugMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamSummary_tagMember1 | string}
+ */
+// @ts-ignore
+export function createApiTeamSummary_tagFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamSummary_tag;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamSummary_tagMember1}
+ */
+// @ts-ignore
+export function createApiTeamSummary_tagMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamSummary_tagMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiTeamSummary}
+ */
+// @ts-ignore
+export function createApiTeamSummaryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiTeamSummary;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserConnection_connectedAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserConnection_connectedAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserConnection_connectedAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserConnection_connectedAtMember1}
+ */
+// @ts-ignore
+export function createApiUserConnection_connectedAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserConnection_connectedAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserConnection_urlMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserConnection_urlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserConnection_url;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserConnection_urlMember1}
+ */
+// @ts-ignore
+export function createApiUserConnection_urlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserConnection_urlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserConnection_usernameMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserConnection_usernameFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserConnection_username;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserConnection_usernameMember1}
+ */
+// @ts-ignore
+export function createApiUserConnection_usernameMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserConnection_usernameMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserConnection}
+ */
+// @ts-ignore
+export function createApiUserConnectionFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserConnection;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserOrganizationMembership_avatarUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserOrganizationMembership_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserOrganizationMembership_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserOrganizationMembership_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createApiUserOrganizationMembership_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserOrganizationMembership_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserOrganizationMembership_joinedAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserOrganizationMembership_joinedAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserOrganizationMembership_joinedAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserOrganizationMembership_joinedAtMember1}
+ */
+// @ts-ignore
+export function createApiUserOrganizationMembership_joinedAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserOrganizationMembership_joinedAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserOrganizationMembership_slugMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserOrganizationMembership_slugFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserOrganizationMembership_slug;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserOrganizationMembership_slugMember1}
+ */
+// @ts-ignore
+export function createApiUserOrganizationMembership_slugMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserOrganizationMembership_slugMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserOrganizationMembership_tagMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserOrganizationMembership_tagFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserOrganizationMembership_tag;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserOrganizationMembership_tagMember1}
+ */
+// @ts-ignore
+export function createApiUserOrganizationMembership_tagMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserOrganizationMembership_tagMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserOrganizationMembership}
+ */
+// @ts-ignore
+export function createApiUserOrganizationMembershipFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserOrganizationMembership;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_avatarUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserProfile_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createApiUserProfile_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_bannerUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserProfile_bannerUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_bannerUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_bannerUrlMember1}
+ */
+// @ts-ignore
+export function createApiUserProfile_bannerUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_bannerUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_bioMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserProfile_bioFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_bio;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_bioMember1}
+ */
+// @ts-ignore
+export function createApiUserProfile_bioMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_bioMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_createdAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserProfile_createdAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_createdAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_createdAtMember1}
+ */
+// @ts-ignore
+export function createApiUserProfile_createdAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_createdAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_nameMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserProfile_nameFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_name;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_nameMember1}
+ */
+// @ts-ignore
+export function createApiUserProfile_nameMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_nameMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_usernameMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserProfile_usernameFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_username;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile_usernameMember1}
+ */
+// @ts-ignore
+export function createApiUserProfile_usernameMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile_usernameMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserProfile}
+ */
+// @ts-ignore
+export function createApiUserProfileFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserProfile;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserStats}
+ */
+// @ts-ignore
+export function createApiUserStatsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserStats;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTeamMembership_avatarUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserTeamMembership_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTeamMembership_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTeamMembership_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createApiUserTeamMembership_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTeamMembership_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTeamMembership_joinedAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserTeamMembership_joinedAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTeamMembership_joinedAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTeamMembership_joinedAtMember1}
+ */
+// @ts-ignore
+export function createApiUserTeamMembership_joinedAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTeamMembership_joinedAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTeamMembership_slugMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserTeamMembership_slugFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTeamMembership_slug;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTeamMembership_slugMember1}
+ */
+// @ts-ignore
+export function createApiUserTeamMembership_slugMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTeamMembership_slugMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTeamMembership_tagMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserTeamMembership_tagFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTeamMembership_tag;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTeamMembership_tagMember1}
+ */
+// @ts-ignore
+export function createApiUserTeamMembership_tagMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTeamMembership_tagMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTeamMembership}
+ */
+// @ts-ignore
+export function createApiUserTeamMembershipFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTeamMembership;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTrophy_awardedAtMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserTrophy_awardedAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTrophy_awardedAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTrophy_awardedAtMember1}
+ */
+// @ts-ignore
+export function createApiUserTrophy_awardedAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTrophy_awardedAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTrophy_descriptionMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserTrophy_descriptionFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTrophy_description;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTrophy_descriptionMember1}
+ */
+// @ts-ignore
+export function createApiUserTrophy_descriptionMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTrophy_descriptionMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTrophy_iconUrlMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserTrophy_iconUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTrophy_iconUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTrophy_iconUrlMember1}
+ */
+// @ts-ignore
+export function createApiUserTrophy_iconUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTrophy_iconUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTrophy_rarityMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserTrophy_rarityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTrophy_rarity;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTrophy_rarityMember1}
+ */
+// @ts-ignore
+export function createApiUserTrophy_rarityMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTrophy_rarityMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTrophy_titleMember1 | string}
+ */
+// @ts-ignore
+export function createApiUserTrophy_titleFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTrophy_title;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTrophy_titleMember1}
+ */
+// @ts-ignore
+export function createApiUserTrophy_titleMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTrophy_titleMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApiUserTrophy}
+ */
+// @ts-ignore
+export function createApiUserTrophyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApiUserTrophy;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -44,6 +2721,15 @@ export function createConfirmScoreBodyFromDiscriminatorValue(parseNode: ParseNod
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CreateWebhookBody}
+ */
+// @ts-ignore
+export function createCreateWebhookBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCreateWebhookBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {DiscoverLeaguesRequestBody}
  */
 // @ts-ignore
@@ -58,6 +2744,33 @@ export function createDiscoverLeaguesRequestBodyFromDiscriminatorValue(parseNode
 // @ts-ignore
 export function createErrorEscapedFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoErrorEscaped;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameBatchMatchScoreResult}
+ */
+// @ts-ignore
+export function createGameBatchMatchScoreResultFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameBatchMatchScoreResult;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameBatchMatchScoresBody}
+ */
+// @ts-ignore
+export function createGameBatchMatchScoresBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameBatchMatchScoresBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameBatchMatchScoresResponse}
+ */
+// @ts-ignore
+export function createGameBatchMatchScoresResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameBatchMatchScoresResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -89,11 +2802,47 @@ export function createGameBatchScoresResponseFromDiscriminatorValue(parseNode: P
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameCreateMatchBody}
+ */
+// @ts-ignore
+export function createGameCreateMatchBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameCreateMatchBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameCreateMatchResponse}
+ */
+// @ts-ignore
+export function createGameCreateMatchResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameCreateMatchResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {GameDetailTeam}
  */
 // @ts-ignore
 export function createGameDetailTeamFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoGameDetailTeam;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameForfeitBody}
+ */
+// @ts-ignore
+export function createGameForfeitBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameForfeitBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameForfeitResponse}
+ */
+// @ts-ignore
+export function createGameForfeitResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameForfeitResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -305,6 +3054,42 @@ export function createGameMatchDetail_creatorTeamScoreMember1FromDiscriminatorVa
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameMatchDetail_leagueIdMember1 | string}
+ */
+// @ts-ignore
+export function createGameMatchDetail_leagueIdFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameMatchDetail_leagueId;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameMatchDetail_leagueIdMember1}
+ */
+// @ts-ignore
+export function createGameMatchDetail_leagueIdMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameMatchDetail_leagueIdMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameMatchDetail_leagueSeasonIdMember1 | string}
+ */
+// @ts-ignore
+export function createGameMatchDetail_leagueSeasonIdFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameMatchDetail_leagueSeasonId;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameMatchDetail_leagueSeasonIdMember1}
+ */
+// @ts-ignore
+export function createGameMatchDetail_leagueSeasonIdMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameMatchDetail_leagueSeasonIdMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {GameMatchDetail_loserTeamIdMember1 | string}
  */
 // @ts-ignore
@@ -427,6 +3212,24 @@ export function createGameMatchRostersResponse_acceptedTeamIdMember1FromDiscrimi
 // @ts-ignore
 export function createGameMatchRostersResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoGameMatchRostersResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameMultiMatchScoreItem_playerStats}
+ */
+// @ts-ignore
+export function createGameMultiMatchScoreItem_playerStatsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameMultiMatchScoreItem_playerStats;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameMultiMatchScoreItem}
+ */
+// @ts-ignore
+export function createGameMultiMatchScoreItemFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameMultiMatchScoreItem;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -611,6 +3414,105 @@ export function createGameStatusUpdateResponseFromDiscriminatorValue(parseNode: 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeaderboardRankResponse_gameSlugMember1 | string}
+ */
+// @ts-ignore
+export function createLeaderboardRankResponse_gameSlugFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeaderboardRankResponse_gameSlug;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeaderboardRankResponse_gameSlugMember1}
+ */
+// @ts-ignore
+export function createLeaderboardRankResponse_gameSlugMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeaderboardRankResponse_gameSlugMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {number | LeaderboardRankResponse_rankMember1}
+ */
+// @ts-ignore
+export function createLeaderboardRankResponse_rankFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeaderboardRankResponse_rank;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeaderboardRankResponse_rankMember1}
+ */
+// @ts-ignore
+export function createLeaderboardRankResponse_rankMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeaderboardRankResponse_rankMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeaderboardRankResponse}
+ */
+// @ts-ignore
+export function createLeaderboardRankResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeaderboardRankResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeaderboardStats}
+ */
+// @ts-ignore
+export function createLeaderboardStatsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeaderboardStats;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueApplyEligibility_eligibility_eligibleTeams}
+ */
+// @ts-ignore
+export function createLeagueApplyEligibility_eligibility_eligibleTeamsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueApplyEligibility_eligibility_eligibleTeams;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueApplyEligibility_eligibility_pendingTeams}
+ */
+// @ts-ignore
+export function createLeagueApplyEligibility_eligibility_pendingTeamsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueApplyEligibility_eligibility_pendingTeams;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueApplyEligibility_eligibility}
+ */
+// @ts-ignore
+export function createLeagueApplyEligibility_eligibilityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueApplyEligibility_eligibility;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueApplyEligibility}
+ */
+// @ts-ignore
+export function createLeagueApplyEligibilityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueApplyEligibility;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueApplyEligibilityRequestBody}
+ */
+// @ts-ignore
+export function createLeagueApplyEligibilityRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueApplyEligibilityRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {LeagueBans_bans}
  */
 // @ts-ignore
@@ -625,6 +3527,51 @@ export function createLeagueBans_bansFromDiscriminatorValue(parseNode: ParseNode
 // @ts-ignore
 export function createLeagueBansFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoLeagueBans;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueDisplayRules_displayRules}
+ */
+// @ts-ignore
+export function createLeagueDisplayRules_displayRulesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueDisplayRules_displayRules;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueDisplayRules}
+ */
+// @ts-ignore
+export function createLeagueDisplayRulesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueDisplayRules;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueDisplayRulesRequestBody}
+ */
+// @ts-ignore
+export function createLeagueDisplayRulesRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueDisplayRulesRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueGames_games}
+ */
+// @ts-ignore
+export function createLeagueGames_gamesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueGames_games;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueGames}
+ */
+// @ts-ignore
+export function createLeagueGamesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueGames;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -755,6 +3702,69 @@ export function createLeagueRulesFromDiscriminatorValue(parseNode: ParseNode | u
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueSeason_season}
+ */
+// @ts-ignore
+export function createLeagueSeason_seasonFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueSeason_season;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueSeason}
+ */
+// @ts-ignore
+export function createLeagueSeasonFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueSeason;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueSeasonOptions_defaultSeasonIdMember1 | string}
+ */
+// @ts-ignore
+export function createLeagueSeasonOptions_defaultSeasonIdFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueSeasonOptions_defaultSeasonId;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueSeasonOptions_defaultSeasonIdMember1}
+ */
+// @ts-ignore
+export function createLeagueSeasonOptions_defaultSeasonIdMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueSeasonOptions_defaultSeasonIdMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueSeasonOptions_seasons}
+ */
+// @ts-ignore
+export function createLeagueSeasonOptions_seasonsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueSeasonOptions_seasons;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueSeasonOptions}
+ */
+// @ts-ignore
+export function createLeagueSeasonOptionsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueSeasonOptions;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueSeasonOptionsRequestBody}
+ */
+// @ts-ignore
+export function createLeagueSeasonOptionsRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueSeasonOptionsRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {LeagueSeasons_seasons}
  */
 // @ts-ignore
@@ -845,6 +3855,33 @@ export function createLeagueSummaryFromDiscriminatorValue(parseNode: ParseNode |
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueTemplates_templates}
+ */
+// @ts-ignore
+export function createLeagueTemplates_templatesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueTemplates_templates;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueTemplates}
+ */
+// @ts-ignore
+export function createLeagueTemplatesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueTemplates;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeagueTemplatesRequestBody}
+ */
+// @ts-ignore
+export function createLeagueTemplatesRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeagueTemplatesRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ListGameMatchesBody}
  */
 // @ts-ignore
@@ -899,6 +3936,60 @@ export function createMapScoresFromDiscriminatorValue(parseNode: ParseNode | und
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MatchDiscoverBody_cursorMember1 | string}
+ */
+// @ts-ignore
+export function createMatchDiscoverBody_cursorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMatchDiscoverBody_cursor;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MatchDiscoverBody_cursorMember1}
+ */
+// @ts-ignore
+export function createMatchDiscoverBody_cursorMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMatchDiscoverBody_cursorMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MatchDiscoverBody}
+ */
+// @ts-ignore
+export function createMatchDiscoverBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMatchDiscoverBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MatchDiscoverPage_nextCursorMember1 | string}
+ */
+// @ts-ignore
+export function createMatchDiscoverPage_nextCursorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMatchDiscoverPage_nextCursor;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MatchDiscoverPage_nextCursorMember1}
+ */
+// @ts-ignore
+export function createMatchDiscoverPage_nextCursorMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMatchDiscoverPage_nextCursorMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MatchDiscoverPage}
+ */
+// @ts-ignore
+export function createMatchDiscoverPageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMatchDiscoverPage;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {MatchesRequestBody_cursorMember1 | string}
  */
 // @ts-ignore
@@ -926,11 +4017,101 @@ export function createMatchesRequestBodyFromDiscriminatorValue(parseNode: ParseN
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {OngoingMatchesResponse}
+ */
+// @ts-ignore
+export function createOngoingMatchesResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoOngoingMatchesResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {OrganizationLeaderboardEntry_gameSlugMember1 | string}
+ */
+// @ts-ignore
+export function createOrganizationLeaderboardEntry_gameSlugFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoOrganizationLeaderboardEntry_gameSlug;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {OrganizationLeaderboardEntry_gameSlugMember1}
+ */
+// @ts-ignore
+export function createOrganizationLeaderboardEntry_gameSlugMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoOrganizationLeaderboardEntry_gameSlugMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {OrganizationLeaderboardEntry_stats}
+ */
+// @ts-ignore
+export function createOrganizationLeaderboardEntry_statsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoOrganizationLeaderboardEntry_stats;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {OrganizationLeaderboardEntry}
+ */
+// @ts-ignore
+export function createOrganizationLeaderboardEntryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoOrganizationLeaderboardEntry;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {OrganizationLeaderboardResponse_gameSlugMember1 | string}
+ */
+// @ts-ignore
+export function createOrganizationLeaderboardResponse_gameSlugFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoOrganizationLeaderboardResponse_gameSlug;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {OrganizationLeaderboardResponse_gameSlugMember1}
+ */
+// @ts-ignore
+export function createOrganizationLeaderboardResponse_gameSlugMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoOrganizationLeaderboardResponse_gameSlugMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {OrganizationLeaderboardResponse}
+ */
+// @ts-ignore
+export function createOrganizationLeaderboardResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoOrganizationLeaderboardResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PenaltiesRequestBody}
  */
 // @ts-ignore
 export function createPenaltiesRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPenaltiesRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PlayerLeaderboardEntry}
+ */
+// @ts-ignore
+export function createPlayerLeaderboardEntryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPlayerLeaderboardEntry;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PlayerLeaderboardResponse}
+ */
+// @ts-ignore
+export function createPlayerLeaderboardResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPlayerLeaderboardResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -1034,11 +4215,83 @@ export function createSubmitScoreBodyFromDiscriminatorValue(parseNode: ParseNode
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | Team_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createTeam_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTeam_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Team_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createTeam_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTeam_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Team}
  */
 // @ts-ignore
 export function createTeamFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoTeam;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TeamLeaderboardEntry_gameSlugMember1}
+ */
+// @ts-ignore
+export function createTeamLeaderboardEntry_gameSlugFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTeamLeaderboardEntry_gameSlug;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TeamLeaderboardEntry_gameSlugMember1}
+ */
+// @ts-ignore
+export function createTeamLeaderboardEntry_gameSlugMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTeamLeaderboardEntry_gameSlugMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TeamLeaderboardEntry}
+ */
+// @ts-ignore
+export function createTeamLeaderboardEntryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTeamLeaderboardEntry;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TeamLeaderboardResponse_gameSlugMember1}
+ */
+// @ts-ignore
+export function createTeamLeaderboardResponse_gameSlugFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTeamLeaderboardResponse_gameSlug;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TeamLeaderboardResponse_gameSlugMember1}
+ */
+// @ts-ignore
+export function createTeamLeaderboardResponse_gameSlugMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTeamLeaderboardResponse_gameSlugMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TeamLeaderboardResponse}
+ */
+// @ts-ignore
+export function createTeamLeaderboardResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTeamLeaderboardResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -1115,6 +4368,15 @@ export function createTwitchGlobalBadgesFromDiscriminatorValue(parseNode: ParseN
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UpdateWebhookBody}
+ */
+// @ts-ignore
+export function createUpdateWebhookBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUpdateWebhookBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {string | UserMatch_completedAtMember1}
  */
 // @ts-ignore
@@ -1176,6 +4438,2266 @@ export function createUserMatchFromDiscriminatorValue(parseNode: ParseNode | und
     return deserializeIntoUserMatch;
 }
 /**
+ * Create a webhook endpoint in the caller's scope.
+ */
+export interface CreateWebhookBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Subscribed event tokens: exact catalog names (e.g. match.completed) or family wildcards (e.g. match.*). At least one required.
+     */
+    events?: string[] | null;
+    /**
+     * Optional human label for the endpoint.
+     */
+    label?: string | null;
+    /**
+     * HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
+     */
+    url?: string | null;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {number | WebhookDelivery_deliveredAtMember1}
+ */
+// @ts-ignore
+export function createWebhookDelivery_deliveredAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookDelivery_deliveredAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookDelivery_deliveredAtMember1}
+ */
+// @ts-ignore
+export function createWebhookDelivery_deliveredAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookDelivery_deliveredAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | WebhookDelivery_errorMessageMember1}
+ */
+// @ts-ignore
+export function createWebhookDelivery_errorMessageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookDelivery_errorMessage;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookDelivery_errorMessageMember1}
+ */
+// @ts-ignore
+export function createWebhookDelivery_errorMessageMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookDelivery_errorMessageMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {number | WebhookDelivery_nextAttemptAtMember1}
+ */
+// @ts-ignore
+export function createWebhookDelivery_nextAttemptAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookDelivery_nextAttemptAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookDelivery_nextAttemptAtMember1}
+ */
+// @ts-ignore
+export function createWebhookDelivery_nextAttemptAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookDelivery_nextAttemptAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {number | WebhookDelivery_statusCodeMember1}
+ */
+// @ts-ignore
+export function createWebhookDelivery_statusCodeFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookDelivery_statusCode;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookDelivery_statusCodeMember1}
+ */
+// @ts-ignore
+export function createWebhookDelivery_statusCodeMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookDelivery_statusCodeMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookDelivery}
+ */
+// @ts-ignore
+export function createWebhookDeliveryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookDelivery;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | WebhookEndpoint_labelMember1}
+ */
+// @ts-ignore
+export function createWebhookEndpoint_labelFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookEndpoint_label;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookEndpoint_labelMember1}
+ */
+// @ts-ignore
+export function createWebhookEndpoint_labelMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookEndpoint_labelMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {number | WebhookEndpoint_lastDeliveredAtMember1}
+ */
+// @ts-ignore
+export function createWebhookEndpoint_lastDeliveredAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookEndpoint_lastDeliveredAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookEndpoint_lastDeliveredAtMember1}
+ */
+// @ts-ignore
+export function createWebhookEndpoint_lastDeliveredAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookEndpoint_lastDeliveredAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {number | WebhookEndpoint_lastFailedAtMember1}
+ */
+// @ts-ignore
+export function createWebhookEndpoint_lastFailedAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookEndpoint_lastFailedAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookEndpoint_lastFailedAtMember1}
+ */
+// @ts-ignore
+export function createWebhookEndpoint_lastFailedAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookEndpoint_lastFailedAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookEndpoint}
+ */
+// @ts-ignore
+export function createWebhookEndpointFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookEndpoint;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookListResponse}
+ */
+// @ts-ignore
+export function createWebhookListResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookListResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookOk}
+ */
+// @ts-ignore
+export function createWebhookOkFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookOk;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookReplayResult}
+ */
+// @ts-ignore
+export function createWebhookReplayResultFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookReplayResult;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookSecret}
+ */
+// @ts-ignore
+export function createWebhookSecretFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookSecret;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WebhookTestResult}
+ */
+// @ts-ignore
+export function createWebhookTestResultFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWebhookTestResult;
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry(apiGameCatalogEntry: Partial<ApiGameCatalogEntry> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "bannerImage": n => { apiGameCatalogEntry.bannerImage = n.getObjectValue<ApiGameCatalogEntry_bannerImageMember1>(createApiGameCatalogEntry_bannerImageMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "category": n => { apiGameCatalogEntry.category = n.getStringValue(); },
+        "convexId": n => { apiGameCatalogEntry.convexId = n.getObjectValue<ApiGameCatalogEntry_convexIdMember1>(createApiGameCatalogEntry_convexIdMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "coverImage": n => { apiGameCatalogEntry.coverImage = n.getObjectValue<ApiGameCatalogEntry_coverImageMember1>(createApiGameCatalogEntry_coverImageMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "defaultTeamSize": n => { apiGameCatalogEntry.defaultTeamSize = n.getNumberValue(); },
+        "descriptionKey": n => { apiGameCatalogEntry.descriptionKey = n.getObjectValue<ApiGameCatalogEntry_descriptionKeyMember1>(createApiGameCatalogEntry_descriptionKeyMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "hasCompetitiveMode": n => { apiGameCatalogEntry.hasCompetitiveMode = n.getBooleanValue(); },
+        "id": n => { apiGameCatalogEntry.id = n.getStringValue(); },
+        "isAvailableForMatchApi": n => { apiGameCatalogEntry.isAvailableForMatchApi = n.getBooleanValue(); },
+        "isComingSoon": n => { apiGameCatalogEntry.isComingSoon = n.getBooleanValue(); },
+        "maps": n => { apiGameCatalogEntry.maps = n.getCollectionOfObjectValues<ApiGameMap>(createApiGameMapFromDiscriminatorValue); },
+        "modeMapPools": n => { apiGameCatalogEntry.modeMapPools = n.getCollectionOfObjectValues<ApiGameModeMapPool>(createApiGameModeMapPoolFromDiscriminatorValue); },
+        "modes": n => { apiGameCatalogEntry.modes = n.getCollectionOfObjectValues<ApiGameMode>(createApiGameModeFromDiscriminatorValue); },
+        "nameKey": n => { apiGameCatalogEntry.nameKey = n.getStringValue(); },
+        "playlists": n => { apiGameCatalogEntry.playlists = n.getCollectionOfObjectValues<ApiGamePlaylist>(createApiGamePlaylistFromDiscriminatorValue); },
+        "rulesLink": n => { apiGameCatalogEntry.rulesLink = n.getObjectValue<ApiGameCatalogEntry_rulesLinkMember1>(createApiGameCatalogEntry_rulesLinkMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "shortNameKey": n => { apiGameCatalogEntry.shortNameKey = n.getObjectValue<ApiGameCatalogEntry_shortNameKeyMember1>(createApiGameCatalogEntry_shortNameKeyMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_bannerImage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_bannerImage(apiGameCatalogEntry_bannerImage: Partial<Parsable | ApiGameCatalogEntry_bannerImageMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameCatalogEntry_bannerImage = n.getStringValue()},
+        ...deserializeIntoApiGameCatalogEntry_bannerImageMember1(apiGameCatalogEntry_bannerImage as ApiGameCatalogEntry_bannerImageMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_bannerImageMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_bannerImageMember1(apiGameCatalogEntry_bannerImageMember1: Partial<ApiGameCatalogEntry_bannerImageMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_convexId The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_convexId(apiGameCatalogEntry_convexId: Partial<Parsable | ApiGameCatalogEntry_convexIdMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameCatalogEntry_convexId = n.getStringValue()},
+        ...deserializeIntoApiGameCatalogEntry_convexIdMember1(apiGameCatalogEntry_convexId as ApiGameCatalogEntry_convexIdMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_convexIdMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_convexIdMember1(apiGameCatalogEntry_convexIdMember1: Partial<ApiGameCatalogEntry_convexIdMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_coverImage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_coverImage(apiGameCatalogEntry_coverImage: Partial<Parsable | ApiGameCatalogEntry_coverImageMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameCatalogEntry_coverImage = n.getStringValue()},
+        ...deserializeIntoApiGameCatalogEntry_coverImageMember1(apiGameCatalogEntry_coverImage as ApiGameCatalogEntry_coverImageMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_coverImageMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_coverImageMember1(apiGameCatalogEntry_coverImageMember1: Partial<ApiGameCatalogEntry_coverImageMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_descriptionKey The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_descriptionKey(apiGameCatalogEntry_descriptionKey: Partial<Parsable | ApiGameCatalogEntry_descriptionKeyMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameCatalogEntry_descriptionKey = n.getStringValue()},
+        ...deserializeIntoApiGameCatalogEntry_descriptionKeyMember1(apiGameCatalogEntry_descriptionKey as ApiGameCatalogEntry_descriptionKeyMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_descriptionKeyMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_descriptionKeyMember1(apiGameCatalogEntry_descriptionKeyMember1: Partial<ApiGameCatalogEntry_descriptionKeyMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_rulesLink The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_rulesLink(apiGameCatalogEntry_rulesLink: Partial<Parsable | ApiGameCatalogEntry_rulesLinkMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameCatalogEntry_rulesLink = n.getStringValue()},
+        ...deserializeIntoApiGameCatalogEntry_rulesLinkMember1(apiGameCatalogEntry_rulesLink as ApiGameCatalogEntry_rulesLinkMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_rulesLinkMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_rulesLinkMember1(apiGameCatalogEntry_rulesLinkMember1: Partial<ApiGameCatalogEntry_rulesLinkMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_shortNameKey The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_shortNameKey(apiGameCatalogEntry_shortNameKey: Partial<Parsable | ApiGameCatalogEntry_shortNameKeyMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameCatalogEntry_shortNameKey = n.getStringValue()},
+        ...deserializeIntoApiGameCatalogEntry_shortNameKeyMember1(apiGameCatalogEntry_shortNameKey as ApiGameCatalogEntry_shortNameKeyMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogEntry_shortNameKeyMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogEntry_shortNameKeyMember1(apiGameCatalogEntry_shortNameKeyMember1: Partial<ApiGameCatalogEntry_shortNameKeyMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameCatalogResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameCatalogResponse(apiGameCatalogResponse: Partial<ApiGameCatalogResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "games": n => { apiGameCatalogResponse.games = n.getCollectionOfObjectValues<ApiGameCatalogEntry>(createApiGameCatalogEntryFromDiscriminatorValue); },
+        "objectives": n => { apiGameCatalogResponse.objectives = n.getCollectionOfObjectValues<ApiObjective>(createApiObjectiveFromDiscriminatorValue); },
+        "timestamp": n => { apiGameCatalogResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMap The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMap(apiGameMap: Partial<ApiGameMap> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "coverImage": n => { apiGameMap.coverImage = n.getObjectValue<ApiGameMap_coverImageMember1>(createApiGameMap_coverImageMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiGameMap.id = n.getStringValue(); },
+        "isReleased": n => { apiGameMap.isReleased = n.getBooleanValue(); },
+        "minimapImage": n => { apiGameMap.minimapImage = n.getObjectValue<ApiGameMap_minimapImageMember1>(createApiGameMap_minimapImageMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "nameKey": n => { apiGameMap.nameKey = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMap_coverImage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMap_coverImage(apiGameMap_coverImage: Partial<Parsable | ApiGameMap_coverImageMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameMap_coverImage = n.getStringValue()},
+        ...deserializeIntoApiGameMap_coverImageMember1(apiGameMap_coverImage as ApiGameMap_coverImageMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMap_coverImageMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMap_coverImageMember1(apiGameMap_coverImageMember1: Partial<ApiGameMap_coverImageMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMap_minimapImage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMap_minimapImage(apiGameMap_minimapImage: Partial<Parsable | ApiGameMap_minimapImageMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameMap_minimapImage = n.getStringValue()},
+        ...deserializeIntoApiGameMap_minimapImageMember1(apiGameMap_minimapImage as ApiGameMap_minimapImageMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMap_minimapImageMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMap_minimapImageMember1(apiGameMap_minimapImageMember1: Partial<ApiGameMap_minimapImageMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMode The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMode(apiGameMode: Partial<ApiGameMode> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "descriptionKey": n => { apiGameMode.descriptionKey = n.getObjectValue<ApiGameMode_descriptionKeyMember1>(createApiGameMode_descriptionKeyMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiGameMode.id = n.getStringValue(); },
+        "image": n => { apiGameMode.image = n.getObjectValue<ApiGameMode_imageMember1>(createApiGameMode_imageMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "mapIds": n => { apiGameMode.mapIds = n.getCollectionOfPrimitiveValues<string>(); },
+        "nameKey": n => { apiGameMode.nameKey = n.getStringValue(); },
+        "rewardBonus": n => { apiGameMode.rewardBonus = n.getObjectValue<ApiGameMode_rewardBonusMember1>(createApiGameMode_rewardBonusMember1FromDiscriminatorValue) ?? n.getNumberValue(); },
+        "shortName": n => { apiGameMode.shortName = n.getObjectValue<ApiGameMode_shortNameMember1>(createApiGameMode_shortNameMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "supportsDraftToggle": n => { apiGameMode.supportsDraftToggle = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMode_descriptionKey The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMode_descriptionKey(apiGameMode_descriptionKey: Partial<Parsable | ApiGameMode_descriptionKeyMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameMode_descriptionKey = n.getStringValue()},
+        ...deserializeIntoApiGameMode_descriptionKeyMember1(apiGameMode_descriptionKey as ApiGameMode_descriptionKeyMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMode_descriptionKeyMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMode_descriptionKeyMember1(apiGameMode_descriptionKeyMember1: Partial<ApiGameMode_descriptionKeyMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMode_image The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMode_image(apiGameMode_image: Partial<Parsable | ApiGameMode_imageMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameMode_image = n.getStringValue()},
+        ...deserializeIntoApiGameMode_imageMember1(apiGameMode_image as ApiGameMode_imageMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMode_imageMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMode_imageMember1(apiGameMode_imageMember1: Partial<ApiGameMode_imageMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMode_rewardBonus The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMode_rewardBonus(apiGameMode_rewardBonus: Partial<Parsable | ApiGameMode_rewardBonusMember1 | number> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameMode_rewardBonus = n.getNumberValue()},
+        ...deserializeIntoApiGameMode_rewardBonusMember1(apiGameMode_rewardBonus as ApiGameMode_rewardBonusMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMode_rewardBonusMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMode_rewardBonusMember1(apiGameMode_rewardBonusMember1: Partial<ApiGameMode_rewardBonusMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMode_shortName The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMode_shortName(apiGameMode_shortName: Partial<Parsable | ApiGameMode_shortNameMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGameMode_shortName = n.getStringValue()},
+        ...deserializeIntoApiGameMode_shortNameMember1(apiGameMode_shortName as ApiGameMode_shortNameMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameMode_shortNameMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameMode_shortNameMember1(apiGameMode_shortNameMember1: Partial<ApiGameMode_shortNameMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGameModeMapPool The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGameModeMapPool(apiGameModeMapPool: Partial<ApiGameModeMapPool> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "mapIds": n => { apiGameModeMapPool.mapIds = n.getCollectionOfPrimitiveValues<string>(); },
+        "modeId": n => { apiGameModeMapPool.modeId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGamePlaylist The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGamePlaylist(apiGamePlaylist: Partial<ApiGamePlaylist> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "allowedGameModeIds": n => { apiGamePlaylist.allowedGameModeIds = n.getCollectionOfPrimitiveValues<string>(); },
+        "descriptionKey": n => { apiGamePlaylist.descriptionKey = n.getObjectValue<ApiGamePlaylist_descriptionKeyMember1>(createApiGamePlaylist_descriptionKeyMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiGamePlaylist.id = n.getStringValue(); },
+        "image": n => { apiGamePlaylist.image = n.getObjectValue<ApiGamePlaylist_imageMember1>(createApiGamePlaylist_imageMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "nameKey": n => { apiGamePlaylist.nameKey = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGamePlaylist_descriptionKey The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGamePlaylist_descriptionKey(apiGamePlaylist_descriptionKey: Partial<Parsable | ApiGamePlaylist_descriptionKeyMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGamePlaylist_descriptionKey = n.getStringValue()},
+        ...deserializeIntoApiGamePlaylist_descriptionKeyMember1(apiGamePlaylist_descriptionKey as ApiGamePlaylist_descriptionKeyMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGamePlaylist_descriptionKeyMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGamePlaylist_descriptionKeyMember1(apiGamePlaylist_descriptionKeyMember1: Partial<ApiGamePlaylist_descriptionKeyMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGamePlaylist_image The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGamePlaylist_image(apiGamePlaylist_image: Partial<Parsable | ApiGamePlaylist_imageMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiGamePlaylist_image = n.getStringValue()},
+        ...deserializeIntoApiGamePlaylist_imageMember1(apiGamePlaylist_image as ApiGamePlaylist_imageMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGamePlaylist_imageMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGamePlaylist_imageMember1(apiGamePlaylist_imageMember1: Partial<ApiGamePlaylist_imageMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiGamePlaylistsResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiGamePlaylistsResponse(apiGamePlaylistsResponse: Partial<ApiGamePlaylistsResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "game": n => { apiGamePlaylistsResponse.game = n.getObjectValue<ApiGameCatalogEntry>(createApiGameCatalogEntryFromDiscriminatorValue); },
+        "playlists": n => { apiGamePlaylistsResponse.playlists = n.getCollectionOfObjectValues<ApiGamePlaylist>(createApiGamePlaylistFromDiscriminatorValue); },
+        "timestamp": n => { apiGamePlaylistsResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail(apiMatchDetail: Partial<ApiMatchDetail> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "acceptedTeam": n => { apiMatchDetail.acceptedTeam = n.getObjectValue<ApiMatchTeam>(createApiMatchTeamFromDiscriminatorValue); },
+        "bestOf": n => { apiMatchDetail.bestOf = n.getNumberValue(); },
+        "challengedTeam": n => { apiMatchDetail.challengedTeam = n.getObjectValue<ApiMatchTeam>(createApiMatchTeamFromDiscriminatorValue); },
+        "completedAt": n => { apiMatchDetail.completedAt = n.getObjectValue<ApiMatchDetail_completedAtMember1>(createApiMatchDetail_completedAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "createdAt": n => { apiMatchDetail.createdAt = n.getObjectValue<ApiMatchDetail_createdAtMember1>(createApiMatchDetail_createdAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "creatorTeam": n => { apiMatchDetail.creatorTeam = n.getObjectValue<ApiMatchTeam>(createApiMatchTeamFromDiscriminatorValue); },
+        "game": n => { apiMatchDetail.game = n.getObjectValue<Game>(createGameFromDiscriminatorValue); },
+        "gameMode": n => { apiMatchDetail.gameMode = n.getStringValue(); },
+        "id": n => { apiMatchDetail.id = n.getStringValue(); },
+        "leagueId": n => { apiMatchDetail.leagueId = n.getObjectValue<ApiMatchDetail_leagueIdMember1>(createApiMatchDetail_leagueIdMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "leagueSeasonId": n => { apiMatchDetail.leagueSeasonId = n.getObjectValue<ApiMatchDetail_leagueSeasonIdMember1>(createApiMatchDetail_leagueSeasonIdMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "matchType": n => { apiMatchDetail.matchType = n.getObjectValue<ApiMatchDetail_matchTypeMember1>(createApiMatchDetail_matchTypeMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "platform": n => { apiMatchDetail.platform = n.getObjectValue<ApiMatchDetail_platformMember1>(createApiMatchDetail_platformMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "publishStatus": n => { apiMatchDetail.publishStatus = n.getStringValue(); },
+        "region": n => { apiMatchDetail.region = n.getObjectValue<ApiMatchDetail_regionMember1>(createApiMatchDetail_regionMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "scheduledAt": n => { apiMatchDetail.scheduledAt = n.getObjectValue<ApiMatchDetail_scheduledAtMember1>(createApiMatchDetail_scheduledAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "selectedMaps": n => { apiMatchDetail.selectedMaps = n.getCollectionOfPrimitiveValues<string>(); },
+        "selectedObjectives": n => { apiMatchDetail.selectedObjectives = n.getCollectionOfPrimitiveValues<string>(); },
+        "startedAt": n => { apiMatchDetail.startedAt = n.getObjectValue<ApiMatchDetail_startedAtMember1>(createApiMatchDetail_startedAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "status": n => { apiMatchDetail.status = n.getEnumValue<MatchStatus>(MatchStatusObject); },
+        "teamSize": n => { apiMatchDetail.teamSize = n.getNumberValue(); },
+        "winnerTeamId": n => { apiMatchDetail.winnerTeamId = n.getObjectValue<ApiMatchDetail_winnerTeamIdMember1>(createApiMatchDetail_winnerTeamIdMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_completedAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_completedAt(apiMatchDetail_completedAt: Partial<Parsable | ApiMatchDetail_completedAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchDetail_completedAt = n.getStringValue()},
+        ...deserializeIntoApiMatchDetail_completedAtMember1(apiMatchDetail_completedAt as ApiMatchDetail_completedAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_completedAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_completedAtMember1(apiMatchDetail_completedAtMember1: Partial<ApiMatchDetail_completedAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_createdAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_createdAt(apiMatchDetail_createdAt: Partial<Parsable | ApiMatchDetail_createdAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchDetail_createdAt = n.getStringValue()},
+        ...deserializeIntoApiMatchDetail_createdAtMember1(apiMatchDetail_createdAt as ApiMatchDetail_createdAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_createdAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_createdAtMember1(apiMatchDetail_createdAtMember1: Partial<ApiMatchDetail_createdAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_leagueId The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_leagueId(apiMatchDetail_leagueId: Partial<Parsable | ApiMatchDetail_leagueIdMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchDetail_leagueId = n.getStringValue()},
+        ...deserializeIntoApiMatchDetail_leagueIdMember1(apiMatchDetail_leagueId as ApiMatchDetail_leagueIdMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_leagueIdMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_leagueIdMember1(apiMatchDetail_leagueIdMember1: Partial<ApiMatchDetail_leagueIdMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_leagueSeasonId The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_leagueSeasonId(apiMatchDetail_leagueSeasonId: Partial<Parsable | ApiMatchDetail_leagueSeasonIdMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchDetail_leagueSeasonId = n.getStringValue()},
+        ...deserializeIntoApiMatchDetail_leagueSeasonIdMember1(apiMatchDetail_leagueSeasonId as ApiMatchDetail_leagueSeasonIdMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_leagueSeasonIdMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_leagueSeasonIdMember1(apiMatchDetail_leagueSeasonIdMember1: Partial<ApiMatchDetail_leagueSeasonIdMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_matchType The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_matchType(apiMatchDetail_matchType: Partial<Parsable | ApiMatchDetail_matchTypeMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchDetail_matchType = n.getStringValue()},
+        ...deserializeIntoApiMatchDetail_matchTypeMember1(apiMatchDetail_matchType as ApiMatchDetail_matchTypeMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_matchTypeMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_matchTypeMember1(apiMatchDetail_matchTypeMember1: Partial<ApiMatchDetail_matchTypeMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_platform The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_platform(apiMatchDetail_platform: Partial<Parsable | ApiMatchDetail_platformMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchDetail_platform = n.getStringValue()},
+        ...deserializeIntoApiMatchDetail_platformMember1(apiMatchDetail_platform as ApiMatchDetail_platformMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_platformMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_platformMember1(apiMatchDetail_platformMember1: Partial<ApiMatchDetail_platformMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_region The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_region(apiMatchDetail_region: Partial<Parsable | ApiMatchDetail_regionMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchDetail_region = n.getStringValue()},
+        ...deserializeIntoApiMatchDetail_regionMember1(apiMatchDetail_region as ApiMatchDetail_regionMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_regionMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_regionMember1(apiMatchDetail_regionMember1: Partial<ApiMatchDetail_regionMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_scheduledAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_scheduledAt(apiMatchDetail_scheduledAt: Partial<Parsable | ApiMatchDetail_scheduledAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchDetail_scheduledAt = n.getStringValue()},
+        ...deserializeIntoApiMatchDetail_scheduledAtMember1(apiMatchDetail_scheduledAt as ApiMatchDetail_scheduledAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_scheduledAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_scheduledAtMember1(apiMatchDetail_scheduledAtMember1: Partial<ApiMatchDetail_scheduledAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_startedAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_startedAt(apiMatchDetail_startedAt: Partial<Parsable | ApiMatchDetail_startedAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchDetail_startedAt = n.getStringValue()},
+        ...deserializeIntoApiMatchDetail_startedAtMember1(apiMatchDetail_startedAt as ApiMatchDetail_startedAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_startedAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_startedAtMember1(apiMatchDetail_startedAtMember1: Partial<ApiMatchDetail_startedAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_winnerTeamId The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_winnerTeamId(apiMatchDetail_winnerTeamId: Partial<Parsable | ApiMatchDetail_winnerTeamIdMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchDetail_winnerTeamId = n.getStringValue()},
+        ...deserializeIntoApiMatchDetail_winnerTeamIdMember1(apiMatchDetail_winnerTeamId as ApiMatchDetail_winnerTeamIdMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetail_winnerTeamIdMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetail_winnerTeamIdMember1(apiMatchDetail_winnerTeamIdMember1: Partial<ApiMatchDetail_winnerTeamIdMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchDetailResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchDetailResponse(apiMatchDetailResponse: Partial<ApiMatchDetailResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "match": n => { apiMatchDetailResponse.match = n.getObjectValue<ApiMatchDetail>(createApiMatchDetailFromDiscriminatorValue); },
+        "timestamp": n => { apiMatchDetailResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchPlayer The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchPlayer(apiMatchPlayer: Partial<ApiMatchPlayer> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "attendanceStatus": n => { apiMatchPlayer.attendanceStatus = n.getEnumValue<ApiMatchPlayer_attendanceStatus>(ApiMatchPlayer_attendanceStatusObject); },
+        "avatarUrl": n => { apiMatchPlayer.avatarUrl = n.getObjectValue<ApiMatchPlayer_avatarUrlMember1>(createApiMatchPlayer_avatarUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "checkedInAt": n => { apiMatchPlayer.checkedInAt = n.getObjectValue<ApiMatchPlayer_checkedInAtMember1>(createApiMatchPlayer_checkedInAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiMatchPlayer.id = n.getStringValue(); },
+        "isCheckedIn": n => { apiMatchPlayer.isCheckedIn = n.getBooleanValue(); },
+        "name": n => { apiMatchPlayer.name = n.getObjectValue<ApiMatchPlayer_nameMember1>(createApiMatchPlayer_nameMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "rosterType": n => { apiMatchPlayer.rosterType = n.getEnumValue<ApiMatchPlayer_rosterType>(ApiMatchPlayer_rosterTypeObject); },
+        "teamId": n => { apiMatchPlayer.teamId = n.getStringValue(); },
+        "userId": n => { apiMatchPlayer.userId = n.getStringValue(); },
+        "username": n => { apiMatchPlayer.username = n.getObjectValue<ApiMatchPlayer_usernameMember1>(createApiMatchPlayer_usernameMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchPlayer_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchPlayer_avatarUrl(apiMatchPlayer_avatarUrl: Partial<Parsable | ApiMatchPlayer_avatarUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchPlayer_avatarUrl = n.getStringValue()},
+        ...deserializeIntoApiMatchPlayer_avatarUrlMember1(apiMatchPlayer_avatarUrl as ApiMatchPlayer_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchPlayer_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchPlayer_avatarUrlMember1(apiMatchPlayer_avatarUrlMember1: Partial<ApiMatchPlayer_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchPlayer_checkedInAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchPlayer_checkedInAt(apiMatchPlayer_checkedInAt: Partial<Parsable | ApiMatchPlayer_checkedInAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchPlayer_checkedInAt = n.getStringValue()},
+        ...deserializeIntoApiMatchPlayer_checkedInAtMember1(apiMatchPlayer_checkedInAt as ApiMatchPlayer_checkedInAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchPlayer_checkedInAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchPlayer_checkedInAtMember1(apiMatchPlayer_checkedInAtMember1: Partial<ApiMatchPlayer_checkedInAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchPlayer_name The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchPlayer_name(apiMatchPlayer_name: Partial<Parsable | ApiMatchPlayer_nameMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchPlayer_name = n.getStringValue()},
+        ...deserializeIntoApiMatchPlayer_nameMember1(apiMatchPlayer_name as ApiMatchPlayer_nameMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchPlayer_nameMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchPlayer_nameMember1(apiMatchPlayer_nameMember1: Partial<ApiMatchPlayer_nameMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchPlayer_username The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchPlayer_username(apiMatchPlayer_username: Partial<Parsable | ApiMatchPlayer_usernameMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchPlayer_username = n.getStringValue()},
+        ...deserializeIntoApiMatchPlayer_usernameMember1(apiMatchPlayer_username as ApiMatchPlayer_usernameMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchPlayer_usernameMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchPlayer_usernameMember1(apiMatchPlayer_usernameMember1: Partial<ApiMatchPlayer_usernameMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchPlayersResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchPlayersResponse(apiMatchPlayersResponse: Partial<ApiMatchPlayersResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "matchId": n => { apiMatchPlayersResponse.matchId = n.getStringValue(); },
+        "players": n => { apiMatchPlayersResponse.players = n.getCollectionOfObjectValues<ApiMatchPlayer>(createApiMatchPlayerFromDiscriminatorValue); },
+        "timestamp": n => { apiMatchPlayersResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchTeam The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchTeam(apiMatchTeam: Partial<ApiMatchTeam> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { apiMatchTeam.avatarUrl = n.getObjectValue<ApiMatchTeam_avatarUrlMember1>(createApiMatchTeam_avatarUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiMatchTeam.id = n.getStringValue(); },
+        "name": n => { apiMatchTeam.name = n.getStringValue(); },
+        "score": n => { apiMatchTeam.score = n.getObjectValue<ApiMatchTeam_scoreMember1>(createApiMatchTeam_scoreMember1FromDiscriminatorValue) ?? n.getNumberValue(); },
+        "tag": n => { apiMatchTeam.tag = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchTeam_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchTeam_avatarUrl(apiMatchTeam_avatarUrl: Partial<Parsable | ApiMatchTeam_avatarUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchTeam_avatarUrl = n.getStringValue()},
+        ...deserializeIntoApiMatchTeam_avatarUrlMember1(apiMatchTeam_avatarUrl as ApiMatchTeam_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchTeam_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchTeam_avatarUrlMember1(apiMatchTeam_avatarUrlMember1: Partial<ApiMatchTeam_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchTeam_score The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchTeam_score(apiMatchTeam_score: Partial<Parsable | ApiMatchTeam_scoreMember1 | number> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMatchTeam_score = n.getNumberValue()},
+        ...deserializeIntoApiMatchTeam_scoreMember1(apiMatchTeam_score as ApiMatchTeam_scoreMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMatchTeam_scoreMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMatchTeam_scoreMember1(apiMatchTeam_scoreMember1: Partial<ApiMatchTeam_scoreMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMember The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMember(apiMember: Partial<ApiMember> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { apiMember.id = n.getStringValue(); },
+        "joinedAt": n => { apiMember.joinedAt = n.getObjectValue<ApiMember_joinedAtMember1>(createApiMember_joinedAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "role": n => { apiMember.role = n.getStringValue(); },
+        "user": n => { apiMember.user = n.getObjectValue<ApiUserProfile>(createApiUserProfileFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMember_joinedAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMember_joinedAt(apiMember_joinedAt: Partial<Parsable | ApiMember_joinedAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiMember_joinedAt = n.getStringValue()},
+        ...deserializeIntoApiMember_joinedAtMember1(apiMember_joinedAt as ApiMember_joinedAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiMember_joinedAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiMember_joinedAtMember1(apiMember_joinedAtMember1: Partial<ApiMember_joinedAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiObjective The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiObjective(apiObjective: Partial<ApiObjective> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "completionRule": n => { apiObjective.completionRule = n.getStringValue(); },
+        "descriptionKey": n => { apiObjective.descriptionKey = n.getStringValue(); },
+        "exp": n => { apiObjective.exp = n.getNumberValue(); },
+        "id": n => { apiObjective.id = n.getStringValue(); },
+        "scope": n => { apiObjective.scope = n.getStringValue(); },
+        "titleKey": n => { apiObjective.titleKey = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile(apiOrganizationProfile: Partial<ApiOrganizationProfile> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { apiOrganizationProfile.avatarUrl = n.getObjectValue<ApiOrganizationProfile_avatarUrlMember1>(createApiOrganizationProfile_avatarUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "bannerUrl": n => { apiOrganizationProfile.bannerUrl = n.getObjectValue<ApiOrganizationProfile_bannerUrlMember1>(createApiOrganizationProfile_bannerUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "createdAt": n => { apiOrganizationProfile.createdAt = n.getObjectValue<ApiOrganizationProfile_createdAtMember1>(createApiOrganizationProfile_createdAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "description": n => { apiOrganizationProfile.description = n.getObjectValue<ApiOrganizationProfile_descriptionMember1>(createApiOrganizationProfile_descriptionMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "draws": n => { apiOrganizationProfile.draws = n.getNumberValue(); },
+        "id": n => { apiOrganizationProfile.id = n.getStringValue(); },
+        "isMember": n => { apiOrganizationProfile.isMember = n.getBooleanValue(); },
+        "isVerified": n => { apiOrganizationProfile.isVerified = n.getBooleanValue(); },
+        "losses": n => { apiOrganizationProfile.losses = n.getNumberValue(); },
+        "matchesPlayed": n => { apiOrganizationProfile.matchesPlayed = n.getNumberValue(); },
+        "memberCount": n => { apiOrganizationProfile.memberCount = n.getNumberValue(); },
+        "name": n => { apiOrganizationProfile.name = n.getStringValue(); },
+        "slug": n => { apiOrganizationProfile.slug = n.getObjectValue<ApiOrganizationProfile_slugMember1>(createApiOrganizationProfile_slugMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "tag": n => { apiOrganizationProfile.tag = n.getObjectValue<ApiOrganizationProfile_tagMember1>(createApiOrganizationProfile_tagMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "teamCount": n => { apiOrganizationProfile.teamCount = n.getNumberValue(); },
+        "visibility": n => { apiOrganizationProfile.visibility = n.getEnumValue<ProfileVisibility>(ProfileVisibilityObject); },
+        "wins": n => { apiOrganizationProfile.wins = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_avatarUrl(apiOrganizationProfile_avatarUrl: Partial<Parsable | ApiOrganizationProfile_avatarUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiOrganizationProfile_avatarUrl = n.getStringValue()},
+        ...deserializeIntoApiOrganizationProfile_avatarUrlMember1(apiOrganizationProfile_avatarUrl as ApiOrganizationProfile_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_avatarUrlMember1(apiOrganizationProfile_avatarUrlMember1: Partial<ApiOrganizationProfile_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_bannerUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_bannerUrl(apiOrganizationProfile_bannerUrl: Partial<Parsable | ApiOrganizationProfile_bannerUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiOrganizationProfile_bannerUrl = n.getStringValue()},
+        ...deserializeIntoApiOrganizationProfile_bannerUrlMember1(apiOrganizationProfile_bannerUrl as ApiOrganizationProfile_bannerUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_bannerUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_bannerUrlMember1(apiOrganizationProfile_bannerUrlMember1: Partial<ApiOrganizationProfile_bannerUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_createdAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_createdAt(apiOrganizationProfile_createdAt: Partial<Parsable | ApiOrganizationProfile_createdAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiOrganizationProfile_createdAt = n.getStringValue()},
+        ...deserializeIntoApiOrganizationProfile_createdAtMember1(apiOrganizationProfile_createdAt as ApiOrganizationProfile_createdAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_createdAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_createdAtMember1(apiOrganizationProfile_createdAtMember1: Partial<ApiOrganizationProfile_createdAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_description The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_description(apiOrganizationProfile_description: Partial<Parsable | ApiOrganizationProfile_descriptionMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiOrganizationProfile_description = n.getStringValue()},
+        ...deserializeIntoApiOrganizationProfile_descriptionMember1(apiOrganizationProfile_description as ApiOrganizationProfile_descriptionMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_descriptionMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_descriptionMember1(apiOrganizationProfile_descriptionMember1: Partial<ApiOrganizationProfile_descriptionMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_slug The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_slug(apiOrganizationProfile_slug: Partial<Parsable | ApiOrganizationProfile_slugMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiOrganizationProfile_slug = n.getStringValue()},
+        ...deserializeIntoApiOrganizationProfile_slugMember1(apiOrganizationProfile_slug as ApiOrganizationProfile_slugMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_slugMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_slugMember1(apiOrganizationProfile_slugMember1: Partial<ApiOrganizationProfile_slugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_tag The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_tag(apiOrganizationProfile_tag: Partial<Parsable | ApiOrganizationProfile_tagMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiOrganizationProfile_tag = n.getStringValue()},
+        ...deserializeIntoApiOrganizationProfile_tagMember1(apiOrganizationProfile_tag as ApiOrganizationProfile_tagMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationProfile_tagMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationProfile_tagMember1(apiOrganizationProfile_tagMember1: Partial<ApiOrganizationProfile_tagMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationStats The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationStats(apiOrganizationStats: Partial<ApiOrganizationStats> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "losses": n => { apiOrganizationStats.losses = n.getNumberValue(); },
+        "matchesPlayed": n => { apiOrganizationStats.matchesPlayed = n.getNumberValue(); },
+        "members": n => { apiOrganizationStats.members = n.getNumberValue(); },
+        "organizationId": n => { apiOrganizationStats.organizationId = n.getStringValue(); },
+        "teams": n => { apiOrganizationStats.teams = n.getNumberValue(); },
+        "winRate": n => { apiOrganizationStats.winRate = n.getNumberValue(); },
+        "wins": n => { apiOrganizationStats.wins = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationSummary The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationSummary(apiOrganizationSummary: Partial<ApiOrganizationSummary> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { apiOrganizationSummary.avatarUrl = n.getObjectValue<ApiOrganizationSummary_avatarUrlMember1>(createApiOrganizationSummary_avatarUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiOrganizationSummary.id = n.getStringValue(); },
+        "name": n => { apiOrganizationSummary.name = n.getStringValue(); },
+        "slug": n => { apiOrganizationSummary.slug = n.getObjectValue<ApiOrganizationSummary_slugMember1>(createApiOrganizationSummary_slugMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "tag": n => { apiOrganizationSummary.tag = n.getObjectValue<ApiOrganizationSummary_tagMember1>(createApiOrganizationSummary_tagMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "visibility": n => { apiOrganizationSummary.visibility = n.getEnumValue<ProfileVisibility>(ProfileVisibilityObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationSummary_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationSummary_avatarUrl(apiOrganizationSummary_avatarUrl: Partial<Parsable | ApiOrganizationSummary_avatarUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiOrganizationSummary_avatarUrl = n.getStringValue()},
+        ...deserializeIntoApiOrganizationSummary_avatarUrlMember1(apiOrganizationSummary_avatarUrl as ApiOrganizationSummary_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationSummary_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationSummary_avatarUrlMember1(apiOrganizationSummary_avatarUrlMember1: Partial<ApiOrganizationSummary_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationSummary_slug The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationSummary_slug(apiOrganizationSummary_slug: Partial<Parsable | ApiOrganizationSummary_slugMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiOrganizationSummary_slug = n.getStringValue()},
+        ...deserializeIntoApiOrganizationSummary_slugMember1(apiOrganizationSummary_slug as ApiOrganizationSummary_slugMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationSummary_slugMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationSummary_slugMember1(apiOrganizationSummary_slugMember1: Partial<ApiOrganizationSummary_slugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationSummary_tag The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationSummary_tag(apiOrganizationSummary_tag: Partial<Parsable | ApiOrganizationSummary_tagMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiOrganizationSummary_tag = n.getStringValue()},
+        ...deserializeIntoApiOrganizationSummary_tagMember1(apiOrganizationSummary_tag as ApiOrganizationSummary_tagMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiOrganizationSummary_tagMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiOrganizationSummary_tagMember1(apiOrganizationSummary_tagMember1: Partial<ApiOrganizationSummary_tagMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile(apiTeamProfile: Partial<ApiTeamProfile> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { apiTeamProfile.avatarUrl = n.getObjectValue<ApiTeamProfile_avatarUrlMember1>(createApiTeamProfile_avatarUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "bannerUrl": n => { apiTeamProfile.bannerUrl = n.getObjectValue<ApiTeamProfile_bannerUrlMember1>(createApiTeamProfile_bannerUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "createdAt": n => { apiTeamProfile.createdAt = n.getObjectValue<ApiTeamProfile_createdAtMember1>(createApiTeamProfile_createdAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "description": n => { apiTeamProfile.description = n.getObjectValue<ApiTeamProfile_descriptionMember1>(createApiTeamProfile_descriptionMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "draws": n => { apiTeamProfile.draws = n.getNumberValue(); },
+        "experience": n => { apiTeamProfile.experience = n.getNumberValue(); },
+        "gameId": n => { apiTeamProfile.gameId = n.getObjectValue<ApiTeamProfile_gameIdMember1>(createApiTeamProfile_gameIdMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiTeamProfile.id = n.getStringValue(); },
+        "isMember": n => { apiTeamProfile.isMember = n.getBooleanValue(); },
+        "losses": n => { apiTeamProfile.losses = n.getNumberValue(); },
+        "matchesPlayed": n => { apiTeamProfile.matchesPlayed = n.getNumberValue(); },
+        "memberCount": n => { apiTeamProfile.memberCount = n.getNumberValue(); },
+        "name": n => { apiTeamProfile.name = n.getStringValue(); },
+        "organizationId": n => { apiTeamProfile.organizationId = n.getObjectValue<ApiTeamProfile_organizationIdMember1>(createApiTeamProfile_organizationIdMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "slug": n => { apiTeamProfile.slug = n.getObjectValue<ApiTeamProfile_slugMember1>(createApiTeamProfile_slugMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "tag": n => { apiTeamProfile.tag = n.getObjectValue<ApiTeamProfile_tagMember1>(createApiTeamProfile_tagMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "visibility": n => { apiTeamProfile.visibility = n.getEnumValue<ProfileVisibility>(ProfileVisibilityObject); },
+        "wins": n => { apiTeamProfile.wins = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_avatarUrl(apiTeamProfile_avatarUrl: Partial<Parsable | ApiTeamProfile_avatarUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiTeamProfile_avatarUrl = n.getStringValue()},
+        ...deserializeIntoApiTeamProfile_avatarUrlMember1(apiTeamProfile_avatarUrl as ApiTeamProfile_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_avatarUrlMember1(apiTeamProfile_avatarUrlMember1: Partial<ApiTeamProfile_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_bannerUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_bannerUrl(apiTeamProfile_bannerUrl: Partial<Parsable | ApiTeamProfile_bannerUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiTeamProfile_bannerUrl = n.getStringValue()},
+        ...deserializeIntoApiTeamProfile_bannerUrlMember1(apiTeamProfile_bannerUrl as ApiTeamProfile_bannerUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_bannerUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_bannerUrlMember1(apiTeamProfile_bannerUrlMember1: Partial<ApiTeamProfile_bannerUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_createdAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_createdAt(apiTeamProfile_createdAt: Partial<Parsable | ApiTeamProfile_createdAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiTeamProfile_createdAt = n.getStringValue()},
+        ...deserializeIntoApiTeamProfile_createdAtMember1(apiTeamProfile_createdAt as ApiTeamProfile_createdAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_createdAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_createdAtMember1(apiTeamProfile_createdAtMember1: Partial<ApiTeamProfile_createdAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_description The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_description(apiTeamProfile_description: Partial<Parsable | ApiTeamProfile_descriptionMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiTeamProfile_description = n.getStringValue()},
+        ...deserializeIntoApiTeamProfile_descriptionMember1(apiTeamProfile_description as ApiTeamProfile_descriptionMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_descriptionMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_descriptionMember1(apiTeamProfile_descriptionMember1: Partial<ApiTeamProfile_descriptionMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_gameId The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_gameId(apiTeamProfile_gameId: Partial<Parsable | ApiTeamProfile_gameIdMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiTeamProfile_gameId = n.getStringValue()},
+        ...deserializeIntoApiTeamProfile_gameIdMember1(apiTeamProfile_gameId as ApiTeamProfile_gameIdMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_gameIdMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_gameIdMember1(apiTeamProfile_gameIdMember1: Partial<ApiTeamProfile_gameIdMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_organizationId The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_organizationId(apiTeamProfile_organizationId: Partial<Parsable | ApiTeamProfile_organizationIdMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiTeamProfile_organizationId = n.getStringValue()},
+        ...deserializeIntoApiTeamProfile_organizationIdMember1(apiTeamProfile_organizationId as ApiTeamProfile_organizationIdMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_organizationIdMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_organizationIdMember1(apiTeamProfile_organizationIdMember1: Partial<ApiTeamProfile_organizationIdMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_slug The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_slug(apiTeamProfile_slug: Partial<Parsable | ApiTeamProfile_slugMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiTeamProfile_slug = n.getStringValue()},
+        ...deserializeIntoApiTeamProfile_slugMember1(apiTeamProfile_slug as ApiTeamProfile_slugMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_slugMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_slugMember1(apiTeamProfile_slugMember1: Partial<ApiTeamProfile_slugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_tag The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_tag(apiTeamProfile_tag: Partial<Parsable | ApiTeamProfile_tagMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiTeamProfile_tag = n.getStringValue()},
+        ...deserializeIntoApiTeamProfile_tagMember1(apiTeamProfile_tag as ApiTeamProfile_tagMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamProfile_tagMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamProfile_tagMember1(apiTeamProfile_tagMember1: Partial<ApiTeamProfile_tagMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamSummary The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamSummary(apiTeamSummary: Partial<ApiTeamSummary> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { apiTeamSummary.avatarUrl = n.getObjectValue<ApiTeamSummary_avatarUrlMember1>(createApiTeamSummary_avatarUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiTeamSummary.id = n.getStringValue(); },
+        "name": n => { apiTeamSummary.name = n.getStringValue(); },
+        "slug": n => { apiTeamSummary.slug = n.getObjectValue<ApiTeamSummary_slugMember1>(createApiTeamSummary_slugMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "tag": n => { apiTeamSummary.tag = n.getObjectValue<ApiTeamSummary_tagMember1>(createApiTeamSummary_tagMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "visibility": n => { apiTeamSummary.visibility = n.getEnumValue<ProfileVisibility>(ProfileVisibilityObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamSummary_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamSummary_avatarUrl(apiTeamSummary_avatarUrl: Partial<Parsable | ApiTeamSummary_avatarUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiTeamSummary_avatarUrl = n.getStringValue()},
+        ...deserializeIntoApiTeamSummary_avatarUrlMember1(apiTeamSummary_avatarUrl as ApiTeamSummary_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamSummary_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamSummary_avatarUrlMember1(apiTeamSummary_avatarUrlMember1: Partial<ApiTeamSummary_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamSummary_slug The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamSummary_slug(apiTeamSummary_slug: Partial<Parsable | ApiTeamSummary_slugMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiTeamSummary_slug = n.getStringValue()},
+        ...deserializeIntoApiTeamSummary_slugMember1(apiTeamSummary_slug as ApiTeamSummary_slugMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamSummary_slugMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamSummary_slugMember1(apiTeamSummary_slugMember1: Partial<ApiTeamSummary_slugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamSummary_tag The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamSummary_tag(apiTeamSummary_tag: Partial<Parsable | ApiTeamSummary_tagMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiTeamSummary_tag = n.getStringValue()},
+        ...deserializeIntoApiTeamSummary_tagMember1(apiTeamSummary_tag as ApiTeamSummary_tagMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiTeamSummary_tagMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiTeamSummary_tagMember1(apiTeamSummary_tagMember1: Partial<ApiTeamSummary_tagMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserConnection The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserConnection(apiUserConnection: Partial<ApiUserConnection> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "connectedAt": n => { apiUserConnection.connectedAt = n.getObjectValue<ApiUserConnection_connectedAtMember1>(createApiUserConnection_connectedAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiUserConnection.id = n.getStringValue(); },
+        "isPrimary": n => { apiUserConnection.isPrimary = n.getBooleanValue(); },
+        "isVerified": n => { apiUserConnection.isVerified = n.getBooleanValue(); },
+        "platform": n => { apiUserConnection.platform = n.getStringValue(); },
+        "url": n => { apiUserConnection.url = n.getObjectValue<ApiUserConnection_urlMember1>(createApiUserConnection_urlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "username": n => { apiUserConnection.username = n.getObjectValue<ApiUserConnection_usernameMember1>(createApiUserConnection_usernameMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserConnection_connectedAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserConnection_connectedAt(apiUserConnection_connectedAt: Partial<Parsable | ApiUserConnection_connectedAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserConnection_connectedAt = n.getStringValue()},
+        ...deserializeIntoApiUserConnection_connectedAtMember1(apiUserConnection_connectedAt as ApiUserConnection_connectedAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserConnection_connectedAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserConnection_connectedAtMember1(apiUserConnection_connectedAtMember1: Partial<ApiUserConnection_connectedAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserConnection_url The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserConnection_url(apiUserConnection_url: Partial<Parsable | ApiUserConnection_urlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserConnection_url = n.getStringValue()},
+        ...deserializeIntoApiUserConnection_urlMember1(apiUserConnection_url as ApiUserConnection_urlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserConnection_urlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserConnection_urlMember1(apiUserConnection_urlMember1: Partial<ApiUserConnection_urlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserConnection_username The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserConnection_username(apiUserConnection_username: Partial<Parsable | ApiUserConnection_usernameMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserConnection_username = n.getStringValue()},
+        ...deserializeIntoApiUserConnection_usernameMember1(apiUserConnection_username as ApiUserConnection_usernameMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserConnection_usernameMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserConnection_usernameMember1(apiUserConnection_usernameMember1: Partial<ApiUserConnection_usernameMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserOrganizationMembership The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserOrganizationMembership(apiUserOrganizationMembership: Partial<ApiUserOrganizationMembership> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { apiUserOrganizationMembership.avatarUrl = n.getObjectValue<ApiUserOrganizationMembership_avatarUrlMember1>(createApiUserOrganizationMembership_avatarUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiUserOrganizationMembership.id = n.getStringValue(); },
+        "joinedAt": n => { apiUserOrganizationMembership.joinedAt = n.getObjectValue<ApiUserOrganizationMembership_joinedAtMember1>(createApiUserOrganizationMembership_joinedAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "name": n => { apiUserOrganizationMembership.name = n.getStringValue(); },
+        "role": n => { apiUserOrganizationMembership.role = n.getStringValue(); },
+        "slug": n => { apiUserOrganizationMembership.slug = n.getObjectValue<ApiUserOrganizationMembership_slugMember1>(createApiUserOrganizationMembership_slugMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "tag": n => { apiUserOrganizationMembership.tag = n.getObjectValue<ApiUserOrganizationMembership_tagMember1>(createApiUserOrganizationMembership_tagMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "visibility": n => { apiUserOrganizationMembership.visibility = n.getEnumValue<ProfileVisibility>(ProfileVisibilityObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserOrganizationMembership_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserOrganizationMembership_avatarUrl(apiUserOrganizationMembership_avatarUrl: Partial<Parsable | ApiUserOrganizationMembership_avatarUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserOrganizationMembership_avatarUrl = n.getStringValue()},
+        ...deserializeIntoApiUserOrganizationMembership_avatarUrlMember1(apiUserOrganizationMembership_avatarUrl as ApiUserOrganizationMembership_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserOrganizationMembership_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserOrganizationMembership_avatarUrlMember1(apiUserOrganizationMembership_avatarUrlMember1: Partial<ApiUserOrganizationMembership_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserOrganizationMembership_joinedAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserOrganizationMembership_joinedAt(apiUserOrganizationMembership_joinedAt: Partial<Parsable | ApiUserOrganizationMembership_joinedAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserOrganizationMembership_joinedAt = n.getStringValue()},
+        ...deserializeIntoApiUserOrganizationMembership_joinedAtMember1(apiUserOrganizationMembership_joinedAt as ApiUserOrganizationMembership_joinedAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserOrganizationMembership_joinedAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserOrganizationMembership_joinedAtMember1(apiUserOrganizationMembership_joinedAtMember1: Partial<ApiUserOrganizationMembership_joinedAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserOrganizationMembership_slug The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserOrganizationMembership_slug(apiUserOrganizationMembership_slug: Partial<Parsable | ApiUserOrganizationMembership_slugMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserOrganizationMembership_slug = n.getStringValue()},
+        ...deserializeIntoApiUserOrganizationMembership_slugMember1(apiUserOrganizationMembership_slug as ApiUserOrganizationMembership_slugMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserOrganizationMembership_slugMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserOrganizationMembership_slugMember1(apiUserOrganizationMembership_slugMember1: Partial<ApiUserOrganizationMembership_slugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserOrganizationMembership_tag The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserOrganizationMembership_tag(apiUserOrganizationMembership_tag: Partial<Parsable | ApiUserOrganizationMembership_tagMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserOrganizationMembership_tag = n.getStringValue()},
+        ...deserializeIntoApiUserOrganizationMembership_tagMember1(apiUserOrganizationMembership_tag as ApiUserOrganizationMembership_tagMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserOrganizationMembership_tagMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserOrganizationMembership_tagMember1(apiUserOrganizationMembership_tagMember1: Partial<ApiUserOrganizationMembership_tagMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile(apiUserProfile: Partial<ApiUserProfile> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { apiUserProfile.avatarUrl = n.getObjectValue<ApiUserProfile_avatarUrlMember1>(createApiUserProfile_avatarUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "bannerUrl": n => { apiUserProfile.bannerUrl = n.getObjectValue<ApiUserProfile_bannerUrlMember1>(createApiUserProfile_bannerUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "bio": n => { apiUserProfile.bio = n.getObjectValue<ApiUserProfile_bioMember1>(createApiUserProfile_bioMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "createdAt": n => { apiUserProfile.createdAt = n.getObjectValue<ApiUserProfile_createdAtMember1>(createApiUserProfile_createdAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiUserProfile.id = n.getStringValue(); },
+        "isVerified": n => { apiUserProfile.isVerified = n.getBooleanValue(); },
+        "name": n => { apiUserProfile.name = n.getObjectValue<ApiUserProfile_nameMember1>(createApiUserProfile_nameMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "username": n => { apiUserProfile.username = n.getObjectValue<ApiUserProfile_usernameMember1>(createApiUserProfile_usernameMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "visibility": n => { apiUserProfile.visibility = n.getEnumValue<ProfileVisibility>(ProfileVisibilityObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_avatarUrl(apiUserProfile_avatarUrl: Partial<Parsable | ApiUserProfile_avatarUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserProfile_avatarUrl = n.getStringValue()},
+        ...deserializeIntoApiUserProfile_avatarUrlMember1(apiUserProfile_avatarUrl as ApiUserProfile_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_avatarUrlMember1(apiUserProfile_avatarUrlMember1: Partial<ApiUserProfile_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_bannerUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_bannerUrl(apiUserProfile_bannerUrl: Partial<Parsable | ApiUserProfile_bannerUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserProfile_bannerUrl = n.getStringValue()},
+        ...deserializeIntoApiUserProfile_bannerUrlMember1(apiUserProfile_bannerUrl as ApiUserProfile_bannerUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_bannerUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_bannerUrlMember1(apiUserProfile_bannerUrlMember1: Partial<ApiUserProfile_bannerUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_bio The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_bio(apiUserProfile_bio: Partial<Parsable | ApiUserProfile_bioMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserProfile_bio = n.getStringValue()},
+        ...deserializeIntoApiUserProfile_bioMember1(apiUserProfile_bio as ApiUserProfile_bioMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_bioMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_bioMember1(apiUserProfile_bioMember1: Partial<ApiUserProfile_bioMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_createdAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_createdAt(apiUserProfile_createdAt: Partial<Parsable | ApiUserProfile_createdAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserProfile_createdAt = n.getStringValue()},
+        ...deserializeIntoApiUserProfile_createdAtMember1(apiUserProfile_createdAt as ApiUserProfile_createdAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_createdAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_createdAtMember1(apiUserProfile_createdAtMember1: Partial<ApiUserProfile_createdAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_name The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_name(apiUserProfile_name: Partial<Parsable | ApiUserProfile_nameMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserProfile_name = n.getStringValue()},
+        ...deserializeIntoApiUserProfile_nameMember1(apiUserProfile_name as ApiUserProfile_nameMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_nameMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_nameMember1(apiUserProfile_nameMember1: Partial<ApiUserProfile_nameMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_username The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_username(apiUserProfile_username: Partial<Parsable | ApiUserProfile_usernameMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserProfile_username = n.getStringValue()},
+        ...deserializeIntoApiUserProfile_usernameMember1(apiUserProfile_username as ApiUserProfile_usernameMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserProfile_usernameMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserProfile_usernameMember1(apiUserProfile_usernameMember1: Partial<ApiUserProfile_usernameMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserStats The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserStats(apiUserStats: Partial<ApiUserStats> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "bestStreak": n => { apiUserStats.bestStreak = n.getNumberValue(); },
+        "currentStreak": n => { apiUserStats.currentStreak = n.getNumberValue(); },
+        "draws": n => { apiUserStats.draws = n.getNumberValue(); },
+        "experience": n => { apiUserStats.experience = n.getNumberValue(); },
+        "losses": n => { apiUserStats.losses = n.getNumberValue(); },
+        "matchesPlayed": n => { apiUserStats.matchesPlayed = n.getNumberValue(); },
+        "userId": n => { apiUserStats.userId = n.getStringValue(); },
+        "winRate": n => { apiUserStats.winRate = n.getNumberValue(); },
+        "wins": n => { apiUserStats.wins = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTeamMembership The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTeamMembership(apiUserTeamMembership: Partial<ApiUserTeamMembership> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { apiUserTeamMembership.avatarUrl = n.getObjectValue<ApiUserTeamMembership_avatarUrlMember1>(createApiUserTeamMembership_avatarUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiUserTeamMembership.id = n.getStringValue(); },
+        "joinedAt": n => { apiUserTeamMembership.joinedAt = n.getObjectValue<ApiUserTeamMembership_joinedAtMember1>(createApiUserTeamMembership_joinedAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "name": n => { apiUserTeamMembership.name = n.getStringValue(); },
+        "organization": n => { apiUserTeamMembership.organization = n.getObjectValue<ApiOrganizationSummary>(createApiOrganizationSummaryFromDiscriminatorValue); },
+        "role": n => { apiUserTeamMembership.role = n.getStringValue(); },
+        "slug": n => { apiUserTeamMembership.slug = n.getObjectValue<ApiUserTeamMembership_slugMember1>(createApiUserTeamMembership_slugMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "tag": n => { apiUserTeamMembership.tag = n.getObjectValue<ApiUserTeamMembership_tagMember1>(createApiUserTeamMembership_tagMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "visibility": n => { apiUserTeamMembership.visibility = n.getEnumValue<ProfileVisibility>(ProfileVisibilityObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTeamMembership_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTeamMembership_avatarUrl(apiUserTeamMembership_avatarUrl: Partial<Parsable | ApiUserTeamMembership_avatarUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserTeamMembership_avatarUrl = n.getStringValue()},
+        ...deserializeIntoApiUserTeamMembership_avatarUrlMember1(apiUserTeamMembership_avatarUrl as ApiUserTeamMembership_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTeamMembership_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTeamMembership_avatarUrlMember1(apiUserTeamMembership_avatarUrlMember1: Partial<ApiUserTeamMembership_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTeamMembership_joinedAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTeamMembership_joinedAt(apiUserTeamMembership_joinedAt: Partial<Parsable | ApiUserTeamMembership_joinedAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserTeamMembership_joinedAt = n.getStringValue()},
+        ...deserializeIntoApiUserTeamMembership_joinedAtMember1(apiUserTeamMembership_joinedAt as ApiUserTeamMembership_joinedAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTeamMembership_joinedAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTeamMembership_joinedAtMember1(apiUserTeamMembership_joinedAtMember1: Partial<ApiUserTeamMembership_joinedAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTeamMembership_slug The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTeamMembership_slug(apiUserTeamMembership_slug: Partial<Parsable | ApiUserTeamMembership_slugMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserTeamMembership_slug = n.getStringValue()},
+        ...deserializeIntoApiUserTeamMembership_slugMember1(apiUserTeamMembership_slug as ApiUserTeamMembership_slugMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTeamMembership_slugMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTeamMembership_slugMember1(apiUserTeamMembership_slugMember1: Partial<ApiUserTeamMembership_slugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTeamMembership_tag The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTeamMembership_tag(apiUserTeamMembership_tag: Partial<Parsable | ApiUserTeamMembership_tagMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserTeamMembership_tag = n.getStringValue()},
+        ...deserializeIntoApiUserTeamMembership_tagMember1(apiUserTeamMembership_tag as ApiUserTeamMembership_tagMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTeamMembership_tagMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTeamMembership_tagMember1(apiUserTeamMembership_tagMember1: Partial<ApiUserTeamMembership_tagMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTrophy The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTrophy(apiUserTrophy: Partial<ApiUserTrophy> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "awardedAt": n => { apiUserTrophy.awardedAt = n.getObjectValue<ApiUserTrophy_awardedAtMember1>(createApiUserTrophy_awardedAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "description": n => { apiUserTrophy.description = n.getObjectValue<ApiUserTrophy_descriptionMember1>(createApiUserTrophy_descriptionMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "iconUrl": n => { apiUserTrophy.iconUrl = n.getObjectValue<ApiUserTrophy_iconUrlMember1>(createApiUserTrophy_iconUrlMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { apiUserTrophy.id = n.getStringValue(); },
+        "rarity": n => { apiUserTrophy.rarity = n.getObjectValue<ApiUserTrophy_rarityMember1>(createApiUserTrophy_rarityMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "title": n => { apiUserTrophy.title = n.getObjectValue<ApiUserTrophy_titleMember1>(createApiUserTrophy_titleMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "trophyId": n => { apiUserTrophy.trophyId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTrophy_awardedAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTrophy_awardedAt(apiUserTrophy_awardedAt: Partial<Parsable | ApiUserTrophy_awardedAtMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserTrophy_awardedAt = n.getStringValue()},
+        ...deserializeIntoApiUserTrophy_awardedAtMember1(apiUserTrophy_awardedAt as ApiUserTrophy_awardedAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTrophy_awardedAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTrophy_awardedAtMember1(apiUserTrophy_awardedAtMember1: Partial<ApiUserTrophy_awardedAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTrophy_description The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTrophy_description(apiUserTrophy_description: Partial<Parsable | ApiUserTrophy_descriptionMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserTrophy_description = n.getStringValue()},
+        ...deserializeIntoApiUserTrophy_descriptionMember1(apiUserTrophy_description as ApiUserTrophy_descriptionMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTrophy_descriptionMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTrophy_descriptionMember1(apiUserTrophy_descriptionMember1: Partial<ApiUserTrophy_descriptionMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTrophy_iconUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTrophy_iconUrl(apiUserTrophy_iconUrl: Partial<Parsable | ApiUserTrophy_iconUrlMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserTrophy_iconUrl = n.getStringValue()},
+        ...deserializeIntoApiUserTrophy_iconUrlMember1(apiUserTrophy_iconUrl as ApiUserTrophy_iconUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTrophy_iconUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTrophy_iconUrlMember1(apiUserTrophy_iconUrlMember1: Partial<ApiUserTrophy_iconUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTrophy_rarity The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTrophy_rarity(apiUserTrophy_rarity: Partial<Parsable | ApiUserTrophy_rarityMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserTrophy_rarity = n.getStringValue()},
+        ...deserializeIntoApiUserTrophy_rarityMember1(apiUserTrophy_rarity as ApiUserTrophy_rarityMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTrophy_rarityMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTrophy_rarityMember1(apiUserTrophy_rarityMember1: Partial<ApiUserTrophy_rarityMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTrophy_title The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTrophy_title(apiUserTrophy_title: Partial<Parsable | ApiUserTrophy_titleMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { apiUserTrophy_title = n.getStringValue()},
+        ...deserializeIntoApiUserTrophy_titleMember1(apiUserTrophy_title as ApiUserTrophy_titleMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApiUserTrophy_titleMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApiUserTrophy_titleMember1(apiUserTrophy_titleMember1: Partial<ApiUserTrophy_titleMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
  * The deserialization information for the current model
  * @param BansRequestBody The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
@@ -1195,6 +6717,19 @@ export function deserializeIntoBansRequestBody(bansRequestBody: Partial<BansRequ
 export function deserializeIntoConfirmScoreBody(confirmScoreBody: Partial<ConfirmScoreBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "mapIndex": n => { confirmScoreBody.mapIndex = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param CreateWebhookBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCreateWebhookBody(createWebhookBody: Partial<CreateWebhookBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "events": n => { createWebhookBody.events = n.getCollectionOfPrimitiveValues<string>(); },
+        "label": n => { createWebhookBody.label = n.getStringValue(); },
+        "url": n => { createWebhookBody.url = n.getStringValue(); },
     }
 }
 /**
@@ -1237,6 +6772,44 @@ export function deserializeIntoGame(game: Partial<Game> | undefined = {}) : Reco
 }
 /**
  * The deserialization information for the current model
+ * @param GameBatchMatchScoreResult The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameBatchMatchScoreResult(gameBatchMatchScoreResult: Partial<GameBatchMatchScoreResult> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "error": n => { gameBatchMatchScoreResult.errorEscaped = n.getStringValue(); },
+        "mapIndex": n => { gameBatchMatchScoreResult.mapIndex = n.getNumberValue(); },
+        "matchId": n => { gameBatchMatchScoreResult.matchId = n.getStringValue(); },
+        "status": n => { gameBatchMatchScoreResult.status = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param GameBatchMatchScoresBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameBatchMatchScoresBody(gameBatchMatchScoresBody: Partial<GameBatchMatchScoresBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "items": n => { gameBatchMatchScoresBody.items = n.getCollectionOfObjectValues<GameMultiMatchScoreItem>(createGameMultiMatchScoreItemFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param GameBatchMatchScoresResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameBatchMatchScoresResponse(gameBatchMatchScoresResponse: Partial<GameBatchMatchScoresResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { gameBatchMatchScoresResponse.count = n.getNumberValue(); },
+        "submitted": n => { gameBatchMatchScoresResponse.submitted = n.getCollectionOfObjectValues<GameBatchMatchScoreResult>(createGameBatchMatchScoreResultFromDiscriminatorValue); },
+        "success": n => { gameBatchMatchScoresResponse.success = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param GameBatchScoreResult The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -1274,6 +6847,42 @@ export function deserializeIntoGameBatchScoresResponse(gameBatchScoresResponse: 
 }
 /**
  * The deserialization information for the current model
+ * @param GameCreateMatchBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameCreateMatchBody(gameCreateMatchBody: Partial<GameCreateMatchBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "acceptedTeamId": n => { gameCreateMatchBody.acceptedTeamId = n.getStringValue(); },
+        "bestOf": n => { gameCreateMatchBody.bestOf = n.getNumberValue(); },
+        "creatorTeamId": n => { gameCreateMatchBody.creatorTeamId = n.getStringValue(); },
+        "gameModeId": n => { gameCreateMatchBody.gameModeId = n.getStringValue(); },
+        "inputDevice": n => { gameCreateMatchBody.inputDevice = n.getEnumValue<GameCreateMatchBody_inputDevice>(GameCreateMatchBody_inputDeviceObject); },
+        "mapPreferenceMode": n => { gameCreateMatchBody.mapPreferenceMode = n.getEnumValue<GameCreateMatchBody_mapPreferenceMode>(GameCreateMatchBody_mapPreferenceModeObject); },
+        "mapSelectionType": n => { gameCreateMatchBody.mapSelectionType = n.getEnumValue<GameCreateMatchBody_mapSelectionType>(GameCreateMatchBody_mapSelectionTypeObject); },
+        "platform": n => { gameCreateMatchBody.platform = n.getEnumValue<GameCreateMatchBody_platform>(GameCreateMatchBody_platformObject); },
+        "region": n => { gameCreateMatchBody.region = n.getEnumValue<GameCreateMatchBody_region>(GameCreateMatchBody_regionObject); },
+        "scheduledAt": n => { gameCreateMatchBody.scheduledAt = n.getNumberValue(); },
+        "selectedMaps": n => { gameCreateMatchBody.selectedMaps = n.getCollectionOfPrimitiveValues<string>(); },
+        "selectedObjectives": n => { gameCreateMatchBody.selectedObjectives = n.getCollectionOfPrimitiveValues<string>(); },
+        "teamSize": n => { gameCreateMatchBody.teamSize = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param GameCreateMatchResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameCreateMatchResponse(gameCreateMatchResponse: Partial<GameCreateMatchResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "matchId": n => { gameCreateMatchResponse.matchId = n.getStringValue(); },
+        "success": n => { gameCreateMatchResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { gameCreateMatchResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param GameDetailTeam The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -1283,6 +6892,32 @@ export function deserializeIntoGameDetailTeam(gameDetailTeam: Partial<GameDetail
         "_id": n => { gameDetailTeam.id = n.getStringValue(); },
         "name": n => { gameDetailTeam.name = n.getStringValue(); },
         "tag": n => { gameDetailTeam.tag = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param GameForfeitBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameForfeitBody(gameForfeitBody: Partial<GameForfeitBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "forfeitingTeamId": n => { gameForfeitBody.forfeitingTeamId = n.getStringValue(); },
+        "reason": n => { gameForfeitBody.reason = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param GameForfeitResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameForfeitResponse(gameForfeitResponse: Partial<GameForfeitResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "forfeitedByTeamId": n => { gameForfeitResponse.forfeitedByTeamId = n.getStringValue(); },
+        "matchId": n => { gameForfeitResponse.matchId = n.getStringValue(); },
+        "success": n => { gameForfeitResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { gameForfeitResponse.timestamp = n.getStringValue(); },
     }
 }
 /**
@@ -1483,6 +7118,8 @@ export function deserializeIntoGameMatchDetail(gameMatchDetail: Partial<GameMatc
         "gameId": n => { gameMatchDetail.gameId = n.getStringValue(); },
         "gameMode": n => { gameMatchDetail.gameMode = n.getStringValue(); },
         "id": n => { gameMatchDetail.id = n.getStringValue(); },
+        "leagueId": n => { gameMatchDetail.leagueId = n.getObjectValue<GameMatchDetail_leagueIdMember1>(createGameMatchDetail_leagueIdMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "leagueSeasonId": n => { gameMatchDetail.leagueSeasonId = n.getObjectValue<GameMatchDetail_leagueSeasonIdMember1>(createGameMatchDetail_leagueSeasonIdMember1FromDiscriminatorValue) ?? n.getStringValue(); },
         "loserTeamId": n => { gameMatchDetail.loserTeamId = n.getObjectValue<GameMatchDetail_loserTeamIdMember1>(createGameMatchDetail_loserTeamIdMember1FromDiscriminatorValue) ?? n.getStringValue(); },
         "scheduledAt": n => { gameMatchDetail.scheduledAt = n.getObjectValue<GameMatchDetail_scheduledAtMember1>(createGameMatchDetail_scheduledAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
         "startedAt": n => { gameMatchDetail.startedAt = n.getObjectValue<GameMatchDetail_startedAtMember1>(createGameMatchDetail_startedAtMember1FromDiscriminatorValue) ?? n.getStringValue(); },
@@ -1575,6 +7212,50 @@ export function deserializeIntoGameMatchDetail_creatorTeamScore(gameMatchDetail_
  */
 // @ts-ignore
 export function deserializeIntoGameMatchDetail_creatorTeamScoreMember1(gameMatchDetail_creatorTeamScoreMember1: Partial<GameMatchDetail_creatorTeamScoreMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param GameMatchDetail_leagueId The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameMatchDetail_leagueId(gameMatchDetail_leagueId: Partial<Parsable | GameMatchDetail_leagueIdMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { gameMatchDetail_leagueId = n.getStringValue()},
+        ...deserializeIntoGameMatchDetail_leagueIdMember1(gameMatchDetail_leagueId as GameMatchDetail_leagueIdMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param GameMatchDetail_leagueIdMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameMatchDetail_leagueIdMember1(gameMatchDetail_leagueIdMember1: Partial<GameMatchDetail_leagueIdMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param GameMatchDetail_leagueSeasonId The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameMatchDetail_leagueSeasonId(gameMatchDetail_leagueSeasonId: Partial<Parsable | GameMatchDetail_leagueSeasonIdMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { gameMatchDetail_leagueSeasonId = n.getStringValue()},
+        ...deserializeIntoGameMatchDetail_leagueSeasonIdMember1(gameMatchDetail_leagueSeasonId as GameMatchDetail_leagueSeasonIdMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param GameMatchDetail_leagueSeasonIdMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameMatchDetail_leagueSeasonIdMember1(gameMatchDetail_leagueSeasonIdMember1: Partial<GameMatchDetail_leagueSeasonIdMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
 }
@@ -1712,6 +7393,33 @@ export function deserializeIntoGameMatchRostersResponse_acceptedTeamId(gameMatch
  */
 // @ts-ignore
 export function deserializeIntoGameMatchRostersResponse_acceptedTeamIdMember1(gameMatchRostersResponse_acceptedTeamIdMember1: Partial<GameMatchRostersResponse_acceptedTeamIdMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param GameMultiMatchScoreItem The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameMultiMatchScoreItem(gameMultiMatchScoreItem: Partial<GameMultiMatchScoreItem> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "creatorTeamScore": n => { gameMultiMatchScoreItem.creatorTeamScore = n.getNumberValue(); },
+        "mapId": n => { gameMultiMatchScoreItem.mapId = n.getStringValue(); },
+        "mapIndex": n => { gameMultiMatchScoreItem.mapIndex = n.getNumberValue(); },
+        "matchId": n => { gameMultiMatchScoreItem.matchId = n.getStringValue(); },
+        "opponentTeamScore": n => { gameMultiMatchScoreItem.opponentTeamScore = n.getNumberValue(); },
+        "playerStats": n => { gameMultiMatchScoreItem.playerStats = n.getObjectValue<GameMultiMatchScoreItem_playerStats>(createGameMultiMatchScoreItem_playerStatsFromDiscriminatorValue); },
+        "screenshotUrls": n => { gameMultiMatchScoreItem.screenshotUrls = n.getCollectionOfPrimitiveValues<string>(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param GameMultiMatchScoreItem_playerStats The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameMultiMatchScoreItem_playerStats(gameMultiMatchScoreItem_playerStats: Partial<GameMultiMatchScoreItem_playerStats> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
 }
@@ -1962,6 +7670,137 @@ export function deserializeIntoGameStatusUpdateResponse(gameStatusUpdateResponse
 }
 /**
  * The deserialization information for the current model
+ * @param LeaderboardRankResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeaderboardRankResponse(leaderboardRankResponse: Partial<LeaderboardRankResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "gameSlug": n => { leaderboardRankResponse.gameSlug = n.getObjectValue<LeaderboardRankResponse_gameSlugMember1>(createLeaderboardRankResponse_gameSlugMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { leaderboardRankResponse.id = n.getStringValue(); },
+        "rank": n => { leaderboardRankResponse.rank = n.getNumberValue() ?? n.getObjectValue<LeaderboardRankResponse_rankMember1>(createLeaderboardRankResponse_rankMember1FromDiscriminatorValue); },
+        "sortBy": n => { leaderboardRankResponse.sortBy = n.getEnumValue<LeaderboardSortBy>(LeaderboardSortByObject); },
+        "timestamp": n => { leaderboardRankResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeaderboardRankResponse_gameSlug The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeaderboardRankResponse_gameSlug(leaderboardRankResponse_gameSlug: Partial<Parsable | LeaderboardRankResponse_gameSlugMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { leaderboardRankResponse_gameSlug = n.getStringValue()},
+        ...deserializeIntoLeaderboardRankResponse_gameSlugMember1(leaderboardRankResponse_gameSlug as LeaderboardRankResponse_gameSlugMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeaderboardRankResponse_gameSlugMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeaderboardRankResponse_gameSlugMember1(leaderboardRankResponse_gameSlugMember1: Partial<LeaderboardRankResponse_gameSlugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeaderboardRankResponse_rank The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeaderboardRankResponse_rank(leaderboardRankResponse_rank: Partial<Parsable | number | LeaderboardRankResponse_rankMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { leaderboardRankResponse_rank = n.getNumberValue()},
+        ...deserializeIntoLeaderboardRankResponse_rankMember1(leaderboardRankResponse_rank as LeaderboardRankResponse_rankMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeaderboardRankResponse_rankMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeaderboardRankResponse_rankMember1(leaderboardRankResponse_rankMember1: Partial<LeaderboardRankResponse_rankMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeaderboardStats The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeaderboardStats(leaderboardStats: Partial<LeaderboardStats> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "experience": n => { leaderboardStats.experience = n.getNumberValue(); },
+        "losses": n => { leaderboardStats.losses = n.getNumberValue(); },
+        "matchesPlayed": n => { leaderboardStats.matchesPlayed = n.getNumberValue(); },
+        "winRate": n => { leaderboardStats.winRate = n.getNumberValue(); },
+        "wins": n => { leaderboardStats.wins = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueApplyEligibility The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueApplyEligibility(leagueApplyEligibility: Partial<LeagueApplyEligibility> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "eligibility": n => { leagueApplyEligibility.eligibility = n.getObjectValue<LeagueApplyEligibility_eligibility>(createLeagueApplyEligibility_eligibilityFromDiscriminatorValue); },
+        "timestamp": n => { leagueApplyEligibility.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueApplyEligibility_eligibility The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueApplyEligibility_eligibility(leagueApplyEligibility_eligibility: Partial<LeagueApplyEligibility_eligibility> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "eligibleTeams": n => { leagueApplyEligibility_eligibility.eligibleTeams = n.getCollectionOfObjectValues<LeagueApplyEligibility_eligibility_eligibleTeams>(createLeagueApplyEligibility_eligibility_eligibleTeamsFromDiscriminatorValue); },
+        "hasApprovedTeamHere": n => { leagueApplyEligibility_eligibility.hasApprovedTeamHere = n.getBooleanValue(); },
+        "isAuthed": n => { leagueApplyEligibility_eligibility.isAuthed = n.getBooleanValue(); },
+        "pendingTeams": n => { leagueApplyEligibility_eligibility.pendingTeams = n.getCollectionOfObjectValues<LeagueApplyEligibility_eligibility_pendingTeams>(createLeagueApplyEligibility_eligibility_pendingTeamsFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueApplyEligibility_eligibility_eligibleTeams The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueApplyEligibility_eligibility_eligibleTeams(leagueApplyEligibility_eligibility_eligibleTeams: Partial<LeagueApplyEligibility_eligibility_eligibleTeams> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueApplyEligibility_eligibility_pendingTeams The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueApplyEligibility_eligibility_pendingTeams(leagueApplyEligibility_eligibility_pendingTeams: Partial<LeagueApplyEligibility_eligibility_pendingTeams> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueApplyEligibilityRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueApplyEligibilityRequestBody(leagueApplyEligibilityRequestBody: Partial<LeagueApplyEligibilityRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "teamId": n => { leagueApplyEligibilityRequestBody.teamId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param LeagueBans The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -1980,6 +7819,63 @@ export function deserializeIntoLeagueBans(leagueBans: Partial<LeagueBans> | unde
  */
 // @ts-ignore
 export function deserializeIntoLeagueBans_bans(leagueBans_bans: Partial<LeagueBans_bans> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueDisplayRules The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueDisplayRules(leagueDisplayRules: Partial<LeagueDisplayRules> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { leagueDisplayRules.count = n.getNumberValue(); },
+        "displayRules": n => { leagueDisplayRules.displayRules = n.getCollectionOfObjectValues<LeagueDisplayRules_displayRules>(createLeagueDisplayRules_displayRulesFromDiscriminatorValue); },
+        "timestamp": n => { leagueDisplayRules.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueDisplayRules_displayRules The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueDisplayRules_displayRules(leagueDisplayRules_displayRules: Partial<LeagueDisplayRules_displayRules> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueDisplayRulesRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueDisplayRulesRequestBody(leagueDisplayRulesRequestBody: Partial<LeagueDisplayRulesRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "gameId": n => { leagueDisplayRulesRequestBody.gameId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueGames The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueGames(leagueGames: Partial<LeagueGames> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { leagueGames.count = n.getNumberValue(); },
+        "games": n => { leagueGames.games = n.getCollectionOfObjectValues<LeagueGames_games>(createLeagueGames_gamesFromDiscriminatorValue); },
+        "timestamp": n => { leagueGames.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueGames_games The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueGames_games(leagueGames_games: Partial<LeagueGames_games> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
 }
@@ -2156,6 +8052,84 @@ export function deserializeIntoLeagueRules(leagueRules: Partial<LeagueRules> | u
 }
 /**
  * The deserialization information for the current model
+ * @param LeagueSeason The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueSeason(leagueSeason: Partial<LeagueSeason> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "season": n => { leagueSeason.season = n.getObjectValue<LeagueSeason_season>(createLeagueSeason_seasonFromDiscriminatorValue); },
+        "timestamp": n => { leagueSeason.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueSeason_season The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueSeason_season(leagueSeason_season: Partial<LeagueSeason_season> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueSeasonOptions The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueSeasonOptions(leagueSeasonOptions: Partial<LeagueSeasonOptions> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "defaultSeasonId": n => { leagueSeasonOptions.defaultSeasonId = n.getObjectValue<LeagueSeasonOptions_defaultSeasonIdMember1>(createLeagueSeasonOptions_defaultSeasonIdMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "seasons": n => { leagueSeasonOptions.seasons = n.getCollectionOfObjectValues<LeagueSeasonOptions_seasons>(createLeagueSeasonOptions_seasonsFromDiscriminatorValue); },
+        "timestamp": n => { leagueSeasonOptions.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueSeasonOptions_defaultSeasonId The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueSeasonOptions_defaultSeasonId(leagueSeasonOptions_defaultSeasonId: Partial<Parsable | LeagueSeasonOptions_defaultSeasonIdMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { leagueSeasonOptions_defaultSeasonId = n.getStringValue()},
+        ...deserializeIntoLeagueSeasonOptions_defaultSeasonIdMember1(leagueSeasonOptions_defaultSeasonId as LeagueSeasonOptions_defaultSeasonIdMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueSeasonOptions_defaultSeasonIdMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueSeasonOptions_defaultSeasonIdMember1(leagueSeasonOptions_defaultSeasonIdMember1: Partial<LeagueSeasonOptions_defaultSeasonIdMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueSeasonOptions_seasons The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueSeasonOptions_seasons(leagueSeasonOptions_seasons: Partial<LeagueSeasonOptions_seasons> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueSeasonOptionsRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueSeasonOptionsRequestBody(leagueSeasonOptionsRequestBody: Partial<LeagueSeasonOptionsRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "gameId": n => { leagueSeasonOptionsRequestBody.gameId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param LeagueSeasons The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -2280,6 +8254,41 @@ export function deserializeIntoLeagueSummary_games(leagueSummary_games: Partial<
 }
 /**
  * The deserialization information for the current model
+ * @param LeagueTemplates The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueTemplates(leagueTemplates: Partial<LeagueTemplates> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { leagueTemplates.count = n.getNumberValue(); },
+        "templates": n => { leagueTemplates.templates = n.getCollectionOfObjectValues<LeagueTemplates_templates>(createLeagueTemplates_templatesFromDiscriminatorValue); },
+        "timestamp": n => { leagueTemplates.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueTemplates_templates The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueTemplates_templates(leagueTemplates_templates: Partial<LeagueTemplates_templates> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeagueTemplatesRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeagueTemplatesRequestBody(leagueTemplatesRequestBody: Partial<LeagueTemplatesRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "gameId": n => { leagueTemplatesRequestBody.gameId = n.getStringValue(); },
+        "isOfficial": n => { leagueTemplatesRequestBody.isOfficial = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param ListGameMatchesBody The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -2287,7 +8296,6 @@ export function deserializeIntoLeagueSummary_games(leagueSummary_games: Partial<
 export function deserializeIntoListGameMatchesBody(listGameMatchesBody: Partial<ListGameMatchesBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "cursor": n => { listGameMatchesBody.cursor = n.getStringValue(); },
-        "gameId": n => { listGameMatchesBody.gameId = n.getStringValue(); },
         "limit": n => { listGameMatchesBody.limit = n.getNumberValue(); },
         "status": n => { listGameMatchesBody.status = n.getStringValue(); },
     }
@@ -2360,6 +8368,85 @@ export function deserializeIntoMapScores_seriesScore(mapScores_seriesScore: Part
 }
 /**
  * The deserialization information for the current model
+ * @param MatchDiscoverBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMatchDiscoverBody(matchDiscoverBody: Partial<MatchDiscoverBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "cursor": n => { matchDiscoverBody.cursor = n.getObjectValue<MatchDiscoverBody_cursorMember1>(createMatchDiscoverBody_cursorMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "gameId": n => { matchDiscoverBody.gameId = n.getStringValue(); },
+        "gameSlug": n => { matchDiscoverBody.gameSlug = n.getStringValue(); },
+        "leagueId": n => { matchDiscoverBody.leagueId = n.getStringValue(); },
+        "leagueSeasonId": n => { matchDiscoverBody.leagueSeasonId = n.getStringValue(); },
+        "limit": n => { matchDiscoverBody.limit = n.getNumberValue() ?? 50; },
+        "matchType": n => { matchDiscoverBody.matchType = n.getEnumValue<MatchDiscoverBody_matchType>(MatchDiscoverBody_matchTypeObject); },
+        "platform": n => { matchDiscoverBody.platform = n.getEnumValue<MatchDiscoverBody_platform>(MatchDiscoverBody_platformObject); },
+        "region": n => { matchDiscoverBody.region = n.getEnumValue<MatchDiscoverBody_region>(MatchDiscoverBody_regionObject); },
+        "scheduledAfter": n => { matchDiscoverBody.scheduledAfter = n.getStringValue(); },
+        "scheduledBefore": n => { matchDiscoverBody.scheduledBefore = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MatchDiscoverBody_cursor The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMatchDiscoverBody_cursor(matchDiscoverBody_cursor: Partial<Parsable | MatchDiscoverBody_cursorMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { matchDiscoverBody_cursor = n.getStringValue()},
+        ...deserializeIntoMatchDiscoverBody_cursorMember1(matchDiscoverBody_cursor as MatchDiscoverBody_cursorMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MatchDiscoverBody_cursorMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMatchDiscoverBody_cursorMember1(matchDiscoverBody_cursorMember1: Partial<MatchDiscoverBody_cursorMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MatchDiscoverPage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMatchDiscoverPage(matchDiscoverPage: Partial<MatchDiscoverPage> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "data": n => { matchDiscoverPage.data = n.getCollectionOfObjectValues<ApiMatchDetail>(createApiMatchDetailFromDiscriminatorValue); },
+        "hasMore": n => { matchDiscoverPage.hasMore = n.getBooleanValue(); },
+        "nextCursor": n => { matchDiscoverPage.nextCursor = n.getObjectValue<MatchDiscoverPage_nextCursorMember1>(createMatchDiscoverPage_nextCursorMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "timestamp": n => { matchDiscoverPage.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MatchDiscoverPage_nextCursor The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMatchDiscoverPage_nextCursor(matchDiscoverPage_nextCursor: Partial<Parsable | MatchDiscoverPage_nextCursorMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { matchDiscoverPage_nextCursor = n.getStringValue()},
+        ...deserializeIntoMatchDiscoverPage_nextCursorMember1(matchDiscoverPage_nextCursor as MatchDiscoverPage_nextCursorMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MatchDiscoverPage_nextCursorMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMatchDiscoverPage_nextCursorMember1(matchDiscoverPage_nextCursorMember1: Partial<MatchDiscoverPage_nextCursorMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param MatchesRequestBody The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -2402,6 +8489,107 @@ export function deserializeIntoMatchesRequestBody_cursorMember1(matchesRequestBo
 }
 /**
  * The deserialization information for the current model
+ * @param OngoingMatchesResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoOngoingMatchesResponse(ongoingMatchesResponse: Partial<OngoingMatchesResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "matches": n => { ongoingMatchesResponse.matches = n.getCollectionOfObjectValues<ApiMatchDetail>(createApiMatchDetailFromDiscriminatorValue); },
+        "timestamp": n => { ongoingMatchesResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param OrganizationLeaderboardEntry The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoOrganizationLeaderboardEntry(organizationLeaderboardEntry: Partial<OrganizationLeaderboardEntry> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "gameSlug": n => { organizationLeaderboardEntry.gameSlug = n.getObjectValue<OrganizationLeaderboardEntry_gameSlugMember1>(createOrganizationLeaderboardEntry_gameSlugMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "id": n => { organizationLeaderboardEntry.id = n.getStringValue(); },
+        "organization": n => { organizationLeaderboardEntry.organization = n.getObjectValue<ApiOrganizationSummary>(createApiOrganizationSummaryFromDiscriminatorValue); },
+        "rank": n => { organizationLeaderboardEntry.rank = n.getNumberValue(); },
+        "stats": n => { organizationLeaderboardEntry.stats = n.getObjectValue<OrganizationLeaderboardEntry_stats>(createOrganizationLeaderboardEntry_statsFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param OrganizationLeaderboardEntry_gameSlug The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoOrganizationLeaderboardEntry_gameSlug(organizationLeaderboardEntry_gameSlug: Partial<Parsable | OrganizationLeaderboardEntry_gameSlugMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { organizationLeaderboardEntry_gameSlug = n.getStringValue()},
+        ...deserializeIntoOrganizationLeaderboardEntry_gameSlugMember1(organizationLeaderboardEntry_gameSlug as OrganizationLeaderboardEntry_gameSlugMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param OrganizationLeaderboardEntry_gameSlugMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoOrganizationLeaderboardEntry_gameSlugMember1(organizationLeaderboardEntry_gameSlugMember1: Partial<OrganizationLeaderboardEntry_gameSlugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param OrganizationLeaderboardEntry_stats The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoOrganizationLeaderboardEntry_stats(organizationLeaderboardEntry_stats: Partial<OrganizationLeaderboardEntry_stats> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "experience": n => { organizationLeaderboardEntry_stats.experience = n.getNumberValue(); },
+        "losses": n => { organizationLeaderboardEntry_stats.losses = n.getNumberValue(); },
+        "matchesPlayed": n => { organizationLeaderboardEntry_stats.matchesPlayed = n.getNumberValue(); },
+        "teamCount": n => { organizationLeaderboardEntry_stats.teamCount = n.getNumberValue(); },
+        "winRate": n => { organizationLeaderboardEntry_stats.winRate = n.getNumberValue(); },
+        "wins": n => { organizationLeaderboardEntry_stats.wins = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param OrganizationLeaderboardResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoOrganizationLeaderboardResponse(organizationLeaderboardResponse: Partial<OrganizationLeaderboardResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "gameSlug": n => { organizationLeaderboardResponse.gameSlug = n.getObjectValue<OrganizationLeaderboardResponse_gameSlugMember1>(createOrganizationLeaderboardResponse_gameSlugMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "organizations": n => { organizationLeaderboardResponse.organizations = n.getCollectionOfObjectValues<OrganizationLeaderboardEntry>(createOrganizationLeaderboardEntryFromDiscriminatorValue); },
+        "sortBy": n => { organizationLeaderboardResponse.sortBy = n.getEnumValue<LeaderboardSortBy>(LeaderboardSortByObject); },
+        "timestamp": n => { organizationLeaderboardResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param OrganizationLeaderboardResponse_gameSlug The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoOrganizationLeaderboardResponse_gameSlug(organizationLeaderboardResponse_gameSlug: Partial<Parsable | OrganizationLeaderboardResponse_gameSlugMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { organizationLeaderboardResponse_gameSlug = n.getStringValue()},
+        ...deserializeIntoOrganizationLeaderboardResponse_gameSlugMember1(organizationLeaderboardResponse_gameSlug as OrganizationLeaderboardResponse_gameSlugMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param OrganizationLeaderboardResponse_gameSlugMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoOrganizationLeaderboardResponse_gameSlugMember1(organizationLeaderboardResponse_gameSlugMember1: Partial<OrganizationLeaderboardResponse_gameSlugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param PenaltiesRequestBody The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -2412,6 +8600,33 @@ export function deserializeIntoPenaltiesRequestBody(penaltiesRequestBody: Partia
         "limit": n => { penaltiesRequestBody.limit = n.getNumberValue() ?? 50; },
         "teamId": n => { penaltiesRequestBody.teamId = n.getStringValue(); },
         "type": n => { penaltiesRequestBody.type = n.getEnumValue<PenaltiesRequestBody_type>(PenaltiesRequestBody_typeObject) ?? PenaltiesRequestBody_typeObject.All; },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PlayerLeaderboardEntry The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPlayerLeaderboardEntry(playerLeaderboardEntry: Partial<PlayerLeaderboardEntry> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { playerLeaderboardEntry.id = n.getStringValue(); },
+        "rank": n => { playerLeaderboardEntry.rank = n.getNumberValue(); },
+        "stats": n => { playerLeaderboardEntry.stats = n.getObjectValue<LeaderboardStats>(createLeaderboardStatsFromDiscriminatorValue); },
+        "user": n => { playerLeaderboardEntry.user = n.getObjectValue<ApiUserProfile>(createApiUserProfileFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PlayerLeaderboardResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPlayerLeaderboardResponse(playerLeaderboardResponse: Partial<PlayerLeaderboardResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "players": n => { playerLeaderboardResponse.players = n.getCollectionOfObjectValues<PlayerLeaderboardEntry>(createPlayerLeaderboardEntryFromDiscriminatorValue); },
+        "sortBy": n => { playerLeaderboardResponse.sortBy = n.getEnumValue<LeaderboardSortBy>(LeaderboardSortByObject); },
+        "timestamp": n => { playerLeaderboardResponse.timestamp = n.getStringValue(); },
     }
 }
 /**
@@ -2557,9 +8772,105 @@ export function deserializeIntoSubmitScoreBody(submitScoreBody: Partial<SubmitSc
 // @ts-ignore
 export function deserializeIntoTeam(team: Partial<Team> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "avatarUrl": n => { team.avatarUrl = n.getStringValue() ?? n.getObjectValue<Team_avatarUrlMember1>(createTeam_avatarUrlMember1FromDiscriminatorValue); },
         "id": n => { team.id = n.getStringValue(); },
         "name": n => { team.name = n.getStringValue(); },
         "tag": n => { team.tag = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param Team_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTeam_avatarUrl(team_avatarUrl: Partial<Parsable | string | Team_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { team_avatarUrl = n.getStringValue()},
+        ...deserializeIntoTeam_avatarUrlMember1(team_avatarUrl as Team_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param Team_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTeam_avatarUrlMember1(team_avatarUrlMember1: Partial<Team_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TeamLeaderboardEntry The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTeamLeaderboardEntry(teamLeaderboardEntry: Partial<TeamLeaderboardEntry> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "gameSlug": n => { teamLeaderboardEntry.gameSlug = n.getStringValue() ?? n.getObjectValue<TeamLeaderboardEntry_gameSlugMember1>(createTeamLeaderboardEntry_gameSlugMember1FromDiscriminatorValue); },
+        "id": n => { teamLeaderboardEntry.id = n.getStringValue(); },
+        "rank": n => { teamLeaderboardEntry.rank = n.getNumberValue(); },
+        "stats": n => { teamLeaderboardEntry.stats = n.getObjectValue<LeaderboardStats>(createLeaderboardStatsFromDiscriminatorValue); },
+        "team": n => { teamLeaderboardEntry.team = n.getObjectValue<ApiTeamSummary>(createApiTeamSummaryFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TeamLeaderboardEntry_gameSlug The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTeamLeaderboardEntry_gameSlug(teamLeaderboardEntry_gameSlug: Partial<Parsable | string | TeamLeaderboardEntry_gameSlugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { teamLeaderboardEntry_gameSlug = n.getStringValue()},
+        ...deserializeIntoTeamLeaderboardEntry_gameSlugMember1(teamLeaderboardEntry_gameSlug as TeamLeaderboardEntry_gameSlugMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TeamLeaderboardEntry_gameSlugMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTeamLeaderboardEntry_gameSlugMember1(teamLeaderboardEntry_gameSlugMember1: Partial<TeamLeaderboardEntry_gameSlugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TeamLeaderboardResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTeamLeaderboardResponse(teamLeaderboardResponse: Partial<TeamLeaderboardResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "gameSlug": n => { teamLeaderboardResponse.gameSlug = n.getStringValue() ?? n.getObjectValue<TeamLeaderboardResponse_gameSlugMember1>(createTeamLeaderboardResponse_gameSlugMember1FromDiscriminatorValue); },
+        "sortBy": n => { teamLeaderboardResponse.sortBy = n.getEnumValue<LeaderboardSortBy>(LeaderboardSortByObject); },
+        "teams": n => { teamLeaderboardResponse.teams = n.getCollectionOfObjectValues<TeamLeaderboardEntry>(createTeamLeaderboardEntryFromDiscriminatorValue); },
+        "timestamp": n => { teamLeaderboardResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TeamLeaderboardResponse_gameSlug The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTeamLeaderboardResponse_gameSlug(teamLeaderboardResponse_gameSlug: Partial<Parsable | string | TeamLeaderboardResponse_gameSlugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { teamLeaderboardResponse_gameSlug = n.getStringValue()},
+        ...deserializeIntoTeamLeaderboardResponse_gameSlugMember1(teamLeaderboardResponse_gameSlug as TeamLeaderboardResponse_gameSlugMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TeamLeaderboardResponse_gameSlugMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTeamLeaderboardResponse_gameSlugMember1(teamLeaderboardResponse_gameSlugMember1: Partial<TeamLeaderboardResponse_gameSlugMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
     }
 }
 /**
@@ -2664,6 +8975,20 @@ export function deserializeIntoTwitchGlobalBadges(twitchGlobalBadges: Partial<Tw
 }
 /**
  * The deserialization information for the current model
+ * @param UpdateWebhookBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUpdateWebhookBody(updateWebhookBody: Partial<UpdateWebhookBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "events": n => { updateWebhookBody.events = n.getCollectionOfPrimitiveValues<string>(); },
+        "isActive": n => { updateWebhookBody.isActive = n.getBooleanValue(); },
+        "label": n => { updateWebhookBody.label = n.getStringValue(); },
+        "url": n => { updateWebhookBody.url = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param UserMatch The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -2749,6 +9074,266 @@ export function deserializeIntoUserMatch_startedAtMember1(userMatch_startedAtMem
     }
 }
 /**
+ * The deserialization information for the current model
+ * @param WebhookDelivery The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookDelivery(webhookDelivery: Partial<WebhookDelivery> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "attemptCount": n => { webhookDelivery.attemptCount = n.getNumberValue(); },
+        "createdAt": n => { webhookDelivery.createdAt = n.getNumberValue(); },
+        "deliveredAt": n => { webhookDelivery.deliveredAt = n.getNumberValue() ?? n.getObjectValue<WebhookDelivery_deliveredAtMember1>(createWebhookDelivery_deliveredAtMember1FromDiscriminatorValue); },
+        "errorMessage": n => { webhookDelivery.errorMessage = n.getStringValue() ?? n.getObjectValue<WebhookDelivery_errorMessageMember1>(createWebhookDelivery_errorMessageMember1FromDiscriminatorValue); },
+        "event": n => { webhookDelivery.event = n.getStringValue(); },
+        "id": n => { webhookDelivery.id = n.getStringValue(); },
+        "idempotencyId": n => { webhookDelivery.idempotencyId = n.getStringValue(); },
+        "isTest": n => { webhookDelivery.isTest = n.getBooleanValue(); },
+        "nextAttemptAt": n => { webhookDelivery.nextAttemptAt = n.getNumberValue() ?? n.getObjectValue<WebhookDelivery_nextAttemptAtMember1>(createWebhookDelivery_nextAttemptAtMember1FromDiscriminatorValue); },
+        "status": n => { webhookDelivery.status = n.getEnumValue<WebhookDelivery_status>(WebhookDelivery_statusObject); },
+        "statusCode": n => { webhookDelivery.statusCode = n.getNumberValue() ?? n.getObjectValue<WebhookDelivery_statusCodeMember1>(createWebhookDelivery_statusCodeMember1FromDiscriminatorValue); },
+        "updatedAt": n => { webhookDelivery.updatedAt = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookDelivery_deliveredAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookDelivery_deliveredAt(webhookDelivery_deliveredAt: Partial<Parsable | number | WebhookDelivery_deliveredAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { webhookDelivery_deliveredAt = n.getNumberValue()},
+        ...deserializeIntoWebhookDelivery_deliveredAtMember1(webhookDelivery_deliveredAt as WebhookDelivery_deliveredAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookDelivery_deliveredAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookDelivery_deliveredAtMember1(webhookDelivery_deliveredAtMember1: Partial<WebhookDelivery_deliveredAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookDelivery_errorMessage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookDelivery_errorMessage(webhookDelivery_errorMessage: Partial<Parsable | string | WebhookDelivery_errorMessageMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { webhookDelivery_errorMessage = n.getStringValue()},
+        ...deserializeIntoWebhookDelivery_errorMessageMember1(webhookDelivery_errorMessage as WebhookDelivery_errorMessageMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookDelivery_errorMessageMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookDelivery_errorMessageMember1(webhookDelivery_errorMessageMember1: Partial<WebhookDelivery_errorMessageMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookDelivery_nextAttemptAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookDelivery_nextAttemptAt(webhookDelivery_nextAttemptAt: Partial<Parsable | number | WebhookDelivery_nextAttemptAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { webhookDelivery_nextAttemptAt = n.getNumberValue()},
+        ...deserializeIntoWebhookDelivery_nextAttemptAtMember1(webhookDelivery_nextAttemptAt as WebhookDelivery_nextAttemptAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookDelivery_nextAttemptAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookDelivery_nextAttemptAtMember1(webhookDelivery_nextAttemptAtMember1: Partial<WebhookDelivery_nextAttemptAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookDelivery_statusCode The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookDelivery_statusCode(webhookDelivery_statusCode: Partial<Parsable | number | WebhookDelivery_statusCodeMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { webhookDelivery_statusCode = n.getNumberValue()},
+        ...deserializeIntoWebhookDelivery_statusCodeMember1(webhookDelivery_statusCode as WebhookDelivery_statusCodeMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookDelivery_statusCodeMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookDelivery_statusCodeMember1(webhookDelivery_statusCodeMember1: Partial<WebhookDelivery_statusCodeMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookEndpoint The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookEndpoint(webhookEndpoint: Partial<WebhookEndpoint> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "createdAt": n => { webhookEndpoint.createdAt = n.getNumberValue(); },
+        "events": n => { webhookEndpoint.events = n.getCollectionOfPrimitiveValues<string>(); },
+        "failureCount": n => { webhookEndpoint.failureCount = n.getNumberValue(); },
+        "id": n => { webhookEndpoint.id = n.getStringValue(); },
+        "isActive": n => { webhookEndpoint.isActive = n.getBooleanValue(); },
+        "label": n => { webhookEndpoint.label = n.getStringValue() ?? n.getObjectValue<WebhookEndpoint_labelMember1>(createWebhookEndpoint_labelMember1FromDiscriminatorValue); },
+        "lastDeliveredAt": n => { webhookEndpoint.lastDeliveredAt = n.getNumberValue() ?? n.getObjectValue<WebhookEndpoint_lastDeliveredAtMember1>(createWebhookEndpoint_lastDeliveredAtMember1FromDiscriminatorValue); },
+        "lastFailedAt": n => { webhookEndpoint.lastFailedAt = n.getNumberValue() ?? n.getObjectValue<WebhookEndpoint_lastFailedAtMember1>(createWebhookEndpoint_lastFailedAtMember1FromDiscriminatorValue); },
+        "scopeId": n => { webhookEndpoint.scopeId = n.getStringValue(); },
+        "scopeType": n => { webhookEndpoint.scopeType = n.getEnumValue<WebhookEndpoint_scopeType>(WebhookEndpoint_scopeTypeObject); },
+        "secretPrefix": n => { webhookEndpoint.secretPrefix = n.getStringValue(); },
+        "updatedAt": n => { webhookEndpoint.updatedAt = n.getNumberValue(); },
+        "url": n => { webhookEndpoint.url = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookEndpoint_label The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookEndpoint_label(webhookEndpoint_label: Partial<Parsable | string | WebhookEndpoint_labelMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { webhookEndpoint_label = n.getStringValue()},
+        ...deserializeIntoWebhookEndpoint_labelMember1(webhookEndpoint_label as WebhookEndpoint_labelMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookEndpoint_labelMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookEndpoint_labelMember1(webhookEndpoint_labelMember1: Partial<WebhookEndpoint_labelMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookEndpoint_lastDeliveredAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookEndpoint_lastDeliveredAt(webhookEndpoint_lastDeliveredAt: Partial<Parsable | number | WebhookEndpoint_lastDeliveredAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { webhookEndpoint_lastDeliveredAt = n.getNumberValue()},
+        ...deserializeIntoWebhookEndpoint_lastDeliveredAtMember1(webhookEndpoint_lastDeliveredAt as WebhookEndpoint_lastDeliveredAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookEndpoint_lastDeliveredAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookEndpoint_lastDeliveredAtMember1(webhookEndpoint_lastDeliveredAtMember1: Partial<WebhookEndpoint_lastDeliveredAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookEndpoint_lastFailedAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookEndpoint_lastFailedAt(webhookEndpoint_lastFailedAt: Partial<Parsable | number | WebhookEndpoint_lastFailedAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { webhookEndpoint_lastFailedAt = n.getNumberValue()},
+        ...deserializeIntoWebhookEndpoint_lastFailedAtMember1(webhookEndpoint_lastFailedAt as WebhookEndpoint_lastFailedAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookEndpoint_lastFailedAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookEndpoint_lastFailedAtMember1(webhookEndpoint_lastFailedAtMember1: Partial<WebhookEndpoint_lastFailedAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookListResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookListResponse(webhookListResponse: Partial<WebhookListResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { webhookListResponse.count = n.getNumberValue(); },
+        "timestamp": n => { webhookListResponse.timestamp = n.getStringValue(); },
+        "webhooks": n => { webhookListResponse.webhooks = n.getCollectionOfObjectValues<WebhookEndpoint>(createWebhookEndpointFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookOk The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookOk(webhookOk: Partial<WebhookOk> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "ok": n => { webhookOk.ok = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookReplayResult The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookReplayResult(webhookReplayResult: Partial<WebhookReplayResult> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "ok": n => { webhookReplayResult.ok = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookSecret The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookSecret(webhookSecret: Partial<WebhookSecret> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { webhookSecret.id = n.getStringValue(); },
+        "secretPrefix": n => { webhookSecret.secretPrefix = n.getStringValue(); },
+        "signingSecret": n => { webhookSecret.signingSecret = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param WebhookTestResult The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWebhookTestResult(webhookTestResult: Partial<WebhookTestResult> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "delivered": n => { webhookTestResult.delivered = n.getBooleanValue(); },
+        "error": n => { webhookTestResult.errorEscaped = n.getStringValue(); },
+        "statusCode": n => { webhookTestResult.statusCode = n.getNumberValue(); },
+    }
+}
+/**
  * Filters and offset pagination for discovering leagues.
  */
 export interface DiscoverLeaguesRequestBody extends AdditionalDataHolder, Parsable {
@@ -2796,6 +9381,53 @@ export interface Game extends Parsable {
     nameKey?: string | null;
 }
 /**
+ * Outcome for a single (match, map) item in a multi-match batch.
+ */
+export interface GameBatchMatchScoreResult extends Parsable {
+    /**
+     * Bare machine-readable error code (e.g. error_game_scope_mismatch), present only when status is failed. Never the raw message.
+     */
+    errorEscaped?: string | null;
+    /**
+     * Index of the map this result refers to.
+     */
+    mapIndex?: number | null;
+    /**
+     * Match ID this result refers to.
+     */
+    matchId?: string | null;
+    /**
+     * Per-item outcome: "confirmed" on success, "failed" otherwise.
+     */
+    status?: string | null;
+}
+/**
+ * Request body for submitting map scores across multiple matches in a single call (capped at 50 items).
+ */
+export interface GameBatchMatchScoresBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Map scores to submit across one or more matches. 1-50 entries.
+     */
+    items?: GameMultiMatchScoreItem[] | null;
+}
+/**
+ * Result of a multi-match batch map-score submission. Always returned with HTTP 200; inspect per-item status.
+ */
+export interface GameBatchMatchScoresResponse extends Parsable {
+    /**
+     * Number of items that were confirmed.
+     */
+    count?: number | null;
+    /**
+     * Per-item results, in submission order.
+     */
+    submitted?: GameBatchMatchScoreResult[] | null;
+    /**
+     * True only when every submitted item was confirmed.
+     */
+    success?: boolean | null;
+}
+/**
  * Outcome for a single submitted map score.
  */
 export interface GameBatchScoreResult extends Parsable {
@@ -2839,6 +9471,85 @@ export interface GameBatchScoresResponse extends Parsable {
     success?: boolean | null;
 }
 /**
+ * Request body for creating a two-sided game-originated match. The match is created ACCEPTED + PUBLISHED for the key's bound game. Supports an optional Idempotency-Key header for safe retries.
+ */
+export interface GameCreateMatchBody extends AdditionalDataHolder, Parsable {
+    /**
+     * ID of the opposing team. Required - game-originated matches are two-sided. Must belong to the key's bound game.
+     */
+    acceptedTeamId?: string | null;
+    /**
+     * Number of maps in the series (1, 3, 5, or 7).
+     */
+    bestOf?: number | null;
+    /**
+     * ID of the creating team. Must belong to the key's bound game.
+     */
+    creatorTeamId?: string | null;
+    /**
+     * Game mode identifier (e.g. search_and_destroy).
+     */
+    gameModeId?: string | null;
+    /**
+     * Allowed input device (e.g. ALL).
+     */
+    inputDevice?: GameCreateMatchBody_inputDevice | null;
+    /**
+     * Map preference mode (PREFERRED, VETO, or MANUAL).
+     */
+    mapPreferenceMode?: GameCreateMatchBody_mapPreferenceMode | null;
+    /**
+     * Map selection type (COMPETITIVE or FLEX).
+     */
+    mapSelectionType?: GameCreateMatchBody_mapSelectionType | null;
+    /**
+     * Match platform (e.g. CROSSPLAY).
+     */
+    platform?: GameCreateMatchBody_platform | null;
+    /**
+     * Match region (e.g. NONE).
+     */
+    region?: GameCreateMatchBody_region | null;
+    /**
+     * Optional scheduled start time (epoch ms).
+     */
+    scheduledAt?: number | null;
+    /**
+     * Optional pre-selected map IDs.
+     */
+    selectedMaps?: string[] | null;
+    /**
+     * Optional pre-selected objective IDs.
+     */
+    selectedObjectives?: string[] | null;
+    /**
+     * Players per team (validated against the game's min/max).
+     */
+    teamSize?: number | null;
+}
+export type GameCreateMatchBody_inputDevice = (typeof GameCreateMatchBody_inputDeviceObject)[keyof typeof GameCreateMatchBody_inputDeviceObject];
+export type GameCreateMatchBody_mapPreferenceMode = (typeof GameCreateMatchBody_mapPreferenceModeObject)[keyof typeof GameCreateMatchBody_mapPreferenceModeObject];
+export type GameCreateMatchBody_mapSelectionType = (typeof GameCreateMatchBody_mapSelectionTypeObject)[keyof typeof GameCreateMatchBody_mapSelectionTypeObject];
+export type GameCreateMatchBody_platform = (typeof GameCreateMatchBody_platformObject)[keyof typeof GameCreateMatchBody_platformObject];
+export type GameCreateMatchBody_region = (typeof GameCreateMatchBody_regionObject)[keyof typeof GameCreateMatchBody_regionObject];
+/**
+ * Result of a successful game-originated match creation.
+ */
+export interface GameCreateMatchResponse extends Parsable {
+    /**
+     * ID of the newly created match.
+     */
+    matchId?: string | null;
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Server response time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
  * A team as embedded in the game-developer match-detail response ({ _id, name, tag }).
  */
 export interface GameDetailTeam extends Parsable {
@@ -2854,6 +9565,40 @@ export interface GameDetailTeam extends Parsable {
      * Team tag (short identifier).
      */
     tag?: string | null;
+}
+/**
+ * Request body for forfeiting a match on behalf of one participating team.
+ */
+export interface GameForfeitBody extends AdditionalDataHolder, Parsable {
+    /**
+     * ID of the team that forfeits. Must be a participant of the match.
+     */
+    forfeitingTeamId?: string | null;
+    /**
+     * Optional human-readable forfeit reason, recorded on the match.
+     */
+    reason?: string | null;
+}
+/**
+ * Result of a successful match forfeit.
+ */
+export interface GameForfeitResponse extends Parsable {
+    /**
+     * ID of the team that forfeited.
+     */
+    forfeitedByTeamId?: string | null;
+    /**
+     * ID of the forfeited match.
+     */
+    matchId?: string | null;
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Server response time (ISO 8601).
+     */
+    timestamp?: string | null;
 }
 /**
  * One map's score within a batch submission.
@@ -3005,6 +9750,14 @@ export interface GameMatchDetail extends Parsable {
      */
     id?: string | null;
     /**
+     * League this match belongs to, if any (SP-7 league wave).
+     */
+    leagueId?: GameMatchDetail_leagueIdMember1 | string | null;
+    /**
+     * League season this match belongs to, if any.
+     */
+    leagueSeasonId?: GameMatchDetail_leagueSeasonIdMember1 | string | null;
+    /**
      * Losing team ID once the match completes.
      */
     loserTeamId?: GameMatchDetail_loserTeamIdMember1 | string | null;
@@ -3036,6 +9789,12 @@ export interface GameMatchDetail_createdAtMember1 extends AdditionalDataHolder, 
 }
 export type GameMatchDetail_creatorTeamScore = GameMatchDetail_creatorTeamScoreMember1 | number;
 export interface GameMatchDetail_creatorTeamScoreMember1 extends AdditionalDataHolder, Parsable {
+}
+export type GameMatchDetail_leagueId = GameMatchDetail_leagueIdMember1 | string;
+export interface GameMatchDetail_leagueIdMember1 extends AdditionalDataHolder, Parsable {
+}
+export type GameMatchDetail_leagueSeasonId = GameMatchDetail_leagueSeasonIdMember1 | string;
+export interface GameMatchDetail_leagueSeasonIdMember1 extends AdditionalDataHolder, Parsable {
 }
 export type GameMatchDetail_loserTeamId = GameMatchDetail_loserTeamIdMember1 | string;
 export interface GameMatchDetail_loserTeamIdMember1 extends AdditionalDataHolder, Parsable {
@@ -3089,6 +9848,44 @@ export interface GameMatchRostersResponse extends Parsable {
 }
 export type GameMatchRostersResponse_acceptedTeamId = GameMatchRostersResponse_acceptedTeamIdMember1 | string;
 export interface GameMatchRostersResponse_acceptedTeamIdMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * One match's single map score within a multi-match batch submission.
+ */
+export interface GameMultiMatchScoreItem extends AdditionalDataHolder, Parsable {
+    /**
+     * Score for the creator team (non-negative).
+     */
+    creatorTeamScore?: number | null;
+    /**
+     * Identifier of the map that was played.
+     */
+    mapId?: string | null;
+    /**
+     * Zero-based index of the map within the series.
+     */
+    mapIndex?: number | null;
+    /**
+     * ID of the match this map score belongs to.
+     */
+    matchId?: string | null;
+    /**
+     * Score for the opponent (accepted) team (non-negative).
+     */
+    opponentTeamScore?: number | null;
+    /**
+     * Optional per-player stats keyed by user ID.
+     */
+    playerStats?: GameMultiMatchScoreItem_playerStats | null;
+    /**
+     * Optional screenshot URLs supporting the reported score.
+     */
+    screenshotUrls?: string[] | null;
+}
+/**
+ * Optional per-player stats keyed by user ID.
+ */
+export interface GameMultiMatchScoreItem_playerStats extends AdditionalDataHolder, Parsable {
 }
 /**
  * Request body for submitting or updating player stats for an existing map score.
@@ -3311,6 +10108,110 @@ export interface GameStatusUpdateResponse extends Parsable {
     timestamp?: string | null;
 }
 /**
+ * Leaderboard rank lookup response.
+ */
+export interface LeaderboardRankResponse extends Parsable {
+    /**
+     * The gameSlug property
+     */
+    gameSlug?: LeaderboardRankResponse_gameSlugMember1 | string | null;
+    /**
+     * Resolved entity ID.
+     */
+    id?: string | null;
+    /**
+     * The rank property
+     */
+    rank?: number | LeaderboardRankResponse_rankMember1 | null;
+    /**
+     * Supported leaderboard sort field.
+     */
+    sortBy?: LeaderboardSortBy | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export type LeaderboardRankResponse_gameSlug = LeaderboardRankResponse_gameSlugMember1 | string;
+export interface LeaderboardRankResponse_gameSlugMember1 extends AdditionalDataHolder, Parsable {
+}
+export type LeaderboardRankResponse_rank = number | LeaderboardRankResponse_rankMember1;
+export interface LeaderboardRankResponse_rankMember1 extends AdditionalDataHolder, Parsable {
+}
+export type LeaderboardSortBy = (typeof LeaderboardSortByObject)[keyof typeof LeaderboardSortByObject];
+/**
+ * Aggregate stats used for leaderboard ranking.
+ */
+export interface LeaderboardStats extends Parsable {
+    /**
+     * The experience property
+     */
+    experience?: number | null;
+    /**
+     * The losses property
+     */
+    losses?: number | null;
+    /**
+     * The matchesPlayed property
+     */
+    matchesPlayed?: number | null;
+    /**
+     * The winRate property
+     */
+    winRate?: number | null;
+    /**
+     * The wins property
+     */
+    wins?: number | null;
+}
+/**
+ * League application eligibility.
+ */
+export interface LeagueApplyEligibility extends Parsable {
+    /**
+     * API key owner's apply-to-join eligibility.
+     */
+    eligibility?: LeagueApplyEligibility_eligibility | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * API key owner's apply-to-join eligibility.
+ */
+export interface LeagueApplyEligibility_eligibility extends Parsable {
+    /**
+     * The eligibleTeams property
+     */
+    eligibleTeams?: LeagueApplyEligibility_eligibility_eligibleTeams[] | null;
+    /**
+     * The hasApprovedTeamHere property
+     */
+    hasApprovedTeamHere?: boolean | null;
+    /**
+     * The isAuthed property
+     */
+    isAuthed?: boolean | null;
+    /**
+     * The pendingTeams property
+     */
+    pendingTeams?: LeagueApplyEligibility_eligibility_pendingTeams[] | null;
+}
+export interface LeagueApplyEligibility_eligibility_eligibleTeams extends AdditionalDataHolder, Parsable {
+}
+export interface LeagueApplyEligibility_eligibility_pendingTeams extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Optional team-specific league application eligibility selector.
+ */
+export interface LeagueApplyEligibilityRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional team ID to check. The API key owner must lead it.
+     */
+    teamId?: string | null;
+}
+/**
  * Team bans for a league.
  */
 export interface LeagueBans extends Parsable {
@@ -3328,6 +10229,53 @@ export interface LeagueBans extends Parsable {
     timestamp?: string | null;
 }
 export interface LeagueBans_bans extends AdditionalDataHolder, Parsable {
+}
+/**
+ * League display rules.
+ */
+export interface LeagueDisplayRules extends Parsable {
+    /**
+     * Number of display rules returned.
+     */
+    count?: number | null;
+    /**
+     * Display rule documents for the league game.
+     */
+    displayRules?: LeagueDisplayRules_displayRules[] | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+export interface LeagueDisplayRules_displayRules extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Display rule selector.
+ */
+export interface LeagueDisplayRulesRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Game ID to list display rules for.
+     */
+    gameId?: string | null;
+}
+/**
+ * Games configured for a league.
+ */
+export interface LeagueGames extends Parsable {
+    /**
+     * Number of configured games returned.
+     */
+    count?: number | null;
+    /**
+     * Games configured for the league.
+     */
+    games?: LeagueGames_games[] | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+export interface LeagueGames_games extends AdditionalDataHolder, Parsable {
 }
 /**
  * Staff members of a league.
@@ -3479,6 +10427,55 @@ export interface LeagueRules extends Parsable {
     timestamp?: string | null;
 }
 /**
+ * Single league season response.
+ */
+export interface LeagueSeason extends Parsable {
+    /**
+     * The requested league season.
+     */
+    season?: LeagueSeason_season | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * The requested league season.
+ */
+export interface LeagueSeason_season extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Season selector options.
+ */
+export interface LeagueSeasonOptions extends Parsable {
+    /**
+     * Recommended default option.
+     */
+    defaultSeasonId?: LeagueSeasonOptions_defaultSeasonIdMember1 | string | null;
+    /**
+     * Season selector options for a league game.
+     */
+    seasons?: LeagueSeasonOptions_seasons[] | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+export type LeagueSeasonOptions_defaultSeasonId = LeagueSeasonOptions_defaultSeasonIdMember1 | string;
+export interface LeagueSeasonOptions_defaultSeasonIdMember1 extends AdditionalDataHolder, Parsable {
+}
+export interface LeagueSeasonOptions_seasons extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Season option selector.
+ */
+export interface LeagueSeasonOptionsRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Game ID to list season options for.
+     */
+    gameId?: string | null;
+}
+/**
  * Seasons for a league.
  */
 export interface LeagueSeasons extends Parsable {
@@ -3587,17 +10584,45 @@ export interface LeagueSummary_games extends AdditionalDataHolder, Parsable {
 }
 export type LeagueSummary_seasonStatus = (typeof LeagueSummary_seasonStatusObject)[keyof typeof LeagueSummary_seasonStatusObject];
 /**
- * Filters and cursor pagination for listing a game's matches.
+ * League rule templates.
+ */
+export interface LeagueTemplates extends Parsable {
+    /**
+     * Number of templates returned.
+     */
+    count?: number | null;
+    /**
+     * Rule templates visible to the API key owner.
+     */
+    templates?: LeagueTemplates_templates[] | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+export interface LeagueTemplates_templates extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Template filters.
+ */
+export interface LeagueTemplatesRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional game ID filter.
+     */
+    gameId?: string | null;
+    /**
+     * Optional official-template filter.
+     */
+    isOfficial?: boolean | null;
+}
+/**
+ * Status filter and cursor pagination for listing the bound key's game matches. The game is derived from the developer-app key's bound game (not a body field).
  */
 export interface ListGameMatchesBody extends AdditionalDataHolder, Parsable {
     /**
      * Opaque continuation cursor from a prior page's pagination.cursor.
      */
     cursor?: string | null;
-    /**
-     * Game to list matches for. Must be the key's approved game.
-     */
-    gameId?: string | null;
     /**
      * Page size (1-100, enforced by the handler). Defaults to the handler's internal default.
      */
@@ -3679,6 +10704,85 @@ export interface MapScores_seriesScore extends Parsable {
     opponentMapWins?: number | null;
 }
 /**
+ * Filters and cursor pagination for public open-match discovery.
+ */
+export interface MatchDiscoverBody extends AdditionalDataHolder, Parsable {
+    /**
+     * The cursor property
+     */
+    cursor?: MatchDiscoverBody_cursorMember1 | string | null;
+    /**
+     * The gameId property
+     */
+    gameId?: string | null;
+    /**
+     * The gameSlug property
+     */
+    gameSlug?: string | null;
+    /**
+     * The leagueId property
+     */
+    leagueId?: string | null;
+    /**
+     * The leagueSeasonId property
+     */
+    leagueSeasonId?: string | null;
+    /**
+     * The limit property
+     */
+    limit?: number | null;
+    /**
+     * The matchType property
+     */
+    matchType?: MatchDiscoverBody_matchType | null;
+    /**
+     * The platform property
+     */
+    platform?: MatchDiscoverBody_platform | null;
+    /**
+     * The region property
+     */
+    region?: MatchDiscoverBody_region | null;
+    /**
+     * The scheduledAfter property
+     */
+    scheduledAfter?: string | null;
+    /**
+     * The scheduledBefore property
+     */
+    scheduledBefore?: string | null;
+}
+export type MatchDiscoverBody_cursor = MatchDiscoverBody_cursorMember1 | string;
+export interface MatchDiscoverBody_cursorMember1 extends AdditionalDataHolder, Parsable {
+}
+export type MatchDiscoverBody_matchType = (typeof MatchDiscoverBody_matchTypeObject)[keyof typeof MatchDiscoverBody_matchTypeObject];
+export type MatchDiscoverBody_platform = (typeof MatchDiscoverBody_platformObject)[keyof typeof MatchDiscoverBody_platformObject];
+export type MatchDiscoverBody_region = (typeof MatchDiscoverBody_regionObject)[keyof typeof MatchDiscoverBody_regionObject];
+/**
+ * SP-2 open-match discovery page.
+ */
+export interface MatchDiscoverPage extends Parsable {
+    /**
+     * The data property
+     */
+    data?: ApiMatchDetail[] | null;
+    /**
+     * The hasMore property
+     */
+    hasMore?: boolean | null;
+    /**
+     * The nextCursor property
+     */
+    nextCursor?: MatchDiscoverPage_nextCursorMember1 | string | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export type MatchDiscoverPage_nextCursor = MatchDiscoverPage_nextCursorMember1 | string;
+export interface MatchDiscoverPage_nextCursorMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
  * Filters and cursor pagination for listing matches.
  */
 export interface MatchesRequestBody extends AdditionalDataHolder, Parsable {
@@ -3728,6 +10832,97 @@ export interface MatchesRequestBody_cursorMember1 extends AdditionalDataHolder, 
 }
 export type MatchStatus = (typeof MatchStatusObject)[keyof typeof MatchStatusObject];
 /**
+ * Ongoing matches for the API key owner's active teams.
+ */
+export interface OngoingMatchesResponse extends Parsable {
+    /**
+     * The matches property
+     */
+    matches?: ApiMatchDetail[] | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+/**
+ * Organization leaderboard row.
+ */
+export interface OrganizationLeaderboardEntry extends Parsable {
+    /**
+     * The gameSlug property
+     */
+    gameSlug?: OrganizationLeaderboardEntry_gameSlugMember1 | string | null;
+    /**
+     * Organization ID.
+     */
+    id?: string | null;
+    /**
+     * Small API-safe organization summary.
+     */
+    organization?: ApiOrganizationSummary | null;
+    /**
+     * The rank property
+     */
+    rank?: number | null;
+    /**
+     * The stats property
+     */
+    stats?: OrganizationLeaderboardEntry_stats | null;
+}
+export type OrganizationLeaderboardEntry_gameSlug = OrganizationLeaderboardEntry_gameSlugMember1 | string;
+export interface OrganizationLeaderboardEntry_gameSlugMember1 extends AdditionalDataHolder, Parsable {
+}
+export interface OrganizationLeaderboardEntry_stats extends Parsable {
+    /**
+     * The experience property
+     */
+    experience?: number | null;
+    /**
+     * The losses property
+     */
+    losses?: number | null;
+    /**
+     * The matchesPlayed property
+     */
+    matchesPlayed?: number | null;
+    /**
+     * The teamCount property
+     */
+    teamCount?: number | null;
+    /**
+     * The winRate property
+     */
+    winRate?: number | null;
+    /**
+     * The wins property
+     */
+    wins?: number | null;
+}
+/**
+ * Organization leaderboard response.
+ */
+export interface OrganizationLeaderboardResponse extends Parsable {
+    /**
+     * The gameSlug property
+     */
+    gameSlug?: OrganizationLeaderboardResponse_gameSlugMember1 | string | null;
+    /**
+     * The organizations property
+     */
+    organizations?: OrganizationLeaderboardEntry[] | null;
+    /**
+     * Supported leaderboard sort field.
+     */
+    sortBy?: LeaderboardSortBy | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export type OrganizationLeaderboardResponse_gameSlug = OrganizationLeaderboardResponse_gameSlugMember1 | string;
+export interface OrganizationLeaderboardResponse_gameSlugMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
  * Type, team, game, and limit filters for league penalties and cooldowns.
  */
 export interface PenaltiesRequestBody extends AdditionalDataHolder, Parsable {
@@ -3749,6 +10944,45 @@ export interface PenaltiesRequestBody extends AdditionalDataHolder, Parsable {
     type?: PenaltiesRequestBody_type | null;
 }
 export type PenaltiesRequestBody_type = (typeof PenaltiesRequestBody_typeObject)[keyof typeof PenaltiesRequestBody_typeObject];
+/**
+ * Player leaderboard row.
+ */
+export interface PlayerLeaderboardEntry extends Parsable {
+    /**
+     * User ID.
+     */
+    id?: string | null;
+    /**
+     * The rank property
+     */
+    rank?: number | null;
+    /**
+     * Aggregate stats used for leaderboard ranking.
+     */
+    stats?: LeaderboardStats | null;
+    /**
+     * API-safe public user profile.
+     */
+    user?: ApiUserProfile | null;
+}
+/**
+ * Player leaderboard response.
+ */
+export interface PlayerLeaderboardResponse extends Parsable {
+    /**
+     * The players property
+     */
+    players?: PlayerLeaderboardEntry[] | null;
+    /**
+     * Supported leaderboard sort field.
+     */
+    sortBy?: LeaderboardSortBy | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export type ProfileVisibility = (typeof ProfileVisibilityObject)[keyof typeof ProfileVisibilityObject];
 /**
  * Game selector for league rules and points config.
  */
@@ -3835,6 +11069,2352 @@ export interface SeasonsRequestBody extends AdditionalDataHolder, Parsable {
 export type SeasonsRequestBody_status = (typeof SeasonsRequestBody_statusObject)[keyof typeof SeasonsRequestBody_statusObject];
 /**
  * Serializes information the current object
+ * @param ApiGameCatalogEntry The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry(writer: SerializationWriter, apiGameCatalogEntry: Partial<ApiGameCatalogEntry> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameCatalogEntry || isSerializingDerivedType) { return; }
+    if ( typeof apiGameCatalogEntry.bannerImage === "string") {
+        writer.writeStringValue("bannerImage", apiGameCatalogEntry.bannerImage as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGameCatalogEntry_bannerImageMember1>("bannerImage", apiGameCatalogEntry.bannerImage as ApiGameCatalogEntry_bannerImageMember1 | undefined | null, serializeApiGameCatalogEntry_bannerImage);
+    }
+    writer.writeStringValue("category", apiGameCatalogEntry.category);
+    if ( typeof apiGameCatalogEntry.convexId === "string") {
+        writer.writeStringValue("convexId", apiGameCatalogEntry.convexId as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGameCatalogEntry_convexIdMember1>("convexId", apiGameCatalogEntry.convexId as ApiGameCatalogEntry_convexIdMember1 | undefined | null, serializeApiGameCatalogEntry_convexId);
+    }
+    if ( typeof apiGameCatalogEntry.coverImage === "string") {
+        writer.writeStringValue("coverImage", apiGameCatalogEntry.coverImage as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGameCatalogEntry_coverImageMember1>("coverImage", apiGameCatalogEntry.coverImage as ApiGameCatalogEntry_coverImageMember1 | undefined | null, serializeApiGameCatalogEntry_coverImage);
+    }
+    writer.writeNumberValue("defaultTeamSize", apiGameCatalogEntry.defaultTeamSize);
+    if ( typeof apiGameCatalogEntry.descriptionKey === "string") {
+        writer.writeStringValue("descriptionKey", apiGameCatalogEntry.descriptionKey as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGameCatalogEntry_descriptionKeyMember1>("descriptionKey", apiGameCatalogEntry.descriptionKey as ApiGameCatalogEntry_descriptionKeyMember1 | undefined | null, serializeApiGameCatalogEntry_descriptionKey);
+    }
+    writer.writeBooleanValue("hasCompetitiveMode", apiGameCatalogEntry.hasCompetitiveMode);
+    writer.writeStringValue("id", apiGameCatalogEntry.id);
+    writer.writeBooleanValue("isAvailableForMatchApi", apiGameCatalogEntry.isAvailableForMatchApi);
+    writer.writeBooleanValue("isComingSoon", apiGameCatalogEntry.isComingSoon);
+    writer.writeCollectionOfObjectValues<ApiGameMap>("maps", apiGameCatalogEntry.maps, serializeApiGameMap);
+    writer.writeCollectionOfObjectValues<ApiGameModeMapPool>("modeMapPools", apiGameCatalogEntry.modeMapPools, serializeApiGameModeMapPool);
+    writer.writeCollectionOfObjectValues<ApiGameMode>("modes", apiGameCatalogEntry.modes, serializeApiGameMode);
+    writer.writeStringValue("nameKey", apiGameCatalogEntry.nameKey);
+    writer.writeCollectionOfObjectValues<ApiGamePlaylist>("playlists", apiGameCatalogEntry.playlists, serializeApiGamePlaylist);
+    if ( typeof apiGameCatalogEntry.rulesLink === "string") {
+        writer.writeStringValue("rulesLink", apiGameCatalogEntry.rulesLink as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGameCatalogEntry_rulesLinkMember1>("rulesLink", apiGameCatalogEntry.rulesLink as ApiGameCatalogEntry_rulesLinkMember1 | undefined | null, serializeApiGameCatalogEntry_rulesLink);
+    }
+    if ( typeof apiGameCatalogEntry.shortNameKey === "string") {
+        writer.writeStringValue("shortNameKey", apiGameCatalogEntry.shortNameKey as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGameCatalogEntry_shortNameKeyMember1>("shortNameKey", apiGameCatalogEntry.shortNameKey as ApiGameCatalogEntry_shortNameKeyMember1 | undefined | null, serializeApiGameCatalogEntry_shortNameKey);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_bannerImage The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_bannerImage(writer: SerializationWriter, apiGameCatalogEntry_bannerImage: Partial<Parsable | ApiGameCatalogEntry_bannerImageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameCatalogEntry_bannerImageMember1(writer, apiGameCatalogEntry_bannerImage as ApiGameCatalogEntry_bannerImageMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_bannerImageMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_bannerImageMember1(writer: SerializationWriter, apiGameCatalogEntry_bannerImageMember1: Partial<ApiGameCatalogEntry_bannerImageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameCatalogEntry_bannerImageMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameCatalogEntry_bannerImageMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_convexId The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_convexId(writer: SerializationWriter, apiGameCatalogEntry_convexId: Partial<Parsable | ApiGameCatalogEntry_convexIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameCatalogEntry_convexIdMember1(writer, apiGameCatalogEntry_convexId as ApiGameCatalogEntry_convexIdMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_convexIdMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_convexIdMember1(writer: SerializationWriter, apiGameCatalogEntry_convexIdMember1: Partial<ApiGameCatalogEntry_convexIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameCatalogEntry_convexIdMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameCatalogEntry_convexIdMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_coverImage The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_coverImage(writer: SerializationWriter, apiGameCatalogEntry_coverImage: Partial<Parsable | ApiGameCatalogEntry_coverImageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameCatalogEntry_coverImageMember1(writer, apiGameCatalogEntry_coverImage as ApiGameCatalogEntry_coverImageMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_coverImageMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_coverImageMember1(writer: SerializationWriter, apiGameCatalogEntry_coverImageMember1: Partial<ApiGameCatalogEntry_coverImageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameCatalogEntry_coverImageMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameCatalogEntry_coverImageMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_descriptionKey The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_descriptionKey(writer: SerializationWriter, apiGameCatalogEntry_descriptionKey: Partial<Parsable | ApiGameCatalogEntry_descriptionKeyMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameCatalogEntry_descriptionKeyMember1(writer, apiGameCatalogEntry_descriptionKey as ApiGameCatalogEntry_descriptionKeyMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_descriptionKeyMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_descriptionKeyMember1(writer: SerializationWriter, apiGameCatalogEntry_descriptionKeyMember1: Partial<ApiGameCatalogEntry_descriptionKeyMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameCatalogEntry_descriptionKeyMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameCatalogEntry_descriptionKeyMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_rulesLink The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_rulesLink(writer: SerializationWriter, apiGameCatalogEntry_rulesLink: Partial<Parsable | ApiGameCatalogEntry_rulesLinkMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameCatalogEntry_rulesLinkMember1(writer, apiGameCatalogEntry_rulesLink as ApiGameCatalogEntry_rulesLinkMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_rulesLinkMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_rulesLinkMember1(writer: SerializationWriter, apiGameCatalogEntry_rulesLinkMember1: Partial<ApiGameCatalogEntry_rulesLinkMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameCatalogEntry_rulesLinkMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameCatalogEntry_rulesLinkMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_shortNameKey The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_shortNameKey(writer: SerializationWriter, apiGameCatalogEntry_shortNameKey: Partial<Parsable | ApiGameCatalogEntry_shortNameKeyMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameCatalogEntry_shortNameKeyMember1(writer, apiGameCatalogEntry_shortNameKey as ApiGameCatalogEntry_shortNameKeyMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogEntry_shortNameKeyMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogEntry_shortNameKeyMember1(writer: SerializationWriter, apiGameCatalogEntry_shortNameKeyMember1: Partial<ApiGameCatalogEntry_shortNameKeyMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameCatalogEntry_shortNameKeyMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameCatalogEntry_shortNameKeyMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameCatalogResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameCatalogResponse(writer: SerializationWriter, apiGameCatalogResponse: Partial<ApiGameCatalogResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameCatalogResponse || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<ApiGameCatalogEntry>("games", apiGameCatalogResponse.games, serializeApiGameCatalogEntry);
+    writer.writeCollectionOfObjectValues<ApiObjective>("objectives", apiGameCatalogResponse.objectives, serializeApiObjective);
+    writer.writeStringValue("timestamp", apiGameCatalogResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMap The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMap(writer: SerializationWriter, apiGameMap: Partial<ApiGameMap> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameMap || isSerializingDerivedType) { return; }
+    if ( typeof apiGameMap.coverImage === "string") {
+        writer.writeStringValue("coverImage", apiGameMap.coverImage as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGameMap_coverImageMember1>("coverImage", apiGameMap.coverImage as ApiGameMap_coverImageMember1 | undefined | null, serializeApiGameMap_coverImage);
+    }
+    writer.writeStringValue("id", apiGameMap.id);
+    writer.writeBooleanValue("isReleased", apiGameMap.isReleased);
+    if ( typeof apiGameMap.minimapImage === "string") {
+        writer.writeStringValue("minimapImage", apiGameMap.minimapImage as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGameMap_minimapImageMember1>("minimapImage", apiGameMap.minimapImage as ApiGameMap_minimapImageMember1 | undefined | null, serializeApiGameMap_minimapImage);
+    }
+    writer.writeStringValue("nameKey", apiGameMap.nameKey);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMap_coverImage The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMap_coverImage(writer: SerializationWriter, apiGameMap_coverImage: Partial<Parsable | ApiGameMap_coverImageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameMap_coverImageMember1(writer, apiGameMap_coverImage as ApiGameMap_coverImageMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMap_coverImageMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMap_coverImageMember1(writer: SerializationWriter, apiGameMap_coverImageMember1: Partial<ApiGameMap_coverImageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameMap_coverImageMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameMap_coverImageMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMap_minimapImage The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMap_minimapImage(writer: SerializationWriter, apiGameMap_minimapImage: Partial<Parsable | ApiGameMap_minimapImageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameMap_minimapImageMember1(writer, apiGameMap_minimapImage as ApiGameMap_minimapImageMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMap_minimapImageMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMap_minimapImageMember1(writer: SerializationWriter, apiGameMap_minimapImageMember1: Partial<ApiGameMap_minimapImageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameMap_minimapImageMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameMap_minimapImageMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMode The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMode(writer: SerializationWriter, apiGameMode: Partial<ApiGameMode> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameMode || isSerializingDerivedType) { return; }
+    if ( typeof apiGameMode.descriptionKey === "string") {
+        writer.writeStringValue("descriptionKey", apiGameMode.descriptionKey as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGameMode_descriptionKeyMember1>("descriptionKey", apiGameMode.descriptionKey as ApiGameMode_descriptionKeyMember1 | undefined | null, serializeApiGameMode_descriptionKey);
+    }
+    writer.writeStringValue("id", apiGameMode.id);
+    if ( typeof apiGameMode.image === "string") {
+        writer.writeStringValue("image", apiGameMode.image as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGameMode_imageMember1>("image", apiGameMode.image as ApiGameMode_imageMember1 | undefined | null, serializeApiGameMode_image);
+    }
+    writer.writeCollectionOfPrimitiveValues<string>("mapIds", apiGameMode.mapIds);
+    writer.writeStringValue("nameKey", apiGameMode.nameKey);
+    if ( typeof apiGameMode.rewardBonus === "number") {
+        writer.writeNumberValue("rewardBonus", apiGameMode.rewardBonus as number);
+    }
+    else {
+        writer.writeObjectValue<ApiGameMode_rewardBonusMember1>("rewardBonus", apiGameMode.rewardBonus as ApiGameMode_rewardBonusMember1 | undefined | null, serializeApiGameMode_rewardBonus);
+    }
+    if ( typeof apiGameMode.shortName === "string") {
+        writer.writeStringValue("shortName", apiGameMode.shortName as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGameMode_shortNameMember1>("shortName", apiGameMode.shortName as ApiGameMode_shortNameMember1 | undefined | null, serializeApiGameMode_shortName);
+    }
+    writer.writeBooleanValue("supportsDraftToggle", apiGameMode.supportsDraftToggle);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMode_descriptionKey The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMode_descriptionKey(writer: SerializationWriter, apiGameMode_descriptionKey: Partial<Parsable | ApiGameMode_descriptionKeyMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameMode_descriptionKeyMember1(writer, apiGameMode_descriptionKey as ApiGameMode_descriptionKeyMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMode_descriptionKeyMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMode_descriptionKeyMember1(writer: SerializationWriter, apiGameMode_descriptionKeyMember1: Partial<ApiGameMode_descriptionKeyMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameMode_descriptionKeyMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameMode_descriptionKeyMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMode_image The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMode_image(writer: SerializationWriter, apiGameMode_image: Partial<Parsable | ApiGameMode_imageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameMode_imageMember1(writer, apiGameMode_image as ApiGameMode_imageMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMode_imageMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMode_imageMember1(writer: SerializationWriter, apiGameMode_imageMember1: Partial<ApiGameMode_imageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameMode_imageMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameMode_imageMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMode_rewardBonus The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMode_rewardBonus(writer: SerializationWriter, apiGameMode_rewardBonus: Partial<Parsable | ApiGameMode_rewardBonusMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameMode_rewardBonusMember1(writer, apiGameMode_rewardBonus as ApiGameMode_rewardBonusMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMode_rewardBonusMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMode_rewardBonusMember1(writer: SerializationWriter, apiGameMode_rewardBonusMember1: Partial<ApiGameMode_rewardBonusMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameMode_rewardBonusMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameMode_rewardBonusMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMode_shortName The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMode_shortName(writer: SerializationWriter, apiGameMode_shortName: Partial<Parsable | ApiGameMode_shortNameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGameMode_shortNameMember1(writer, apiGameMode_shortName as ApiGameMode_shortNameMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameMode_shortNameMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameMode_shortNameMember1(writer: SerializationWriter, apiGameMode_shortNameMember1: Partial<ApiGameMode_shortNameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameMode_shortNameMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGameMode_shortNameMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGameModeMapPool The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGameModeMapPool(writer: SerializationWriter, apiGameModeMapPool: Partial<ApiGameModeMapPool> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGameModeMapPool || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfPrimitiveValues<string>("mapIds", apiGameModeMapPool.mapIds);
+    writer.writeStringValue("modeId", apiGameModeMapPool.modeId);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGamePlaylist The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGamePlaylist(writer: SerializationWriter, apiGamePlaylist: Partial<ApiGamePlaylist> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGamePlaylist || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfPrimitiveValues<string>("allowedGameModeIds", apiGamePlaylist.allowedGameModeIds);
+    if ( typeof apiGamePlaylist.descriptionKey === "string") {
+        writer.writeStringValue("descriptionKey", apiGamePlaylist.descriptionKey as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGamePlaylist_descriptionKeyMember1>("descriptionKey", apiGamePlaylist.descriptionKey as ApiGamePlaylist_descriptionKeyMember1 | undefined | null, serializeApiGamePlaylist_descriptionKey);
+    }
+    writer.writeStringValue("id", apiGamePlaylist.id);
+    if ( typeof apiGamePlaylist.image === "string") {
+        writer.writeStringValue("image", apiGamePlaylist.image as string);
+    }
+    else {
+        writer.writeObjectValue<ApiGamePlaylist_imageMember1>("image", apiGamePlaylist.image as ApiGamePlaylist_imageMember1 | undefined | null, serializeApiGamePlaylist_image);
+    }
+    writer.writeStringValue("nameKey", apiGamePlaylist.nameKey);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGamePlaylist_descriptionKey The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGamePlaylist_descriptionKey(writer: SerializationWriter, apiGamePlaylist_descriptionKey: Partial<Parsable | ApiGamePlaylist_descriptionKeyMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGamePlaylist_descriptionKeyMember1(writer, apiGamePlaylist_descriptionKey as ApiGamePlaylist_descriptionKeyMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGamePlaylist_descriptionKeyMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGamePlaylist_descriptionKeyMember1(writer: SerializationWriter, apiGamePlaylist_descriptionKeyMember1: Partial<ApiGamePlaylist_descriptionKeyMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGamePlaylist_descriptionKeyMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGamePlaylist_descriptionKeyMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGamePlaylist_image The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGamePlaylist_image(writer: SerializationWriter, apiGamePlaylist_image: Partial<Parsable | ApiGamePlaylist_imageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiGamePlaylist_imageMember1(writer, apiGamePlaylist_image as ApiGamePlaylist_imageMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGamePlaylist_imageMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGamePlaylist_imageMember1(writer: SerializationWriter, apiGamePlaylist_imageMember1: Partial<ApiGamePlaylist_imageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGamePlaylist_imageMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiGamePlaylist_imageMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiGamePlaylistsResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiGamePlaylistsResponse(writer: SerializationWriter, apiGamePlaylistsResponse: Partial<ApiGamePlaylistsResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiGamePlaylistsResponse || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<ApiGameCatalogEntry>("game", apiGamePlaylistsResponse.game, serializeApiGameCatalogEntry);
+    writer.writeCollectionOfObjectValues<ApiGamePlaylist>("playlists", apiGamePlaylistsResponse.playlists, serializeApiGamePlaylist);
+    writer.writeStringValue("timestamp", apiGamePlaylistsResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail(writer: SerializationWriter, apiMatchDetail: Partial<ApiMatchDetail> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetail || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<ApiMatchTeam>("acceptedTeam", apiMatchDetail.acceptedTeam, serializeApiMatchTeam);
+    writer.writeNumberValue("bestOf", apiMatchDetail.bestOf);
+    writer.writeObjectValue<ApiMatchTeam>("challengedTeam", apiMatchDetail.challengedTeam, serializeApiMatchTeam);
+    if ( typeof apiMatchDetail.completedAt === "string") {
+        writer.writeStringValue("completedAt", apiMatchDetail.completedAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchDetail_completedAtMember1>("completedAt", apiMatchDetail.completedAt as ApiMatchDetail_completedAtMember1 | undefined | null, serializeApiMatchDetail_completedAt);
+    }
+    if ( typeof apiMatchDetail.createdAt === "string") {
+        writer.writeStringValue("createdAt", apiMatchDetail.createdAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchDetail_createdAtMember1>("createdAt", apiMatchDetail.createdAt as ApiMatchDetail_createdAtMember1 | undefined | null, serializeApiMatchDetail_createdAt);
+    }
+    writer.writeObjectValue<ApiMatchTeam>("creatorTeam", apiMatchDetail.creatorTeam, serializeApiMatchTeam);
+    writer.writeObjectValue<Game>("game", apiMatchDetail.game, serializeGame);
+    writer.writeStringValue("gameMode", apiMatchDetail.gameMode);
+    writer.writeStringValue("id", apiMatchDetail.id);
+    if ( typeof apiMatchDetail.leagueId === "string") {
+        writer.writeStringValue("leagueId", apiMatchDetail.leagueId as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchDetail_leagueIdMember1>("leagueId", apiMatchDetail.leagueId as ApiMatchDetail_leagueIdMember1 | undefined | null, serializeApiMatchDetail_leagueId);
+    }
+    if ( typeof apiMatchDetail.leagueSeasonId === "string") {
+        writer.writeStringValue("leagueSeasonId", apiMatchDetail.leagueSeasonId as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchDetail_leagueSeasonIdMember1>("leagueSeasonId", apiMatchDetail.leagueSeasonId as ApiMatchDetail_leagueSeasonIdMember1 | undefined | null, serializeApiMatchDetail_leagueSeasonId);
+    }
+    if ( typeof apiMatchDetail.matchType === "string") {
+        writer.writeStringValue("matchType", apiMatchDetail.matchType as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchDetail_matchTypeMember1>("matchType", apiMatchDetail.matchType as ApiMatchDetail_matchTypeMember1 | undefined | null, serializeApiMatchDetail_matchType);
+    }
+    if ( typeof apiMatchDetail.platform === "string") {
+        writer.writeStringValue("platform", apiMatchDetail.platform as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchDetail_platformMember1>("platform", apiMatchDetail.platform as ApiMatchDetail_platformMember1 | undefined | null, serializeApiMatchDetail_platform);
+    }
+    writer.writeStringValue("publishStatus", apiMatchDetail.publishStatus);
+    if ( typeof apiMatchDetail.region === "string") {
+        writer.writeStringValue("region", apiMatchDetail.region as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchDetail_regionMember1>("region", apiMatchDetail.region as ApiMatchDetail_regionMember1 | undefined | null, serializeApiMatchDetail_region);
+    }
+    if ( typeof apiMatchDetail.scheduledAt === "string") {
+        writer.writeStringValue("scheduledAt", apiMatchDetail.scheduledAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchDetail_scheduledAtMember1>("scheduledAt", apiMatchDetail.scheduledAt as ApiMatchDetail_scheduledAtMember1 | undefined | null, serializeApiMatchDetail_scheduledAt);
+    }
+    writer.writeCollectionOfPrimitiveValues<string>("selectedMaps", apiMatchDetail.selectedMaps);
+    writer.writeCollectionOfPrimitiveValues<string>("selectedObjectives", apiMatchDetail.selectedObjectives);
+    if ( typeof apiMatchDetail.startedAt === "string") {
+        writer.writeStringValue("startedAt", apiMatchDetail.startedAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchDetail_startedAtMember1>("startedAt", apiMatchDetail.startedAt as ApiMatchDetail_startedAtMember1 | undefined | null, serializeApiMatchDetail_startedAt);
+    }
+    writer.writeEnumValue<MatchStatus>("status", apiMatchDetail.status);
+    writer.writeNumberValue("teamSize", apiMatchDetail.teamSize);
+    if ( typeof apiMatchDetail.winnerTeamId === "string") {
+        writer.writeStringValue("winnerTeamId", apiMatchDetail.winnerTeamId as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchDetail_winnerTeamIdMember1>("winnerTeamId", apiMatchDetail.winnerTeamId as ApiMatchDetail_winnerTeamIdMember1 | undefined | null, serializeApiMatchDetail_winnerTeamId);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_completedAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_completedAt(writer: SerializationWriter, apiMatchDetail_completedAt: Partial<Parsable | ApiMatchDetail_completedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchDetail_completedAtMember1(writer, apiMatchDetail_completedAt as ApiMatchDetail_completedAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_completedAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_completedAtMember1(writer: SerializationWriter, apiMatchDetail_completedAtMember1: Partial<ApiMatchDetail_completedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetail_completedAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchDetail_completedAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_createdAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_createdAt(writer: SerializationWriter, apiMatchDetail_createdAt: Partial<Parsable | ApiMatchDetail_createdAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchDetail_createdAtMember1(writer, apiMatchDetail_createdAt as ApiMatchDetail_createdAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_createdAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_createdAtMember1(writer: SerializationWriter, apiMatchDetail_createdAtMember1: Partial<ApiMatchDetail_createdAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetail_createdAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchDetail_createdAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_leagueId The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_leagueId(writer: SerializationWriter, apiMatchDetail_leagueId: Partial<Parsable | ApiMatchDetail_leagueIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchDetail_leagueIdMember1(writer, apiMatchDetail_leagueId as ApiMatchDetail_leagueIdMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_leagueIdMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_leagueIdMember1(writer: SerializationWriter, apiMatchDetail_leagueIdMember1: Partial<ApiMatchDetail_leagueIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetail_leagueIdMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchDetail_leagueIdMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_leagueSeasonId The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_leagueSeasonId(writer: SerializationWriter, apiMatchDetail_leagueSeasonId: Partial<Parsable | ApiMatchDetail_leagueSeasonIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchDetail_leagueSeasonIdMember1(writer, apiMatchDetail_leagueSeasonId as ApiMatchDetail_leagueSeasonIdMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_leagueSeasonIdMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_leagueSeasonIdMember1(writer: SerializationWriter, apiMatchDetail_leagueSeasonIdMember1: Partial<ApiMatchDetail_leagueSeasonIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetail_leagueSeasonIdMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchDetail_leagueSeasonIdMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_matchType The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_matchType(writer: SerializationWriter, apiMatchDetail_matchType: Partial<Parsable | ApiMatchDetail_matchTypeMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchDetail_matchTypeMember1(writer, apiMatchDetail_matchType as ApiMatchDetail_matchTypeMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_matchTypeMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_matchTypeMember1(writer: SerializationWriter, apiMatchDetail_matchTypeMember1: Partial<ApiMatchDetail_matchTypeMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetail_matchTypeMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchDetail_matchTypeMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_platform The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_platform(writer: SerializationWriter, apiMatchDetail_platform: Partial<Parsable | ApiMatchDetail_platformMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchDetail_platformMember1(writer, apiMatchDetail_platform as ApiMatchDetail_platformMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_platformMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_platformMember1(writer: SerializationWriter, apiMatchDetail_platformMember1: Partial<ApiMatchDetail_platformMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetail_platformMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchDetail_platformMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_region The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_region(writer: SerializationWriter, apiMatchDetail_region: Partial<Parsable | ApiMatchDetail_regionMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchDetail_regionMember1(writer, apiMatchDetail_region as ApiMatchDetail_regionMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_regionMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_regionMember1(writer: SerializationWriter, apiMatchDetail_regionMember1: Partial<ApiMatchDetail_regionMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetail_regionMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchDetail_regionMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_scheduledAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_scheduledAt(writer: SerializationWriter, apiMatchDetail_scheduledAt: Partial<Parsable | ApiMatchDetail_scheduledAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchDetail_scheduledAtMember1(writer, apiMatchDetail_scheduledAt as ApiMatchDetail_scheduledAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_scheduledAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_scheduledAtMember1(writer: SerializationWriter, apiMatchDetail_scheduledAtMember1: Partial<ApiMatchDetail_scheduledAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetail_scheduledAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchDetail_scheduledAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_startedAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_startedAt(writer: SerializationWriter, apiMatchDetail_startedAt: Partial<Parsable | ApiMatchDetail_startedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchDetail_startedAtMember1(writer, apiMatchDetail_startedAt as ApiMatchDetail_startedAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_startedAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_startedAtMember1(writer: SerializationWriter, apiMatchDetail_startedAtMember1: Partial<ApiMatchDetail_startedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetail_startedAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchDetail_startedAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_winnerTeamId The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_winnerTeamId(writer: SerializationWriter, apiMatchDetail_winnerTeamId: Partial<Parsable | ApiMatchDetail_winnerTeamIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchDetail_winnerTeamIdMember1(writer, apiMatchDetail_winnerTeamId as ApiMatchDetail_winnerTeamIdMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetail_winnerTeamIdMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetail_winnerTeamIdMember1(writer: SerializationWriter, apiMatchDetail_winnerTeamIdMember1: Partial<ApiMatchDetail_winnerTeamIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetail_winnerTeamIdMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchDetail_winnerTeamIdMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchDetailResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchDetailResponse(writer: SerializationWriter, apiMatchDetailResponse: Partial<ApiMatchDetailResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchDetailResponse || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<ApiMatchDetail>("match", apiMatchDetailResponse.match, serializeApiMatchDetail);
+    writer.writeStringValue("timestamp", apiMatchDetailResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchPlayer The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchPlayer(writer: SerializationWriter, apiMatchPlayer: Partial<ApiMatchPlayer> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchPlayer || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<ApiMatchPlayer_attendanceStatus>("attendanceStatus", apiMatchPlayer.attendanceStatus);
+    if ( typeof apiMatchPlayer.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", apiMatchPlayer.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchPlayer_avatarUrlMember1>("avatarUrl", apiMatchPlayer.avatarUrl as ApiMatchPlayer_avatarUrlMember1 | undefined | null, serializeApiMatchPlayer_avatarUrl);
+    }
+    if ( typeof apiMatchPlayer.checkedInAt === "string") {
+        writer.writeStringValue("checkedInAt", apiMatchPlayer.checkedInAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchPlayer_checkedInAtMember1>("checkedInAt", apiMatchPlayer.checkedInAt as ApiMatchPlayer_checkedInAtMember1 | undefined | null, serializeApiMatchPlayer_checkedInAt);
+    }
+    writer.writeStringValue("id", apiMatchPlayer.id);
+    writer.writeBooleanValue("isCheckedIn", apiMatchPlayer.isCheckedIn);
+    if ( typeof apiMatchPlayer.name === "string") {
+        writer.writeStringValue("name", apiMatchPlayer.name as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchPlayer_nameMember1>("name", apiMatchPlayer.name as ApiMatchPlayer_nameMember1 | undefined | null, serializeApiMatchPlayer_name);
+    }
+    writer.writeEnumValue<ApiMatchPlayer_rosterType>("rosterType", apiMatchPlayer.rosterType);
+    writer.writeStringValue("teamId", apiMatchPlayer.teamId);
+    writer.writeStringValue("userId", apiMatchPlayer.userId);
+    if ( typeof apiMatchPlayer.username === "string") {
+        writer.writeStringValue("username", apiMatchPlayer.username as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchPlayer_usernameMember1>("username", apiMatchPlayer.username as ApiMatchPlayer_usernameMember1 | undefined | null, serializeApiMatchPlayer_username);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchPlayer_avatarUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchPlayer_avatarUrl(writer: SerializationWriter, apiMatchPlayer_avatarUrl: Partial<Parsable | ApiMatchPlayer_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchPlayer_avatarUrlMember1(writer, apiMatchPlayer_avatarUrl as ApiMatchPlayer_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchPlayer_avatarUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchPlayer_avatarUrlMember1(writer: SerializationWriter, apiMatchPlayer_avatarUrlMember1: Partial<ApiMatchPlayer_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchPlayer_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchPlayer_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchPlayer_checkedInAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchPlayer_checkedInAt(writer: SerializationWriter, apiMatchPlayer_checkedInAt: Partial<Parsable | ApiMatchPlayer_checkedInAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchPlayer_checkedInAtMember1(writer, apiMatchPlayer_checkedInAt as ApiMatchPlayer_checkedInAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchPlayer_checkedInAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchPlayer_checkedInAtMember1(writer: SerializationWriter, apiMatchPlayer_checkedInAtMember1: Partial<ApiMatchPlayer_checkedInAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchPlayer_checkedInAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchPlayer_checkedInAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchPlayer_name The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchPlayer_name(writer: SerializationWriter, apiMatchPlayer_name: Partial<Parsable | ApiMatchPlayer_nameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchPlayer_nameMember1(writer, apiMatchPlayer_name as ApiMatchPlayer_nameMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchPlayer_nameMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchPlayer_nameMember1(writer: SerializationWriter, apiMatchPlayer_nameMember1: Partial<ApiMatchPlayer_nameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchPlayer_nameMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchPlayer_nameMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchPlayer_username The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchPlayer_username(writer: SerializationWriter, apiMatchPlayer_username: Partial<Parsable | ApiMatchPlayer_usernameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchPlayer_usernameMember1(writer, apiMatchPlayer_username as ApiMatchPlayer_usernameMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchPlayer_usernameMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchPlayer_usernameMember1(writer: SerializationWriter, apiMatchPlayer_usernameMember1: Partial<ApiMatchPlayer_usernameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchPlayer_usernameMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchPlayer_usernameMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchPlayersResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchPlayersResponse(writer: SerializationWriter, apiMatchPlayersResponse: Partial<ApiMatchPlayersResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchPlayersResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("matchId", apiMatchPlayersResponse.matchId);
+    writer.writeCollectionOfObjectValues<ApiMatchPlayer>("players", apiMatchPlayersResponse.players, serializeApiMatchPlayer);
+    writer.writeStringValue("timestamp", apiMatchPlayersResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchTeam The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchTeam(writer: SerializationWriter, apiMatchTeam: Partial<ApiMatchTeam> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchTeam || isSerializingDerivedType) { return; }
+    if ( typeof apiMatchTeam.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", apiMatchTeam.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchTeam_avatarUrlMember1>("avatarUrl", apiMatchTeam.avatarUrl as ApiMatchTeam_avatarUrlMember1 | undefined | null, serializeApiMatchTeam_avatarUrl);
+    }
+    writer.writeStringValue("id", apiMatchTeam.id);
+    writer.writeStringValue("name", apiMatchTeam.name);
+    if ( typeof apiMatchTeam.score === "number") {
+        writer.writeNumberValue("score", apiMatchTeam.score as number);
+    }
+    else {
+        writer.writeObjectValue<ApiMatchTeam_scoreMember1>("score", apiMatchTeam.score as ApiMatchTeam_scoreMember1 | undefined | null, serializeApiMatchTeam_score);
+    }
+    writer.writeStringValue("tag", apiMatchTeam.tag);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchTeam_avatarUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchTeam_avatarUrl(writer: SerializationWriter, apiMatchTeam_avatarUrl: Partial<Parsable | ApiMatchTeam_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchTeam_avatarUrlMember1(writer, apiMatchTeam_avatarUrl as ApiMatchTeam_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchTeam_avatarUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchTeam_avatarUrlMember1(writer: SerializationWriter, apiMatchTeam_avatarUrlMember1: Partial<ApiMatchTeam_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchTeam_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchTeam_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchTeam_score The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchTeam_score(writer: SerializationWriter, apiMatchTeam_score: Partial<Parsable | ApiMatchTeam_scoreMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMatchTeam_scoreMember1(writer, apiMatchTeam_score as ApiMatchTeam_scoreMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMatchTeam_scoreMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMatchTeam_scoreMember1(writer: SerializationWriter, apiMatchTeam_scoreMember1: Partial<ApiMatchTeam_scoreMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMatchTeam_scoreMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMatchTeam_scoreMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMember The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMember(writer: SerializationWriter, apiMember: Partial<ApiMember> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMember || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", apiMember.id);
+    if ( typeof apiMember.joinedAt === "string") {
+        writer.writeStringValue("joinedAt", apiMember.joinedAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiMember_joinedAtMember1>("joinedAt", apiMember.joinedAt as ApiMember_joinedAtMember1 | undefined | null, serializeApiMember_joinedAt);
+    }
+    writer.writeStringValue("role", apiMember.role);
+    writer.writeObjectValue<ApiUserProfile>("user", apiMember.user, serializeApiUserProfile);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMember_joinedAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMember_joinedAt(writer: SerializationWriter, apiMember_joinedAt: Partial<Parsable | ApiMember_joinedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiMember_joinedAtMember1(writer, apiMember_joinedAt as ApiMember_joinedAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiMember_joinedAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiMember_joinedAtMember1(writer: SerializationWriter, apiMember_joinedAtMember1: Partial<ApiMember_joinedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiMember_joinedAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiMember_joinedAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiObjective The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiObjective(writer: SerializationWriter, apiObjective: Partial<ApiObjective> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiObjective || isSerializingDerivedType) { return; }
+    writer.writeStringValue("completionRule", apiObjective.completionRule);
+    writer.writeStringValue("descriptionKey", apiObjective.descriptionKey);
+    writer.writeNumberValue("exp", apiObjective.exp);
+    writer.writeStringValue("id", apiObjective.id);
+    writer.writeStringValue("scope", apiObjective.scope);
+    writer.writeStringValue("titleKey", apiObjective.titleKey);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile(writer: SerializationWriter, apiOrganizationProfile: Partial<ApiOrganizationProfile> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationProfile || isSerializingDerivedType) { return; }
+    if ( typeof apiOrganizationProfile.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", apiOrganizationProfile.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiOrganizationProfile_avatarUrlMember1>("avatarUrl", apiOrganizationProfile.avatarUrl as ApiOrganizationProfile_avatarUrlMember1 | undefined | null, serializeApiOrganizationProfile_avatarUrl);
+    }
+    if ( typeof apiOrganizationProfile.bannerUrl === "string") {
+        writer.writeStringValue("bannerUrl", apiOrganizationProfile.bannerUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiOrganizationProfile_bannerUrlMember1>("bannerUrl", apiOrganizationProfile.bannerUrl as ApiOrganizationProfile_bannerUrlMember1 | undefined | null, serializeApiOrganizationProfile_bannerUrl);
+    }
+    if ( typeof apiOrganizationProfile.createdAt === "string") {
+        writer.writeStringValue("createdAt", apiOrganizationProfile.createdAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiOrganizationProfile_createdAtMember1>("createdAt", apiOrganizationProfile.createdAt as ApiOrganizationProfile_createdAtMember1 | undefined | null, serializeApiOrganizationProfile_createdAt);
+    }
+    if ( typeof apiOrganizationProfile.description === "string") {
+        writer.writeStringValue("description", apiOrganizationProfile.description as string);
+    }
+    else {
+        writer.writeObjectValue<ApiOrganizationProfile_descriptionMember1>("description", apiOrganizationProfile.description as ApiOrganizationProfile_descriptionMember1 | undefined | null, serializeApiOrganizationProfile_description);
+    }
+    writer.writeNumberValue("draws", apiOrganizationProfile.draws);
+    writer.writeStringValue("id", apiOrganizationProfile.id);
+    writer.writeBooleanValue("isMember", apiOrganizationProfile.isMember);
+    writer.writeBooleanValue("isVerified", apiOrganizationProfile.isVerified);
+    writer.writeNumberValue("losses", apiOrganizationProfile.losses);
+    writer.writeNumberValue("matchesPlayed", apiOrganizationProfile.matchesPlayed);
+    writer.writeNumberValue("memberCount", apiOrganizationProfile.memberCount);
+    writer.writeStringValue("name", apiOrganizationProfile.name);
+    if ( typeof apiOrganizationProfile.slug === "string") {
+        writer.writeStringValue("slug", apiOrganizationProfile.slug as string);
+    }
+    else {
+        writer.writeObjectValue<ApiOrganizationProfile_slugMember1>("slug", apiOrganizationProfile.slug as ApiOrganizationProfile_slugMember1 | undefined | null, serializeApiOrganizationProfile_slug);
+    }
+    if ( typeof apiOrganizationProfile.tag === "string") {
+        writer.writeStringValue("tag", apiOrganizationProfile.tag as string);
+    }
+    else {
+        writer.writeObjectValue<ApiOrganizationProfile_tagMember1>("tag", apiOrganizationProfile.tag as ApiOrganizationProfile_tagMember1 | undefined | null, serializeApiOrganizationProfile_tag);
+    }
+    writer.writeNumberValue("teamCount", apiOrganizationProfile.teamCount);
+    writer.writeEnumValue<ProfileVisibility>("visibility", apiOrganizationProfile.visibility);
+    writer.writeNumberValue("wins", apiOrganizationProfile.wins);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_avatarUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_avatarUrl(writer: SerializationWriter, apiOrganizationProfile_avatarUrl: Partial<Parsable | ApiOrganizationProfile_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiOrganizationProfile_avatarUrlMember1(writer, apiOrganizationProfile_avatarUrl as ApiOrganizationProfile_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_avatarUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_avatarUrlMember1(writer: SerializationWriter, apiOrganizationProfile_avatarUrlMember1: Partial<ApiOrganizationProfile_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationProfile_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiOrganizationProfile_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_bannerUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_bannerUrl(writer: SerializationWriter, apiOrganizationProfile_bannerUrl: Partial<Parsable | ApiOrganizationProfile_bannerUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiOrganizationProfile_bannerUrlMember1(writer, apiOrganizationProfile_bannerUrl as ApiOrganizationProfile_bannerUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_bannerUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_bannerUrlMember1(writer: SerializationWriter, apiOrganizationProfile_bannerUrlMember1: Partial<ApiOrganizationProfile_bannerUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationProfile_bannerUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiOrganizationProfile_bannerUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_createdAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_createdAt(writer: SerializationWriter, apiOrganizationProfile_createdAt: Partial<Parsable | ApiOrganizationProfile_createdAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiOrganizationProfile_createdAtMember1(writer, apiOrganizationProfile_createdAt as ApiOrganizationProfile_createdAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_createdAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_createdAtMember1(writer: SerializationWriter, apiOrganizationProfile_createdAtMember1: Partial<ApiOrganizationProfile_createdAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationProfile_createdAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiOrganizationProfile_createdAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_description The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_description(writer: SerializationWriter, apiOrganizationProfile_description: Partial<Parsable | ApiOrganizationProfile_descriptionMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiOrganizationProfile_descriptionMember1(writer, apiOrganizationProfile_description as ApiOrganizationProfile_descriptionMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_descriptionMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_descriptionMember1(writer: SerializationWriter, apiOrganizationProfile_descriptionMember1: Partial<ApiOrganizationProfile_descriptionMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationProfile_descriptionMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiOrganizationProfile_descriptionMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_slug The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_slug(writer: SerializationWriter, apiOrganizationProfile_slug: Partial<Parsable | ApiOrganizationProfile_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiOrganizationProfile_slugMember1(writer, apiOrganizationProfile_slug as ApiOrganizationProfile_slugMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_slugMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_slugMember1(writer: SerializationWriter, apiOrganizationProfile_slugMember1: Partial<ApiOrganizationProfile_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationProfile_slugMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiOrganizationProfile_slugMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_tag The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_tag(writer: SerializationWriter, apiOrganizationProfile_tag: Partial<Parsable | ApiOrganizationProfile_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiOrganizationProfile_tagMember1(writer, apiOrganizationProfile_tag as ApiOrganizationProfile_tagMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationProfile_tagMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationProfile_tagMember1(writer: SerializationWriter, apiOrganizationProfile_tagMember1: Partial<ApiOrganizationProfile_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationProfile_tagMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiOrganizationProfile_tagMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationStats The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationStats(writer: SerializationWriter, apiOrganizationStats: Partial<ApiOrganizationStats> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationStats || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("losses", apiOrganizationStats.losses);
+    writer.writeNumberValue("matchesPlayed", apiOrganizationStats.matchesPlayed);
+    writer.writeNumberValue("members", apiOrganizationStats.members);
+    writer.writeStringValue("organizationId", apiOrganizationStats.organizationId);
+    writer.writeNumberValue("teams", apiOrganizationStats.teams);
+    writer.writeNumberValue("winRate", apiOrganizationStats.winRate);
+    writer.writeNumberValue("wins", apiOrganizationStats.wins);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationSummary The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationSummary(writer: SerializationWriter, apiOrganizationSummary: Partial<ApiOrganizationSummary> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationSummary || isSerializingDerivedType) { return; }
+    if ( typeof apiOrganizationSummary.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", apiOrganizationSummary.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiOrganizationSummary_avatarUrlMember1>("avatarUrl", apiOrganizationSummary.avatarUrl as ApiOrganizationSummary_avatarUrlMember1 | undefined | null, serializeApiOrganizationSummary_avatarUrl);
+    }
+    writer.writeStringValue("id", apiOrganizationSummary.id);
+    writer.writeStringValue("name", apiOrganizationSummary.name);
+    if ( typeof apiOrganizationSummary.slug === "string") {
+        writer.writeStringValue("slug", apiOrganizationSummary.slug as string);
+    }
+    else {
+        writer.writeObjectValue<ApiOrganizationSummary_slugMember1>("slug", apiOrganizationSummary.slug as ApiOrganizationSummary_slugMember1 | undefined | null, serializeApiOrganizationSummary_slug);
+    }
+    if ( typeof apiOrganizationSummary.tag === "string") {
+        writer.writeStringValue("tag", apiOrganizationSummary.tag as string);
+    }
+    else {
+        writer.writeObjectValue<ApiOrganizationSummary_tagMember1>("tag", apiOrganizationSummary.tag as ApiOrganizationSummary_tagMember1 | undefined | null, serializeApiOrganizationSummary_tag);
+    }
+    writer.writeEnumValue<ProfileVisibility>("visibility", apiOrganizationSummary.visibility);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationSummary_avatarUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationSummary_avatarUrl(writer: SerializationWriter, apiOrganizationSummary_avatarUrl: Partial<Parsable | ApiOrganizationSummary_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiOrganizationSummary_avatarUrlMember1(writer, apiOrganizationSummary_avatarUrl as ApiOrganizationSummary_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationSummary_avatarUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationSummary_avatarUrlMember1(writer: SerializationWriter, apiOrganizationSummary_avatarUrlMember1: Partial<ApiOrganizationSummary_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationSummary_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiOrganizationSummary_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationSummary_slug The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationSummary_slug(writer: SerializationWriter, apiOrganizationSummary_slug: Partial<Parsable | ApiOrganizationSummary_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiOrganizationSummary_slugMember1(writer, apiOrganizationSummary_slug as ApiOrganizationSummary_slugMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationSummary_slugMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationSummary_slugMember1(writer: SerializationWriter, apiOrganizationSummary_slugMember1: Partial<ApiOrganizationSummary_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationSummary_slugMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiOrganizationSummary_slugMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationSummary_tag The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationSummary_tag(writer: SerializationWriter, apiOrganizationSummary_tag: Partial<Parsable | ApiOrganizationSummary_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiOrganizationSummary_tagMember1(writer, apiOrganizationSummary_tag as ApiOrganizationSummary_tagMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiOrganizationSummary_tagMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiOrganizationSummary_tagMember1(writer: SerializationWriter, apiOrganizationSummary_tagMember1: Partial<ApiOrganizationSummary_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiOrganizationSummary_tagMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiOrganizationSummary_tagMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile(writer: SerializationWriter, apiTeamProfile: Partial<ApiTeamProfile> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamProfile || isSerializingDerivedType) { return; }
+    if ( typeof apiTeamProfile.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", apiTeamProfile.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiTeamProfile_avatarUrlMember1>("avatarUrl", apiTeamProfile.avatarUrl as ApiTeamProfile_avatarUrlMember1 | undefined | null, serializeApiTeamProfile_avatarUrl);
+    }
+    if ( typeof apiTeamProfile.bannerUrl === "string") {
+        writer.writeStringValue("bannerUrl", apiTeamProfile.bannerUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiTeamProfile_bannerUrlMember1>("bannerUrl", apiTeamProfile.bannerUrl as ApiTeamProfile_bannerUrlMember1 | undefined | null, serializeApiTeamProfile_bannerUrl);
+    }
+    if ( typeof apiTeamProfile.createdAt === "string") {
+        writer.writeStringValue("createdAt", apiTeamProfile.createdAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiTeamProfile_createdAtMember1>("createdAt", apiTeamProfile.createdAt as ApiTeamProfile_createdAtMember1 | undefined | null, serializeApiTeamProfile_createdAt);
+    }
+    if ( typeof apiTeamProfile.description === "string") {
+        writer.writeStringValue("description", apiTeamProfile.description as string);
+    }
+    else {
+        writer.writeObjectValue<ApiTeamProfile_descriptionMember1>("description", apiTeamProfile.description as ApiTeamProfile_descriptionMember1 | undefined | null, serializeApiTeamProfile_description);
+    }
+    writer.writeNumberValue("draws", apiTeamProfile.draws);
+    writer.writeNumberValue("experience", apiTeamProfile.experience);
+    if ( typeof apiTeamProfile.gameId === "string") {
+        writer.writeStringValue("gameId", apiTeamProfile.gameId as string);
+    }
+    else {
+        writer.writeObjectValue<ApiTeamProfile_gameIdMember1>("gameId", apiTeamProfile.gameId as ApiTeamProfile_gameIdMember1 | undefined | null, serializeApiTeamProfile_gameId);
+    }
+    writer.writeStringValue("id", apiTeamProfile.id);
+    writer.writeBooleanValue("isMember", apiTeamProfile.isMember);
+    writer.writeNumberValue("losses", apiTeamProfile.losses);
+    writer.writeNumberValue("matchesPlayed", apiTeamProfile.matchesPlayed);
+    writer.writeNumberValue("memberCount", apiTeamProfile.memberCount);
+    writer.writeStringValue("name", apiTeamProfile.name);
+    if ( typeof apiTeamProfile.organizationId === "string") {
+        writer.writeStringValue("organizationId", apiTeamProfile.organizationId as string);
+    }
+    else {
+        writer.writeObjectValue<ApiTeamProfile_organizationIdMember1>("organizationId", apiTeamProfile.organizationId as ApiTeamProfile_organizationIdMember1 | undefined | null, serializeApiTeamProfile_organizationId);
+    }
+    if ( typeof apiTeamProfile.slug === "string") {
+        writer.writeStringValue("slug", apiTeamProfile.slug as string);
+    }
+    else {
+        writer.writeObjectValue<ApiTeamProfile_slugMember1>("slug", apiTeamProfile.slug as ApiTeamProfile_slugMember1 | undefined | null, serializeApiTeamProfile_slug);
+    }
+    if ( typeof apiTeamProfile.tag === "string") {
+        writer.writeStringValue("tag", apiTeamProfile.tag as string);
+    }
+    else {
+        writer.writeObjectValue<ApiTeamProfile_tagMember1>("tag", apiTeamProfile.tag as ApiTeamProfile_tagMember1 | undefined | null, serializeApiTeamProfile_tag);
+    }
+    writer.writeEnumValue<ProfileVisibility>("visibility", apiTeamProfile.visibility);
+    writer.writeNumberValue("wins", apiTeamProfile.wins);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_avatarUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_avatarUrl(writer: SerializationWriter, apiTeamProfile_avatarUrl: Partial<Parsable | ApiTeamProfile_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiTeamProfile_avatarUrlMember1(writer, apiTeamProfile_avatarUrl as ApiTeamProfile_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_avatarUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_avatarUrlMember1(writer: SerializationWriter, apiTeamProfile_avatarUrlMember1: Partial<ApiTeamProfile_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamProfile_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiTeamProfile_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_bannerUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_bannerUrl(writer: SerializationWriter, apiTeamProfile_bannerUrl: Partial<Parsable | ApiTeamProfile_bannerUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiTeamProfile_bannerUrlMember1(writer, apiTeamProfile_bannerUrl as ApiTeamProfile_bannerUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_bannerUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_bannerUrlMember1(writer: SerializationWriter, apiTeamProfile_bannerUrlMember1: Partial<ApiTeamProfile_bannerUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamProfile_bannerUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiTeamProfile_bannerUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_createdAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_createdAt(writer: SerializationWriter, apiTeamProfile_createdAt: Partial<Parsable | ApiTeamProfile_createdAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiTeamProfile_createdAtMember1(writer, apiTeamProfile_createdAt as ApiTeamProfile_createdAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_createdAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_createdAtMember1(writer: SerializationWriter, apiTeamProfile_createdAtMember1: Partial<ApiTeamProfile_createdAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamProfile_createdAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiTeamProfile_createdAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_description The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_description(writer: SerializationWriter, apiTeamProfile_description: Partial<Parsable | ApiTeamProfile_descriptionMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiTeamProfile_descriptionMember1(writer, apiTeamProfile_description as ApiTeamProfile_descriptionMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_descriptionMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_descriptionMember1(writer: SerializationWriter, apiTeamProfile_descriptionMember1: Partial<ApiTeamProfile_descriptionMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamProfile_descriptionMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiTeamProfile_descriptionMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_gameId The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_gameId(writer: SerializationWriter, apiTeamProfile_gameId: Partial<Parsable | ApiTeamProfile_gameIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiTeamProfile_gameIdMember1(writer, apiTeamProfile_gameId as ApiTeamProfile_gameIdMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_gameIdMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_gameIdMember1(writer: SerializationWriter, apiTeamProfile_gameIdMember1: Partial<ApiTeamProfile_gameIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamProfile_gameIdMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiTeamProfile_gameIdMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_organizationId The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_organizationId(writer: SerializationWriter, apiTeamProfile_organizationId: Partial<Parsable | ApiTeamProfile_organizationIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiTeamProfile_organizationIdMember1(writer, apiTeamProfile_organizationId as ApiTeamProfile_organizationIdMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_organizationIdMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_organizationIdMember1(writer: SerializationWriter, apiTeamProfile_organizationIdMember1: Partial<ApiTeamProfile_organizationIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamProfile_organizationIdMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiTeamProfile_organizationIdMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_slug The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_slug(writer: SerializationWriter, apiTeamProfile_slug: Partial<Parsable | ApiTeamProfile_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiTeamProfile_slugMember1(writer, apiTeamProfile_slug as ApiTeamProfile_slugMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_slugMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_slugMember1(writer: SerializationWriter, apiTeamProfile_slugMember1: Partial<ApiTeamProfile_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamProfile_slugMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiTeamProfile_slugMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_tag The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_tag(writer: SerializationWriter, apiTeamProfile_tag: Partial<Parsable | ApiTeamProfile_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiTeamProfile_tagMember1(writer, apiTeamProfile_tag as ApiTeamProfile_tagMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamProfile_tagMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamProfile_tagMember1(writer: SerializationWriter, apiTeamProfile_tagMember1: Partial<ApiTeamProfile_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamProfile_tagMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiTeamProfile_tagMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamSummary The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamSummary(writer: SerializationWriter, apiTeamSummary: Partial<ApiTeamSummary> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamSummary || isSerializingDerivedType) { return; }
+    if ( typeof apiTeamSummary.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", apiTeamSummary.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiTeamSummary_avatarUrlMember1>("avatarUrl", apiTeamSummary.avatarUrl as ApiTeamSummary_avatarUrlMember1 | undefined | null, serializeApiTeamSummary_avatarUrl);
+    }
+    writer.writeStringValue("id", apiTeamSummary.id);
+    writer.writeStringValue("name", apiTeamSummary.name);
+    if ( typeof apiTeamSummary.slug === "string") {
+        writer.writeStringValue("slug", apiTeamSummary.slug as string);
+    }
+    else {
+        writer.writeObjectValue<ApiTeamSummary_slugMember1>("slug", apiTeamSummary.slug as ApiTeamSummary_slugMember1 | undefined | null, serializeApiTeamSummary_slug);
+    }
+    if ( typeof apiTeamSummary.tag === "string") {
+        writer.writeStringValue("tag", apiTeamSummary.tag as string);
+    }
+    else {
+        writer.writeObjectValue<ApiTeamSummary_tagMember1>("tag", apiTeamSummary.tag as ApiTeamSummary_tagMember1 | undefined | null, serializeApiTeamSummary_tag);
+    }
+    writer.writeEnumValue<ProfileVisibility>("visibility", apiTeamSummary.visibility);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamSummary_avatarUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamSummary_avatarUrl(writer: SerializationWriter, apiTeamSummary_avatarUrl: Partial<Parsable | ApiTeamSummary_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiTeamSummary_avatarUrlMember1(writer, apiTeamSummary_avatarUrl as ApiTeamSummary_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamSummary_avatarUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamSummary_avatarUrlMember1(writer: SerializationWriter, apiTeamSummary_avatarUrlMember1: Partial<ApiTeamSummary_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamSummary_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiTeamSummary_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamSummary_slug The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamSummary_slug(writer: SerializationWriter, apiTeamSummary_slug: Partial<Parsable | ApiTeamSummary_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiTeamSummary_slugMember1(writer, apiTeamSummary_slug as ApiTeamSummary_slugMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamSummary_slugMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamSummary_slugMember1(writer: SerializationWriter, apiTeamSummary_slugMember1: Partial<ApiTeamSummary_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamSummary_slugMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiTeamSummary_slugMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamSummary_tag The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamSummary_tag(writer: SerializationWriter, apiTeamSummary_tag: Partial<Parsable | ApiTeamSummary_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiTeamSummary_tagMember1(writer, apiTeamSummary_tag as ApiTeamSummary_tagMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiTeamSummary_tagMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiTeamSummary_tagMember1(writer: SerializationWriter, apiTeamSummary_tagMember1: Partial<ApiTeamSummary_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiTeamSummary_tagMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiTeamSummary_tagMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserConnection The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserConnection(writer: SerializationWriter, apiUserConnection: Partial<ApiUserConnection> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserConnection || isSerializingDerivedType) { return; }
+    if ( typeof apiUserConnection.connectedAt === "string") {
+        writer.writeStringValue("connectedAt", apiUserConnection.connectedAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserConnection_connectedAtMember1>("connectedAt", apiUserConnection.connectedAt as ApiUserConnection_connectedAtMember1 | undefined | null, serializeApiUserConnection_connectedAt);
+    }
+    writer.writeStringValue("id", apiUserConnection.id);
+    writer.writeBooleanValue("isPrimary", apiUserConnection.isPrimary);
+    writer.writeBooleanValue("isVerified", apiUserConnection.isVerified);
+    writer.writeStringValue("platform", apiUserConnection.platform);
+    if ( typeof apiUserConnection.url === "string") {
+        writer.writeStringValue("url", apiUserConnection.url as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserConnection_urlMember1>("url", apiUserConnection.url as ApiUserConnection_urlMember1 | undefined | null, serializeApiUserConnection_url);
+    }
+    if ( typeof apiUserConnection.username === "string") {
+        writer.writeStringValue("username", apiUserConnection.username as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserConnection_usernameMember1>("username", apiUserConnection.username as ApiUserConnection_usernameMember1 | undefined | null, serializeApiUserConnection_username);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserConnection_connectedAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserConnection_connectedAt(writer: SerializationWriter, apiUserConnection_connectedAt: Partial<Parsable | ApiUserConnection_connectedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserConnection_connectedAtMember1(writer, apiUserConnection_connectedAt as ApiUserConnection_connectedAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserConnection_connectedAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserConnection_connectedAtMember1(writer: SerializationWriter, apiUserConnection_connectedAtMember1: Partial<ApiUserConnection_connectedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserConnection_connectedAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserConnection_connectedAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserConnection_url The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserConnection_url(writer: SerializationWriter, apiUserConnection_url: Partial<Parsable | ApiUserConnection_urlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserConnection_urlMember1(writer, apiUserConnection_url as ApiUserConnection_urlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserConnection_urlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserConnection_urlMember1(writer: SerializationWriter, apiUserConnection_urlMember1: Partial<ApiUserConnection_urlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserConnection_urlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserConnection_urlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserConnection_username The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserConnection_username(writer: SerializationWriter, apiUserConnection_username: Partial<Parsable | ApiUserConnection_usernameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserConnection_usernameMember1(writer, apiUserConnection_username as ApiUserConnection_usernameMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserConnection_usernameMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserConnection_usernameMember1(writer: SerializationWriter, apiUserConnection_usernameMember1: Partial<ApiUserConnection_usernameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserConnection_usernameMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserConnection_usernameMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserOrganizationMembership The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserOrganizationMembership(writer: SerializationWriter, apiUserOrganizationMembership: Partial<ApiUserOrganizationMembership> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserOrganizationMembership || isSerializingDerivedType) { return; }
+    if ( typeof apiUserOrganizationMembership.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", apiUserOrganizationMembership.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserOrganizationMembership_avatarUrlMember1>("avatarUrl", apiUserOrganizationMembership.avatarUrl as ApiUserOrganizationMembership_avatarUrlMember1 | undefined | null, serializeApiUserOrganizationMembership_avatarUrl);
+    }
+    writer.writeStringValue("id", apiUserOrganizationMembership.id);
+    if ( typeof apiUserOrganizationMembership.joinedAt === "string") {
+        writer.writeStringValue("joinedAt", apiUserOrganizationMembership.joinedAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserOrganizationMembership_joinedAtMember1>("joinedAt", apiUserOrganizationMembership.joinedAt as ApiUserOrganizationMembership_joinedAtMember1 | undefined | null, serializeApiUserOrganizationMembership_joinedAt);
+    }
+    writer.writeStringValue("name", apiUserOrganizationMembership.name);
+    writer.writeStringValue("role", apiUserOrganizationMembership.role);
+    if ( typeof apiUserOrganizationMembership.slug === "string") {
+        writer.writeStringValue("slug", apiUserOrganizationMembership.slug as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserOrganizationMembership_slugMember1>("slug", apiUserOrganizationMembership.slug as ApiUserOrganizationMembership_slugMember1 | undefined | null, serializeApiUserOrganizationMembership_slug);
+    }
+    if ( typeof apiUserOrganizationMembership.tag === "string") {
+        writer.writeStringValue("tag", apiUserOrganizationMembership.tag as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserOrganizationMembership_tagMember1>("tag", apiUserOrganizationMembership.tag as ApiUserOrganizationMembership_tagMember1 | undefined | null, serializeApiUserOrganizationMembership_tag);
+    }
+    writer.writeEnumValue<ProfileVisibility>("visibility", apiUserOrganizationMembership.visibility);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserOrganizationMembership_avatarUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserOrganizationMembership_avatarUrl(writer: SerializationWriter, apiUserOrganizationMembership_avatarUrl: Partial<Parsable | ApiUserOrganizationMembership_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserOrganizationMembership_avatarUrlMember1(writer, apiUserOrganizationMembership_avatarUrl as ApiUserOrganizationMembership_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserOrganizationMembership_avatarUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserOrganizationMembership_avatarUrlMember1(writer: SerializationWriter, apiUserOrganizationMembership_avatarUrlMember1: Partial<ApiUserOrganizationMembership_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserOrganizationMembership_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserOrganizationMembership_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserOrganizationMembership_joinedAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserOrganizationMembership_joinedAt(writer: SerializationWriter, apiUserOrganizationMembership_joinedAt: Partial<Parsable | ApiUserOrganizationMembership_joinedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserOrganizationMembership_joinedAtMember1(writer, apiUserOrganizationMembership_joinedAt as ApiUserOrganizationMembership_joinedAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserOrganizationMembership_joinedAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserOrganizationMembership_joinedAtMember1(writer: SerializationWriter, apiUserOrganizationMembership_joinedAtMember1: Partial<ApiUserOrganizationMembership_joinedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserOrganizationMembership_joinedAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserOrganizationMembership_joinedAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserOrganizationMembership_slug The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserOrganizationMembership_slug(writer: SerializationWriter, apiUserOrganizationMembership_slug: Partial<Parsable | ApiUserOrganizationMembership_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserOrganizationMembership_slugMember1(writer, apiUserOrganizationMembership_slug as ApiUserOrganizationMembership_slugMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserOrganizationMembership_slugMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserOrganizationMembership_slugMember1(writer: SerializationWriter, apiUserOrganizationMembership_slugMember1: Partial<ApiUserOrganizationMembership_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserOrganizationMembership_slugMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserOrganizationMembership_slugMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserOrganizationMembership_tag The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserOrganizationMembership_tag(writer: SerializationWriter, apiUserOrganizationMembership_tag: Partial<Parsable | ApiUserOrganizationMembership_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserOrganizationMembership_tagMember1(writer, apiUserOrganizationMembership_tag as ApiUserOrganizationMembership_tagMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserOrganizationMembership_tagMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserOrganizationMembership_tagMember1(writer: SerializationWriter, apiUserOrganizationMembership_tagMember1: Partial<ApiUserOrganizationMembership_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserOrganizationMembership_tagMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserOrganizationMembership_tagMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile(writer: SerializationWriter, apiUserProfile: Partial<ApiUserProfile> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserProfile || isSerializingDerivedType) { return; }
+    if ( typeof apiUserProfile.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", apiUserProfile.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserProfile_avatarUrlMember1>("avatarUrl", apiUserProfile.avatarUrl as ApiUserProfile_avatarUrlMember1 | undefined | null, serializeApiUserProfile_avatarUrl);
+    }
+    if ( typeof apiUserProfile.bannerUrl === "string") {
+        writer.writeStringValue("bannerUrl", apiUserProfile.bannerUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserProfile_bannerUrlMember1>("bannerUrl", apiUserProfile.bannerUrl as ApiUserProfile_bannerUrlMember1 | undefined | null, serializeApiUserProfile_bannerUrl);
+    }
+    if ( typeof apiUserProfile.bio === "string") {
+        writer.writeStringValue("bio", apiUserProfile.bio as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserProfile_bioMember1>("bio", apiUserProfile.bio as ApiUserProfile_bioMember1 | undefined | null, serializeApiUserProfile_bio);
+    }
+    if ( typeof apiUserProfile.createdAt === "string") {
+        writer.writeStringValue("createdAt", apiUserProfile.createdAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserProfile_createdAtMember1>("createdAt", apiUserProfile.createdAt as ApiUserProfile_createdAtMember1 | undefined | null, serializeApiUserProfile_createdAt);
+    }
+    writer.writeStringValue("id", apiUserProfile.id);
+    writer.writeBooleanValue("isVerified", apiUserProfile.isVerified);
+    if ( typeof apiUserProfile.name === "string") {
+        writer.writeStringValue("name", apiUserProfile.name as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserProfile_nameMember1>("name", apiUserProfile.name as ApiUserProfile_nameMember1 | undefined | null, serializeApiUserProfile_name);
+    }
+    if ( typeof apiUserProfile.username === "string") {
+        writer.writeStringValue("username", apiUserProfile.username as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserProfile_usernameMember1>("username", apiUserProfile.username as ApiUserProfile_usernameMember1 | undefined | null, serializeApiUserProfile_username);
+    }
+    writer.writeEnumValue<ProfileVisibility>("visibility", apiUserProfile.visibility);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_avatarUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_avatarUrl(writer: SerializationWriter, apiUserProfile_avatarUrl: Partial<Parsable | ApiUserProfile_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserProfile_avatarUrlMember1(writer, apiUserProfile_avatarUrl as ApiUserProfile_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_avatarUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_avatarUrlMember1(writer: SerializationWriter, apiUserProfile_avatarUrlMember1: Partial<ApiUserProfile_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserProfile_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserProfile_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_bannerUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_bannerUrl(writer: SerializationWriter, apiUserProfile_bannerUrl: Partial<Parsable | ApiUserProfile_bannerUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserProfile_bannerUrlMember1(writer, apiUserProfile_bannerUrl as ApiUserProfile_bannerUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_bannerUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_bannerUrlMember1(writer: SerializationWriter, apiUserProfile_bannerUrlMember1: Partial<ApiUserProfile_bannerUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserProfile_bannerUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserProfile_bannerUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_bio The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_bio(writer: SerializationWriter, apiUserProfile_bio: Partial<Parsable | ApiUserProfile_bioMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserProfile_bioMember1(writer, apiUserProfile_bio as ApiUserProfile_bioMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_bioMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_bioMember1(writer: SerializationWriter, apiUserProfile_bioMember1: Partial<ApiUserProfile_bioMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserProfile_bioMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserProfile_bioMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_createdAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_createdAt(writer: SerializationWriter, apiUserProfile_createdAt: Partial<Parsable | ApiUserProfile_createdAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserProfile_createdAtMember1(writer, apiUserProfile_createdAt as ApiUserProfile_createdAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_createdAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_createdAtMember1(writer: SerializationWriter, apiUserProfile_createdAtMember1: Partial<ApiUserProfile_createdAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserProfile_createdAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserProfile_createdAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_name The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_name(writer: SerializationWriter, apiUserProfile_name: Partial<Parsable | ApiUserProfile_nameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserProfile_nameMember1(writer, apiUserProfile_name as ApiUserProfile_nameMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_nameMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_nameMember1(writer: SerializationWriter, apiUserProfile_nameMember1: Partial<ApiUserProfile_nameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserProfile_nameMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserProfile_nameMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_username The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_username(writer: SerializationWriter, apiUserProfile_username: Partial<Parsable | ApiUserProfile_usernameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserProfile_usernameMember1(writer, apiUserProfile_username as ApiUserProfile_usernameMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserProfile_usernameMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserProfile_usernameMember1(writer: SerializationWriter, apiUserProfile_usernameMember1: Partial<ApiUserProfile_usernameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserProfile_usernameMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserProfile_usernameMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserStats The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserStats(writer: SerializationWriter, apiUserStats: Partial<ApiUserStats> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserStats || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("bestStreak", apiUserStats.bestStreak);
+    writer.writeNumberValue("currentStreak", apiUserStats.currentStreak);
+    writer.writeNumberValue("draws", apiUserStats.draws);
+    writer.writeNumberValue("experience", apiUserStats.experience);
+    writer.writeNumberValue("losses", apiUserStats.losses);
+    writer.writeNumberValue("matchesPlayed", apiUserStats.matchesPlayed);
+    writer.writeStringValue("userId", apiUserStats.userId);
+    writer.writeNumberValue("winRate", apiUserStats.winRate);
+    writer.writeNumberValue("wins", apiUserStats.wins);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTeamMembership The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTeamMembership(writer: SerializationWriter, apiUserTeamMembership: Partial<ApiUserTeamMembership> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserTeamMembership || isSerializingDerivedType) { return; }
+    if ( typeof apiUserTeamMembership.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", apiUserTeamMembership.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserTeamMembership_avatarUrlMember1>("avatarUrl", apiUserTeamMembership.avatarUrl as ApiUserTeamMembership_avatarUrlMember1 | undefined | null, serializeApiUserTeamMembership_avatarUrl);
+    }
+    writer.writeStringValue("id", apiUserTeamMembership.id);
+    if ( typeof apiUserTeamMembership.joinedAt === "string") {
+        writer.writeStringValue("joinedAt", apiUserTeamMembership.joinedAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserTeamMembership_joinedAtMember1>("joinedAt", apiUserTeamMembership.joinedAt as ApiUserTeamMembership_joinedAtMember1 | undefined | null, serializeApiUserTeamMembership_joinedAt);
+    }
+    writer.writeStringValue("name", apiUserTeamMembership.name);
+    writer.writeObjectValue<ApiOrganizationSummary>("organization", apiUserTeamMembership.organization, serializeApiOrganizationSummary);
+    writer.writeStringValue("role", apiUserTeamMembership.role);
+    if ( typeof apiUserTeamMembership.slug === "string") {
+        writer.writeStringValue("slug", apiUserTeamMembership.slug as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserTeamMembership_slugMember1>("slug", apiUserTeamMembership.slug as ApiUserTeamMembership_slugMember1 | undefined | null, serializeApiUserTeamMembership_slug);
+    }
+    if ( typeof apiUserTeamMembership.tag === "string") {
+        writer.writeStringValue("tag", apiUserTeamMembership.tag as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserTeamMembership_tagMember1>("tag", apiUserTeamMembership.tag as ApiUserTeamMembership_tagMember1 | undefined | null, serializeApiUserTeamMembership_tag);
+    }
+    writer.writeEnumValue<ProfileVisibility>("visibility", apiUserTeamMembership.visibility);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTeamMembership_avatarUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTeamMembership_avatarUrl(writer: SerializationWriter, apiUserTeamMembership_avatarUrl: Partial<Parsable | ApiUserTeamMembership_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserTeamMembership_avatarUrlMember1(writer, apiUserTeamMembership_avatarUrl as ApiUserTeamMembership_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTeamMembership_avatarUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTeamMembership_avatarUrlMember1(writer: SerializationWriter, apiUserTeamMembership_avatarUrlMember1: Partial<ApiUserTeamMembership_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserTeamMembership_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserTeamMembership_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTeamMembership_joinedAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTeamMembership_joinedAt(writer: SerializationWriter, apiUserTeamMembership_joinedAt: Partial<Parsable | ApiUserTeamMembership_joinedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserTeamMembership_joinedAtMember1(writer, apiUserTeamMembership_joinedAt as ApiUserTeamMembership_joinedAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTeamMembership_joinedAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTeamMembership_joinedAtMember1(writer: SerializationWriter, apiUserTeamMembership_joinedAtMember1: Partial<ApiUserTeamMembership_joinedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserTeamMembership_joinedAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserTeamMembership_joinedAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTeamMembership_slug The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTeamMembership_slug(writer: SerializationWriter, apiUserTeamMembership_slug: Partial<Parsable | ApiUserTeamMembership_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserTeamMembership_slugMember1(writer, apiUserTeamMembership_slug as ApiUserTeamMembership_slugMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTeamMembership_slugMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTeamMembership_slugMember1(writer: SerializationWriter, apiUserTeamMembership_slugMember1: Partial<ApiUserTeamMembership_slugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserTeamMembership_slugMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserTeamMembership_slugMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTeamMembership_tag The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTeamMembership_tag(writer: SerializationWriter, apiUserTeamMembership_tag: Partial<Parsable | ApiUserTeamMembership_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserTeamMembership_tagMember1(writer, apiUserTeamMembership_tag as ApiUserTeamMembership_tagMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTeamMembership_tagMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTeamMembership_tagMember1(writer: SerializationWriter, apiUserTeamMembership_tagMember1: Partial<ApiUserTeamMembership_tagMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserTeamMembership_tagMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserTeamMembership_tagMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTrophy The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTrophy(writer: SerializationWriter, apiUserTrophy: Partial<ApiUserTrophy> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserTrophy || isSerializingDerivedType) { return; }
+    if ( typeof apiUserTrophy.awardedAt === "string") {
+        writer.writeStringValue("awardedAt", apiUserTrophy.awardedAt as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserTrophy_awardedAtMember1>("awardedAt", apiUserTrophy.awardedAt as ApiUserTrophy_awardedAtMember1 | undefined | null, serializeApiUserTrophy_awardedAt);
+    }
+    if ( typeof apiUserTrophy.description === "string") {
+        writer.writeStringValue("description", apiUserTrophy.description as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserTrophy_descriptionMember1>("description", apiUserTrophy.description as ApiUserTrophy_descriptionMember1 | undefined | null, serializeApiUserTrophy_description);
+    }
+    if ( typeof apiUserTrophy.iconUrl === "string") {
+        writer.writeStringValue("iconUrl", apiUserTrophy.iconUrl as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserTrophy_iconUrlMember1>("iconUrl", apiUserTrophy.iconUrl as ApiUserTrophy_iconUrlMember1 | undefined | null, serializeApiUserTrophy_iconUrl);
+    }
+    writer.writeStringValue("id", apiUserTrophy.id);
+    if ( typeof apiUserTrophy.rarity === "string") {
+        writer.writeStringValue("rarity", apiUserTrophy.rarity as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserTrophy_rarityMember1>("rarity", apiUserTrophy.rarity as ApiUserTrophy_rarityMember1 | undefined | null, serializeApiUserTrophy_rarity);
+    }
+    if ( typeof apiUserTrophy.title === "string") {
+        writer.writeStringValue("title", apiUserTrophy.title as string);
+    }
+    else {
+        writer.writeObjectValue<ApiUserTrophy_titleMember1>("title", apiUserTrophy.title as ApiUserTrophy_titleMember1 | undefined | null, serializeApiUserTrophy_title);
+    }
+    writer.writeStringValue("trophyId", apiUserTrophy.trophyId);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTrophy_awardedAt The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTrophy_awardedAt(writer: SerializationWriter, apiUserTrophy_awardedAt: Partial<Parsable | ApiUserTrophy_awardedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserTrophy_awardedAtMember1(writer, apiUserTrophy_awardedAt as ApiUserTrophy_awardedAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTrophy_awardedAtMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTrophy_awardedAtMember1(writer: SerializationWriter, apiUserTrophy_awardedAtMember1: Partial<ApiUserTrophy_awardedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserTrophy_awardedAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserTrophy_awardedAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTrophy_description The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTrophy_description(writer: SerializationWriter, apiUserTrophy_description: Partial<Parsable | ApiUserTrophy_descriptionMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserTrophy_descriptionMember1(writer, apiUserTrophy_description as ApiUserTrophy_descriptionMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTrophy_descriptionMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTrophy_descriptionMember1(writer: SerializationWriter, apiUserTrophy_descriptionMember1: Partial<ApiUserTrophy_descriptionMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserTrophy_descriptionMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserTrophy_descriptionMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTrophy_iconUrl The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTrophy_iconUrl(writer: SerializationWriter, apiUserTrophy_iconUrl: Partial<Parsable | ApiUserTrophy_iconUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserTrophy_iconUrlMember1(writer, apiUserTrophy_iconUrl as ApiUserTrophy_iconUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTrophy_iconUrlMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTrophy_iconUrlMember1(writer: SerializationWriter, apiUserTrophy_iconUrlMember1: Partial<ApiUserTrophy_iconUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserTrophy_iconUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserTrophy_iconUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTrophy_rarity The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTrophy_rarity(writer: SerializationWriter, apiUserTrophy_rarity: Partial<Parsable | ApiUserTrophy_rarityMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserTrophy_rarityMember1(writer, apiUserTrophy_rarity as ApiUserTrophy_rarityMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTrophy_rarityMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTrophy_rarityMember1(writer: SerializationWriter, apiUserTrophy_rarityMember1: Partial<ApiUserTrophy_rarityMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserTrophy_rarityMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserTrophy_rarityMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTrophy_title The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTrophy_title(writer: SerializationWriter, apiUserTrophy_title: Partial<Parsable | ApiUserTrophy_titleMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeApiUserTrophy_titleMember1(writer, apiUserTrophy_title as ApiUserTrophy_titleMember1);
+}
+/**
+ * Serializes information the current object
+ * @param ApiUserTrophy_titleMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApiUserTrophy_titleMember1(writer: SerializationWriter, apiUserTrophy_titleMember1: Partial<ApiUserTrophy_titleMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!apiUserTrophy_titleMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(apiUserTrophy_titleMember1.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param BansRequestBody The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -3856,6 +13436,20 @@ export function serializeConfirmScoreBody(writer: SerializationWriter, confirmSc
     if (!confirmScoreBody || isSerializingDerivedType) { return; }
     writer.writeNumberValue("mapIndex", confirmScoreBody.mapIndex);
     writer.writeAdditionalData(confirmScoreBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param CreateWebhookBody The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCreateWebhookBody(writer: SerializationWriter, createWebhookBody: Partial<CreateWebhookBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!createWebhookBody || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfPrimitiveValues<string>("events", createWebhookBody.events);
+    writer.writeStringValue("label", createWebhookBody.label);
+    writer.writeStringValue("url", createWebhookBody.url);
+    writer.writeAdditionalData(createWebhookBody.additionalData);
 }
 /**
  * Serializes information the current object
@@ -3898,6 +13492,45 @@ export function serializeGame(writer: SerializationWriter, game: Partial<Game> |
 }
 /**
  * Serializes information the current object
+ * @param GameBatchMatchScoreResult The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameBatchMatchScoreResult(writer: SerializationWriter, gameBatchMatchScoreResult: Partial<GameBatchMatchScoreResult> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameBatchMatchScoreResult || isSerializingDerivedType) { return; }
+    writer.writeStringValue("error", gameBatchMatchScoreResult.errorEscaped);
+    writer.writeNumberValue("mapIndex", gameBatchMatchScoreResult.mapIndex);
+    writer.writeStringValue("matchId", gameBatchMatchScoreResult.matchId);
+    writer.writeStringValue("status", gameBatchMatchScoreResult.status);
+}
+/**
+ * Serializes information the current object
+ * @param GameBatchMatchScoresBody The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameBatchMatchScoresBody(writer: SerializationWriter, gameBatchMatchScoresBody: Partial<GameBatchMatchScoresBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameBatchMatchScoresBody || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<GameMultiMatchScoreItem>("items", gameBatchMatchScoresBody.items, serializeGameMultiMatchScoreItem);
+    writer.writeAdditionalData(gameBatchMatchScoresBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param GameBatchMatchScoresResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameBatchMatchScoresResponse(writer: SerializationWriter, gameBatchMatchScoresResponse: Partial<GameBatchMatchScoresResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameBatchMatchScoresResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", gameBatchMatchScoresResponse.count);
+    writer.writeCollectionOfObjectValues<GameBatchMatchScoreResult>("submitted", gameBatchMatchScoresResponse.submitted, serializeGameBatchMatchScoreResult);
+    writer.writeBooleanValue("success", gameBatchMatchScoresResponse.success);
+}
+/**
+ * Serializes information the current object
  * @param GameBatchScoreResult The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -3936,6 +13569,43 @@ export function serializeGameBatchScoresResponse(writer: SerializationWriter, ga
 }
 /**
  * Serializes information the current object
+ * @param GameCreateMatchBody The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameCreateMatchBody(writer: SerializationWriter, gameCreateMatchBody: Partial<GameCreateMatchBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameCreateMatchBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("acceptedTeamId", gameCreateMatchBody.acceptedTeamId);
+    writer.writeNumberValue("bestOf", gameCreateMatchBody.bestOf);
+    writer.writeStringValue("creatorTeamId", gameCreateMatchBody.creatorTeamId);
+    writer.writeStringValue("gameModeId", gameCreateMatchBody.gameModeId);
+    writer.writeEnumValue<GameCreateMatchBody_inputDevice>("inputDevice", gameCreateMatchBody.inputDevice);
+    writer.writeEnumValue<GameCreateMatchBody_mapPreferenceMode>("mapPreferenceMode", gameCreateMatchBody.mapPreferenceMode);
+    writer.writeEnumValue<GameCreateMatchBody_mapSelectionType>("mapSelectionType", gameCreateMatchBody.mapSelectionType);
+    writer.writeEnumValue<GameCreateMatchBody_platform>("platform", gameCreateMatchBody.platform);
+    writer.writeEnumValue<GameCreateMatchBody_region>("region", gameCreateMatchBody.region);
+    writer.writeNumberValue("scheduledAt", gameCreateMatchBody.scheduledAt);
+    writer.writeCollectionOfPrimitiveValues<string>("selectedMaps", gameCreateMatchBody.selectedMaps);
+    writer.writeCollectionOfPrimitiveValues<string>("selectedObjectives", gameCreateMatchBody.selectedObjectives);
+    writer.writeNumberValue("teamSize", gameCreateMatchBody.teamSize);
+    writer.writeAdditionalData(gameCreateMatchBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param GameCreateMatchResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameCreateMatchResponse(writer: SerializationWriter, gameCreateMatchResponse: Partial<GameCreateMatchResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameCreateMatchResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("matchId", gameCreateMatchResponse.matchId);
+    writer.writeBooleanValue("success", gameCreateMatchResponse.success);
+    writer.writeStringValue("timestamp", gameCreateMatchResponse.timestamp);
+}
+/**
+ * Serializes information the current object
  * @param GameDetailTeam The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -3946,6 +13616,33 @@ export function serializeGameDetailTeam(writer: SerializationWriter, gameDetailT
     writer.writeStringValue("_id", gameDetailTeam.id);
     writer.writeStringValue("name", gameDetailTeam.name);
     writer.writeStringValue("tag", gameDetailTeam.tag);
+}
+/**
+ * Serializes information the current object
+ * @param GameForfeitBody The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameForfeitBody(writer: SerializationWriter, gameForfeitBody: Partial<GameForfeitBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameForfeitBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("forfeitingTeamId", gameForfeitBody.forfeitingTeamId);
+    writer.writeStringValue("reason", gameForfeitBody.reason);
+    writer.writeAdditionalData(gameForfeitBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param GameForfeitResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameForfeitResponse(writer: SerializationWriter, gameForfeitResponse: Partial<GameForfeitResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameForfeitResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("forfeitedByTeamId", gameForfeitResponse.forfeitedByTeamId);
+    writer.writeStringValue("matchId", gameForfeitResponse.matchId);
+    writer.writeBooleanValue("success", gameForfeitResponse.success);
+    writer.writeStringValue("timestamp", gameForfeitResponse.timestamp);
 }
 /**
  * Serializes information the current object
@@ -4192,6 +13889,18 @@ export function serializeGameMatchDetail(writer: SerializationWriter, gameMatchD
     writer.writeStringValue("gameId", gameMatchDetail.gameId);
     writer.writeStringValue("gameMode", gameMatchDetail.gameMode);
     writer.writeStringValue("id", gameMatchDetail.id);
+    if ( typeof gameMatchDetail.leagueId === "string") {
+        writer.writeStringValue("leagueId", gameMatchDetail.leagueId as string);
+    }
+    else {
+        writer.writeObjectValue<GameMatchDetail_leagueIdMember1>("leagueId", gameMatchDetail.leagueId as GameMatchDetail_leagueIdMember1 | undefined | null, serializeGameMatchDetail_leagueId);
+    }
+    if ( typeof gameMatchDetail.leagueSeasonId === "string") {
+        writer.writeStringValue("leagueSeasonId", gameMatchDetail.leagueSeasonId as string);
+    }
+    else {
+        writer.writeObjectValue<GameMatchDetail_leagueSeasonIdMember1>("leagueSeasonId", gameMatchDetail.leagueSeasonId as GameMatchDetail_leagueSeasonIdMember1 | undefined | null, serializeGameMatchDetail_leagueSeasonId);
+    }
     if ( typeof gameMatchDetail.loserTeamId === "string") {
         writer.writeStringValue("loserTeamId", gameMatchDetail.loserTeamId as string);
     }
@@ -4301,6 +14010,48 @@ export function serializeGameMatchDetail_creatorTeamScore(writer: SerializationW
 export function serializeGameMatchDetail_creatorTeamScoreMember1(writer: SerializationWriter, gameMatchDetail_creatorTeamScoreMember1: Partial<GameMatchDetail_creatorTeamScoreMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!gameMatchDetail_creatorTeamScoreMember1 || isSerializingDerivedType) { return; }
     writer.writeAdditionalData(gameMatchDetail_creatorTeamScoreMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param GameMatchDetail_leagueId The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameMatchDetail_leagueId(writer: SerializationWriter, gameMatchDetail_leagueId: Partial<Parsable | GameMatchDetail_leagueIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeGameMatchDetail_leagueIdMember1(writer, gameMatchDetail_leagueId as GameMatchDetail_leagueIdMember1);
+}
+/**
+ * Serializes information the current object
+ * @param GameMatchDetail_leagueIdMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameMatchDetail_leagueIdMember1(writer: SerializationWriter, gameMatchDetail_leagueIdMember1: Partial<GameMatchDetail_leagueIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameMatchDetail_leagueIdMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(gameMatchDetail_leagueIdMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param GameMatchDetail_leagueSeasonId The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameMatchDetail_leagueSeasonId(writer: SerializationWriter, gameMatchDetail_leagueSeasonId: Partial<Parsable | GameMatchDetail_leagueSeasonIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeGameMatchDetail_leagueSeasonIdMember1(writer, gameMatchDetail_leagueSeasonId as GameMatchDetail_leagueSeasonIdMember1);
+}
+/**
+ * Serializes information the current object
+ * @param GameMatchDetail_leagueSeasonIdMember1 The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameMatchDetail_leagueSeasonIdMember1(writer: SerializationWriter, gameMatchDetail_leagueSeasonIdMember1: Partial<GameMatchDetail_leagueSeasonIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameMatchDetail_leagueSeasonIdMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(gameMatchDetail_leagueSeasonIdMember1.additionalData);
 }
 /**
  * Serializes information the current object
@@ -4438,6 +14189,35 @@ export function serializeGameMatchRostersResponse_acceptedTeamId(writer: Seriali
 export function serializeGameMatchRostersResponse_acceptedTeamIdMember1(writer: SerializationWriter, gameMatchRostersResponse_acceptedTeamIdMember1: Partial<GameMatchRostersResponse_acceptedTeamIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!gameMatchRostersResponse_acceptedTeamIdMember1 || isSerializingDerivedType) { return; }
     writer.writeAdditionalData(gameMatchRostersResponse_acceptedTeamIdMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param GameMultiMatchScoreItem The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameMultiMatchScoreItem(writer: SerializationWriter, gameMultiMatchScoreItem: Partial<GameMultiMatchScoreItem> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameMultiMatchScoreItem || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("creatorTeamScore", gameMultiMatchScoreItem.creatorTeamScore);
+    writer.writeStringValue("mapId", gameMultiMatchScoreItem.mapId);
+    writer.writeNumberValue("mapIndex", gameMultiMatchScoreItem.mapIndex);
+    writer.writeStringValue("matchId", gameMultiMatchScoreItem.matchId);
+    writer.writeNumberValue("opponentTeamScore", gameMultiMatchScoreItem.opponentTeamScore);
+    writer.writeObjectValue<GameMultiMatchScoreItem_playerStats>("playerStats", gameMultiMatchScoreItem.playerStats, serializeGameMultiMatchScoreItem_playerStats);
+    writer.writeCollectionOfPrimitiveValues<string>("screenshotUrls", gameMultiMatchScoreItem.screenshotUrls);
+    writer.writeAdditionalData(gameMultiMatchScoreItem.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param GameMultiMatchScoreItem_playerStats The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameMultiMatchScoreItem_playerStats(writer: SerializationWriter, gameMultiMatchScoreItem_playerStats: Partial<GameMultiMatchScoreItem_playerStats> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameMultiMatchScoreItem_playerStats || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(gameMultiMatchScoreItem_playerStats.additionalData);
 }
 /**
  * Serializes information the current object
@@ -4708,6 +14488,148 @@ export function serializeGameStatusUpdateResponse(writer: SerializationWriter, g
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeaderboardRankResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeaderboardRankResponse(writer: SerializationWriter, leaderboardRankResponse: Partial<LeaderboardRankResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leaderboardRankResponse || isSerializingDerivedType) { return; }
+    if ( typeof leaderboardRankResponse.gameSlug === "string") {
+        writer.writeStringValue("gameSlug", leaderboardRankResponse.gameSlug as string);
+    }
+    else {
+        writer.writeObjectValue<LeaderboardRankResponse_gameSlugMember1>("gameSlug", leaderboardRankResponse.gameSlug as LeaderboardRankResponse_gameSlugMember1 | undefined | null, serializeLeaderboardRankResponse_gameSlug);
+    }
+    writer.writeStringValue("id", leaderboardRankResponse.id);
+    if ( typeof leaderboardRankResponse.rank === "number") {
+        writer.writeNumberValue("rank", leaderboardRankResponse.rank as number);
+    }
+    else {
+        writer.writeObjectValue<LeaderboardRankResponse_rankMember1>("rank", leaderboardRankResponse.rank as LeaderboardRankResponse_rankMember1 | undefined | null, serializeLeaderboardRankResponse_rank);
+    }
+    writer.writeEnumValue<LeaderboardSortBy>("sortBy", leaderboardRankResponse.sortBy);
+    writer.writeStringValue("timestamp", leaderboardRankResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeaderboardRankResponse_gameSlug The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeaderboardRankResponse_gameSlug(writer: SerializationWriter, leaderboardRankResponse_gameSlug: Partial<Parsable | LeaderboardRankResponse_gameSlugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeLeaderboardRankResponse_gameSlugMember1(writer, leaderboardRankResponse_gameSlug as LeaderboardRankResponse_gameSlugMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeaderboardRankResponse_gameSlugMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeaderboardRankResponse_gameSlugMember1(writer: SerializationWriter, leaderboardRankResponse_gameSlugMember1: Partial<LeaderboardRankResponse_gameSlugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leaderboardRankResponse_gameSlugMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(leaderboardRankResponse_gameSlugMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeaderboardRankResponse_rank The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeaderboardRankResponse_rank(writer: SerializationWriter, leaderboardRankResponse_rank: Partial<Parsable | LeaderboardRankResponse_rankMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeLeaderboardRankResponse_rankMember1(writer, leaderboardRankResponse_rank as LeaderboardRankResponse_rankMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeaderboardRankResponse_rankMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeaderboardRankResponse_rankMember1(writer: SerializationWriter, leaderboardRankResponse_rankMember1: Partial<LeaderboardRankResponse_rankMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leaderboardRankResponse_rankMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(leaderboardRankResponse_rankMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeaderboardStats The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeaderboardStats(writer: SerializationWriter, leaderboardStats: Partial<LeaderboardStats> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leaderboardStats || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("experience", leaderboardStats.experience);
+    writer.writeNumberValue("losses", leaderboardStats.losses);
+    writer.writeNumberValue("matchesPlayed", leaderboardStats.matchesPlayed);
+    writer.writeNumberValue("winRate", leaderboardStats.winRate);
+    writer.writeNumberValue("wins", leaderboardStats.wins);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueApplyEligibility The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueApplyEligibility(writer: SerializationWriter, leagueApplyEligibility: Partial<LeagueApplyEligibility> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueApplyEligibility || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<LeagueApplyEligibility_eligibility>("eligibility", leagueApplyEligibility.eligibility, serializeLeagueApplyEligibility_eligibility);
+    writer.writeStringValue("timestamp", leagueApplyEligibility.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueApplyEligibility_eligibility The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueApplyEligibility_eligibility(writer: SerializationWriter, leagueApplyEligibility_eligibility: Partial<LeagueApplyEligibility_eligibility> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueApplyEligibility_eligibility || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<LeagueApplyEligibility_eligibility_eligibleTeams>("eligibleTeams", leagueApplyEligibility_eligibility.eligibleTeams, serializeLeagueApplyEligibility_eligibility_eligibleTeams);
+    writer.writeBooleanValue("hasApprovedTeamHere", leagueApplyEligibility_eligibility.hasApprovedTeamHere);
+    writer.writeBooleanValue("isAuthed", leagueApplyEligibility_eligibility.isAuthed);
+    writer.writeCollectionOfObjectValues<LeagueApplyEligibility_eligibility_pendingTeams>("pendingTeams", leagueApplyEligibility_eligibility.pendingTeams, serializeLeagueApplyEligibility_eligibility_pendingTeams);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueApplyEligibility_eligibility_eligibleTeams The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueApplyEligibility_eligibility_eligibleTeams(writer: SerializationWriter, leagueApplyEligibility_eligibility_eligibleTeams: Partial<LeagueApplyEligibility_eligibility_eligibleTeams> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueApplyEligibility_eligibility_eligibleTeams || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(leagueApplyEligibility_eligibility_eligibleTeams.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueApplyEligibility_eligibility_pendingTeams The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueApplyEligibility_eligibility_pendingTeams(writer: SerializationWriter, leagueApplyEligibility_eligibility_pendingTeams: Partial<LeagueApplyEligibility_eligibility_pendingTeams> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueApplyEligibility_eligibility_pendingTeams || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(leagueApplyEligibility_eligibility_pendingTeams.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueApplyEligibilityRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueApplyEligibilityRequestBody(writer: SerializationWriter, leagueApplyEligibilityRequestBody: Partial<LeagueApplyEligibilityRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueApplyEligibilityRequestBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("teamId", leagueApplyEligibilityRequestBody.teamId);
+    writer.writeAdditionalData(leagueApplyEligibilityRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param LeagueBans The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -4728,6 +14650,66 @@ export function serializeLeagueBans(writer: SerializationWriter, leagueBans: Par
 export function serializeLeagueBans_bans(writer: SerializationWriter, leagueBans_bans: Partial<LeagueBans_bans> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!leagueBans_bans || isSerializingDerivedType) { return; }
     writer.writeAdditionalData(leagueBans_bans.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueDisplayRules The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueDisplayRules(writer: SerializationWriter, leagueDisplayRules: Partial<LeagueDisplayRules> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueDisplayRules || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", leagueDisplayRules.count);
+    writer.writeCollectionOfObjectValues<LeagueDisplayRules_displayRules>("displayRules", leagueDisplayRules.displayRules, serializeLeagueDisplayRules_displayRules);
+    writer.writeStringValue("timestamp", leagueDisplayRules.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueDisplayRules_displayRules The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueDisplayRules_displayRules(writer: SerializationWriter, leagueDisplayRules_displayRules: Partial<LeagueDisplayRules_displayRules> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueDisplayRules_displayRules || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(leagueDisplayRules_displayRules.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueDisplayRulesRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueDisplayRulesRequestBody(writer: SerializationWriter, leagueDisplayRulesRequestBody: Partial<LeagueDisplayRulesRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueDisplayRulesRequestBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("gameId", leagueDisplayRulesRequestBody.gameId);
+    writer.writeAdditionalData(leagueDisplayRulesRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueGames The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueGames(writer: SerializationWriter, leagueGames: Partial<LeagueGames> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueGames || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", leagueGames.count);
+    writer.writeCollectionOfObjectValues<LeagueGames_games>("games", leagueGames.games, serializeLeagueGames_games);
+    writer.writeStringValue("timestamp", leagueGames.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueGames_games The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueGames_games(writer: SerializationWriter, leagueGames_games: Partial<LeagueGames_games> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueGames_games || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(leagueGames_games.additionalData);
 }
 /**
  * Serializes information the current object
@@ -4916,6 +14898,91 @@ export function serializeLeagueRules(writer: SerializationWriter, leagueRules: P
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueSeason The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueSeason(writer: SerializationWriter, leagueSeason: Partial<LeagueSeason> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueSeason || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<LeagueSeason_season>("season", leagueSeason.season, serializeLeagueSeason_season);
+    writer.writeStringValue("timestamp", leagueSeason.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueSeason_season The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueSeason_season(writer: SerializationWriter, leagueSeason_season: Partial<LeagueSeason_season> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueSeason_season || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(leagueSeason_season.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueSeasonOptions The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueSeasonOptions(writer: SerializationWriter, leagueSeasonOptions: Partial<LeagueSeasonOptions> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueSeasonOptions || isSerializingDerivedType) { return; }
+    if ( typeof leagueSeasonOptions.defaultSeasonId === "string") {
+        writer.writeStringValue("defaultSeasonId", leagueSeasonOptions.defaultSeasonId as string);
+    }
+    else {
+        writer.writeObjectValue<LeagueSeasonOptions_defaultSeasonIdMember1>("defaultSeasonId", leagueSeasonOptions.defaultSeasonId as LeagueSeasonOptions_defaultSeasonIdMember1 | undefined | null, serializeLeagueSeasonOptions_defaultSeasonId);
+    }
+    writer.writeCollectionOfObjectValues<LeagueSeasonOptions_seasons>("seasons", leagueSeasonOptions.seasons, serializeLeagueSeasonOptions_seasons);
+    writer.writeStringValue("timestamp", leagueSeasonOptions.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueSeasonOptions_defaultSeasonId The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueSeasonOptions_defaultSeasonId(writer: SerializationWriter, leagueSeasonOptions_defaultSeasonId: Partial<Parsable | LeagueSeasonOptions_defaultSeasonIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeLeagueSeasonOptions_defaultSeasonIdMember1(writer, leagueSeasonOptions_defaultSeasonId as LeagueSeasonOptions_defaultSeasonIdMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueSeasonOptions_defaultSeasonIdMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueSeasonOptions_defaultSeasonIdMember1(writer: SerializationWriter, leagueSeasonOptions_defaultSeasonIdMember1: Partial<LeagueSeasonOptions_defaultSeasonIdMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueSeasonOptions_defaultSeasonIdMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(leagueSeasonOptions_defaultSeasonIdMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueSeasonOptions_seasons The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueSeasonOptions_seasons(writer: SerializationWriter, leagueSeasonOptions_seasons: Partial<LeagueSeasonOptions_seasons> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueSeasonOptions_seasons || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(leagueSeasonOptions_seasons.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueSeasonOptionsRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueSeasonOptionsRequestBody(writer: SerializationWriter, leagueSeasonOptionsRequestBody: Partial<LeagueSeasonOptionsRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueSeasonOptionsRequestBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("gameId", leagueSeasonOptionsRequestBody.gameId);
+    writer.writeAdditionalData(leagueSeasonOptionsRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param LeagueSeasons The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -5051,6 +15118,43 @@ export function serializeLeagueSummary_games(writer: SerializationWriter, league
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueTemplates The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueTemplates(writer: SerializationWriter, leagueTemplates: Partial<LeagueTemplates> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueTemplates || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", leagueTemplates.count);
+    writer.writeCollectionOfObjectValues<LeagueTemplates_templates>("templates", leagueTemplates.templates, serializeLeagueTemplates_templates);
+    writer.writeStringValue("timestamp", leagueTemplates.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueTemplates_templates The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueTemplates_templates(writer: SerializationWriter, leagueTemplates_templates: Partial<LeagueTemplates_templates> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueTemplates_templates || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(leagueTemplates_templates.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeagueTemplatesRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeagueTemplatesRequestBody(writer: SerializationWriter, leagueTemplatesRequestBody: Partial<LeagueTemplatesRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leagueTemplatesRequestBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("gameId", leagueTemplatesRequestBody.gameId);
+    writer.writeBooleanValue("isOfficial", leagueTemplatesRequestBody.isOfficial);
+    writer.writeAdditionalData(leagueTemplatesRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param ListGameMatchesBody The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -5058,7 +15162,6 @@ export function serializeLeagueSummary_games(writer: SerializationWriter, league
 export function serializeListGameMatchesBody(writer: SerializationWriter, listGameMatchesBody: Partial<ListGameMatchesBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!listGameMatchesBody || isSerializingDerivedType) { return; }
     writer.writeStringValue("cursor", listGameMatchesBody.cursor);
-    writer.writeStringValue("gameId", listGameMatchesBody.gameId);
     writer.writeNumberValue("limit", listGameMatchesBody.limit);
     writer.writeStringValue("status", listGameMatchesBody.status);
     writer.writeAdditionalData(listGameMatchesBody.additionalData);
@@ -5136,6 +15239,94 @@ export function serializeMapScores_seriesScore(writer: SerializationWriter, mapS
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MatchDiscoverBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMatchDiscoverBody(writer: SerializationWriter, matchDiscoverBody: Partial<MatchDiscoverBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!matchDiscoverBody || isSerializingDerivedType) { return; }
+    if ( typeof matchDiscoverBody.cursor === "string") {
+        writer.writeStringValue("cursor", matchDiscoverBody.cursor as string);
+    }
+    else {
+        writer.writeObjectValue<MatchDiscoverBody_cursorMember1>("cursor", matchDiscoverBody.cursor as MatchDiscoverBody_cursorMember1 | undefined | null, serializeMatchDiscoverBody_cursor);
+    }
+    writer.writeStringValue("gameId", matchDiscoverBody.gameId);
+    writer.writeStringValue("gameSlug", matchDiscoverBody.gameSlug);
+    writer.writeStringValue("leagueId", matchDiscoverBody.leagueId);
+    writer.writeStringValue("leagueSeasonId", matchDiscoverBody.leagueSeasonId);
+    writer.writeNumberValue("limit", matchDiscoverBody.limit ?? 50);
+    writer.writeEnumValue<MatchDiscoverBody_matchType>("matchType", matchDiscoverBody.matchType);
+    writer.writeEnumValue<MatchDiscoverBody_platform>("platform", matchDiscoverBody.platform);
+    writer.writeEnumValue<MatchDiscoverBody_region>("region", matchDiscoverBody.region);
+    writer.writeStringValue("scheduledAfter", matchDiscoverBody.scheduledAfter);
+    writer.writeStringValue("scheduledBefore", matchDiscoverBody.scheduledBefore);
+    writer.writeAdditionalData(matchDiscoverBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MatchDiscoverBody_cursor The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMatchDiscoverBody_cursor(writer: SerializationWriter, matchDiscoverBody_cursor: Partial<Parsable | MatchDiscoverBody_cursorMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeMatchDiscoverBody_cursorMember1(writer, matchDiscoverBody_cursor as MatchDiscoverBody_cursorMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MatchDiscoverBody_cursorMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMatchDiscoverBody_cursorMember1(writer: SerializationWriter, matchDiscoverBody_cursorMember1: Partial<MatchDiscoverBody_cursorMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!matchDiscoverBody_cursorMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(matchDiscoverBody_cursorMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MatchDiscoverPage The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMatchDiscoverPage(writer: SerializationWriter, matchDiscoverPage: Partial<MatchDiscoverPage> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!matchDiscoverPage || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<ApiMatchDetail>("data", matchDiscoverPage.data, serializeApiMatchDetail);
+    writer.writeBooleanValue("hasMore", matchDiscoverPage.hasMore);
+    if ( typeof matchDiscoverPage.nextCursor === "string") {
+        writer.writeStringValue("nextCursor", matchDiscoverPage.nextCursor as string);
+    }
+    else {
+        writer.writeObjectValue<MatchDiscoverPage_nextCursorMember1>("nextCursor", matchDiscoverPage.nextCursor as MatchDiscoverPage_nextCursorMember1 | undefined | null, serializeMatchDiscoverPage_nextCursor);
+    }
+    writer.writeStringValue("timestamp", matchDiscoverPage.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MatchDiscoverPage_nextCursor The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMatchDiscoverPage_nextCursor(writer: SerializationWriter, matchDiscoverPage_nextCursor: Partial<Parsable | MatchDiscoverPage_nextCursorMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeMatchDiscoverPage_nextCursorMember1(writer, matchDiscoverPage_nextCursor as MatchDiscoverPage_nextCursorMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MatchDiscoverPage_nextCursorMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMatchDiscoverPage_nextCursorMember1(writer: SerializationWriter, matchDiscoverPage_nextCursorMember1: Partial<MatchDiscoverPage_nextCursorMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!matchDiscoverPage_nextCursorMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(matchDiscoverPage_nextCursorMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param MatchesRequestBody The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -5183,6 +15374,115 @@ export function serializeMatchesRequestBody_cursorMember1(writer: SerializationW
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param OngoingMatchesResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeOngoingMatchesResponse(writer: SerializationWriter, ongoingMatchesResponse: Partial<OngoingMatchesResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!ongoingMatchesResponse || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<ApiMatchDetail>("matches", ongoingMatchesResponse.matches, serializeApiMatchDetail);
+    writer.writeStringValue("timestamp", ongoingMatchesResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param OrganizationLeaderboardEntry The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeOrganizationLeaderboardEntry(writer: SerializationWriter, organizationLeaderboardEntry: Partial<OrganizationLeaderboardEntry> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!organizationLeaderboardEntry || isSerializingDerivedType) { return; }
+    if ( typeof organizationLeaderboardEntry.gameSlug === "string") {
+        writer.writeStringValue("gameSlug", organizationLeaderboardEntry.gameSlug as string);
+    }
+    else {
+        writer.writeObjectValue<OrganizationLeaderboardEntry_gameSlugMember1>("gameSlug", organizationLeaderboardEntry.gameSlug as OrganizationLeaderboardEntry_gameSlugMember1 | undefined | null, serializeOrganizationLeaderboardEntry_gameSlug);
+    }
+    writer.writeStringValue("id", organizationLeaderboardEntry.id);
+    writer.writeObjectValue<ApiOrganizationSummary>("organization", organizationLeaderboardEntry.organization, serializeApiOrganizationSummary);
+    writer.writeNumberValue("rank", organizationLeaderboardEntry.rank);
+    writer.writeObjectValue<OrganizationLeaderboardEntry_stats>("stats", organizationLeaderboardEntry.stats, serializeOrganizationLeaderboardEntry_stats);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param OrganizationLeaderboardEntry_gameSlug The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeOrganizationLeaderboardEntry_gameSlug(writer: SerializationWriter, organizationLeaderboardEntry_gameSlug: Partial<Parsable | OrganizationLeaderboardEntry_gameSlugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeOrganizationLeaderboardEntry_gameSlugMember1(writer, organizationLeaderboardEntry_gameSlug as OrganizationLeaderboardEntry_gameSlugMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param OrganizationLeaderboardEntry_gameSlugMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeOrganizationLeaderboardEntry_gameSlugMember1(writer: SerializationWriter, organizationLeaderboardEntry_gameSlugMember1: Partial<OrganizationLeaderboardEntry_gameSlugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!organizationLeaderboardEntry_gameSlugMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(organizationLeaderboardEntry_gameSlugMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param OrganizationLeaderboardEntry_stats The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeOrganizationLeaderboardEntry_stats(writer: SerializationWriter, organizationLeaderboardEntry_stats: Partial<OrganizationLeaderboardEntry_stats> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!organizationLeaderboardEntry_stats || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("experience", organizationLeaderboardEntry_stats.experience);
+    writer.writeNumberValue("losses", organizationLeaderboardEntry_stats.losses);
+    writer.writeNumberValue("matchesPlayed", organizationLeaderboardEntry_stats.matchesPlayed);
+    writer.writeNumberValue("teamCount", organizationLeaderboardEntry_stats.teamCount);
+    writer.writeNumberValue("winRate", organizationLeaderboardEntry_stats.winRate);
+    writer.writeNumberValue("wins", organizationLeaderboardEntry_stats.wins);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param OrganizationLeaderboardResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeOrganizationLeaderboardResponse(writer: SerializationWriter, organizationLeaderboardResponse: Partial<OrganizationLeaderboardResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!organizationLeaderboardResponse || isSerializingDerivedType) { return; }
+    if ( typeof organizationLeaderboardResponse.gameSlug === "string") {
+        writer.writeStringValue("gameSlug", organizationLeaderboardResponse.gameSlug as string);
+    }
+    else {
+        writer.writeObjectValue<OrganizationLeaderboardResponse_gameSlugMember1>("gameSlug", organizationLeaderboardResponse.gameSlug as OrganizationLeaderboardResponse_gameSlugMember1 | undefined | null, serializeOrganizationLeaderboardResponse_gameSlug);
+    }
+    writer.writeCollectionOfObjectValues<OrganizationLeaderboardEntry>("organizations", organizationLeaderboardResponse.organizations, serializeOrganizationLeaderboardEntry);
+    writer.writeEnumValue<LeaderboardSortBy>("sortBy", organizationLeaderboardResponse.sortBy);
+    writer.writeStringValue("timestamp", organizationLeaderboardResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param OrganizationLeaderboardResponse_gameSlug The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeOrganizationLeaderboardResponse_gameSlug(writer: SerializationWriter, organizationLeaderboardResponse_gameSlug: Partial<Parsable | OrganizationLeaderboardResponse_gameSlugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeOrganizationLeaderboardResponse_gameSlugMember1(writer, organizationLeaderboardResponse_gameSlug as OrganizationLeaderboardResponse_gameSlugMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param OrganizationLeaderboardResponse_gameSlugMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeOrganizationLeaderboardResponse_gameSlugMember1(writer: SerializationWriter, organizationLeaderboardResponse_gameSlugMember1: Partial<OrganizationLeaderboardResponse_gameSlugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!organizationLeaderboardResponse_gameSlugMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(organizationLeaderboardResponse_gameSlugMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param PenaltiesRequestBody The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -5194,6 +15494,33 @@ export function serializePenaltiesRequestBody(writer: SerializationWriter, penal
     writer.writeStringValue("teamId", penaltiesRequestBody.teamId);
     writer.writeEnumValue<PenaltiesRequestBody_type>("type", penaltiesRequestBody.type ?? PenaltiesRequestBody_typeObject.All);
     writer.writeAdditionalData(penaltiesRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PlayerLeaderboardEntry The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePlayerLeaderboardEntry(writer: SerializationWriter, playerLeaderboardEntry: Partial<PlayerLeaderboardEntry> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!playerLeaderboardEntry || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", playerLeaderboardEntry.id);
+    writer.writeNumberValue("rank", playerLeaderboardEntry.rank);
+    writer.writeObjectValue<LeaderboardStats>("stats", playerLeaderboardEntry.stats, serializeLeaderboardStats);
+    writer.writeObjectValue<ApiUserProfile>("user", playerLeaderboardEntry.user, serializeApiUserProfile);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PlayerLeaderboardResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePlayerLeaderboardResponse(writer: SerializationWriter, playerLeaderboardResponse: Partial<PlayerLeaderboardResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!playerLeaderboardResponse || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<PlayerLeaderboardEntry>("players", playerLeaderboardResponse.players, serializePlayerLeaderboardEntry);
+    writer.writeEnumValue<LeaderboardSortBy>("sortBy", playerLeaderboardResponse.sortBy);
+    writer.writeStringValue("timestamp", playerLeaderboardResponse.timestamp);
 }
 /**
  * Serializes information the current object
@@ -5351,9 +15678,117 @@ export function serializeSubmitScoreBody(writer: SerializationWriter, submitScor
 // @ts-ignore
 export function serializeTeam(writer: SerializationWriter, team: Partial<Team> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!team || isSerializingDerivedType) { return; }
+    if ( typeof team.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", team.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<Team_avatarUrlMember1>("avatarUrl", team.avatarUrl as Team_avatarUrlMember1 | undefined | null, serializeTeam_avatarUrl);
+    }
     writer.writeStringValue("id", team.id);
     writer.writeStringValue("name", team.name);
     writer.writeStringValue("tag", team.tag);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param Team_avatarUrl The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTeam_avatarUrl(writer: SerializationWriter, team_avatarUrl: Partial<Parsable | Team_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTeam_avatarUrlMember1(writer, team_avatarUrl as Team_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param Team_avatarUrlMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTeam_avatarUrlMember1(writer: SerializationWriter, team_avatarUrlMember1: Partial<Team_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!team_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(team_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TeamLeaderboardEntry The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTeamLeaderboardEntry(writer: SerializationWriter, teamLeaderboardEntry: Partial<TeamLeaderboardEntry> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!teamLeaderboardEntry || isSerializingDerivedType) { return; }
+    if ( typeof teamLeaderboardEntry.gameSlug === "string") {
+        writer.writeStringValue("gameSlug", teamLeaderboardEntry.gameSlug as string);
+    }
+    else {
+        writer.writeObjectValue<TeamLeaderboardEntry_gameSlugMember1>("gameSlug", teamLeaderboardEntry.gameSlug as TeamLeaderboardEntry_gameSlugMember1 | undefined | null, serializeTeamLeaderboardEntry_gameSlug);
+    }
+    writer.writeStringValue("id", teamLeaderboardEntry.id);
+    writer.writeNumberValue("rank", teamLeaderboardEntry.rank);
+    writer.writeObjectValue<LeaderboardStats>("stats", teamLeaderboardEntry.stats, serializeLeaderboardStats);
+    writer.writeObjectValue<ApiTeamSummary>("team", teamLeaderboardEntry.team, serializeApiTeamSummary);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TeamLeaderboardEntry_gameSlug The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTeamLeaderboardEntry_gameSlug(writer: SerializationWriter, teamLeaderboardEntry_gameSlug: Partial<Parsable | TeamLeaderboardEntry_gameSlugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTeamLeaderboardEntry_gameSlugMember1(writer, teamLeaderboardEntry_gameSlug as TeamLeaderboardEntry_gameSlugMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TeamLeaderboardEntry_gameSlugMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTeamLeaderboardEntry_gameSlugMember1(writer: SerializationWriter, teamLeaderboardEntry_gameSlugMember1: Partial<TeamLeaderboardEntry_gameSlugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!teamLeaderboardEntry_gameSlugMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(teamLeaderboardEntry_gameSlugMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TeamLeaderboardResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTeamLeaderboardResponse(writer: SerializationWriter, teamLeaderboardResponse: Partial<TeamLeaderboardResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!teamLeaderboardResponse || isSerializingDerivedType) { return; }
+    if ( typeof teamLeaderboardResponse.gameSlug === "string") {
+        writer.writeStringValue("gameSlug", teamLeaderboardResponse.gameSlug as string);
+    }
+    else {
+        writer.writeObjectValue<TeamLeaderboardResponse_gameSlugMember1>("gameSlug", teamLeaderboardResponse.gameSlug as TeamLeaderboardResponse_gameSlugMember1 | undefined | null, serializeTeamLeaderboardResponse_gameSlug);
+    }
+    writer.writeEnumValue<LeaderboardSortBy>("sortBy", teamLeaderboardResponse.sortBy);
+    writer.writeCollectionOfObjectValues<TeamLeaderboardEntry>("teams", teamLeaderboardResponse.teams, serializeTeamLeaderboardEntry);
+    writer.writeStringValue("timestamp", teamLeaderboardResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TeamLeaderboardResponse_gameSlug The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTeamLeaderboardResponse_gameSlug(writer: SerializationWriter, teamLeaderboardResponse_gameSlug: Partial<Parsable | TeamLeaderboardResponse_gameSlugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTeamLeaderboardResponse_gameSlugMember1(writer, teamLeaderboardResponse_gameSlug as TeamLeaderboardResponse_gameSlugMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TeamLeaderboardResponse_gameSlugMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTeamLeaderboardResponse_gameSlugMember1(writer: SerializationWriter, teamLeaderboardResponse_gameSlugMember1: Partial<TeamLeaderboardResponse_gameSlugMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!teamLeaderboardResponse_gameSlugMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(teamLeaderboardResponse_gameSlugMember1.additionalData);
 }
 /**
  * Serializes information the current object
@@ -5466,6 +15901,21 @@ export function serializeTwitchGlobalBadges(writer: SerializationWriter, twitchG
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UpdateWebhookBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUpdateWebhookBody(writer: SerializationWriter, updateWebhookBody: Partial<UpdateWebhookBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!updateWebhookBody || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfPrimitiveValues<string>("events", updateWebhookBody.events);
+    writer.writeBooleanValue("isActive", updateWebhookBody.isActive);
+    writer.writeStringValue("label", updateWebhookBody.label);
+    writer.writeStringValue("url", updateWebhookBody.url);
+    writer.writeAdditionalData(updateWebhookBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param UserMatch The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -5562,6 +16012,294 @@ export function serializeUserMatch_startedAtMember1(writer: SerializationWriter,
     writer.writeAdditionalData(userMatch_startedAtMember1.additionalData);
 }
 /**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookDelivery The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookDelivery(writer: SerializationWriter, webhookDelivery: Partial<WebhookDelivery> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookDelivery || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("attemptCount", webhookDelivery.attemptCount);
+    writer.writeNumberValue("createdAt", webhookDelivery.createdAt);
+    if ( typeof webhookDelivery.deliveredAt === "number") {
+        writer.writeNumberValue("deliveredAt", webhookDelivery.deliveredAt as number);
+    }
+    else {
+        writer.writeObjectValue<WebhookDelivery_deliveredAtMember1>("deliveredAt", webhookDelivery.deliveredAt as WebhookDelivery_deliveredAtMember1 | undefined | null, serializeWebhookDelivery_deliveredAt);
+    }
+    if ( typeof webhookDelivery.errorMessage === "string") {
+        writer.writeStringValue("errorMessage", webhookDelivery.errorMessage as string);
+    }
+    else {
+        writer.writeObjectValue<WebhookDelivery_errorMessageMember1>("errorMessage", webhookDelivery.errorMessage as WebhookDelivery_errorMessageMember1 | undefined | null, serializeWebhookDelivery_errorMessage);
+    }
+    writer.writeStringValue("event", webhookDelivery.event);
+    writer.writeStringValue("id", webhookDelivery.id);
+    writer.writeStringValue("idempotencyId", webhookDelivery.idempotencyId);
+    writer.writeBooleanValue("isTest", webhookDelivery.isTest);
+    if ( typeof webhookDelivery.nextAttemptAt === "number") {
+        writer.writeNumberValue("nextAttemptAt", webhookDelivery.nextAttemptAt as number);
+    }
+    else {
+        writer.writeObjectValue<WebhookDelivery_nextAttemptAtMember1>("nextAttemptAt", webhookDelivery.nextAttemptAt as WebhookDelivery_nextAttemptAtMember1 | undefined | null, serializeWebhookDelivery_nextAttemptAt);
+    }
+    writer.writeEnumValue<WebhookDelivery_status>("status", webhookDelivery.status);
+    if ( typeof webhookDelivery.statusCode === "number") {
+        writer.writeNumberValue("statusCode", webhookDelivery.statusCode as number);
+    }
+    else {
+        writer.writeObjectValue<WebhookDelivery_statusCodeMember1>("statusCode", webhookDelivery.statusCode as WebhookDelivery_statusCodeMember1 | undefined | null, serializeWebhookDelivery_statusCode);
+    }
+    writer.writeNumberValue("updatedAt", webhookDelivery.updatedAt);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookDelivery_deliveredAt The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookDelivery_deliveredAt(writer: SerializationWriter, webhookDelivery_deliveredAt: Partial<Parsable | WebhookDelivery_deliveredAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeWebhookDelivery_deliveredAtMember1(writer, webhookDelivery_deliveredAt as WebhookDelivery_deliveredAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookDelivery_deliveredAtMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookDelivery_deliveredAtMember1(writer: SerializationWriter, webhookDelivery_deliveredAtMember1: Partial<WebhookDelivery_deliveredAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookDelivery_deliveredAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(webhookDelivery_deliveredAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookDelivery_errorMessage The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookDelivery_errorMessage(writer: SerializationWriter, webhookDelivery_errorMessage: Partial<Parsable | WebhookDelivery_errorMessageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeWebhookDelivery_errorMessageMember1(writer, webhookDelivery_errorMessage as WebhookDelivery_errorMessageMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookDelivery_errorMessageMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookDelivery_errorMessageMember1(writer: SerializationWriter, webhookDelivery_errorMessageMember1: Partial<WebhookDelivery_errorMessageMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookDelivery_errorMessageMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(webhookDelivery_errorMessageMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookDelivery_nextAttemptAt The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookDelivery_nextAttemptAt(writer: SerializationWriter, webhookDelivery_nextAttemptAt: Partial<Parsable | WebhookDelivery_nextAttemptAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeWebhookDelivery_nextAttemptAtMember1(writer, webhookDelivery_nextAttemptAt as WebhookDelivery_nextAttemptAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookDelivery_nextAttemptAtMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookDelivery_nextAttemptAtMember1(writer: SerializationWriter, webhookDelivery_nextAttemptAtMember1: Partial<WebhookDelivery_nextAttemptAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookDelivery_nextAttemptAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(webhookDelivery_nextAttemptAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookDelivery_statusCode The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookDelivery_statusCode(writer: SerializationWriter, webhookDelivery_statusCode: Partial<Parsable | WebhookDelivery_statusCodeMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeWebhookDelivery_statusCodeMember1(writer, webhookDelivery_statusCode as WebhookDelivery_statusCodeMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookDelivery_statusCodeMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookDelivery_statusCodeMember1(writer: SerializationWriter, webhookDelivery_statusCodeMember1: Partial<WebhookDelivery_statusCodeMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookDelivery_statusCodeMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(webhookDelivery_statusCodeMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookEndpoint The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookEndpoint(writer: SerializationWriter, webhookEndpoint: Partial<WebhookEndpoint> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookEndpoint || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("createdAt", webhookEndpoint.createdAt);
+    writer.writeCollectionOfPrimitiveValues<string>("events", webhookEndpoint.events);
+    writer.writeNumberValue("failureCount", webhookEndpoint.failureCount);
+    writer.writeStringValue("id", webhookEndpoint.id);
+    writer.writeBooleanValue("isActive", webhookEndpoint.isActive);
+    if ( typeof webhookEndpoint.label === "string") {
+        writer.writeStringValue("label", webhookEndpoint.label as string);
+    }
+    else {
+        writer.writeObjectValue<WebhookEndpoint_labelMember1>("label", webhookEndpoint.label as WebhookEndpoint_labelMember1 | undefined | null, serializeWebhookEndpoint_label);
+    }
+    if ( typeof webhookEndpoint.lastDeliveredAt === "number") {
+        writer.writeNumberValue("lastDeliveredAt", webhookEndpoint.lastDeliveredAt as number);
+    }
+    else {
+        writer.writeObjectValue<WebhookEndpoint_lastDeliveredAtMember1>("lastDeliveredAt", webhookEndpoint.lastDeliveredAt as WebhookEndpoint_lastDeliveredAtMember1 | undefined | null, serializeWebhookEndpoint_lastDeliveredAt);
+    }
+    if ( typeof webhookEndpoint.lastFailedAt === "number") {
+        writer.writeNumberValue("lastFailedAt", webhookEndpoint.lastFailedAt as number);
+    }
+    else {
+        writer.writeObjectValue<WebhookEndpoint_lastFailedAtMember1>("lastFailedAt", webhookEndpoint.lastFailedAt as WebhookEndpoint_lastFailedAtMember1 | undefined | null, serializeWebhookEndpoint_lastFailedAt);
+    }
+    writer.writeStringValue("scopeId", webhookEndpoint.scopeId);
+    writer.writeEnumValue<WebhookEndpoint_scopeType>("scopeType", webhookEndpoint.scopeType);
+    writer.writeStringValue("secretPrefix", webhookEndpoint.secretPrefix);
+    writer.writeNumberValue("updatedAt", webhookEndpoint.updatedAt);
+    writer.writeStringValue("url", webhookEndpoint.url);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookEndpoint_label The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookEndpoint_label(writer: SerializationWriter, webhookEndpoint_label: Partial<Parsable | WebhookEndpoint_labelMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeWebhookEndpoint_labelMember1(writer, webhookEndpoint_label as WebhookEndpoint_labelMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookEndpoint_labelMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookEndpoint_labelMember1(writer: SerializationWriter, webhookEndpoint_labelMember1: Partial<WebhookEndpoint_labelMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookEndpoint_labelMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(webhookEndpoint_labelMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookEndpoint_lastDeliveredAt The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookEndpoint_lastDeliveredAt(writer: SerializationWriter, webhookEndpoint_lastDeliveredAt: Partial<Parsable | WebhookEndpoint_lastDeliveredAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeWebhookEndpoint_lastDeliveredAtMember1(writer, webhookEndpoint_lastDeliveredAt as WebhookEndpoint_lastDeliveredAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookEndpoint_lastDeliveredAtMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookEndpoint_lastDeliveredAtMember1(writer: SerializationWriter, webhookEndpoint_lastDeliveredAtMember1: Partial<WebhookEndpoint_lastDeliveredAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookEndpoint_lastDeliveredAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(webhookEndpoint_lastDeliveredAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookEndpoint_lastFailedAt The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookEndpoint_lastFailedAt(writer: SerializationWriter, webhookEndpoint_lastFailedAt: Partial<Parsable | WebhookEndpoint_lastFailedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeWebhookEndpoint_lastFailedAtMember1(writer, webhookEndpoint_lastFailedAt as WebhookEndpoint_lastFailedAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookEndpoint_lastFailedAtMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookEndpoint_lastFailedAtMember1(writer: SerializationWriter, webhookEndpoint_lastFailedAtMember1: Partial<WebhookEndpoint_lastFailedAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookEndpoint_lastFailedAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(webhookEndpoint_lastFailedAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookListResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookListResponse(writer: SerializationWriter, webhookListResponse: Partial<WebhookListResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookListResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", webhookListResponse.count);
+    writer.writeStringValue("timestamp", webhookListResponse.timestamp);
+    writer.writeCollectionOfObjectValues<WebhookEndpoint>("webhooks", webhookListResponse.webhooks, serializeWebhookEndpoint);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookOk The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookOk(writer: SerializationWriter, webhookOk: Partial<WebhookOk> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookOk || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("ok", webhookOk.ok);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookReplayResult The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookReplayResult(writer: SerializationWriter, webhookReplayResult: Partial<WebhookReplayResult> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookReplayResult || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("ok", webhookReplayResult.ok);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookSecret The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookSecret(writer: SerializationWriter, webhookSecret: Partial<WebhookSecret> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookSecret || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", webhookSecret.id);
+    writer.writeStringValue("secretPrefix", webhookSecret.secretPrefix);
+    writer.writeStringValue("signingSecret", webhookSecret.signingSecret);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param WebhookTestResult The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWebhookTestResult(writer: SerializationWriter, webhookTestResult: Partial<WebhookTestResult> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!webhookTestResult || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("delivered", webhookTestResult.delivered);
+    writer.writeStringValue("error", webhookTestResult.errorEscaped);
+    writer.writeNumberValue("statusCode", webhookTestResult.statusCode);
+}
+/**
  * Season and game filters for league standings.
  */
 export interface StandingsRequestBody extends AdditionalDataHolder, Parsable {
@@ -5608,6 +16346,10 @@ export interface SubmitScoreBody extends AdditionalDataHolder, Parsable {
  */
 export interface Team extends Parsable {
     /**
+     * Team avatar URL.
+     */
+    avatarUrl?: string | Team_avatarUrlMember1 | null;
+    /**
      * Team ID.
      */
     id?: string | null;
@@ -5619,6 +16361,61 @@ export interface Team extends Parsable {
      * Team tag (short identifier).
      */
     tag?: string | null;
+}
+export type Team_avatarUrl = string | Team_avatarUrlMember1;
+export interface Team_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Team leaderboard row.
+ */
+export interface TeamLeaderboardEntry extends Parsable {
+    /**
+     * The gameSlug property
+     */
+    gameSlug?: string | TeamLeaderboardEntry_gameSlugMember1 | null;
+    /**
+     * Team ID.
+     */
+    id?: string | null;
+    /**
+     * The rank property
+     */
+    rank?: number | null;
+    /**
+     * Aggregate stats used for leaderboard ranking.
+     */
+    stats?: LeaderboardStats | null;
+    /**
+     * Small API-safe team summary.
+     */
+    team?: ApiTeamSummary | null;
+}
+export type TeamLeaderboardEntry_gameSlug = string | TeamLeaderboardEntry_gameSlugMember1;
+export interface TeamLeaderboardEntry_gameSlugMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Team leaderboard response.
+ */
+export interface TeamLeaderboardResponse extends Parsable {
+    /**
+     * The gameSlug property
+     */
+    gameSlug?: string | TeamLeaderboardResponse_gameSlugMember1 | null;
+    /**
+     * Supported leaderboard sort field.
+     */
+    sortBy?: LeaderboardSortBy | null;
+    /**
+     * The teams property
+     */
+    teams?: TeamLeaderboardEntry[] | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export type TeamLeaderboardResponse_gameSlug = string | TeamLeaderboardResponse_gameSlugMember1;
+export interface TeamLeaderboardResponse_gameSlugMember1 extends AdditionalDataHolder, Parsable {
 }
 /**
  * A set of related Twitch chat badge versions.
@@ -5711,6 +16508,27 @@ export interface TwitchGlobalBadges extends Parsable {
     timestamp?: string | null;
 }
 /**
+ * Partial update of a webhook endpoint.
+ */
+export interface UpdateWebhookBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Replacement event token list (at least one when present).
+     */
+    events?: string[] | null;
+    /**
+     * Enable/disable the endpoint. Re-enabling resets the failure count.
+     */
+    isActive?: boolean | null;
+    /**
+     * New human label.
+     */
+    label?: string | null;
+    /**
+     * New HTTPS endpoint URL.
+     */
+    url?: string | null;
+}
+/**
  * Match as returned by the user/team/org match-listing endpoints.
  */
 export interface UserMatch extends Parsable {
@@ -5765,6 +16583,217 @@ export type UserMatch_startedAt = string | UserMatch_startedAtMember1;
 export interface UserMatch_startedAtMember1 extends AdditionalDataHolder, Parsable {
 }
 /**
+ * A single webhook delivery-log row.
+ */
+export interface WebhookDelivery extends Parsable {
+    /**
+     * Number of delivery attempts made.
+     */
+    attemptCount?: number | null;
+    /**
+     * Emit/creation epoch ms (retention key).
+     */
+    createdAt?: number | null;
+    /**
+     * Epoch ms of successful delivery, or null.
+     */
+    deliveredAt?: number | WebhookDelivery_deliveredAtMember1 | null;
+    /**
+     * Last error message, or null.
+     */
+    errorMessage?: string | WebhookDelivery_errorMessageMember1 | null;
+    /**
+     * The delivered event name.
+     */
+    event?: string | null;
+    /**
+     * Delivery-log row id.
+     */
+    id?: string | null;
+    /**
+     * Stable evt_ id, reused across retries (idempotency key).
+     */
+    idempotencyId?: string | null;
+    /**
+     * True for test.ping deliveries.
+     */
+    isTest?: boolean | null;
+    /**
+     * Epoch ms of the next scheduled retry, or null.
+     */
+    nextAttemptAt?: number | WebhookDelivery_nextAttemptAtMember1 | null;
+    /**
+     * Lifecycle status of one logical delivery (endpoint x idempotency id).
+     */
+    status?: WebhookDelivery_status | null;
+    /**
+     * Last HTTP response status, or null.
+     */
+    statusCode?: number | WebhookDelivery_statusCodeMember1 | null;
+    /**
+     * Last update epoch ms.
+     */
+    updatedAt?: number | null;
+}
+export type WebhookDelivery_deliveredAt = number | WebhookDelivery_deliveredAtMember1;
+export interface WebhookDelivery_deliveredAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type WebhookDelivery_errorMessage = string | WebhookDelivery_errorMessageMember1;
+export interface WebhookDelivery_errorMessageMember1 extends AdditionalDataHolder, Parsable {
+}
+export type WebhookDelivery_nextAttemptAt = number | WebhookDelivery_nextAttemptAtMember1;
+export interface WebhookDelivery_nextAttemptAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type WebhookDelivery_status = (typeof WebhookDelivery_statusObject)[keyof typeof WebhookDelivery_statusObject];
+export type WebhookDelivery_statusCode = number | WebhookDelivery_statusCodeMember1;
+export interface WebhookDelivery_statusCodeMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * A webhook endpoint (no secret material).
+ */
+export interface WebhookEndpoint extends Parsable {
+    /**
+     * Creation epoch ms.
+     */
+    createdAt?: number | null;
+    /**
+     * Subscribed event tokens.
+     */
+    events?: string[] | null;
+    /**
+     * Consecutive dead-lettered deliveries (auto-disables at 50).
+     */
+    failureCount?: number | null;
+    /**
+     * Webhook endpoint id.
+     */
+    id?: string | null;
+    /**
+     * Whether the endpoint receives deliveries.
+     */
+    isActive?: boolean | null;
+    /**
+     * Human label, or null.
+     */
+    label?: string | WebhookEndpoint_labelMember1 | null;
+    /**
+     * Epoch ms of the last successful delivery, or null.
+     */
+    lastDeliveredAt?: number | WebhookEndpoint_lastDeliveredAtMember1 | null;
+    /**
+     * Epoch ms of the last failed delivery, or null.
+     */
+    lastFailedAt?: number | WebhookEndpoint_lastFailedAtMember1 | null;
+    /**
+     * Stringified bound scope id.
+     */
+    scopeId?: string | null;
+    /**
+     * The single scope dimension an endpoint is bound to.
+     */
+    scopeType?: WebhookEndpoint_scopeType | null;
+    /**
+     * First 8 chars of the current signing secret (display only).
+     */
+    secretPrefix?: string | null;
+    /**
+     * Last update epoch ms.
+     */
+    updatedAt?: number | null;
+    /**
+     * Delivery URL.
+     */
+    url?: string | null;
+}
+export type WebhookEndpoint_label = string | WebhookEndpoint_labelMember1;
+export interface WebhookEndpoint_labelMember1 extends AdditionalDataHolder, Parsable {
+}
+export type WebhookEndpoint_lastDeliveredAt = number | WebhookEndpoint_lastDeliveredAtMember1;
+export interface WebhookEndpoint_lastDeliveredAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type WebhookEndpoint_lastFailedAt = number | WebhookEndpoint_lastFailedAtMember1;
+export interface WebhookEndpoint_lastFailedAtMember1 extends AdditionalDataHolder, Parsable {
+}
+export type WebhookEndpoint_scopeType = (typeof WebhookEndpoint_scopeTypeObject)[keyof typeof WebhookEndpoint_scopeTypeObject];
+/**
+ * List of the caller's webhook endpoints.
+ */
+export interface WebhookListResponse extends Parsable {
+    /**
+     * The count property
+     */
+    count?: number | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+    /**
+     * The webhooks property
+     */
+    webhooks?: WebhookEndpoint[] | null;
+}
+/**
+ * Success ack.
+ */
+export interface WebhookOk extends Parsable {
+    /**
+     * The ok property
+     */
+    ok?: boolean | null;
+}
+/**
+ * Replay re-queue acknowledgement.
+ */
+export interface WebhookReplayResult extends Parsable {
+    /**
+     * The ok property
+     */
+    ok?: boolean | null;
+}
+/**
+ * One-time signing-secret reveal (create/rotate).
+ */
+export interface WebhookSecret extends Parsable {
+    /**
+     * The endpoint id the secret belongs to.
+     */
+    id?: string | null;
+    /**
+     * First 8 chars of the new signing secret.
+     */
+    secretPrefix?: string | null;
+    /**
+     * Plaintext signing secret. Shown ONCE - store it now.
+     */
+    signingSecret?: string | null;
+}
+/**
+ * Outcome of a single test.ping delivery.
+ */
+export interface WebhookTestResult extends Parsable {
+    /**
+     * Whether the test.ping returned a 2xx.
+     */
+    delivered?: boolean | null;
+    /**
+     * Failure reason, if not delivered.
+     */
+    errorEscaped?: string | null;
+    /**
+     * HTTP response status, if any.
+     */
+    statusCode?: number | null;
+}
+export const ApiMatchPlayer_attendanceStatusObject = {
+    ATTENDING: "ATTENDING",
+    NOT_ATTENDING: "NOT_ATTENDING",
+    TENTATIVE: "TENTATIVE",
+} as const;
+export const ApiMatchPlayer_rosterTypeObject = {
+    ACTIVE: "ACTIVE",
+    BENCH: "BENCH",
+} as const;
+/**
  * Filter bans by computed status. Defaults to all.
  */
 export const BansRequestBody_statusObject = {
@@ -5774,12 +16803,89 @@ export const BansRequestBody_statusObject = {
     All: "all",
 } as const;
 /**
+ * Allowed input device (e.g. ALL).
+ */
+export const GameCreateMatchBody_inputDeviceObject = {
+    ALL: "ALL",
+    CONTROLLER: "CONTROLLER",
+    KB_M: "KB_M",
+} as const;
+/**
+ * Map preference mode (PREFERRED, VETO, or MANUAL).
+ */
+export const GameCreateMatchBody_mapPreferenceModeObject = {
+    PREFERRED: "PREFERRED",
+    VETO: "VETO",
+    MANUAL: "MANUAL",
+} as const;
+/**
+ * Map selection type (COMPETITIVE or FLEX).
+ */
+export const GameCreateMatchBody_mapSelectionTypeObject = {
+    COMPETITIVE: "COMPETITIVE",
+    FLEX: "FLEX",
+} as const;
+/**
+ * Match platform (e.g. CROSSPLAY).
+ */
+export const GameCreateMatchBody_platformObject = {
+    PC: "PC",
+    XBOX: "XBOX",
+    PLAYSTATION: "PLAYSTATION",
+    CONSOLE_ONLY: "CONSOLE_ONLY",
+    CROSSPLAY: "CROSSPLAY",
+} as const;
+/**
+ * Match region (e.g. NONE).
+ */
+export const GameCreateMatchBody_regionObject = {
+    NONE: "NONE",
+    NA_EAST: "NA_EAST",
+    NA_WEST: "NA_WEST",
+    EU: "EU",
+    ASIA: "ASIA",
+    OCEANIA: "OCEANIA",
+    SOUTH_AMERICA: "SOUTH_AMERICA",
+    MIDDLE_EAST: "MIDDLE_EAST",
+    AFRICA: "AFRICA",
+} as const;
+/**
+ * Supported leaderboard sort field.
+ */
+export const LeaderboardSortByObject = {
+    Wins: "wins",
+    WinRate: "winRate",
+    Experience: "experience",
+} as const;
+/**
  * Aggregate season state across the league's games.
  */
 export const LeagueSummary_seasonStatusObject = {
     Active: "active",
     Upcoming: "upcoming",
     None: "none",
+} as const;
+export const MatchDiscoverBody_matchTypeObject = {
+    XP_ONLY: "XP_ONLY",
+    WAGER: "WAGER",
+} as const;
+export const MatchDiscoverBody_platformObject = {
+    PC: "PC",
+    XBOX: "XBOX",
+    PLAYSTATION: "PLAYSTATION",
+    CONSOLE_ONLY: "CONSOLE_ONLY",
+    CROSSPLAY: "CROSSPLAY",
+} as const;
+export const MatchDiscoverBody_regionObject = {
+    NONE: "NONE",
+    NA_EAST: "NA_EAST",
+    NA_WEST: "NA_WEST",
+    EU: "EU",
+    ASIA: "ASIA",
+    OCEANIA: "OCEANIA",
+    SOUTH_AMERICA: "SOUTH_AMERICA",
+    MIDDLE_EAST: "MIDDLE_EAST",
+    AFRICA: "AFRICA",
 } as const;
 /**
  * Lifecycle status of a match.
@@ -5803,12 +16909,40 @@ export const PenaltiesRequestBody_typeObject = {
     All: "all",
 } as const;
 /**
+ * Public profile visibility setting.
+ */
+export const ProfileVisibilityObject = {
+    Public: "public",
+    Limited: "limited",
+    Private: "private",
+} as const;
+/**
  * Filter seasons by lifecycle status.
  */
 export const SeasonsRequestBody_statusObject = {
     UPCOMING: "UPCOMING",
     ACTIVE: "ACTIVE",
     COMPLETED: "COMPLETED",
+} as const;
+/**
+ * Lifecycle status of one logical delivery (endpoint x idempotency id).
+ */
+export const WebhookDelivery_statusObject = {
+    Pending: "pending",
+    Delivering: "delivering",
+    Delivered: "delivered",
+    Failed: "failed",
+    Dead_lettered: "dead_lettered",
+} as const;
+/**
+ * The single scope dimension an endpoint is bound to.
+ */
+export const WebhookEndpoint_scopeTypeObject = {
+    Game: "game",
+    League: "league",
+    Org: "org",
+    Team: "team",
+    User: "user",
 } as const;
 /* tslint:enable */
 /* eslint-enable */

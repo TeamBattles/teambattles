@@ -8,6 +8,7 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.game.matches.item.forfeit.ForfeitRequestBuilder;
 import gg.teambattles.sdk.generated.game.matches.item.playerstats.PlayerStatsRequestBuilder;
 import gg.teambattles.sdk.generated.game.matches.item.rosters.RostersRequestBuilder;
 import gg.teambattles.sdk.generated.game.matches.item.scores.ScoresRequestBuilder;
@@ -23,6 +24,14 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class WithMatchItemRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The forfeit property
+     * @return a {@link ForfeitRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ForfeitRequestBuilder forfeit() {
+        return new ForfeitRequestBuilder(pathParameters, requestAdapter);
+    }
     /**
      * The playerStats property
      * @return a {@link PlayerStatsRequestBuilder}

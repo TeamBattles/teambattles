@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Matches.Item.Scores
         {
         }
         /// <summary>
-        /// Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+        /// Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.MapScores"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -123,7 +123,7 @@ namespace TeamBattles.Sdk.Matches.Item.Scores
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.ScoreSubmissionResult>(requestInfo, global::TeamBattles.Sdk.Models.ScoreSubmissionResult.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve all map scores for a match, including a series score summary. Requires the matches.team_matches:read permission.
+        /// Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

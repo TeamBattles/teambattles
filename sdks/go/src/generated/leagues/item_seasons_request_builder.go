@@ -20,6 +20,18 @@ type ItemSeasonsRequestBuilderPostRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// BySeasonId gets an item from the teambattles.leagues.item.seasons.item collection
+// returns a *ItemSeasonsWithSeasonItemRequestBuilder when successful
+func (m *ItemSeasonsRequestBuilder) BySeasonId(seasonId string)(*ItemSeasonsWithSeasonItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.BaseRequestBuilder.PathParameters {
+        urlTplParams[idx] = item
+    }
+    if seasonId != "" {
+        urlTplParams["seasonId"] = seasonId
+    }
+    return NewItemSeasonsWithSeasonItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewItemSeasonsRequestBuilderInternal instantiates a new ItemSeasonsRequestBuilder and sets the default values.
 func NewItemSeasonsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemSeasonsRequestBuilder) {
     m := &ItemSeasonsRequestBuilder{

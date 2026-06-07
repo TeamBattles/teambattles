@@ -8,10 +8,14 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Leagues\Item\ApplyEligibility\ApplyEligibilityRequestBuilder;
 use TeamBattles\Sdk\Generated\Leagues\Item\Bans\BansRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\DisplayRules\DisplayRulesRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Games\GamesRequestBuilder;
 use TeamBattles\Sdk\Generated\Leagues\Item\Members\MembersRequestBuilder;
 use TeamBattles\Sdk\Generated\Leagues\Item\Penalties\PenaltiesRequestBuilder;
 use TeamBattles\Sdk\Generated\Leagues\Item\Rules\RulesRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\SeasonOptions\SeasonOptionsRequestBuilder;
 use TeamBattles\Sdk\Generated\Leagues\Item\Seasons\SeasonsRequestBuilder;
 use TeamBattles\Sdk\Generated\Leagues\Item\Standings\StandingsRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\Error;
@@ -20,50 +24,78 @@ use TeamBattles\Sdk\Generated\Models\LeagueProfileResponse;
 /**
  * Builds and executes requests for operations under /leagues/{identifier}
 */
-class WithIdentifierItemRequestBuilder extends BaseRequestBuilder 
+class WithIdentifierItemRequestBuilder extends BaseRequestBuilder
 {
+    /**
+     * The applyEligibility property
+    */
+    public function applyEligibility(): ApplyEligibilityRequestBuilder {
+        return new ApplyEligibilityRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+
     /**
      * The bans property
     */
     public function bans(): BansRequestBuilder {
         return new BansRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-    
+
+    /**
+     * The displayRules property
+    */
+    public function displayRules(): DisplayRulesRequestBuilder {
+        return new DisplayRulesRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+
+    /**
+     * The games property
+    */
+    public function games(): GamesRequestBuilder {
+        return new GamesRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+
     /**
      * The members property
     */
     public function members(): MembersRequestBuilder {
         return new MembersRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-    
+
     /**
      * The penalties property
     */
     public function penalties(): PenaltiesRequestBuilder {
         return new PenaltiesRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-    
+
     /**
      * The rules property
     */
     public function rules(): RulesRequestBuilder {
         return new RulesRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-    
+
+    /**
+     * The seasonOptions property
+    */
+    public function seasonOptions(): SeasonOptionsRequestBuilder {
+        return new SeasonOptionsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+
     /**
      * The seasons property
     */
     public function seasons(): SeasonsRequestBuilder {
         return new SeasonsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-    
+
     /**
      * The standings property
     */
     public function standings(): StandingsRequestBuilder {
         return new StandingsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-    
+
     /**
      * Instantiates a new WithIdentifierItemRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
@@ -79,7 +111,7 @@ class WithIdentifierItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+     * Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
      * @param WithIdentifierItemRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<LeagueProfileResponse|null>
      * @throws Exception
@@ -95,7 +127,7 @@ class WithIdentifierItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns the public profile for a single league, resolved by slug. Requires the leagues.league_public:read permission.
+     * Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
      * @param WithIdentifierItemRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

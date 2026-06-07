@@ -1,0 +1,8 @@
+from enum import Enum
+
+class MatchDiscoverBody_platform(str, Enum):
+    PC = "PC",
+    XBOX = "XBOX",
+    PLAYSTATION = "PLAYSTATION",
+    CONSOLE_ONLY = "CONSOLE_ONLY",
+    CROSSPLAY = "CROSSPLAY",

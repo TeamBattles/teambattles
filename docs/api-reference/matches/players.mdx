@@ -1,0 +1,13 @@
+---
+title: "Get Match Players"
+description: "Read participant-gated match player rows and attendance state."
+openapi: "GET /matches/{matchId}/players"
+---
+
+## Permission Required
+
+This endpoint requires one of `matches.user_matches`, `matches.team_matches`, or `matches.org_matches` with `read` access.
+
+## What's Returned
+
+Returns player rows with user and team IDs, roster type, check-in state, and attendance state. It does not return raw match player documents.

@@ -1,0 +1,13 @@
+---
+title: "Discover Matches"
+description: "Discover published pending open matches."
+openapi: "POST /matches/discover"
+---
+
+## Permission Required
+
+This endpoint requires `matches.public_matches`.
+
+## Filters
+
+Use `gameId` or `gameSlug`, not both. League matches are excluded unless `leagueId` is provided. If `leagueSeasonId` is provided, `leagueId` is required too.

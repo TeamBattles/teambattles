@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .matches.matches_request_builder import MatchesRequestBuilder
+    from .ongoing_matches.ongoing_matches_request_builder import OngoingMatchesRequestBuilder
 
 class UserRequestBuilder(BaseRequestBuilder):
     """
@@ -20,7 +21,7 @@ class UserRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/user", path_parameters)
-    
+
     @property
     def matches(self) -> MatchesRequestBuilder:
         """
@@ -29,5 +30,14 @@ class UserRequestBuilder(BaseRequestBuilder):
         from .matches.matches_request_builder import MatchesRequestBuilder
 
         return MatchesRequestBuilder(self.request_adapter, self.path_parameters)
-    
+
+    @property
+    def ongoing_matches(self) -> OngoingMatchesRequestBuilder:
+        """
+        The ongoingMatches property
+        """
+        from .ongoing_matches.ongoing_matches_request_builder import OngoingMatchesRequestBuilder
+
+        return OngoingMatchesRequestBuilder(self.request_adapter, self.path_parameters)
+
 

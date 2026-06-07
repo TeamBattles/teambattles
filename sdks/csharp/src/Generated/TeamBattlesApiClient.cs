@@ -11,12 +11,16 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using TeamBattles.Sdk.Game;
+using TeamBattles.Sdk.Games;
+using TeamBattles.Sdk.Leaderboards;
 using TeamBattles.Sdk.Leagues;
 using TeamBattles.Sdk.Matches;
 using TeamBattles.Sdk.Orgs;
 using TeamBattles.Sdk.Teams;
 using TeamBattles.Sdk.Twitch;
 using TeamBattles.Sdk.User;
+using TeamBattles.Sdk.Users;
+using TeamBattles.Sdk.Webhooks;
 namespace TeamBattles.Sdk
 {
     /// <summary>
@@ -29,6 +33,16 @@ namespace TeamBattles.Sdk
         public global::TeamBattles.Sdk.Game.GameRequestBuilder Game
         {
             get => new global::TeamBattles.Sdk.Game.GameRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The games property</summary>
+        public global::TeamBattles.Sdk.Games.GamesRequestBuilder Games
+        {
+            get => new global::TeamBattles.Sdk.Games.GamesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The leaderboards property</summary>
+        public global::TeamBattles.Sdk.Leaderboards.LeaderboardsRequestBuilder Leaderboards
+        {
+            get => new global::TeamBattles.Sdk.Leaderboards.LeaderboardsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The leagues property</summary>
         public global::TeamBattles.Sdk.Leagues.LeaguesRequestBuilder Leagues
@@ -59,6 +73,16 @@ namespace TeamBattles.Sdk
         public global::TeamBattles.Sdk.User.UserRequestBuilder User
         {
             get => new global::TeamBattles.Sdk.User.UserRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The users property</summary>
+        public global::TeamBattles.Sdk.Users.UsersRequestBuilder Users
+        {
+            get => new global::TeamBattles.Sdk.Users.UsersRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The webhooks property</summary>
+        public global::TeamBattles.Sdk.Webhooks.WebhooksRequestBuilder Webhooks
+        {
+            get => new global::TeamBattles.Sdk.Webhooks.WebhooksRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.TeamBattlesApiClient"/> and sets the default values.

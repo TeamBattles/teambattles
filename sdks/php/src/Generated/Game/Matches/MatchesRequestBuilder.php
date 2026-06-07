@@ -8,6 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Game\Matches\BatchScores\BatchScoresRequestBuilder;
+use TeamBattles\Sdk\Generated\Game\Matches\Create\CreateRequestBuilder;
 use TeamBattles\Sdk\Generated\Game\Matches\Item\WithMatchItemRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\Error;
 use TeamBattles\Sdk\Generated\Models\ListGameMatchesBody;
@@ -15,8 +17,22 @@ use TeamBattles\Sdk\Generated\Models\ListGameMatchesBody;
 /**
  * Builds and executes requests for operations under /game/matches
 */
-class MatchesRequestBuilder extends BaseRequestBuilder 
+class MatchesRequestBuilder extends BaseRequestBuilder
 {
+    /**
+     * The batchScores property
+    */
+    public function batchScores(): BatchScoresRequestBuilder {
+        return new BatchScoresRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+
+    /**
+     * The create property
+    */
+    public function create(): CreateRequestBuilder {
+        return new CreateRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.game.matches.item collection
      * @param string $matchId Match ID.
@@ -43,8 +59,8 @@ class MatchesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns matches for the given game, auto-filtered to the API key owner's approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
-     * @param ListGameMatchesBody $body Filters and cursor pagination for listing a game's matches.
+     * Returns matches for the API key owner's approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+     * @param ListGameMatchesBody $body Status filter and cursor pagination for listing the bound key's game matches. The game is derived from the developer-app key's bound game (not a body field).
      * @param MatchesRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<MatchesPostResponse|null>
      * @throws Exception
@@ -60,8 +76,8 @@ class MatchesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns matches for the given game, auto-filtered to the API key owner's approved game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
-     * @param ListGameMatchesBody $body Filters and cursor pagination for listing a game's matches.
+     * Returns matches for the API key owner's approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.
+     * @param ListGameMatchesBody $body Status filter and cursor pagination for listing the bound key's game matches. The game is derived from the developer-app key's bound game (not a body field).
      * @param MatchesRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

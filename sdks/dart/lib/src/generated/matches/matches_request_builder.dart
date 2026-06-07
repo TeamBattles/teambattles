@@ -1,12 +1,17 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
+import './discover/discover_request_builder.dart';
 import './item/with_match_item_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \matches
 class MatchesRequestBuilder extends BaseRequestBuilder<MatchesRequestBuilder> {
+    ///  The discover property
+    DiscoverRequestBuilder get discover {
+        return DiscoverRequestBuilder(pathParameters, requestAdapter);
+    }
     /// Gets an item from the teambattles.matches.item collection
-    ///  [matchId] Match id.
+    ///  [matchId] Match ID.
     WithMatchItemRequestBuilder byMatchId(String matchId) {
         var urlTplParams = Map.of(pathParameters);
         urlTplParams.putIfAbsent('matchId', () => matchId);

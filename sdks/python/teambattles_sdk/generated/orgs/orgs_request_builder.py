@@ -6,6 +6,7 @@ from kiota_abstractions.request_adapter import RequestAdapter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .discover.discover_request_builder import DiscoverRequestBuilder
     from .item.with_identifier_item_request_builder import WithIdentifierItemRequestBuilder
 
 class OrgsRequestBuilder(BaseRequestBuilder):
@@ -20,11 +21,11 @@ class OrgsRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/orgs", path_parameters)
-    
+
     def by_identifier(self,identifier: str) -> WithIdentifierItemRequestBuilder:
         """
         Gets an item from the teambattles_sdk.generated.orgs.item collection
-        param identifier: Organization id or slug.
+        param identifier: Organization slug or Convex organization ID.
         Returns: WithIdentifierItemRequestBuilder
         """
         if identifier is None:
@@ -34,5 +35,14 @@ class OrgsRequestBuilder(BaseRequestBuilder):
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["identifier"] = identifier
         return WithIdentifierItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
+
+    @property
+    def discover(self) -> DiscoverRequestBuilder:
+        """
+        The discover property
+        """
+        from .discover.discover_request_builder import DiscoverRequestBuilder
+
+        return DiscoverRequestBuilder(self.request_adapter, self.path_parameters)
+
 

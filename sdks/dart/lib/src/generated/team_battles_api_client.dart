@@ -5,12 +5,16 @@ import 'package:microsoft_kiota_serialization_json/microsoft_kiota_serialization
 import 'package:microsoft_kiota_serialization_multipart/microsoft_kiota_serialization_multipart.dart';
 import 'package:microsoft_kiota_serialization_text/microsoft_kiota_serialization_text.dart';
 import './game/game_request_builder.dart';
+import './games/games_request_builder.dart';
+import './leaderboards/leaderboards_request_builder.dart';
 import './leagues/leagues_request_builder.dart';
 import './matches/matches_request_builder.dart';
 import './orgs/orgs_request_builder.dart';
 import './teams/teams_request_builder.dart';
 import './twitch/twitch_request_builder.dart';
 import './user/user_request_builder.dart';
+import './users/users_request_builder.dart';
+import './webhooks/webhooks_request_builder.dart';
 
 /// auto generated
 /// The main entry point of the SDK, exposes the configuration and the fluent API.
@@ -18,6 +22,14 @@ class TeamBattlesApiClient extends BaseRequestBuilder<TeamBattlesApiClient> {
     ///  The game property
     GameRequestBuilder get game {
         return GameRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The games property
+    GamesRequestBuilder get games {
+        return GamesRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The leaderboards property
+    LeaderboardsRequestBuilder get leaderboards {
+        return LeaderboardsRequestBuilder(pathParameters, requestAdapter);
     }
     ///  The leagues property
     LeaguesRequestBuilder get leagues {
@@ -42,6 +54,14 @@ class TeamBattlesApiClient extends BaseRequestBuilder<TeamBattlesApiClient> {
     ///  The user property
     UserRequestBuilder get user {
         return UserRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The users property
+    UsersRequestBuilder get users {
+        return UsersRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The webhooks property
+    WebhooksRequestBuilder get webhooks {
+        return WebhooksRequestBuilder(pathParameters, requestAdapter);
     }
     /// Clones the requestbuilder.
     @override

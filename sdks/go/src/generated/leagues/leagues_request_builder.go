@@ -94,6 +94,11 @@ func (m *LeaguesRequestBuilder) PostAsLeaguesPostResponse(ctx context.Context, b
     }
     return res.(LeaguesPostResponseable), nil
 }
+// Templates the templates property
+// returns a *TemplatesRequestBuilder when successful
+func (m *LeaguesRequestBuilder) Templates()(*TemplatesRequestBuilder) {
+    return NewTemplatesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ToPostRequestInformation returns a paginated list of public leagues with optional search and game filtering. Requires the leagues.league_public:read permission.
 // returns a *RequestInformation when successful
 func (m *LeaguesRequestBuilder) ToPostRequestInformation(ctx context.Context, body i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.DiscoverLeaguesRequestBodyable, requestConfiguration *LeaguesRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

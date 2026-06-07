@@ -4,6 +4,8 @@
 // @ts-ignore
 import { createErrorEscapedFromDiscriminatorValue, createGameMatchDetailResponseFromDiscriminatorValue, type ErrorEscaped, type GameMatchDetailResponse } from '../../../models/index.js';
 // @ts-ignore
+import { ForfeitRequestBuilderRequestsMetadata, type ForfeitRequestBuilder } from './forfeit/index.js';
+// @ts-ignore
 import { PlayerStatsRequestBuilderRequestsMetadata, type PlayerStatsRequestBuilder } from './playerStats/index.js';
 // @ts-ignore
 import { RostersRequestBuilderRequestsMetadata, type RostersRequestBuilder } from './rosters/index.js';
@@ -18,6 +20,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /game/matches/{matchId}
  */
 export interface WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatchItemRequestBuilder> {
+    /**
+     * The forfeit property
+     */
+    get forfeit(): ForfeitRequestBuilder;
     /**
      * The playerStats property
      */
@@ -58,6 +64,9 @@ export const WithMatchItemRequestBuilderUriTemplate = "{+baseurl}/game/matches/{
  * Metadata for all the navigation properties in the request builder.
  */
 export const WithMatchItemRequestBuilderNavigationMetadata: Record<Exclude<keyof WithMatchItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    forfeit: {
+        requestsMetadata: ForfeitRequestBuilderRequestsMetadata,
+    },
     playerStats: {
         requestsMetadata: PlayerStatsRequestBuilderRequestsMetadata,
     },

@@ -4,6 +4,10 @@
 // @ts-ignore
 import { GameRequestBuilderNavigationMetadata, type GameRequestBuilder } from './game/index.js';
 // @ts-ignore
+import { GamesRequestBuilderNavigationMetadata, GamesRequestBuilderRequestsMetadata, type GamesRequestBuilder } from './games/index.js';
+// @ts-ignore
+import { LeaderboardsRequestBuilderNavigationMetadata, type LeaderboardsRequestBuilder } from './leaderboards/index.js';
+// @ts-ignore
 import { LeaguesRequestBuilderNavigationMetadata, LeaguesRequestBuilderRequestsMetadata, type LeaguesRequestBuilder } from './leagues/index.js';
 // @ts-ignore
 import { MatchesRequestBuilderNavigationMetadata, type MatchesRequestBuilder } from './matches/index.js';
@@ -15,6 +19,10 @@ import { TeamsRequestBuilderNavigationMetadata, type TeamsRequestBuilder } from 
 import { TwitchRequestBuilderNavigationMetadata, type TwitchRequestBuilder } from './twitch/index.js';
 // @ts-ignore
 import { type UserRequestBuilder, UserRequestBuilderNavigationMetadata } from './user/index.js';
+// @ts-ignore
+import { type UsersRequestBuilder, UsersRequestBuilderNavigationMetadata } from './users/index.js';
+// @ts-ignore
+import { type WebhooksRequestBuilder, WebhooksRequestBuilderNavigationMetadata, WebhooksRequestBuilderRequestsMetadata } from './webhooks/index.js';
 // @ts-ignore
 import { apiClientProxifier, ParseNodeFactoryRegistry, SerializationWriterFactoryRegistry, type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type RequestAdapter } from '@microsoft/kiota-abstractions';
 // @ts-ignore
@@ -38,20 +46,20 @@ export function createTeamBattlesApiClient(requestAdapter: RequestAdapter) {
     const serializationWriterFactory = requestAdapter.getSerializationWriterFactory() as SerializationWriterFactoryRegistry;
     const parseNodeFactoryRegistry = requestAdapter.getParseNodeFactory() as ParseNodeFactoryRegistry;
     const backingStoreFactory = requestAdapter.getBackingStoreFactory();
-    
+
     if (parseNodeFactoryRegistry.registerDefaultDeserializer) {
         parseNodeFactoryRegistry.registerDefaultDeserializer(JsonParseNodeFactory, backingStoreFactory);
         parseNodeFactoryRegistry.registerDefaultDeserializer(TextParseNodeFactory, backingStoreFactory);
         parseNodeFactoryRegistry.registerDefaultDeserializer(FormParseNodeFactory, backingStoreFactory);
     }
-    
+
     if (serializationWriterFactory.registerDefaultSerializer) {
         serializationWriterFactory.registerDefaultSerializer(JsonSerializationWriterFactory);
         serializationWriterFactory.registerDefaultSerializer(TextSerializationWriterFactory);
         serializationWriterFactory.registerDefaultSerializer(FormSerializationWriterFactory);
         serializationWriterFactory.registerDefaultSerializer(MultipartSerializationWriterFactory);
     }
-    
+
     if (requestAdapter.baseUrl === undefined || requestAdapter.baseUrl === null || requestAdapter.baseUrl === "") {
         requestAdapter.baseUrl = "https://teambattles.gg/api/v1";
     }
@@ -68,6 +76,14 @@ export interface TeamBattlesApiClient extends BaseRequestBuilder<TeamBattlesApiC
      * The game property
      */
     get game(): GameRequestBuilder;
+    /**
+     * The games property
+     */
+    get games(): GamesRequestBuilder;
+    /**
+     * The leaderboards property
+     */
+    get leaderboards(): LeaderboardsRequestBuilder;
     /**
      * The leagues property
      */
@@ -92,6 +108,14 @@ export interface TeamBattlesApiClient extends BaseRequestBuilder<TeamBattlesApiC
      * The user property
      */
     get user(): UserRequestBuilder;
+    /**
+     * The users property
+     */
+    get users(): UsersRequestBuilder;
+    /**
+     * The webhooks property
+     */
+    get webhooks(): WebhooksRequestBuilder;
 }
 /**
  * Uri template for the request builder.
@@ -103,6 +127,13 @@ export const TeamBattlesApiClientUriTemplate = "{+baseurl}";
 export const TeamBattlesApiClientNavigationMetadata: Record<Exclude<keyof TeamBattlesApiClient, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     game: {
         navigationMetadata: GameRequestBuilderNavigationMetadata,
+    },
+    games: {
+        requestsMetadata: GamesRequestBuilderRequestsMetadata,
+        navigationMetadata: GamesRequestBuilderNavigationMetadata,
+    },
+    leaderboards: {
+        navigationMetadata: LeaderboardsRequestBuilderNavigationMetadata,
     },
     leagues: {
         requestsMetadata: LeaguesRequestBuilderRequestsMetadata,
@@ -122,6 +153,13 @@ export const TeamBattlesApiClientNavigationMetadata: Record<Exclude<keyof TeamBa
     },
     user: {
         navigationMetadata: UserRequestBuilderNavigationMetadata,
+    },
+    users: {
+        navigationMetadata: UsersRequestBuilderNavigationMetadata,
+    },
+    webhooks: {
+        requestsMetadata: WebhooksRequestBuilderRequestsMetadata,
+        navigationMetadata: WebhooksRequestBuilderNavigationMetadata,
     },
 };
 /* tslint:enable */

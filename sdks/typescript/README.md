@@ -42,7 +42,7 @@ const client = createTeamBattlesClient(process.env.TEAMBATTLES_API_KEY!);
 // List the authenticated user's matches (requires matches.user_matches: read)
 const result = await client.user.matches.post({ numItems: 25 });
 for (const match of result?.page ?? []) {
-	console.log(match.id, match.status);
+  console.log(match.id, match.status);
 }
 ```
 
