@@ -2144,6 +2144,449 @@
         }
       }
     },
+    "/leagues/{identifier}/bans/{banId}/revoke": {
+      "post": {
+        "operationId": "revokeLeagueBan",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Revoke a league team ban",
+        "description": "Revokes an active league team ban. Requires a league-operator key bound to the league and the league bans capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          },
+          {
+            "in": "path",
+            "name": "banId",
+            "schema": {
+              "type": "string",
+              "description": "League ban ID."
+            },
+            "required": true,
+            "description": "League ban ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevokeBanRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league ban was revoked.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RevokeBanResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/bans/create": {
+      "post": {
+        "operationId": "createLeagueBan",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Create a league team ban",
+        "description": "Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBanRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league ban was created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBanResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/cooldowns/{cooldownId}/clear": {
+      "post": {
+        "operationId": "clearLeagueCooldown",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Clear a league cooldown",
+        "description": "Clears an active league member cooldown early. Requires a league-operator key bound to the league and the league cooldowns capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          },
+          {
+            "in": "path",
+            "name": "cooldownId",
+            "schema": {
+              "type": "string",
+              "description": "League member cooldown ID."
+            },
+            "required": true,
+            "description": "League member cooldown ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The league cooldown was cleared.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearCooldownResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/cooldowns/issue": {
+      "post": {
+        "operationId": "issueLeagueCooldown",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Issue a league cooldown",
+        "description": "Issues or updates a manual cooldown for a league member. Requires a league-operator key bound to the league and the league cooldowns capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueCooldownRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league cooldown was issued.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IssueCooldownResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/leagues/{identifier}/display-rules": {
       "post": {
         "operationId": "getLeagueDisplayRules",
@@ -2980,6 +3423,343 @@
         }
       }
     },
+    "/leagues/{identifier}/members/{memberId}/remove": {
+      "post": {
+        "operationId": "removeLeagueMember",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Remove a league staff member",
+        "description": "Deactivates a league staff membership. Requires a league-operator key bound to the league and the league members capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          },
+          {
+            "in": "path",
+            "name": "memberId",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "League staff membership ID."
+            },
+            "required": true,
+            "description": "League staff membership ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The league staff member was removed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveLeagueMemberResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/members/{memberId}/role": {
+      "post": {
+        "operationId": "updateLeagueMemberRole",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Update a league staff member role",
+        "description": "Updates a league staff member role. Requires a league-operator key bound to the league and the league members capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          },
+          {
+            "in": "path",
+            "name": "memberId",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "League staff membership ID."
+            },
+            "required": true,
+            "description": "League staff membership ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLeagueMemberRoleRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league staff member role was updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateLeagueMemberRoleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/members/add": {
+      "post": {
+        "operationId": "addLeagueMember",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Add a league staff member",
+        "description": "Adds or reactivates a league staff member. Requires a league-operator key bound to the league and the league members capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddLeagueMemberRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league staff member was added.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddLeagueMemberResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/leagues/{identifier}/penalties": {
       "post": {
         "operationId": "getLeaguePenalties",
@@ -3057,6 +3837,114 @@
           },
           "404": {
             "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/penalties/create": {
+      "post": {
+        "operationId": "createLeaguePenalty",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Create a league penalty",
+        "description": "Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a league-operator key bound to the league and the league penalties capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePenaltyRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league penalty was created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePenaltyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -11532,6 +12420,74 @@
         },
         "description": "Status filter for league team bans."
       },
+      "RevokeBanRequestBody": {
+        "default": {},
+        "description": "Optional reason for revoking a league ban.",
+        "type": "object",
+        "properties": {
+          "reason": {
+            "description": "Optional revocation reason.",
+            "type": "string",
+            "maxLength": 500
+          }
+        }
+      },
+      "CreateBanRequestBody": {
+        "type": "object",
+        "properties": {
+          "teamId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Team ID to ban from the league."
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "description": "Reason for the ban."
+          },
+          "isPermanent": {
+            "type": "boolean",
+            "description": "Whether the ban never expires."
+          },
+          "expiresAt": {
+            "description": "Expiration timestamp for temporary bans, in epoch milliseconds.",
+            "type": "number"
+          }
+        },
+        "required": [
+          "teamId",
+          "reason",
+          "isPermanent"
+        ],
+        "description": "Creates a league team ban."
+      },
+      "IssueCooldownRequestBody": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "User ID receiving the cooldown."
+          },
+          "cooldownHours": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8760,
+            "description": "Cooldown length in hours, from 1 to 8760."
+          },
+          "note": {
+            "description": "Optional admin note.",
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "userId",
+          "cooldownHours"
+        ],
+        "description": "Issues or updates a manual league member cooldown."
+      },
       "LeagueDisplayRulesRequestBody": {
         "type": "object",
         "properties": {
@@ -11557,6 +12513,48 @@
           "status"
         ],
         "description": "Request body for updating a league match's lifecycle status."
+      },
+      "UpdateLeagueMemberRoleRequestBody": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "MANAGER",
+              "MEMBER"
+            ],
+            "description": "Assignable league staff role. OWNER cannot be assigned through this API."
+          }
+        },
+        "required": [
+          "role"
+        ],
+        "description": "Updates a league staff member role."
+      },
+      "AddLeagueMemberRequestBody": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "User ID to add to league staff."
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "MANAGER",
+              "MEMBER"
+            ],
+            "description": "Assignable league staff role. OWNER cannot be assigned through this API."
+          }
+        },
+        "required": [
+          "userId",
+          "role"
+        ],
+        "description": "Adds or reactivates a league staff member."
       },
       "PenaltiesRequestBody": {
         "type": "object",
@@ -11588,6 +12586,53 @@
           }
         },
         "description": "Type, team, game, and limit filters for league penalties and cooldowns."
+      },
+      "CreatePenaltyRequestBody": {
+        "type": "object",
+        "properties": {
+          "teamId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Team ID receiving the penalty."
+          },
+          "gameId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game ID for the league penalty."
+          },
+          "seasonId": {
+            "description": "Optional league season ID for the penalty.",
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "POINT_DEDUCTION",
+              "MATCH_FORFEIT",
+              "WARNING"
+            ],
+            "description": "Penalty type."
+          },
+          "value": {
+            "description": "Point value, when applicable.",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "description": "Reason for the penalty."
+          }
+        },
+        "required": [
+          "teamId",
+          "gameId",
+          "type",
+          "reason"
+        ],
+        "description": "Creates a league team penalty."
       },
       "RulesRequestBody": {
         "type": "object",
@@ -16375,6 +17420,88 @@
         "additionalProperties": false,
         "description": "Team bans for a league."
       },
+      "RevokeBanResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "CreateBanResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "banId": {
+            "type": "string",
+            "description": "Created league ban ID."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "banId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "ClearCooldownResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "IssueCooldownResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "cooldownId": {
+            "type": "string",
+            "description": "League member cooldown ID."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "cooldownId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "LeagueDisplayRules": {
         "type": "object",
         "properties": {
@@ -16468,6 +17595,60 @@
         "additionalProperties": false,
         "description": "Staff members of a league."
       },
+      "RemoveLeagueMemberResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "UpdateLeagueMemberRoleResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "AddLeagueMemberResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "LeaguePenalties": {
         "type": "object",
         "properties": {
@@ -16508,6 +17689,29 @@
         ],
         "additionalProperties": false,
         "description": "Penalties and cooldowns for a league."
+      },
+      "CreatePenaltyResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "penaltyId": {
+            "type": "string",
+            "description": "Created league penalty ID."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "penaltyId",
+          "timestamp"
+        ],
+        "additionalProperties": false
       },
       "LeagueRules": {
         "type": "object",
