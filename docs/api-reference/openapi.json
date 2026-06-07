@@ -2341,6 +2341,576 @@
         }
       }
     },
+    "/leagues/{identifier}/matches/{matchId}/player-stats": {
+      "post": {
+        "operationId": "submitLeaguePlayerStats",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Submit or update league player stats for a map",
+        "description": "Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          },
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GamePlayerStatsBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league player stats were updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GamePlayerStatsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/matches/{matchId}/scores": {
+      "post": {
+        "operationId": "submitLeagueScores",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Submit league match scores in a batch",
+        "description": "Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          },
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GameBatchScoresBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Per-map submission results. success is true only when every map was confirmed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameBatchScoresResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/matches/{matchId}/scores/{mapIndex}": {
+      "post": {
+        "operationId": "submitLeagueMapScore",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Submit one league match map score",
+        "description": "Submits the score for one map in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          },
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          },
+          {
+            "in": "path",
+            "name": "mapIndex",
+            "schema": {
+              "type": "string",
+              "description": "Zero-based index of the map within the series."
+            },
+            "required": true,
+            "description": "Zero-based index of the map within the series."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GameSingleMapScoreBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The map score was submitted and confirmed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameSingleMapScoreResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/matches/{matchId}/status": {
+      "patch": {
+        "operationId": "updateLeagueMatchStatus",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Update a league match's lifecycle status",
+        "description": "Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          },
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeagueStatusUpdateBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league match status was transitioned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameStatusUpdateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/matches/batch-scores": {
+      "post": {
+        "operationId": "submitLeagueBatchMatchScores",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Submit league map scores across multiple matches",
+        "description": "Submits map scores for up to 50 league match items in one request. Each item is independently checked against the key's bound league and returns a per-item result. Requires the league scores capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GameBatchMatchScoresBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Per-item submission results. success is true only when every item was confirmed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameBatchMatchScoresResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/leagues/{identifier}/members": {
       "post": {
         "operationId": "getLeagueMembers",
@@ -2783,6 +3353,113 @@
       }
     },
     "/leagues/{identifier}/seasons/{seasonId}": {
+      "delete": {
+        "operationId": "deleteLeagueSeason",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Delete a league season",
+        "description": "Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          },
+          {
+            "in": "path",
+            "name": "seasonId",
+            "schema": {
+              "type": "string",
+              "description": "League season ID."
+            },
+            "required": true,
+            "description": "League season ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The season was deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteLeagueSeasonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "operationId": "getLeagueSeason",
         "tags": [
@@ -2850,6 +3527,342 @@
           },
           "404": {
             "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/seasons/{seasonId}/activate": {
+      "post": {
+        "operationId": "activateLeagueSeason",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Activate a league season",
+        "description": "Activates an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          },
+          {
+            "in": "path",
+            "name": "seasonId",
+            "schema": {
+              "type": "string",
+              "description": "League season ID."
+            },
+            "required": true,
+            "description": "League season ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The season was activated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivateLeagueSeasonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/seasons/{seasonId}/complete": {
+      "post": {
+        "operationId": "completeLeagueSeason",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Complete a league season",
+        "description": "Completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          },
+          {
+            "in": "path",
+            "name": "seasonId",
+            "schema": {
+              "type": "string",
+              "description": "League season ID."
+            },
+            "required": true,
+            "description": "League season ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The season was completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompleteLeagueSeasonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/seasons/create": {
+      "post": {
+        "operationId": "createLeagueSeason",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Create a league season",
+        "description": "Creates an upcoming season for a league game. Requires the league seasons capability. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug."
+            },
+            "required": true,
+            "description": "League slug."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSeasonRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The season was created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateSeasonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
             "content": {
               "application/json": {
                 "schema": {
@@ -10532,6 +11545,19 @@
         ],
         "description": "Display rule selector."
       },
+      "LeagueStatusUpdateBody": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Target status. Allowed league transitions: READY -> IN_PROGRESS|CANCELLED, ACCEPTED -> CANCELLED. COMPLETED is not accepted directly; matches complete automatically once scores are confirmed."
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "description": "Request body for updating a league match's lifecycle status."
+      },
       "PenaltiesRequestBody": {
         "type": "object",
         "properties": {
@@ -10607,6 +11633,36 @@
           }
         },
         "description": "Game and status filters for league seasons."
+      },
+      "CreateSeasonRequestBody": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "string",
+            "description": "Game ID the season belongs to."
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Season name."
+          },
+          "startDate": {
+            "type": "number",
+            "description": "Season start timestamp in milliseconds."
+          },
+          "endDate": {
+            "type": "number",
+            "description": "Season end timestamp in milliseconds."
+          }
+        },
+        "required": [
+          "gameId",
+          "name",
+          "startDate",
+          "endDate"
+        ],
+        "description": "League season creation payload."
       },
       "StandingsRequestBody": {
         "type": "object",
@@ -15562,6 +16618,23 @@
         "additionalProperties": false,
         "description": "Seasons for a league."
       },
+      "DeleteLeagueSeasonResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "LeagueSeason": {
         "type": "object",
         "properties": {
@@ -15582,6 +16655,61 @@
         ],
         "additionalProperties": false,
         "description": "Single league season response."
+      },
+      "ActivateLeagueSeasonResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "CompleteLeagueSeasonResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "CreateSeasonResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "seasonId": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "seasonId",
+          "timestamp"
+        ],
+        "additionalProperties": false
       },
       "LeagueStandings": {
         "type": "object",
@@ -17527,6 +18655,7 @@
           "error_api_key_required",
           "error_api_plan_required",
           "error_api_feature_required",
+          "error_developer_account_required",
           "error_game_scope_mismatch",
           "error_league_scope_mismatch",
           "error_unauthorized",
@@ -17544,7 +18673,10 @@
           "error_game_not_found",
           "error_league_not_found",
           "error_league_game_not_found",
+          "error_league_game_not_active",
           "error_league_season_not_found",
+          "error_league_admin_required",
+          "error_league_team_not_in_league",
           "error_not_match_participant",
           "error_not_team_leader",
           "error_internal",
