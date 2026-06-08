@@ -2370,6 +2370,124 @@
         }
       }
     },
+    "/leagues/{identifier}/branding/update": {
+      "post": {
+        "operationId": "updateLeagueBranding",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Update league branding",
+        "description": "Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLeagueBrandingRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league branding was updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateLeagueBrandingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/leagues/{identifier}/cooldowns/{cooldownId}/clear": {
       "post": {
         "operationId": "clearLeagueCooldown",
@@ -2448,6 +2566,124 @@
           },
           "404": {
             "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/cooldowns/config/update": {
+      "post": {
+        "operationId": "updateLeagueCooldownConfig",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Update league cooldown config",
+        "description": "Updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLeagueCooldownConfigRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league cooldown config was updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateLeagueCooldownConfigResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
             "content": {
               "application/json": {
                 "schema": {
@@ -13884,6 +14120,87 @@
         ],
         "description": "Creates a league team ban."
       },
+      "UpdateLeagueBrandingRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 50
+          },
+          "description": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 500
+          },
+          "avatarStorageId": {
+            "description": "Convex storage ID for the league avatar.",
+            "type": "string",
+            "minLength": 1
+          },
+          "bannerStorageId": {
+            "description": "Convex storage ID for the league banner.",
+            "type": "string",
+            "minLength": 1
+          },
+          "socials": {
+            "$ref": "#/components/schemas/LeagueBrandingSocials"
+          },
+          "profileThemeId": {
+            "type": "string"
+          }
+        },
+        "description": "Updates league profile branding and public metadata."
+      },
+      "LeagueBrandingSocials": {
+        "type": "object",
+        "properties": {
+          "discord": {
+            "type": "string"
+          },
+          "twitter": {
+            "type": "string"
+          },
+          "youtube": {
+            "type": "string"
+          },
+          "twitch": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateLeagueCooldownConfigRequestBody": {
+        "type": "object",
+        "properties": {
+          "selfLeaveCooldownHours": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 8760
+          },
+          "kickCooldownHours": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 8760
+          },
+          "repeatLeavePenaltyEnabled": {
+            "type": "boolean"
+          },
+          "repeatLeaveCooldownMultiplier": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "maxCooldownHours": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 8760
+          }
+        },
+        "description": "Updates league member cooldown configuration."
+      },
       "IssueCooldownRequestBody": {
         "type": "object",
         "properties": {
@@ -19288,6 +19605,23 @@
         ],
         "additionalProperties": false
       },
+      "UpdateLeagueBrandingResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "ClearCooldownResponse": {
         "type": "object",
         "properties": {
@@ -19298,6 +19632,23 @@
           "timestamp": {
             "type": "string",
             "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "UpdateLeagueCooldownConfigResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
           }
         },
         "required": [

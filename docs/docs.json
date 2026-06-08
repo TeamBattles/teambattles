@@ -256,6 +256,7 @@
 						"pages": [
 							"api-reference/leagues/discover",
 							"api-reference/leagues/profile",
+							"api-reference/leagues/league-branding-update",
 							"api-reference/leagues/games",
 							"api-reference/leagues/standings",
 							"api-reference/leagues/seasons",
@@ -270,6 +271,7 @@
 							"api-reference/leagues/team-remove",
 							"api-reference/leagues/members",
 							"api-reference/leagues/bans",
+							"api-reference/leagues/league-cooldown-config-update",
 							"api-reference/leagues/penalties"
 						]
 					},
