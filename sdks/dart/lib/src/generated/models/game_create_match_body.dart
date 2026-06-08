@@ -14,7 +14,7 @@ class GameCreateMatchBody implements AdditionalDataHolder, Parsable {
     ///  Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     @override
     Map<String, Object?> additionalData;
-    ///  Number of maps in the series (1, 3, 5, or 7).
+    ///  Number of maps in the series. One of 1, 3, 5, or 7.
     double? bestOf;
     ///  ID of the creating team. Must belong to the key's bound game.
     String? creatorTeamId;
@@ -39,7 +39,7 @@ class GameCreateMatchBody implements AdditionalDataHolder, Parsable {
     ///  Players per team (validated against the game's min/max).
     double? teamSize;
     /// Instantiates a new [GameCreateMatchBody] and sets the default values.
-    GameCreateMatchBody() :
+    GameCreateMatchBody() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

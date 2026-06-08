@@ -7,23 +7,23 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 use TeamBattles\Sdk\Generated\Models\WebhookDelivery;
 
-class DeliveriesGetResponse implements Parsable
+class DeliveriesGetResponse implements Parsable 
 {
     /**
      * @var string|null $continueCursor The continueCursor property
     */
     private ?string $continueCursor = null;
-
+    
     /**
      * @var bool|null $isDone The isDone property
     */
     private ?bool $isDone = null;
-
+    
     /**
      * @var array<WebhookDelivery>|null $page The page property
     */
     private ?array $page = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

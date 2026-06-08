@@ -8,6 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Leagues\Item\Members\Add\AddRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Members\Item\WithMemberItemRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\Error;
 use TeamBattles\Sdk\Generated\Models\LeagueMembers;
 
@@ -16,6 +18,24 @@ use TeamBattles\Sdk\Generated\Models\LeagueMembers;
 */
 class MembersRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The add property
+    */
+    public function add(): AddRequestBuilder {
+        return new AddRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * Gets an item from the TeamBattles/Sdk/Generated.leagues.item.members.item collection
+     * @param string $memberId League staff membership ID.
+     * @return WithMemberItemRequestBuilder
+    */
+    public function byMemberId(string $memberId): WithMemberItemRequestBuilder {
+        $urlTplParams = $this->pathParameters;
+        $urlTplParams['memberId'] = $memberId;
+        return new WithMemberItemRequestBuilder($urlTplParams, $this->requestAdapter);
+    }
+
     /**
      * Instantiates a new MembersRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

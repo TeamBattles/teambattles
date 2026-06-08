@@ -9,28 +9,28 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * API-safe team or organization member.
 */
-class ApiMember implements Parsable
+class ApiMember implements Parsable 
 {
     /**
      * @var string|null $id Membership row ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var ApiMember_joinedAt|null $joinedAt The joinedAt property
     */
     private ?ApiMember_joinedAt $joinedAt = null;
-
+    
     /**
      * @var string|null $role Role label within the team or organization.
     */
     private ?string $role = null;
-
+    
     /**
      * @var ApiUserProfile|null $user API-safe public user profile.
     */
     private ?ApiUserProfile $user = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

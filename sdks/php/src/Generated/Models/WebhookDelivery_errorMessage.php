@@ -11,18 +11,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Composed type wrapper for classes string, WebhookDelivery_errorMessageMember1
 */
-class WebhookDelivery_errorMessage implements ComposedTypeWrapper, Parsable
+class WebhookDelivery_errorMessage implements ComposedTypeWrapper, Parsable 
 {
     /**
      * @var string|null $string Composed type representation for type string
     */
     private ?string $string = null;
-
+    
     /**
      * @var WebhookDelivery_errorMessageMember1|null $webhookDelivery_errorMessageMember1 Composed type representation for type WebhookDelivery_errorMessageMember1
     */
     private ?WebhookDelivery_errorMessageMember1 $webhookDelivery_errorMessageMember1 = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

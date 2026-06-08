@@ -14,7 +14,7 @@ use TeamBattles\Sdk\Generated\Models\WebhookTestResult;
 /**
  * Builds and executes requests for operations under /webhooks/{id}/test
 */
-class TestRequestBuilder extends BaseRequestBuilder
+class TestRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new TestRequestBuilder and sets the default values.

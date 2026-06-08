@@ -1,7 +1,7 @@
 module TeamBattlesSdk
     module Generated
         module Models
-            ##
+            ## 
             # Public profile visibility setting.
             ProfileVisibility = {
                 Public: :Public,

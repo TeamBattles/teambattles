@@ -10,23 +10,23 @@ use TeamBattles\Sdk\Generated\Models\ApiUserTrophy;
 /**
  * Envelope containing trophies, count, and a response timestamp.
 */
-class TrophiesGetResponse implements Parsable
+class TrophiesGetResponse implements Parsable 
 {
     /**
      * @var int|null $count The count property
     */
     private ?int $count = null;
-
+    
     /**
      * @var string|null $timestamp ISO 8601 timestamp.
     */
     private ?string $timestamp = null;
-
+    
     /**
      * @var array<ApiUserTrophy>|null $trophies The trophies property
     */
     private ?array $trophies = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

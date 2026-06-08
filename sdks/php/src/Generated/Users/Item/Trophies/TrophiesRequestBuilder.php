@@ -13,7 +13,7 @@ use TeamBattles\Sdk\Generated\Models\Error;
 /**
  * Builds and executes requests for operations under /users/{identifier}/trophies
 */
-class TrophiesRequestBuilder extends BaseRequestBuilder
+class TrophiesRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new TrophiesRequestBuilder and sets the default values.

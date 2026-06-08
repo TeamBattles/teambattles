@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ....models.error import Error
     from ....models.league_penalties import LeaguePenalties
     from ....models.penalties_request_body import PenaltiesRequestBody
+    from .create.create_request_builder import CreateRequestBuilder
 
 class PenaltiesRequestBuilder(BaseRequestBuilder):
     """
@@ -81,6 +82,15 @@ class PenaltiesRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PenaltiesRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def create(self) -> CreateRequestBuilder:
+        """
+        The create property
+        """
+        from .create.create_request_builder import CreateRequestBuilder
+
+        return CreateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PenaltiesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):

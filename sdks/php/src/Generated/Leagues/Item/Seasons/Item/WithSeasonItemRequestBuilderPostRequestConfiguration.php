@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class WithSeasonItemRequestBuilderPostRequestConfiguration extends BaseRequestConfiguration
+class WithSeasonItemRequestBuilderPostRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * Instantiates a new WithSeasonItemRequestBuilderPostRequestConfiguration and sets the default values.

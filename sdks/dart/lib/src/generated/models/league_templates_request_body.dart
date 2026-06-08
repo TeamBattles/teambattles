@@ -12,7 +12,7 @@ class LeagueTemplatesRequestBody implements AdditionalDataHolder, Parsable {
     ///  Optional official-template filter.
     bool? isOfficial;
     /// Instantiates a new [LeagueTemplatesRequestBody] and sets the default values.
-    LeagueTemplatesRequestBody() :
+    LeagueTemplatesRequestBody() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

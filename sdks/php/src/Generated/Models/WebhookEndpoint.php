@@ -10,73 +10,73 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 /**
  * A webhook endpoint (no secret material).
 */
-class WebhookEndpoint implements Parsable
+class WebhookEndpoint implements Parsable 
 {
     /**
      * @var float|null $createdAt Creation epoch ms.
     */
     private ?float $createdAt = null;
-
+    
     /**
      * @var array<string>|null $events Subscribed event tokens.
     */
     private ?array $events = null;
-
+    
     /**
      * @var int|null $failureCount Consecutive dead-lettered deliveries (auto-disables at 50).
     */
     private ?int $failureCount = null;
-
+    
     /**
      * @var string|null $id Webhook endpoint id.
     */
     private ?string $id = null;
-
+    
     /**
      * @var bool|null $isActive Whether the endpoint receives deliveries.
     */
     private ?bool $isActive = null;
-
+    
     /**
      * @var WebhookEndpoint_label|null $label Human label, or null.
     */
     private ?WebhookEndpoint_label $label = null;
-
+    
     /**
      * @var WebhookEndpoint_lastDeliveredAt|null $lastDeliveredAt Epoch ms of the last successful delivery, or null.
     */
     private ?WebhookEndpoint_lastDeliveredAt $lastDeliveredAt = null;
-
+    
     /**
      * @var WebhookEndpoint_lastFailedAt|null $lastFailedAt Epoch ms of the last failed delivery, or null.
     */
     private ?WebhookEndpoint_lastFailedAt $lastFailedAt = null;
-
+    
     /**
      * @var string|null $scopeId Stringified bound scope id.
     */
     private ?string $scopeId = null;
-
+    
     /**
      * @var WebhookEndpoint_scopeType|null $scopeType The single scope dimension an endpoint is bound to.
     */
     private ?WebhookEndpoint_scopeType $scopeType = null;
-
+    
     /**
      * @var string|null $secretPrefix First 8 chars of the current signing secret (display only).
     */
     private ?string $secretPrefix = null;
-
+    
     /**
      * @var float|null $updatedAt Last update epoch ms.
     */
     private ?float $updatedAt = null;
-
+    
     /**
      * @var string|null $url Delivery URL.
     */
     private ?string $url = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

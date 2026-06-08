@@ -111,7 +111,7 @@ namespace TeamBattles.Sdk.Leaderboards.Teams
         /// Returns active, non-disabled, non-private teams ranked by the requested stat. Requires teams.profile:read.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class TeamsRequestBuilderGetQueryParameters
+        public partial class TeamsRequestBuilderGetQueryParameters 
         {
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -9,7 +9,7 @@ use TeamBattles\Sdk\Generated\Webhooks\Item\Deliveries\Item\Replay\ReplayRequest
 /**
  * Builds and executes requests for operations under /webhooks/{id}/deliveries/{deliveryId}
 */
-class WithDeliveryItemRequestBuilder extends BaseRequestBuilder
+class WithDeliveryItemRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The replay property
@@ -17,7 +17,7 @@ class WithDeliveryItemRequestBuilder extends BaseRequestBuilder
     public function replay(): ReplayRequestBuilder {
         return new ReplayRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Instantiates a new WithDeliveryItemRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

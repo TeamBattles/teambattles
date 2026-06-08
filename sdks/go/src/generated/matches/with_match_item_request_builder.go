@@ -20,6 +20,26 @@ type WithMatchItemRequestBuilderGetRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// Accept the accept property
+// returns a *ItemAcceptRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) Accept()(*ItemAcceptRequestBuilder) {
+    return NewItemAcceptRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Attendance the attendance property
+// returns a *ItemAttendanceRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) Attendance()(*ItemAttendanceRequestBuilder) {
+    return NewItemAttendanceRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Cancel the cancel property
+// returns a *ItemCancelRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) Cancel()(*ItemCancelRequestBuilder) {
+    return NewItemCancelRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Chat the chat property
+// returns a *ItemChatRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) Chat()(*ItemChatRequestBuilder) {
+    return NewItemChatRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewWithMatchItemRequestBuilderInternal instantiates a new WithMatchItemRequestBuilder and sets the default values.
 func NewWithMatchItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*WithMatchItemRequestBuilder) {
     m := &WithMatchItemRequestBuilder{
@@ -32,6 +52,11 @@ func NewWithMatchItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
     return NewWithMatchItemRequestBuilderInternal(urlParams, requestAdapter)
+}
+// Forfeit the forfeit property
+// returns a *ItemForfeitRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) Forfeit()(*ItemForfeitRequestBuilder) {
+    return NewItemForfeitRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Get returns a participant-gated match detail projection. Lobby codes and raw match documents are intentionally omitted. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
 // returns a ApiMatchDetailResponseable when successful
@@ -61,10 +86,20 @@ func (m *WithMatchItemRequestBuilder) Get(ctx context.Context, requestConfigurat
     }
     return res.(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.ApiMatchDetailResponseable), nil
 }
+// LobbyCode the lobbyCode property
+// returns a *ItemLobbyCodeRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) LobbyCode()(*ItemLobbyCodeRequestBuilder) {
+    return NewItemLobbyCodeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Players the players property
 // returns a *ItemPlayersRequestBuilder when successful
 func (m *WithMatchItemRequestBuilder) Players()(*ItemPlayersRequestBuilder) {
     return NewItemPlayersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Ready the ready property
+// returns a *ItemReadyRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) Ready()(*ItemReadyRequestBuilder) {
+    return NewItemReadyRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Scores the scores property
 // returns a *ItemScoresRequestBuilder when successful

@@ -68,7 +68,7 @@ class ApiMatchDetail(Parsable):
     team_size: Optional[int] = None
     # The winnerTeamId property
     winner_team_id: Optional[ApiMatchDetail_winnerTeamId] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiMatchDetail:
         """
@@ -79,7 +79,7 @@ class ApiMatchDetail(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiMatchDetail()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -138,7 +138,7 @@ class ApiMatchDetail(Parsable):
             "winnerTeamId": lambda n : setattr(self, 'winner_team_id', n.get_object_value(ApiMatchDetail_winnerTeamId)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -169,3 +169,5 @@ class ApiMatchDetail(Parsable):
         writer.write_enum_value("status", self.status)
         writer.write_int_value("teamSize", self.team_size)
         writer.write_object_value("winnerTeamId", self.winner_team_id)
+    
+

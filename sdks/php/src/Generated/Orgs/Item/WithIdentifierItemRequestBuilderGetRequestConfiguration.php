@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class WithIdentifierItemRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration
+class WithIdentifierItemRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * Instantiates a new WithIdentifierItemRequestBuilderGetRequestConfiguration and sets the default values.

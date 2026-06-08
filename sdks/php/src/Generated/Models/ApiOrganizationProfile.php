@@ -9,93 +9,93 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * API-safe organization profile.
 */
-class ApiOrganizationProfile implements Parsable
+class ApiOrganizationProfile implements Parsable 
 {
     /**
      * @var ApiOrganizationProfile_avatarUrl|null $avatarUrl The avatarUrl property
     */
     private ?ApiOrganizationProfile_avatarUrl $avatarUrl = null;
-
+    
     /**
      * @var ApiOrganizationProfile_bannerUrl|null $bannerUrl The bannerUrl property
     */
     private ?ApiOrganizationProfile_bannerUrl $bannerUrl = null;
-
+    
     /**
      * @var ApiOrganizationProfile_createdAt|null $createdAt The createdAt property
     */
     private ?ApiOrganizationProfile_createdAt $createdAt = null;
-
+    
     /**
      * @var ApiOrganizationProfile_description|null $description The description property
     */
     private ?ApiOrganizationProfile_description $description = null;
-
+    
     /**
      * @var int|null $draws The draws property
     */
     private ?int $draws = null;
-
+    
     /**
      * @var string|null $id Organization ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var bool|null $isMember The isMember property
     */
     private ?bool $isMember = null;
-
+    
     /**
      * @var bool|null $isVerified The isVerified property
     */
     private ?bool $isVerified = null;
-
+    
     /**
      * @var int|null $losses The losses property
     */
     private ?int $losses = null;
-
+    
     /**
      * @var int|null $matchesPlayed The matchesPlayed property
     */
     private ?int $matchesPlayed = null;
-
+    
     /**
      * @var int|null $memberCount The memberCount property
     */
     private ?int $memberCount = null;
-
+    
     /**
      * @var string|null $name Organization name.
     */
     private ?string $name = null;
-
+    
     /**
      * @var ApiOrganizationProfile_slug|null $slug The slug property
     */
     private ?ApiOrganizationProfile_slug $slug = null;
-
+    
     /**
      * @var ApiOrganizationProfile_tag|null $tag The tag property
     */
     private ?ApiOrganizationProfile_tag $tag = null;
-
+    
     /**
      * @var int|null $teamCount The teamCount property
     */
     private ?int $teamCount = null;
-
+    
     /**
      * @var ProfileVisibility|null $visibility Public profile visibility setting.
     */
     private ?ProfileVisibility $visibility = null;
-
+    
     /**
      * @var int|null $wins The wins property
     */
     private ?int $wins = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

@@ -16,7 +16,7 @@ class ApiMatchTeam_score(ComposedTypeWrapper, Parsable):
     api_match_team_score_member1: Optional[ApiMatchTeam_scoreMember1] = None
     # Composed type representation for type int
     integer: Optional[int] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiMatchTeam_score:
         """
@@ -34,7 +34,7 @@ class ApiMatchTeam_score(ComposedTypeWrapper, Parsable):
 
             result.api_match_team_score_member1 = ApiMatchTeam_scoreMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class ApiMatchTeam_score(ComposedTypeWrapper, Parsable):
         if self.api_match_team_score_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.api_match_team_score_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class ApiMatchTeam_score(ComposedTypeWrapper, Parsable):
             writer.write_int_value(None, self.integer)
         else:
             writer.write_object_value(None, self.api_match_team_score_member1)
+    
+

@@ -17,9 +17,9 @@ public class SubmitScoreBody implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * Creator team score. Must be a non-negative number.
+     * Creator team score (integer, 0-1000).
      */
-    private Double creatorTeamScore;
+    private Integer creatorTeamScore;
     /**
      * Map identifier string (e.g. dust2).
      */
@@ -29,11 +29,15 @@ public class SubmitScoreBody implements AdditionalDataHolder, Parsable {
      */
     private Integer mapIndex;
     /**
-     * Accepted/opponent team score. Must be a non-negative number.
+     * Accepted/opponent team score (integer, 0-1000).
      */
-    private Double opponentTeamScore;
+    private Integer opponentTeamScore;
     /**
-     * Optional screenshot URLs for the map result.
+     * Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).
+     */
+    private java.util.List<String> screenshotStorageIds;
+    /**
+     * Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.
      */
     private java.util.List<String> screenshotUrls;
     /**
@@ -61,11 +65,11 @@ public class SubmitScoreBody implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the creatorTeamScore property value. Creator team score. Must be a non-negative number.
-     * @return a {@link Double}
+     * Gets the creatorTeamScore property value. Creator team score (integer, 0-1000).
+     * @return a {@link Integer}
      */
     @jakarta.annotation.Nullable
-    public Double getCreatorTeamScore() {
+    public Integer getCreatorTeamScore() {
         return this.creatorTeamScore;
     }
     /**
@@ -74,11 +78,12 @@ public class SubmitScoreBody implements AdditionalDataHolder, Parsable {
      */
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(5);
-        deserializerMap.put("creatorTeamScore", (n) -> { this.setCreatorTeamScore(n.getDoubleValue()); });
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(6);
+        deserializerMap.put("creatorTeamScore", (n) -> { this.setCreatorTeamScore(n.getIntegerValue()); });
         deserializerMap.put("mapId", (n) -> { this.setMapId(n.getStringValue()); });
         deserializerMap.put("mapIndex", (n) -> { this.setMapIndex(n.getIntegerValue()); });
-        deserializerMap.put("opponentTeamScore", (n) -> { this.setOpponentTeamScore(n.getDoubleValue()); });
+        deserializerMap.put("opponentTeamScore", (n) -> { this.setOpponentTeamScore(n.getIntegerValue()); });
+        deserializerMap.put("screenshotStorageIds", (n) -> { this.setScreenshotStorageIds(n.getCollectionOfPrimitiveValues(String.class)); });
         deserializerMap.put("screenshotUrls", (n) -> { this.setScreenshotUrls(n.getCollectionOfPrimitiveValues(String.class)); });
         return deserializerMap;
     }
@@ -99,15 +104,23 @@ public class SubmitScoreBody implements AdditionalDataHolder, Parsable {
         return this.mapIndex;
     }
     /**
-     * Gets the opponentTeamScore property value. Accepted/opponent team score. Must be a non-negative number.
-     * @return a {@link Double}
+     * Gets the opponentTeamScore property value. Accepted/opponent team score (integer, 0-1000).
+     * @return a {@link Integer}
      */
     @jakarta.annotation.Nullable
-    public Double getOpponentTeamScore() {
+    public Integer getOpponentTeamScore() {
         return this.opponentTeamScore;
     }
     /**
-     * Gets the screenshotUrls property value. Optional screenshot URLs for the map result.
+     * Gets the screenshotStorageIds property value. Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).
+     * @return a {@link java.util.List<String>}
+     */
+    @jakarta.annotation.Nullable
+    public java.util.List<String> getScreenshotStorageIds() {
+        return this.screenshotStorageIds;
+    }
+    /**
+     * Gets the screenshotUrls property value. Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.
      * @return a {@link java.util.List<String>}
      */
     @jakarta.annotation.Nullable
@@ -120,10 +133,11 @@ public class SubmitScoreBody implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeDoubleValue("creatorTeamScore", this.getCreatorTeamScore());
+        writer.writeIntegerValue("creatorTeamScore", this.getCreatorTeamScore());
         writer.writeStringValue("mapId", this.getMapId());
         writer.writeIntegerValue("mapIndex", this.getMapIndex());
-        writer.writeDoubleValue("opponentTeamScore", this.getOpponentTeamScore());
+        writer.writeIntegerValue("opponentTeamScore", this.getOpponentTeamScore());
+        writer.writeCollectionOfPrimitiveValues("screenshotStorageIds", this.getScreenshotStorageIds());
         writer.writeCollectionOfPrimitiveValues("screenshotUrls", this.getScreenshotUrls());
         writer.writeAdditionalData(this.getAdditionalData());
     }
@@ -135,10 +149,10 @@ public class SubmitScoreBody implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the creatorTeamScore property value. Creator team score. Must be a non-negative number.
+     * Sets the creatorTeamScore property value. Creator team score (integer, 0-1000).
      * @param value Value to set for the creatorTeamScore property.
      */
-    public void setCreatorTeamScore(@jakarta.annotation.Nullable final Double value) {
+    public void setCreatorTeamScore(@jakarta.annotation.Nullable final Integer value) {
         this.creatorTeamScore = value;
     }
     /**
@@ -156,14 +170,21 @@ public class SubmitScoreBody implements AdditionalDataHolder, Parsable {
         this.mapIndex = value;
     }
     /**
-     * Sets the opponentTeamScore property value. Accepted/opponent team score. Must be a non-negative number.
+     * Sets the opponentTeamScore property value. Accepted/opponent team score (integer, 0-1000).
      * @param value Value to set for the opponentTeamScore property.
      */
-    public void setOpponentTeamScore(@jakarta.annotation.Nullable final Double value) {
+    public void setOpponentTeamScore(@jakarta.annotation.Nullable final Integer value) {
         this.opponentTeamScore = value;
     }
     /**
-     * Sets the screenshotUrls property value. Optional screenshot URLs for the map result.
+     * Sets the screenshotStorageIds property value. Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).
+     * @param value Value to set for the screenshotStorageIds property.
+     */
+    public void setScreenshotStorageIds(@jakarta.annotation.Nullable final java.util.List<String> value) {
+        this.screenshotStorageIds = value;
+    }
+    /**
+     * Sets the screenshotUrls property value. Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.
      * @param value Value to set for the screenshotUrls property.
      */
     public void setScreenshotUrls(@jakarta.annotation.Nullable final java.util.List<String> value) {

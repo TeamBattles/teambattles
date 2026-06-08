@@ -9,93 +9,93 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Static public game catalog entry.
 */
-class ApiGameCatalogEntry implements Parsable
+class ApiGameCatalogEntry implements Parsable 
 {
     /**
      * @var ApiGameCatalogEntry_bannerImage|null $bannerImage The bannerImage property
     */
     private ?ApiGameCatalogEntry_bannerImage $bannerImage = null;
-
+    
     /**
      * @var string|null $category The category property
     */
     private ?string $category = null;
-
+    
     /**
      * @var ApiGameCatalogEntry_convexId|null $convexId Active Convex games-table ID, when available for match APIs.
     */
     private ?ApiGameCatalogEntry_convexId $convexId = null;
-
+    
     /**
      * @var ApiGameCatalogEntry_coverImage|null $coverImage The coverImage property
     */
     private ?ApiGameCatalogEntry_coverImage $coverImage = null;
-
+    
     /**
      * @var int|null $defaultTeamSize The defaultTeamSize property
     */
     private ?int $defaultTeamSize = null;
-
+    
     /**
      * @var ApiGameCatalogEntry_descriptionKey|null $descriptionKey The descriptionKey property
     */
     private ?ApiGameCatalogEntry_descriptionKey $descriptionKey = null;
-
+    
     /**
      * @var bool|null $hasCompetitiveMode The hasCompetitiveMode property
     */
     private ?bool $hasCompetitiveMode = null;
-
+    
     /**
      * @var string|null $id Static public game ID/slug.
     */
     private ?string $id = null;
-
+    
     /**
      * @var bool|null $isAvailableForMatchApi The isAvailableForMatchApi property
     */
     private ?bool $isAvailableForMatchApi = null;
-
+    
     /**
      * @var bool|null $isComingSoon The isComingSoon property
     */
     private ?bool $isComingSoon = null;
-
+    
     /**
      * @var array<ApiGameMap>|null $maps The maps property
     */
     private ?array $maps = null;
-
+    
     /**
      * @var array<ApiGameModeMapPool>|null $modeMapPools The modeMapPools property
     */
     private ?array $modeMapPools = null;
-
+    
     /**
      * @var array<ApiGameMode>|null $modes The modes property
     */
     private ?array $modes = null;
-
+    
     /**
      * @var string|null $nameKey The nameKey property
     */
     private ?string $nameKey = null;
-
+    
     /**
      * @var array<ApiGamePlaylist>|null $playlists The playlists property
     */
     private ?array $playlists = null;
-
+    
     /**
      * @var ApiGameCatalogEntry_rulesLink|null $rulesLink The rulesLink property
     */
     private ?ApiGameCatalogEntry_rulesLink $rulesLink = null;
-
+    
     /**
      * @var ApiGameCatalogEntry_shortNameKey|null $shortNameKey The shortNameKey property
     */
     private ?ApiGameCatalogEntry_shortNameKey $shortNameKey = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

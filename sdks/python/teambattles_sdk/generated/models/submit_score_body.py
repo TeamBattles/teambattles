@@ -12,15 +12,17 @@ class SubmitScoreBody(AdditionalDataHolder, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
 
-    # Creator team score. Must be a non-negative number.
-    creator_team_score: Optional[float] = None
+    # Creator team score (integer, 0-1000).
+    creator_team_score: Optional[int] = None
     # Map identifier string (e.g. dust2).
     map_id: Optional[str] = None
     # Zero-based map index. Must be a non-negative integer.
     map_index: Optional[int] = None
-    # Accepted/opponent team score. Must be a non-negative number.
-    opponent_team_score: Optional[float] = None
-    # Optional screenshot URLs for the map result.
+    # Accepted/opponent team score (integer, 0-1000).
+    opponent_team_score: Optional[int] = None
+    # Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).
+    screenshot_storage_ids: Optional[list[str]] = None
+    # Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.
     screenshot_urls: Optional[list[str]] = None
     
     @staticmethod
@@ -40,10 +42,11 @@ class SubmitScoreBody(AdditionalDataHolder, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         fields: dict[str, Callable[[Any], None]] = {
-            "creatorTeamScore": lambda n : setattr(self, 'creator_team_score', n.get_float_value()),
+            "creatorTeamScore": lambda n : setattr(self, 'creator_team_score', n.get_int_value()),
             "mapId": lambda n : setattr(self, 'map_id', n.get_str_value()),
             "mapIndex": lambda n : setattr(self, 'map_index', n.get_int_value()),
-            "opponentTeamScore": lambda n : setattr(self, 'opponent_team_score', n.get_float_value()),
+            "opponentTeamScore": lambda n : setattr(self, 'opponent_team_score', n.get_int_value()),
+            "screenshotStorageIds": lambda n : setattr(self, 'screenshot_storage_ids', n.get_collection_of_primitive_values(str)),
             "screenshotUrls": lambda n : setattr(self, 'screenshot_urls', n.get_collection_of_primitive_values(str)),
         }
         return fields
@@ -56,10 +59,11 @@ class SubmitScoreBody(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_float_value("creatorTeamScore", self.creator_team_score)
+        writer.write_int_value("creatorTeamScore", self.creator_team_score)
         writer.write_str_value("mapId", self.map_id)
         writer.write_int_value("mapIndex", self.map_index)
-        writer.write_float_value("opponentTeamScore", self.opponent_team_score)
+        writer.write_int_value("opponentTeamScore", self.opponent_team_score)
+        writer.write_collection_of_primitive_values("screenshotStorageIds", self.screenshot_storage_ids)
         writer.write_collection_of_primitive_values("screenshotUrls", self.screenshot_urls)
         writer.write_additional_data_value(self.additional_data)
     

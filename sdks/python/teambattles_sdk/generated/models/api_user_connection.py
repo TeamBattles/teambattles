@@ -28,7 +28,7 @@ class ApiUserConnection(Parsable):
     url: Optional[ApiUserConnection_url] = None
     # The username property
     username: Optional[ApiUserConnection_username] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiUserConnection:
         """
@@ -39,7 +39,7 @@ class ApiUserConnection(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiUserConnection()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -63,7 +63,7 @@ class ApiUserConnection(Parsable):
             "username": lambda n : setattr(self, 'username', n.get_object_value(ApiUserConnection_username)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -79,3 +79,5 @@ class ApiUserConnection(Parsable):
         writer.write_str_value("platform", self.platform)
         writer.write_object_value("url", self.url)
         writer.write_object_value("username", self.username)
+    
+

@@ -9,7 +9,7 @@ use TeamBattles\Sdk\Generated\Teams\Item\WithIdentifierItemRequestBuilder;
 /**
  * Builds and executes requests for operations under /teams
 */
-class TeamsRequestBuilder extends BaseRequestBuilder
+class TeamsRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.teams.item collection

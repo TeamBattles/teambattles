@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class WebhooksItemRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration
+class WebhooksItemRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * Instantiates a new WebhooksItemRequestBuilderGetRequestConfiguration and sets the default values.

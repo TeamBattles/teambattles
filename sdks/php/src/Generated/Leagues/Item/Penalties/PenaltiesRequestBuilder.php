@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Leagues\Item\Penalties\Create\CreateRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\Error;
 use TeamBattles\Sdk\Generated\Models\LeaguePenalties;
 use TeamBattles\Sdk\Generated\Models\PenaltiesRequestBody;
@@ -17,6 +18,13 @@ use TeamBattles\Sdk\Generated\Models\PenaltiesRequestBody;
 */
 class PenaltiesRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The create property
+    */
+    public function create(): CreateRequestBuilder {
+        return new CreateRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * Instantiates a new PenaltiesRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

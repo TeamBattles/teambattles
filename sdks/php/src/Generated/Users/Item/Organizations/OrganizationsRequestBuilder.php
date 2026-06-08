@@ -13,7 +13,7 @@ use TeamBattles\Sdk\Generated\Models\Error;
 /**
  * Builds and executes requests for operations under /users/{identifier}/organizations
 */
-class OrganizationsRequestBuilder extends BaseRequestBuilder
+class OrganizationsRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new OrganizationsRequestBuilder and sets the default values.

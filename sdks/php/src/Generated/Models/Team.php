@@ -9,28 +9,28 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * A team participating in a match.
 */
-class Team implements Parsable
+class Team implements Parsable 
 {
     /**
      * @var Team_avatarUrl|null $avatarUrl Team avatar URL.
     */
     private ?Team_avatarUrl $avatarUrl = null;
-
+    
     /**
      * @var string|null $id Team ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var string|null $name Team name.
     */
     private ?string $name = null;
-
+    
     /**
      * @var string|null $tag Team tag (short identifier).
     */
     private ?string $tag = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

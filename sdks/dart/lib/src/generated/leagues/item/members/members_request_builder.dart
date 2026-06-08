@@ -2,10 +2,23 @@
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../../models/error.dart';
 import '../../../models/league_members.dart';
+import './add/add_request_builder.dart';
+import './item/with_member_item_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \leagues\{identifier}\members
 class MembersRequestBuilder extends BaseRequestBuilder<MembersRequestBuilder> {
+    ///  The add property
+    AddRequestBuilder get add {
+        return AddRequestBuilder(pathParameters, requestAdapter);
+    }
+    /// Gets an item from the teambattles.leagues.item.members.item collection
+    ///  [memberId] League staff membership ID.
+    WithMemberItemRequestBuilder byMemberId(String memberId) {
+        var urlTplParams = Map.of(pathParameters);
+        urlTplParams.putIfAbsent('memberId', () => memberId);
+        return WithMemberItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /// Clones the requestbuilder.
     @override
     MembersRequestBuilder clone() {

@@ -9,28 +9,28 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * SP-2 open-match discovery page.
 */
-class MatchDiscoverPage implements Parsable
+class MatchDiscoverPage implements Parsable 
 {
     /**
      * @var array<ApiMatchDetail>|null $data The data property
     */
     private ?array $data = null;
-
+    
     /**
      * @var bool|null $hasMore The hasMore property
     */
     private ?bool $hasMore = null;
-
+    
     /**
      * @var MatchDiscoverPage_nextCursor|null $nextCursor The nextCursor property
     */
     private ?MatchDiscoverPage_nextCursor $nextCursor = null;
-
+    
     /**
      * @var string|null $timestamp The timestamp property
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

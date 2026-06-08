@@ -9,33 +9,33 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Static game map definition.
 */
-class ApiGameMap implements Parsable
+class ApiGameMap implements Parsable 
 {
     /**
      * @var ApiGameMap_coverImage|null $coverImage The coverImage property
     */
     private ?ApiGameMap_coverImage $coverImage = null;
-
+    
     /**
      * @var string|null $id The id property
     */
     private ?string $id = null;
-
+    
     /**
      * @var bool|null $isReleased The isReleased property
     */
     private ?bool $isReleased = null;
-
+    
     /**
      * @var ApiGameMap_minimapImage|null $minimapImage The minimapImage property
     */
     private ?ApiGameMap_minimapImage $minimapImage = null;
-
+    
     /**
      * @var string|null $nameKey The nameKey property
     */
     private ?string $nameKey = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

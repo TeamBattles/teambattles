@@ -17,7 +17,7 @@ class GameBatchMatchScoresBody(AdditionalDataHolder, Parsable):
 
     # Map scores to submit across one or more matches. 1-50 entries.
     items: Optional[list[GameMultiMatchScoreItem]] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GameBatchMatchScoresBody:
         """
@@ -28,7 +28,7 @@ class GameBatchMatchScoresBody(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return GameBatchMatchScoresBody()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -42,7 +42,7 @@ class GameBatchMatchScoresBody(AdditionalDataHolder, Parsable):
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(GameMultiMatchScoreItem)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -53,3 +53,5 @@ class GameBatchMatchScoresBody(AdditionalDataHolder, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("items", self.items)
         writer.write_additional_data_value(self.additional_data)
+    
+

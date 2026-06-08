@@ -15,7 +15,7 @@ class DeliveriesGetResponse(Parsable):
     is_done: Optional[bool] = None
     # The page property
     page: Optional[list[WebhookDelivery]] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeliveriesGetResponse:
         """
@@ -26,7 +26,7 @@ class DeliveriesGetResponse(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return DeliveriesGetResponse()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -42,7 +42,7 @@ class DeliveriesGetResponse(Parsable):
             "page": lambda n : setattr(self, 'page', n.get_collection_of_object_values(WebhookDelivery)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -54,3 +54,5 @@ class DeliveriesGetResponse(Parsable):
         writer.write_str_value("continueCursor", self.continue_cursor)
         writer.write_bool_value("isDone", self.is_done)
         writer.write_collection_of_object_values("page", self.page)
+    
+

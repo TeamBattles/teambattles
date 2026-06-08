@@ -13,7 +13,7 @@ module TeamBattlesSdk
                 # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
                 @additional_data
                 ## 
-                # Score for the creator team (non-negative).
+                # Score for the creator team (integer, 0-1000).
                 @creator_team_score
                 ## 
                 # Identifier of the map that was played.
@@ -22,13 +22,16 @@ module TeamBattlesSdk
                 # Zero-based index of the map within the series.
                 @map_index
                 ## 
-                # Score for the opponent (accepted) team (non-negative).
+                # Score for the opponent (accepted) team (integer, 0-1000).
                 @opponent_team_score
                 ## 
                 # Optional per-player stats keyed by user ID.
                 @player_stats
                 ## 
-                # Optional screenshot URLs supporting the reported score.
+                # Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+                @screenshot_storage_ids
+                ## 
+                # Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
                 @screenshot_urls
                 ## 
                 ## Gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -62,14 +65,14 @@ module TeamBattlesSdk
                     return GameMapScoreInput.new
                 end
                 ## 
-                ## Gets the creatorTeamScore property value. Score for the creator team (non-negative).
-                ## @return a double
+                ## Gets the creatorTeamScore property value. Score for the creator team (integer, 0-1000).
+                ## @return a integer
                 ## 
                 def creator_team_score
                     return @creator_team_score
                 end
                 ## 
-                ## Sets the creatorTeamScore property value. Score for the creator team (non-negative).
+                ## Sets the creatorTeamScore property value. Score for the creator team (integer, 0-1000).
                 ## @param value Value to set for the creatorTeamScore property.
                 ## @return a void
                 ## 
@@ -82,11 +85,12 @@ module TeamBattlesSdk
                 ## 
                 def get_field_deserializers()
                     return {
-                        "creatorTeamScore" => lambda {|n| @creator_team_score = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
+                        "creatorTeamScore" => lambda {|n| @creator_team_score = n.get_number_value() },
                         "mapId" => lambda {|n| @map_id = n.get_string_value() },
                         "mapIndex" => lambda {|n| @map_index = n.get_number_value() },
-                        "opponentTeamScore" => lambda {|n| @opponent_team_score = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
+                        "opponentTeamScore" => lambda {|n| @opponent_team_score = n.get_number_value() },
                         "playerStats" => lambda {|n| @player_stats = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::GameMapScoreInputPlayerStats.create_from_discriminator_value(pn) }) },
+                        "screenshotStorageIds" => lambda {|n| @screenshot_storage_ids = n.get_collection_of_primitive_values(String) },
                         "screenshotUrls" => lambda {|n| @screenshot_urls = n.get_collection_of_primitive_values(String) },
                     }
                 end
@@ -121,14 +125,14 @@ module TeamBattlesSdk
                     @map_index = value
                 end
                 ## 
-                ## Gets the opponentTeamScore property value. Score for the opponent (accepted) team (non-negative).
-                ## @return a double
+                ## Gets the opponentTeamScore property value. Score for the opponent (accepted) team (integer, 0-1000).
+                ## @return a integer
                 ## 
                 def opponent_team_score
                     return @opponent_team_score
                 end
                 ## 
-                ## Sets the opponentTeamScore property value. Score for the opponent (accepted) team (non-negative).
+                ## Sets the opponentTeamScore property value. Score for the opponent (accepted) team (integer, 0-1000).
                 ## @param value Value to set for the opponentTeamScore property.
                 ## @return a void
                 ## 
@@ -151,14 +155,29 @@ module TeamBattlesSdk
                     @player_stats = value
                 end
                 ## 
-                ## Gets the screenshotUrls property value. Optional screenshot URLs supporting the reported score.
+                ## Gets the screenshotStorageIds property value. Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+                ## @return a string
+                ## 
+                def screenshot_storage_ids
+                    return @screenshot_storage_ids
+                end
+                ## 
+                ## Sets the screenshotStorageIds property value. Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+                ## @param value Value to set for the screenshotStorageIds property.
+                ## @return a void
+                ## 
+                def screenshot_storage_ids=(value)
+                    @screenshot_storage_ids = value
+                end
+                ## 
+                ## Gets the screenshotUrls property value. Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
                 ## @return a string
                 ## 
                 def screenshot_urls
                     return @screenshot_urls
                 end
                 ## 
-                ## Sets the screenshotUrls property value. Optional screenshot URLs supporting the reported score.
+                ## Sets the screenshotUrls property value. Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
                 ## @param value Value to set for the screenshotUrls property.
                 ## @return a void
                 ## 
@@ -172,11 +191,12 @@ module TeamBattlesSdk
                 ## 
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
-                    writer.write_object_value("creatorTeamScore", @creator_team_score)
+                    writer.write_number_value("creatorTeamScore", @creator_team_score)
                     writer.write_string_value("mapId", @map_id)
                     writer.write_number_value("mapIndex", @map_index)
-                    writer.write_object_value("opponentTeamScore", @opponent_team_score)
+                    writer.write_number_value("opponentTeamScore", @opponent_team_score)
                     writer.write_object_value("playerStats", @player_stats)
+                    writer.write_collection_of_primitive_values("screenshotStorageIds", @screenshot_storage_ids)
                     writer.write_collection_of_primitive_values("screenshotUrls", @screenshot_urls)
                     writer.write_additional_data(@additional_data)
                 end

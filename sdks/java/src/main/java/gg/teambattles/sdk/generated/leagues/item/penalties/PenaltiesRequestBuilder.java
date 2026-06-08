@@ -8,6 +8,7 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.leagues.item.penalties.create.CreateRequestBuilder;
 import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.models.LeaguePenalties;
 import gg.teambattles.sdk.generated.models.PenaltiesRequestBody;
@@ -20,6 +21,14 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class PenaltiesRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The create property
+     * @return a {@link CreateRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public CreateRequestBuilder create() {
+        return new CreateRequestBuilder(pathParameters, requestAdapter);
+    }
     /**
      * Instantiates a new {@link PenaltiesRequestBuilder} and sets the default values.
      * @param pathParameters Path parameters for the request

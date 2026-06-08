@@ -45,6 +45,11 @@ func NewItemSeasonsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
     urlParams["request-raw-url"] = rawUrl
     return NewItemSeasonsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Create the create property
+// returns a *ItemSeasonsCreateRequestBuilder when successful
+func (m *ItemSeasonsRequestBuilder) Create()(*ItemSeasonsCreateRequestBuilder) {
+    return NewItemSeasonsCreateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Post returns seasons for a league resolved by slug, with optional game and status filtering. Requires the leagues.league_public:read permission.
 // returns a LeagueSeasonsable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code

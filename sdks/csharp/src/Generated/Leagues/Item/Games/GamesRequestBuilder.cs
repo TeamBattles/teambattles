@@ -8,6 +8,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Leagues.Item.Games.Add;
+using TeamBattles.Sdk.Leagues.Item.Games.Item;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Leagues.Item.Games
 {
@@ -17,6 +19,23 @@ namespace TeamBattles.Sdk.Leagues.Item.Games
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class GamesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The add property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Games.Add.AddRequestBuilder Add
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Games.Add.AddRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>Gets an item from the TeamBattles.Sdk.leagues.item.games.item collection</summary>
+        /// <param name="position">League game link ID.</param>
+        /// <returns>A <see cref="global::TeamBattles.Sdk.Leagues.Item.Games.Item.WithLeagueGameItemRequestBuilder"/></returns>
+        public global::TeamBattles.Sdk.Leagues.Item.Games.Item.WithLeagueGameItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("leagueGameId", position);
+                return new global::TeamBattles.Sdk.Leagues.Item.Games.Item.WithLeagueGameItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Leagues.Item.Games.GamesRequestBuilder"/> and sets the default values.
         /// </summary>

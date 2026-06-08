@@ -14,7 +14,7 @@ use TeamBattles\Sdk\Generated\Models\Error;
 /**
  * Builds and executes requests for operations under /matches/{matchId}/players
 */
-class PlayersRequestBuilder extends BaseRequestBuilder
+class PlayersRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new PlayersRequestBuilder and sets the default values.

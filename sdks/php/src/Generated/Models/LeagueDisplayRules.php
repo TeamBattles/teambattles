@@ -9,23 +9,23 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * League display rules.
 */
-class LeagueDisplayRules implements Parsable
+class LeagueDisplayRules implements Parsable 
 {
     /**
      * @var int|null $count Number of display rules returned.
     */
     private ?int $count = null;
-
+    
     /**
      * @var array<LeagueDisplayRules_displayRules>|null $displayRules Display rule documents for the league game.
     */
     private ?array $displayRules = null;
-
+    
     /**
      * @var string|null $timestamp Response generation time (ISO 8601).
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

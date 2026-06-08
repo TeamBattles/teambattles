@@ -105,6 +105,11 @@ func (m *WithIdentifierItemRequestBuilder) Organizations()(*ItemOrganizationsReq
 func (m *WithIdentifierItemRequestBuilder) Stats()(*ItemStatsRequestBuilder) {
     return NewItemStatsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Stream the stream property
+// returns a *ItemStreamRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Stream()(*ItemStreamRequestBuilder) {
+    return NewItemStreamRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Teams the teams property
 // returns a *ItemTeamsRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) Teams()(*ItemTeamsRequestBuilder) {

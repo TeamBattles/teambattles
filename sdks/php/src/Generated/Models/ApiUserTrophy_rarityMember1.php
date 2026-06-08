@@ -7,13 +7,13 @@ use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
-class ApiUserTrophy_rarityMember1 implements AdditionalDataHolder, Parsable
+class ApiUserTrophy_rarityMember1 implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * Instantiates a new ApiUserTrophy_rarityMember1 and sets the default values.
     */

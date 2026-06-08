@@ -21,7 +21,7 @@ class ApiObjective(Parsable):
     scope: Optional[str] = None
     # i18n key for the objective title.
     title_key: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiObjective:
         """
@@ -32,7 +32,7 @@ class ApiObjective(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiObjective()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -47,7 +47,7 @@ class ApiObjective(Parsable):
             "titleKey": lambda n : setattr(self, 'title_key', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -62,3 +62,5 @@ class ApiObjective(Parsable):
         writer.write_str_value("id", self.id)
         writer.write_str_value("scope", self.scope)
         writer.write_str_value("titleKey", self.title_key)
+    
+

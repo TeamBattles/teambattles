@@ -8,13 +8,13 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class DeliveriesRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration
+class DeliveriesRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * @var DeliveriesRequestBuilderGetQueryParameters|null $queryParameters Request query parameters
     */
     public ?DeliveriesRequestBuilderGetQueryParameters $queryParameters = null;
-
+    
     /**
      * Instantiates a new DeliveriesRequestBuilderGetRequestConfiguration and sets the default values.
      * @param array<string, array<string>|string>|null $headers Request headers

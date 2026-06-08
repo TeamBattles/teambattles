@@ -15,7 +15,7 @@ use TeamBattles\Sdk\Generated\Models\LeagueApplyEligibilityRequestBody;
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/apply-eligibility
 */
-class ApplyEligibilityRequestBuilder extends BaseRequestBuilder
+class ApplyEligibilityRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new ApplyEligibilityRequestBuilder and sets the default values.

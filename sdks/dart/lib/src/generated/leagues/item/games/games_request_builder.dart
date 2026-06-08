@@ -2,10 +2,23 @@
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../../models/error.dart';
 import '../../../models/league_games.dart';
+import './add/add_request_builder.dart';
+import './item/with_league_game_item_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \leagues\{identifier}\games
 class GamesRequestBuilder extends BaseRequestBuilder<GamesRequestBuilder> {
+    ///  The add property
+    AddRequestBuilder get add {
+        return AddRequestBuilder(pathParameters, requestAdapter);
+    }
+    /// Gets an item from the teambattles.leagues.item.games.item collection
+    ///  [leagueGameId] League game link ID.
+    WithLeagueGameItemRequestBuilder byLeagueGameId(String leagueGameId) {
+        var urlTplParams = Map.of(pathParameters);
+        urlTplParams.putIfAbsent('leagueGameId', () => leagueGameId);
+        return WithLeagueGameItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /// Clones the requestbuilder.
     @override
     GamesRequestBuilder clone() {

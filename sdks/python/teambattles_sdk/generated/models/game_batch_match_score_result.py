@@ -17,7 +17,7 @@ class GameBatchMatchScoreResult(Parsable):
     match_id: Optional[str] = None
     # Per-item outcome: "confirmed" on success, "failed" otherwise.
     status: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GameBatchMatchScoreResult:
         """
@@ -28,7 +28,7 @@ class GameBatchMatchScoreResult(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return GameBatchMatchScoreResult()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -41,7 +41,7 @@ class GameBatchMatchScoreResult(Parsable):
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -54,3 +54,5 @@ class GameBatchMatchScoreResult(Parsable):
         writer.write_int_value("mapIndex", self.map_index)
         writer.write_str_value("matchId", self.match_id)
         writer.write_str_value("status", self.status)
+    
+

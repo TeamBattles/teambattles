@@ -9,13 +9,13 @@ use TeamBattles\Sdk\Generated\Models\LeaderboardSortBy;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class RankRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration
+class RankRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * @var RankRequestBuilderGetQueryParameters|null $queryParameters Request query parameters
     */
     public ?RankRequestBuilderGetQueryParameters $queryParameters = null;
-
+    
     /**
      * Instantiates a new RankRequestBuilderGetRequestConfiguration and sets the default values.
      * @param array<string, array<string>|string>|null $headers Request headers
@@ -29,8 +29,8 @@ class RankRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration
 
     /**
      * Instantiates a new RankRequestBuilderGetQueryParameters.
-     * @param string|null $gameSlug
-     * @param LeaderboardSortBy|null $sortBy
+     * @param string|null $gameSlug 
+     * @param LeaderboardSortBy|null $sortBy 
      * @return RankRequestBuilderGetQueryParameters
     */
     public static function createQueryParameters(?string $gameSlug = null, ?LeaderboardSortBy $sortBy = null): RankRequestBuilderGetQueryParameters {

@@ -14,7 +14,7 @@ use TeamBattles\Sdk\Generated\Models\WebhookSecret;
 /**
  * Builds and executes requests for operations under /webhooks/{id}/rotate-secret
 */
-class RotateSecretRequestBuilder extends BaseRequestBuilder
+class RotateSecretRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new RotateSecretRequestBuilder and sets the default values.

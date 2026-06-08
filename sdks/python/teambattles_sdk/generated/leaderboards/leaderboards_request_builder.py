@@ -22,7 +22,7 @@ class LeaderboardsRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/leaderboards", path_parameters)
-
+    
     @property
     def organizations(self) -> OrganizationsRequestBuilder:
         """
@@ -31,7 +31,7 @@ class LeaderboardsRequestBuilder(BaseRequestBuilder):
         from .organizations.organizations_request_builder import OrganizationsRequestBuilder
 
         return OrganizationsRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def players(self) -> PlayersRequestBuilder:
         """
@@ -40,7 +40,7 @@ class LeaderboardsRequestBuilder(BaseRequestBuilder):
         from .players.players_request_builder import PlayersRequestBuilder
 
         return PlayersRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def teams(self) -> TeamsRequestBuilder:
         """
@@ -49,3 +49,5 @@ class LeaderboardsRequestBuilder(BaseRequestBuilder):
         from .teams.teams_request_builder import TeamsRequestBuilder
 
         return TeamsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+

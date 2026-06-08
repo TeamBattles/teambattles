@@ -16,7 +16,7 @@ class WebhookDelivery_statusCode(ComposedTypeWrapper, Parsable):
     integer: Optional[int] = None
     # Composed type representation for type WebhookDelivery_statusCodeMember1
     webhook_delivery_status_code_member1: Optional[WebhookDelivery_statusCodeMember1] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WebhookDelivery_statusCode:
         """
@@ -34,7 +34,7 @@ class WebhookDelivery_statusCode(ComposedTypeWrapper, Parsable):
 
             result.webhook_delivery_status_code_member1 = WebhookDelivery_statusCodeMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class WebhookDelivery_statusCode(ComposedTypeWrapper, Parsable):
         if self.webhook_delivery_status_code_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.webhook_delivery_status_code_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class WebhookDelivery_statusCode(ComposedTypeWrapper, Parsable):
             writer.write_int_value(None, self.integer)
         else:
             writer.write_object_value(None, self.webhook_delivery_status_code_member1)
+    
+

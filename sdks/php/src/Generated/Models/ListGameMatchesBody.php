@@ -10,28 +10,28 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Status filter and cursor pagination for listing the bound key's game matches. The game is derived from the developer-app key's bound game (not a body field).
 */
-class ListGameMatchesBody implements AdditionalDataHolder, Parsable
+class ListGameMatchesBody implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * @var string|null $cursor Opaque continuation cursor from a prior page's pagination.cursor.
     */
     private ?string $cursor = null;
-
+    
     /**
      * @var float|null $limit Page size (1-100, enforced by the handler). Defaults to the handler's internal default.
     */
     private ?float $limit = null;
-
+    
     /**
      * @var string|null $status Optional MatchStatus filter (e.g. IN_PROGRESS).
     */
     private ?string $status = null;
-
+    
     /**
      * Instantiates a new ListGameMatchesBody and sets the default values.
     */

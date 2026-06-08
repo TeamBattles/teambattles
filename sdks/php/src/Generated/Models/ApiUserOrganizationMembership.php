@@ -9,48 +9,48 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * API-safe organization affiliation row on a user profile.
 */
-class ApiUserOrganizationMembership implements Parsable
+class ApiUserOrganizationMembership implements Parsable 
 {
     /**
      * @var ApiUserOrganizationMembership_avatarUrl|null $avatarUrl The avatarUrl property
     */
     private ?ApiUserOrganizationMembership_avatarUrl $avatarUrl = null;
-
+    
     /**
      * @var string|null $id Organization ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var ApiUserOrganizationMembership_joinedAt|null $joinedAt The joinedAt property
     */
     private ?ApiUserOrganizationMembership_joinedAt $joinedAt = null;
-
+    
     /**
      * @var string|null $name Organization name.
     */
     private ?string $name = null;
-
+    
     /**
      * @var string|null $role The role property
     */
     private ?string $role = null;
-
+    
     /**
      * @var ApiUserOrganizationMembership_slug|null $slug The slug property
     */
     private ?ApiUserOrganizationMembership_slug $slug = null;
-
+    
     /**
      * @var ApiUserOrganizationMembership_tag|null $tag The tag property
     */
     private ?ApiUserOrganizationMembership_tag $tag = null;
-
+    
     /**
      * @var ProfileVisibility|null $visibility Public profile visibility setting.
     */
     private ?ProfileVisibility $visibility = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

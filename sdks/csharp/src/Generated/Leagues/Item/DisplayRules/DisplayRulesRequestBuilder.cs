@@ -8,6 +8,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Leagues.Item.DisplayRules.Item;
+using TeamBattles.Sdk.Leagues.Item.DisplayRules.Reorder;
+using TeamBattles.Sdk.Leagues.Item.DisplayRules.Upsert;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Leagues.Item.DisplayRules
 {
@@ -17,6 +20,28 @@ namespace TeamBattles.Sdk.Leagues.Item.DisplayRules
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DisplayRulesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The reorder property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.DisplayRules.Reorder.ReorderRequestBuilder Reorder
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.DisplayRules.Reorder.ReorderRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The upsert property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.DisplayRules.Upsert.UpsertRequestBuilder Upsert
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.DisplayRules.Upsert.UpsertRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>Gets an item from the TeamBattles.Sdk.leagues.item.displayRules.item collection</summary>
+        /// <param name="position">Display rule ID.</param>
+        /// <returns>A <see cref="global::TeamBattles.Sdk.Leagues.Item.DisplayRules.Item.WithDisplayRuleItemRequestBuilder"/></returns>
+        public global::TeamBattles.Sdk.Leagues.Item.DisplayRules.Item.WithDisplayRuleItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("displayRuleId", position);
+                return new global::TeamBattles.Sdk.Leagues.Item.DisplayRules.Item.WithDisplayRuleItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Leagues.Item.DisplayRules.DisplayRulesRequestBuilder"/> and sets the default values.
         /// </summary>

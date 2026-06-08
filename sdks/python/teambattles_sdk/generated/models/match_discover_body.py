@@ -40,7 +40,7 @@ class MatchDiscoverBody(AdditionalDataHolder, Parsable):
     scheduled_after: Optional[str] = None
     # The scheduledBefore property
     scheduled_before: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MatchDiscoverBody:
         """
@@ -51,7 +51,7 @@ class MatchDiscoverBody(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return MatchDiscoverBody()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -81,7 +81,7 @@ class MatchDiscoverBody(AdditionalDataHolder, Parsable):
             "scheduledBefore": lambda n : setattr(self, 'scheduled_before', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -102,3 +102,5 @@ class MatchDiscoverBody(AdditionalDataHolder, Parsable):
         writer.write_str_value("scheduledAfter", self.scheduled_after)
         writer.write_str_value("scheduledBefore", self.scheduled_before)
         writer.write_additional_data_value(self.additional_data)
+    
+

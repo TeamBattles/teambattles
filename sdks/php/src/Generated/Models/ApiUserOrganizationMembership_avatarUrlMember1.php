@@ -7,13 +7,13 @@ use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
-class ApiUserOrganizationMembership_avatarUrlMember1 implements AdditionalDataHolder, Parsable
+class ApiUserOrganizationMembership_avatarUrlMember1 implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * Instantiates a new ApiUserOrganizationMembership_avatarUrlMember1 and sets the default values.
     */

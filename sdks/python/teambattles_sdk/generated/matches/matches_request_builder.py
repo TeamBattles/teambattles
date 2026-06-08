@@ -6,6 +6,7 @@ from kiota_abstractions.request_adapter import RequestAdapter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .create.create_request_builder import CreateRequestBuilder
     from .discover.discover_request_builder import DiscoverRequestBuilder
     from .item.with_match_item_request_builder import WithMatchItemRequestBuilder
 
@@ -21,7 +22,7 @@ class MatchesRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/matches", path_parameters)
-
+    
     def by_match_id(self,match_id: str) -> WithMatchItemRequestBuilder:
         """
         Gets an item from the teambattles_sdk.generated.matches.item collection
@@ -35,7 +36,16 @@ class MatchesRequestBuilder(BaseRequestBuilder):
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["matchId"] = match_id
         return WithMatchItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def create(self) -> CreateRequestBuilder:
+        """
+        The create property
+        """
+        from .create.create_request_builder import CreateRequestBuilder
 
+        return CreateRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def discover(self) -> DiscoverRequestBuilder:
         """
@@ -44,5 +54,5 @@ class MatchesRequestBuilder(BaseRequestBuilder):
         from .discover.discover_request_builder import DiscoverRequestBuilder
 
         return DiscoverRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
 

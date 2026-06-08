@@ -13,7 +13,7 @@ type GameCreateMatchBody struct {
     acceptedTeamId *string
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Number of maps in the series (1, 3, 5, or 7).
+    // Number of maps in the series. One of 1, 3, 5, or 7.
     bestOf *float64
     // ID of the creating team. Must belong to the key's bound game.
     creatorTeamId *string
@@ -60,7 +60,7 @@ func (m *GameCreateMatchBody) GetAcceptedTeamId()(*string) {
 func (m *GameCreateMatchBody) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetBestOf gets the bestOf property value. Number of maps in the series (1, 3, 5, or 7).
+// GetBestOf gets the bestOf property value. Number of maps in the series. One of 1, 3, 5, or 7.
 // returns a *float64 when successful
 func (m *GameCreateMatchBody) GetBestOf()(*float64) {
     return m.bestOf
@@ -369,7 +369,7 @@ func (m *GameCreateMatchBody) SetAcceptedTeamId(value *string)() {
 func (m *GameCreateMatchBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetBestOf sets the bestOf property value. Number of maps in the series (1, 3, 5, or 7).
+// SetBestOf sets the bestOf property value. Number of maps in the series. One of 1, 3, 5, or 7.
 func (m *GameCreateMatchBody) SetBestOf(value *float64)() {
     m.bestOf = value
 }

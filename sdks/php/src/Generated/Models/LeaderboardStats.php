@@ -9,33 +9,33 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Aggregate stats used for leaderboard ranking.
 */
-class LeaderboardStats implements Parsable
+class LeaderboardStats implements Parsable 
 {
     /**
      * @var float|null $experience The experience property
     */
     private ?float $experience = null;
-
+    
     /**
      * @var int|null $losses The losses property
     */
     private ?int $losses = null;
-
+    
     /**
      * @var int|null $matchesPlayed The matchesPlayed property
     */
     private ?int $matchesPlayed = null;
-
+    
     /**
      * @var float|null $winRate The winRate property
     */
     private ?float $winRate = null;
-
+    
     /**
      * @var int|null $wins The wins property
     */
     private ?int $wins = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

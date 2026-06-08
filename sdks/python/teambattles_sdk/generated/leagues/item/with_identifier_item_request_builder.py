@@ -16,16 +16,27 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.error import Error
     from ...models.league_profile_response import LeagueProfileResponse
+    from .activity_feed.activity_feed_request_builder import ActivityFeedRequestBuilder
     from .apply_eligibility.apply_eligibility_request_builder import ApplyEligibilityRequestBuilder
     from .bans.bans_request_builder import BansRequestBuilder
+    from .branding.branding_request_builder import BrandingRequestBuilder
+    from .cooldowns.cooldowns_request_builder import CooldownsRequestBuilder
+    from .dashboard.dashboard_request_builder import DashboardRequestBuilder
     from .display_rules.display_rules_request_builder import DisplayRulesRequestBuilder
     from .games.games_request_builder import GamesRequestBuilder
+    from .matches.matches_request_builder import MatchesRequestBuilder
     from .members.members_request_builder import MembersRequestBuilder
+    from .ownership.ownership_request_builder import OwnershipRequestBuilder
     from .penalties.penalties_request_builder import PenaltiesRequestBuilder
+    from .points.points_request_builder import PointsRequestBuilder
     from .rules.rules_request_builder import RulesRequestBuilder
     from .seasons.seasons_request_builder import SeasonsRequestBuilder
     from .season_options.season_options_request_builder import SeasonOptionsRequestBuilder
+    from .settings.settings_request_builder import SettingsRequestBuilder
+    from .shutdown.shutdown_request_builder import ShutdownRequestBuilder
     from .standings.standings_request_builder import StandingsRequestBuilder
+    from .teams.teams_request_builder import TeamsRequestBuilder
+    from .tickets.tickets_request_builder import TicketsRequestBuilder
 
 class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
     """
@@ -39,7 +50,7 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/leagues/{identifier}", path_parameters)
-
+    
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[LeagueProfileResponse]:
         """
         Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
@@ -57,11 +68,11 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
             "404": Error,
         }
         if not self.request_adapter:
-            raise Exception("Http core is null")
+            raise Exception("Http core is null") 
         from ...models.league_profile_response import LeagueProfileResponse
 
         return await self.request_adapter.send_async(request_info, LeagueProfileResponse, error_mapping)
-
+    
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
@@ -72,7 +83,7 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
-
+    
     def with_url(self,raw_url: str) -> WithIdentifierItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
@@ -82,7 +93,16 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return WithIdentifierItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def activity_feed(self) -> ActivityFeedRequestBuilder:
+        """
+        The activityFeed property
+        """
+        from .activity_feed.activity_feed_request_builder import ActivityFeedRequestBuilder
 
+        return ActivityFeedRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def apply_eligibility(self) -> ApplyEligibilityRequestBuilder:
         """
@@ -91,7 +111,7 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .apply_eligibility.apply_eligibility_request_builder import ApplyEligibilityRequestBuilder
 
         return ApplyEligibilityRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def bans(self) -> BansRequestBuilder:
         """
@@ -100,7 +120,34 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .bans.bans_request_builder import BansRequestBuilder
 
         return BansRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def branding(self) -> BrandingRequestBuilder:
+        """
+        The branding property
+        """
+        from .branding.branding_request_builder import BrandingRequestBuilder
 
+        return BrandingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def cooldowns(self) -> CooldownsRequestBuilder:
+        """
+        The cooldowns property
+        """
+        from .cooldowns.cooldowns_request_builder import CooldownsRequestBuilder
+
+        return CooldownsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def dashboard(self) -> DashboardRequestBuilder:
+        """
+        The dashboard property
+        """
+        from .dashboard.dashboard_request_builder import DashboardRequestBuilder
+
+        return DashboardRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def display_rules(self) -> DisplayRulesRequestBuilder:
         """
@@ -109,7 +156,7 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .display_rules.display_rules_request_builder import DisplayRulesRequestBuilder
 
         return DisplayRulesRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def games(self) -> GamesRequestBuilder:
         """
@@ -118,7 +165,16 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .games.games_request_builder import GamesRequestBuilder
 
         return GamesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def matches(self) -> MatchesRequestBuilder:
+        """
+        The matches property
+        """
+        from .matches.matches_request_builder import MatchesRequestBuilder
 
+        return MatchesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def members(self) -> MembersRequestBuilder:
         """
@@ -127,7 +183,16 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .members.members_request_builder import MembersRequestBuilder
 
         return MembersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ownership(self) -> OwnershipRequestBuilder:
+        """
+        The ownership property
+        """
+        from .ownership.ownership_request_builder import OwnershipRequestBuilder
 
+        return OwnershipRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def penalties(self) -> PenaltiesRequestBuilder:
         """
@@ -136,7 +201,16 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .penalties.penalties_request_builder import PenaltiesRequestBuilder
 
         return PenaltiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def points(self) -> PointsRequestBuilder:
+        """
+        The points property
+        """
+        from .points.points_request_builder import PointsRequestBuilder
 
+        return PointsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def rules(self) -> RulesRequestBuilder:
         """
@@ -145,7 +219,7 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .rules.rules_request_builder import RulesRequestBuilder
 
         return RulesRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def season_options(self) -> SeasonOptionsRequestBuilder:
         """
@@ -154,7 +228,7 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .season_options.season_options_request_builder import SeasonOptionsRequestBuilder
 
         return SeasonOptionsRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def seasons(self) -> SeasonsRequestBuilder:
         """
@@ -163,7 +237,25 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .seasons.seasons_request_builder import SeasonsRequestBuilder
 
         return SeasonsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def settings(self) -> SettingsRequestBuilder:
+        """
+        The settings property
+        """
+        from .settings.settings_request_builder import SettingsRequestBuilder
 
+        return SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def shutdown(self) -> ShutdownRequestBuilder:
+        """
+        The shutdown property
+        """
+        from .shutdown.shutdown_request_builder import ShutdownRequestBuilder
+
+        return ShutdownRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def standings(self) -> StandingsRequestBuilder:
         """
@@ -172,12 +264,30 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .standings.standings_request_builder import StandingsRequestBuilder
 
         return StandingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def teams(self) -> TeamsRequestBuilder:
+        """
+        The teams property
+        """
+        from .teams.teams_request_builder import TeamsRequestBuilder
 
+        return TeamsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tickets(self) -> TicketsRequestBuilder:
+        """
+        The tickets property
+        """
+        from .tickets.tickets_request_builder import TicketsRequestBuilder
+
+        return TicketsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class WithIdentifierItemRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
-
+    
 

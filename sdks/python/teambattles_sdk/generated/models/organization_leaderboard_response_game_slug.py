@@ -16,7 +16,7 @@ class OrganizationLeaderboardResponse_gameSlug(ComposedTypeWrapper, Parsable):
     organization_leaderboard_response_game_slug_member1: Optional[OrganizationLeaderboardResponse_gameSlugMember1] = None
     # Composed type representation for type str
     string: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OrganizationLeaderboardResponse_gameSlug:
         """
@@ -34,7 +34,7 @@ class OrganizationLeaderboardResponse_gameSlug(ComposedTypeWrapper, Parsable):
 
             result.organization_leaderboard_response_game_slug_member1 = OrganizationLeaderboardResponse_gameSlugMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class OrganizationLeaderboardResponse_gameSlug(ComposedTypeWrapper, Parsable):
         if self.organization_leaderboard_response_game_slug_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.organization_leaderboard_response_game_slug_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class OrganizationLeaderboardResponse_gameSlug(ComposedTypeWrapper, Parsable):
             writer.write_str_value(None, self.string)
         else:
             writer.write_object_value(None, self.organization_leaderboard_response_game_slug_member1)
+    
+

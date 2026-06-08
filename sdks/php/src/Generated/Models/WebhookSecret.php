@@ -9,23 +9,23 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * One-time signing-secret reveal (create/rotate).
 */
-class WebhookSecret implements Parsable
+class WebhookSecret implements Parsable 
 {
     /**
      * @var string|null $id The endpoint id the secret belongs to.
     */
     private ?string $id = null;
-
+    
     /**
      * @var string|null $secretPrefix First 8 chars of the new signing secret.
     */
     private ?string $secretPrefix = null;
-
+    
     /**
      * @var string|null $signingSecret Plaintext signing secret. Shown ONCE - store it now.
     */
     private ?string $signingSecret = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

@@ -9,23 +9,23 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Player leaderboard response.
 */
-class PlayerLeaderboardResponse implements Parsable
+class PlayerLeaderboardResponse implements Parsable 
 {
     /**
      * @var array<PlayerLeaderboardEntry>|null $players The players property
     */
     private ?array $players = null;
-
+    
     /**
      * @var LeaderboardSortBy|null $sortBy Supported leaderboard sort field.
     */
     private ?LeaderboardSortBy $sortBy = null;
-
+    
     /**
      * @var string|null $timestamp The timestamp property
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

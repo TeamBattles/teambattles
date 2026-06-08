@@ -9,43 +9,43 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * API-safe user trophy. Event linkage fields are intentionally omitted.
 */
-class ApiUserTrophy implements Parsable
+class ApiUserTrophy implements Parsable 
 {
     /**
      * @var ApiUserTrophy_awardedAt|null $awardedAt The awardedAt property
     */
     private ?ApiUserTrophy_awardedAt $awardedAt = null;
-
+    
     /**
      * @var ApiUserTrophy_description|null $description The description property
     */
     private ?ApiUserTrophy_description $description = null;
-
+    
     /**
      * @var ApiUserTrophy_iconUrl|null $iconUrl The iconUrl property
     */
     private ?ApiUserTrophy_iconUrl $iconUrl = null;
-
+    
     /**
      * @var string|null $id Trophy award ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var ApiUserTrophy_rarity|null $rarity The rarity property
     */
     private ?ApiUserTrophy_rarity $rarity = null;
-
+    
     /**
      * @var ApiUserTrophy_title|null $title The title property
     */
     private ?ApiUserTrophy_title $title = null;
-
+    
     /**
      * @var string|null $trophyId Trophy definition ID.
     */
     private ?string $trophyId = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

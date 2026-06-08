@@ -4,25 +4,47 @@
 // @ts-ignore
 import { createErrorEscapedFromDiscriminatorValue, createLeagueProfileResponseFromDiscriminatorValue, type ErrorEscaped, type LeagueProfileResponse } from '../../models/index.js';
 // @ts-ignore
+import { ActivityFeedRequestBuilderRequestsMetadata, type ActivityFeedRequestBuilder } from './activityFeed/index.js';
+// @ts-ignore
 import { ApplyEligibilityRequestBuilderRequestsMetadata, type ApplyEligibilityRequestBuilder } from './applyEligibility/index.js';
 // @ts-ignore
-import { BansRequestBuilderRequestsMetadata, type BansRequestBuilder } from './bans/index.js';
+import { BansRequestBuilderNavigationMetadata, BansRequestBuilderRequestsMetadata, type BansRequestBuilder } from './bans/index.js';
 // @ts-ignore
-import { DisplayRulesRequestBuilderRequestsMetadata, type DisplayRulesRequestBuilder } from './displayRules/index.js';
+import { BrandingRequestBuilderNavigationMetadata, type BrandingRequestBuilder } from './branding/index.js';
 // @ts-ignore
-import { GamesRequestBuilderRequestsMetadata, type GamesRequestBuilder } from './games/index.js';
+import { CooldownsRequestBuilderNavigationMetadata, type CooldownsRequestBuilder } from './cooldowns/index.js';
 // @ts-ignore
-import { MembersRequestBuilderRequestsMetadata, type MembersRequestBuilder } from './members/index.js';
+import { DashboardRequestBuilderNavigationMetadata, type DashboardRequestBuilder } from './dashboard/index.js';
 // @ts-ignore
-import { PenaltiesRequestBuilderRequestsMetadata, type PenaltiesRequestBuilder } from './penalties/index.js';
+import { DisplayRulesRequestBuilderNavigationMetadata, DisplayRulesRequestBuilderRequestsMetadata, type DisplayRulesRequestBuilder } from './displayRules/index.js';
 // @ts-ignore
-import { RulesRequestBuilderRequestsMetadata, type RulesRequestBuilder } from './rules/index.js';
+import { GamesRequestBuilderNavigationMetadata, GamesRequestBuilderRequestsMetadata, type GamesRequestBuilder } from './games/index.js';
+// @ts-ignore
+import { MatchesRequestBuilderNavigationMetadata, type MatchesRequestBuilder } from './matches/index.js';
+// @ts-ignore
+import { MembersRequestBuilderNavigationMetadata, MembersRequestBuilderRequestsMetadata, type MembersRequestBuilder } from './members/index.js';
+// @ts-ignore
+import { OwnershipRequestBuilderNavigationMetadata, type OwnershipRequestBuilder } from './ownership/index.js';
+// @ts-ignore
+import { PenaltiesRequestBuilderNavigationMetadata, PenaltiesRequestBuilderRequestsMetadata, type PenaltiesRequestBuilder } from './penalties/index.js';
+// @ts-ignore
+import { PointsRequestBuilderNavigationMetadata, type PointsRequestBuilder } from './points/index.js';
+// @ts-ignore
+import { RulesRequestBuilderNavigationMetadata, RulesRequestBuilderRequestsMetadata, type RulesRequestBuilder } from './rules/index.js';
 // @ts-ignore
 import { SeasonOptionsRequestBuilderRequestsMetadata, type SeasonOptionsRequestBuilder } from './seasonOptions/index.js';
 // @ts-ignore
 import { SeasonsRequestBuilderNavigationMetadata, SeasonsRequestBuilderRequestsMetadata, type SeasonsRequestBuilder } from './seasons/index.js';
 // @ts-ignore
+import { SettingsRequestBuilderNavigationMetadata, SettingsRequestBuilderRequestsMetadata, type SettingsRequestBuilder } from './settings/index.js';
+// @ts-ignore
+import { ShutdownRequestBuilderNavigationMetadata, type ShutdownRequestBuilder } from './shutdown/index.js';
+// @ts-ignore
 import { StandingsRequestBuilderRequestsMetadata, type StandingsRequestBuilder } from './standings/index.js';
+// @ts-ignore
+import { TeamsRequestBuilderNavigationMetadata, type TeamsRequestBuilder } from './teams/index.js';
+// @ts-ignore
+import { TicketsRequestBuilderNavigationMetadata, type TicketsRequestBuilder } from './tickets/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
@@ -30,6 +52,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /leagues/{identifier}
  */
 export interface WithIdentifierItemRequestBuilder extends BaseRequestBuilder<WithIdentifierItemRequestBuilder> {
+    /**
+     * The activityFeed property
+     */
+    get activityFeed(): ActivityFeedRequestBuilder;
     /**
      * The applyEligibility property
      */
@@ -39,6 +65,18 @@ export interface WithIdentifierItemRequestBuilder extends BaseRequestBuilder<Wit
      */
     get bans(): BansRequestBuilder;
     /**
+     * The branding property
+     */
+    get branding(): BrandingRequestBuilder;
+    /**
+     * The cooldowns property
+     */
+    get cooldowns(): CooldownsRequestBuilder;
+    /**
+     * The dashboard property
+     */
+    get dashboard(): DashboardRequestBuilder;
+    /**
      * The displayRules property
      */
     get displayRules(): DisplayRulesRequestBuilder;
@@ -47,13 +85,25 @@ export interface WithIdentifierItemRequestBuilder extends BaseRequestBuilder<Wit
      */
     get games(): GamesRequestBuilder;
     /**
+     * The matches property
+     */
+    get matches(): MatchesRequestBuilder;
+    /**
      * The members property
      */
     get members(): MembersRequestBuilder;
     /**
+     * The ownership property
+     */
+    get ownership(): OwnershipRequestBuilder;
+    /**
      * The penalties property
      */
     get penalties(): PenaltiesRequestBuilder;
+    /**
+     * The points property
+     */
+    get points(): PointsRequestBuilder;
     /**
      * The rules property
      */
@@ -67,9 +117,25 @@ export interface WithIdentifierItemRequestBuilder extends BaseRequestBuilder<Wit
      */
     get seasons(): SeasonsRequestBuilder;
     /**
+     * The settings property
+     */
+    get settings(): SettingsRequestBuilder;
+    /**
+     * The shutdown property
+     */
+    get shutdown(): ShutdownRequestBuilder;
+    /**
      * The standings property
      */
     get standings(): StandingsRequestBuilder;
+    /**
+     * The teams property
+     */
+    get teams(): TeamsRequestBuilder;
+    /**
+     * The tickets property
+     */
+    get tickets(): TicketsRequestBuilder;
     /**
      * Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -94,26 +160,53 @@ export const WithIdentifierItemRequestBuilderUriTemplate = "{+baseurl}/leagues/{
  * Metadata for all the navigation properties in the request builder.
  */
 export const WithIdentifierItemRequestBuilderNavigationMetadata: Record<Exclude<keyof WithIdentifierItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    activityFeed: {
+        requestsMetadata: ActivityFeedRequestBuilderRequestsMetadata,
+    },
     applyEligibility: {
         requestsMetadata: ApplyEligibilityRequestBuilderRequestsMetadata,
     },
     bans: {
         requestsMetadata: BansRequestBuilderRequestsMetadata,
+        navigationMetadata: BansRequestBuilderNavigationMetadata,
+    },
+    branding: {
+        navigationMetadata: BrandingRequestBuilderNavigationMetadata,
+    },
+    cooldowns: {
+        navigationMetadata: CooldownsRequestBuilderNavigationMetadata,
+    },
+    dashboard: {
+        navigationMetadata: DashboardRequestBuilderNavigationMetadata,
     },
     displayRules: {
         requestsMetadata: DisplayRulesRequestBuilderRequestsMetadata,
+        navigationMetadata: DisplayRulesRequestBuilderNavigationMetadata,
     },
     games: {
         requestsMetadata: GamesRequestBuilderRequestsMetadata,
+        navigationMetadata: GamesRequestBuilderNavigationMetadata,
+    },
+    matches: {
+        navigationMetadata: MatchesRequestBuilderNavigationMetadata,
     },
     members: {
         requestsMetadata: MembersRequestBuilderRequestsMetadata,
+        navigationMetadata: MembersRequestBuilderNavigationMetadata,
+    },
+    ownership: {
+        navigationMetadata: OwnershipRequestBuilderNavigationMetadata,
     },
     penalties: {
         requestsMetadata: PenaltiesRequestBuilderRequestsMetadata,
+        navigationMetadata: PenaltiesRequestBuilderNavigationMetadata,
+    },
+    points: {
+        navigationMetadata: PointsRequestBuilderNavigationMetadata,
     },
     rules: {
         requestsMetadata: RulesRequestBuilderRequestsMetadata,
+        navigationMetadata: RulesRequestBuilderNavigationMetadata,
     },
     seasonOptions: {
         requestsMetadata: SeasonOptionsRequestBuilderRequestsMetadata,
@@ -122,8 +215,21 @@ export const WithIdentifierItemRequestBuilderNavigationMetadata: Record<Exclude<
         requestsMetadata: SeasonsRequestBuilderRequestsMetadata,
         navigationMetadata: SeasonsRequestBuilderNavigationMetadata,
     },
+    settings: {
+        requestsMetadata: SettingsRequestBuilderRequestsMetadata,
+        navigationMetadata: SettingsRequestBuilderNavigationMetadata,
+    },
+    shutdown: {
+        navigationMetadata: ShutdownRequestBuilderNavigationMetadata,
+    },
     standings: {
         requestsMetadata: StandingsRequestBuilderRequestsMetadata,
+    },
+    teams: {
+        navigationMetadata: TeamsRequestBuilderNavigationMetadata,
+    },
+    tickets: {
+        navigationMetadata: TicketsRequestBuilderNavigationMetadata,
     },
 };
 /**

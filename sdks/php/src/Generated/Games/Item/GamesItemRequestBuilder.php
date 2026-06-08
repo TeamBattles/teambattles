@@ -9,7 +9,7 @@ use TeamBattles\Sdk\Generated\Games\Item\Playlists\PlaylistsRequestBuilder;
 /**
  * Builds and executes requests for operations under /games/{id}
 */
-class GamesItemRequestBuilder extends BaseRequestBuilder
+class GamesItemRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The playlists property
@@ -17,7 +17,7 @@ class GamesItemRequestBuilder extends BaseRequestBuilder
     public function playlists(): PlaylistsRequestBuilder {
         return new PlaylistsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Instantiates a new GamesItemRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

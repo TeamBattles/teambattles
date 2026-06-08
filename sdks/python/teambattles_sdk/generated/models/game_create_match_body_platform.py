@@ -6,3 +6,4 @@ class GameCreateMatchBody_platform(str, Enum):
     PLAYSTATION = "PLAYSTATION",
     CONSOLE_ONLY = "CONSOLE_ONLY",
     CROSSPLAY = "CROSSPLAY",
+

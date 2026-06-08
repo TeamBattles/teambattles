@@ -16,7 +16,7 @@ class GameMatchDetail_leagueSeasonId(ComposedTypeWrapper, Parsable):
     game_match_detail_league_season_id_member1: Optional[GameMatchDetail_leagueSeasonIdMember1] = None
     # Composed type representation for type str
     string: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GameMatchDetail_leagueSeasonId:
         """
@@ -34,7 +34,7 @@ class GameMatchDetail_leagueSeasonId(ComposedTypeWrapper, Parsable):
 
             result.game_match_detail_league_season_id_member1 = GameMatchDetail_leagueSeasonIdMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class GameMatchDetail_leagueSeasonId(ComposedTypeWrapper, Parsable):
         if self.game_match_detail_league_season_id_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.game_match_detail_league_season_id_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class GameMatchDetail_leagueSeasonId(ComposedTypeWrapper, Parsable):
             writer.write_str_value(None, self.string)
         else:
             writer.write_object_value(None, self.game_match_detail_league_season_id_member1)
+    
+

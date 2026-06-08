@@ -4,12 +4,26 @@
 // @ts-ignore
 import { createErrorEscapedFromDiscriminatorValue, createLeagueBansFromDiscriminatorValue, serializeBansRequestBody, serializeLeagueBans, type BansRequestBody, type ErrorEscaped, type LeagueBans } from '../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { CreateRequestBuilderRequestsMetadata, type CreateRequestBuilder } from './create/index.js';
+// @ts-ignore
+import { type WithBanItemRequestBuilder, WithBanItemRequestBuilderNavigationMetadata } from './item/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/bans
  */
 export interface BansRequestBuilder extends BaseRequestBuilder<BansRequestBuilder> {
+    /**
+     * The create property
+     */
+    get create(): CreateRequestBuilder;
+    /**
+     * Gets an item from the teambattles.leagues.item.bans.item collection
+     * @param banId League ban ID.
+     * @returns {WithBanItemRequestBuilder}
+     */
+     byBanId(banId: string) : WithBanItemRequestBuilder;
     /**
      * Returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
      * @param body Status filter for league team bans.
@@ -33,6 +47,18 @@ export interface BansRequestBuilder extends BaseRequestBuilder<BansRequestBuilde
  * Uri template for the request builder.
  */
 export const BansRequestBuilderUriTemplate = "{+baseurl}/leagues/{identifier}/bans";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const BansRequestBuilderNavigationMetadata: Record<Exclude<keyof BansRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    byBanId: {
+        navigationMetadata: WithBanItemRequestBuilderNavigationMetadata,
+        pathParametersMappings: ["banId"],
+    },
+    create: {
+        requestsMetadata: CreateRequestBuilderRequestsMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

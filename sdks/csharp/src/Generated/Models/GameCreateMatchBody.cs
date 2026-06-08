@@ -23,7 +23,7 @@ namespace TeamBattles.Sdk.Models
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Number of maps in the series (1, 3, 5, or 7).</summary>
+        /// <summary>Number of maps in the series. One of 1, 3, 5, or 7.</summary>
         public double? BestOf { get; set; }
         /// <summary>ID of the creating team. Must belong to the key&apos;s bound game.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

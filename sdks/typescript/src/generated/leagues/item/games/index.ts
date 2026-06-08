@@ -4,12 +4,26 @@
 // @ts-ignore
 import { createErrorEscapedFromDiscriminatorValue, createLeagueGamesFromDiscriminatorValue, type ErrorEscaped, type LeagueGames } from '../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { AddRequestBuilderRequestsMetadata, type AddRequestBuilder } from './add/index.js';
+// @ts-ignore
+import { type WithLeagueGameItemRequestBuilder, WithLeagueGameItemRequestBuilderNavigationMetadata, WithLeagueGameItemRequestBuilderRequestsMetadata } from './item/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/games
  */
 export interface GamesRequestBuilder extends BaseRequestBuilder<GamesRequestBuilder> {
+    /**
+     * The add property
+     */
+    get add(): AddRequestBuilder;
+    /**
+     * Gets an item from the teambattles.leagues.item.games.item collection
+     * @param leagueGameId League game link ID.
+     * @returns {WithLeagueGameItemRequestBuilder}
+     */
+     byLeagueGameId(leagueGameId: string) : WithLeagueGameItemRequestBuilder;
     /**
      * Returns games configured for a league resolved by slug or Convex ID. Requires leagues.league_public:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -32,6 +46,19 @@ export interface GamesRequestBuilder extends BaseRequestBuilder<GamesRequestBuil
  * Uri template for the request builder.
  */
 export const GamesRequestBuilderUriTemplate = "{+baseurl}/leagues/{identifier}/games";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const GamesRequestBuilderNavigationMetadata: Record<Exclude<keyof GamesRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    byLeagueGameId: {
+        requestsMetadata: WithLeagueGameItemRequestBuilderRequestsMetadata,
+        navigationMetadata: WithLeagueGameItemRequestBuilderNavigationMetadata,
+        pathParametersMappings: ["leagueGameId"],
+    },
+    add: {
+        requestsMetadata: AddRequestBuilderRequestsMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

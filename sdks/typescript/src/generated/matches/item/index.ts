@@ -4,7 +4,21 @@
 // @ts-ignore
 import { createApiMatchDetailResponseFromDiscriminatorValue, createErrorEscapedFromDiscriminatorValue, type ApiMatchDetailResponse, type ErrorEscaped } from '../../models/index.js';
 // @ts-ignore
+import { AcceptRequestBuilderRequestsMetadata, type AcceptRequestBuilder } from './accept/index.js';
+// @ts-ignore
+import { AttendanceRequestBuilderRequestsMetadata, type AttendanceRequestBuilder } from './attendance/index.js';
+// @ts-ignore
+import { CancelRequestBuilderRequestsMetadata, type CancelRequestBuilder } from './cancel/index.js';
+// @ts-ignore
+import { ChatRequestBuilderRequestsMetadata, type ChatRequestBuilder } from './chat/index.js';
+// @ts-ignore
+import { ForfeitRequestBuilderRequestsMetadata, type ForfeitRequestBuilder } from './forfeit/index.js';
+// @ts-ignore
+import { LobbyCodeRequestBuilderRequestsMetadata, type LobbyCodeRequestBuilder } from './lobbyCode/index.js';
+// @ts-ignore
 import { PlayersRequestBuilderRequestsMetadata, type PlayersRequestBuilder } from './players/index.js';
+// @ts-ignore
+import { ReadyRequestBuilderRequestsMetadata, type ReadyRequestBuilder } from './ready/index.js';
 // @ts-ignore
 import { ScoresRequestBuilderRequestsMetadata, type ScoresRequestBuilder } from './scores/index.js';
 // @ts-ignore
@@ -15,9 +29,37 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  */
 export interface WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatchItemRequestBuilder> {
     /**
+     * The accept property
+     */
+    get accept(): AcceptRequestBuilder;
+    /**
+     * The attendance property
+     */
+    get attendance(): AttendanceRequestBuilder;
+    /**
+     * The cancel property
+     */
+    get cancel(): CancelRequestBuilder;
+    /**
+     * The chat property
+     */
+    get chat(): ChatRequestBuilder;
+    /**
+     * The forfeit property
+     */
+    get forfeit(): ForfeitRequestBuilder;
+    /**
+     * The lobbyCode property
+     */
+    get lobbyCode(): LobbyCodeRequestBuilder;
+    /**
      * The players property
      */
     get players(): PlayersRequestBuilder;
+    /**
+     * The ready property
+     */
+    get ready(): ReadyRequestBuilder;
     /**
      * The scores property
      */
@@ -48,8 +90,29 @@ export const WithMatchItemRequestBuilderUriTemplate = "{+baseurl}/matches/{match
  * Metadata for all the navigation properties in the request builder.
  */
 export const WithMatchItemRequestBuilderNavigationMetadata: Record<Exclude<keyof WithMatchItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    accept: {
+        requestsMetadata: AcceptRequestBuilderRequestsMetadata,
+    },
+    attendance: {
+        requestsMetadata: AttendanceRequestBuilderRequestsMetadata,
+    },
+    cancel: {
+        requestsMetadata: CancelRequestBuilderRequestsMetadata,
+    },
+    chat: {
+        requestsMetadata: ChatRequestBuilderRequestsMetadata,
+    },
+    forfeit: {
+        requestsMetadata: ForfeitRequestBuilderRequestsMetadata,
+    },
+    lobbyCode: {
+        requestsMetadata: LobbyCodeRequestBuilderRequestsMetadata,
+    },
     players: {
         requestsMetadata: PlayersRequestBuilderRequestsMetadata,
+    },
+    ready: {
+        requestsMetadata: ReadyRequestBuilderRequestsMetadata,
     },
     scores: {
         requestsMetadata: ScoresRequestBuilderRequestsMetadata,

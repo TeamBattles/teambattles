@@ -14,7 +14,7 @@ class CreateWebhookBody implements AdditionalDataHolder, Parsable {
     ///  HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
     String? url;
     /// Instantiates a new [CreateWebhookBody] and sets the default values.
-    CreateWebhookBody() :
+    CreateWebhookBody() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

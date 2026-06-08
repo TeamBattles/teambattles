@@ -102,7 +102,7 @@ namespace TeamBattles.Sdk.Leaderboards.Players
         /// Returns the global player leaderboard. gameSlug is rejected because player stats are global. Requires users.profile:read.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class PlayersRequestBuilderGetQueryParameters
+        public partial class PlayersRequestBuilderGetQueryParameters 
         {
             [QueryParameter("limit")]
             public int? Limit { get; set; }

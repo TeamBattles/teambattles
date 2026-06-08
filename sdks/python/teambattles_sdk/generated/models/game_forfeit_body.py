@@ -16,7 +16,7 @@ class GameForfeitBody(AdditionalDataHolder, Parsable):
     forfeiting_team_id: Optional[str] = None
     # Optional human-readable forfeit reason, recorded on the match.
     reason: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GameForfeitBody:
         """
@@ -27,7 +27,7 @@ class GameForfeitBody(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return GameForfeitBody()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -38,7 +38,7 @@ class GameForfeitBody(AdditionalDataHolder, Parsable):
             "reason": lambda n : setattr(self, 'reason', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -50,3 +50,5 @@ class GameForfeitBody(AdditionalDataHolder, Parsable):
         writer.write_str_value("forfeitingTeamId", self.forfeiting_team_id)
         writer.write_str_value("reason", self.reason)
         writer.write_additional_data_value(self.additional_data)
+    
+

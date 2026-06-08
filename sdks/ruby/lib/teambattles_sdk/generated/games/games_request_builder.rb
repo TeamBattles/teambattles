@@ -8,35 +8,35 @@ require_relative './item/games_item_request_builder'
 module TeamBattlesSdk
     module Generated
         module Games
-            ##
+            ## 
             # Builds and executes requests for operations under #games
             class GamesRequestBuilder < MicrosoftKiotaAbstractions::BaseRequestBuilder
-
-                ##
+                
+                ## 
                 ## Gets an item from the TeamBattlesSdk::Generated.games.item collection
                 ## @param id Static public game ID/slug.
                 ## @return a games_item_request_builder
-                ##
+                ## 
                 def by_id(id)
                     raise StandardError, 'id cannot be null' if id.nil?
                     url_tpl_params = @path_parameters.clone
                     url_tpl_params["id"] = id
                     return TeamBattlesSdk::Generated::Games::Item::GamesItemRequestBuilder.new(url_tpl_params, @request_adapter)
                 end
-                ##
+                ## 
                 ## Instantiates a new GamesRequestBuilder and sets the default values.
                 ## @param path_parameters Path parameters for the request
                 ## @param request_adapter The request adapter to use to execute the requests.
                 ## @return a void
-                ##
+                ## 
                 def initialize(path_parameters, request_adapter)
                     super(path_parameters, request_adapter, "{+baseurl}/games")
                 end
-                ##
+                ## 
                 ## Returns the static public game catalog and objective definitions. Requires a valid API key, but no additional permission scope.
                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                 ## @return a Fiber of api_game_catalog_response
-                ##
+                ## 
                 def get(request_configuration=nil)
                     request_info = self.to_get_request_information(
                         request_configuration
@@ -47,11 +47,11 @@ module TeamBattlesSdk
                     error_mapping["500"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                     return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::ApiGameCatalogResponse.create_from_discriminator_value(pn) }, error_mapping)
                 end
-                ##
+                ## 
                 ## Returns the static public game catalog and objective definitions. Requires a valid API key, but no additional permission scope.
                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                 ## @return a request_information
-                ##
+                ## 
                 def to_get_request_information(request_configuration=nil)
                     request_info = MicrosoftKiotaAbstractions::RequestInformation.new()
                     unless request_configuration.nil?
@@ -64,11 +64,11 @@ module TeamBattlesSdk
                     request_info.headers.try_add('Accept', 'application/json')
                     return request_info
                 end
-                ##
+                ## 
                 ## Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
                 ## @param raw_url The raw URL to use for the request builder.
                 ## @return a games_request_builder
-                ##
+                ## 
                 def with_url(raw_url)
                     raise StandardError, 'raw_url cannot be null' if raw_url.nil?
                     return GamesRequestBuilder.new(raw_url, @request_adapter)

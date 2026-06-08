@@ -8,6 +8,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Leagues.Item.Bans.Create;
+using TeamBattles.Sdk.Leagues.Item.Bans.Item;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Leagues.Item.Bans
 {
@@ -17,6 +19,23 @@ namespace TeamBattles.Sdk.Leagues.Item.Bans
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class BansRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The create property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Bans.Create.CreateRequestBuilder Create
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Bans.Create.CreateRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>Gets an item from the TeamBattles.Sdk.leagues.item.bans.item collection</summary>
+        /// <param name="position">League ban ID.</param>
+        /// <returns>A <see cref="global::TeamBattles.Sdk.Leagues.Item.Bans.Item.WithBanItemRequestBuilder"/></returns>
+        public global::TeamBattles.Sdk.Leagues.Item.Bans.Item.WithBanItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("banId", position);
+                return new global::TeamBattles.Sdk.Leagues.Item.Bans.Item.WithBanItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Leagues.Item.Bans.BansRequestBuilder"/> and sets the default values.
         /// </summary>

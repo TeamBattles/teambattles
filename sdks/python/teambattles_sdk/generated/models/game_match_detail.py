@@ -57,7 +57,7 @@ class GameMatchDetail(Parsable):
     status: Optional[MatchStatus] = None
     # Winning team ID once the match completes.
     winner_team_id: Optional[GameMatchDetail_winnerTeamId] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GameMatchDetail:
         """
@@ -68,7 +68,7 @@ class GameMatchDetail(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return GameMatchDetail()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -120,7 +120,7 @@ class GameMatchDetail(Parsable):
             "winnerTeamId": lambda n : setattr(self, 'winner_team_id', n.get_object_value(GameMatchDetail_winnerTeamId)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -146,5 +146,5 @@ class GameMatchDetail(Parsable):
         writer.write_object_value("startedAt", self.started_at)
         writer.write_enum_value("status", self.status)
         writer.write_object_value("winnerTeamId", self.winner_team_id)
-
+    
 

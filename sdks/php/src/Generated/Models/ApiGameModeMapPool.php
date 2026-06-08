@@ -10,18 +10,18 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 /**
  * Game-scoped map pool for a single mode.
 */
-class ApiGameModeMapPool implements Parsable
+class ApiGameModeMapPool implements Parsable 
 {
     /**
      * @var array<string>|null $mapIds The mapIds property
     */
     private ?array $mapIds = null;
-
+    
     /**
      * @var string|null $modeId The modeId property
     */
     private ?string $modeId = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

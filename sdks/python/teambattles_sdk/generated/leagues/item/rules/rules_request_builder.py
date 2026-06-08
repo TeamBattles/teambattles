@@ -17,6 +17,8 @@ if TYPE_CHECKING:
     from ....models.error import Error
     from ....models.league_rules import LeagueRules
     from ....models.rules_request_body import RulesRequestBody
+    from .apply_template.apply_template_request_builder import ApplyTemplateRequestBuilder
+    from .update.update_request_builder import UpdateRequestBuilder
 
 class RulesRequestBuilder(BaseRequestBuilder):
     """
@@ -81,6 +83,24 @@ class RulesRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return RulesRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def apply_template(self) -> ApplyTemplateRequestBuilder:
+        """
+        The applyTemplate property
+        """
+        from .apply_template.apply_template_request_builder import ApplyTemplateRequestBuilder
+
+        return ApplyTemplateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def update(self) -> UpdateRequestBuilder:
+        """
+        The update property
+        """
+        from .update.update_request_builder import UpdateRequestBuilder
+
+        return UpdateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RulesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):

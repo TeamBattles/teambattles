@@ -10,118 +10,118 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 /**
  * Participant-gated SP-2 match detail. Lobby codes are intentionally omitted.
 */
-class ApiMatchDetail implements Parsable
+class ApiMatchDetail implements Parsable 
 {
     /**
      * @var ApiMatchTeam|null $acceptedTeam The acceptedTeam property
     */
     private ?ApiMatchTeam $acceptedTeam = null;
-
+    
     /**
      * @var int|null $bestOf The bestOf property
     */
     private ?int $bestOf = null;
-
+    
     /**
      * @var ApiMatchTeam|null $challengedTeam The challengedTeam property
     */
     private ?ApiMatchTeam $challengedTeam = null;
-
+    
     /**
      * @var ApiMatchDetail_completedAt|null $completedAt The completedAt property
     */
     private ?ApiMatchDetail_completedAt $completedAt = null;
-
+    
     /**
      * @var ApiMatchDetail_createdAt|null $createdAt The createdAt property
     */
     private ?ApiMatchDetail_createdAt $createdAt = null;
-
+    
     /**
      * @var ApiMatchTeam|null $creatorTeam The creatorTeam property
     */
     private ?ApiMatchTeam $creatorTeam = null;
-
+    
     /**
      * @var Game|null $game Game definition.
     */
     private ?Game $game = null;
-
+    
     /**
      * @var string|null $gameMode The gameMode property
     */
     private ?string $gameMode = null;
-
+    
     /**
      * @var string|null $id The id property
     */
     private ?string $id = null;
-
+    
     /**
      * @var ApiMatchDetail_leagueId|null $leagueId The leagueId property
     */
     private ?ApiMatchDetail_leagueId $leagueId = null;
-
+    
     /**
      * @var ApiMatchDetail_leagueSeasonId|null $leagueSeasonId The leagueSeasonId property
     */
     private ?ApiMatchDetail_leagueSeasonId $leagueSeasonId = null;
-
+    
     /**
      * @var ApiMatchDetail_matchType|null $matchType The matchType property
     */
     private ?ApiMatchDetail_matchType $matchType = null;
-
+    
     /**
      * @var ApiMatchDetail_platform|null $platform The platform property
     */
     private ?ApiMatchDetail_platform $platform = null;
-
+    
     /**
      * @var string|null $publishStatus The publishStatus property
     */
     private ?string $publishStatus = null;
-
+    
     /**
      * @var ApiMatchDetail_region|null $region The region property
     */
     private ?ApiMatchDetail_region $region = null;
-
+    
     /**
      * @var ApiMatchDetail_scheduledAt|null $scheduledAt The scheduledAt property
     */
     private ?ApiMatchDetail_scheduledAt $scheduledAt = null;
-
+    
     /**
      * @var array<string>|null $selectedMaps The selectedMaps property
     */
     private ?array $selectedMaps = null;
-
+    
     /**
      * @var array<string>|null $selectedObjectives The selectedObjectives property
     */
     private ?array $selectedObjectives = null;
-
+    
     /**
      * @var ApiMatchDetail_startedAt|null $startedAt The startedAt property
     */
     private ?ApiMatchDetail_startedAt $startedAt = null;
-
+    
     /**
      * @var MatchStatus|null $status Lifecycle status of a match.
     */
     private ?MatchStatus $status = null;
-
+    
     /**
      * @var int|null $teamSize The teamSize property
     */
     private ?int $teamSize = null;
-
+    
     /**
      * @var ApiMatchDetail_winnerTeamId|null $winnerTeamId The winnerTeamId property
     */
     private ?ApiMatchDetail_winnerTeamId $winnerTeamId = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

@@ -10,23 +10,23 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Template filters.
 */
-class LeagueTemplatesRequestBody implements AdditionalDataHolder, Parsable
+class LeagueTemplatesRequestBody implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * @var string|null $gameId Optional game ID filter.
     */
     private ?string $gameId = null;
-
+    
     /**
      * @var bool|null $isOfficial Optional official-template filter.
     */
     private ?bool $isOfficial = null;
-
+    
     /**
      * Instantiates a new LeagueTemplatesRequestBody and sets the default values.
     */

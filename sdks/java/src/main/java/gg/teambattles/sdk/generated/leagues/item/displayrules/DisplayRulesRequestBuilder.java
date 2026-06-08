@@ -8,6 +8,9 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.leagues.item.displayrules.item.WithDisplayRuleItemRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.displayrules.reorder.ReorderRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.displayrules.upsert.UpsertRequestBuilder;
 import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.models.LeagueDisplayRules;
 import gg.teambattles.sdk.generated.models.LeagueDisplayRulesRequestBody;
@@ -20,6 +23,34 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class DisplayRulesRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The reorder property
+     * @return a {@link ReorderRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ReorderRequestBuilder reorder() {
+        return new ReorderRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The upsert property
+     * @return a {@link UpsertRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public UpsertRequestBuilder upsert() {
+        return new UpsertRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * Gets an item from the gg.teambattles.sdk.generated.leagues.item.displayRules.item collection
+     * @param displayRuleId Display rule ID.
+     * @return a {@link WithDisplayRuleItemRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public WithDisplayRuleItemRequestBuilder byDisplayRuleId(@jakarta.annotation.Nonnull final String displayRuleId) {
+        Objects.requireNonNull(displayRuleId);
+        final HashMap<String, Object> urlTplParams = new HashMap<String, Object>(this.pathParameters);
+        urlTplParams.put("displayRuleId", displayRuleId);
+        return new WithDisplayRuleItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /**
      * Instantiates a new {@link DisplayRulesRequestBuilder} and sets the default values.
      * @param pathParameters Path parameters for the request

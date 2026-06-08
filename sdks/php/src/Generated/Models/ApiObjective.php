@@ -9,38 +9,38 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Server-safe objective DTO. UI icon components are intentionally omitted.
 */
-class ApiObjective implements Parsable
+class ApiObjective implements Parsable 
 {
     /**
      * @var string|null $completionRule Machine-readable completion rule.
     */
     private ?string $completionRule = null;
-
+    
     /**
      * @var string|null $descriptionKey i18n key for the objective description.
     */
     private ?string $descriptionKey = null;
-
+    
     /**
      * @var float|null $exp Experience awarded by this objective.
     */
     private ?float $exp = null;
-
+    
     /**
      * @var string|null $id Objective definition ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var string|null $scope Objective completion scope.
     */
     private ?string $scope = null;
-
+    
     /**
      * @var string|null $titleKey i18n key for the objective title.
     */
     private ?string $titleKey = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

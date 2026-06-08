@@ -98,7 +98,7 @@ namespace TeamBattles.Sdk.Leaderboards.Organizations.Item.Rank
         /// Returns an organization&apos;s rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class RankRequestBuilderGetQueryParameters
+        public partial class RankRequestBuilderGetQueryParameters 
         {
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

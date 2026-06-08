@@ -34,7 +34,7 @@ class MatchDiscoverBody implements AdditionalDataHolder, Parsable {
     ///  The scheduledBefore property
     String? scheduledBefore;
     /// Instantiates a new [MatchDiscoverBody] and sets the default values.
-    MatchDiscoverBody() :
+    MatchDiscoverBody() :  
         additionalData = {},
         limit = 50;
     /// Creates a new instance of the appropriate class based on discriminator value

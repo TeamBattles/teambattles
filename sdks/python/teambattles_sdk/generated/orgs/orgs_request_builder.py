@@ -21,7 +21,7 @@ class OrgsRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/orgs", path_parameters)
-
+    
     def by_identifier(self,identifier: str) -> WithIdentifierItemRequestBuilder:
         """
         Gets an item from the teambattles_sdk.generated.orgs.item collection
@@ -35,7 +35,7 @@ class OrgsRequestBuilder(BaseRequestBuilder):
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["identifier"] = identifier
         return WithIdentifierItemRequestBuilder(self.request_adapter, url_tpl_params)
-
+    
     @property
     def discover(self) -> DiscoverRequestBuilder:
         """
@@ -44,5 +44,5 @@ class OrgsRequestBuilder(BaseRequestBuilder):
         from .discover.discover_request_builder import DiscoverRequestBuilder
 
         return DiscoverRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
 

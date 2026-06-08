@@ -9,13 +9,9 @@ class WebhookTestResult(Parsable):
     """
     Outcome of a single test.ping delivery.
     """
-    # Whether the test.ping returned a 2xx.
+    # Whether the test.ping returned a 2xx. The raw status code and error are not echoed; read the delivery log for details.
     delivered: Optional[bool] = None
-    # Failure reason, if not delivered.
-    error: Optional[str] = None
-    # HTTP response status, if any.
-    status_code: Optional[int] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WebhookTestResult:
         """
@@ -26,7 +22,7 @@ class WebhookTestResult(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return WebhookTestResult()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -34,11 +30,9 @@ class WebhookTestResult(Parsable):
         """
         fields: dict[str, Callable[[Any], None]] = {
             "delivered": lambda n : setattr(self, 'delivered', n.get_bool_value()),
-            "error": lambda n : setattr(self, 'error', n.get_str_value()),
-            "statusCode": lambda n : setattr(self, 'status_code', n.get_int_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -48,5 +42,5 @@ class WebhookTestResult(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("delivered", self.delivered)
-        writer.write_str_value("error", self.error)
-        writer.write_int_value("statusCode", self.status_code)
+    
+

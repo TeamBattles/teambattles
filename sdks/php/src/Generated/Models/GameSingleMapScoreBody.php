@@ -19,9 +19,9 @@ class GameSingleMapScoreBody implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var float|null $creatorTeamScore Score for the creator team (non-negative).
+     * @var int|null $creatorTeamScore Score for the creator team (integer, 0-1000).
     */
-    private ?float $creatorTeamScore = null;
+    private ?int $creatorTeamScore = null;
     
     /**
      * @var string|null $mapId Identifier of the map that was played.
@@ -29,9 +29,9 @@ class GameSingleMapScoreBody implements AdditionalDataHolder, Parsable
     private ?string $mapId = null;
     
     /**
-     * @var float|null $opponentTeamScore Score for the opponent (accepted) team (non-negative).
+     * @var int|null $opponentTeamScore Score for the opponent (accepted) team (integer, 0-1000).
     */
-    private ?float $opponentTeamScore = null;
+    private ?int $opponentTeamScore = null;
     
     /**
      * @var GameSingleMapScoreBody_playerStats|null $playerStats Optional per-player stats keyed by user ID.
@@ -39,7 +39,12 @@ class GameSingleMapScoreBody implements AdditionalDataHolder, Parsable
     private ?GameSingleMapScoreBody_playerStats $playerStats = null;
     
     /**
-     * @var array<string>|null $screenshotUrls Optional screenshot URLs supporting the reported score.
+     * @var array<string>|null $screenshotStorageIds Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+    */
+    private ?array $screenshotStorageIds = null;
+    
+    /**
+     * @var array<string>|null $screenshotUrls Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
     */
     private ?array $screenshotUrls = null;
     
@@ -68,10 +73,10 @@ class GameSingleMapScoreBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the creatorTeamScore property value. Score for the creator team (non-negative).
-     * @return float|null
+     * Gets the creatorTeamScore property value. Score for the creator team (integer, 0-1000).
+     * @return int|null
     */
-    public function getCreatorTeamScore(): ?float {
+    public function getCreatorTeamScore(): ?int {
         return $this->creatorTeamScore;
     }
 
@@ -82,10 +87,18 @@ class GameSingleMapScoreBody implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'creatorTeamScore' => fn(ParseNode $n) => $o->setCreatorTeamScore($n->getFloatValue()),
+            'creatorTeamScore' => fn(ParseNode $n) => $o->setCreatorTeamScore($n->getIntegerValue()),
             'mapId' => fn(ParseNode $n) => $o->setMapId($n->getStringValue()),
-            'opponentTeamScore' => fn(ParseNode $n) => $o->setOpponentTeamScore($n->getFloatValue()),
+            'opponentTeamScore' => fn(ParseNode $n) => $o->setOpponentTeamScore($n->getIntegerValue()),
             'playerStats' => fn(ParseNode $n) => $o->setPlayerStats($n->getObjectValue([GameSingleMapScoreBody_playerStats::class, 'createFromDiscriminatorValue'])),
+            'screenshotStorageIds' => function (ParseNode $n) {
+                $val = $n->getCollectionOfPrimitiveValues();
+                if (is_array($val)) {
+                    TypeUtils::validateCollectionValues($val, 'string');
+                }
+                /** @var array<string>|null $val */
+                $this->setScreenshotStorageIds($val);
+            },
             'screenshotUrls' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
                 if (is_array($val)) {
@@ -106,10 +119,10 @@ class GameSingleMapScoreBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the opponentTeamScore property value. Score for the opponent (accepted) team (non-negative).
-     * @return float|null
+     * Gets the opponentTeamScore property value. Score for the opponent (accepted) team (integer, 0-1000).
+     * @return int|null
     */
-    public function getOpponentTeamScore(): ?float {
+    public function getOpponentTeamScore(): ?int {
         return $this->opponentTeamScore;
     }
 
@@ -122,7 +135,15 @@ class GameSingleMapScoreBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the screenshotUrls property value. Optional screenshot URLs supporting the reported score.
+     * Gets the screenshotStorageIds property value. Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+     * @return array<string>|null
+    */
+    public function getScreenshotStorageIds(): ?array {
+        return $this->screenshotStorageIds;
+    }
+
+    /**
+     * Gets the screenshotUrls property value. Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
      * @return array<string>|null
     */
     public function getScreenshotUrls(): ?array {
@@ -134,10 +155,11 @@ class GameSingleMapScoreBody implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeFloatValue('creatorTeamScore', $this->getCreatorTeamScore());
+        $writer->writeIntegerValue('creatorTeamScore', $this->getCreatorTeamScore());
         $writer->writeStringValue('mapId', $this->getMapId());
-        $writer->writeFloatValue('opponentTeamScore', $this->getOpponentTeamScore());
+        $writer->writeIntegerValue('opponentTeamScore', $this->getOpponentTeamScore());
         $writer->writeObjectValue('playerStats', $this->getPlayerStats());
+        $writer->writeCollectionOfPrimitiveValues('screenshotStorageIds', $this->getScreenshotStorageIds());
         $writer->writeCollectionOfPrimitiveValues('screenshotUrls', $this->getScreenshotUrls());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -151,10 +173,10 @@ class GameSingleMapScoreBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the creatorTeamScore property value. Score for the creator team (non-negative).
-     * @param float|null $value Value to set for the creatorTeamScore property.
+     * Sets the creatorTeamScore property value. Score for the creator team (integer, 0-1000).
+     * @param int|null $value Value to set for the creatorTeamScore property.
     */
-    public function setCreatorTeamScore(?float $value): void {
+    public function setCreatorTeamScore(?int $value): void {
         $this->creatorTeamScore = $value;
     }
 
@@ -167,10 +189,10 @@ class GameSingleMapScoreBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the opponentTeamScore property value. Score for the opponent (accepted) team (non-negative).
-     * @param float|null $value Value to set for the opponentTeamScore property.
+     * Sets the opponentTeamScore property value. Score for the opponent (accepted) team (integer, 0-1000).
+     * @param int|null $value Value to set for the opponentTeamScore property.
     */
-    public function setOpponentTeamScore(?float $value): void {
+    public function setOpponentTeamScore(?int $value): void {
         $this->opponentTeamScore = $value;
     }
 
@@ -183,7 +205,15 @@ class GameSingleMapScoreBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the screenshotUrls property value. Optional screenshot URLs supporting the reported score.
+     * Sets the screenshotStorageIds property value. Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+     * @param array<string>|null $value Value to set for the screenshotStorageIds property.
+    */
+    public function setScreenshotStorageIds(?array $value): void {
+        $this->screenshotStorageIds = $value;
+    }
+
+    /**
+     * Sets the screenshotUrls property value. Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
      * @param array<string>|null $value Value to set for the screenshotUrls property.
     */
     public function setScreenshotUrls(?array $value): void {

@@ -14,7 +14,7 @@ use TeamBattles\Sdk\Generated\Models\OngoingMatchesResponse;
 /**
  * Builds and executes requests for operations under /user/ongoing-matches
 */
-class OngoingMatchesRequestBuilder extends BaseRequestBuilder
+class OngoingMatchesRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new OngoingMatchesRequestBuilder and sets the default values.

@@ -9,18 +9,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Single league season response.
 */
-class LeagueSeason implements Parsable
+class LeagueSeason implements Parsable 
 {
     /**
      * @var LeagueSeason_season|null $season The requested league season.
     */
     private ?LeagueSeason_season $season = null;
-
+    
     /**
      * @var string|null $timestamp Response generation time (ISO 8601).
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

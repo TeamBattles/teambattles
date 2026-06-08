@@ -6,6 +6,8 @@ require_relative '../../../team_battles_sdk::_generated'
 require_relative '../../leagues'
 require_relative '../item'
 require_relative './bans'
+require_relative './create/create_request_builder'
+require_relative './item/with_ban_item_request_builder'
 
 module TeamBattlesSdk
     module Generated
@@ -16,6 +18,22 @@ module TeamBattlesSdk
                     # Builds and executes requests for operations under #leagues#{identifier}#bans
                     class BansRequestBuilder < MicrosoftKiotaAbstractions::BaseRequestBuilder
                         
+                        ## 
+                        # The create property
+                        def create()
+                            return TeamBattlesSdk::Generated::Leagues::Item::Bans::Create::CreateRequestBuilder.new(@path_parameters, @request_adapter)
+                        end
+                        ## 
+                        ## Gets an item from the TeamBattlesSdk::Generated.leagues.item.bans.item collection
+                        ## @param ban_id League ban ID.
+                        ## @return a with_ban_item_request_builder
+                        ## 
+                        def by_ban_id(ban_id)
+                            raise StandardError, 'ban_id cannot be null' if ban_id.nil?
+                            url_tpl_params = @path_parameters.clone
+                            url_tpl_params["banId"] = ban_id
+                            return TeamBattlesSdk::Generated::Leagues::Item::Bans::Item::WithBanItemRequestBuilder.new(url_tpl_params, @request_adapter)
+                        end
                         ## 
                         ## Instantiates a new BansRequestBuilder and sets the default values.
                         ## @param path_parameters Path parameters for the request

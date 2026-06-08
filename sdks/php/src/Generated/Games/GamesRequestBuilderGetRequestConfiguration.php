@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class GamesRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration
+class GamesRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * Instantiates a new GamesRequestBuilderGetRequestConfiguration and sets the default values.

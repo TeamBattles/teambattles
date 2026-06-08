@@ -8,6 +8,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Leagues.Item.Seasons.Item.Activate;
+using TeamBattles.Sdk.Leagues.Item.Seasons.Item.Complete;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Leagues.Item.Seasons.Item
 {
@@ -17,6 +19,16 @@ namespace TeamBattles.Sdk.Leagues.Item.Seasons.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithSeasonItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The activate property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Seasons.Item.Activate.ActivateRequestBuilder Activate
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Seasons.Item.Activate.ActivateRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The complete property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Seasons.Item.Complete.CompleteRequestBuilder Complete
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Seasons.Item.Complete.CompleteRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Leagues.Item.Seasons.Item.WithSeasonItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -32,6 +44,39 @@ namespace TeamBattles.Sdk.Leagues.Item.Seasons.Item
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         public WithSeasonItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/leagues/{identifier}/seasons/{seasonId}", rawUrl)
         {
+        }
+        /// <summary>
+        /// Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+        /// </summary>
+        /// <returns>A <see cref="global::TeamBattles.Sdk.Models.DeleteLeagueSeasonResponse"/></returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 429 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 500 status code</exception>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::TeamBattles.Sdk.Models.DeleteLeagueSeasonResponse?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::TeamBattles.Sdk.Models.DeleteLeagueSeasonResponse> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToDeleteRequestInformation(requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "401", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "429", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.DeleteLeagueSeasonResponse>(requestInfo, global::TeamBattles.Sdk.Models.DeleteLeagueSeasonResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a single season that belongs to the resolved league. Requires leagues.league_public:read.
@@ -65,6 +110,25 @@ namespace TeamBattles.Sdk.Leagues.Item.Seasons.Item
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.LeagueSeason>(requestInfo, global::TeamBattles.Sdk.Models.LeagueSeason.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
+        /// Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
         /// Returns a single season that belongs to the resolved league. Requires leagues.league_public:read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
@@ -91,6 +155,14 @@ namespace TeamBattles.Sdk.Leagues.Item.Seasons.Item
         public global::TeamBattles.Sdk.Leagues.Item.Seasons.Item.WithSeasonItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::TeamBattles.Sdk.Leagues.Item.Seasons.Item.WithSeasonItemRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
+        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class WithSeasonItemRequestBuilderDeleteRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
+        {
         }
         /// <summary>
         /// Configuration for the request such as headers, query parameters, and middleware options.

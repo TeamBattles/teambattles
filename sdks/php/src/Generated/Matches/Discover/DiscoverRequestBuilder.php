@@ -15,7 +15,7 @@ use TeamBattles\Sdk\Generated\Models\MatchDiscoverPage;
 /**
  * Builds and executes requests for operations under /matches/discover
 */
-class DiscoverRequestBuilder extends BaseRequestBuilder
+class DiscoverRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new DiscoverRequestBuilder and sets the default values.

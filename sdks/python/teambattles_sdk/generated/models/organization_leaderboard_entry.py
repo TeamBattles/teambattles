@@ -24,7 +24,7 @@ class OrganizationLeaderboardEntry(Parsable):
     rank: Optional[int] = None
     # The stats property
     stats: Optional[OrganizationLeaderboardEntry_stats] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OrganizationLeaderboardEntry:
         """
@@ -35,7 +35,7 @@ class OrganizationLeaderboardEntry(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return OrganizationLeaderboardEntry()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -57,7 +57,7 @@ class OrganizationLeaderboardEntry(Parsable):
             "stats": lambda n : setattr(self, 'stats', n.get_object_value(OrganizationLeaderboardEntry_stats)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -71,3 +71,5 @@ class OrganizationLeaderboardEntry(Parsable):
         writer.write_object_value("organization", self.organization)
         writer.write_int_value("rank", self.rank)
         writer.write_object_value("stats", self.stats)
+    
+

@@ -4,12 +4,24 @@
 // @ts-ignore
 import { createErrorEscapedFromDiscriminatorValue, createLeagueRulesFromDiscriminatorValue, serializeLeagueRules, serializeRulesRequestBody, type ErrorEscaped, type LeagueRules, type RulesRequestBody } from '../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { ApplyTemplateRequestBuilderRequestsMetadata, type ApplyTemplateRequestBuilder } from './applyTemplate/index.js';
+// @ts-ignore
+import { type UpdateRequestBuilder, UpdateRequestBuilderRequestsMetadata } from './update/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/rules
  */
 export interface RulesRequestBuilder extends BaseRequestBuilder<RulesRequestBuilder> {
+    /**
+     * The applyTemplate property
+     */
+    get applyTemplate(): ApplyTemplateRequestBuilder;
+    /**
+     * The update property
+     */
+    get update(): UpdateRequestBuilder;
     /**
      * Returns the game rules and points configuration for a league + game, resolved by league slug. Requires the leagues.league_public:read permission.
      * @param body Game selector for league rules and points config.
@@ -33,6 +45,17 @@ export interface RulesRequestBuilder extends BaseRequestBuilder<RulesRequestBuil
  * Uri template for the request builder.
  */
 export const RulesRequestBuilderUriTemplate = "{+baseurl}/leagues/{identifier}/rules";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const RulesRequestBuilderNavigationMetadata: Record<Exclude<keyof RulesRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    applyTemplate: {
+        requestsMetadata: ApplyTemplateRequestBuilderRequestsMetadata,
+    },
+    update: {
+        requestsMetadata: UpdateRequestBuilderRequestsMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

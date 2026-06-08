@@ -7,7 +7,7 @@ class ApiGameCatalogEntryCoverImageMember1 implements AdditionalDataHolder, Pars
     @override
     Map<String, Object?> additionalData;
     /// Instantiates a new [ApiGameCatalogEntryCoverImageMember1] and sets the default values.
-    ApiGameCatalogEntryCoverImageMember1() :
+    ApiGameCatalogEntryCoverImageMember1() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

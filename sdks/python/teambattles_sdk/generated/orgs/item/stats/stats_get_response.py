@@ -16,7 +16,7 @@ class StatsGetResponse(Parsable):
     stats: Optional[ApiOrganizationStats] = None
     # ISO 8601 timestamp.
     timestamp: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> StatsGetResponse:
         """
@@ -27,7 +27,7 @@ class StatsGetResponse(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return StatsGetResponse()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -42,7 +42,7 @@ class StatsGetResponse(Parsable):
             "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -53,3 +53,5 @@ class StatsGetResponse(Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_object_value("stats", self.stats)
         writer.write_str_value("timestamp", self.timestamp)
+    
+

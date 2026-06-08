@@ -10,7 +10,7 @@ class LeagueSeasonOptionsRequestBody implements AdditionalDataHolder, Parsable {
     ///  Game ID to list season options for.
     String? gameId;
     /// Instantiates a new [LeagueSeasonOptionsRequestBody] and sets the default values.
-    LeagueSeasonOptionsRequestBody() :
+    LeagueSeasonOptionsRequestBody() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

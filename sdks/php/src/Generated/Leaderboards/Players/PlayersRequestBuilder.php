@@ -15,7 +15,7 @@ use TeamBattles\Sdk\Generated\Models\PlayerLeaderboardResponse;
 /**
  * Builds and executes requests for operations under /leaderboards/players
 */
-class PlayersRequestBuilder extends BaseRequestBuilder
+class PlayersRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The me property
@@ -23,7 +23,7 @@ class PlayersRequestBuilder extends BaseRequestBuilder
     public function me(): MeRequestBuilder {
         return new MeRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Instantiates a new PlayersRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

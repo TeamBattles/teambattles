@@ -9,43 +9,43 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * API-safe public account connection.
 */
-class ApiUserConnection implements Parsable
+class ApiUserConnection implements Parsable 
 {
     /**
      * @var ApiUserConnection_connectedAt|null $connectedAt The connectedAt property
     */
     private ?ApiUserConnection_connectedAt $connectedAt = null;
-
+    
     /**
      * @var string|null $id Connection ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var bool|null $isPrimary The isPrimary property
     */
     private ?bool $isPrimary = null;
-
+    
     /**
      * @var bool|null $isVerified The isVerified property
     */
     private ?bool $isVerified = null;
-
+    
     /**
      * @var string|null $platform Connected platform.
     */
     private ?string $platform = null;
-
+    
     /**
      * @var ApiUserConnection_url|null $url The url property
     */
     private ?ApiUserConnection_url $url = null;
-
+    
     /**
      * @var ApiUserConnection_username|null $username The username property
     */
     private ?ApiUserConnection_username $username = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

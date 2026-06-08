@@ -9,18 +9,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Ongoing matches for the API key owner's active teams.
 */
-class OngoingMatchesResponse implements Parsable
+class OngoingMatchesResponse implements Parsable 
 {
     /**
      * @var array<ApiMatchDetail>|null $matches The matches property
     */
     private ?array $matches = null;
-
+    
     /**
      * @var string|null $timestamp The timestamp property
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

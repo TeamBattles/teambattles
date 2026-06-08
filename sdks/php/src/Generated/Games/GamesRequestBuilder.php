@@ -15,7 +15,7 @@ use TeamBattles\Sdk\Generated\Models\Error;
 /**
  * Builds and executes requests for operations under /games
 */
-class GamesRequestBuilder extends BaseRequestBuilder
+class GamesRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.games.item collection

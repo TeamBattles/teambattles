@@ -20,6 +20,18 @@ type ItemDisplayRulesRequestBuilderPostRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// ByDisplayRuleId gets an item from the teambattles.leagues.item.displayRules.item collection
+// returns a *ItemDisplayRulesWithDisplayRuleItemRequestBuilder when successful
+func (m *ItemDisplayRulesRequestBuilder) ByDisplayRuleId(displayRuleId string)(*ItemDisplayRulesWithDisplayRuleItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.BaseRequestBuilder.PathParameters {
+        urlTplParams[idx] = item
+    }
+    if displayRuleId != "" {
+        urlTplParams["displayRuleId"] = displayRuleId
+    }
+    return NewItemDisplayRulesWithDisplayRuleItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewItemDisplayRulesRequestBuilderInternal instantiates a new ItemDisplayRulesRequestBuilder and sets the default values.
 func NewItemDisplayRulesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemDisplayRulesRequestBuilder) {
     m := &ItemDisplayRulesRequestBuilder{
@@ -63,6 +75,11 @@ func (m *ItemDisplayRulesRequestBuilder) Post(ctx context.Context, body i9ac5c27
     }
     return res.(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.LeagueDisplayRulesable), nil
 }
+// Reorder the reorder property
+// returns a *ItemDisplayRulesReorderRequestBuilder when successful
+func (m *ItemDisplayRulesRequestBuilder) Reorder()(*ItemDisplayRulesReorderRequestBuilder) {
+    return NewItemDisplayRulesReorderRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ToPostRequestInformation returns display rules configured for a league game. Requires leagues.league_public:read.
 // returns a *RequestInformation when successful
 func (m *ItemDisplayRulesRequestBuilder) ToPostRequestInformation(ctx context.Context, body i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.LeagueDisplayRulesRequestBodyable, requestConfiguration *ItemDisplayRulesRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
@@ -77,6 +94,11 @@ func (m *ItemDisplayRulesRequestBuilder) ToPostRequestInformation(ctx context.Co
         return nil, err
     }
     return requestInfo, nil
+}
+// Upsert the upsert property
+// returns a *ItemDisplayRulesUpsertRequestBuilder when successful
+func (m *ItemDisplayRulesRequestBuilder) Upsert()(*ItemDisplayRulesUpsertRequestBuilder) {
+    return NewItemDisplayRulesUpsertRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *ItemDisplayRulesRequestBuilder when successful

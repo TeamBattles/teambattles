@@ -24,7 +24,7 @@ class TeamLeaderboardEntry(Parsable):
     stats: Optional[LeaderboardStats] = None
     # Small API-safe team summary.
     team: Optional[ApiTeamSummary] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TeamLeaderboardEntry:
         """
@@ -35,7 +35,7 @@ class TeamLeaderboardEntry(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return TeamLeaderboardEntry()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -57,7 +57,7 @@ class TeamLeaderboardEntry(Parsable):
             "team": lambda n : setattr(self, 'team', n.get_object_value(ApiTeamSummary)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -71,3 +71,5 @@ class TeamLeaderboardEntry(Parsable):
         writer.write_int_value("rank", self.rank)
         writer.write_object_value("stats", self.stats)
         writer.write_object_value("team", self.team)
+    
+

@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class ReplayRequestBuilderPostRequestConfiguration extends BaseRequestConfiguration
+class ReplayRequestBuilderPostRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * Instantiates a new ReplayRequestBuilderPostRequestConfiguration and sets the default values.

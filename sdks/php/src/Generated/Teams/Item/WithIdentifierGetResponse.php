@@ -10,18 +10,18 @@ use TeamBattles\Sdk\Generated\Models\ApiTeamProfile;
 /**
  * Envelope containing team plus a response timestamp.
 */
-class WithIdentifierGetResponse implements Parsable
+class WithIdentifierGetResponse implements Parsable 
 {
     /**
      * @var ApiTeamProfile|null $team API-safe team profile.
     */
     private ?ApiTeamProfile $team = null;
-
+    
     /**
      * @var string|null $timestamp ISO 8601 timestamp.
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

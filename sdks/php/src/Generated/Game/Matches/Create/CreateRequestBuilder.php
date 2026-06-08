@@ -15,7 +15,7 @@ use TeamBattles\Sdk\Generated\Models\GameCreateMatchResponse;
 /**
  * Builds and executes requests for operations under /game/matches/create
 */
-class CreateRequestBuilder extends BaseRequestBuilder
+class CreateRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new CreateRequestBuilder and sets the default values.

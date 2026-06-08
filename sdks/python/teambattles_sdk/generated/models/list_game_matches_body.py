@@ -18,7 +18,7 @@ class ListGameMatchesBody(AdditionalDataHolder, Parsable):
     limit: Optional[float] = None
     # Optional MatchStatus filter (e.g. IN_PROGRESS).
     status: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ListGameMatchesBody:
         """
@@ -29,7 +29,7 @@ class ListGameMatchesBody(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ListGameMatchesBody()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -41,7 +41,7 @@ class ListGameMatchesBody(AdditionalDataHolder, Parsable):
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -54,5 +54,5 @@ class ListGameMatchesBody(AdditionalDataHolder, Parsable):
         writer.write_float_value("limit", self.limit)
         writer.write_str_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
-
+    
 

@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class PlaylistsRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration
+class PlaylistsRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * Instantiates a new PlaylistsRequestBuilderGetRequestConfiguration and sets the default values.

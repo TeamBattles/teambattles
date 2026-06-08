@@ -15,8 +15,8 @@ namespace TeamBattles.Sdk.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Creator team score. Must be a non-negative number.</summary>
-        public double? CreatorTeamScore { get; set; }
+        /// <summary>Creator team score (integer, 0-1000).</summary>
+        public int? CreatorTeamScore { get; set; }
         /// <summary>Map identifier string (e.g. dust2).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -27,9 +27,17 @@ namespace TeamBattles.Sdk.Models
 #endif
         /// <summary>Zero-based map index. Must be a non-negative integer.</summary>
         public int? MapIndex { get; set; }
-        /// <summary>Accepted/opponent team score. Must be a non-negative number.</summary>
-        public double? OpponentTeamScore { get; set; }
-        /// <summary>Optional screenshot URLs for the map result.</summary>
+        /// <summary>Accepted/opponent team score (integer, 0-1000).</summary>
+        public int? OpponentTeamScore { get; set; }
+        /// <summary>Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? ScreenshotStorageIds { get; set; }
+#nullable restore
+#else
+        public List<string> ScreenshotStorageIds { get; set; }
+#endif
+        /// <summary>Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? ScreenshotUrls { get; set; }
@@ -62,10 +70,11 @@ namespace TeamBattles.Sdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "creatorTeamScore", n => { CreatorTeamScore = n.GetDoubleValue(); } },
+                { "creatorTeamScore", n => { CreatorTeamScore = n.GetIntValue(); } },
                 { "mapId", n => { MapId = n.GetStringValue(); } },
                 { "mapIndex", n => { MapIndex = n.GetIntValue(); } },
-                { "opponentTeamScore", n => { OpponentTeamScore = n.GetDoubleValue(); } },
+                { "opponentTeamScore", n => { OpponentTeamScore = n.GetIntValue(); } },
+                { "screenshotStorageIds", n => { ScreenshotStorageIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "screenshotUrls", n => { ScreenshotUrls = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -76,10 +85,11 @@ namespace TeamBattles.Sdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDoubleValue("creatorTeamScore", CreatorTeamScore);
+            writer.WriteIntValue("creatorTeamScore", CreatorTeamScore);
             writer.WriteStringValue("mapId", MapId);
             writer.WriteIntValue("mapIndex", MapIndex);
-            writer.WriteDoubleValue("opponentTeamScore", OpponentTeamScore);
+            writer.WriteIntValue("opponentTeamScore", OpponentTeamScore);
+            writer.WriteCollectionOfPrimitiveValues<string>("screenshotStorageIds", ScreenshotStorageIds);
             writer.WriteCollectionOfPrimitiveValues<string>("screenshotUrls", ScreenshotUrls);
             writer.WriteAdditionalData(AdditionalData);
         }

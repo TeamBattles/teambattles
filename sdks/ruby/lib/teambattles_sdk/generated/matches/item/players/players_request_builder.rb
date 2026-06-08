@@ -11,24 +11,24 @@ module TeamBattlesSdk
         module Matches
             module Item
                 module Players
-                    ##
+                    ## 
                     # Builds and executes requests for operations under #matches#{matchId}#players
                     class PlayersRequestBuilder < MicrosoftKiotaAbstractions::BaseRequestBuilder
-
-                        ##
+                        
+                        ## 
                         ## Instantiates a new PlayersRequestBuilder and sets the default values.
                         ## @param path_parameters Path parameters for the request
                         ## @param request_adapter The request adapter to use to execute the requests.
                         ## @return a void
-                        ##
+                        ## 
                         def initialize(path_parameters, request_adapter)
                             super(path_parameters, request_adapter, "{+baseurl}/matches/{matchId}/players")
                         end
-                        ##
+                        ## 
                         ## Returns participant-gated player rows for a match, including roster type and attendance state. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a Fiber of api_match_players_response
-                        ##
+                        ## 
                         def get(request_configuration=nil)
                             request_info = self.to_get_request_information(
                                 request_configuration
@@ -41,11 +41,11 @@ module TeamBattlesSdk
                             error_mapping["500"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                             return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchPlayersResponse.create_from_discriminator_value(pn) }, error_mapping)
                         end
-                        ##
+                        ## 
                         ## Returns participant-gated player rows for a match, including roster type and attendance state. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a request_information
-                        ##
+                        ## 
                         def to_get_request_information(request_configuration=nil)
                             request_info = MicrosoftKiotaAbstractions::RequestInformation.new()
                             unless request_configuration.nil?
@@ -58,11 +58,11 @@ module TeamBattlesSdk
                             request_info.headers.try_add('Accept', 'application/json')
                             return request_info
                         end
-                        ##
+                        ## 
                         ## Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
                         ## @param raw_url The raw URL to use for the request builder.
                         ## @return a players_request_builder
-                        ##
+                        ## 
                         def with_url(raw_url)
                             raise StandardError, 'raw_url cannot be null' if raw_url.nil?
                             return PlayersRequestBuilder.new(raw_url, @request_adapter)

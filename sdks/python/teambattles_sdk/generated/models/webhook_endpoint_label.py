@@ -16,7 +16,7 @@ class WebhookEndpoint_label(ComposedTypeWrapper, Parsable):
     string: Optional[str] = None
     # Composed type representation for type WebhookEndpoint_labelMember1
     webhook_endpoint_label_member1: Optional[WebhookEndpoint_labelMember1] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WebhookEndpoint_label:
         """
@@ -34,7 +34,7 @@ class WebhookEndpoint_label(ComposedTypeWrapper, Parsable):
 
             result.webhook_endpoint_label_member1 = WebhookEndpoint_labelMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class WebhookEndpoint_label(ComposedTypeWrapper, Parsable):
         if self.webhook_endpoint_label_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.webhook_endpoint_label_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class WebhookEndpoint_label(ComposedTypeWrapper, Parsable):
             writer.write_str_value(None, self.string)
         else:
             writer.write_object_value(None, self.webhook_endpoint_label_member1)
+    
+

@@ -4,12 +4,32 @@
 // @ts-ignore
 import { createErrorEscapedFromDiscriminatorValue, createLeagueDisplayRulesFromDiscriminatorValue, serializeLeagueDisplayRules, serializeLeagueDisplayRulesRequestBody, type ErrorEscaped, type LeagueDisplayRules, type LeagueDisplayRulesRequestBody } from '../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { type WithDisplayRuleItemRequestBuilder, WithDisplayRuleItemRequestBuilderRequestsMetadata } from './item/index.js';
+// @ts-ignore
+import { ReorderRequestBuilderRequestsMetadata, type ReorderRequestBuilder } from './reorder/index.js';
+// @ts-ignore
+import { type UpsertRequestBuilder, UpsertRequestBuilderRequestsMetadata } from './upsert/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/display-rules
  */
 export interface DisplayRulesRequestBuilder extends BaseRequestBuilder<DisplayRulesRequestBuilder> {
+    /**
+     * The reorder property
+     */
+    get reorder(): ReorderRequestBuilder;
+    /**
+     * The upsert property
+     */
+    get upsert(): UpsertRequestBuilder;
+    /**
+     * Gets an item from the teambattles.leagues.item.displayRules.item collection
+     * @param displayRuleId Display rule ID.
+     * @returns {WithDisplayRuleItemRequestBuilder}
+     */
+     byDisplayRuleId(displayRuleId: string) : WithDisplayRuleItemRequestBuilder;
     /**
      * Returns display rules configured for a league game. Requires leagues.league_public:read.
      * @param body Display rule selector.
@@ -35,6 +55,21 @@ export interface DisplayRulesRequestBuilder extends BaseRequestBuilder<DisplayRu
  * Uri template for the request builder.
  */
 export const DisplayRulesRequestBuilderUriTemplate = "{+baseurl}/leagues/{identifier}/display-rules";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const DisplayRulesRequestBuilderNavigationMetadata: Record<Exclude<keyof DisplayRulesRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    byDisplayRuleId: {
+        requestsMetadata: WithDisplayRuleItemRequestBuilderRequestsMetadata,
+        pathParametersMappings: ["displayRuleId"],
+    },
+    reorder: {
+        requestsMetadata: ReorderRequestBuilderRequestsMetadata,
+    },
+    upsert: {
+        requestsMetadata: UpsertRequestBuilderRequestsMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

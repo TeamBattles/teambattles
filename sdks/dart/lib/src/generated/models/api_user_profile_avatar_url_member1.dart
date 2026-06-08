@@ -7,7 +7,7 @@ class ApiUserProfileAvatarUrlMember1 implements AdditionalDataHolder, Parsable {
     @override
     Map<String, Object?> additionalData;
     /// Instantiates a new [ApiUserProfileAvatarUrlMember1] and sets the default values.
-    ApiUserProfileAvatarUrlMember1() :
+    ApiUserProfileAvatarUrlMember1() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

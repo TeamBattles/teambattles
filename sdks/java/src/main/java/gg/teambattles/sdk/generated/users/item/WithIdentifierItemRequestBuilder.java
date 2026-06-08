@@ -12,6 +12,7 @@ import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.users.item.connections.ConnectionsRequestBuilder;
 import gg.teambattles.sdk.generated.users.item.organizations.OrganizationsRequestBuilder;
 import gg.teambattles.sdk.generated.users.item.stats.StatsRequestBuilder;
+import gg.teambattles.sdk.generated.users.item.stream.StreamRequestBuilder;
 import gg.teambattles.sdk.generated.users.item.teams.TeamsRequestBuilder;
 import gg.teambattles.sdk.generated.users.item.trophies.TrophiesRequestBuilder;
 import java.util.Collection;
@@ -46,6 +47,14 @@ public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public StatsRequestBuilder stats() {
         return new StatsRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The stream property
+     * @return a {@link StreamRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public StreamRequestBuilder stream() {
+        return new StreamRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * The teams property

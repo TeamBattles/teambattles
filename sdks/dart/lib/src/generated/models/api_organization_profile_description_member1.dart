@@ -7,7 +7,7 @@ class ApiOrganizationProfileDescriptionMember1 implements AdditionalDataHolder, 
     @override
     Map<String, Object?> additionalData;
     /// Instantiates a new [ApiOrganizationProfileDescriptionMember1] and sets the default values.
-    ApiOrganizationProfileDescriptionMember1() :
+    ApiOrganizationProfileDescriptionMember1() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

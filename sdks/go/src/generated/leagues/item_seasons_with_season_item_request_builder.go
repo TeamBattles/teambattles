@@ -13,12 +13,29 @@ import (
 type ItemSeasonsWithSeasonItemRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// ItemSeasonsWithSeasonItemRequestBuilderDeleteRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type ItemSeasonsWithSeasonItemRequestBuilderDeleteRequestConfiguration struct {
+    // Request headers
+    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+    // Request options
+    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+}
 // ItemSeasonsWithSeasonItemRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type ItemSeasonsWithSeasonItemRequestBuilderPostRequestConfiguration struct {
     // Request headers
     Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+}
+// Activate the activate property
+// returns a *ItemSeasonsItemActivateRequestBuilder when successful
+func (m *ItemSeasonsWithSeasonItemRequestBuilder) Activate()(*ItemSeasonsItemActivateRequestBuilder) {
+    return NewItemSeasonsItemActivateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Complete the complete property
+// returns a *ItemSeasonsItemCompleteRequestBuilder when successful
+func (m *ItemSeasonsWithSeasonItemRequestBuilder) Complete()(*ItemSeasonsItemCompleteRequestBuilder) {
+    return NewItemSeasonsItemCompleteRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // NewItemSeasonsWithSeasonItemRequestBuilderInternal instantiates a new ItemSeasonsWithSeasonItemRequestBuilder and sets the default values.
 func NewItemSeasonsWithSeasonItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemSeasonsWithSeasonItemRequestBuilder) {
@@ -32,6 +49,36 @@ func NewItemSeasonsWithSeasonItemRequestBuilder(rawUrl string, requestAdapter i2
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
     return NewItemSeasonsWithSeasonItemRequestBuilderInternal(urlParams, requestAdapter)
+}
+// Delete deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+// returns a DeleteLeagueSeasonResponseable when successful
+// returns a ErrorEscaped error when the service returns a 400 status code
+// returns a ErrorEscaped error when the service returns a 401 status code
+// returns a ErrorEscaped error when the service returns a 403 status code
+// returns a ErrorEscaped error when the service returns a 404 status code
+// returns a ErrorEscaped error when the service returns a 429 status code
+// returns a ErrorEscaped error when the service returns a 500 status code
+func (m *ItemSeasonsWithSeasonItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *ItemSeasonsWithSeasonItemRequestBuilderDeleteRequestConfiguration)(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.DeleteLeagueSeasonResponseable, error) {
+    requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
+    if err != nil {
+        return nil, err
+    }
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateErrorEscapedFromDiscriminatorValue,
+        "401": i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateErrorEscapedFromDiscriminatorValue,
+        "403": i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateErrorEscapedFromDiscriminatorValue,
+        "404": i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateErrorEscapedFromDiscriminatorValue,
+        "429": i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateErrorEscapedFromDiscriminatorValue,
+        "500": i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateErrorEscapedFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.CreateDeleteLeagueSeasonResponseFromDiscriminatorValue, errorMapping)
+    if err != nil {
+        return nil, err
+    }
+    if res == nil {
+        return nil, nil
+    }
+    return res.(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.DeleteLeagueSeasonResponseable), nil
 }
 // Post returns a single season that belongs to the resolved league. Requires leagues.league_public:read.
 // returns a LeagueSeasonable when successful
@@ -60,6 +107,17 @@ func (m *ItemSeasonsWithSeasonItemRequestBuilder) Post(ctx context.Context, requ
         return nil, nil
     }
     return res.(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.LeagueSeasonable), nil
+}
+// ToDeleteRequestInformation deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+// returns a *RequestInformation when successful
+func (m *ItemSeasonsWithSeasonItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *ItemSeasonsWithSeasonItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+    if requestConfiguration != nil {
+        requestInfo.Headers.AddAll(requestConfiguration.Headers)
+        requestInfo.AddRequestOptions(requestConfiguration.Options)
+    }
+    requestInfo.Headers.TryAdd("Accept", "application/json")
+    return requestInfo, nil
 }
 // ToPostRequestInformation returns a single season that belongs to the resolved league. Requires leagues.league_public:read.
 // returns a *RequestInformation when successful

@@ -19,7 +19,7 @@ use TeamBattles\Sdk\Generated\Webhooks\Item\Test\TestRequestBuilder;
 /**
  * Builds and executes requests for operations under /webhooks/{id}
 */
-class WebhooksItemRequestBuilder extends BaseRequestBuilder
+class WebhooksItemRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The deliveries property
@@ -27,21 +27,21 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder
     public function deliveries(): DeliveriesRequestBuilder {
         return new DeliveriesRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * The rotateSecret property
     */
     public function rotateSecret(): RotateSecretRequestBuilder {
         return new RotateSecretRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * The test property
     */
     public function test(): TestRequestBuilder {
         return new TestRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Instantiates a new WebhooksItemRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

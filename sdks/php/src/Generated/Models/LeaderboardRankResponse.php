@@ -9,33 +9,33 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Leaderboard rank lookup response.
 */
-class LeaderboardRankResponse implements Parsable
+class LeaderboardRankResponse implements Parsable 
 {
     /**
      * @var LeaderboardRankResponse_gameSlug|null $gameSlug The gameSlug property
     */
     private ?LeaderboardRankResponse_gameSlug $gameSlug = null;
-
+    
     /**
      * @var string|null $id Resolved entity ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var LeaderboardRankResponse_rank|null $rank The rank property
     */
     private ?LeaderboardRankResponse_rank $rank = null;
-
+    
     /**
      * @var LeaderboardSortBy|null $sortBy Supported leaderboard sort field.
     */
     private ?LeaderboardSortBy $sortBy = null;
-
+    
     /**
      * @var string|null $timestamp The timestamp property
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

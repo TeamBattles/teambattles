@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class ApplyEligibilityRequestBuilderPostRequestConfiguration extends BaseRequestConfiguration
+class ApplyEligibilityRequestBuilderPostRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * Instantiates a new ApplyEligibilityRequestBuilderPostRequestConfiguration and sets the default values.

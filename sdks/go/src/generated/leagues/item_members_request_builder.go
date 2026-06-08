@@ -20,6 +20,23 @@ type ItemMembersRequestBuilderPostRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// Add the add property
+// returns a *ItemMembersAddRequestBuilder when successful
+func (m *ItemMembersRequestBuilder) Add()(*ItemMembersAddRequestBuilder) {
+    return NewItemMembersAddRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// ByMemberId gets an item from the teambattles.leagues.item.members.item collection
+// returns a *ItemMembersWithMemberItemRequestBuilder when successful
+func (m *ItemMembersRequestBuilder) ByMemberId(memberId string)(*ItemMembersWithMemberItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.BaseRequestBuilder.PathParameters {
+        urlTplParams[idx] = item
+    }
+    if memberId != "" {
+        urlTplParams["memberId"] = memberId
+    }
+    return NewItemMembersWithMemberItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewItemMembersRequestBuilderInternal instantiates a new ItemMembersRequestBuilder and sets the default values.
 func NewItemMembersRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemMembersRequestBuilder) {
     m := &ItemMembersRequestBuilder{

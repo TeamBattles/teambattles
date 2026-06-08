@@ -20,6 +20,18 @@ type ItemBansRequestBuilderPostRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// ByBanId gets an item from the teambattles.leagues.item.bans.item collection
+// returns a *ItemBansWithBanItemRequestBuilder when successful
+func (m *ItemBansRequestBuilder) ByBanId(banId string)(*ItemBansWithBanItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.BaseRequestBuilder.PathParameters {
+        urlTplParams[idx] = item
+    }
+    if banId != "" {
+        urlTplParams["banId"] = banId
+    }
+    return NewItemBansWithBanItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewItemBansRequestBuilderInternal instantiates a new ItemBansRequestBuilder and sets the default values.
 func NewItemBansRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemBansRequestBuilder) {
     m := &ItemBansRequestBuilder{
@@ -32,6 +44,11 @@ func NewItemBansRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26337
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
     return NewItemBansRequestBuilderInternal(urlParams, requestAdapter)
+}
+// Create the create property
+// returns a *ItemBansCreateRequestBuilder when successful
+func (m *ItemBansRequestBuilder) Create()(*ItemBansCreateRequestBuilder) {
+    return NewItemBansCreateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Post returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
 // returns a LeagueBansable when successful

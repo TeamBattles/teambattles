@@ -17,6 +17,8 @@ if TYPE_CHECKING:
     from ....models.bans_request_body import BansRequestBody
     from ....models.error import Error
     from ....models.league_bans import LeagueBans
+    from .create.create_request_builder import CreateRequestBuilder
+    from .item.with_ban_item_request_builder import WithBanItemRequestBuilder
 
 class BansRequestBuilder(BaseRequestBuilder):
     """
@@ -30,6 +32,20 @@ class BansRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/leagues/{identifier}/bans", path_parameters)
+    
+    def by_ban_id(self,ban_id: str) -> WithBanItemRequestBuilder:
+        """
+        Gets an item from the teambattles_sdk.generated.leagues.item.bans.item collection
+        param ban_id: League ban ID.
+        Returns: WithBanItemRequestBuilder
+        """
+        if ban_id is None:
+            raise TypeError("ban_id cannot be null.")
+        from .item.with_ban_item_request_builder import WithBanItemRequestBuilder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["banId"] = ban_id
+        return WithBanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def post(self,body: BansRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[LeagueBans]:
         """
@@ -81,6 +97,15 @@ class BansRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return BansRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def create(self) -> CreateRequestBuilder:
+        """
+        The create property
+        """
+        from .create.create_request_builder import CreateRequestBuilder
+
+        return CreateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class BansRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):

@@ -15,7 +15,7 @@ use TeamBattles\Sdk\Generated\Models\TeamLeaderboardResponse;
 /**
  * Builds and executes requests for operations under /leaderboards/teams
 */
-class TeamsRequestBuilder extends BaseRequestBuilder
+class TeamsRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.leaderboards.teams.item collection

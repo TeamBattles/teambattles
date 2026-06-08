@@ -7,22 +7,22 @@ use TeamBattles\Sdk\Generated\Models\LeaderboardSortBy;
 /**
  * Returns an organization's rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
 */
-class RankRequestBuilderGetQueryParameters
+class RankRequestBuilderGetQueryParameters 
 {
     /**
-     * @var string|null $gameSlug
+     * @var string|null $gameSlug 
     */
     public ?string $gameSlug = null;
-
+    
     /**
-     * @var LeaderboardSortBy|null $sortBy
+     * @var LeaderboardSortBy|null $sortBy 
     */
     public ?LeaderboardSortBy $sortBy = null;
-
+    
     /**
      * Instantiates a new RankRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $gameSlug
-     * @param LeaderboardSortBy|null $sortBy
+     * @param string|null $gameSlug 
+     * @param LeaderboardSortBy|null $sortBy 
     */
     public function __construct(?string $gameSlug = null, ?LeaderboardSortBy $sortBy = null) {
         $this->gameSlug = $gameSlug;

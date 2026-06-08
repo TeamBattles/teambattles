@@ -5,7 +5,9 @@ require_relative '../../../models/rules_request_body'
 require_relative '../../../team_battles_sdk::_generated'
 require_relative '../../leagues'
 require_relative '../item'
+require_relative './apply_template/apply_template_request_builder'
 require_relative './rules'
+require_relative './update/update_request_builder'
 
 module TeamBattlesSdk
     module Generated
@@ -16,6 +18,16 @@ module TeamBattlesSdk
                     # Builds and executes requests for operations under #leagues#{identifier}#rules
                     class RulesRequestBuilder < MicrosoftKiotaAbstractions::BaseRequestBuilder
                         
+                        ## 
+                        # The applyTemplate property
+                        def apply_template()
+                            return TeamBattlesSdk::Generated::Leagues::Item::Rules::ApplyTemplate::ApplyTemplateRequestBuilder.new(@path_parameters, @request_adapter)
+                        end
+                        ## 
+                        # The update property
+                        def update()
+                            return TeamBattlesSdk::Generated::Leagues::Item::Rules::Update::UpdateRequestBuilder.new(@path_parameters, @request_adapter)
+                        end
                         ## 
                         ## Instantiates a new RulesRequestBuilder and sets the default values.
                         ## @param path_parameters Path parameters for the request

@@ -17,7 +17,7 @@ use TeamBattles\Sdk\Generated\Orgs\Item\Teams\TeamsRequestBuilder;
 /**
  * Builds and executes requests for operations under /orgs/{identifier}
 */
-class WithIdentifierItemRequestBuilder extends BaseRequestBuilder
+class WithIdentifierItemRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The matches property
@@ -25,28 +25,28 @@ class WithIdentifierItemRequestBuilder extends BaseRequestBuilder
     public function matches(): MatchesRequestBuilder {
         return new MatchesRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * The members property
     */
     public function members(): MembersRequestBuilder {
         return new MembersRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * The stats property
     */
     public function stats(): StatsRequestBuilder {
         return new StatsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * The teams property
     */
     public function teams(): TeamsRequestBuilder {
         return new TeamsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Instantiates a new WithIdentifierItemRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

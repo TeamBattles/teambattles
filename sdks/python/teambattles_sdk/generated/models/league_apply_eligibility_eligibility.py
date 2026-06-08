@@ -21,7 +21,7 @@ class LeagueApplyEligibility_eligibility(Parsable):
     is_authed: Optional[bool] = None
     # The pendingTeams property
     pending_teams: Optional[list[LeagueApplyEligibility_eligibility_pendingTeams]] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> LeagueApplyEligibility_eligibility:
         """
@@ -32,7 +32,7 @@ class LeagueApplyEligibility_eligibility(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return LeagueApplyEligibility_eligibility()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -51,7 +51,7 @@ class LeagueApplyEligibility_eligibility(Parsable):
             "pendingTeams": lambda n : setattr(self, 'pending_teams', n.get_collection_of_object_values(LeagueApplyEligibility_eligibility_pendingTeams)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -64,3 +64,5 @@ class LeagueApplyEligibility_eligibility(Parsable):
         writer.write_bool_value("hasApprovedTeamHere", self.has_approved_team_here)
         writer.write_bool_value("isAuthed", self.is_authed)
         writer.write_collection_of_object_values("pendingTeams", self.pending_teams)
+    
+

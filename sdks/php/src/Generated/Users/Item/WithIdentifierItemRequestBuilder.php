@@ -12,13 +12,14 @@ use TeamBattles\Sdk\Generated\Models\Error;
 use TeamBattles\Sdk\Generated\Users\Item\Connections\ConnectionsRequestBuilder;
 use TeamBattles\Sdk\Generated\Users\Item\Organizations\OrganizationsRequestBuilder;
 use TeamBattles\Sdk\Generated\Users\Item\Stats\StatsRequestBuilder;
+use TeamBattles\Sdk\Generated\Users\Item\Stream\StreamRequestBuilder;
 use TeamBattles\Sdk\Generated\Users\Item\Teams\TeamsRequestBuilder;
 use TeamBattles\Sdk\Generated\Users\Item\Trophies\TrophiesRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /users/{identifier}
 */
-class WithIdentifierItemRequestBuilder extends BaseRequestBuilder
+class WithIdentifierItemRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The connections property
@@ -26,35 +27,42 @@ class WithIdentifierItemRequestBuilder extends BaseRequestBuilder
     public function connections(): ConnectionsRequestBuilder {
         return new ConnectionsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * The organizations property
     */
     public function organizations(): OrganizationsRequestBuilder {
         return new OrganizationsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * The stats property
     */
     public function stats(): StatsRequestBuilder {
         return new StatsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
+    /**
+     * The stream property
+    */
+    public function stream(): StreamRequestBuilder {
+        return new StreamRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * The teams property
     */
     public function teams(): TeamsRequestBuilder {
         return new TeamsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * The trophies property
     */
     public function trophies(): TrophiesRequestBuilder {
         return new TrophiesRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Instantiates a new WithIdentifierItemRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

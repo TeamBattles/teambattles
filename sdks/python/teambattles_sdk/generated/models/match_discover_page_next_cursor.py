@@ -16,7 +16,7 @@ class MatchDiscoverPage_nextCursor(ComposedTypeWrapper, Parsable):
     match_discover_page_next_cursor_member1: Optional[MatchDiscoverPage_nextCursorMember1] = None
     # Composed type representation for type str
     string: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MatchDiscoverPage_nextCursor:
         """
@@ -34,7 +34,7 @@ class MatchDiscoverPage_nextCursor(ComposedTypeWrapper, Parsable):
 
             result.match_discover_page_next_cursor_member1 = MatchDiscoverPage_nextCursorMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class MatchDiscoverPage_nextCursor(ComposedTypeWrapper, Parsable):
         if self.match_discover_page_next_cursor_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.match_discover_page_next_cursor_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class MatchDiscoverPage_nextCursor(ComposedTypeWrapper, Parsable):
             writer.write_str_value(None, self.string)
         else:
             writer.write_object_value(None, self.match_discover_page_next_cursor_member1)
+    
+

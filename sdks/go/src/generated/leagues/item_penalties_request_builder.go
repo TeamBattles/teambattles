@@ -33,6 +33,11 @@ func NewItemPenaltiesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee
     urlParams["request-raw-url"] = rawUrl
     return NewItemPenaltiesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Create the create property
+// returns a *ItemPenaltiesCreateRequestBuilder when successful
+func (m *ItemPenaltiesRequestBuilder) Create()(*ItemPenaltiesCreateRequestBuilder) {
+    return NewItemPenaltiesCreateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Post returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
 // returns a LeaguePenaltiesable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code

@@ -3,10 +3,15 @@ import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../../models/error.dart';
 import '../../../models/league_penalties.dart';
 import '../../../models/penalties_request_body.dart';
+import './create/create_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \leagues\{identifier}\penalties
 class PenaltiesRequestBuilder extends BaseRequestBuilder<PenaltiesRequestBuilder> {
+    ///  The create property
+    CreateRequestBuilder get create {
+        return CreateRequestBuilder(pathParameters, requestAdapter);
+    }
     /// Clones the requestbuilder.
     @override
     PenaltiesRequestBuilder clone() {

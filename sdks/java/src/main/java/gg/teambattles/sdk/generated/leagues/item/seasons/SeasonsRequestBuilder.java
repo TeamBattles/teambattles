@@ -8,6 +8,7 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.leagues.item.seasons.create.CreateRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.seasons.item.WithSeasonItemRequestBuilder;
 import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.models.LeagueSeasons;
@@ -21,6 +22,14 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class SeasonsRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The create property
+     * @return a {@link CreateRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public CreateRequestBuilder create() {
+        return new CreateRequestBuilder(pathParameters, requestAdapter);
+    }
     /**
      * Gets an item from the gg.teambattles.sdk.generated.leagues.item.seasons.item collection
      * @param seasonId League season ID.

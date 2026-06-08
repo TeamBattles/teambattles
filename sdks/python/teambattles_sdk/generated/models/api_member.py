@@ -21,7 +21,7 @@ class ApiMember(Parsable):
     role: Optional[str] = None
     # API-safe public user profile.
     user: Optional[ApiUserProfile] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiMember:
         """
@@ -32,7 +32,7 @@ class ApiMember(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiMember()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -51,7 +51,7 @@ class ApiMember(Parsable):
             "user": lambda n : setattr(self, 'user', n.get_object_value(ApiUserProfile)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -64,3 +64,5 @@ class ApiMember(Parsable):
         writer.write_object_value("joinedAt", self.joined_at)
         writer.write_str_value("role", self.role)
         writer.write_object_value("user", self.user)
+    
+

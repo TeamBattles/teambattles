@@ -5,13 +5,18 @@ package teambattles
 
 import (
     i0551826914af7eccfbb1c25b31b491f975bb232fcbea4e592c9f37e142a5da94 "teambattles/game"
+    i0d2c8f04e91d3d123043ed58bf2bad009a835040c30bd61168f1ffaed981124e "teambattles/tickets"
     i2f560de9d1c32c9bd590a389c056bc6c09d1bb8f75d153f633b06c7eb1ecdfed "teambattles/leagues"
     i3131276c3ed30dce58393a35c3deb46bf7ab47b302d47f58f2b1c4c2cb43fe43 "teambattles/webhooks"
     i358d93f51ccd58f4a3754625dfb2551d1ec6171ba52b25cc08cebee8a891acdb "teambattles/leaderboards"
+    i484c64602fe86608e57da0cbe15c291bb6b4e8ef6a9e29be8feb32b8c6d49a2b "teambattles/strategies"
     i4c580ef7d92dfe7e46464fe5e9ffb55b2b1b05058bf90dd1ada5046984ef65ef "teambattles/twitch"
     i52adf305be906c7d066d21159f6266be17d93c880fa03ee296c0b63f5bfb23a5 "teambattles/games"
+    i893204e80589958b2539b7706cf04f35a5f5d256697ef6b421c60e960959de8f "teambattles/chat"
     i95be576408178562eb7b80596d1e996bb17dfd4f3bf71c5fee64b2a86ca04e39 "teambattles/matches"
     ia1bc9500962db2ea32fe169abf96990b4e2fb8edc1086c957ee3082d7e266c9f "teambattles/users"
+    ia6400be7c9f905ab9b4f71850f887cc553fa20802833683b3119ceb2a4b31f1b "teambattles/uploads"
+    ia9958b404bcb39854343b792c1c266d703d9a4ba6fb8e76e00868739a4ce2062 "teambattles/streams"
     iab24f14bab9c6de72a50238a22977c580274338bb39d7d3157293a48a4c78289 "teambattles/orgs"
     ic031e2f2d66bd2feef12669758a522b283a7828fe85855c0ad7b4cea342a7fec "teambattles/teams"
     id651a60d2feea29a5e0296db84faf6c6f4429ad9c9c767e5ae06525da696b24c "teambattles/user"
@@ -26,6 +31,11 @@ import (
 // TeamBattlesApiClient the main entry point of the SDK, exposes the configuration and the fluent API.
 type TeamBattlesApiClient struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+}
+// Chat the chat property
+// returns a *ChatRequestBuilder when successful
+func (m *TeamBattlesApiClient) Chat()(*i893204e80589958b2539b7706cf04f35a5f5d256697ef6b421c60e960959de8f.ChatRequestBuilder) {
+    return i893204e80589958b2539b7706cf04f35a5f5d256697ef6b421c60e960959de8f.NewChatRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // NewTeamBattlesApiClient instantiates a new TeamBattlesApiClient and sets the default values.
 func NewTeamBattlesApiClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TeamBattlesApiClient) {
@@ -75,15 +85,35 @@ func (m *TeamBattlesApiClient) Matches()(*i95be576408178562eb7b80596d1e996bb17df
 func (m *TeamBattlesApiClient) Orgs()(*iab24f14bab9c6de72a50238a22977c580274338bb39d7d3157293a48a4c78289.OrgsRequestBuilder) {
     return iab24f14bab9c6de72a50238a22977c580274338bb39d7d3157293a48a4c78289.NewOrgsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Strategies the strategies property
+// returns a *StrategiesRequestBuilder when successful
+func (m *TeamBattlesApiClient) Strategies()(*i484c64602fe86608e57da0cbe15c291bb6b4e8ef6a9e29be8feb32b8c6d49a2b.StrategiesRequestBuilder) {
+    return i484c64602fe86608e57da0cbe15c291bb6b4e8ef6a9e29be8feb32b8c6d49a2b.NewStrategiesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Streams the streams property
+// returns a *StreamsRequestBuilder when successful
+func (m *TeamBattlesApiClient) Streams()(*ia9958b404bcb39854343b792c1c266d703d9a4ba6fb8e76e00868739a4ce2062.StreamsRequestBuilder) {
+    return ia9958b404bcb39854343b792c1c266d703d9a4ba6fb8e76e00868739a4ce2062.NewStreamsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Teams the teams property
 // returns a *TeamsRequestBuilder when successful
 func (m *TeamBattlesApiClient) Teams()(*ic031e2f2d66bd2feef12669758a522b283a7828fe85855c0ad7b4cea342a7fec.TeamsRequestBuilder) {
     return ic031e2f2d66bd2feef12669758a522b283a7828fe85855c0ad7b4cea342a7fec.NewTeamsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Tickets the tickets property
+// returns a *TicketsRequestBuilder when successful
+func (m *TeamBattlesApiClient) Tickets()(*i0d2c8f04e91d3d123043ed58bf2bad009a835040c30bd61168f1ffaed981124e.TicketsRequestBuilder) {
+    return i0d2c8f04e91d3d123043ed58bf2bad009a835040c30bd61168f1ffaed981124e.NewTicketsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Twitch the twitch property
 // returns a *TwitchRequestBuilder when successful
 func (m *TeamBattlesApiClient) Twitch()(*i4c580ef7d92dfe7e46464fe5e9ffb55b2b1b05058bf90dd1ada5046984ef65ef.TwitchRequestBuilder) {
     return i4c580ef7d92dfe7e46464fe5e9ffb55b2b1b05058bf90dd1ada5046984ef65ef.NewTwitchRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Uploads the uploads property
+// returns a *UploadsRequestBuilder when successful
+func (m *TeamBattlesApiClient) Uploads()(*ia6400be7c9f905ab9b4f71850f887cc553fa20802833683b3119ceb2a4b31f1b.UploadsRequestBuilder) {
+    return ia6400be7c9f905ab9b4f71850f887cc553fa20802833683b3119ceb2a4b31f1b.NewUploadsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // User the user property
 // returns a *UserRequestBuilder when successful

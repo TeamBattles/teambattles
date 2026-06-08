@@ -7,7 +7,7 @@ class LeagueSeasonOptionsDefaultSeasonIdMember1 implements AdditionalDataHolder,
     @override
     Map<String, Object?> additionalData;
     /// Instantiates a new [LeagueSeasonOptionsDefaultSeasonIdMember1] and sets the default values.
-    LeagueSeasonOptionsDefaultSeasonIdMember1() :
+    LeagueSeasonOptionsDefaultSeasonIdMember1() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

@@ -10,13 +10,13 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * The requested league season.
 */
-class LeagueSeason_season implements AdditionalDataHolder, Parsable
+class LeagueSeason_season implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * Instantiates a new LeagueSeason_season and sets the default values.
     */

@@ -11,18 +11,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Composed type wrapper for classes float, WebhookEndpoint_lastDeliveredAtMember1
 */
-class WebhookEndpoint_lastDeliveredAt implements ComposedTypeWrapper, Parsable
+class WebhookEndpoint_lastDeliveredAt implements ComposedTypeWrapper, Parsable 
 {
     /**
      * @var float|null $double Composed type representation for type float
     */
     private ?float $double = null;
-
+    
     /**
      * @var WebhookEndpoint_lastDeliveredAtMember1|null $webhookEndpoint_lastDeliveredAtMember1 Composed type representation for type WebhookEndpoint_lastDeliveredAtMember1
     */
     private ?WebhookEndpoint_lastDeliveredAtMember1 $webhookEndpoint_lastDeliveredAtMember1 = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

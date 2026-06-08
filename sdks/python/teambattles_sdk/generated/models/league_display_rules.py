@@ -18,7 +18,7 @@ class LeagueDisplayRules(Parsable):
     display_rules: Optional[list[LeagueDisplayRules_displayRules]] = None
     # Response generation time (ISO 8601).
     timestamp: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> LeagueDisplayRules:
         """
@@ -29,7 +29,7 @@ class LeagueDisplayRules(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return LeagueDisplayRules()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class LeagueDisplayRules(Parsable):
             "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -57,3 +57,5 @@ class LeagueDisplayRules(Parsable):
         writer.write_int_value("count", self.count)
         writer.write_collection_of_object_values("displayRules", self.display_rules)
         writer.write_str_value("timestamp", self.timestamp)
+    
+

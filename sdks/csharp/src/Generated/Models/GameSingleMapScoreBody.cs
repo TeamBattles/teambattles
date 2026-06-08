@@ -15,8 +15,8 @@ namespace TeamBattles.Sdk.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Score for the creator team (non-negative).</summary>
-        public double? CreatorTeamScore { get; set; }
+        /// <summary>Score for the creator team (integer, 0-1000).</summary>
+        public int? CreatorTeamScore { get; set; }
         /// <summary>Identifier of the map that was played.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -25,8 +25,8 @@ namespace TeamBattles.Sdk.Models
 #else
         public string MapId { get; set; }
 #endif
-        /// <summary>Score for the opponent (accepted) team (non-negative).</summary>
-        public double? OpponentTeamScore { get; set; }
+        /// <summary>Score for the opponent (accepted) team (integer, 0-1000).</summary>
+        public int? OpponentTeamScore { get; set; }
         /// <summary>Optional per-player stats keyed by user ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -35,7 +35,15 @@ namespace TeamBattles.Sdk.Models
 #else
         public global::TeamBattles.Sdk.Models.GameSingleMapScoreBody_playerStats PlayerStats { get; set; }
 #endif
-        /// <summary>Optional screenshot URLs supporting the reported score.</summary>
+        /// <summary>Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? ScreenshotStorageIds { get; set; }
+#nullable restore
+#else
+        public List<string> ScreenshotStorageIds { get; set; }
+#endif
+        /// <summary>Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? ScreenshotUrls { get; set; }
@@ -68,10 +76,11 @@ namespace TeamBattles.Sdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "creatorTeamScore", n => { CreatorTeamScore = n.GetDoubleValue(); } },
+                { "creatorTeamScore", n => { CreatorTeamScore = n.GetIntValue(); } },
                 { "mapId", n => { MapId = n.GetStringValue(); } },
-                { "opponentTeamScore", n => { OpponentTeamScore = n.GetDoubleValue(); } },
+                { "opponentTeamScore", n => { OpponentTeamScore = n.GetIntValue(); } },
                 { "playerStats", n => { PlayerStats = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameSingleMapScoreBody_playerStats>(global::TeamBattles.Sdk.Models.GameSingleMapScoreBody_playerStats.CreateFromDiscriminatorValue); } },
+                { "screenshotStorageIds", n => { ScreenshotStorageIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "screenshotUrls", n => { ScreenshotUrls = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -82,10 +91,11 @@ namespace TeamBattles.Sdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDoubleValue("creatorTeamScore", CreatorTeamScore);
+            writer.WriteIntValue("creatorTeamScore", CreatorTeamScore);
             writer.WriteStringValue("mapId", MapId);
-            writer.WriteDoubleValue("opponentTeamScore", OpponentTeamScore);
+            writer.WriteIntValue("opponentTeamScore", OpponentTeamScore);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameSingleMapScoreBody_playerStats>("playerStats", PlayerStats);
+            writer.WriteCollectionOfPrimitiveValues<string>("screenshotStorageIds", ScreenshotStorageIds);
             writer.WriteCollectionOfPrimitiveValues<string>("screenshotUrls", ScreenshotUrls);
             writer.WriteAdditionalData(AdditionalData);
         }

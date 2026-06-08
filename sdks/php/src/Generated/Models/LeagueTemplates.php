@@ -9,23 +9,23 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * League rule templates.
 */
-class LeagueTemplates implements Parsable
+class LeagueTemplates implements Parsable 
 {
     /**
      * @var int|null $count Number of templates returned.
     */
     private ?int $count = null;
-
+    
     /**
      * @var array<LeagueTemplates_templates>|null $templates Rule templates visible to the API key owner.
     */
     private ?array $templates = null;
-
+    
     /**
      * @var string|null $timestamp Response generation time (ISO 8601).
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

@@ -10,3 +10,4 @@ class MatchDiscoverBody_region(str, Enum):
     SOUTH_AMERICA = "SOUTH_AMERICA",
     MIDDLE_EAST = "MIDDLE_EAST",
     AFRICA = "AFRICA",
+

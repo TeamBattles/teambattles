@@ -13,7 +13,7 @@ use TeamBattles\Sdk\Generated\Models\Error;
 /**
  * Builds and executes requests for operations under /users/{identifier}/connections
 */
-class ConnectionsRequestBuilder extends BaseRequestBuilder
+class ConnectionsRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new ConnectionsRequestBuilder and sets the default values.

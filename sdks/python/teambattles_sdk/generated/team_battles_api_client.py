@@ -15,14 +15,19 @@ from kiota_serialization_text.text_serialization_writer_factory import TextSeria
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .chat.chat_request_builder import ChatRequestBuilder
     from .game.game_request_builder import GameRequestBuilder
     from .games.games_request_builder import GamesRequestBuilder
     from .leaderboards.leaderboards_request_builder import LeaderboardsRequestBuilder
     from .leagues.leagues_request_builder import LeaguesRequestBuilder
     from .matches.matches_request_builder import MatchesRequestBuilder
     from .orgs.orgs_request_builder import OrgsRequestBuilder
+    from .strategies.strategies_request_builder import StrategiesRequestBuilder
+    from .streams.streams_request_builder import StreamsRequestBuilder
     from .teams.teams_request_builder import TeamsRequestBuilder
+    from .tickets.tickets_request_builder import TicketsRequestBuilder
     from .twitch.twitch_request_builder import TwitchRequestBuilder
+    from .uploads.uploads_request_builder import UploadsRequestBuilder
     from .user.user_request_builder import UserRequestBuilder
     from .users.users_request_builder import UsersRequestBuilder
     from .webhooks.webhooks_request_builder import WebhooksRequestBuilder
@@ -50,7 +55,16 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         if not self.request_adapter.base_url:
             self.request_adapter.base_url = "https://teambattles.gg/api/v1"
         self.path_parameters["base_url"] = self.request_adapter.base_url
+    
+    @property
+    def chat(self) -> ChatRequestBuilder:
+        """
+        The chat property
+        """
+        from .chat.chat_request_builder import ChatRequestBuilder
 
+        return ChatRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def game(self) -> GameRequestBuilder:
         """
@@ -59,7 +73,7 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .game.game_request_builder import GameRequestBuilder
 
         return GameRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def games(self) -> GamesRequestBuilder:
         """
@@ -68,7 +82,7 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .games.games_request_builder import GamesRequestBuilder
 
         return GamesRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def leaderboards(self) -> LeaderboardsRequestBuilder:
         """
@@ -77,7 +91,7 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .leaderboards.leaderboards_request_builder import LeaderboardsRequestBuilder
 
         return LeaderboardsRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def leagues(self) -> LeaguesRequestBuilder:
         """
@@ -86,7 +100,7 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .leagues.leagues_request_builder import LeaguesRequestBuilder
 
         return LeaguesRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def matches(self) -> MatchesRequestBuilder:
         """
@@ -95,7 +109,7 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .matches.matches_request_builder import MatchesRequestBuilder
 
         return MatchesRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def orgs(self) -> OrgsRequestBuilder:
         """
@@ -104,7 +118,25 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .orgs.orgs_request_builder import OrgsRequestBuilder
 
         return OrgsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def strategies(self) -> StrategiesRequestBuilder:
+        """
+        The strategies property
+        """
+        from .strategies.strategies_request_builder import StrategiesRequestBuilder
 
+        return StrategiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def streams(self) -> StreamsRequestBuilder:
+        """
+        The streams property
+        """
+        from .streams.streams_request_builder import StreamsRequestBuilder
+
+        return StreamsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def teams(self) -> TeamsRequestBuilder:
         """
@@ -113,7 +145,16 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .teams.teams_request_builder import TeamsRequestBuilder
 
         return TeamsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tickets(self) -> TicketsRequestBuilder:
+        """
+        The tickets property
+        """
+        from .tickets.tickets_request_builder import TicketsRequestBuilder
 
+        return TicketsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def twitch(self) -> TwitchRequestBuilder:
         """
@@ -122,7 +163,16 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .twitch.twitch_request_builder import TwitchRequestBuilder
 
         return TwitchRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def uploads(self) -> UploadsRequestBuilder:
+        """
+        The uploads property
+        """
+        from .uploads.uploads_request_builder import UploadsRequestBuilder
 
+        return UploadsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def user(self) -> UserRequestBuilder:
         """
@@ -131,7 +181,7 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .user.user_request_builder import UserRequestBuilder
 
         return UserRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def users(self) -> UsersRequestBuilder:
         """
@@ -140,7 +190,7 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .users.users_request_builder import UsersRequestBuilder
 
         return UsersRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
     @property
     def webhooks(self) -> WebhooksRequestBuilder:
         """
@@ -149,5 +199,5 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .webhooks.webhooks_request_builder import WebhooksRequestBuilder
 
         return WebhooksRequestBuilder(self.request_adapter, self.path_parameters)
-
+    
 

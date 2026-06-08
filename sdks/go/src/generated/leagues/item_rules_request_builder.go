@@ -20,6 +20,11 @@ type ItemRulesRequestBuilderPostRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// ApplyTemplate the applyTemplate property
+// returns a *ItemRulesApplyTemplateRequestBuilder when successful
+func (m *ItemRulesRequestBuilder) ApplyTemplate()(*ItemRulesApplyTemplateRequestBuilder) {
+    return NewItemRulesApplyTemplateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewItemRulesRequestBuilderInternal instantiates a new ItemRulesRequestBuilder and sets the default values.
 func NewItemRulesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemRulesRequestBuilder) {
     m := &ItemRulesRequestBuilder{
@@ -73,6 +78,11 @@ func (m *ItemRulesRequestBuilder) ToPostRequestInformation(ctx context.Context, 
         return nil, err
     }
     return requestInfo, nil
+}
+// Update the update property
+// returns a *ItemRulesUpdateRequestBuilder when successful
+func (m *ItemRulesRequestBuilder) Update()(*ItemRulesUpdateRequestBuilder) {
+    return NewItemRulesUpdateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *ItemRulesRequestBuilder when successful

@@ -15,7 +15,7 @@ use TeamBattles\Sdk\Generated\Models\GameBatchMatchScoresResponse;
 /**
  * Builds and executes requests for operations under /game/matches/batch-scores
 */
-class BatchScoresRequestBuilder extends BaseRequestBuilder
+class BatchScoresRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new BatchScoresRequestBuilder and sets the default values.

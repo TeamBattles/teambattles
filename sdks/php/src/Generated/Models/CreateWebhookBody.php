@@ -11,28 +11,28 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 /**
  * Create a webhook endpoint in the caller's scope.
 */
-class CreateWebhookBody implements AdditionalDataHolder, Parsable
+class CreateWebhookBody implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * @var array<string>|null $events Subscribed event tokens: exact catalog names (e.g. match.completed) or family wildcards (e.g. match.*). At least one required.
     */
     private ?array $events = null;
-
+    
     /**
      * @var string|null $label Optional human label for the endpoint.
     */
     private ?string $label = null;
-
+    
     /**
      * @var string|null $url HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
     */
     private ?string $url = null;
-
+    
     /**
      * Instantiates a new CreateWebhookBody and sets the default values.
     */

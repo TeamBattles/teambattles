@@ -7,7 +7,7 @@ class ApiOrganizationSummarySlugMember1 implements AdditionalDataHolder, Parsabl
     @override
     Map<String, Object?> additionalData;
     /// Instantiates a new [ApiOrganizationSummarySlugMember1] and sets the default values.
-    ApiOrganizationSummarySlugMember1() :
+    ApiOrganizationSummarySlugMember1() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

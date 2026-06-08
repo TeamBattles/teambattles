@@ -1,7 +1,7 @@
 module TeamBattlesSdk
     module Generated
         module Models
-            ##
+            ## 
             # The single scope dimension an endpoint is bound to.
             WebhookEndpointScopeType = {
                 Game: :Game,

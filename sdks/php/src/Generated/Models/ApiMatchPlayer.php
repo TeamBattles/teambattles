@@ -9,58 +9,58 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Player row for a participant-gated match.
 */
-class ApiMatchPlayer implements Parsable
+class ApiMatchPlayer implements Parsable 
 {
     /**
      * @var ApiMatchPlayer_attendanceStatus|null $attendanceStatus The attendanceStatus property
     */
     private ?ApiMatchPlayer_attendanceStatus $attendanceStatus = null;
-
+    
     /**
      * @var ApiMatchPlayer_avatarUrl|null $avatarUrl The avatarUrl property
     */
     private ?ApiMatchPlayer_avatarUrl $avatarUrl = null;
-
+    
     /**
      * @var ApiMatchPlayer_checkedInAt|null $checkedInAt The checkedInAt property
     */
     private ?ApiMatchPlayer_checkedInAt $checkedInAt = null;
-
+    
     /**
      * @var string|null $id The id property
     */
     private ?string $id = null;
-
+    
     /**
      * @var bool|null $isCheckedIn The isCheckedIn property
     */
     private ?bool $isCheckedIn = null;
-
+    
     /**
      * @var ApiMatchPlayer_name|null $name The name property
     */
     private ?ApiMatchPlayer_name $name = null;
-
+    
     /**
      * @var ApiMatchPlayer_rosterType|null $rosterType The rosterType property
     */
     private ?ApiMatchPlayer_rosterType $rosterType = null;
-
+    
     /**
      * @var string|null $teamId The teamId property
     */
     private ?string $teamId = null;
-
+    
     /**
      * @var string|null $userId The userId property
     */
     private ?string $userId = null;
-
+    
     /**
      * @var ApiMatchPlayer_username|null $username The username property
     */
     private ?ApiMatchPlayer_username $username = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

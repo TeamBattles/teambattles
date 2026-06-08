@@ -8,6 +8,8 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.leagues.item.bans.create.CreateRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.bans.item.WithBanItemRequestBuilder;
 import gg.teambattles.sdk.generated.models.BansRequestBody;
 import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.models.LeagueBans;
@@ -20,6 +22,26 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class BansRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The create property
+     * @return a {@link CreateRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public CreateRequestBuilder create() {
+        return new CreateRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * Gets an item from the gg.teambattles.sdk.generated.leagues.item.bans.item collection
+     * @param banId League ban ID.
+     * @return a {@link WithBanItemRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public WithBanItemRequestBuilder byBanId(@jakarta.annotation.Nonnull final String banId) {
+        Objects.requireNonNull(banId);
+        final HashMap<String, Object> urlTplParams = new HashMap<String, Object>(this.pathParameters);
+        urlTplParams.put("banId", banId);
+        return new WithBanItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /**
      * Instantiates a new {@link BansRequestBuilder} and sets the default values.
      * @param pathParameters Path parameters for the request

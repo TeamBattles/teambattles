@@ -9,33 +9,33 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Team summary embedded in SP-2 match reads.
 */
-class ApiMatchTeam implements Parsable
+class ApiMatchTeam implements Parsable 
 {
     /**
      * @var ApiMatchTeam_avatarUrl|null $avatarUrl Team avatar URL.
     */
     private ?ApiMatchTeam_avatarUrl $avatarUrl = null;
-
+    
     /**
      * @var string|null $id Team ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var string|null $name Team name.
     */
     private ?string $name = null;
-
+    
     /**
      * @var ApiMatchTeam_score|null $score The score property
     */
     private ?ApiMatchTeam_score $score = null;
-
+    
     /**
      * @var string|null $tag Team tag (short identifier).
     */
     private ?string $tag = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

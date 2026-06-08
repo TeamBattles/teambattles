@@ -20,7 +20,7 @@ class UsersRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/users", path_parameters)
-
+    
     def by_identifier(self,identifier: str) -> WithIdentifierItemRequestBuilder:
         """
         Gets an item from the teambattles_sdk.generated.users.item collection
@@ -34,3 +34,5 @@ class UsersRequestBuilder(BaseRequestBuilder):
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["identifier"] = identifier
         return WithIdentifierItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+

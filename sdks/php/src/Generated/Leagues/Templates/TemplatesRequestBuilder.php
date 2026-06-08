@@ -15,7 +15,7 @@ use TeamBattles\Sdk\Generated\Models\LeagueTemplatesRequestBody;
 /**
  * Builds and executes requests for operations under /leagues/templates
 */
-class TemplatesRequestBuilder extends BaseRequestBuilder
+class TemplatesRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new TemplatesRequestBuilder and sets the default values.

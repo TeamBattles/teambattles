@@ -10,18 +10,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Optional team-specific league application eligibility selector.
 */
-class LeagueApplyEligibilityRequestBody implements AdditionalDataHolder, Parsable
+class LeagueApplyEligibilityRequestBody implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * @var string|null $teamId Optional team ID to check. The API key owner must lead it.
     */
     private ?string $teamId = null;
-
+    
     /**
      * Instantiates a new LeagueApplyEligibilityRequestBody and sets the default values.
     */

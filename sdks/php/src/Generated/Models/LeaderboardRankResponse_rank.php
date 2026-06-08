@@ -11,18 +11,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Composed type wrapper for classes int, LeaderboardRankResponse_rankMember1
 */
-class LeaderboardRankResponse_rank implements ComposedTypeWrapper, Parsable
+class LeaderboardRankResponse_rank implements ComposedTypeWrapper, Parsable 
 {
     /**
      * @var int|null $integer Composed type representation for type int
     */
     private ?int $integer = null;
-
+    
     /**
      * @var LeaderboardRankResponse_rankMember1|null $leaderboardRankResponse_rankMember1 Composed type representation for type LeaderboardRankResponse_rankMember1
     */
     private ?LeaderboardRankResponse_rankMember1 $leaderboardRankResponse_rankMember1 = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

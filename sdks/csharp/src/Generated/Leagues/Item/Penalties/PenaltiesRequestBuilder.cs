@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Leagues.Item.Penalties.Create;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Leagues.Item.Penalties
 {
@@ -17,6 +18,11 @@ namespace TeamBattles.Sdk.Leagues.Item.Penalties
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PenaltiesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The create property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Penalties.Create.CreateRequestBuilder Create
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Penalties.Create.CreateRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Leagues.Item.Penalties.PenaltiesRequestBuilder"/> and sets the default values.
         /// </summary>

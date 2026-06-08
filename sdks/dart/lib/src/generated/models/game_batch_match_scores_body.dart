@@ -11,7 +11,7 @@ class GameBatchMatchScoresBody implements AdditionalDataHolder, Parsable {
     ///  Map scores to submit across one or more matches. 1-50 entries.
     Iterable<GameMultiMatchScoreItem>? items;
     /// Instantiates a new [GameBatchMatchScoresBody] and sets the default values.
-    GameBatchMatchScoresBody() :
+    GameBatchMatchScoresBody() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

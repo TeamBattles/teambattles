@@ -10,33 +10,33 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 /**
  * Game-scoped playlist definition.
 */
-class ApiGamePlaylist implements Parsable
+class ApiGamePlaylist implements Parsable 
 {
     /**
      * @var array<string>|null $allowedGameModeIds The allowedGameModeIds property
     */
     private ?array $allowedGameModeIds = null;
-
+    
     /**
      * @var ApiGamePlaylist_descriptionKey|null $descriptionKey The descriptionKey property
     */
     private ?ApiGamePlaylist_descriptionKey $descriptionKey = null;
-
+    
     /**
      * @var string|null $id The id property
     */
     private ?string $id = null;
-
+    
     /**
      * @var ApiGamePlaylist_image|null $image The image property
     */
     private ?ApiGamePlaylist_image $image = null;
-
+    
     /**
      * @var string|null $nameKey The nameKey property
     */
     private ?string $nameKey = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

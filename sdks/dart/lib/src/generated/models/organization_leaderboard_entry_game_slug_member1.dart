@@ -7,7 +7,7 @@ class OrganizationLeaderboardEntryGameSlugMember1 implements AdditionalDataHolde
     @override
     Map<String, Object?> additionalData;
     /// Instantiates a new [OrganizationLeaderboardEntryGameSlugMember1] and sets the default values.
-    OrganizationLeaderboardEntryGameSlugMember1() :
+    OrganizationLeaderboardEntryGameSlugMember1() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

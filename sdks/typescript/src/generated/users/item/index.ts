@@ -10,6 +10,8 @@ import { OrganizationsRequestBuilderRequestsMetadata, type OrganizationsRequestB
 // @ts-ignore
 import { StatsRequestBuilderRequestsMetadata, type StatsRequestBuilder } from './stats/index.js';
 // @ts-ignore
+import { StreamRequestBuilderRequestsMetadata, type StreamRequestBuilder } from './stream/index.js';
+// @ts-ignore
 import { TeamsRequestBuilderRequestsMetadata, type TeamsRequestBuilder } from './teams/index.js';
 // @ts-ignore
 import { TrophiesRequestBuilderRequestsMetadata, type TrophiesRequestBuilder } from './trophies/index.js';
@@ -79,6 +81,10 @@ export interface WithIdentifierItemRequestBuilder extends BaseRequestBuilder<Wit
      */
     get stats(): StatsRequestBuilder;
     /**
+     * The stream property
+     */
+    get stream(): StreamRequestBuilder;
+    /**
      * The teams property
      */
     get teams(): TeamsRequestBuilder;
@@ -120,6 +126,9 @@ export const WithIdentifierItemRequestBuilderNavigationMetadata: Record<Exclude<
     },
     stats: {
         requestsMetadata: StatsRequestBuilderRequestsMetadata,
+    },
+    stream: {
+        requestsMetadata: StreamRequestBuilderRequestsMetadata,
     },
     teams: {
         requestsMetadata: TeamsRequestBuilderRequestsMetadata,

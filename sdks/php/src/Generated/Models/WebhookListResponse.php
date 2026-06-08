@@ -9,23 +9,23 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * List of the caller's webhook endpoints.
 */
-class WebhookListResponse implements Parsable
+class WebhookListResponse implements Parsable 
 {
     /**
      * @var int|null $count The count property
     */
     private ?int $count = null;
-
+    
     /**
      * @var string|null $timestamp The timestamp property
     */
     private ?string $timestamp = null;
-
+    
     /**
      * @var array<WebhookEndpoint>|null $webhooks The webhooks property
     */
     private ?array $webhooks = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

@@ -9,23 +9,23 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Result of a multi-match batch map-score submission. Always returned with HTTP 200; inspect per-item status.
 */
-class GameBatchMatchScoresResponse implements Parsable
+class GameBatchMatchScoresResponse implements Parsable 
 {
     /**
      * @var int|null $count Number of items that were confirmed.
     */
     private ?int $count = null;
-
+    
     /**
      * @var array<GameBatchMatchScoreResult>|null $submitted Per-item results, in submission order.
     */
     private ?array $submitted = null;
-
+    
     /**
      * @var bool|null $success True only when every submitted item was confirmed.
     */
     private ?bool $success = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

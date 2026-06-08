@@ -12,7 +12,7 @@ class GameForfeitBody implements AdditionalDataHolder, Parsable {
     ///  Optional human-readable forfeit reason, recorded on the match.
     String? reason;
     /// Instantiates a new [GameForfeitBody] and sets the default values.
-    GameForfeitBody() :
+    GameForfeitBody() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

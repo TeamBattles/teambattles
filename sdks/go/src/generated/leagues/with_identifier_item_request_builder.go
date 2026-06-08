@@ -20,6 +20,11 @@ type WithIdentifierItemRequestBuilderPostRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// ActivityFeed the activityFeed property
+// returns a *ItemActivityFeedRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) ActivityFeed()(*ItemActivityFeedRequestBuilder) {
+    return NewItemActivityFeedRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ApplyEligibility the applyEligibility property
 // returns a *ItemApplyEligibilityRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) ApplyEligibility()(*ItemApplyEligibilityRequestBuilder) {
@@ -29,6 +34,11 @@ func (m *WithIdentifierItemRequestBuilder) ApplyEligibility()(*ItemApplyEligibil
 // returns a *ItemBansRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) Bans()(*ItemBansRequestBuilder) {
     return NewItemBansRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Branding the branding property
+// returns a *ItemBrandingRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Branding()(*ItemBrandingRequestBuilder) {
+    return NewItemBrandingRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // NewWithIdentifierItemRequestBuilderInternal instantiates a new WithIdentifierItemRequestBuilder and sets the default values.
 func NewWithIdentifierItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*WithIdentifierItemRequestBuilder) {
@@ -43,6 +53,16 @@ func NewWithIdentifierItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams["request-raw-url"] = rawUrl
     return NewWithIdentifierItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Cooldowns the cooldowns property
+// returns a *ItemCooldownsRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Cooldowns()(*ItemCooldownsRequestBuilder) {
+    return NewItemCooldownsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Dashboard the dashboard property
+// returns a *ItemDashboardRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Dashboard()(*ItemDashboardRequestBuilder) {
+    return NewItemDashboardRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // DisplayRules the displayRules property
 // returns a *ItemDisplayRulesRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) DisplayRules()(*ItemDisplayRulesRequestBuilder) {
@@ -53,15 +73,30 @@ func (m *WithIdentifierItemRequestBuilder) DisplayRules()(*ItemDisplayRulesReque
 func (m *WithIdentifierItemRequestBuilder) Games()(*ItemGamesRequestBuilder) {
     return NewItemGamesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Matches the matches property
+// returns a *ItemMatchesRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Matches()(*ItemMatchesRequestBuilder) {
+    return NewItemMatchesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Members the members property
 // returns a *ItemMembersRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) Members()(*ItemMembersRequestBuilder) {
     return NewItemMembersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Ownership the ownership property
+// returns a *ItemOwnershipRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Ownership()(*ItemOwnershipRequestBuilder) {
+    return NewItemOwnershipRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Penalties the penalties property
 // returns a *ItemPenaltiesRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) Penalties()(*ItemPenaltiesRequestBuilder) {
     return NewItemPenaltiesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Points the points property
+// returns a *ItemPointsRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Points()(*ItemPointsRequestBuilder) {
+    return NewItemPointsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Post returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
 // returns a LeagueProfileResponseable when successful
@@ -102,10 +137,30 @@ func (m *WithIdentifierItemRequestBuilder) SeasonOptions()(*ItemSeasonOptionsReq
 func (m *WithIdentifierItemRequestBuilder) Seasons()(*ItemSeasonsRequestBuilder) {
     return NewItemSeasonsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Settings the settings property
+// returns a *ItemSettingsRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Settings()(*ItemSettingsRequestBuilder) {
+    return NewItemSettingsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Shutdown the shutdown property
+// returns a *ItemShutdownRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Shutdown()(*ItemShutdownRequestBuilder) {
+    return NewItemShutdownRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Standings the standings property
 // returns a *ItemStandingsRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) Standings()(*ItemStandingsRequestBuilder) {
     return NewItemStandingsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Teams the teams property
+// returns a *ItemTeamsRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Teams()(*ItemTeamsRequestBuilder) {
+    return NewItemTeamsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Tickets the tickets property
+// returns a *ItemTicketsRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Tickets()(*ItemTicketsRequestBuilder) {
+    return NewItemTicketsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // ToPostRequestInformation returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
 // returns a *RequestInformation when successful

@@ -15,7 +15,7 @@ use TeamBattles\Sdk\Generated\Models\LeagueSeasonOptionsRequestBody;
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/season-options
 */
-class SeasonOptionsRequestBuilder extends BaseRequestBuilder
+class SeasonOptionsRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new SeasonOptionsRequestBuilder and sets the default values.

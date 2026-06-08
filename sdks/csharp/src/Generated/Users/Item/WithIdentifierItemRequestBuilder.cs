@@ -12,6 +12,7 @@ using TeamBattles.Sdk.Models;
 using TeamBattles.Sdk.Users.Item.Connections;
 using TeamBattles.Sdk.Users.Item.Organizations;
 using TeamBattles.Sdk.Users.Item.Stats;
+using TeamBattles.Sdk.Users.Item.StreamNamespace;
 using TeamBattles.Sdk.Users.Item.Teams;
 using TeamBattles.Sdk.Users.Item.Trophies;
 namespace TeamBattles.Sdk.Users.Item
@@ -36,6 +37,11 @@ namespace TeamBattles.Sdk.Users.Item
         public global::TeamBattles.Sdk.Users.Item.Stats.StatsRequestBuilder Stats
         {
             get => new global::TeamBattles.Sdk.Users.Item.Stats.StatsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The stream property</summary>
+        public global::TeamBattles.Sdk.Users.Item.StreamNamespace.StreamRequestBuilder Stream
+        {
+            get => new global::TeamBattles.Sdk.Users.Item.StreamNamespace.StreamRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The teams property</summary>
         public global::TeamBattles.Sdk.Users.Item.Teams.TeamsRequestBuilder Teams

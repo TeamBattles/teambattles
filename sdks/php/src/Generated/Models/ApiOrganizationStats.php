@@ -9,43 +9,43 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * API-safe organization aggregate stats.
 */
-class ApiOrganizationStats implements Parsable
+class ApiOrganizationStats implements Parsable 
 {
     /**
      * @var int|null $losses The losses property
     */
     private ?int $losses = null;
-
+    
     /**
      * @var int|null $matchesPlayed The matchesPlayed property
     */
     private ?int $matchesPlayed = null;
-
+    
     /**
      * @var int|null $members The members property
     */
     private ?int $members = null;
-
+    
     /**
      * @var string|null $organizationId The organizationId property
     */
     private ?string $organizationId = null;
-
+    
     /**
      * @var int|null $teams The teams property
     */
     private ?int $teams = null;
-
+    
     /**
      * @var float|null $winRate The winRate property
     */
     private ?float $winRate = null;
-
+    
     /**
      * @var int|null $wins The wins property
     */
     private ?int $wins = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

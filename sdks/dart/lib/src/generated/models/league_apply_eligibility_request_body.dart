@@ -10,7 +10,7 @@ class LeagueApplyEligibilityRequestBody implements AdditionalDataHolder, Parsabl
     ///  Optional team ID to check. The API key owner must lead it.
     String? teamId;
     /// Instantiates a new [LeagueApplyEligibilityRequestBody] and sets the default values.
-    LeagueApplyEligibilityRequestBody() :
+    LeagueApplyEligibilityRequestBody() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

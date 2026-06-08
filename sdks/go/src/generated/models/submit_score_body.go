@@ -11,15 +11,17 @@ import (
 type SubmitScoreBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Creator team score. Must be a non-negative number.
-    creatorTeamScore *float64
+    // Creator team score (integer, 0-1000).
+    creatorTeamScore *int32
     // Map identifier string (e.g. dust2).
     mapId *string
     // Zero-based map index. Must be a non-negative integer.
     mapIndex *int32
-    // Accepted/opponent team score. Must be a non-negative number.
-    opponentTeamScore *float64
-    // Optional screenshot URLs for the map result.
+    // Accepted/opponent team score (integer, 0-1000).
+    opponentTeamScore *int32
+    // Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).
+    screenshotStorageIds []string
+    // Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.
     screenshotUrls []string
 }
 // NewSubmitScoreBody instantiates a new SubmitScoreBody and sets the default values.
@@ -39,9 +41,9 @@ func CreateSubmitScoreBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 func (m *SubmitScoreBody) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetCreatorTeamScore gets the creatorTeamScore property value. Creator team score. Must be a non-negative number.
-// returns a *float64 when successful
-func (m *SubmitScoreBody) GetCreatorTeamScore()(*float64) {
+// GetCreatorTeamScore gets the creatorTeamScore property value. Creator team score (integer, 0-1000).
+// returns a *int32 when successful
+func (m *SubmitScoreBody) GetCreatorTeamScore()(*int32) {
     return m.creatorTeamScore
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -49,7 +51,7 @@ func (m *SubmitScoreBody) GetCreatorTeamScore()(*float64) {
 func (m *SubmitScoreBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["creatorTeamScore"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
+        val, err := n.GetInt32Value()
         if err != nil {
             return err
         }
@@ -79,12 +81,28 @@ func (m *SubmitScoreBody) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         return nil
     }
     res["opponentTeamScore"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
+        val, err := n.GetInt32Value()
         if err != nil {
             return err
         }
         if val != nil {
             m.SetOpponentTeamScore(val)
+        }
+        return nil
+    }
+    res["screenshotStorageIds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetScreenshotStorageIds(res)
         }
         return nil
     }
@@ -116,12 +134,17 @@ func (m *SubmitScoreBody) GetMapId()(*string) {
 func (m *SubmitScoreBody) GetMapIndex()(*int32) {
     return m.mapIndex
 }
-// GetOpponentTeamScore gets the opponentTeamScore property value. Accepted/opponent team score. Must be a non-negative number.
-// returns a *float64 when successful
-func (m *SubmitScoreBody) GetOpponentTeamScore()(*float64) {
+// GetOpponentTeamScore gets the opponentTeamScore property value. Accepted/opponent team score (integer, 0-1000).
+// returns a *int32 when successful
+func (m *SubmitScoreBody) GetOpponentTeamScore()(*int32) {
     return m.opponentTeamScore
 }
-// GetScreenshotUrls gets the screenshotUrls property value. Optional screenshot URLs for the map result.
+// GetScreenshotStorageIds gets the screenshotStorageIds property value. Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).
+// returns a []string when successful
+func (m *SubmitScoreBody) GetScreenshotStorageIds()([]string) {
+    return m.screenshotStorageIds
+}
+// GetScreenshotUrls gets the screenshotUrls property value. Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.
 // returns a []string when successful
 func (m *SubmitScoreBody) GetScreenshotUrls()([]string) {
     return m.screenshotUrls
@@ -129,7 +152,7 @@ func (m *SubmitScoreBody) GetScreenshotUrls()([]string) {
 // Serialize serializes information the current object
 func (m *SubmitScoreBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteFloat64Value("creatorTeamScore", m.GetCreatorTeamScore())
+        err := writer.WriteInt32Value("creatorTeamScore", m.GetCreatorTeamScore())
         if err != nil {
             return err
         }
@@ -147,7 +170,13 @@ func (m *SubmitScoreBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
         }
     }
     {
-        err := writer.WriteFloat64Value("opponentTeamScore", m.GetOpponentTeamScore())
+        err := writer.WriteInt32Value("opponentTeamScore", m.GetOpponentTeamScore())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetScreenshotStorageIds() != nil {
+        err := writer.WriteCollectionOfStringValues("screenshotStorageIds", m.GetScreenshotStorageIds())
         if err != nil {
             return err
         }
@@ -170,8 +199,8 @@ func (m *SubmitScoreBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 func (m *SubmitScoreBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetCreatorTeamScore sets the creatorTeamScore property value. Creator team score. Must be a non-negative number.
-func (m *SubmitScoreBody) SetCreatorTeamScore(value *float64)() {
+// SetCreatorTeamScore sets the creatorTeamScore property value. Creator team score (integer, 0-1000).
+func (m *SubmitScoreBody) SetCreatorTeamScore(value *int32)() {
     m.creatorTeamScore = value
 }
 // SetMapId sets the mapId property value. Map identifier string (e.g. dust2).
@@ -182,25 +211,31 @@ func (m *SubmitScoreBody) SetMapId(value *string)() {
 func (m *SubmitScoreBody) SetMapIndex(value *int32)() {
     m.mapIndex = value
 }
-// SetOpponentTeamScore sets the opponentTeamScore property value. Accepted/opponent team score. Must be a non-negative number.
-func (m *SubmitScoreBody) SetOpponentTeamScore(value *float64)() {
+// SetOpponentTeamScore sets the opponentTeamScore property value. Accepted/opponent team score (integer, 0-1000).
+func (m *SubmitScoreBody) SetOpponentTeamScore(value *int32)() {
     m.opponentTeamScore = value
 }
-// SetScreenshotUrls sets the screenshotUrls property value. Optional screenshot URLs for the map result.
+// SetScreenshotStorageIds sets the screenshotStorageIds property value. Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).
+func (m *SubmitScoreBody) SetScreenshotStorageIds(value []string)() {
+    m.screenshotStorageIds = value
+}
+// SetScreenshotUrls sets the screenshotUrls property value. Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.
 func (m *SubmitScoreBody) SetScreenshotUrls(value []string)() {
     m.screenshotUrls = value
 }
 type SubmitScoreBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCreatorTeamScore()(*float64)
+    GetCreatorTeamScore()(*int32)
     GetMapId()(*string)
     GetMapIndex()(*int32)
-    GetOpponentTeamScore()(*float64)
+    GetOpponentTeamScore()(*int32)
+    GetScreenshotStorageIds()([]string)
     GetScreenshotUrls()([]string)
-    SetCreatorTeamScore(value *float64)()
+    SetCreatorTeamScore(value *int32)()
     SetMapId(value *string)()
     SetMapIndex(value *int32)()
-    SetOpponentTeamScore(value *float64)()
+    SetOpponentTeamScore(value *int32)()
+    SetScreenshotStorageIds(value []string)()
     SetScreenshotUrls(value []string)()
 }

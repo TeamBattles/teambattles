@@ -21,7 +21,7 @@ public class GameCreateMatchBody implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * Number of maps in the series (1, 3, 5, or 7).
+     * Number of maps in the series. One of 1, 3, 5, or 7.
      */
     private Double bestOf;
     /**
@@ -101,7 +101,7 @@ public class GameCreateMatchBody implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the bestOf property value. Number of maps in the series (1, 3, 5, or 7).
+     * Gets the bestOf property value. Number of maps in the series. One of 1, 3, 5, or 7.
      * @return a {@link Double}
      */
     @jakarta.annotation.Nullable
@@ -254,7 +254,7 @@ public class GameCreateMatchBody implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the bestOf property value. Number of maps in the series (1, 3, 5, or 7).
+     * Sets the bestOf property value. Number of maps in the series. One of 1, 3, 5, or 7.
      * @param value Value to set for the bestOf property.
      */
     public void setBestOf(@jakarta.annotation.Nullable final Double value) {

@@ -3,10 +3,20 @@ import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../../models/error.dart';
 import '../../../models/league_rules.dart';
 import '../../../models/rules_request_body.dart';
+import './applyTemplate/apply_template_request_builder.dart';
+import './update/update_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \leagues\{identifier}\rules
 class RulesRequestBuilder extends BaseRequestBuilder<RulesRequestBuilder> {
+    ///  The applyTemplate property
+    ApplyTemplateRequestBuilder get applyTemplate {
+        return ApplyTemplateRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The update property
+    UpdateRequestBuilder get update {
+        return UpdateRequestBuilder(pathParameters, requestAdapter);
+    }
     /// Clones the requestbuilder.
     @override
     RulesRequestBuilder clone() {

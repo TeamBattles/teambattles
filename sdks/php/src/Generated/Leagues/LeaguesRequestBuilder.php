@@ -16,7 +16,7 @@ use TeamBattles\Sdk\Generated\Models\Error;
 /**
  * Builds and executes requests for operations under /leagues
 */
-class LeaguesRequestBuilder extends BaseRequestBuilder
+class LeaguesRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The templates property
@@ -24,7 +24,7 @@ class LeaguesRequestBuilder extends BaseRequestBuilder
     public function templates(): TemplatesRequestBuilder {
         return new TemplatesRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.leagues.item collection
      * @param string $identifier League slug or Convex league ID.

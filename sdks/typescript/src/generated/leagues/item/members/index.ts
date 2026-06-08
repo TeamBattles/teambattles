@@ -4,12 +4,26 @@
 // @ts-ignore
 import { createErrorEscapedFromDiscriminatorValue, createLeagueMembersFromDiscriminatorValue, type ErrorEscaped, type LeagueMembers } from '../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { AddRequestBuilderRequestsMetadata, type AddRequestBuilder } from './add/index.js';
+// @ts-ignore
+import { type WithMemberItemRequestBuilder, WithMemberItemRequestBuilderNavigationMetadata } from './item/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/members
  */
 export interface MembersRequestBuilder extends BaseRequestBuilder<MembersRequestBuilder> {
+    /**
+     * The add property
+     */
+    get add(): AddRequestBuilder;
+    /**
+     * Gets an item from the teambattles.leagues.item.members.item collection
+     * @param memberId League staff membership ID.
+     * @returns {WithMemberItemRequestBuilder}
+     */
+     byMemberId(memberId: string) : WithMemberItemRequestBuilder;
     /**
      * Returns staff members for a league resolved by slug. The API key owner must have a MEMBER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -30,6 +44,18 @@ export interface MembersRequestBuilder extends BaseRequestBuilder<MembersRequest
  * Uri template for the request builder.
  */
 export const MembersRequestBuilderUriTemplate = "{+baseurl}/leagues/{identifier}/members";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const MembersRequestBuilderNavigationMetadata: Record<Exclude<keyof MembersRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    byMemberId: {
+        navigationMetadata: WithMemberItemRequestBuilderNavigationMetadata,
+        pathParametersMappings: ["memberId"],
+    },
+    add: {
+        requestsMetadata: AddRequestBuilderRequestsMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

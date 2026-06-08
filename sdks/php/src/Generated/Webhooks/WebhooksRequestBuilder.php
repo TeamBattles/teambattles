@@ -17,7 +17,7 @@ use TeamBattles\Sdk\Generated\Webhooks\Item\WebhooksItemRequestBuilder;
 /**
  * Builds and executes requests for operations under /webhooks
 */
-class WebhooksRequestBuilder extends BaseRequestBuilder
+class WebhooksRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.webhooks.item collection

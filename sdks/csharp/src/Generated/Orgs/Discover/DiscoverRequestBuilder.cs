@@ -128,7 +128,7 @@ namespace TeamBattles.Sdk.Orgs.Discover
         /// Returns a neutral discovery list of active, public, non-disabled organizations. Results do not exclude organizations the API key owner belongs to and do not include join-request flags. Requires orgs.profile:read.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class DiscoverRequestBuilderGetQueryParameters
+        public partial class DiscoverRequestBuilderGetQueryParameters 
         {
             [QueryParameter("limit")]
             public int? Limit { get; set; }

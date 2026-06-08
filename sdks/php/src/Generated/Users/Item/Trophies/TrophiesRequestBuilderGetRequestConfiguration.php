@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class TrophiesRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration
+class TrophiesRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * Instantiates a new TrophiesRequestBuilderGetRequestConfiguration and sets the default values.

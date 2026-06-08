@@ -9,28 +9,28 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * API key owner's apply-to-join eligibility.
 */
-class LeagueApplyEligibility_eligibility implements Parsable
+class LeagueApplyEligibility_eligibility implements Parsable 
 {
     /**
      * @var array<LeagueApplyEligibility_eligibility_eligibleTeams>|null $eligibleTeams The eligibleTeams property
     */
     private ?array $eligibleTeams = null;
-
+    
     /**
      * @var bool|null $hasApprovedTeamHere The hasApprovedTeamHere property
     */
     private ?bool $hasApprovedTeamHere = null;
-
+    
     /**
      * @var bool|null $isAuthed The isAuthed property
     */
     private ?bool $isAuthed = null;
-
+    
     /**
      * @var array<LeagueApplyEligibility_eligibility_pendingTeams>|null $pendingTeams The pendingTeams property
     */
     private ?array $pendingTeams = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

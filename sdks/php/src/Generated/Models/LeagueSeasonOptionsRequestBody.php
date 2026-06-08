@@ -10,18 +10,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Season option selector.
 */
-class LeagueSeasonOptionsRequestBody implements AdditionalDataHolder, Parsable
+class LeagueSeasonOptionsRequestBody implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * @var string|null $gameId Game ID to list season options for.
     */
     private ?string $gameId = null;
-
+    
     /**
      * Instantiates a new LeagueSeasonOptionsRequestBody and sets the default values.
     */

@@ -3,10 +3,23 @@ import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../../models/bans_request_body.dart';
 import '../../../models/error.dart';
 import '../../../models/league_bans.dart';
+import './create/create_request_builder.dart';
+import './item/with_ban_item_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \leagues\{identifier}\bans
 class BansRequestBuilder extends BaseRequestBuilder<BansRequestBuilder> {
+    ///  The create property
+    CreateRequestBuilder get create {
+        return CreateRequestBuilder(pathParameters, requestAdapter);
+    }
+    /// Gets an item from the teambattles.leagues.item.bans.item collection
+    ///  [banId] League ban ID.
+    WithBanItemRequestBuilder byBanId(String banId) {
+        var urlTplParams = Map.of(pathParameters);
+        urlTplParams.putIfAbsent('banId', () => banId);
+        return WithBanItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /// Clones the requestbuilder.
     @override
     BansRequestBuilder clone() {

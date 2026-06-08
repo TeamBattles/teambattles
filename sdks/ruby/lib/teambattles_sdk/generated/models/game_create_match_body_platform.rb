@@ -1,7 +1,7 @@
 module TeamBattlesSdk
     module Generated
         module Models
-            ##
+            ## 
             # Match platform (e.g. CROSSPLAY).
             GameCreateMatchBodyPlatform = {
                 PC: :PC,

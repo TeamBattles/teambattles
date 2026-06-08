@@ -9,28 +9,28 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Result of a successful match forfeit.
 */
-class GameForfeitResponse implements Parsable
+class GameForfeitResponse implements Parsable 
 {
     /**
      * @var string|null $forfeitedByTeamId ID of the team that forfeited.
     */
     private ?string $forfeitedByTeamId = null;
-
+    
     /**
      * @var string|null $matchId ID of the forfeited match.
     */
     private ?string $matchId = null;
-
+    
     /**
      * @var bool|null $success The success property
     */
     private ?bool $success = null;
-
+    
     /**
      * @var string|null $timestamp Server response time (ISO 8601).
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

@@ -9,13 +9,13 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Success ack.
 */
-class WebhookOk implements Parsable
+class WebhookOk implements Parsable 
 {
     /**
      * @var bool|null $ok The ok property
     */
     private ?bool $ok = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

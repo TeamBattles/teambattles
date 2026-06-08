@@ -20,7 +20,7 @@ class WithDeliveryItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/webhooks/{id}/deliveries/{deliveryId}", path_parameters)
-
+    
     @property
     def replay(self) -> ReplayRequestBuilder:
         """
@@ -29,3 +29,5 @@ class WithDeliveryItemRequestBuilder(BaseRequestBuilder):
         from .replay.replay_request_builder import ReplayRequestBuilder
 
         return ReplayRequestBuilder(self.request_adapter, self.path_parameters)
+    
+

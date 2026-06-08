@@ -9,7 +9,7 @@ class LeagueApplyEligibility_eligibility_eligibleTeams(AdditionalDataHolder, Par
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
 
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> LeagueApplyEligibility_eligibility_eligibleTeams:
         """
@@ -20,7 +20,7 @@ class LeagueApplyEligibility_eligibility_eligibleTeams(AdditionalDataHolder, Par
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return LeagueApplyEligibility_eligibility_eligibleTeams()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -29,7 +29,7 @@ class LeagueApplyEligibility_eligibility_eligibleTeams(AdditionalDataHolder, Par
         fields: dict[str, Callable[[Any], None]] = {
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -39,3 +39,5 @@ class LeagueApplyEligibility_eligibility_eligibleTeams(AdditionalDataHolder, Par
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_additional_data_value(self.additional_data)
+    
+

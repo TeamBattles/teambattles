@@ -20,7 +20,7 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/leaderboards/organizations/{identifier}", path_parameters)
-
+    
     @property
     def rank(self) -> RankRequestBuilder:
         """
@@ -29,3 +29,5 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .rank.rank_request_builder import RankRequestBuilder
 
         return RankRequestBuilder(self.request_adapter, self.path_parameters)
+    
+

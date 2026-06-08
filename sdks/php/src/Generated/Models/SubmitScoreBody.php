@@ -19,9 +19,9 @@ class SubmitScoreBody implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var float|null $creatorTeamScore Creator team score. Must be a non-negative number.
+     * @var int|null $creatorTeamScore Creator team score (integer, 0-1000).
     */
-    private ?float $creatorTeamScore = null;
+    private ?int $creatorTeamScore = null;
     
     /**
      * @var string|null $mapId Map identifier string (e.g. dust2).
@@ -34,12 +34,17 @@ class SubmitScoreBody implements AdditionalDataHolder, Parsable
     private ?int $mapIndex = null;
     
     /**
-     * @var float|null $opponentTeamScore Accepted/opponent team score. Must be a non-negative number.
+     * @var int|null $opponentTeamScore Accepted/opponent team score (integer, 0-1000).
     */
-    private ?float $opponentTeamScore = null;
+    private ?int $opponentTeamScore = null;
     
     /**
-     * @var array<string>|null $screenshotUrls Optional screenshot URLs for the map result.
+     * @var array<string>|null $screenshotStorageIds Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).
+    */
+    private ?array $screenshotStorageIds = null;
+    
+    /**
+     * @var array<string>|null $screenshotUrls Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.
     */
     private ?array $screenshotUrls = null;
     
@@ -68,10 +73,10 @@ class SubmitScoreBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the creatorTeamScore property value. Creator team score. Must be a non-negative number.
-     * @return float|null
+     * Gets the creatorTeamScore property value. Creator team score (integer, 0-1000).
+     * @return int|null
     */
-    public function getCreatorTeamScore(): ?float {
+    public function getCreatorTeamScore(): ?int {
         return $this->creatorTeamScore;
     }
 
@@ -82,10 +87,18 @@ class SubmitScoreBody implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'creatorTeamScore' => fn(ParseNode $n) => $o->setCreatorTeamScore($n->getFloatValue()),
+            'creatorTeamScore' => fn(ParseNode $n) => $o->setCreatorTeamScore($n->getIntegerValue()),
             'mapId' => fn(ParseNode $n) => $o->setMapId($n->getStringValue()),
             'mapIndex' => fn(ParseNode $n) => $o->setMapIndex($n->getIntegerValue()),
-            'opponentTeamScore' => fn(ParseNode $n) => $o->setOpponentTeamScore($n->getFloatValue()),
+            'opponentTeamScore' => fn(ParseNode $n) => $o->setOpponentTeamScore($n->getIntegerValue()),
+            'screenshotStorageIds' => function (ParseNode $n) {
+                $val = $n->getCollectionOfPrimitiveValues();
+                if (is_array($val)) {
+                    TypeUtils::validateCollectionValues($val, 'string');
+                }
+                /** @var array<string>|null $val */
+                $this->setScreenshotStorageIds($val);
+            },
             'screenshotUrls' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
                 if (is_array($val)) {
@@ -114,15 +127,23 @@ class SubmitScoreBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the opponentTeamScore property value. Accepted/opponent team score. Must be a non-negative number.
-     * @return float|null
+     * Gets the opponentTeamScore property value. Accepted/opponent team score (integer, 0-1000).
+     * @return int|null
     */
-    public function getOpponentTeamScore(): ?float {
+    public function getOpponentTeamScore(): ?int {
         return $this->opponentTeamScore;
     }
 
     /**
-     * Gets the screenshotUrls property value. Optional screenshot URLs for the map result.
+     * Gets the screenshotStorageIds property value. Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).
+     * @return array<string>|null
+    */
+    public function getScreenshotStorageIds(): ?array {
+        return $this->screenshotStorageIds;
+    }
+
+    /**
+     * Gets the screenshotUrls property value. Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.
      * @return array<string>|null
     */
     public function getScreenshotUrls(): ?array {
@@ -134,10 +155,11 @@ class SubmitScoreBody implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeFloatValue('creatorTeamScore', $this->getCreatorTeamScore());
+        $writer->writeIntegerValue('creatorTeamScore', $this->getCreatorTeamScore());
         $writer->writeStringValue('mapId', $this->getMapId());
         $writer->writeIntegerValue('mapIndex', $this->getMapIndex());
-        $writer->writeFloatValue('opponentTeamScore', $this->getOpponentTeamScore());
+        $writer->writeIntegerValue('opponentTeamScore', $this->getOpponentTeamScore());
+        $writer->writeCollectionOfPrimitiveValues('screenshotStorageIds', $this->getScreenshotStorageIds());
         $writer->writeCollectionOfPrimitiveValues('screenshotUrls', $this->getScreenshotUrls());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -151,10 +173,10 @@ class SubmitScoreBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the creatorTeamScore property value. Creator team score. Must be a non-negative number.
-     * @param float|null $value Value to set for the creatorTeamScore property.
+     * Sets the creatorTeamScore property value. Creator team score (integer, 0-1000).
+     * @param int|null $value Value to set for the creatorTeamScore property.
     */
-    public function setCreatorTeamScore(?float $value): void {
+    public function setCreatorTeamScore(?int $value): void {
         $this->creatorTeamScore = $value;
     }
 
@@ -175,15 +197,23 @@ class SubmitScoreBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the opponentTeamScore property value. Accepted/opponent team score. Must be a non-negative number.
-     * @param float|null $value Value to set for the opponentTeamScore property.
+     * Sets the opponentTeamScore property value. Accepted/opponent team score (integer, 0-1000).
+     * @param int|null $value Value to set for the opponentTeamScore property.
     */
-    public function setOpponentTeamScore(?float $value): void {
+    public function setOpponentTeamScore(?int $value): void {
         $this->opponentTeamScore = $value;
     }
 
     /**
-     * Sets the screenshotUrls property value. Optional screenshot URLs for the map result.
+     * Sets the screenshotStorageIds property value. Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).
+     * @param array<string>|null $value Value to set for the screenshotStorageIds property.
+    */
+    public function setScreenshotStorageIds(?array $value): void {
+        $this->screenshotStorageIds = $value;
+    }
+
+    /**
+     * Sets the screenshotUrls property value. Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.
      * @param array<string>|null $value Value to set for the screenshotUrls property.
     */
     public function setScreenshotUrls(?array $value): void {

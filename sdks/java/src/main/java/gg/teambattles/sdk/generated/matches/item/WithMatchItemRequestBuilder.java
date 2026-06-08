@@ -8,7 +8,14 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.matches.item.accept.AcceptRequestBuilder;
+import gg.teambattles.sdk.generated.matches.item.attendance.AttendanceRequestBuilder;
+import gg.teambattles.sdk.generated.matches.item.cancel.CancelRequestBuilder;
+import gg.teambattles.sdk.generated.matches.item.chat.ChatRequestBuilder;
+import gg.teambattles.sdk.generated.matches.item.forfeit.ForfeitRequestBuilder;
+import gg.teambattles.sdk.generated.matches.item.lobbycode.LobbyCodeRequestBuilder;
 import gg.teambattles.sdk.generated.matches.item.players.PlayersRequestBuilder;
+import gg.teambattles.sdk.generated.matches.item.ready.ReadyRequestBuilder;
 import gg.teambattles.sdk.generated.matches.item.scores.ScoresRequestBuilder;
 import gg.teambattles.sdk.generated.models.ApiMatchDetailResponse;
 import gg.teambattles.sdk.generated.models.Error;
@@ -22,12 +29,68 @@ import java.util.Objects;
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class WithMatchItemRequestBuilder extends BaseRequestBuilder {
     /**
+     * The accept property
+     * @return a {@link AcceptRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public AcceptRequestBuilder accept() {
+        return new AcceptRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The attendance property
+     * @return a {@link AttendanceRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public AttendanceRequestBuilder attendance() {
+        return new AttendanceRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The cancel property
+     * @return a {@link CancelRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public CancelRequestBuilder cancel() {
+        return new CancelRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The chat property
+     * @return a {@link ChatRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ChatRequestBuilder chat() {
+        return new ChatRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The forfeit property
+     * @return a {@link ForfeitRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ForfeitRequestBuilder forfeit() {
+        return new ForfeitRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The lobbyCode property
+     * @return a {@link LobbyCodeRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public LobbyCodeRequestBuilder lobbyCode() {
+        return new LobbyCodeRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
      * The players property
      * @return a {@link PlayersRequestBuilder}
      */
     @jakarta.annotation.Nonnull
     public PlayersRequestBuilder players() {
         return new PlayersRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The ready property
+     * @return a {@link ReadyRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ReadyRequestBuilder ready() {
+        return new ReadyRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * The scores property

@@ -8,6 +8,8 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.leagues.item.members.add.AddRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.members.item.WithMemberItemRequestBuilder;
 import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.models.LeagueMembers;
 import java.util.Collection;
@@ -19,6 +21,26 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class MembersRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The add property
+     * @return a {@link AddRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public AddRequestBuilder add() {
+        return new AddRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * Gets an item from the gg.teambattles.sdk.generated.leagues.item.members.item collection
+     * @param memberId League staff membership ID.
+     * @return a {@link WithMemberItemRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public WithMemberItemRequestBuilder byMemberId(@jakarta.annotation.Nonnull final String memberId) {
+        Objects.requireNonNull(memberId);
+        final HashMap<String, Object> urlTplParams = new HashMap<String, Object>(this.pathParameters);
+        urlTplParams.put("memberId", memberId);
+        return new WithMemberItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /**
      * Instantiates a new {@link MembersRequestBuilder} and sets the default values.
      * @param pathParameters Path parameters for the request

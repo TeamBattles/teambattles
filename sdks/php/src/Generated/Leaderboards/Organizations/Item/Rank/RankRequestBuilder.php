@@ -14,7 +14,7 @@ use TeamBattles\Sdk\Generated\Models\LeaderboardRankResponse;
 /**
  * Builds and executes requests for operations under /leaderboards/organizations/{identifier}/rank
 */
-class RankRequestBuilder extends BaseRequestBuilder
+class RankRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new RankRequestBuilder and sets the default values.

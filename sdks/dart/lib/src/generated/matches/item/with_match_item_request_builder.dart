@@ -2,15 +2,50 @@
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../models/api_match_detail_response.dart';
 import '../../models/error.dart';
+import './accept/accept_request_builder.dart';
+import './attendance/attendance_request_builder.dart';
+import './cancel/cancel_request_builder.dart';
+import './chat/chat_request_builder.dart';
+import './forfeit/forfeit_request_builder.dart';
+import './lobbyCode/lobby_code_request_builder.dart';
 import './players/players_request_builder.dart';
+import './ready/ready_request_builder.dart';
 import './scores/scores_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \matches\{matchId}
 class WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatchItemRequestBuilder> {
+    ///  The accept property
+    AcceptRequestBuilder get accept {
+        return AcceptRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The attendance property
+    AttendanceRequestBuilder get attendance {
+        return AttendanceRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The cancel property
+    CancelRequestBuilder get cancel {
+        return CancelRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The chat property
+    ChatRequestBuilder get chat {
+        return ChatRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The forfeit property
+    ForfeitRequestBuilder get forfeit {
+        return ForfeitRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The lobbyCode property
+    LobbyCodeRequestBuilder get lobbyCode {
+        return LobbyCodeRequestBuilder(pathParameters, requestAdapter);
+    }
     ///  The players property
     PlayersRequestBuilder get players {
         return PlayersRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The ready property
+    ReadyRequestBuilder get ready {
+        return ReadyRequestBuilder(pathParameters, requestAdapter);
     }
     ///  The scores property
     ScoresRequestBuilder get scores {

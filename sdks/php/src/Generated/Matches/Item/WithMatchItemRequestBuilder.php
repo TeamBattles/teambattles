@@ -8,7 +8,14 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Matches\Item\Accept\AcceptRequestBuilder;
+use TeamBattles\Sdk\Generated\Matches\Item\Attendance\AttendanceRequestBuilder;
+use TeamBattles\Sdk\Generated\Matches\Item\Cancel\CancelRequestBuilder;
+use TeamBattles\Sdk\Generated\Matches\Item\Chat\ChatRequestBuilder;
+use TeamBattles\Sdk\Generated\Matches\Item\Forfeit\ForfeitRequestBuilder;
+use TeamBattles\Sdk\Generated\Matches\Item\LobbyCode\LobbyCodeRequestBuilder;
 use TeamBattles\Sdk\Generated\Matches\Item\Players\PlayersRequestBuilder;
+use TeamBattles\Sdk\Generated\Matches\Item\Ready\ReadyRequestBuilder;
 use TeamBattles\Sdk\Generated\Matches\Item\Scores\ScoresRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\ApiMatchDetailResponse;
 use TeamBattles\Sdk\Generated\Models\Error;
@@ -16,22 +23,71 @@ use TeamBattles\Sdk\Generated\Models\Error;
 /**
  * Builds and executes requests for operations under /matches/{matchId}
 */
-class WithMatchItemRequestBuilder extends BaseRequestBuilder
+class WithMatchItemRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The accept property
+    */
+    public function accept(): AcceptRequestBuilder {
+        return new AcceptRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The attendance property
+    */
+    public function attendance(): AttendanceRequestBuilder {
+        return new AttendanceRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The cancel property
+    */
+    public function cancel(): CancelRequestBuilder {
+        return new CancelRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The chat property
+    */
+    public function chat(): ChatRequestBuilder {
+        return new ChatRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The forfeit property
+    */
+    public function forfeit(): ForfeitRequestBuilder {
+        return new ForfeitRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The lobbyCode property
+    */
+    public function lobbyCode(): LobbyCodeRequestBuilder {
+        return new LobbyCodeRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * The players property
     */
     public function players(): PlayersRequestBuilder {
         return new PlayersRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
+    /**
+     * The ready property
+    */
+    public function ready(): ReadyRequestBuilder {
+        return new ReadyRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * The scores property
     */
     public function scores(): ScoresRequestBuilder {
         return new ScoresRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Instantiates a new WithMatchItemRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

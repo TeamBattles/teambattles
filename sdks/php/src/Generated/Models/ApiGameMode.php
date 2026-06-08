@@ -10,48 +10,48 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 /**
  * Static game mode definition.
 */
-class ApiGameMode implements Parsable
+class ApiGameMode implements Parsable 
 {
     /**
      * @var ApiGameMode_descriptionKey|null $descriptionKey The descriptionKey property
     */
     private ?ApiGameMode_descriptionKey $descriptionKey = null;
-
+    
     /**
      * @var string|null $id The id property
     */
     private ?string $id = null;
-
+    
     /**
      * @var ApiGameMode_image|null $image The image property
     */
     private ?ApiGameMode_image $image = null;
-
+    
     /**
      * @var array<string>|null $mapIds The mapIds property
     */
     private ?array $mapIds = null;
-
+    
     /**
      * @var string|null $nameKey The nameKey property
     */
     private ?string $nameKey = null;
-
+    
     /**
      * @var ApiGameMode_rewardBonus|null $rewardBonus The rewardBonus property
     */
     private ?ApiGameMode_rewardBonus $rewardBonus = null;
-
+    
     /**
      * @var ApiGameMode_shortName|null $shortName The shortName property
     */
     private ?ApiGameMode_shortName $shortName = null;
-
+    
     /**
      * @var bool|null $supportsDraftToggle The supportsDraftToggle property
     */
     private ?bool $supportsDraftToggle = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

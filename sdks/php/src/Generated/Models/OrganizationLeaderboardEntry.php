@@ -9,33 +9,33 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Organization leaderboard row.
 */
-class OrganizationLeaderboardEntry implements Parsable
+class OrganizationLeaderboardEntry implements Parsable 
 {
     /**
      * @var OrganizationLeaderboardEntry_gameSlug|null $gameSlug The gameSlug property
     */
     private ?OrganizationLeaderboardEntry_gameSlug $gameSlug = null;
-
+    
     /**
      * @var string|null $id Organization ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var ApiOrganizationSummary|null $organization Small API-safe organization summary.
     */
     private ?ApiOrganizationSummary $organization = null;
-
+    
     /**
      * @var int|null $rank The rank property
     */
     private ?int $rank = null;
-
+    
     /**
      * @var OrganizationLeaderboardEntry_stats|null $stats The stats property
     */
     private ?OrganizationLeaderboardEntry_stats $stats = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

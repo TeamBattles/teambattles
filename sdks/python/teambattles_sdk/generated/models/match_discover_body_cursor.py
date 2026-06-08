@@ -16,7 +16,7 @@ class MatchDiscoverBody_cursor(ComposedTypeWrapper, Parsable):
     match_discover_body_cursor_member1: Optional[MatchDiscoverBody_cursorMember1] = None
     # Composed type representation for type str
     string: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MatchDiscoverBody_cursor:
         """
@@ -34,7 +34,7 @@ class MatchDiscoverBody_cursor(ComposedTypeWrapper, Parsable):
 
             result.match_discover_body_cursor_member1 = MatchDiscoverBody_cursorMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class MatchDiscoverBody_cursor(ComposedTypeWrapper, Parsable):
         if self.match_discover_body_cursor_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.match_discover_body_cursor_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class MatchDiscoverBody_cursor(ComposedTypeWrapper, Parsable):
             writer.write_str_value(None, self.string)
         else:
             writer.write_object_value(None, self.match_discover_body_cursor_member1)
+    
+

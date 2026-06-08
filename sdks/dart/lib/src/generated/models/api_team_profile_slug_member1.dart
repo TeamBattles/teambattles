@@ -7,7 +7,7 @@ class ApiTeamProfileSlugMember1 implements AdditionalDataHolder, Parsable {
     @override
     Map<String, Object?> additionalData;
     /// Instantiates a new [ApiTeamProfileSlugMember1] and sets the default values.
-    ApiTeamProfileSlugMember1() :
+    ApiTeamProfileSlugMember1() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

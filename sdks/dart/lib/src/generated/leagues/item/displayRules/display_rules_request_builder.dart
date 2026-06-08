@@ -3,10 +3,28 @@ import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../../models/error.dart';
 import '../../../models/league_display_rules.dart';
 import '../../../models/league_display_rules_request_body.dart';
+import './item/with_display_rule_item_request_builder.dart';
+import './reorder/reorder_request_builder.dart';
+import './upsert/upsert_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \leagues\{identifier}\display-rules
 class DisplayRulesRequestBuilder extends BaseRequestBuilder<DisplayRulesRequestBuilder> {
+    ///  The reorder property
+    ReorderRequestBuilder get reorder {
+        return ReorderRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The upsert property
+    UpsertRequestBuilder get upsert {
+        return UpsertRequestBuilder(pathParameters, requestAdapter);
+    }
+    /// Gets an item from the teambattles.leagues.item.displayRules.item collection
+    ///  [displayRuleId] Display rule ID.
+    WithDisplayRuleItemRequestBuilder byDisplayRuleId(String displayRuleId) {
+        var urlTplParams = Map.of(pathParameters);
+        urlTplParams.putIfAbsent('displayRuleId', () => displayRuleId);
+        return WithDisplayRuleItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /// Clones the requestbuilder.
     @override
     DisplayRulesRequestBuilder clone() {

@@ -7,7 +7,7 @@ class ApiGameCatalogEntryRulesLinkMember1 implements AdditionalDataHolder, Parsa
     @override
     Map<String, Object?> additionalData;
     /// Instantiates a new [ApiGameCatalogEntryRulesLinkMember1] and sets the default values.
-    ApiGameCatalogEntryRulesLinkMember1() :
+    ApiGameCatalogEntryRulesLinkMember1() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

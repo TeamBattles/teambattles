@@ -14,7 +14,7 @@ use TeamBattles\Sdk\Generated\Models\Error;
 /**
  * Builds and executes requests for operations under /games/{id}/playlists
 */
-class PlaylistsRequestBuilder extends BaseRequestBuilder
+class PlaylistsRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new PlaylistsRequestBuilder and sets the default values.

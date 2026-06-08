@@ -8,6 +8,9 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Leagues\Item\DisplayRules\Item\WithDisplayRuleItemRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\DisplayRules\Reorder\ReorderRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\DisplayRules\Upsert\UpsertRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\Error;
 use TeamBattles\Sdk\Generated\Models\LeagueDisplayRules;
 use TeamBattles\Sdk\Generated\Models\LeagueDisplayRulesRequestBody;
@@ -15,8 +18,33 @@ use TeamBattles\Sdk\Generated\Models\LeagueDisplayRulesRequestBody;
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/display-rules
 */
-class DisplayRulesRequestBuilder extends BaseRequestBuilder
+class DisplayRulesRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The reorder property
+    */
+    public function reorder(): ReorderRequestBuilder {
+        return new ReorderRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The upsert property
+    */
+    public function upsert(): UpsertRequestBuilder {
+        return new UpsertRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * Gets an item from the TeamBattles/Sdk/Generated.leagues.item.displayRules.item collection
+     * @param string $displayRuleId Display rule ID.
+     * @return WithDisplayRuleItemRequestBuilder
+    */
+    public function byDisplayRuleId(string $displayRuleId): WithDisplayRuleItemRequestBuilder {
+        $urlTplParams = $this->pathParameters;
+        $urlTplParams['displayRuleId'] = $displayRuleId;
+        return new WithDisplayRuleItemRequestBuilder($urlTplParams, $this->requestAdapter);
+    }
+
     /**
      * Instantiates a new DisplayRulesRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

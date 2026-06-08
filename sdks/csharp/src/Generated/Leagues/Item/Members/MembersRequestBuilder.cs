@@ -8,6 +8,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Leagues.Item.Members.Add;
+using TeamBattles.Sdk.Leagues.Item.Members.Item;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Leagues.Item.Members
 {
@@ -17,6 +19,23 @@ namespace TeamBattles.Sdk.Leagues.Item.Members
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MembersRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The add property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Members.Add.AddRequestBuilder Add
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Members.Add.AddRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>Gets an item from the TeamBattles.Sdk.leagues.item.members.item collection</summary>
+        /// <param name="position">League staff membership ID.</param>
+        /// <returns>A <see cref="global::TeamBattles.Sdk.Leagues.Item.Members.Item.WithMemberItemRequestBuilder"/></returns>
+        public global::TeamBattles.Sdk.Leagues.Item.Members.Item.WithMemberItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("memberId", position);
+                return new global::TeamBattles.Sdk.Leagues.Item.Members.Item.WithMemberItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Leagues.Item.Members.MembersRequestBuilder"/> and sets the default values.
         /// </summary>

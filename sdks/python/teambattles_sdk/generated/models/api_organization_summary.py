@@ -27,7 +27,7 @@ class ApiOrganizationSummary(Parsable):
     tag: Optional[ApiOrganizationSummary_tag] = None
     # Public profile visibility setting.
     visibility: Optional[ProfileVisibility] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiOrganizationSummary:
         """
@@ -38,7 +38,7 @@ class ApiOrganizationSummary(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiOrganizationSummary()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -63,7 +63,7 @@ class ApiOrganizationSummary(Parsable):
             "visibility": lambda n : setattr(self, 'visibility', n.get_enum_value(ProfileVisibility)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -78,3 +78,5 @@ class ApiOrganizationSummary(Parsable):
         writer.write_object_value("slug", self.slug)
         writer.write_object_value("tag", self.tag)
         writer.write_enum_value("visibility", self.visibility)
+    
+

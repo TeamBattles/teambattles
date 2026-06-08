@@ -8,7 +8,7 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class TeamsRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration
+class TeamsRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * Instantiates a new TeamsRequestBuilderGetRequestConfiguration and sets the default values.

@@ -98,7 +98,7 @@ namespace TeamBattles.Sdk.Leaderboards.Teams.Item.Rank
         /// Returns a team&apos;s rank for the requested leaderboard filters. Private teams return rank null unless they are otherwise excluded from the API leaderboard. Requires teams.profile:read.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class RankRequestBuilderGetQueryParameters
+        public partial class RankRequestBuilderGetQueryParameters 
         {
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

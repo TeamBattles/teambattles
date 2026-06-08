@@ -16,7 +16,7 @@ class Team_avatarUrl(ComposedTypeWrapper, Parsable):
     string: Optional[str] = None
     # Composed type representation for type Team_avatarUrlMember1
     team_avatar_url_member1: Optional[Team_avatarUrlMember1] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Team_avatarUrl:
         """
@@ -34,7 +34,7 @@ class Team_avatarUrl(ComposedTypeWrapper, Parsable):
 
             result.team_avatar_url_member1 = Team_avatarUrlMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class Team_avatarUrl(ComposedTypeWrapper, Parsable):
         if self.team_avatar_url_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.team_avatar_url_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class Team_avatarUrl(ComposedTypeWrapper, Parsable):
             writer.write_str_value(None, self.string)
         else:
             writer.write_object_value(None, self.team_avatar_url_member1)
+    
+

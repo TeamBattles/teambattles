@@ -3,11 +3,16 @@ import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../../models/error.dart';
 import '../../../models/league_seasons.dart';
 import '../../../models/seasons_request_body.dart';
+import './create/create_request_builder.dart';
 import './item/with_season_item_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \leagues\{identifier}\seasons
 class SeasonsRequestBuilder extends BaseRequestBuilder<SeasonsRequestBuilder> {
+    ///  The create property
+    CreateRequestBuilder get create {
+        return CreateRequestBuilder(pathParameters, requestAdapter);
+    }
     /// Gets an item from the teambattles.leagues.item.seasons.item collection
     ///  [seasonId] League season ID.
     WithSeasonItemRequestBuilder bySeasonId(String seasonId) {

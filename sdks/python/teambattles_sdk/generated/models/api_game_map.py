@@ -23,7 +23,7 @@ class ApiGameMap(Parsable):
     minimap_image: Optional[ApiGameMap_minimapImage] = None
     # The nameKey property
     name_key: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiGameMap:
         """
@@ -34,7 +34,7 @@ class ApiGameMap(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiGameMap()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -54,7 +54,7 @@ class ApiGameMap(Parsable):
             "nameKey": lambda n : setattr(self, 'name_key', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -68,3 +68,5 @@ class ApiGameMap(Parsable):
         writer.write_bool_value("isReleased", self.is_released)
         writer.write_object_value("minimapImage", self.minimap_image)
         writer.write_str_value("nameKey", self.name_key)
+    
+

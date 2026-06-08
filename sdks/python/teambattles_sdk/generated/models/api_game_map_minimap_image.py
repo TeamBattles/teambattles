@@ -16,7 +16,7 @@ class ApiGameMap_minimapImage(ComposedTypeWrapper, Parsable):
     api_game_map_minimap_image_member1: Optional[ApiGameMap_minimapImageMember1] = None
     # Composed type representation for type str
     string: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiGameMap_minimapImage:
         """
@@ -34,7 +34,7 @@ class ApiGameMap_minimapImage(ComposedTypeWrapper, Parsable):
 
             result.api_game_map_minimap_image_member1 = ApiGameMap_minimapImageMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class ApiGameMap_minimapImage(ComposedTypeWrapper, Parsable):
         if self.api_game_map_minimap_image_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.api_game_map_minimap_image_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class ApiGameMap_minimapImage(ComposedTypeWrapper, Parsable):
             writer.write_str_value(None, self.string)
         else:
             writer.write_object_value(None, self.api_game_map_minimap_image_member1)
+    
+

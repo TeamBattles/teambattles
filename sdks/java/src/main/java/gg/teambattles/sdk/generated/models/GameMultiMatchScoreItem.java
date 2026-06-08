@@ -17,9 +17,9 @@ public class GameMultiMatchScoreItem implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * Score for the creator team (non-negative).
+     * Score for the creator team (integer, 0-1000).
      */
-    private Double creatorTeamScore;
+    private Integer creatorTeamScore;
     /**
      * Identifier of the map that was played.
      */
@@ -33,15 +33,19 @@ public class GameMultiMatchScoreItem implements AdditionalDataHolder, Parsable {
      */
     private String matchId;
     /**
-     * Score for the opponent (accepted) team (non-negative).
+     * Score for the opponent (accepted) team (integer, 0-1000).
      */
-    private Double opponentTeamScore;
+    private Integer opponentTeamScore;
     /**
      * Optional per-player stats keyed by user ID.
      */
     private GameMultiMatchScoreItemPlayerStats playerStats;
     /**
-     * Optional screenshot URLs supporting the reported score.
+     * Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+     */
+    private java.util.List<String> screenshotStorageIds;
+    /**
+     * Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
      */
     private java.util.List<String> screenshotUrls;
     /**
@@ -69,11 +73,11 @@ public class GameMultiMatchScoreItem implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the creatorTeamScore property value. Score for the creator team (non-negative).
-     * @return a {@link Double}
+     * Gets the creatorTeamScore property value. Score for the creator team (integer, 0-1000).
+     * @return a {@link Integer}
      */
     @jakarta.annotation.Nullable
-    public Double getCreatorTeamScore() {
+    public Integer getCreatorTeamScore() {
         return this.creatorTeamScore;
     }
     /**
@@ -82,13 +86,14 @@ public class GameMultiMatchScoreItem implements AdditionalDataHolder, Parsable {
      */
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(7);
-        deserializerMap.put("creatorTeamScore", (n) -> { this.setCreatorTeamScore(n.getDoubleValue()); });
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(8);
+        deserializerMap.put("creatorTeamScore", (n) -> { this.setCreatorTeamScore(n.getIntegerValue()); });
         deserializerMap.put("mapId", (n) -> { this.setMapId(n.getStringValue()); });
         deserializerMap.put("mapIndex", (n) -> { this.setMapIndex(n.getIntegerValue()); });
         deserializerMap.put("matchId", (n) -> { this.setMatchId(n.getStringValue()); });
-        deserializerMap.put("opponentTeamScore", (n) -> { this.setOpponentTeamScore(n.getDoubleValue()); });
+        deserializerMap.put("opponentTeamScore", (n) -> { this.setOpponentTeamScore(n.getIntegerValue()); });
         deserializerMap.put("playerStats", (n) -> { this.setPlayerStats(n.getObjectValue(GameMultiMatchScoreItemPlayerStats::createFromDiscriminatorValue)); });
+        deserializerMap.put("screenshotStorageIds", (n) -> { this.setScreenshotStorageIds(n.getCollectionOfPrimitiveValues(String.class)); });
         deserializerMap.put("screenshotUrls", (n) -> { this.setScreenshotUrls(n.getCollectionOfPrimitiveValues(String.class)); });
         return deserializerMap;
     }
@@ -117,11 +122,11 @@ public class GameMultiMatchScoreItem implements AdditionalDataHolder, Parsable {
         return this.matchId;
     }
     /**
-     * Gets the opponentTeamScore property value. Score for the opponent (accepted) team (non-negative).
-     * @return a {@link Double}
+     * Gets the opponentTeamScore property value. Score for the opponent (accepted) team (integer, 0-1000).
+     * @return a {@link Integer}
      */
     @jakarta.annotation.Nullable
-    public Double getOpponentTeamScore() {
+    public Integer getOpponentTeamScore() {
         return this.opponentTeamScore;
     }
     /**
@@ -133,7 +138,15 @@ public class GameMultiMatchScoreItem implements AdditionalDataHolder, Parsable {
         return this.playerStats;
     }
     /**
-     * Gets the screenshotUrls property value. Optional screenshot URLs supporting the reported score.
+     * Gets the screenshotStorageIds property value. Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+     * @return a {@link java.util.List<String>}
+     */
+    @jakarta.annotation.Nullable
+    public java.util.List<String> getScreenshotStorageIds() {
+        return this.screenshotStorageIds;
+    }
+    /**
+     * Gets the screenshotUrls property value. Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
      * @return a {@link java.util.List<String>}
      */
     @jakarta.annotation.Nullable
@@ -146,12 +159,13 @@ public class GameMultiMatchScoreItem implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeDoubleValue("creatorTeamScore", this.getCreatorTeamScore());
+        writer.writeIntegerValue("creatorTeamScore", this.getCreatorTeamScore());
         writer.writeStringValue("mapId", this.getMapId());
         writer.writeIntegerValue("mapIndex", this.getMapIndex());
         writer.writeStringValue("matchId", this.getMatchId());
-        writer.writeDoubleValue("opponentTeamScore", this.getOpponentTeamScore());
+        writer.writeIntegerValue("opponentTeamScore", this.getOpponentTeamScore());
         writer.writeObjectValue("playerStats", this.getPlayerStats());
+        writer.writeCollectionOfPrimitiveValues("screenshotStorageIds", this.getScreenshotStorageIds());
         writer.writeCollectionOfPrimitiveValues("screenshotUrls", this.getScreenshotUrls());
         writer.writeAdditionalData(this.getAdditionalData());
     }
@@ -163,10 +177,10 @@ public class GameMultiMatchScoreItem implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the creatorTeamScore property value. Score for the creator team (non-negative).
+     * Sets the creatorTeamScore property value. Score for the creator team (integer, 0-1000).
      * @param value Value to set for the creatorTeamScore property.
      */
-    public void setCreatorTeamScore(@jakarta.annotation.Nullable final Double value) {
+    public void setCreatorTeamScore(@jakarta.annotation.Nullable final Integer value) {
         this.creatorTeamScore = value;
     }
     /**
@@ -191,10 +205,10 @@ public class GameMultiMatchScoreItem implements AdditionalDataHolder, Parsable {
         this.matchId = value;
     }
     /**
-     * Sets the opponentTeamScore property value. Score for the opponent (accepted) team (non-negative).
+     * Sets the opponentTeamScore property value. Score for the opponent (accepted) team (integer, 0-1000).
      * @param value Value to set for the opponentTeamScore property.
      */
-    public void setOpponentTeamScore(@jakarta.annotation.Nullable final Double value) {
+    public void setOpponentTeamScore(@jakarta.annotation.Nullable final Integer value) {
         this.opponentTeamScore = value;
     }
     /**
@@ -205,7 +219,14 @@ public class GameMultiMatchScoreItem implements AdditionalDataHolder, Parsable {
         this.playerStats = value;
     }
     /**
-     * Sets the screenshotUrls property value. Optional screenshot URLs supporting the reported score.
+     * Sets the screenshotStorageIds property value. Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+     * @param value Value to set for the screenshotStorageIds property.
+     */
+    public void setScreenshotStorageIds(@jakarta.annotation.Nullable final java.util.List<String> value) {
+        this.screenshotStorageIds = value;
+    }
+    /**
+     * Sets the screenshotUrls property value. Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
      * @param value Value to set for the screenshotUrls property.
      */
     public void setScreenshotUrls(@jakarta.annotation.Nullable final java.util.List<String> value) {

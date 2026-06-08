@@ -16,6 +16,8 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.error import Error
     from ....models.league_members import LeagueMembers
+    from .add.add_request_builder import AddRequestBuilder
+    from .item.with_member_item_request_builder import WithMemberItemRequestBuilder
 
 class MembersRequestBuilder(BaseRequestBuilder):
     """
@@ -29,6 +31,20 @@ class MembersRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/leagues/{identifier}/members", path_parameters)
+    
+    def by_member_id(self,member_id: str) -> WithMemberItemRequestBuilder:
+        """
+        Gets an item from the teambattles_sdk.generated.leagues.item.members.item collection
+        param member_id: League staff membership ID.
+        Returns: WithMemberItemRequestBuilder
+        """
+        if member_id is None:
+            raise TypeError("member_id cannot be null.")
+        from .item.with_member_item_request_builder import WithMemberItemRequestBuilder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["memberId"] = member_id
+        return WithMemberItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[LeagueMembers]:
         """
@@ -72,6 +88,15 @@ class MembersRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MembersRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def add(self) -> AddRequestBuilder:
+        """
+        The add property
+        """
+        from .add.add_request_builder import AddRequestBuilder
+
+        return AddRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MembersRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):

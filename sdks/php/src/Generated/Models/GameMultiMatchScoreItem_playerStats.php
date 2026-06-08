@@ -10,13 +10,13 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Optional per-player stats keyed by user ID.
 */
-class GameMultiMatchScoreItem_playerStats implements AdditionalDataHolder, Parsable
+class GameMultiMatchScoreItem_playerStats implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * Instantiates a new GameMultiMatchScoreItem_playerStats and sets the default values.
     */

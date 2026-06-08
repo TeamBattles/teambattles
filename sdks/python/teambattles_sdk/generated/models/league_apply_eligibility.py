@@ -16,7 +16,7 @@ class LeagueApplyEligibility(Parsable):
     eligibility: Optional[LeagueApplyEligibility_eligibility] = None
     # Response generation time (ISO 8601).
     timestamp: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> LeagueApplyEligibility:
         """
@@ -27,7 +27,7 @@ class LeagueApplyEligibility(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return LeagueApplyEligibility()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -42,7 +42,7 @@ class LeagueApplyEligibility(Parsable):
             "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -53,3 +53,5 @@ class LeagueApplyEligibility(Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_object_value("eligibility", self.eligibility)
         writer.write_str_value("timestamp", self.timestamp)
+    
+

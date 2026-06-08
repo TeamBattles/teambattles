@@ -20,7 +20,7 @@ class GamesItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/games/{id}", path_parameters)
-
+    
     @property
     def playlists(self) -> PlaylistsRequestBuilder:
         """
@@ -29,3 +29,5 @@ class GamesItemRequestBuilder(BaseRequestBuilder):
         from .playlists.playlists_request_builder import PlaylistsRequestBuilder
 
         return PlaylistsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+

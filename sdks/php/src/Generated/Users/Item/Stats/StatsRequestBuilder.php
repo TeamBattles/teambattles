@@ -13,7 +13,7 @@ use TeamBattles\Sdk\Generated\Models\Error;
 /**
  * Builds and executes requests for operations under /users/{identifier}/stats
 */
-class StatsRequestBuilder extends BaseRequestBuilder
+class StatsRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new StatsRequestBuilder and sets the default values.

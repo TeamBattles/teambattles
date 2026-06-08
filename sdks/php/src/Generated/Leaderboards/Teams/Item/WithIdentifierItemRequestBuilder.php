@@ -9,7 +9,7 @@ use TeamBattles\Sdk\Generated\Leaderboards\Teams\Item\Rank\RankRequestBuilder;
 /**
  * Builds and executes requests for operations under /leaderboards/teams/{identifier}
 */
-class WithIdentifierItemRequestBuilder extends BaseRequestBuilder
+class WithIdentifierItemRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The rank property
@@ -17,7 +17,7 @@ class WithIdentifierItemRequestBuilder extends BaseRequestBuilder
     public function rank(): RankRequestBuilder {
         return new RankRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Instantiates a new WithIdentifierItemRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

@@ -16,7 +16,7 @@ class LeaderboardRankResponse_rank(ComposedTypeWrapper, Parsable):
     integer: Optional[int] = None
     # Composed type representation for type LeaderboardRankResponse_rankMember1
     leaderboard_rank_response_rank_member1: Optional[LeaderboardRankResponse_rankMember1] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> LeaderboardRankResponse_rank:
         """
@@ -34,7 +34,7 @@ class LeaderboardRankResponse_rank(ComposedTypeWrapper, Parsable):
 
             result.leaderboard_rank_response_rank_member1 = LeaderboardRankResponse_rankMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class LeaderboardRankResponse_rank(ComposedTypeWrapper, Parsable):
         if self.leaderboard_rank_response_rank_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.leaderboard_rank_response_rank_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class LeaderboardRankResponse_rank(ComposedTypeWrapper, Parsable):
             writer.write_int_value(None, self.integer)
         else:
             writer.write_object_value(None, self.leaderboard_rank_response_rank_member1)
+    
+

@@ -9,28 +9,28 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Player leaderboard row.
 */
-class PlayerLeaderboardEntry implements Parsable
+class PlayerLeaderboardEntry implements Parsable 
 {
     /**
      * @var string|null $id User ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var int|null $rank The rank property
     */
     private ?int $rank = null;
-
+    
     /**
      * @var LeaderboardStats|null $stats Aggregate stats used for leaderboard ranking.
     */
     private ?LeaderboardStats $stats = null;
-
+    
     /**
      * @var ApiUserProfile|null $user API-safe public user profile.
     */
     private ?ApiUserProfile $user = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

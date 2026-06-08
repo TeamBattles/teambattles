@@ -9,18 +9,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * SP-2 match detail response.
 */
-class ApiMatchDetailResponse implements Parsable
+class ApiMatchDetailResponse implements Parsable 
 {
     /**
      * @var ApiMatchDetail|null $match Participant-gated SP-2 match detail. Lobby codes are intentionally omitted.
     */
     private ?ApiMatchDetail $match = null;
-
+    
     /**
      * @var string|null $timestamp The timestamp property
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

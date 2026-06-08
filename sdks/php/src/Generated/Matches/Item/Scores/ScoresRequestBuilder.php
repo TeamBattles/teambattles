@@ -17,7 +17,7 @@ use TeamBattles\Sdk\Generated\Models\SubmitScoreBody;
 /**
  * Builds and executes requests for operations under /matches/{matchId}/scores
 */
-class ScoresRequestBuilder extends BaseRequestBuilder
+class ScoresRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new ScoresRequestBuilder and sets the default values.

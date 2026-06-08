@@ -14,7 +14,7 @@ use TeamBattles\Sdk\Generated\Webhooks\Item\Deliveries\Item\WithDeliveryItemRequ
 /**
  * Builds and executes requests for operations under /webhooks/{id}/deliveries
 */
-class DeliveriesRequestBuilder extends BaseRequestBuilder
+class DeliveriesRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.webhooks.item.deliveries.item collection

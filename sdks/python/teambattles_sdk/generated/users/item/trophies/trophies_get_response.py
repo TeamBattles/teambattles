@@ -18,7 +18,7 @@ class TrophiesGetResponse(Parsable):
     timestamp: Optional[str] = None
     # The trophies property
     trophies: Optional[list[ApiUserTrophy]] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TrophiesGetResponse:
         """
@@ -29,7 +29,7 @@ class TrophiesGetResponse(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return TrophiesGetResponse()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class TrophiesGetResponse(Parsable):
             "trophies": lambda n : setattr(self, 'trophies', n.get_collection_of_object_values(ApiUserTrophy)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -57,3 +57,5 @@ class TrophiesGetResponse(Parsable):
         writer.write_int_value("count", self.count)
         writer.write_str_value("timestamp", self.timestamp)
         writer.write_collection_of_object_values("trophies", self.trophies)
+    
+

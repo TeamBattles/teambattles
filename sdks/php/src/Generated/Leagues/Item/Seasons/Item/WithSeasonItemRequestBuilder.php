@@ -8,14 +8,31 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Leagues\Item\Seasons\Item\Activate\ActivateRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Seasons\Item\Complete\CompleteRequestBuilder;
+use TeamBattles\Sdk\Generated\Models\DeleteLeagueSeasonResponse;
 use TeamBattles\Sdk\Generated\Models\Error;
 use TeamBattles\Sdk\Generated\Models\LeagueSeason;
 
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/seasons/{seasonId}
 */
-class WithSeasonItemRequestBuilder extends BaseRequestBuilder
+class WithSeasonItemRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The activate property
+    */
+    public function activate(): ActivateRequestBuilder {
+        return new ActivateRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The complete property
+    */
+    public function complete(): CompleteRequestBuilder {
+        return new CompleteRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * Instantiates a new WithSeasonItemRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
@@ -28,6 +45,25 @@ class WithSeasonItemRequestBuilder extends BaseRequestBuilder
         } else {
             $this->pathParameters = ['request-raw-url' => $pathParametersOrRawUrl];
         }
+    }
+
+    /**
+     * Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+     * @param WithSeasonItemRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return Promise<DeleteLeagueSeasonResponse|null>
+     * @throws Exception
+    */
+    public function delete(?WithSeasonItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): Promise {
+        $requestInfo = $this->toDeleteRequestInformation($requestConfiguration);
+        $errorMappings = [
+                '400' => [Error::class, 'createFromDiscriminatorValue'],
+                '401' => [Error::class, 'createFromDiscriminatorValue'],
+                '403' => [Error::class, 'createFromDiscriminatorValue'],
+                '404' => [Error::class, 'createFromDiscriminatorValue'],
+                '429' => [Error::class, 'createFromDiscriminatorValue'],
+                '500' => [Error::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [DeleteLeagueSeasonResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -46,6 +82,24 @@ class WithSeasonItemRequestBuilder extends BaseRequestBuilder
                 '500' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [LeagueSeason::class, 'createFromDiscriminatorValue'], $errorMappings);
+    }
+
+    /**
+     * Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+     * @param WithSeasonItemRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return RequestInformation
+    */
+    public function toDeleteRequestInformation(?WithSeasonItemRequestBuilderDeleteRequestConfiguration $requestConfiguration = null): RequestInformation {
+        $requestInfo = new RequestInformation();
+        $requestInfo->urlTemplate = $this->urlTemplate;
+        $requestInfo->pathParameters = $this->pathParameters;
+        $requestInfo->httpMethod = HttpMethod::DELETE;
+        if ($requestConfiguration !== null) {
+            $requestInfo->addHeaders($requestConfiguration->headers);
+            $requestInfo->addRequestOptions(...$requestConfiguration->options);
+        }
+        $requestInfo->tryAddHeader('Accept', "application/json");
+        return $requestInfo;
     }
 
     /**

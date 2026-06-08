@@ -8,16 +8,27 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.leagues.item.activityfeed.ActivityFeedRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.applyeligibility.ApplyEligibilityRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.bans.BansRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.branding.BrandingRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.cooldowns.CooldownsRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.dashboard.DashboardRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.displayrules.DisplayRulesRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.games.GamesRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.matches.MatchesRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.members.MembersRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.ownership.OwnershipRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.penalties.PenaltiesRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.points.PointsRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.rules.RulesRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.seasonoptions.SeasonOptionsRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.seasons.SeasonsRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.settings.SettingsRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.shutdown.ShutdownRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.standings.StandingsRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.teams.TeamsRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.tickets.TicketsRequestBuilder;
 import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.models.LeagueProfileResponse;
 import java.util.Collection;
@@ -29,6 +40,14 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The activityFeed property
+     * @return a {@link ActivityFeedRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ActivityFeedRequestBuilder activityFeed() {
+        return new ActivityFeedRequestBuilder(pathParameters, requestAdapter);
+    }
     /**
      * The applyEligibility property
      * @return a {@link ApplyEligibilityRequestBuilder}
@@ -44,6 +63,30 @@ public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public BansRequestBuilder bans() {
         return new BansRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The branding property
+     * @return a {@link BrandingRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public BrandingRequestBuilder branding() {
+        return new BrandingRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The cooldowns property
+     * @return a {@link CooldownsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public CooldownsRequestBuilder cooldowns() {
+        return new CooldownsRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The dashboard property
+     * @return a {@link DashboardRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public DashboardRequestBuilder dashboard() {
+        return new DashboardRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * The displayRules property
@@ -62,6 +105,14 @@ public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
         return new GamesRequestBuilder(pathParameters, requestAdapter);
     }
     /**
+     * The matches property
+     * @return a {@link MatchesRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public MatchesRequestBuilder matches() {
+        return new MatchesRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
      * The members property
      * @return a {@link MembersRequestBuilder}
      */
@@ -70,12 +121,28 @@ public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
         return new MembersRequestBuilder(pathParameters, requestAdapter);
     }
     /**
+     * The ownership property
+     * @return a {@link OwnershipRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public OwnershipRequestBuilder ownership() {
+        return new OwnershipRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
      * The penalties property
      * @return a {@link PenaltiesRequestBuilder}
      */
     @jakarta.annotation.Nonnull
     public PenaltiesRequestBuilder penalties() {
         return new PenaltiesRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The points property
+     * @return a {@link PointsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public PointsRequestBuilder points() {
+        return new PointsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * The rules property
@@ -102,12 +169,44 @@ public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
         return new SeasonsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
+     * The settings property
+     * @return a {@link SettingsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public SettingsRequestBuilder settings() {
+        return new SettingsRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The shutdown property
+     * @return a {@link ShutdownRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ShutdownRequestBuilder shutdown() {
+        return new ShutdownRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
      * The standings property
      * @return a {@link StandingsRequestBuilder}
      */
     @jakarta.annotation.Nonnull
     public StandingsRequestBuilder standings() {
         return new StandingsRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The teams property
+     * @return a {@link TeamsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public TeamsRequestBuilder teams() {
+        return new TeamsRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The tickets property
+     * @return a {@link TicketsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public TicketsRequestBuilder tickets() {
+        return new TicketsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * Instantiates a new {@link WithIdentifierItemRequestBuilder} and sets the default values.

@@ -12,14 +12,19 @@ import com.microsoft.kiota.serialization.ParseNodeFactoryRegistry;
 import com.microsoft.kiota.serialization.SerializationWriterFactoryRegistry;
 import com.microsoft.kiota.serialization.TextParseNodeFactory;
 import com.microsoft.kiota.serialization.TextSerializationWriterFactory;
+import gg.teambattles.sdk.generated.chat.ChatRequestBuilder;
 import gg.teambattles.sdk.generated.game.GameRequestBuilder;
 import gg.teambattles.sdk.generated.games.GamesRequestBuilder;
 import gg.teambattles.sdk.generated.leaderboards.LeaderboardsRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.LeaguesRequestBuilder;
 import gg.teambattles.sdk.generated.matches.MatchesRequestBuilder;
 import gg.teambattles.sdk.generated.orgs.OrgsRequestBuilder;
+import gg.teambattles.sdk.generated.strategies.StrategiesRequestBuilder;
+import gg.teambattles.sdk.generated.streams.StreamsRequestBuilder;
 import gg.teambattles.sdk.generated.teams.TeamsRequestBuilder;
+import gg.teambattles.sdk.generated.tickets.TicketsRequestBuilder;
 import gg.teambattles.sdk.generated.twitch.TwitchRequestBuilder;
+import gg.teambattles.sdk.generated.uploads.UploadsRequestBuilder;
 import gg.teambattles.sdk.generated.user.UserRequestBuilder;
 import gg.teambattles.sdk.generated.users.UsersRequestBuilder;
 import gg.teambattles.sdk.generated.webhooks.WebhooksRequestBuilder;
@@ -30,6 +35,14 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class TeamBattlesApiClient extends BaseRequestBuilder {
+    /**
+     * The chat property
+     * @return a {@link ChatRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ChatRequestBuilder chat() {
+        return new ChatRequestBuilder(pathParameters, requestAdapter);
+    }
     /**
      * The game property
      * @return a {@link GameRequestBuilder}
@@ -79,6 +92,22 @@ public class TeamBattlesApiClient extends BaseRequestBuilder {
         return new OrgsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
+     * The strategies property
+     * @return a {@link StrategiesRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public StrategiesRequestBuilder strategies() {
+        return new StrategiesRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The streams property
+     * @return a {@link StreamsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public StreamsRequestBuilder streams() {
+        return new StreamsRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
      * The teams property
      * @return a {@link TeamsRequestBuilder}
      */
@@ -87,12 +116,28 @@ public class TeamBattlesApiClient extends BaseRequestBuilder {
         return new TeamsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
+     * The tickets property
+     * @return a {@link TicketsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public TicketsRequestBuilder tickets() {
+        return new TicketsRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
      * The twitch property
      * @return a {@link TwitchRequestBuilder}
      */
     @jakarta.annotation.Nonnull
     public TwitchRequestBuilder twitch() {
         return new TwitchRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The uploads property
+     * @return a {@link UploadsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public UploadsRequestBuilder uploads() {
+        return new UploadsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * The user property

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System;
+using TeamBattles.Sdk.User.Connections;
+using TeamBattles.Sdk.User.GameRanks;
 using TeamBattles.Sdk.User.Matches;
 using TeamBattles.Sdk.User.OngoingMatches;
 namespace TeamBattles.Sdk.User
@@ -16,6 +18,16 @@ namespace TeamBattles.Sdk.User
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UserRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The connections property</summary>
+        public global::TeamBattles.Sdk.User.Connections.ConnectionsRequestBuilder Connections
+        {
+            get => new global::TeamBattles.Sdk.User.Connections.ConnectionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The gameRanks property</summary>
+        public global::TeamBattles.Sdk.User.GameRanks.GameRanksRequestBuilder GameRanks
+        {
+            get => new global::TeamBattles.Sdk.User.GameRanks.GameRanksRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The matches property</summary>
         public global::TeamBattles.Sdk.User.Matches.MatchesRequestBuilder Matches
         {

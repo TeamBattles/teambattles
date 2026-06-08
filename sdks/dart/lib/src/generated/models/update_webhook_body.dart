@@ -16,7 +16,7 @@ class UpdateWebhookBody implements AdditionalDataHolder, Parsable {
     ///  New HTTPS endpoint URL.
     String? url;
     /// Instantiates a new [UpdateWebhookBody] and sets the default values.
-    UpdateWebhookBody() :
+    UpdateWebhookBody() :  
         additionalData = {};
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object

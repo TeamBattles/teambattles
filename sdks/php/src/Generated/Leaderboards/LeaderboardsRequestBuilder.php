@@ -11,7 +11,7 @@ use TeamBattles\Sdk\Generated\Leaderboards\Teams\TeamsRequestBuilder;
 /**
  * Builds and executes requests for operations under /leaderboards
 */
-class LeaderboardsRequestBuilder extends BaseRequestBuilder
+class LeaderboardsRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The organizations property
@@ -19,21 +19,21 @@ class LeaderboardsRequestBuilder extends BaseRequestBuilder
     public function organizations(): OrganizationsRequestBuilder {
         return new OrganizationsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * The players property
     */
     public function players(): PlayersRequestBuilder {
         return new PlayersRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * The teams property
     */
     public function teams(): TeamsRequestBuilder {
         return new TeamsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Instantiates a new LeaderboardsRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

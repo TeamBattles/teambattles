@@ -9,28 +9,28 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Outcome for a single (match, map) item in a multi-match batch.
 */
-class GameBatchMatchScoreResult implements Parsable
+class GameBatchMatchScoreResult implements Parsable 
 {
     /**
      * @var string|null $error Bare machine-readable error code (e.g. error_game_scope_mismatch), present only when status is failed. Never the raw message.
     */
     private ?string $error = null;
-
+    
     /**
      * @var int|null $mapIndex Index of the map this result refers to.
     */
     private ?int $mapIndex = null;
-
+    
     /**
      * @var string|null $matchId Match ID this result refers to.
     */
     private ?string $matchId = null;
-
+    
     /**
      * @var string|null $status Per-item outcome: "confirmed" on success, "failed" otherwise.
     */
     private ?string $status = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

@@ -10,18 +10,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Request body for submitting map scores across multiple matches in a single call (capped at 50 items).
 */
-class GameBatchMatchScoresBody implements AdditionalDataHolder, Parsable
+class GameBatchMatchScoresBody implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * @var array<GameMultiMatchScoreItem>|null $items Map scores to submit across one or more matches. 1-50 entries.
     */
     private ?array $items = null;
-
+    
     /**
      * Instantiates a new GameBatchMatchScoresBody and sets the default values.
     */

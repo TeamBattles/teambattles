@@ -3,90 +3,156 @@ require_relative '../../models/error'
 require_relative '../../models/league_profile_response'
 require_relative '../../team_battles_sdk::_generated'
 require_relative '../leagues'
+require_relative './activity_feed/activity_feed_request_builder'
 require_relative './apply_eligibility/apply_eligibility_request_builder'
 require_relative './bans/bans_request_builder'
+require_relative './branding/branding_request_builder'
+require_relative './cooldowns/cooldowns_request_builder'
+require_relative './dashboard/dashboard_request_builder'
 require_relative './display_rules/display_rules_request_builder'
 require_relative './games/games_request_builder'
 require_relative './item'
+require_relative './matches/matches_request_builder'
 require_relative './members/members_request_builder'
+require_relative './ownership/ownership_request_builder'
 require_relative './penalties/penalties_request_builder'
+require_relative './points/points_request_builder'
 require_relative './rules/rules_request_builder'
 require_relative './season_options/season_options_request_builder'
 require_relative './seasons/seasons_request_builder'
+require_relative './settings/settings_request_builder'
+require_relative './shutdown/shutdown_request_builder'
 require_relative './standings/standings_request_builder'
+require_relative './teams/teams_request_builder'
+require_relative './tickets/tickets_request_builder'
 
 module TeamBattlesSdk
     module Generated
         module Leagues
             module Item
-                ##
+                ## 
                 # Builds and executes requests for operations under #leagues#{identifier}
                 class WithIdentifierItemRequestBuilder < MicrosoftKiotaAbstractions::BaseRequestBuilder
-
-                    ##
+                    
+                    ## 
+                    # The activityFeed property
+                    def activity_feed()
+                        return TeamBattlesSdk::Generated::Leagues::Item::ActivityFeed::ActivityFeedRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
                     # The applyEligibility property
                     def apply_eligibility()
                         return TeamBattlesSdk::Generated::Leagues::Item::ApplyEligibility::ApplyEligibilityRequestBuilder.new(@path_parameters, @request_adapter)
                     end
-                    ##
+                    ## 
                     # The bans property
                     def bans()
                         return TeamBattlesSdk::Generated::Leagues::Item::Bans::BansRequestBuilder.new(@path_parameters, @request_adapter)
                     end
-                    ##
+                    ## 
+                    # The branding property
+                    def branding()
+                        return TeamBattlesSdk::Generated::Leagues::Item::Branding::BrandingRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
+                    # The cooldowns property
+                    def cooldowns()
+                        return TeamBattlesSdk::Generated::Leagues::Item::Cooldowns::CooldownsRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
+                    # The dashboard property
+                    def dashboard()
+                        return TeamBattlesSdk::Generated::Leagues::Item::Dashboard::DashboardRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
                     # The displayRules property
                     def display_rules()
                         return TeamBattlesSdk::Generated::Leagues::Item::DisplayRules::DisplayRulesRequestBuilder.new(@path_parameters, @request_adapter)
                     end
-                    ##
+                    ## 
                     # The games property
                     def games()
                         return TeamBattlesSdk::Generated::Leagues::Item::Games::GamesRequestBuilder.new(@path_parameters, @request_adapter)
                     end
-                    ##
+                    ## 
+                    # The matches property
+                    def matches()
+                        return TeamBattlesSdk::Generated::Leagues::Item::Matches::MatchesRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
                     # The members property
                     def members()
                         return TeamBattlesSdk::Generated::Leagues::Item::Members::MembersRequestBuilder.new(@path_parameters, @request_adapter)
                     end
-                    ##
+                    ## 
+                    # The ownership property
+                    def ownership()
+                        return TeamBattlesSdk::Generated::Leagues::Item::Ownership::OwnershipRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
                     # The penalties property
                     def penalties()
                         return TeamBattlesSdk::Generated::Leagues::Item::Penalties::PenaltiesRequestBuilder.new(@path_parameters, @request_adapter)
                     end
-                    ##
+                    ## 
+                    # The points property
+                    def points()
+                        return TeamBattlesSdk::Generated::Leagues::Item::Points::PointsRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
                     # The rules property
                     def rules()
                         return TeamBattlesSdk::Generated::Leagues::Item::Rules::RulesRequestBuilder.new(@path_parameters, @request_adapter)
                     end
-                    ##
+                    ## 
                     # The seasonOptions property
                     def season_options()
                         return TeamBattlesSdk::Generated::Leagues::Item::SeasonOptions::SeasonOptionsRequestBuilder.new(@path_parameters, @request_adapter)
                     end
-                    ##
+                    ## 
                     # The seasons property
                     def seasons()
                         return TeamBattlesSdk::Generated::Leagues::Item::Seasons::SeasonsRequestBuilder.new(@path_parameters, @request_adapter)
                     end
-                    ##
+                    ## 
+                    # The settings property
+                    def settings()
+                        return TeamBattlesSdk::Generated::Leagues::Item::Settings::SettingsRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
+                    # The shutdown property
+                    def shutdown()
+                        return TeamBattlesSdk::Generated::Leagues::Item::Shutdown::ShutdownRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
                     # The standings property
                     def standings()
                         return TeamBattlesSdk::Generated::Leagues::Item::Standings::StandingsRequestBuilder.new(@path_parameters, @request_adapter)
                     end
-                    ##
+                    ## 
+                    # The teams property
+                    def teams()
+                        return TeamBattlesSdk::Generated::Leagues::Item::Teams::TeamsRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
+                    # The tickets property
+                    def tickets()
+                        return TeamBattlesSdk::Generated::Leagues::Item::Tickets::TicketsRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
                     ## Instantiates a new WithIdentifierItemRequestBuilder and sets the default values.
                     ## @param path_parameters Path parameters for the request
                     ## @param request_adapter The request adapter to use to execute the requests.
                     ## @return a void
-                    ##
+                    ## 
                     def initialize(path_parameters, request_adapter)
                         super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}")
                     end
-                    ##
+                    ## 
                     ## Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
                     ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                     ## @return a Fiber of league_profile_response
-                    ##
+                    ## 
                     def post(request_configuration=nil)
                         request_info = self.to_post_request_information(
                             request_configuration
@@ -97,11 +163,11 @@ module TeamBattlesSdk
                         error_mapping["404"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                         return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::LeagueProfileResponse.create_from_discriminator_value(pn) }, error_mapping)
                     end
-                    ##
+                    ## 
                     ## Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.
                     ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                     ## @return a request_information
-                    ##
+                    ## 
                     def to_post_request_information(request_configuration=nil)
                         request_info = MicrosoftKiotaAbstractions::RequestInformation.new()
                         unless request_configuration.nil?
@@ -114,11 +180,11 @@ module TeamBattlesSdk
                         request_info.headers.try_add('Accept', 'application/json')
                         return request_info
                     end
-                    ##
+                    ## 
                     ## Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
                     ## @param raw_url The raw URL to use for the request builder.
                     ## @return a with_identifier_item_request_builder
-                    ##
+                    ## 
                     def with_url(raw_url)
                         raise StandardError, 'raw_url cannot be null' if raw_url.nil?
                         return WithIdentifierItemRequestBuilder.new(raw_url, @request_adapter)

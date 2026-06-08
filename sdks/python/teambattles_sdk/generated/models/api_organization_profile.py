@@ -52,7 +52,7 @@ class ApiOrganizationProfile(Parsable):
     visibility: Optional[ProfileVisibility] = None
     # The wins property
     wins: Optional[int] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiOrganizationProfile:
         """
@@ -63,7 +63,7 @@ class ApiOrganizationProfile(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiOrganizationProfile()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -105,7 +105,7 @@ class ApiOrganizationProfile(Parsable):
             "wins": lambda n : setattr(self, 'wins', n.get_int_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -131,3 +131,5 @@ class ApiOrganizationProfile(Parsable):
         writer.write_int_value("teamCount", self.team_count)
         writer.write_enum_value("visibility", self.visibility)
         writer.write_int_value("wins", self.wins)
+    
+

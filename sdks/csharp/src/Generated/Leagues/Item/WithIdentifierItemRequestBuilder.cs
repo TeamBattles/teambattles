@@ -8,16 +8,27 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Leagues.Item.ActivityFeed;
 using TeamBattles.Sdk.Leagues.Item.ApplyEligibility;
 using TeamBattles.Sdk.Leagues.Item.Bans;
+using TeamBattles.Sdk.Leagues.Item.Branding;
+using TeamBattles.Sdk.Leagues.Item.Cooldowns;
+using TeamBattles.Sdk.Leagues.Item.Dashboard;
 using TeamBattles.Sdk.Leagues.Item.DisplayRules;
 using TeamBattles.Sdk.Leagues.Item.Games;
+using TeamBattles.Sdk.Leagues.Item.Matches;
 using TeamBattles.Sdk.Leagues.Item.Members;
+using TeamBattles.Sdk.Leagues.Item.Ownership;
 using TeamBattles.Sdk.Leagues.Item.Penalties;
+using TeamBattles.Sdk.Leagues.Item.Points;
 using TeamBattles.Sdk.Leagues.Item.Rules;
 using TeamBattles.Sdk.Leagues.Item.SeasonOptions;
 using TeamBattles.Sdk.Leagues.Item.Seasons;
+using TeamBattles.Sdk.Leagues.Item.Settings;
+using TeamBattles.Sdk.Leagues.Item.Shutdown;
 using TeamBattles.Sdk.Leagues.Item.Standings;
+using TeamBattles.Sdk.Leagues.Item.Teams;
+using TeamBattles.Sdk.Leagues.Item.Tickets;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Leagues.Item
 {
@@ -27,6 +38,11 @@ namespace TeamBattles.Sdk.Leagues.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithIdentifierItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The activityFeed property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.ActivityFeed.ActivityFeedRequestBuilder ActivityFeed
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.ActivityFeed.ActivityFeedRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The applyEligibility property</summary>
         public global::TeamBattles.Sdk.Leagues.Item.ApplyEligibility.ApplyEligibilityRequestBuilder ApplyEligibility
         {
@@ -36,6 +52,21 @@ namespace TeamBattles.Sdk.Leagues.Item
         public global::TeamBattles.Sdk.Leagues.Item.Bans.BansRequestBuilder Bans
         {
             get => new global::TeamBattles.Sdk.Leagues.Item.Bans.BansRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The branding property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Branding.BrandingRequestBuilder Branding
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Branding.BrandingRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The cooldowns property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Cooldowns.CooldownsRequestBuilder Cooldowns
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Cooldowns.CooldownsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The dashboard property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Dashboard.DashboardRequestBuilder Dashboard
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Dashboard.DashboardRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The displayRules property</summary>
         public global::TeamBattles.Sdk.Leagues.Item.DisplayRules.DisplayRulesRequestBuilder DisplayRules
@@ -47,15 +78,30 @@ namespace TeamBattles.Sdk.Leagues.Item
         {
             get => new global::TeamBattles.Sdk.Leagues.Item.Games.GamesRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The matches property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Matches.MatchesRequestBuilder Matches
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Matches.MatchesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The members property</summary>
         public global::TeamBattles.Sdk.Leagues.Item.Members.MembersRequestBuilder Members
         {
             get => new global::TeamBattles.Sdk.Leagues.Item.Members.MembersRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The ownership property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Ownership.OwnershipRequestBuilder Ownership
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Ownership.OwnershipRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The penalties property</summary>
         public global::TeamBattles.Sdk.Leagues.Item.Penalties.PenaltiesRequestBuilder Penalties
         {
             get => new global::TeamBattles.Sdk.Leagues.Item.Penalties.PenaltiesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The points property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Points.PointsRequestBuilder Points
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Points.PointsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The rules property</summary>
         public global::TeamBattles.Sdk.Leagues.Item.Rules.RulesRequestBuilder Rules
@@ -72,10 +118,30 @@ namespace TeamBattles.Sdk.Leagues.Item
         {
             get => new global::TeamBattles.Sdk.Leagues.Item.Seasons.SeasonsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The settings property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Settings.SettingsRequestBuilder Settings
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Settings.SettingsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The shutdown property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Shutdown.ShutdownRequestBuilder Shutdown
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Shutdown.ShutdownRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The standings property</summary>
         public global::TeamBattles.Sdk.Leagues.Item.Standings.StandingsRequestBuilder Standings
         {
             get => new global::TeamBattles.Sdk.Leagues.Item.Standings.StandingsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The teams property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Teams.TeamsRequestBuilder Teams
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Teams.TeamsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The tickets property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Tickets.TicketsRequestBuilder Tickets
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Tickets.TicketsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Leagues.Item.WithIdentifierItemRequestBuilder"/> and sets the default values.

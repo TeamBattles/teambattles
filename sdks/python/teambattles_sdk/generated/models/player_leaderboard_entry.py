@@ -21,7 +21,7 @@ class PlayerLeaderboardEntry(Parsable):
     stats: Optional[LeaderboardStats] = None
     # API-safe public user profile.
     user: Optional[ApiUserProfile] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PlayerLeaderboardEntry:
         """
@@ -32,7 +32,7 @@ class PlayerLeaderboardEntry(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return PlayerLeaderboardEntry()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -51,7 +51,7 @@ class PlayerLeaderboardEntry(Parsable):
             "user": lambda n : setattr(self, 'user', n.get_object_value(ApiUserProfile)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -64,3 +64,5 @@ class PlayerLeaderboardEntry(Parsable):
         writer.write_int_value("rank", self.rank)
         writer.write_object_value("stats", self.stats)
         writer.write_object_value("user", self.user)
+    
+

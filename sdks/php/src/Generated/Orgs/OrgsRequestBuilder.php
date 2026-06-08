@@ -10,7 +10,7 @@ use TeamBattles\Sdk\Generated\Orgs\Item\WithIdentifierItemRequestBuilder;
 /**
  * Builds and executes requests for operations under /orgs
 */
-class OrgsRequestBuilder extends BaseRequestBuilder
+class OrgsRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The discover property
@@ -18,7 +18,7 @@ class OrgsRequestBuilder extends BaseRequestBuilder
     public function discover(): DiscoverRequestBuilder {
         return new DiscoverRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.orgs.item collection
      * @param string $identifier Organization slug or Convex organization ID.

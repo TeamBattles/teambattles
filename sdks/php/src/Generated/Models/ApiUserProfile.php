@@ -9,53 +9,53 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * API-safe public user profile.
 */
-class ApiUserProfile implements Parsable
+class ApiUserProfile implements Parsable 
 {
     /**
      * @var ApiUserProfile_avatarUrl|null $avatarUrl Avatar image URL, when set.
     */
     private ?ApiUserProfile_avatarUrl $avatarUrl = null;
-
+    
     /**
      * @var ApiUserProfile_bannerUrl|null $bannerUrl Banner image URL, when set.
     */
     private ?ApiUserProfile_bannerUrl $bannerUrl = null;
-
+    
     /**
      * @var ApiUserProfile_bio|null $bio Public profile bio.
     */
     private ?ApiUserProfile_bio $bio = null;
-
+    
     /**
      * @var ApiUserProfile_createdAt|null $createdAt The createdAt property
     */
     private ?ApiUserProfile_createdAt $createdAt = null;
-
+    
     /**
      * @var string|null $id User ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var bool|null $isVerified The isVerified property
     */
     private ?bool $isVerified = null;
-
+    
     /**
      * @var ApiUserProfile_name|null $name Display name, when set.
     */
     private ?ApiUserProfile_name $name = null;
-
+    
     /**
      * @var ApiUserProfile_username|null $username User handle, when set.
     */
     private ?ApiUserProfile_username $username = null;
-
+    
     /**
      * @var ProfileVisibility|null $visibility Public profile visibility setting.
     */
     private ?ProfileVisibility $visibility = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

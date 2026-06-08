@@ -11,35 +11,35 @@ module TeamBattlesSdk
     module Generated
         module Leaderboards
             module Organizations
-                ##
+                ## 
                 # Builds and executes requests for operations under #leaderboards#organizations
                 class OrganizationsRequestBuilder < MicrosoftKiotaAbstractions::BaseRequestBuilder
-
-                    ##
+                    
+                    ## 
                     ## Gets an item from the TeamBattlesSdk::Generated.leaderboards.organizations.item collection
                     ## @param identifier Organization slug or Convex organization ID.
                     ## @return a with_identifier_item_request_builder
-                    ##
+                    ## 
                     def by_identifier(identifier)
                         raise StandardError, 'identifier cannot be null' if identifier.nil?
                         url_tpl_params = @path_parameters.clone
                         url_tpl_params["identifier"] = identifier
                         return TeamBattlesSdk::Generated::Leaderboards::Organizations::Item::WithIdentifierItemRequestBuilder.new(url_tpl_params, @request_adapter)
                     end
-                    ##
+                    ## 
                     ## Instantiates a new OrganizationsRequestBuilder and sets the default values.
                     ## @param path_parameters Path parameters for the request
                     ## @param request_adapter The request adapter to use to execute the requests.
                     ## @return a void
-                    ##
+                    ## 
                     def initialize(path_parameters, request_adapter)
                         super(path_parameters, request_adapter, "{+baseurl}/leaderboards/organizations{?gameSlug*,limit*,sortBy*}")
                     end
-                    ##
+                    ## 
                     ## Returns active, public, non-disabled organizations ranked from active, enabled, non-private team stats. Requires orgs.profile:read.
                     ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                     ## @return a Fiber of organization_leaderboard_response
-                    ##
+                    ## 
                     def get(request_configuration=nil)
                         request_info = self.to_get_request_information(
                             request_configuration
@@ -53,11 +53,11 @@ module TeamBattlesSdk
                         error_mapping["500"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                         return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::OrganizationLeaderboardResponse.create_from_discriminator_value(pn) }, error_mapping)
                     end
-                    ##
+                    ## 
                     ## Returns active, public, non-disabled organizations ranked from active, enabled, non-private team stats. Requires orgs.profile:read.
                     ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                     ## @return a request_information
-                    ##
+                    ## 
                     def to_get_request_information(request_configuration=nil)
                         request_info = MicrosoftKiotaAbstractions::RequestInformation.new()
                         unless request_configuration.nil?
@@ -71,28 +71,28 @@ module TeamBattlesSdk
                         request_info.headers.try_add('Accept', 'application/json')
                         return request_info
                     end
-                    ##
+                    ## 
                     ## Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
                     ## @param raw_url The raw URL to use for the request builder.
                     ## @return a organizations_request_builder
-                    ##
+                    ## 
                     def with_url(raw_url)
                         raise StandardError, 'raw_url cannot be null' if raw_url.nil?
                         return OrganizationsRequestBuilder.new(raw_url, @request_adapter)
                     end
 
-                    ##
+                    ## 
                     # Returns active, public, non-disabled organizations ranked from active, enabled, non-private team stats. Requires orgs.profile:read.
                     class OrganizationsRequestBuilderGetQueryParameters
-
+                        
                         attr_accessor :game_slug
                         attr_accessor :limit
                         attr_accessor :sort_by
-                        ##
+                        ## 
                         ## Maps the query parameters names to their encoded names for the URI template parsing.
                         ## @param original_name The original query parameter name in the class.
                         ## @return a string
-                        ##
+                        ## 
                         def get_query_parameter(original_name)
                             raise StandardError, 'original_name cannot be null' if original_name.nil?
                             case original_name

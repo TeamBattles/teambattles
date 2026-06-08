@@ -10,14 +10,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System;
+using TeamBattles.Sdk.Chat;
 using TeamBattles.Sdk.Game;
 using TeamBattles.Sdk.Games;
 using TeamBattles.Sdk.Leaderboards;
 using TeamBattles.Sdk.Leagues;
 using TeamBattles.Sdk.Matches;
 using TeamBattles.Sdk.Orgs;
+using TeamBattles.Sdk.Strategies;
+using TeamBattles.Sdk.Streams;
 using TeamBattles.Sdk.Teams;
+using TeamBattles.Sdk.Tickets;
 using TeamBattles.Sdk.Twitch;
+using TeamBattles.Sdk.Uploads;
 using TeamBattles.Sdk.User;
 using TeamBattles.Sdk.Users;
 using TeamBattles.Sdk.Webhooks;
@@ -29,6 +34,11 @@ namespace TeamBattles.Sdk
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TeamBattlesApiClient : BaseRequestBuilder
     {
+        /// <summary>The chat property</summary>
+        public global::TeamBattles.Sdk.Chat.ChatRequestBuilder Chat
+        {
+            get => new global::TeamBattles.Sdk.Chat.ChatRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The game property</summary>
         public global::TeamBattles.Sdk.Game.GameRequestBuilder Game
         {
@@ -59,15 +69,35 @@ namespace TeamBattles.Sdk
         {
             get => new global::TeamBattles.Sdk.Orgs.OrgsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The strategies property</summary>
+        public global::TeamBattles.Sdk.Strategies.StrategiesRequestBuilder Strategies
+        {
+            get => new global::TeamBattles.Sdk.Strategies.StrategiesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The streams property</summary>
+        public global::TeamBattles.Sdk.Streams.StreamsRequestBuilder Streams
+        {
+            get => new global::TeamBattles.Sdk.Streams.StreamsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The teams property</summary>
         public global::TeamBattles.Sdk.Teams.TeamsRequestBuilder Teams
         {
             get => new global::TeamBattles.Sdk.Teams.TeamsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The tickets property</summary>
+        public global::TeamBattles.Sdk.Tickets.TicketsRequestBuilder Tickets
+        {
+            get => new global::TeamBattles.Sdk.Tickets.TicketsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The twitch property</summary>
         public global::TeamBattles.Sdk.Twitch.TwitchRequestBuilder Twitch
         {
             get => new global::TeamBattles.Sdk.Twitch.TwitchRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The uploads property</summary>
+        public global::TeamBattles.Sdk.Uploads.UploadsRequestBuilder Uploads
+        {
+            get => new global::TeamBattles.Sdk.Uploads.UploadsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The user property</summary>
         public global::TeamBattles.Sdk.User.UserRequestBuilder User

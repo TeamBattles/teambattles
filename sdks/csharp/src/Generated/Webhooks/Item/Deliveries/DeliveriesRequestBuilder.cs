@@ -141,7 +141,7 @@ namespace TeamBattles.Sdk.Webhooks.Item.Deliveries
         /// Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class DeliveriesRequestBuilderGetQueryParameters
+        public partial class DeliveriesRequestBuilderGetQueryParameters 
         {
             /// <summary>Opaque continuation cursor from a prior page&apos;s continueCursor.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

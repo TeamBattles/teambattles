@@ -10,18 +10,18 @@ use TeamBattles\Sdk\Generated\Models\ApiOrganizationStats;
 /**
  * Envelope containing stats plus a response timestamp.
 */
-class StatsGetResponse implements Parsable
+class StatsGetResponse implements Parsable 
 {
     /**
      * @var ApiOrganizationStats|null $stats API-safe organization aggregate stats.
     */
     private ?ApiOrganizationStats $stats = null;
-
+    
     /**
      * @var string|null $timestamp ISO 8601 timestamp.
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

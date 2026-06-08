@@ -15,7 +15,7 @@ use TeamBattles\Sdk\Generated\Models\GameForfeitResponse;
 /**
  * Builds and executes requests for operations under /game/matches/{matchId}/forfeit
 */
-class ForfeitRequestBuilder extends BaseRequestBuilder
+class ForfeitRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new ForfeitRequestBuilder and sets the default values.

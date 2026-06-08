@@ -9,7 +9,7 @@ use TeamBattles\Sdk\Generated\Leaderboards\Players\Me\Rank\RankRequestBuilder;
 /**
  * Builds and executes requests for operations under /leaderboards/players/me
 */
-class MeRequestBuilder extends BaseRequestBuilder
+class MeRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The rank property
@@ -17,7 +17,7 @@ class MeRequestBuilder extends BaseRequestBuilder
     public function rank(): RankRequestBuilder {
         return new RankRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Instantiates a new MeRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

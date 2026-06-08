@@ -8,6 +8,7 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Leagues\Item\Seasons\Create\CreateRequestBuilder;
 use TeamBattles\Sdk\Generated\Leagues\Item\Seasons\Item\WithSeasonItemRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\Error;
 use TeamBattles\Sdk\Generated\Models\LeagueSeasons;
@@ -16,8 +17,15 @@ use TeamBattles\Sdk\Generated\Models\SeasonsRequestBody;
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/seasons
 */
-class SeasonsRequestBuilder extends BaseRequestBuilder
+class SeasonsRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The create property
+    */
+    public function create(): CreateRequestBuilder {
+        return new CreateRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.leagues.item.seasons.item collection
      * @param string $seasonId League season ID.

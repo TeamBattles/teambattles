@@ -9,7 +9,7 @@ use TeamBattles\Sdk\Generated\Users\Item\WithIdentifierItemRequestBuilder;
 /**
  * Builds and executes requests for operations under /users
 */
-class UsersRequestBuilder extends BaseRequestBuilder
+class UsersRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.users.item collection

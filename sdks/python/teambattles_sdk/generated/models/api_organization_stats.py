@@ -23,7 +23,7 @@ class ApiOrganizationStats(Parsable):
     win_rate: Optional[float] = None
     # The wins property
     wins: Optional[int] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiOrganizationStats:
         """
@@ -34,7 +34,7 @@ class ApiOrganizationStats(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiOrganizationStats()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -50,7 +50,7 @@ class ApiOrganizationStats(Parsable):
             "wins": lambda n : setattr(self, 'wins', n.get_int_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -66,3 +66,5 @@ class ApiOrganizationStats(Parsable):
         writer.write_int_value("teams", self.teams)
         writer.write_float_value("winRate", self.win_rate)
         writer.write_int_value("wins", self.wins)
+    
+

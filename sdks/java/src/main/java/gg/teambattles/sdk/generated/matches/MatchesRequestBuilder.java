@@ -2,6 +2,7 @@ package gg.teambattles.sdk.generated.matches;
 
 import com.microsoft.kiota.BaseRequestBuilder;
 import com.microsoft.kiota.RequestAdapter;
+import gg.teambattles.sdk.generated.matches.create.CreateRequestBuilder;
 import gg.teambattles.sdk.generated.matches.discover.DiscoverRequestBuilder;
 import gg.teambattles.sdk.generated.matches.item.WithMatchItemRequestBuilder;
 import java.util.HashMap;
@@ -11,6 +12,14 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class MatchesRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The create property
+     * @return a {@link CreateRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public CreateRequestBuilder create() {
+        return new CreateRequestBuilder(pathParameters, requestAdapter);
+    }
     /**
      * The discover property
      * @return a {@link DiscoverRequestBuilder}

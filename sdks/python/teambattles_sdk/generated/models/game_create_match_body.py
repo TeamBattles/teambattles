@@ -21,7 +21,7 @@ class GameCreateMatchBody(AdditionalDataHolder, Parsable):
 
     # ID of the opposing team. Required - game-originated matches are two-sided. Must belong to the key's bound game.
     accepted_team_id: Optional[str] = None
-    # Number of maps in the series (1, 3, 5, or 7).
+    # Number of maps in the series. One of 1, 3, 5, or 7.
     best_of: Optional[float] = None
     # ID of the creating team. Must belong to the key's bound game.
     creator_team_id: Optional[str] = None
@@ -45,7 +45,7 @@ class GameCreateMatchBody(AdditionalDataHolder, Parsable):
     selected_objectives: Optional[list[str]] = None
     # Players per team (validated against the game's min/max).
     team_size: Optional[float] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GameCreateMatchBody:
         """
@@ -56,7 +56,7 @@ class GameCreateMatchBody(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return GameCreateMatchBody()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -90,7 +90,7 @@ class GameCreateMatchBody(AdditionalDataHolder, Parsable):
             "teamSize": lambda n : setattr(self, 'team_size', n.get_float_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -113,3 +113,5 @@ class GameCreateMatchBody(AdditionalDataHolder, Parsable):
         writer.write_collection_of_primitive_values("selectedObjectives", self.selected_objectives)
         writer.write_float_value("teamSize", self.team_size)
         writer.write_additional_data_value(self.additional_data)
+    
+

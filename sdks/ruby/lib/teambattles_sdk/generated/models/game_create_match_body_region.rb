@@ -1,7 +1,7 @@
 module TeamBattlesSdk
     module Generated
         module Models
-            ##
+            ## 
             # Match region (e.g. NONE).
             GameCreateMatchBodyRegion = {
                 NONE: :NONE,

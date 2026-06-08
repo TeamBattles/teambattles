@@ -11,7 +11,7 @@ class WebhookOk(Parsable):
     """
     # The ok property
     ok: Optional[bool] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WebhookOk:
         """
@@ -22,7 +22,7 @@ class WebhookOk(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return WebhookOk()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -32,7 +32,7 @@ class WebhookOk(Parsable):
             "ok": lambda n : setattr(self, 'ok', n.get_bool_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -42,3 +42,5 @@ class WebhookOk(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("ok", self.ok)
+    
+

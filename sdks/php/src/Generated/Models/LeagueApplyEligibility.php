@@ -9,18 +9,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * League application eligibility.
 */
-class LeagueApplyEligibility implements Parsable
+class LeagueApplyEligibility implements Parsable 
 {
     /**
      * @var LeagueApplyEligibility_eligibility|null $eligibility API key owner's apply-to-join eligibility.
     */
     private ?LeagueApplyEligibility_eligibility $eligibility = null;
-
+    
     /**
      * @var string|null $timestamp Response generation time (ISO 8601).
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

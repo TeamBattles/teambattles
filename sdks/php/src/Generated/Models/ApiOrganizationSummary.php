@@ -9,38 +9,38 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Small API-safe organization summary.
 */
-class ApiOrganizationSummary implements Parsable
+class ApiOrganizationSummary implements Parsable 
 {
     /**
      * @var ApiOrganizationSummary_avatarUrl|null $avatarUrl The avatarUrl property
     */
     private ?ApiOrganizationSummary_avatarUrl $avatarUrl = null;
-
+    
     /**
      * @var string|null $id Organization ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var string|null $name Organization name.
     */
     private ?string $name = null;
-
+    
     /**
      * @var ApiOrganizationSummary_slug|null $slug The slug property
     */
     private ?ApiOrganizationSummary_slug $slug = null;
-
+    
     /**
      * @var ApiOrganizationSummary_tag|null $tag The tag property
     */
     private ?ApiOrganizationSummary_tag $tag = null;
-
+    
     /**
      * @var ProfileVisibility|null $visibility Public profile visibility setting.
     */
     private ?ProfileVisibility $visibility = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

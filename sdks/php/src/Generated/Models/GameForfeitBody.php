@@ -10,23 +10,23 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Request body for forfeiting a match on behalf of one participating team.
 */
-class GameForfeitBody implements AdditionalDataHolder, Parsable
+class GameForfeitBody implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * @var string|null $forfeitingTeamId ID of the team that forfeits. Must be a participant of the match.
     */
     private ?string $forfeitingTeamId = null;
-
+    
     /**
      * @var string|null $reason Optional human-readable forfeit reason, recorded on the match.
     */
     private ?string $reason = null;
-
+    
     /**
      * Instantiates a new GameForfeitBody and sets the default values.
     */

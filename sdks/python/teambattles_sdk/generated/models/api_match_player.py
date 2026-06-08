@@ -37,7 +37,7 @@ class ApiMatchPlayer(Parsable):
     user_id: Optional[str] = None
     # The username property
     username: Optional[ApiMatchPlayer_username] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiMatchPlayer:
         """
@@ -48,7 +48,7 @@ class ApiMatchPlayer(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiMatchPlayer()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -81,7 +81,7 @@ class ApiMatchPlayer(Parsable):
             "username": lambda n : setattr(self, 'username', n.get_object_value(ApiMatchPlayer_username)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -100,3 +100,5 @@ class ApiMatchPlayer(Parsable):
         writer.write_str_value("teamId", self.team_id)
         writer.write_str_value("userId", self.user_id)
         writer.write_object_value("username", self.username)
+    
+

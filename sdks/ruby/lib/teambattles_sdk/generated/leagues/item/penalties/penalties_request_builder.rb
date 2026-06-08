@@ -5,6 +5,7 @@ require_relative '../../../models/penalties_request_body'
 require_relative '../../../team_battles_sdk::_generated'
 require_relative '../../leagues'
 require_relative '../item'
+require_relative './create/create_request_builder'
 require_relative './penalties'
 
 module TeamBattlesSdk
@@ -16,6 +17,11 @@ module TeamBattlesSdk
                     # Builds and executes requests for operations under #leagues#{identifier}#penalties
                     class PenaltiesRequestBuilder < MicrosoftKiotaAbstractions::BaseRequestBuilder
                         
+                        ## 
+                        # The create property
+                        def create()
+                            return TeamBattlesSdk::Generated::Leagues::Item::Penalties::Create::CreateRequestBuilder.new(@path_parameters, @request_adapter)
+                        end
                         ## 
                         ## Instantiates a new PenaltiesRequestBuilder and sets the default values.
                         ## @param path_parameters Path parameters for the request

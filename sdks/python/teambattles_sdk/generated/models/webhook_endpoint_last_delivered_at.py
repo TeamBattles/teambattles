@@ -16,7 +16,7 @@ class WebhookEndpoint_lastDeliveredAt(ComposedTypeWrapper, Parsable):
     double: Optional[float] = None
     # Composed type representation for type WebhookEndpoint_lastDeliveredAtMember1
     webhook_endpoint_last_delivered_at_member1: Optional[WebhookEndpoint_lastDeliveredAtMember1] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WebhookEndpoint_lastDeliveredAt:
         """
@@ -34,7 +34,7 @@ class WebhookEndpoint_lastDeliveredAt(ComposedTypeWrapper, Parsable):
 
             result.webhook_endpoint_last_delivered_at_member1 = WebhookEndpoint_lastDeliveredAtMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class WebhookEndpoint_lastDeliveredAt(ComposedTypeWrapper, Parsable):
         if self.webhook_endpoint_last_delivered_at_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.webhook_endpoint_last_delivered_at_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class WebhookEndpoint_lastDeliveredAt(ComposedTypeWrapper, Parsable):
             writer.write_float_value(None, self.double)
         else:
             writer.write_object_value(None, self.webhook_endpoint_last_delivered_at_member1)
+    
+

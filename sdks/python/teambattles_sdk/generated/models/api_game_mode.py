@@ -31,7 +31,7 @@ class ApiGameMode(Parsable):
     short_name: Optional[ApiGameMode_shortName] = None
     # The supportsDraftToggle property
     supports_draft_toggle: Optional[bool] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiGameMode:
         """
@@ -42,7 +42,7 @@ class ApiGameMode(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiGameMode()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -69,7 +69,7 @@ class ApiGameMode(Parsable):
             "supportsDraftToggle": lambda n : setattr(self, 'supports_draft_toggle', n.get_bool_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -86,3 +86,5 @@ class ApiGameMode(Parsable):
         writer.write_object_value("rewardBonus", self.reward_bonus)
         writer.write_object_value("shortName", self.short_name)
         writer.write_bool_value("supportsDraftToggle", self.supports_draft_toggle)
+    
+

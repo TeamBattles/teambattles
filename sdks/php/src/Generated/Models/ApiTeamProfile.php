@@ -9,98 +9,98 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * API-safe team profile.
 */
-class ApiTeamProfile implements Parsable
+class ApiTeamProfile implements Parsable 
 {
     /**
      * @var ApiTeamProfile_avatarUrl|null $avatarUrl The avatarUrl property
     */
     private ?ApiTeamProfile_avatarUrl $avatarUrl = null;
-
+    
     /**
      * @var ApiTeamProfile_bannerUrl|null $bannerUrl The bannerUrl property
     */
     private ?ApiTeamProfile_bannerUrl $bannerUrl = null;
-
+    
     /**
      * @var ApiTeamProfile_createdAt|null $createdAt The createdAt property
     */
     private ?ApiTeamProfile_createdAt $createdAt = null;
-
+    
     /**
      * @var ApiTeamProfile_description|null $description The description property
     */
     private ?ApiTeamProfile_description $description = null;
-
+    
     /**
      * @var int|null $draws The draws property
     */
     private ?int $draws = null;
-
+    
     /**
      * @var float|null $experience The experience property
     */
     private ?float $experience = null;
-
+    
     /**
      * @var ApiTeamProfile_gameId|null $gameId The gameId property
     */
     private ?ApiTeamProfile_gameId $gameId = null;
-
+    
     /**
      * @var string|null $id Team ID.
     */
     private ?string $id = null;
-
+    
     /**
      * @var bool|null $isMember The isMember property
     */
     private ?bool $isMember = null;
-
+    
     /**
      * @var int|null $losses The losses property
     */
     private ?int $losses = null;
-
+    
     /**
      * @var int|null $matchesPlayed The matchesPlayed property
     */
     private ?int $matchesPlayed = null;
-
+    
     /**
      * @var int|null $memberCount The memberCount property
     */
     private ?int $memberCount = null;
-
+    
     /**
      * @var string|null $name Team name.
     */
     private ?string $name = null;
-
+    
     /**
      * @var ApiTeamProfile_organizationId|null $organizationId The organizationId property
     */
     private ?ApiTeamProfile_organizationId $organizationId = null;
-
+    
     /**
      * @var ApiTeamProfile_slug|null $slug The slug property
     */
     private ?ApiTeamProfile_slug $slug = null;
-
+    
     /**
      * @var ApiTeamProfile_tag|null $tag The tag property
     */
     private ?ApiTeamProfile_tag $tag = null;
-
+    
     /**
      * @var ProfileVisibility|null $visibility Public profile visibility setting.
     */
     private ?ProfileVisibility $visibility = null;
-
+    
     /**
      * @var int|null $wins The wins property
     */
     private ?int $wins = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

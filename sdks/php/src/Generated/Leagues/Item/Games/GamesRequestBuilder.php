@@ -8,14 +8,34 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Leagues\Item\Games\Add\AddRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Games\Item\WithLeagueGameItemRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\Error;
 use TeamBattles\Sdk\Generated\Models\LeagueGames;
 
 /**
  * Builds and executes requests for operations under /leagues/{identifier}/games
 */
-class GamesRequestBuilder extends BaseRequestBuilder
+class GamesRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The add property
+    */
+    public function add(): AddRequestBuilder {
+        return new AddRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * Gets an item from the TeamBattles/Sdk/Generated.leagues.item.games.item collection
+     * @param string $leagueGameId League game link ID.
+     * @return WithLeagueGameItemRequestBuilder
+    */
+    public function byLeagueGameId(string $leagueGameId): WithLeagueGameItemRequestBuilder {
+        $urlTplParams = $this->pathParameters;
+        $urlTplParams['leagueGameId'] = $leagueGameId;
+        return new WithLeagueGameItemRequestBuilder($urlTplParams, $this->requestAdapter);
+    }
+
     /**
      * Instantiates a new GamesRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

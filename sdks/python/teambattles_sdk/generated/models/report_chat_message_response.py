@@ -1,0 +1,55 @@
+from __future__ import annotations
+from collections.abc import Callable
+from dataclasses import dataclass, field
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from typing import Any, Optional, TYPE_CHECKING, Union
+
+@dataclass
+class ReportChatMessageResponse(Parsable):
+    # True if the owner had already reported this message.
+    already_reported: Optional[bool] = None
+    # Report ID (existing one if already reported).
+    report_id: Optional[str] = None
+    # The success property
+    success: Optional[bool] = None
+    # Response generation time (ISO 8601).
+    timestamp: Optional[str] = None
+    
+    @staticmethod
+    def create_from_discriminator_value(parse_node: ParseNode) -> ReportChatMessageResponse:
+        """
+        Creates a new instance of the appropriate class based on discriminator value
+        param parse_node: The parse node to use to read the discriminator value and create the object
+        Returns: ReportChatMessageResponse
+        """
+        if parse_node is None:
+            raise TypeError("parse_node cannot be null.")
+        return ReportChatMessageResponse()
+    
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
+        """
+        The deserialization information for the current model
+        Returns: dict[str, Callable[[ParseNode], None]]
+        """
+        fields: dict[str, Callable[[Any], None]] = {
+            "alreadyReported": lambda n : setattr(self, 'already_reported', n.get_bool_value()),
+            "reportId": lambda n : setattr(self, 'report_id', n.get_str_value()),
+            "success": lambda n : setattr(self, 'success', n.get_bool_value()),
+            "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
+        }
+        return fields
+    
+    def serialize(self,writer: SerializationWriter) -> None:
+        """
+        Serializes information the current object
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
+        """
+        if writer is None:
+            raise TypeError("writer cannot be null.")
+        writer.write_bool_value("alreadyReported", self.already_reported)
+        writer.write_str_value("reportId", self.report_id)
+        writer.write_bool_value("success", self.success)
+        writer.write_str_value("timestamp", self.timestamp)
+    
+

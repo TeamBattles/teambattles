@@ -8,6 +8,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Leagues.Item.Rules.ApplyTemplate;
+using TeamBattles.Sdk.Leagues.Item.Rules.Update;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Leagues.Item.Rules
 {
@@ -17,6 +19,16 @@ namespace TeamBattles.Sdk.Leagues.Item.Rules
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RulesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The applyTemplate property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Rules.ApplyTemplate.ApplyTemplateRequestBuilder ApplyTemplate
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Rules.ApplyTemplate.ApplyTemplateRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The update property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Rules.Update.UpdateRequestBuilder Update
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Rules.Update.UpdateRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Leagues.Item.Rules.RulesRequestBuilder"/> and sets the default values.
         /// </summary>

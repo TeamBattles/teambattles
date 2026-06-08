@@ -4,6 +4,7 @@ import '../../models/error.dart';
 import './connections/connections_request_builder.dart';
 import './organizations/organizations_request_builder.dart';
 import './stats/stats_request_builder.dart';
+import './stream_/stream_request_builder.dart';
 import './teams/teams_request_builder.dart';
 import './trophies/trophies_request_builder.dart';
 import './with_identifier_get_response.dart';
@@ -22,6 +23,10 @@ class WithIdentifierItemRequestBuilder extends BaseRequestBuilder<WithIdentifier
     ///  The stats property
     StatsRequestBuilder get stats {
         return StatsRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The stream property
+    StreamRequestBuilder get stream_ {
+        return StreamRequestBuilder(pathParameters, requestAdapter);
     }
     ///  The teams property
     TeamsRequestBuilder get teams {

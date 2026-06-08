@@ -96,7 +96,7 @@ namespace TeamBattles.Sdk.Leaderboards.Players.Me.Rank
         /// Returns the API key owner&apos;s rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class RankRequestBuilderGetQueryParameters
+        public partial class RankRequestBuilderGetQueryParameters 
         {
             [Obsolete("This property is deprecated, use SortByAsLeaderboardSortBy instead")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

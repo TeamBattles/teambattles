@@ -8,6 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Leagues\Item\Rules\ApplyTemplate\ApplyTemplateRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Rules\Update\UpdateRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\Error;
 use TeamBattles\Sdk\Generated\Models\LeagueRules;
 use TeamBattles\Sdk\Generated\Models\RulesRequestBody;
@@ -17,6 +19,20 @@ use TeamBattles\Sdk\Generated\Models\RulesRequestBody;
 */
 class RulesRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The applyTemplate property
+    */
+    public function applyTemplate(): ApplyTemplateRequestBuilder {
+        return new ApplyTemplateRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The update property
+    */
+    public function update(): UpdateRequestBuilder {
+        return new UpdateRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * Instantiates a new RulesRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

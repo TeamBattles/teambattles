@@ -1,0 +1,77 @@
+from __future__ import annotations
+from collections.abc import Callable
+from dataclasses import dataclass, field
+from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from typing import Any, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from .create_penalty_request_body_type import CreatePenaltyRequestBody_type
+
+@dataclass
+class CreatePenaltyRequestBody(AdditionalDataHolder, Parsable):
+    """
+    Creates a league team penalty.
+    """
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: dict[str, Any] = field(default_factory=dict)
+
+    # Game ID for the league penalty.
+    game_id: Optional[str] = None
+    # Reason for the penalty.
+    reason: Optional[str] = None
+    # Optional league season ID for the penalty.
+    season_id: Optional[str] = None
+    # Team ID receiving the penalty.
+    team_id: Optional[str] = None
+    # Penalty type.
+    type: Optional[CreatePenaltyRequestBody_type] = None
+    # Point value for POINT_DEDUCTION (integer, 1-1000).
+    value: Optional[int] = None
+    
+    @staticmethod
+    def create_from_discriminator_value(parse_node: ParseNode) -> CreatePenaltyRequestBody:
+        """
+        Creates a new instance of the appropriate class based on discriminator value
+        param parse_node: The parse node to use to read the discriminator value and create the object
+        Returns: CreatePenaltyRequestBody
+        """
+        if parse_node is None:
+            raise TypeError("parse_node cannot be null.")
+        return CreatePenaltyRequestBody()
+    
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
+        """
+        The deserialization information for the current model
+        Returns: dict[str, Callable[[ParseNode], None]]
+        """
+        from .create_penalty_request_body_type import CreatePenaltyRequestBody_type
+
+        from .create_penalty_request_body_type import CreatePenaltyRequestBody_type
+
+        fields: dict[str, Callable[[Any], None]] = {
+            "gameId": lambda n : setattr(self, 'game_id', n.get_str_value()),
+            "reason": lambda n : setattr(self, 'reason', n.get_str_value()),
+            "seasonId": lambda n : setattr(self, 'season_id', n.get_str_value()),
+            "teamId": lambda n : setattr(self, 'team_id', n.get_str_value()),
+            "type": lambda n : setattr(self, 'type', n.get_enum_value(CreatePenaltyRequestBody_type)),
+            "value": lambda n : setattr(self, 'value', n.get_int_value()),
+        }
+        return fields
+    
+    def serialize(self,writer: SerializationWriter) -> None:
+        """
+        Serializes information the current object
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
+        """
+        if writer is None:
+            raise TypeError("writer cannot be null.")
+        writer.write_str_value("gameId", self.game_id)
+        writer.write_str_value("reason", self.reason)
+        writer.write_str_value("seasonId", self.season_id)
+        writer.write_str_value("teamId", self.team_id)
+        writer.write_enum_value("type", self.type)
+        writer.write_int_value("value", self.value)
+        writer.write_additional_data_value(self.additional_data)
+    
+

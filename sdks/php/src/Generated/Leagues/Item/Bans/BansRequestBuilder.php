@@ -8,6 +8,8 @@ use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
+use TeamBattles\Sdk\Generated\Leagues\Item\Bans\Create\CreateRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Bans\Item\WithBanItemRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\BansRequestBody;
 use TeamBattles\Sdk\Generated\Models\Error;
 use TeamBattles\Sdk\Generated\Models\LeagueBans;
@@ -17,6 +19,24 @@ use TeamBattles\Sdk\Generated\Models\LeagueBans;
 */
 class BansRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The create property
+    */
+    public function create(): CreateRequestBuilder {
+        return new CreateRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * Gets an item from the TeamBattles/Sdk/Generated.leagues.item.bans.item collection
+     * @param string $banId League ban ID.
+     * @return WithBanItemRequestBuilder
+    */
+    public function byBanId(string $banId): WithBanItemRequestBuilder {
+        $urlTplParams = $this->pathParameters;
+        $urlTplParams['banId'] = $banId;
+        return new WithBanItemRequestBuilder($urlTplParams, $this->requestAdapter);
+    }
+
     /**
      * Instantiates a new BansRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

@@ -55,7 +55,7 @@ class ApiGameCatalogEntry(Parsable):
     rules_link: Optional[ApiGameCatalogEntry_rulesLink] = None
     # The shortNameKey property
     short_name_key: Optional[ApiGameCatalogEntry_shortNameKey] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiGameCatalogEntry:
         """
@@ -66,7 +66,7 @@ class ApiGameCatalogEntry(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiGameCatalogEntry()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -114,7 +114,7 @@ class ApiGameCatalogEntry(Parsable):
             "shortNameKey": lambda n : setattr(self, 'short_name_key', n.get_object_value(ApiGameCatalogEntry_shortNameKey)),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -140,3 +140,5 @@ class ApiGameCatalogEntry(Parsable):
         writer.write_collection_of_object_values("playlists", self.playlists)
         writer.write_object_value("rulesLink", self.rules_link)
         writer.write_object_value("shortNameKey", self.short_name_key)
+    
+

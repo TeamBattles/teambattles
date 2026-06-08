@@ -4,6 +4,8 @@ require_relative '../../../models/league_members'
 require_relative '../../../team_battles_sdk::_generated'
 require_relative '../../leagues'
 require_relative '../item'
+require_relative './add/add_request_builder'
+require_relative './item/with_member_item_request_builder'
 require_relative './members'
 
 module TeamBattlesSdk
@@ -15,6 +17,22 @@ module TeamBattlesSdk
                     # Builds and executes requests for operations under #leagues#{identifier}#members
                     class MembersRequestBuilder < MicrosoftKiotaAbstractions::BaseRequestBuilder
                         
+                        ## 
+                        # The add property
+                        def add()
+                            return TeamBattlesSdk::Generated::Leagues::Item::Members::Add::AddRequestBuilder.new(@path_parameters, @request_adapter)
+                        end
+                        ## 
+                        ## Gets an item from the TeamBattlesSdk::Generated.leagues.item.members.item collection
+                        ## @param member_id League staff membership ID.
+                        ## @return a with_member_item_request_builder
+                        ## 
+                        def by_member_id(member_id)
+                            raise StandardError, 'member_id cannot be null' if member_id.nil?
+                            url_tpl_params = @path_parameters.clone
+                            url_tpl_params["memberId"] = member_id
+                            return TeamBattlesSdk::Generated::Leagues::Item::Members::Item::WithMemberItemRequestBuilder.new(url_tpl_params, @request_adapter)
+                        end
                         ## 
                         ## Instantiates a new MembersRequestBuilder and sets the default values.
                         ## @param path_parameters Path parameters for the request

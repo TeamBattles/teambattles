@@ -11,6 +11,11 @@ import (
 type UserRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Connections the connections property
+// returns a *ConnectionsRequestBuilder when successful
+func (m *UserRequestBuilder) Connections()(*ConnectionsRequestBuilder) {
+    return NewConnectionsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewUserRequestBuilderInternal instantiates a new UserRequestBuilder and sets the default values.
 func NewUserRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*UserRequestBuilder) {
     m := &UserRequestBuilder{
@@ -23,6 +28,11 @@ func NewUserRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
     return NewUserRequestBuilderInternal(urlParams, requestAdapter)
+}
+// GameRanks the gameRanks property
+// returns a *GameRanksRequestBuilder when successful
+func (m *UserRequestBuilder) GameRanks()(*GameRanksRequestBuilder) {
+    return NewGameRanksRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Matches the matches property
 // returns a *MatchesRequestBuilder when successful

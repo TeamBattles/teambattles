@@ -16,7 +16,7 @@ class ApiGameMode_rewardBonus(ComposedTypeWrapper, Parsable):
     api_game_mode_reward_bonus_member1: Optional[ApiGameMode_rewardBonusMember1] = None
     # Composed type representation for type float
     double: Optional[float] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiGameMode_rewardBonus:
         """
@@ -34,7 +34,7 @@ class ApiGameMode_rewardBonus(ComposedTypeWrapper, Parsable):
 
             result.api_game_mode_reward_bonus_member1 = ApiGameMode_rewardBonusMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class ApiGameMode_rewardBonus(ComposedTypeWrapper, Parsable):
         if self.api_game_mode_reward_bonus_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.api_game_mode_reward_bonus_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class ApiGameMode_rewardBonus(ComposedTypeWrapper, Parsable):
             writer.write_float_value(None, self.double)
         else:
             writer.write_object_value(None, self.api_game_mode_reward_bonus_member1)
+    
+

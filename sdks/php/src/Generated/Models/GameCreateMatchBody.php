@@ -11,78 +11,78 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 /**
  * Request body for creating a two-sided game-originated match. The match is created ACCEPTED + PUBLISHED for the key's bound game. Supports an optional Idempotency-Key header for safe retries.
 */
-class GameCreateMatchBody implements AdditionalDataHolder, Parsable
+class GameCreateMatchBody implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var string|null $acceptedTeamId ID of the opposing team. Required - game-originated matches are two-sided. Must belong to the key's bound game.
     */
     private ?string $acceptedTeamId = null;
-
+    
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
-     * @var float|null $bestOf Number of maps in the series (1, 3, 5, or 7).
+     * @var float|null $bestOf Number of maps in the series. One of 1, 3, 5, or 7.
     */
     private ?float $bestOf = null;
-
+    
     /**
      * @var string|null $creatorTeamId ID of the creating team. Must belong to the key's bound game.
     */
     private ?string $creatorTeamId = null;
-
+    
     /**
      * @var string|null $gameModeId Game mode identifier (e.g. search_and_destroy).
     */
     private ?string $gameModeId = null;
-
+    
     /**
      * @var GameCreateMatchBody_inputDevice|null $inputDevice Allowed input device (e.g. ALL).
     */
     private ?GameCreateMatchBody_inputDevice $inputDevice = null;
-
+    
     /**
      * @var GameCreateMatchBody_mapPreferenceMode|null $mapPreferenceMode Map preference mode (PREFERRED, VETO, or MANUAL).
     */
     private ?GameCreateMatchBody_mapPreferenceMode $mapPreferenceMode = null;
-
+    
     /**
      * @var GameCreateMatchBody_mapSelectionType|null $mapSelectionType Map selection type (COMPETITIVE or FLEX).
     */
     private ?GameCreateMatchBody_mapSelectionType $mapSelectionType = null;
-
+    
     /**
      * @var GameCreateMatchBody_platform|null $platform Match platform (e.g. CROSSPLAY).
     */
     private ?GameCreateMatchBody_platform $platform = null;
-
+    
     /**
      * @var GameCreateMatchBody_region|null $region Match region (e.g. NONE).
     */
     private ?GameCreateMatchBody_region $region = null;
-
+    
     /**
      * @var float|null $scheduledAt Optional scheduled start time (epoch ms).
     */
     private ?float $scheduledAt = null;
-
+    
     /**
      * @var array<string>|null $selectedMaps Optional pre-selected map IDs.
     */
     private ?array $selectedMaps = null;
-
+    
     /**
      * @var array<string>|null $selectedObjectives Optional pre-selected objective IDs.
     */
     private ?array $selectedObjectives = null;
-
+    
     /**
      * @var float|null $teamSize Players per team (validated against the game's min/max).
     */
     private ?float $teamSize = null;
-
+    
     /**
      * Instantiates a new GameCreateMatchBody and sets the default values.
     */
@@ -116,7 +116,7 @@ class GameCreateMatchBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the bestOf property value. Number of maps in the series (1, 3, 5, or 7).
+     * Gets the bestOf property value. Number of maps in the series. One of 1, 3, 5, or 7.
      * @return float|null
     */
     public function getBestOf(): ?float {
@@ -286,7 +286,7 @@ class GameCreateMatchBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the bestOf property value. Number of maps in the series (1, 3, 5, or 7).
+     * Sets the bestOf property value. Number of maps in the series. One of 1, 3, 5, or 7.
      * @param float|null $value Value to set for the bestOf property.
     */
     public function setBestOf(?float $value): void {

@@ -10,23 +10,23 @@ use TeamBattles\Sdk\Generated\Models\ApiUserOrganizationMembership;
 /**
  * Envelope containing organizations, count, and a response timestamp.
 */
-class OrganizationsGetResponse implements Parsable
+class OrganizationsGetResponse implements Parsable 
 {
     /**
      * @var int|null $count The count property
     */
     private ?int $count = null;
-
+    
     /**
      * @var array<ApiUserOrganizationMembership>|null $organizations The organizations property
     */
     private ?array $organizations = null;
-
+    
     /**
      * @var string|null $timestamp ISO 8601 timestamp.
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

@@ -40,7 +40,7 @@ class WebhookDelivery(Parsable):
     status_code: Optional[WebhookDelivery_statusCode] = None
     # Last update epoch ms.
     updated_at: Optional[float] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WebhookDelivery:
         """
@@ -51,7 +51,7 @@ class WebhookDelivery(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return WebhookDelivery()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -84,7 +84,7 @@ class WebhookDelivery(Parsable):
             "updatedAt": lambda n : setattr(self, 'updated_at', n.get_float_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -105,3 +105,5 @@ class WebhookDelivery(Parsable):
         writer.write_enum_value("status", self.status)
         writer.write_object_value("statusCode", self.status_code)
         writer.write_float_value("updatedAt", self.updated_at)
+    
+

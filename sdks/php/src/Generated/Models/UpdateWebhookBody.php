@@ -11,33 +11,33 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 /**
  * Partial update of a webhook endpoint.
 */
-class UpdateWebhookBody implements AdditionalDataHolder, Parsable
+class UpdateWebhookBody implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * @var array<string>|null $events Replacement event token list (at least one when present).
     */
     private ?array $events = null;
-
+    
     /**
      * @var bool|null $isActive Enable/disable the endpoint. Re-enabling resets the failure count.
     */
     private ?bool $isActive = null;
-
+    
     /**
      * @var string|null $label New human label.
     */
     private ?string $label = null;
-
+    
     /**
      * @var string|null $url New HTTPS endpoint URL.
     */
     private ?string $url = null;
-
+    
     /**
      * Instantiates a new UpdateWebhookBody and sets the default values.
     */

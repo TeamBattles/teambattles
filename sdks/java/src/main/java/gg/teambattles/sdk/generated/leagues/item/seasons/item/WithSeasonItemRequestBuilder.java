@@ -8,6 +8,9 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.leagues.item.seasons.item.activate.ActivateRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.seasons.item.complete.CompleteRequestBuilder;
+import gg.teambattles.sdk.generated.models.DeleteLeagueSeasonResponse;
 import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.models.LeagueSeason;
 import java.util.Collection;
@@ -19,6 +22,22 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class WithSeasonItemRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The activate property
+     * @return a {@link ActivateRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ActivateRequestBuilder activate() {
+        return new ActivateRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The complete property
+     * @return a {@link CompleteRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public CompleteRequestBuilder complete() {
+        return new CompleteRequestBuilder(pathParameters, requestAdapter);
+    }
     /**
      * Instantiates a new {@link WithSeasonItemRequestBuilder} and sets the default values.
      * @param pathParameters Path parameters for the request
@@ -34,6 +53,43 @@ public class WithSeasonItemRequestBuilder extends BaseRequestBuilder {
      */
     public WithSeasonItemRequestBuilder(@jakarta.annotation.Nonnull final String rawUrl, @jakarta.annotation.Nonnull final RequestAdapter requestAdapter) {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/seasons/{seasonId}", rawUrl);
+    }
+    /**
+     * Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+     * @return a {@link DeleteLeagueSeasonResponse}
+     * @throws Error When receiving a 400 status code
+     * @throws Error When receiving a 401 status code
+     * @throws Error When receiving a 403 status code
+     * @throws Error When receiving a 404 status code
+     * @throws Error When receiving a 429 status code
+     * @throws Error When receiving a 500 status code
+     */
+    @jakarta.annotation.Nullable
+    public DeleteLeagueSeasonResponse delete() {
+        return delete(null);
+    }
+    /**
+     * Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return a {@link DeleteLeagueSeasonResponse}
+     * @throws Error When receiving a 400 status code
+     * @throws Error When receiving a 401 status code
+     * @throws Error When receiving a 403 status code
+     * @throws Error When receiving a 404 status code
+     * @throws Error When receiving a 429 status code
+     * @throws Error When receiving a 500 status code
+     */
+    @jakarta.annotation.Nullable
+    public DeleteLeagueSeasonResponse delete(@jakarta.annotation.Nullable final java.util.function.Consumer<DeleteRequestConfiguration> requestConfiguration) {
+        final RequestInformation requestInfo = toDeleteRequestInformation(requestConfiguration);
+        final HashMap<String, ParsableFactory<? extends Parsable>> errorMapping = new HashMap<String, ParsableFactory<? extends Parsable>>();
+        errorMapping.put("400", Error::createFromDiscriminatorValue);
+        errorMapping.put("401", Error::createFromDiscriminatorValue);
+        errorMapping.put("403", Error::createFromDiscriminatorValue);
+        errorMapping.put("404", Error::createFromDiscriminatorValue);
+        errorMapping.put("429", Error::createFromDiscriminatorValue);
+        errorMapping.put("500", Error::createFromDiscriminatorValue);
+        return this.requestAdapter.send(requestInfo, errorMapping, DeleteLeagueSeasonResponse::createFromDiscriminatorValue);
     }
     /**
      * Returns a single season that belongs to the resolved league. Requires leagues.league_public:read.
@@ -70,6 +126,26 @@ public class WithSeasonItemRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, LeagueSeason::createFromDiscriminatorValue);
     }
     /**
+     * Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+     * @return a {@link RequestInformation}
+     */
+    @jakarta.annotation.Nonnull
+    public RequestInformation toDeleteRequestInformation() {
+        return toDeleteRequestInformation(null);
+    }
+    /**
+     * Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return a {@link RequestInformation}
+     */
+    @jakarta.annotation.Nonnull
+    public RequestInformation toDeleteRequestInformation(@jakarta.annotation.Nullable final java.util.function.Consumer<DeleteRequestConfiguration> requestConfiguration) {
+        final RequestInformation requestInfo = new RequestInformation(HttpMethod.DELETE, urlTemplate, pathParameters);
+        requestInfo.configure(requestConfiguration, DeleteRequestConfiguration::new);
+        requestInfo.headers.tryAdd("Accept", "application/json");
+        return requestInfo;
+    }
+    /**
      * Returns a single season that belongs to the resolved league. Requires leagues.league_public:read.
      * @return a {@link RequestInformation}
      */
@@ -98,6 +174,12 @@ public class WithSeasonItemRequestBuilder extends BaseRequestBuilder {
     public WithSeasonItemRequestBuilder withUrl(@jakarta.annotation.Nonnull final String rawUrl) {
         Objects.requireNonNull(rawUrl);
         return new WithSeasonItemRequestBuilder(rawUrl, requestAdapter);
+    }
+    /**
+     * Configuration for the request such as headers, query parameters, and middleware options.
+     */
+    @jakarta.annotation.Generated("com.microsoft.kiota")
+    public class DeleteRequestConfiguration extends BaseRequestConfiguration {
     }
     /**
      * Configuration for the request such as headers, query parameters, and middleware options.

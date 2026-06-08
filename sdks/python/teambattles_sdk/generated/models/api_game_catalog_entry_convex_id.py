@@ -16,7 +16,7 @@ class ApiGameCatalogEntry_convexId(ComposedTypeWrapper, Parsable):
     api_game_catalog_entry_convex_id_member1: Optional[ApiGameCatalogEntry_convexIdMember1] = None
     # Composed type representation for type str
     string: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiGameCatalogEntry_convexId:
         """
@@ -34,7 +34,7 @@ class ApiGameCatalogEntry_convexId(ComposedTypeWrapper, Parsable):
 
             result.api_game_catalog_entry_convex_id_member1 = ApiGameCatalogEntry_convexIdMember1()
         return result
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class ApiGameCatalogEntry_convexId(ComposedTypeWrapper, Parsable):
         if self.api_game_catalog_entry_convex_id_member1:
             return ParseNodeHelper.merge_deserializers_for_intersection_wrapper(self.api_game_catalog_entry_convex_id_member1)
         return {}
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -58,3 +58,5 @@ class ApiGameCatalogEntry_convexId(ComposedTypeWrapper, Parsable):
             writer.write_str_value(None, self.string)
         else:
             writer.write_object_value(None, self.api_game_catalog_entry_convex_id_member1)
+    
+

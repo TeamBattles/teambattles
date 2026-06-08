@@ -8,6 +8,8 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.leagues.item.rules.applytemplate.ApplyTemplateRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.rules.update.UpdateRequestBuilder;
 import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.models.LeagueRules;
 import gg.teambattles.sdk.generated.models.RulesRequestBody;
@@ -20,6 +22,22 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class RulesRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The applyTemplate property
+     * @return a {@link ApplyTemplateRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ApplyTemplateRequestBuilder applyTemplate() {
+        return new ApplyTemplateRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The update property
+     * @return a {@link UpdateRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public UpdateRequestBuilder update() {
+        return new UpdateRequestBuilder(pathParameters, requestAdapter);
+    }
     /**
      * Instantiates a new {@link RulesRequestBuilder} and sets the default values.
      * @param pathParameters Path parameters for the request

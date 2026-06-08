@@ -1,11 +1,16 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
+import './create/create_request_builder.dart';
 import './discover/discover_request_builder.dart';
 import './item/with_match_item_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \matches
 class MatchesRequestBuilder extends BaseRequestBuilder<MatchesRequestBuilder> {
+    ///  The create property
+    CreateRequestBuilder get create {
+        return CreateRequestBuilder(pathParameters, requestAdapter);
+    }
     ///  The discover property
     DiscoverRequestBuilder get discover {
         return DiscoverRequestBuilder(pathParameters, requestAdapter);

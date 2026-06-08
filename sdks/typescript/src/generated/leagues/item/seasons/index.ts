@@ -4,7 +4,9 @@
 // @ts-ignore
 import { createErrorEscapedFromDiscriminatorValue, createLeagueSeasonsFromDiscriminatorValue, serializeLeagueSeasons, serializeSeasonsRequestBody, type ErrorEscaped, type LeagueSeasons, type SeasonsRequestBody } from '../../../models/index.js';
 // @ts-ignore
-import { type WithSeasonItemRequestBuilder, WithSeasonItemRequestBuilderRequestsMetadata } from './item/index.js';
+import { CreateRequestBuilderRequestsMetadata, type CreateRequestBuilder } from './create/index.js';
+// @ts-ignore
+import { type WithSeasonItemRequestBuilder, WithSeasonItemRequestBuilderNavigationMetadata, WithSeasonItemRequestBuilderRequestsMetadata } from './item/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
@@ -12,6 +14,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /leagues/{identifier}/seasons
  */
 export interface SeasonsRequestBuilder extends BaseRequestBuilder<SeasonsRequestBuilder> {
+    /**
+     * The create property
+     */
+    get create(): CreateRequestBuilder;
     /**
      * Gets an item from the teambattles.leagues.item.seasons.item collection
      * @param seasonId League season ID.
@@ -47,7 +53,11 @@ export const SeasonsRequestBuilderUriTemplate = "{+baseurl}/leagues/{identifier}
 export const SeasonsRequestBuilderNavigationMetadata: Record<Exclude<keyof SeasonsRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     bySeasonId: {
         requestsMetadata: WithSeasonItemRequestBuilderRequestsMetadata,
+        navigationMetadata: WithSeasonItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["seasonId"],
+    },
+    create: {
+        requestsMetadata: CreateRequestBuilderRequestsMetadata,
     },
 };
 /**

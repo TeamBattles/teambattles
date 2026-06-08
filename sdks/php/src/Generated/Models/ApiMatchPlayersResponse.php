@@ -9,23 +9,23 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * SP-2 match player rows response.
 */
-class ApiMatchPlayersResponse implements Parsable
+class ApiMatchPlayersResponse implements Parsable 
 {
     /**
      * @var string|null $matchId The matchId property
     */
     private ?string $matchId = null;
-
+    
     /**
      * @var array<ApiMatchPlayer>|null $players The players property
     */
     private ?array $players = null;
-
+    
     /**
      * @var string|null $timestamp The timestamp property
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

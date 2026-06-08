@@ -14,7 +14,7 @@ class LeagueApplyEligibilityRequestBody(AdditionalDataHolder, Parsable):
 
     # Optional team ID to check. The API key owner must lead it.
     team_id: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> LeagueApplyEligibilityRequestBody:
         """
@@ -25,7 +25,7 @@ class LeagueApplyEligibilityRequestBody(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return LeagueApplyEligibilityRequestBody()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -35,7 +35,7 @@ class LeagueApplyEligibilityRequestBody(AdditionalDataHolder, Parsable):
             "teamId": lambda n : setattr(self, 'team_id', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -46,3 +46,5 @@ class LeagueApplyEligibilityRequestBody(AdditionalDataHolder, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("teamId", self.team_id)
         writer.write_additional_data_value(self.additional_data)
+    
+

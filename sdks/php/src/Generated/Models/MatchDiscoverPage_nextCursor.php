@@ -11,18 +11,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Composed type wrapper for classes MatchDiscoverPage_nextCursorMember1, string
 */
-class MatchDiscoverPage_nextCursor implements ComposedTypeWrapper, Parsable
+class MatchDiscoverPage_nextCursor implements ComposedTypeWrapper, Parsable 
 {
     /**
      * @var MatchDiscoverPage_nextCursorMember1|null $matchDiscoverPage_nextCursorMember1 Composed type representation for type MatchDiscoverPage_nextCursorMember1
     */
     private ?MatchDiscoverPage_nextCursorMember1 $matchDiscoverPage_nextCursorMember1 = null;
-
+    
     /**
      * @var string|null $string Composed type representation for type string
     */
     private ?string $string = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

@@ -2,6 +2,8 @@ package gg.teambattles.sdk.generated.user;
 
 import com.microsoft.kiota.BaseRequestBuilder;
 import com.microsoft.kiota.RequestAdapter;
+import gg.teambattles.sdk.generated.user.connections.ConnectionsRequestBuilder;
+import gg.teambattles.sdk.generated.user.gameranks.GameRanksRequestBuilder;
 import gg.teambattles.sdk.generated.user.matches.MatchesRequestBuilder;
 import gg.teambattles.sdk.generated.user.ongoingmatches.OngoingMatchesRequestBuilder;
 import java.util.HashMap;
@@ -11,6 +13,22 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class UserRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The connections property
+     * @return a {@link ConnectionsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ConnectionsRequestBuilder connections() {
+        return new ConnectionsRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The gameRanks property
+     * @return a {@link GameRanksRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public GameRanksRequestBuilder gameRanks() {
+        return new GameRanksRequestBuilder(pathParameters, requestAdapter);
+    }
     /**
      * The matches property
      * @return a {@link MatchesRequestBuilder}

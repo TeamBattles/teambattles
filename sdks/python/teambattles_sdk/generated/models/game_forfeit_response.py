@@ -17,7 +17,7 @@ class GameForfeitResponse(Parsable):
     success: Optional[bool] = None
     # Server response time (ISO 8601).
     timestamp: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GameForfeitResponse:
         """
@@ -28,7 +28,7 @@ class GameForfeitResponse(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return GameForfeitResponse()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -41,7 +41,7 @@ class GameForfeitResponse(Parsable):
             "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -54,3 +54,5 @@ class GameForfeitResponse(Parsable):
         writer.write_str_value("matchId", self.match_id)
         writer.write_bool_value("success", self.success)
         writer.write_str_value("timestamp", self.timestamp)
+    
+

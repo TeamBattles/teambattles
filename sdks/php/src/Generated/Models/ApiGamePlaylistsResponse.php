@@ -9,23 +9,23 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Game-scoped playlist response.
 */
-class ApiGamePlaylistsResponse implements Parsable
+class ApiGamePlaylistsResponse implements Parsable 
 {
     /**
      * @var ApiGameCatalogEntry|null $game Static public game catalog entry.
     */
     private ?ApiGameCatalogEntry $game = null;
-
+    
     /**
      * @var array<ApiGamePlaylist>|null $playlists The playlists property
     */
     private ?array $playlists = null;
-
+    
     /**
      * @var string|null $timestamp The timestamp property
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

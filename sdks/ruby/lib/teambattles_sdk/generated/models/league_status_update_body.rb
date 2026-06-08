@@ -1,0 +1,86 @@
+require 'microsoft_kiota_abstractions'
+require_relative '../team_battles_sdk::_generated'
+require_relative './models'
+
+module TeamBattlesSdk
+    module Generated
+        module Models
+            ## 
+            # Request body for updating a league match's lifecycle status.
+            class LeagueStatusUpdateBody
+                include MicrosoftKiotaAbstractions::AdditionalDataHolder, MicrosoftKiotaAbstractions::Parsable
+                ## 
+                # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+                @additional_data
+                ## 
+                # Target status. Allowed league transitions: READY -> IN_PROGRESS|CANCELLED, ACCEPTED -> CANCELLED. COMPLETED is not accepted directly; matches complete automatically once scores are confirmed.
+                @status
+                ## 
+                ## Gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+                ## @return a i_dictionary
+                ## 
+                def additional_data
+                    return @additional_data
+                end
+                ## 
+                ## Sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+                ## @param value Value to set for the AdditionalData property.
+                ## @return a void
+                ## 
+                def additional_data=(value)
+                    @additional_data = value
+                end
+                ## 
+                ## Instantiates a new LeagueStatusUpdateBody and sets the default values.
+                ## @return a void
+                ## 
+                def initialize()
+                    @additional_data = Hash.new
+                end
+                ## 
+                ## Creates a new instance of the appropriate class based on discriminator value
+                ## @param parse_node The parse node to use to read the discriminator value and create the object
+                ## @return a league_status_update_body
+                ## 
+                def self.create_from_discriminator_value(parse_node)
+                    raise StandardError, 'parse_node cannot be null' if parse_node.nil?
+                    return LeagueStatusUpdateBody.new
+                end
+                ## 
+                ## The deserialization information for the current model
+                ## @return a i_dictionary
+                ## 
+                def get_field_deserializers()
+                    return {
+                        "status" => lambda {|n| @status = n.get_string_value() },
+                    }
+                end
+                ## 
+                ## Serializes information the current object
+                ## @param writer Serialization writer to use to serialize this model
+                ## @return a void
+                ## 
+                def serialize(writer)
+                    raise StandardError, 'writer cannot be null' if writer.nil?
+                    writer.write_string_value("status", @status)
+                    writer.write_additional_data(@additional_data)
+                end
+                ## 
+                ## Gets the status property value. Target status. Allowed league transitions: READY -> IN_PROGRESS|CANCELLED, ACCEPTED -> CANCELLED. COMPLETED is not accepted directly; matches complete automatically once scores are confirmed.
+                ## @return a string
+                ## 
+                def status
+                    return @status
+                end
+                ## 
+                ## Sets the status property value. Target status. Allowed league transitions: READY -> IN_PROGRESS|CANCELLED, ACCEPTED -> CANCELLED. COMPLETED is not accepted directly; matches complete automatically once scores are confirmed.
+                ## @param value Value to set for the status property.
+                ## @return a void
+                ## 
+                def status=(value)
+                    @status = value
+                end
+            end
+        end
+    end
+end

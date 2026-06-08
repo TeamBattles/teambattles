@@ -10,68 +10,68 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Filters and cursor pagination for public open-match discovery.
 */
-class MatchDiscoverBody implements AdditionalDataHolder, Parsable
+class MatchDiscoverBody implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     */
     private ?array $additionalData = null;
-
+    
     /**
      * @var MatchDiscoverBody_cursor|null $cursor The cursor property
     */
     private ?MatchDiscoverBody_cursor $cursor = null;
-
+    
     /**
      * @var string|null $gameId The gameId property
     */
     private ?string $gameId = null;
-
+    
     /**
      * @var string|null $gameSlug The gameSlug property
     */
     private ?string $gameSlug = null;
-
+    
     /**
      * @var string|null $leagueId The leagueId property
     */
     private ?string $leagueId = null;
-
+    
     /**
      * @var string|null $leagueSeasonId The leagueSeasonId property
     */
     private ?string $leagueSeasonId = null;
-
+    
     /**
      * @var int|null $limit The limit property
     */
     private ?int $limit = null;
-
+    
     /**
      * @var MatchDiscoverBody_matchType|null $matchType The matchType property
     */
     private ?MatchDiscoverBody_matchType $matchType = null;
-
+    
     /**
      * @var MatchDiscoverBody_platform|null $platform The platform property
     */
     private ?MatchDiscoverBody_platform $platform = null;
-
+    
     /**
      * @var MatchDiscoverBody_region|null $region The region property
     */
     private ?MatchDiscoverBody_region $region = null;
-
+    
     /**
      * @var string|null $scheduledAfter The scheduledAfter property
     */
     private ?string $scheduledAfter = null;
-
+    
     /**
      * @var string|null $scheduledBefore The scheduledBefore property
     */
     private ?string $scheduledBefore = null;
-
+    
     /**
      * Instantiates a new MatchDiscoverBody and sets the default values.
     */

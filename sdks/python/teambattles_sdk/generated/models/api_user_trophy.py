@@ -30,7 +30,7 @@ class ApiUserTrophy(Parsable):
     title: Optional[ApiUserTrophy_title] = None
     # Trophy definition ID.
     trophy_id: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiUserTrophy:
         """
@@ -41,7 +41,7 @@ class ApiUserTrophy(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiUserTrophy()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -69,7 +69,7 @@ class ApiUserTrophy(Parsable):
             "trophyId": lambda n : setattr(self, 'trophy_id', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -85,3 +85,5 @@ class ApiUserTrophy(Parsable):
         writer.write_object_value("rarity", self.rarity)
         writer.write_object_value("title", self.title)
         writer.write_str_value("trophyId", self.trophy_id)
+    
+

@@ -11,15 +11,17 @@ import (
 type GameSingleMapScoreBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Score for the creator team (non-negative).
-    creatorTeamScore *float64
+    // Score for the creator team (integer, 0-1000).
+    creatorTeamScore *int32
     // Identifier of the map that was played.
     mapId *string
-    // Score for the opponent (accepted) team (non-negative).
-    opponentTeamScore *float64
+    // Score for the opponent (accepted) team (integer, 0-1000).
+    opponentTeamScore *int32
     // Optional per-player stats keyed by user ID.
     playerStats GameSingleMapScoreBody_playerStatsable
-    // Optional screenshot URLs supporting the reported score.
+    // Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+    screenshotStorageIds []string
+    // Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
     screenshotUrls []string
 }
 // NewGameSingleMapScoreBody instantiates a new GameSingleMapScoreBody and sets the default values.
@@ -39,9 +41,9 @@ func CreateGameSingleMapScoreBodyFromDiscriminatorValue(parseNode i878a80d2330e8
 func (m *GameSingleMapScoreBody) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetCreatorTeamScore gets the creatorTeamScore property value. Score for the creator team (non-negative).
-// returns a *float64 when successful
-func (m *GameSingleMapScoreBody) GetCreatorTeamScore()(*float64) {
+// GetCreatorTeamScore gets the creatorTeamScore property value. Score for the creator team (integer, 0-1000).
+// returns a *int32 when successful
+func (m *GameSingleMapScoreBody) GetCreatorTeamScore()(*int32) {
     return m.creatorTeamScore
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -49,7 +51,7 @@ func (m *GameSingleMapScoreBody) GetCreatorTeamScore()(*float64) {
 func (m *GameSingleMapScoreBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["creatorTeamScore"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
+        val, err := n.GetInt32Value()
         if err != nil {
             return err
         }
@@ -69,7 +71,7 @@ func (m *GameSingleMapScoreBody) GetFieldDeserializers()(map[string]func(i878a80
         return nil
     }
     res["opponentTeamScore"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
+        val, err := n.GetInt32Value()
         if err != nil {
             return err
         }
@@ -85,6 +87,22 @@ func (m *GameSingleMapScoreBody) GetFieldDeserializers()(map[string]func(i878a80
         }
         if val != nil {
             m.SetPlayerStats(val.(GameSingleMapScoreBody_playerStatsable))
+        }
+        return nil
+    }
+    res["screenshotStorageIds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetScreenshotStorageIds(res)
         }
         return nil
     }
@@ -111,9 +129,9 @@ func (m *GameSingleMapScoreBody) GetFieldDeserializers()(map[string]func(i878a80
 func (m *GameSingleMapScoreBody) GetMapId()(*string) {
     return m.mapId
 }
-// GetOpponentTeamScore gets the opponentTeamScore property value. Score for the opponent (accepted) team (non-negative).
-// returns a *float64 when successful
-func (m *GameSingleMapScoreBody) GetOpponentTeamScore()(*float64) {
+// GetOpponentTeamScore gets the opponentTeamScore property value. Score for the opponent (accepted) team (integer, 0-1000).
+// returns a *int32 when successful
+func (m *GameSingleMapScoreBody) GetOpponentTeamScore()(*int32) {
     return m.opponentTeamScore
 }
 // GetPlayerStats gets the playerStats property value. Optional per-player stats keyed by user ID.
@@ -121,7 +139,12 @@ func (m *GameSingleMapScoreBody) GetOpponentTeamScore()(*float64) {
 func (m *GameSingleMapScoreBody) GetPlayerStats()(GameSingleMapScoreBody_playerStatsable) {
     return m.playerStats
 }
-// GetScreenshotUrls gets the screenshotUrls property value. Optional screenshot URLs supporting the reported score.
+// GetScreenshotStorageIds gets the screenshotStorageIds property value. Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+// returns a []string when successful
+func (m *GameSingleMapScoreBody) GetScreenshotStorageIds()([]string) {
+    return m.screenshotStorageIds
+}
+// GetScreenshotUrls gets the screenshotUrls property value. Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
 // returns a []string when successful
 func (m *GameSingleMapScoreBody) GetScreenshotUrls()([]string) {
     return m.screenshotUrls
@@ -129,7 +152,7 @@ func (m *GameSingleMapScoreBody) GetScreenshotUrls()([]string) {
 // Serialize serializes information the current object
 func (m *GameSingleMapScoreBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteFloat64Value("creatorTeamScore", m.GetCreatorTeamScore())
+        err := writer.WriteInt32Value("creatorTeamScore", m.GetCreatorTeamScore())
         if err != nil {
             return err
         }
@@ -141,13 +164,19 @@ func (m *GameSingleMapScoreBody) Serialize(writer i878a80d2330e89d26896388a3f487
         }
     }
     {
-        err := writer.WriteFloat64Value("opponentTeamScore", m.GetOpponentTeamScore())
+        err := writer.WriteInt32Value("opponentTeamScore", m.GetOpponentTeamScore())
         if err != nil {
             return err
         }
     }
     {
         err := writer.WriteObjectValue("playerStats", m.GetPlayerStats())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetScreenshotStorageIds() != nil {
+        err := writer.WriteCollectionOfStringValues("screenshotStorageIds", m.GetScreenshotStorageIds())
         if err != nil {
             return err
         }
@@ -170,37 +199,43 @@ func (m *GameSingleMapScoreBody) Serialize(writer i878a80d2330e89d26896388a3f487
 func (m *GameSingleMapScoreBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetCreatorTeamScore sets the creatorTeamScore property value. Score for the creator team (non-negative).
-func (m *GameSingleMapScoreBody) SetCreatorTeamScore(value *float64)() {
+// SetCreatorTeamScore sets the creatorTeamScore property value. Score for the creator team (integer, 0-1000).
+func (m *GameSingleMapScoreBody) SetCreatorTeamScore(value *int32)() {
     m.creatorTeamScore = value
 }
 // SetMapId sets the mapId property value. Identifier of the map that was played.
 func (m *GameSingleMapScoreBody) SetMapId(value *string)() {
     m.mapId = value
 }
-// SetOpponentTeamScore sets the opponentTeamScore property value. Score for the opponent (accepted) team (non-negative).
-func (m *GameSingleMapScoreBody) SetOpponentTeamScore(value *float64)() {
+// SetOpponentTeamScore sets the opponentTeamScore property value. Score for the opponent (accepted) team (integer, 0-1000).
+func (m *GameSingleMapScoreBody) SetOpponentTeamScore(value *int32)() {
     m.opponentTeamScore = value
 }
 // SetPlayerStats sets the playerStats property value. Optional per-player stats keyed by user ID.
 func (m *GameSingleMapScoreBody) SetPlayerStats(value GameSingleMapScoreBody_playerStatsable)() {
     m.playerStats = value
 }
-// SetScreenshotUrls sets the screenshotUrls property value. Optional screenshot URLs supporting the reported score.
+// SetScreenshotStorageIds sets the screenshotStorageIds property value. Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.
+func (m *GameSingleMapScoreBody) SetScreenshotStorageIds(value []string)() {
+    m.screenshotStorageIds = value
+}
+// SetScreenshotUrls sets the screenshotUrls property value. Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.
 func (m *GameSingleMapScoreBody) SetScreenshotUrls(value []string)() {
     m.screenshotUrls = value
 }
 type GameSingleMapScoreBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCreatorTeamScore()(*float64)
+    GetCreatorTeamScore()(*int32)
     GetMapId()(*string)
-    GetOpponentTeamScore()(*float64)
+    GetOpponentTeamScore()(*int32)
     GetPlayerStats()(GameSingleMapScoreBody_playerStatsable)
+    GetScreenshotStorageIds()([]string)
     GetScreenshotUrls()([]string)
-    SetCreatorTeamScore(value *float64)()
+    SetCreatorTeamScore(value *int32)()
     SetMapId(value *string)()
-    SetOpponentTeamScore(value *float64)()
+    SetOpponentTeamScore(value *int32)()
     SetPlayerStats(value GameSingleMapScoreBody_playerStatsable)()
+    SetScreenshotStorageIds(value []string)()
     SetScreenshotUrls(value []string)()
 }

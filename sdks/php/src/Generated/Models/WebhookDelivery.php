@@ -9,68 +9,68 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * A single webhook delivery-log row.
 */
-class WebhookDelivery implements Parsable
+class WebhookDelivery implements Parsable 
 {
     /**
      * @var int|null $attemptCount Number of delivery attempts made.
     */
     private ?int $attemptCount = null;
-
+    
     /**
      * @var float|null $createdAt Emit/creation epoch ms (retention key).
     */
     private ?float $createdAt = null;
-
+    
     /**
      * @var WebhookDelivery_deliveredAt|null $deliveredAt Epoch ms of successful delivery, or null.
     */
     private ?WebhookDelivery_deliveredAt $deliveredAt = null;
-
+    
     /**
      * @var WebhookDelivery_errorMessage|null $errorMessage Last error message, or null.
     */
     private ?WebhookDelivery_errorMessage $errorMessage = null;
-
+    
     /**
      * @var string|null $event The delivered event name.
     */
     private ?string $event = null;
-
+    
     /**
      * @var string|null $id Delivery-log row id.
     */
     private ?string $id = null;
-
+    
     /**
      * @var string|null $idempotencyId Stable evt_ id, reused across retries (idempotency key).
     */
     private ?string $idempotencyId = null;
-
+    
     /**
      * @var bool|null $isTest True for test.ping deliveries.
     */
     private ?bool $isTest = null;
-
+    
     /**
      * @var WebhookDelivery_nextAttemptAt|null $nextAttemptAt Epoch ms of the next scheduled retry, or null.
     */
     private ?WebhookDelivery_nextAttemptAt $nextAttemptAt = null;
-
+    
     /**
      * @var WebhookDelivery_status|null $status Lifecycle status of one logical delivery (endpoint x idempotency id).
     */
     private ?WebhookDelivery_status $status = null;
-
+    
     /**
      * @var WebhookDelivery_statusCode|null $statusCode Last HTTP response status, or null.
     */
     private ?WebhookDelivery_statusCode $statusCode = null;
-
+    
     /**
      * @var float|null $updatedAt Last update epoch ms.
     */
     private ?float $updatedAt = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

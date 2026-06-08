@@ -9,23 +9,23 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Season selector options.
 */
-class LeagueSeasonOptions implements Parsable
+class LeagueSeasonOptions implements Parsable 
 {
     /**
      * @var LeagueSeasonOptions_defaultSeasonId|null $defaultSeasonId Recommended default option.
     */
     private ?LeagueSeasonOptions_defaultSeasonId $defaultSeasonId = null;
-
+    
     /**
      * @var array<LeagueSeasonOptions_seasons>|null $seasons Season selector options for a league game.
     */
     private ?array $seasons = null;
-
+    
     /**
      * @var string|null $timestamp Response generation time (ISO 8601).
     */
     private ?string $timestamp = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

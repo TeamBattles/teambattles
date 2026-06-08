@@ -9,53 +9,53 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * API-safe aggregate user stats.
 */
-class ApiUserStats implements Parsable
+class ApiUserStats implements Parsable 
 {
     /**
      * @var int|null $bestStreak The bestStreak property
     */
     private ?int $bestStreak = null;
-
+    
     /**
      * @var int|null $currentStreak The currentStreak property
     */
     private ?int $currentStreak = null;
-
+    
     /**
      * @var int|null $draws The draws property
     */
     private ?int $draws = null;
-
+    
     /**
      * @var float|null $experience The experience property
     */
     private ?float $experience = null;
-
+    
     /**
      * @var int|null $losses The losses property
     */
     private ?int $losses = null;
-
+    
     /**
      * @var int|null $matchesPlayed The matchesPlayed property
     */
     private ?int $matchesPlayed = null;
-
+    
     /**
      * @var string|null $userId User ID these stats belong to.
     */
     private ?string $userId = null;
-
+    
     /**
      * @var float|null $winRate The winRate property
     */
     private ?float $winRate = null;
-
+    
     /**
      * @var int|null $wins The wins property
     */
     private ?int $wins = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

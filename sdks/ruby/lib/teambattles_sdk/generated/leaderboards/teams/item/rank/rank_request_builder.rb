@@ -14,24 +14,24 @@ module TeamBattlesSdk
             module Teams
                 module Item
                     module Rank
-                        ##
+                        ## 
                         # Builds and executes requests for operations under #leaderboards#teams#{identifier}#rank
                         class RankRequestBuilder < MicrosoftKiotaAbstractions::BaseRequestBuilder
-
-                            ##
+                            
+                            ## 
                             ## Instantiates a new RankRequestBuilder and sets the default values.
                             ## @param path_parameters Path parameters for the request
                             ## @param request_adapter The request adapter to use to execute the requests.
                             ## @return a void
-                            ##
+                            ## 
                             def initialize(path_parameters, request_adapter)
                                 super(path_parameters, request_adapter, "{+baseurl}/leaderboards/teams/{identifier}/rank{?gameSlug*,sortBy*}")
                             end
-                            ##
+                            ## 
                             ## Returns a team's rank for the requested leaderboard filters. Private teams return rank null unless they are otherwise excluded from the API leaderboard. Requires teams.profile:read.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a Fiber of leaderboard_rank_response
-                            ##
+                            ## 
                             def get(request_configuration=nil)
                                 request_info = self.to_get_request_information(
                                     request_configuration
@@ -45,11 +45,11 @@ module TeamBattlesSdk
                                 error_mapping["500"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                                 return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::LeaderboardRankResponse.create_from_discriminator_value(pn) }, error_mapping)
                             end
-                            ##
+                            ## 
                             ## Returns a team's rank for the requested leaderboard filters. Private teams return rank null unless they are otherwise excluded from the API leaderboard. Requires teams.profile:read.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a request_information
-                            ##
+                            ## 
                             def to_get_request_information(request_configuration=nil)
                                 request_info = MicrosoftKiotaAbstractions::RequestInformation.new()
                                 unless request_configuration.nil?
@@ -63,27 +63,27 @@ module TeamBattlesSdk
                                 request_info.headers.try_add('Accept', 'application/json')
                                 return request_info
                             end
-                            ##
+                            ## 
                             ## Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
                             ## @param raw_url The raw URL to use for the request builder.
                             ## @return a rank_request_builder
-                            ##
+                            ## 
                             def with_url(raw_url)
                                 raise StandardError, 'raw_url cannot be null' if raw_url.nil?
                                 return RankRequestBuilder.new(raw_url, @request_adapter)
                             end
 
-                            ##
+                            ## 
                             # Returns a team's rank for the requested leaderboard filters. Private teams return rank null unless they are otherwise excluded from the API leaderboard. Requires teams.profile:read.
                             class RankRequestBuilderGetQueryParameters
-
+                                
                                 attr_accessor :game_slug
                                 attr_accessor :sort_by
-                                ##
+                                ## 
                                 ## Maps the query parameters names to their encoded names for the URI template parsing.
                                 ## @param original_name The original query parameter name in the class.
                                 ## @return a string
-                                ##
+                                ## 
                                 def get_query_parameter(original_name)
                                     raise StandardError, 'original_name cannot be null' if original_name.nil?
                                     case original_name

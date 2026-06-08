@@ -17,7 +17,7 @@ use TeamBattles\Sdk\Generated\Models\ListGameMatchesBody;
 /**
  * Builds and executes requests for operations under /game/matches
 */
-class MatchesRequestBuilder extends BaseRequestBuilder
+class MatchesRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * The batchScores property
@@ -25,14 +25,14 @@ class MatchesRequestBuilder extends BaseRequestBuilder
     public function batchScores(): BatchScoresRequestBuilder {
         return new BatchScoresRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * The create property
     */
     public function create(): CreateRequestBuilder {
         return new CreateRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
-
+    
     /**
      * Gets an item from the TeamBattles/Sdk/Generated.game.matches.item collection
      * @param string $matchId Match ID.

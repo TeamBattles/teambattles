@@ -36,6 +36,11 @@ func NewMatchesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371
     urlParams["request-raw-url"] = rawUrl
     return NewMatchesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Create the create property
+// returns a *CreateRequestBuilder when successful
+func (m *MatchesRequestBuilder) Create()(*CreateRequestBuilder) {
+    return NewCreateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Discover the discover property
 // returns a *DiscoverRequestBuilder when successful
 func (m *MatchesRequestBuilder) Discover()(*DiscoverRequestBuilder) {

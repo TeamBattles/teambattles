@@ -13,18 +13,8 @@ namespace TeamBattles.Sdk.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WebhookTestResult : IParsable
     {
-        /// <summary>Whether the test.ping returned a 2xx.</summary>
+        /// <summary>Whether the test.ping returned a 2xx. The raw status code and error are not echoed; read the delivery log for details.</summary>
         public bool? Delivered { get; set; }
-        /// <summary>Failure reason, if not delivered.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Error { get; set; }
-#nullable restore
-#else
-        public string Error { get; set; }
-#endif
-        /// <summary>HTTP response status, if any.</summary>
-        public int? StatusCode { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -44,8 +34,6 @@ namespace TeamBattles.Sdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "delivered", n => { Delivered = n.GetBoolValue(); } },
-                { "error", n => { Error = n.GetStringValue(); } },
-                { "statusCode", n => { StatusCode = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -56,8 +44,6 @@ namespace TeamBattles.Sdk.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("delivered", Delivered);
-            writer.WriteStringValue("error", Error);
-            writer.WriteIntValue("statusCode", StatusCode);
         }
     }
 }

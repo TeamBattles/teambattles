@@ -8,6 +8,8 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.leagues.item.games.add.AddRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.games.item.WithLeagueGameItemRequestBuilder;
 import gg.teambattles.sdk.generated.models.Error;
 import gg.teambattles.sdk.generated.models.LeagueGames;
 import java.util.Collection;
@@ -19,6 +21,26 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class GamesRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The add property
+     * @return a {@link AddRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public AddRequestBuilder add() {
+        return new AddRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * Gets an item from the gg.teambattles.sdk.generated.leagues.item.games.item collection
+     * @param leagueGameId League game link ID.
+     * @return a {@link WithLeagueGameItemRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public WithLeagueGameItemRequestBuilder byLeagueGameId(@jakarta.annotation.Nonnull final String leagueGameId) {
+        Objects.requireNonNull(leagueGameId);
+        final HashMap<String, Object> urlTplParams = new HashMap<String, Object>(this.pathParameters);
+        urlTplParams.put("leagueGameId", leagueGameId);
+        return new WithLeagueGameItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /**
      * Instantiates a new {@link GamesRequestBuilder} and sets the default values.
      * @param pathParameters Path parameters for the request

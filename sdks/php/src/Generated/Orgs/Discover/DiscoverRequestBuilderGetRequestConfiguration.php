@@ -8,13 +8,13 @@ use Microsoft\Kiota\Abstractions\RequestOption;
 /**
  * Configuration for the request such as headers, query parameters, and middleware options.
 */
-class DiscoverRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration
+class DiscoverRequestBuilderGetRequestConfiguration extends BaseRequestConfiguration 
 {
     /**
      * @var DiscoverRequestBuilderGetQueryParameters|null $queryParameters Request query parameters
     */
     public ?DiscoverRequestBuilderGetQueryParameters $queryParameters = null;
-
+    
     /**
      * Instantiates a new DiscoverRequestBuilderGetRequestConfiguration and sets the default values.
      * @param array<string, array<string>|string>|null $headers Request headers
@@ -28,7 +28,7 @@ class DiscoverRequestBuilderGetRequestConfiguration extends BaseRequestConfigura
 
     /**
      * Instantiates a new DiscoverRequestBuilderGetQueryParameters.
-     * @param int|null $limit
+     * @param int|null $limit 
      * @param string|null $search Optional organization name search.
      * @return DiscoverRequestBuilderGetQueryParameters
     */

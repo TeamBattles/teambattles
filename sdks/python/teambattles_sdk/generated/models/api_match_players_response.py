@@ -18,7 +18,7 @@ class ApiMatchPlayersResponse(Parsable):
     players: Optional[list[ApiMatchPlayer]] = None
     # The timestamp property
     timestamp: Optional[str] = None
-
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiMatchPlayersResponse:
         """
@@ -29,7 +29,7 @@ class ApiMatchPlayersResponse(Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ApiMatchPlayersResponse()
-
+    
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -45,7 +45,7 @@ class ApiMatchPlayersResponse(Parsable):
             "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
         }
         return fields
-
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -57,3 +57,5 @@ class ApiMatchPlayersResponse(Parsable):
         writer.write_str_value("matchId", self.match_id)
         writer.write_collection_of_object_values("players", self.players)
         writer.write_str_value("timestamp", self.timestamp)
+    
+

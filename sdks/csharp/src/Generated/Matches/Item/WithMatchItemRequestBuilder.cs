@@ -8,7 +8,14 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using TeamBattles.Sdk.Matches.Item.Accept;
+using TeamBattles.Sdk.Matches.Item.Attendance;
+using TeamBattles.Sdk.Matches.Item.Cancel;
+using TeamBattles.Sdk.Matches.Item.Chat;
+using TeamBattles.Sdk.Matches.Item.Forfeit;
+using TeamBattles.Sdk.Matches.Item.LobbyCode;
 using TeamBattles.Sdk.Matches.Item.Players;
+using TeamBattles.Sdk.Matches.Item.Ready;
 using TeamBattles.Sdk.Matches.Item.Scores;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Matches.Item
@@ -19,10 +26,45 @@ namespace TeamBattles.Sdk.Matches.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithMatchItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The accept property</summary>
+        public global::TeamBattles.Sdk.Matches.Item.Accept.AcceptRequestBuilder Accept
+        {
+            get => new global::TeamBattles.Sdk.Matches.Item.Accept.AcceptRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The attendance property</summary>
+        public global::TeamBattles.Sdk.Matches.Item.Attendance.AttendanceRequestBuilder Attendance
+        {
+            get => new global::TeamBattles.Sdk.Matches.Item.Attendance.AttendanceRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The cancel property</summary>
+        public global::TeamBattles.Sdk.Matches.Item.Cancel.CancelRequestBuilder Cancel
+        {
+            get => new global::TeamBattles.Sdk.Matches.Item.Cancel.CancelRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The chat property</summary>
+        public global::TeamBattles.Sdk.Matches.Item.Chat.ChatRequestBuilder Chat
+        {
+            get => new global::TeamBattles.Sdk.Matches.Item.Chat.ChatRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The forfeit property</summary>
+        public global::TeamBattles.Sdk.Matches.Item.Forfeit.ForfeitRequestBuilder Forfeit
+        {
+            get => new global::TeamBattles.Sdk.Matches.Item.Forfeit.ForfeitRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The lobbyCode property</summary>
+        public global::TeamBattles.Sdk.Matches.Item.LobbyCode.LobbyCodeRequestBuilder LobbyCode
+        {
+            get => new global::TeamBattles.Sdk.Matches.Item.LobbyCode.LobbyCodeRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The players property</summary>
         public global::TeamBattles.Sdk.Matches.Item.Players.PlayersRequestBuilder Players
         {
             get => new global::TeamBattles.Sdk.Matches.Item.Players.PlayersRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The ready property</summary>
+        public global::TeamBattles.Sdk.Matches.Item.Ready.ReadyRequestBuilder Ready
+        {
+            get => new global::TeamBattles.Sdk.Matches.Item.Ready.ReadyRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The scores property</summary>
         public global::TeamBattles.Sdk.Matches.Item.Scores.ScoresRequestBuilder Scores

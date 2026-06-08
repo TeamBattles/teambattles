@@ -11,18 +11,18 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * Composed type wrapper for classes ApiUserConnection_connectedAtMember1, string
 */
-class ApiUserConnection_connectedAt implements ComposedTypeWrapper, Parsable
+class ApiUserConnection_connectedAt implements ComposedTypeWrapper, Parsable 
 {
     /**
      * @var ApiUserConnection_connectedAtMember1|null $apiUserConnection_connectedAtMember1 Composed type representation for type ApiUserConnection_connectedAtMember1
     */
     private ?ApiUserConnection_connectedAtMember1 $apiUserConnection_connectedAtMember1 = null;
-
+    
     /**
      * @var string|null $string Composed type representation for type string
     */
     private ?string $string = null;
-
+    
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object

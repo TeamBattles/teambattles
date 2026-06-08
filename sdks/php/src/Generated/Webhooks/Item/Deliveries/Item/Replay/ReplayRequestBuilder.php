@@ -14,7 +14,7 @@ use TeamBattles\Sdk\Generated\Models\WebhookReplayResult;
 /**
  * Builds and executes requests for operations under /webhooks/{id}/deliveries/{deliveryId}/replay
 */
-class ReplayRequestBuilder extends BaseRequestBuilder
+class ReplayRequestBuilder extends BaseRequestBuilder 
 {
     /**
      * Instantiates a new ReplayRequestBuilder and sets the default values.
