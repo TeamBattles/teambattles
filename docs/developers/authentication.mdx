@@ -53,9 +53,9 @@ Each API key carries granular permission scopes. Most scopes use access levels (
 
 #### League capabilities
 
-Keys bound to a league (a League developer account) also carry a `leagues` block with three access scopes - `league_public` (read), `league_admin` (read or read-write), and `settings_read` (read) - plus an optional `leagues.capabilities` allowlist. Each capability is **write-only**: it grants its action only when explicitly set to `write`. The 12 capability keys are:
+Keys bound to a league (a League developer account) also carry a `leagues` block with three access scopes - `league_public` (read), `league_admin` (read or read-write), and `settings_read` (read) - plus an optional `leagues.capabilities` allowlist. Each capability is **write-only**: it grants its action only when explicitly set to `write`. The 13 capability keys are:
 
-`scores`, `seasons`, `teams`, `members`, `bans`, `penalties`, `cooldowns`, `rules`, `points`, `branding`, `games`, `display_rules`.
+`scores`, `seasons`, `teams`, `members`, `bans`, `penalties`, `cooldowns`, `rules`, `points`, `branding`, `games`, `display_rules`, `tickets`.
 
 <Note>
 	Game API permissions (scores, lifecycle, ranks) are only available to approved Game Developers,

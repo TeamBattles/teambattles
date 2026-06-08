@@ -272,7 +272,11 @@
 							"api-reference/leagues/members",
 							"api-reference/leagues/bans",
 							"api-reference/leagues/league-cooldown-config-update",
-							"api-reference/leagues/penalties"
+							"api-reference/leagues/penalties",
+							"api-reference/leagues/ticket-create",
+							"api-reference/leagues/ticket-reply",
+							"api-reference/leagues/ticket-update",
+							"api-reference/leagues/ticket-escalate"
 						]
 					},
 					{

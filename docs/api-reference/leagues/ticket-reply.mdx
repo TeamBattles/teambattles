@@ -1,0 +1,27 @@
+---
+title: "Reply To League Ticket"
+description: "Add a reply or internal note to a league support ticket."
+openapi: "POST /leagues/{identifier}/tickets/{ticketId}/reply"
+---
+
+## Permission Required
+
+This endpoint requires a `league-operator` API key bound to the league with the `tickets` capability set to `write`.
+
+## Membership Required
+
+The API key owner must have a **MANAGER or higher** role in the league, or be a TeamBattles staff member.
+
+## League Identifier
+
+The `{identifier}` path parameter accepts a league slug or Convex league ID.
+
+## Ticket ID
+
+The `{ticketId}` path parameter is the league ticket to reply to.
+
+## Behavior
+
+Replies are written as ticket messages by the API key owner. When the ticket has no first response timestamp, the reply records one. If the ticket was waiting on a response, the status moves to `in_progress`.
+
+Set `isInternal` to `true` to create an internal note for league staff.
