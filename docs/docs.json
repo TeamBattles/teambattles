@@ -265,6 +265,9 @@
 							"api-reference/leagues/display-rules",
 							"api-reference/leagues/templates",
 							"api-reference/leagues/apply-eligibility",
+							"api-reference/leagues/team-approve",
+							"api-reference/leagues/team-deny",
+							"api-reference/leagues/team-remove",
 							"api-reference/leagues/members",
 							"api-reference/leagues/bans",
 							"api-reference/leagues/penalties"

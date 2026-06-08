@@ -5924,6 +5924,374 @@
         }
       }
     },
+    "/leagues/{identifier}/teams/{leagueTeamId}/approve": {
+      "post": {
+        "operationId": "approveLeagueTeamApplication",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Approve a league team application",
+        "description": "Approves a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          },
+          {
+            "in": "path",
+            "name": "leagueTeamId",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "League team application ID."
+            },
+            "required": true,
+            "description": "League team application ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The team application was approved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApproveLeagueTeamResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/teams/{leagueTeamId}/deny": {
+      "post": {
+        "operationId": "denyLeagueTeamApplication",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Deny a league team application",
+        "description": "Denies a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          },
+          {
+            "in": "path",
+            "name": "leagueTeamId",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "League team application ID."
+            },
+            "required": true,
+            "description": "League team application ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DenyLeagueTeamRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The team application was denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DenyLeagueTeamResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/teams/{leagueTeamId}/remove": {
+      "post": {
+        "operationId": "removeLeagueTeam",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Remove a league team",
+        "description": "Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a league-operator key bound to the league and the league teams capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          },
+          {
+            "in": "path",
+            "name": "leagueTeamId",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Approved league team membership ID."
+            },
+            "required": true,
+            "description": "Approved league team membership ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveLeagueTeamRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The team was removed from the league.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveLeagueTeamResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/leagues/templates": {
       "post": {
         "operationId": "getLeagueTemplates",
@@ -14167,6 +14535,28 @@
         },
         "description": "Season and game filters for league standings."
       },
+      "DenyLeagueTeamRequestBody": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "description": "Optional denial reason shown to the team's captain.",
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "description": "Denies a pending league team application."
+      },
+      "RemoveLeagueTeamRequestBody": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "description": "Optional removal reason shown to the team's captain.",
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "description": "Removes an approved team from a league."
+      },
       "LeagueTemplatesRequestBody": {
         "type": "object",
         "properties": {
@@ -19561,6 +19951,60 @@
         ],
         "additionalProperties": false,
         "description": "League standings for a season."
+      },
+      "ApproveLeagueTeamResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "DenyLeagueTeamResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "RemoveLeagueTeamResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
       },
       "LeagueTemplates": {
         "type": "object",
