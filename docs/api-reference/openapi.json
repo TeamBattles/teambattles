@@ -1948,6 +1948,114 @@
         }
       }
     },
+    "/leagues/{identifier}/activity-feed": {
+      "post": {
+        "operationId": "getLeagueActivityFeed",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Get league activity feed",
+        "description": "Returns recent league activity entries. Requires a league-operator key bound to the league and leagues.league_admin:read.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeagueActivityFeedRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "League activity feed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueActivityFeedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/leagues/{identifier}/apply-eligibility": {
       "post": {
         "operationId": "getLeagueApplyEligibility",
@@ -2766,6 +2874,95 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/dashboard/stats": {
+      "post": {
+        "operationId": "getLeagueDashboardStats",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Get league dashboard stats",
+        "description": "Returns aggregate league admin dashboard counts. Requires a league-operator key bound to the league and leagues.league_admin:read.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "League dashboard stats.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueDashboardStatsResponse"
                 }
               }
             }
@@ -4696,6 +4893,124 @@
         }
       }
     },
+    "/leagues/{identifier}/ownership/transfer": {
+      "post": {
+        "operationId": "transferLeagueOwnership",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Transfer league ownership",
+        "description": "Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferLeagueOwnershipRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "League ownership was transferred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferLeagueOwnershipResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/leagues/{identifier}/penalties": {
       "post": {
         "operationId": "getLeaguePenalties",
@@ -6041,6 +6356,302 @@
           },
           "409": {
             "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/settings": {
+      "post": {
+        "operationId": "getLeagueSettings",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Get league settings",
+        "description": "Returns full league settings for admin tooling. Requires a league-operator key bound to the league and leagues.settings_read:read.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "League settings.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueSettingsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/settings/enabled": {
+      "post": {
+        "operationId": "setLeagueEnabled",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Set league enabled state",
+        "description": "Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetLeagueEnabledRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league enabled state was updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetLeagueEnabledResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/shutdown/request": {
+      "post": {
+        "operationId": "requestLeagueShutdown",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Request league shutdown",
+        "description": "Requests TeamBattles staff review for league shutdown. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "League shutdown was requested.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestLeagueShutdownResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -14524,6 +15135,29 @@
         },
         "description": "Filters and offset pagination for discovering leagues."
       },
+      "LeagueActivityFeedRequestBody": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "default": 25,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "cursor": {
+            "default": null,
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "description": "Cursor pagination options for a league activity feed."
+      },
       "LeagueApplyEligibilityRequestBody": {
         "type": "object",
         "properties": {
@@ -14910,6 +15544,20 @@
           "role"
         ],
         "description": "Adds or reactivates a league staff member."
+      },
+      "TransferLeagueOwnershipRequestBody": {
+        "type": "object",
+        "properties": {
+          "targetUserId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "User ID of the target league owner."
+          }
+        },
+        "required": [
+          "targetUserId"
+        ],
+        "description": "Transfers league ownership to an existing staff member."
       },
       "PenaltiesRequestBody": {
         "type": "object",
@@ -15302,6 +15950,19 @@
           "endDate"
         ],
         "description": "League season creation payload."
+      },
+      "SetLeagueEnabledRequestBody": {
+        "type": "object",
+        "properties": {
+          "isEnabled": {
+            "type": "boolean",
+            "description": "Whether the league is enabled/discoverable."
+          }
+        },
+        "required": [
+          "isEnabled"
+        ],
+        "description": "League enabled-state update."
       },
       "StandingsRequestBody": {
         "type": "object",
@@ -20052,6 +20713,32 @@
         "additionalProperties": false,
         "description": "Public profile for a single league."
       },
+      "LeagueActivityFeedResponse": {
+        "type": "object",
+        "properties": {
+          "activities": {
+            "type": "array",
+            "items": {}
+          },
+          "nextCursor": {
+            "type": "string"
+          },
+          "hasMore": {
+            "type": "boolean"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "activities",
+          "nextCursor",
+          "hasMore",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "A paginated league activity feed."
+      },
       "LeagueApplyEligibility": {
         "type": "object",
         "properties": {
@@ -20248,6 +20935,52 @@
           "timestamp"
         ],
         "additionalProperties": false
+      },
+      "LeagueDashboardStatsResponse": {
+        "type": "object",
+        "properties": {
+          "stats": {
+            "type": "object",
+            "properties": {
+              "teamCount": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "pendingApplications": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "activeSeasons": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "openTickets": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "teamCount",
+              "pendingApplications",
+              "activeSeasons",
+              "openTickets"
+            ],
+            "additionalProperties": false
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "stats",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Aggregate league admin dashboard statistics."
       },
       "LeagueDisplayRules": {
         "type": "object",
@@ -20494,6 +21227,23 @@
           "timestamp": {
             "type": "string",
             "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "TransferLeagueOwnershipResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
           }
         },
         "required": [
@@ -20827,6 +21577,61 @@
         "required": [
           "success",
           "seasonId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "LeagueSettingsResponse": {
+        "type": "object",
+        "properties": {
+          "league": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "league",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Full league settings visible to league admins."
+      },
+      "SetLeagueEnabledResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "RequestLeagueShutdownResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
           "timestamp"
         ],
         "additionalProperties": false
