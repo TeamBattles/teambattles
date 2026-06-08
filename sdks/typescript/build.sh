@@ -4,5 +4,9 @@
 set -e
 cd "$(dirname "$0")"
 
-pnpm install
+# --ignore-workspace is REQUIRED: this package lives inside the root pnpm workspace, so a
+# plain `pnpm install` resolves to the root and never installs the SDK's own kiota runtime
+# deps (@microsoft/kiota-*), leaving every generated model's `additionalData` (from
+# AdditionalDataHolder) unresolved and failing tsc. Installing standalone fixes that.
+pnpm install --ignore-workspace
 pnpm build
