@@ -1,23 +1,33 @@
 ---
 title: "Counter-Strike 2"
-description: "Strategy editor support only"
+description: "5v5 matchmaking and strategy editor support"
 ---
 
-Counter-Strike 2 is currently wired up for the [Strategy Editor](https://teambattles.gg/strategy/editor) only. Match creation, leagues, and rank tracking for CS2 are not yet available. For a guided walkthrough of the editor, see [Managing strategies](/strategy/managing-strategies).
+Counter-Strike 2 supports TeamBattles 5v5 match creation, challenges, league play, lobby codes, score proof, disputes, and the [Strategy Editor](https://teambattles.gg/strategy/editor). Rank tracking is not wired up yet.
 
 ## Status
 
-| Feature                          | Status                       |
-| -------------------------------- | ---------------------------- |
-| Strategy editor support          | Available                    |
-| Match creation                   | Not yet wired up             |
-| Leagues                          | Not yet wired up             |
-| Rank tracking and overlays       | Not yet wired up             |
+| Feature                    | Status                 |
+| -------------------------- | ---------------------- |
+| Match creation             | Available              |
+| Challenges                 | Available              |
+| Leagues                    | Available              |
+| Strategy editor support    | Available              |
+| Rank tracking and overlays | Not yet wired up       |
 
 <Note>
-	CS2 stays flagged as "Coming Soon" in the match wizard until game modes and playlists are
-	authored. You can still draft tactical setups on every active map from the strategy editor.
+	CS2 matchmaking is a TeamBattles-managed 5v5 flow. Every rostered player needs a linked
+	Steam connection, but TeamBattles does not require CS2 rank sync to create or accept CS2 matches.
 </Note>
+
+## Matchmaking
+
+CS2 ships with two 5v5 modes:
+
+- **Premier** - active-duty map pool: Ancient, Anubis, Dust II, Inferno, Mirage, Nuke, and Overpass.
+- **Competitive** - full TeamBattles CS2 map pool: Ancient, Anubis, Cache, Dust II, Inferno, Mirage, Nuke, Overpass, Train, and Vertigo.
+
+Teams can use preferred maps, vetoes, or manual map selection according to the match format. The host captain posts the lobby code from the match page when the lobby is ready.
 
 ## Strategy Editor
 
@@ -41,12 +51,5 @@ CS2 does not ship marker-based overlays (spawns, POI labels, objective markers) 
 
 ## What's Not Wired Up Yet
 
-- Match creation (no game modes or playlists defined)
-- League integration (no rules, points engine, or seasons)
 - Rank tracking (no Steam or third-party rank sync)
 - Stream overlays for CS2-specific stats
-
-<Warning>
-	If you need full CS2 match support, follow updates from the team - this page lists only what is
-	live today.
-</Warning>
