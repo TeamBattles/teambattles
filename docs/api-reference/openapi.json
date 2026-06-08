@@ -2695,6 +2695,341 @@
         }
       }
     },
+    "/leagues/{identifier}/display-rules/{displayRuleId}": {
+      "delete": {
+        "operationId": "removeLeagueDisplayRule",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Remove a league display rule",
+        "description": "Removes an informational display rule. Requires a league-operator key bound to the league and the league display_rules capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          },
+          {
+            "in": "path",
+            "name": "displayRuleId",
+            "schema": {
+              "type": "string",
+              "description": "Display rule ID."
+            },
+            "required": true,
+            "description": "Display rule ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The display rule was removed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveDisplayRuleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/display-rules/reorder": {
+      "post": {
+        "operationId": "reorderLeagueDisplayRules",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Reorder league display rules",
+        "description": "Reorders display rules for a league game. Requires a league-operator key bound to the league and the league display_rules capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReorderDisplayRulesRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The display rules were reordered.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReorderDisplayRulesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/display-rules/upsert": {
+      "post": {
+        "operationId": "upsertLeagueDisplayRule",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Upsert a league display rule",
+        "description": "Creates or updates an informational display rule for a league game. Requires a league-operator key bound to the league and the league display_rules capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertDisplayRuleRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The display rule was upserted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpsertDisplayRuleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/leagues/{identifier}/games": {
       "post": {
         "operationId": "getLeagueGames",
@@ -2753,6 +3088,371 @@
           },
           "404": {
             "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/games/{leagueGameId}": {
+      "delete": {
+        "operationId": "removeLeagueGame",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Remove a league game",
+        "description": "Removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          },
+          {
+            "in": "path",
+            "name": "leagueGameId",
+            "schema": {
+              "type": "string",
+              "description": "League game link ID."
+            },
+            "required": true,
+            "description": "League game link ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The game was removed from the league.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveLeagueGameResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/games/{leagueGameId}/toggle": {
+      "post": {
+        "operationId": "toggleLeagueGame",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Toggle a league game",
+        "description": "Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires the league games capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          },
+          {
+            "in": "path",
+            "name": "leagueGameId",
+            "schema": {
+              "type": "string",
+              "description": "League game link ID."
+            },
+            "required": true,
+            "description": "League game link ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ToggleLeagueGameRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league game was toggled.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToggleLeagueGameResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/games/add": {
+      "post": {
+        "operationId": "addLeagueGame",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Add a league game",
+        "description": "Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddLeagueGameRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The game was added to the league.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueGameWriteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3956,6 +4656,124 @@
         }
       }
     },
+    "/leagues/{identifier}/points/update": {
+      "post": {
+        "operationId": "updateLeaguePointsConfig",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Update league points config",
+        "description": "Creates or updates the points configuration for a league game. Requires a league-operator key bound to the league and the league points capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePointsConfigRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league points config was updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatePointsConfigResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/leagues/{identifier}/rules": {
       "post": {
         "operationId": "getLeagueRules",
@@ -4033,6 +4851,242 @@
           },
           "404": {
             "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/rules/apply-template": {
+      "post": {
+        "operationId": "applyLeagueRuleTemplate",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Apply a league rule template",
+        "description": "Applies a rule template to a league game. Requires a league-operator key bound to the league and the league rules capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyRuleTemplateRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The rule template was applied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplyRuleTemplateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/rules/update": {
+      "post": {
+        "operationId": "updateLeagueRules",
+        "tags": [
+          "Leagues"
+        ],
+        "summary": "Update league game rules",
+        "description": "Creates or updates enforced rules for a league game. Requires a league-operator key bound to the league and the league rules capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGameRulesRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The league game rules were updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuleWriteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -12501,6 +13555,150 @@
         ],
         "description": "Display rule selector."
       },
+      "ReorderDisplayRulesRequestBody": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game ID whose display rules should reorder."
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Display rule ID."
+                },
+                "order": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "id",
+                "order"
+              ]
+            }
+          }
+        },
+        "required": [
+          "gameId",
+          "items"
+        ],
+        "description": "Reorders display rules."
+      },
+      "UpsertDisplayRuleRequestBody": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game ID whose display rule should change."
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Display rule category."
+          },
+          "scope": {
+            "type": "object",
+            "properties": {
+              "modes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "playlists": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "categoryIcon": {
+            "type": "string"
+          },
+          "categoryOrder": {
+            "type": "number"
+          },
+          "isCustomCategory": {
+            "type": "boolean"
+          },
+          "isOverride": {
+            "type": "boolean"
+          },
+          "content": {
+            "type": "object",
+            "properties": {
+              "sections": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "heading": {
+                      "type": "string"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "sections"
+            ]
+          }
+        },
+        "required": [
+          "gameId",
+          "category",
+          "categoryOrder",
+          "isCustomCategory",
+          "isOverride",
+          "content"
+        ],
+        "description": "Creates or updates a display rule."
+      },
+      "ToggleLeagueGameRequestBody": {
+        "type": "object",
+        "properties": {
+          "isActive": {
+            "type": "boolean",
+            "description": "Whether the game should be active."
+          }
+        },
+        "required": [
+          "isActive"
+        ],
+        "description": "Toggles a league game."
+      },
+      "AddLeagueGameRequestBody": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game ID to add to the league."
+          }
+        },
+        "required": [
+          "gameId"
+        ],
+        "description": "Adds a league game."
+      },
       "LeagueStatusUpdateBody": {
         "type": "object",
         "properties": {
@@ -12634,6 +13832,81 @@
         ],
         "description": "Creates a league team penalty."
       },
+      "UpdatePointsConfigRequestBody": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game ID whose points config should change."
+          },
+          "unitLabel": {
+            "type": "string",
+            "enum": [
+              "POINTS",
+              "EXPERIENCE"
+            ]
+          },
+          "baseWin": {
+            "type": "number"
+          },
+          "baseLoss": {
+            "type": "number"
+          },
+          "baseDraw": {
+            "type": "number"
+          },
+          "allowNegative": {
+            "type": "boolean"
+          },
+          "streakBonusEnabled": {
+            "type": "boolean"
+          },
+          "streakBreakpoints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "number"
+                },
+                "bonus": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "count",
+                "bonus"
+              ]
+            }
+          },
+          "challengerWinBonus": {
+            "type": "number"
+          },
+          "challengedWinBonus": {
+            "type": "number"
+          },
+          "forfeitPenalty": {
+            "type": "number"
+          },
+          "challengeRefuseAdditionalPenalty": {
+            "type": "number"
+          },
+          "challengeCancelGracePeriodHours": {
+            "type": "number"
+          },
+          "matchupCooldownHours": {
+            "type": "number"
+          },
+          "scrimmageAwardsPoints": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "gameId"
+        ],
+        "description": "Updates league points configuration."
+      },
       "RulesRequestBody": {
         "type": "object",
         "properties": {
@@ -12646,6 +13919,170 @@
           "gameId"
         ],
         "description": "Game selector for league rules and points config."
+      },
+      "ApplyRuleTemplateRequestBody": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game ID to apply the template to."
+          },
+          "templateId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "League rule template ID."
+          }
+        },
+        "required": [
+          "gameId",
+          "templateId"
+        ],
+        "description": "Applies a rule template."
+      },
+      "UpdateGameRulesRequestBody": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game ID whose league rules should change."
+          },
+          "allowedPlaylistIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "allowedMapIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "matchFormat": {
+            "type": "string",
+            "enum": [
+              "BEST_OF_1",
+              "BEST_OF_3",
+              "BEST_OF_5",
+              "BEST_OF_7",
+              "BEST_OF_9"
+            ]
+          },
+          "teamSize": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "min",
+              "max"
+            ]
+          },
+          "forceCompetitive": {
+            "type": "boolean"
+          },
+          "allowedDays": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "blockedDays": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "allowedTimeRange": {
+            "type": "object",
+            "properties": {
+              "start": {
+                "type": "string"
+              },
+              "end": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "start",
+              "end"
+            ]
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "challengesEnabled": {
+            "type": "boolean"
+          },
+          "maxChallengesPerTeamPerSeason": {
+            "type": "number"
+          },
+          "maxPointsMatchesPerPairPer24h": {
+            "type": "number"
+          },
+          "maxPendingChallengesPerOpponent": {
+            "type": "number"
+          },
+          "maxPendingChallengesTotal": {
+            "type": "number"
+          },
+          "challengeCooldownMinutes": {
+            "type": "number"
+          },
+          "wagersAllowed": {
+            "type": "boolean"
+          },
+          "minWagerAmount": {
+            "type": "number"
+          },
+          "maxWagerAmount": {
+            "type": "number"
+          },
+          "minRosterSize": {
+            "type": "number"
+          },
+          "maxRosterSize": {
+            "type": "number"
+          },
+          "rosterLockEnabled": {
+            "type": "boolean"
+          },
+          "rosterChangeWindowDays": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rosterChangeWindowTime": {
+            "type": "object",
+            "properties": {
+              "start": {
+                "type": "string"
+              },
+              "end": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "start",
+              "end"
+            ]
+          },
+          "maxRosterChangesPerWeek": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "gameId"
+        ],
+        "description": "Updates league game rules."
       },
       "LeagueSeasonOptionsRequestBody": {
         "type": "object",
@@ -17533,6 +18970,61 @@
         "additionalProperties": false,
         "description": "League display rules."
       },
+      "RemoveDisplayRuleResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "ReorderDisplayRulesResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "UpsertDisplayRuleResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "displayRuleId": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "displayRuleId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "LeagueGames": {
         "type": "object",
         "properties": {
@@ -17563,6 +19055,57 @@
         ],
         "additionalProperties": false,
         "description": "Games configured for a league."
+      },
+      "RemoveLeagueGameResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "ToggleLeagueGameResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "LeagueGameWriteResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
       },
       "LeagueMembers": {
         "type": "object",
@@ -17713,6 +19256,27 @@
         ],
         "additionalProperties": false
       },
+      "UpdatePointsConfigResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "configId": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "configId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "LeagueRules": {
         "type": "object",
         "properties": {
@@ -17754,6 +19318,48 @@
         ],
         "additionalProperties": false,
         "description": "Game rules and points config for a league."
+      },
+      "ApplyRuleTemplateResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "rulesId": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "rulesId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "RuleWriteResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "rulesId": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "rulesId",
+          "timestamp"
+        ],
+        "additionalProperties": false
       },
       "LeagueSeasonOptions": {
         "type": "object",
