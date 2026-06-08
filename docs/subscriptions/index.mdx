@@ -3,12 +3,12 @@ title: "Subscriptions"
 description: "Unlock premium features and higher limits on TeamBattles"
 ---
 
-TeamBattles offers optional subscription tiers that unlock additional features, higher limits, and faster benefit-action cooldowns. There is no in-app currency - every paid tier is a recurring real-money plan.
+TeamBattles offers optional subscription tiers that unlock additional features, higher limits, and faster benefit-action cooldowns. There is no in-app currency - every paid tier is a recurring real-money plan, billed monthly or yearly.
 
 ## Tier Comparison
 
-| Feature                              | Free     | Basic ($4.99/mo) | Standard ($9.99/mo) | Premium ($19.99/mo) |
-| ------------------------------------ | -------- | ---------------- | ------------------- | ------------------- |
+| Feature                              | Free     | Basic ($4.99/mo · $49.90/yr) | Standard ($9.99/mo · $99.90/yr) | Premium ($19.99/mo · $199.90/yr) |
+| ------------------------------------ | -------- | ---------------------------- | ------------------------------- | -------------------------------- |
 | **Organizations**                    | 1        | 3                | 5                   | 10                  |
 | **Teams per Org**                    | 2        | 5                | 10                  | 20                  |
 | **Org Members**                      | 20       | 50               | 100                 | 200                 |
@@ -25,6 +25,8 @@ TeamBattles offers optional subscription tiers that unlock additional features, 
 | **OBS overlay watermark removal**    | No       | Yes              | Yes                 | Yes                 |
 | **Strategy GIF export (no watermark)**| No      | Watermarked      | Yes                 | Yes                 |
 | **Mid-Week Roster Update**           | No       | No               | No                  | Yes                 |
+
+Yearly billing is 2 months free. Every paid tier starts with a 7-day free trial.
 
 [^1]: Strategy boards are not tier-gated. The 200-board cap is a flat anti-abuse constant (`BOARD_CAP = 200` in `src/convex/functions/strategies/boards.ts`), not a per-tier limit.
 
@@ -64,6 +66,18 @@ Every subscription moment - a locked feature, an action on cooldown, a plan chan
 ## A la Carte Purchases
 
 A small set of one-time, real-money items can be purchased directly (fulfilled through Polar). Today the only such item is **Gift D&B Removal**, which clears another user's Donut and Breadstick counts. You cannot gift it to yourself.
+
+## Developer & API Plans
+
+Developer plans are a **separate billing axis** from the consumer tiers above. They raise public API rate limits and unlock webhooks and the league-operator API. They are billed to your user account and are **not org-assignable** - they have no relationship to the consumer effective-tier system, so subscribing to a developer plan does not change an organization's tier.
+
+| Plan           | Price                         | Trial   | How to subscribe |
+| -------------- | ----------------------------- | ------- | ---------------- |
+| **Pro**        | $29.99/mo · $299.90/yr        | 14 days | Self-serve checkout |
+| **Studio**     | $119.99/mo · $1199.90/yr      | None    | Self-serve checkout |
+| **Enterprise** | Custom                        | None    | Contact sales    |
+
+Pro and Studio are self-serve through Polar hosted checkout. Enterprise is provisioned manually - reach out through Contact sales for custom API limits and terms.
 
 ## Getting Started
 

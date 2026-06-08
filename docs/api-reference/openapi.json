@@ -12,6 +12,124 @@
     }
   ],
   "paths": {
+    "/chat/messages/{messageId}/report": {
+      "post": {
+        "operationId": "reportChatMessage",
+        "tags": [
+          "Chat"
+        ],
+        "summary": "Report a chat message",
+        "description": "Reports a chat message for staff moderation as the API key owner. The owner must be a participant of the message's chat room; a non-participant receives 403. System messages and the owner's own messages cannot be reported. Reporting the same message twice is idempotent (returns the existing report with alreadyReported: true). Requires the chat.write scope and the writes feature. Supports the Idempotency-Key header.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "messageId",
+            "schema": {
+              "type": "string",
+              "description": "ID of the chat message to report."
+            },
+            "required": true,
+            "description": "ID of the chat message to report."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportChatMessageRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The message was reported (or was already reported).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportChatMessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/game/matches": {
       "post": {
         "operationId": "listGameMatches",
@@ -7796,6 +7914,860 @@
         }
       }
     },
+    "/matches/{matchId}/accept": {
+      "post": {
+        "operationId": "createMatchAcceptance",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "Create a match acceptance request",
+        "description": "Creates a match acceptance request as the personal API key owner. The owner must captain the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcceptMatchRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The match acceptance request was created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptMatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches/{matchId}/attendance": {
+      "post": {
+        "operationId": "updateMatchAttendance",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "Update match attendance",
+        "description": "Updates the personal API key owner's own attendance status for a match. The owner must already be rostered in the match; the platform may swap active and bench players automatically. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAttendanceRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The attendance status was updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateAttendanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches/{matchId}/cancel": {
+      "post": {
+        "operationId": "cancelMatch",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "Cancel a match",
+        "description": "Cancels a match as the personal API key owner. The owner must be able to manage the match (captain a participating team or be an admin). Past the league grace period an accepted league match is treated as a forfeit. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelMatchRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The match was cancelled successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelMatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches/{matchId}/chat": {
+      "get": {
+        "operationId": "listMatchChatMessages",
+        "tags": [
+          "Chat"
+        ],
+        "summary": "List a match chat room's messages",
+        "description": "Returns the messages of a match's chat room, newest first, with cursor pagination. The API key owner must be a participant of the match (a member of one of the match's teams); a non-participant receives 404. Requires the chat.read scope.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID. The caller must be a participant of this match."
+            },
+            "required": true,
+            "description": "Match ID. The caller must be a participant of this match."
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "description": "Page size (1-100). Defaults to 50.",
+              "type": "string"
+            },
+            "description": "Page size (1-100). Defaults to 50."
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {
+              "description": "Opaque continuation cursor from a prior page's nextCursor.",
+              "type": "string"
+            },
+            "description": "Opaque continuation cursor from a prior page's nextCursor."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Program cursor-paginated result. nextCursor is null when hasMore is false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ChatMessage"
+                      }
+                    },
+                    "nextCursor": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "hasMore": {
+                      "type": "boolean"
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "nextCursor",
+                    "hasMore",
+                    "timestamp"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "sendMatchChatMessage",
+        "tags": [
+          "Chat"
+        ],
+        "summary": "Send a message to a match chat room",
+        "description": "Sends a message to a match's chat room as the API key owner. The owner must be a participant of the match; a non-participant receives 403. Requires the chat.write scope and the writes feature. Supports the Idempotency-Key header.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID. The caller must be a participant of this match."
+            },
+            "required": true,
+            "description": "Match ID. The caller must be a participant of this match."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendChatMessageRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The message was sent.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendChatMessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches/{matchId}/forfeit": {
+      "post": {
+        "operationId": "forfeitMatch",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "Forfeit a match",
+        "description": "Forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForfeitMatchRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The match was forfeited successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForfeitMatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches/{matchId}/lobby-code": {
+      "post": {
+        "operationId": "updateMatchLobbyCode",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "Set a match lobby code",
+        "description": "Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLobbyCodeRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The match lobby code was updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateLobbyCodeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/matches/{matchId}/players": {
       "get": {
         "operationId": "getMatchPlayers",
@@ -7854,6 +8826,124 @@
           },
           "404": {
             "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches/{matchId}/ready": {
+      "post": {
+        "operationId": "markMatchReady",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "Mark a match team ready",
+        "description": "Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarkMatchReadyRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The team readiness state was updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkMatchReadyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
             "content": {
               "application/json": {
                 "schema": {
@@ -8115,6 +9205,112 @@
           },
           "404": {
             "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches/create": {
+      "post": {
+        "operationId": "createMatch",
+        "tags": [
+          "Matches"
+        ],
+        "summary": "Create a match",
+        "description": "Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMatchRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The match was created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateMatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -8885,6 +10081,270 @@
         }
       }
     },
+    "/strategies/{slug}": {
+      "get": {
+        "operationId": "getStrategyBySlug",
+        "tags": [
+          "Strategies"
+        ],
+        "summary": "Get a strategy by share slug",
+        "description": "Returns a shareable strategy resolved by its public share slug. Public and unlisted strategies are returned to any caller; a private strategy returns 404 unless the API key owner owns it. Requires strategies.read.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "schema": {
+              "type": "string",
+              "description": "Strategy public share slug."
+            },
+            "required": true,
+            "description": "Strategy public share slug."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The strategy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiStrategyEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/strategies/{slug}/shapes": {
+      "get": {
+        "operationId": "getStrategyShapes",
+        "tags": [
+          "Strategies"
+        ],
+        "summary": "Get the shapes of a strategy by share slug",
+        "description": "Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "schema": {
+              "type": "string",
+              "description": "Strategy public share slug."
+            },
+            "required": true,
+            "description": "Strategy public share slug."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The strategy shapes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiStrategyShapesEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/streams/live-status": {
+      "post": {
+        "operationId": "batchStreamStatus",
+        "tags": [
+          "Streaming"
+        ],
+        "summary": "Batch live-stream status lookup",
+        "description": "Returns compact live status for up to 50 users. Users that do not exist or whose profile hides stream status from the caller are omitted from the response. Requires stream.read.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiBatchStreamStatusBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Per-user live status for the visible subset of requested users.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiBatchStreamStatusEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/teams/{identifier}": {
       "get": {
         "operationId": "getTeamProfile",
@@ -9210,6 +10670,445 @@
         }
       }
     },
+    "/tickets": {
+      "get": {
+        "operationId": "listTickets",
+        "tags": [
+          "Tickets"
+        ],
+        "summary": "List the API key owner's support tickets",
+        "description": "Returns the API key owner's tickets, newest first, with cursor pagination. Requires the tickets.read scope.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "description": "Page size (1-100). Defaults to 25.",
+              "type": "string"
+            },
+            "description": "Page size (1-100). Defaults to 25."
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {
+              "description": "Opaque continuation cursor from a prior page's nextCursor.",
+              "type": "string"
+            },
+            "description": "Opaque continuation cursor from a prior page's nextCursor."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Program cursor-paginated result. nextCursor is null when hasMore is false.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TicketSummary"
+                      }
+                    },
+                    "nextCursor": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "hasMore": {
+                      "type": "boolean"
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "nextCursor",
+                    "hasMore",
+                    "timestamp"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTicket",
+        "tags": [
+          "Tickets"
+        ],
+        "summary": "Create a support ticket",
+        "description": "Creates a support ticket owned by the API key owner. Requires the tickets.write scope and the writes feature. Supports the Idempotency-Key header.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTicketRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The ticket was created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTicketResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tickets/{ticketId}": {
+      "get": {
+        "operationId": "getTicket",
+        "tags": [
+          "Tickets"
+        ],
+        "summary": "Get one of the API key owner's tickets",
+        "description": "Returns one of the API key owner's tickets and its message thread (internal staff notes excluded). A ticket the owner does not own reads as 404. Requires the tickets.read scope.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticketId",
+            "schema": {
+              "type": "string",
+              "description": "Ticket ID."
+            },
+            "required": true,
+            "description": "Ticket ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The ticket and its message thread.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TicketDetail"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tickets/{ticketId}/messages": {
+      "post": {
+        "operationId": "addTicketMessage",
+        "tags": [
+          "Tickets"
+        ],
+        "summary": "Reply to one of the API key owner's tickets",
+        "description": "Adds a reply message to one of the API key owner's tickets. Closed tickets are rejected. Requires the tickets.write scope and the writes feature. Supports the Idempotency-Key header.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticketId",
+            "schema": {
+              "type": "string",
+              "description": "Ticket ID."
+            },
+            "required": true,
+            "description": "Ticket ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddTicketMessageRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The reply was added.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddTicketMessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/twitch/badges/channel": {
       "get": {
         "operationId": "getChannelTwitchBadges",
@@ -9333,6 +11232,424 @@
           },
           "403": {
             "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/uploads/image-url": {
+      "post": {
+        "operationId": "createImageUploadUrl",
+        "tags": [
+          "Uploads"
+        ],
+        "summary": "Mint an image upload URL",
+        "description": "Returns a short-lived, single-use Convex storage upload URL for the API key owner. POST the image bytes to the returned URL to receive a storageId, then supply that storageId on a downstream write (e.g. a score-ingest screenshotStorageIds). The owner is always derived from the API key. Requires uploads.upload:read-write and the writes feature (api_pro).",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A freshly minted upload URL.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageUploadUrlResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/connections": {
+      "get": {
+        "operationId": "listUserOwnConnections",
+        "tags": [
+          "Users"
+        ],
+        "summary": "List the API key owner's connections",
+        "description": "Returns the full set of connections for the API key owner, including private connections and the owner-only isSelfReported and showOnProfile flags. The user is always derived from the API key. Requires users.profile:read.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The API key owner's connections.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "connections": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ApiOwnConnection"
+                      }
+                    },
+                    "count": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "ISO 8601 timestamp."
+                    }
+                  },
+                  "required": [
+                    "connections",
+                    "count",
+                    "timestamp"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Envelope containing connections, count, and a response timestamp."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/game-ranks": {
+      "get": {
+        "operationId": "listUserGameRanks",
+        "tags": [
+          "Users"
+        ],
+        "summary": "List the API key owner's game ranks",
+        "description": "Returns every game rank for the API key owner. The user is always derived from the API key. Requires game.ranks:read.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The API key owner's game ranks.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameRankListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "upsertUserGameRank",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Upsert one of the API key owner's game ranks",
+        "description": "Creates or overwrites the API key owner's rank for a single (gameId, mode) slot, forcing source to \"api\". The user is always derived from the API key. Requires game.ranks:read-write and the writes feature (api_pro).",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GameRankUpsertBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The game rank was created or updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameRankUpsertResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/game-ranks/{gameId}/{mode}": {
+      "delete": {
+        "operationId": "deleteUserGameRank",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete one of the API key owner's game ranks",
+        "description": "Deletes the API key owner's rank for a single (gameId, mode) slot. No-op when no such rank exists. The user is always derived from the API key. Requires game.ranks:read-write and the writes feature (api_pro).",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "gameId",
+            "schema": {
+              "type": "string",
+              "description": "Game definition ID of the rank to delete."
+            },
+            "required": true,
+            "description": "Game definition ID of the rank to delete."
+          },
+          {
+            "in": "path",
+            "name": "mode",
+            "schema": {
+              "type": "string",
+              "description": "Game mode / playlist of the rank to delete."
+            },
+            "required": true,
+            "description": "Game mode / playlist of the rank to delete."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The rank was deleted, or no matching rank existed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameRankDeleteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -9884,6 +12201,95 @@
                   ],
                   "additionalProperties": false,
                   "description": "Envelope containing stats plus a response timestamp."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{identifier}/stream": {
+      "get": {
+        "operationId": "getUserStreamStatus",
+        "tags": [
+          "Streaming"
+        ],
+        "summary": "Get a user's live-stream status",
+        "description": "Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Username or Convex user ID."
+            },
+            "required": true,
+            "description": "Username or Convex user ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The user's live-stream status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiStreamStatusEnvelope"
                 }
               }
             }
@@ -14744,6 +17150,17 @@
   },
   "components": {
     "schemas": {
+      "ReportChatMessageRequestBody": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "description": "Optional reason for the report (max 500 chars).",
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "description": "Reports a chat message for staff moderation review."
+      },
       "ListGameMatchesBody": {
         "type": "object",
         "properties": {
@@ -14844,7 +17261,14 @@
             "description": "Score for the opponent (accepted) team (non-negative)."
           },
           "screenshotUrls": {
-            "description": "Optional screenshot URLs supporting the reported score.",
+            "description": "Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "screenshotStorageIds": {
+            "description": "Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.",
             "type": "array",
             "items": {
               "type": "string"
@@ -14885,7 +17309,14 @@
             "description": "Score for the opponent (accepted) team (non-negative)."
           },
           "screenshotUrls": {
-            "description": "Optional screenshot URLs supporting the reported score.",
+            "description": "Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "screenshotStorageIds": {
+            "description": "Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.",
             "type": "array",
             "items": {
               "type": "string"
@@ -14966,7 +17397,14 @@
             "description": "Score for the opponent (accepted) team (non-negative)."
           },
           "screenshotUrls": {
-            "description": "Optional screenshot URLs supporting the reported score.",
+            "description": "Optional external screenshot URLs supporting the reported score. Each must be a public https URL. Prefer screenshotStorageIds (validated blobs) where possible.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "screenshotStorageIds": {
+            "description": "Optional storage IDs for screenshots uploaded via POST /uploads/image-url. Preferred over screenshotUrls: each is validated (size, content-type, ownership) and resolved to a URL server-side.",
             "type": "array",
             "items": {
               "type": "string"
@@ -16118,6 +18556,179 @@
         },
         "description": "Template filters."
       },
+      "AcceptMatchRequestBody": {
+        "type": "object",
+        "properties": {
+          "teamId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Team ID accepting the match."
+          },
+          "activeRoster": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Active roster user IDs for the acceptance request."
+          },
+          "benchRoster": {
+            "description": "Optional bench roster users.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Bench user ID."
+                },
+                "priority": {
+                  "type": "number",
+                  "description": "Bench priority."
+                }
+              },
+              "required": [
+                "id",
+                "priority"
+              ]
+            }
+          },
+          "disputedRules": {
+            "description": "Optional proposed rule changes.",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            }
+          },
+          "mapPreferenceMode": {
+            "description": "Optional map preference mode for selected maps.",
+            "type": "string",
+            "enum": [
+              "PREFERRED",
+              "VETO"
+            ]
+          },
+          "selectedMaps": {
+            "description": "Optional proposed map IDs.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "message": {
+            "description": "Optional message for the match creator.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "teamId",
+          "activeRoster"
+        ],
+        "description": "Creates a match acceptance request as the API key owner."
+      },
+      "UpdateAttendanceRequestBody": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ATTENDING",
+              "NOT_ATTENDING",
+              "TENTATIVE"
+            ],
+            "description": "The API key owner's attendance status for this match."
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "description": "Updates the API key owner's own attendance status for a match."
+      },
+      "CancelMatchRequestBody": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "description": "Optional cancellation reason.",
+            "type": "string"
+          }
+        },
+        "description": "Cancels the match as the API key owner."
+      },
+      "SendChatMessageRequestBody": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "description": "Message body (1-255 chars)."
+          }
+        },
+        "required": [
+          "content"
+        ],
+        "description": "Sends a message to the match chat room as the API key owner."
+      },
+      "ForfeitMatchRequestBody": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "description": "Optional forfeit reason.",
+            "type": "string"
+          }
+        },
+        "description": "Forfeits the match as the API key owner."
+      },
+      "UpdateLobbyCodeRequestBody": {
+        "type": "object",
+        "properties": {
+          "lobbyCode": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "description": "Lobby code to set for the match."
+          }
+        },
+        "required": [
+          "lobbyCode"
+        ],
+        "description": "Sets or updates the match lobby code as the API key owner."
+      },
+      "MarkMatchReadyRequestBody": {
+        "type": "object",
+        "properties": {
+          "teamId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Team ID to mark ready."
+          }
+        },
+        "required": [
+          "teamId"
+        ],
+        "description": "Marks one participating team ready as the API key owner."
+      },
       "ConfirmScoreBody": {
         "type": "object",
         "properties": {
@@ -16157,7 +18768,16 @@
             "description": "Accepted/opponent team score. Must be a non-negative number."
           },
           "screenshotUrls": {
-            "description": "Optional screenshot URLs for the map result.",
+            "description": "Optional external screenshot URLs (validated as public https server-side, max 10). Prefer screenshotStorageIds for validated blobs.",
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "screenshotStorageIds": {
+            "description": "Optional Convex storage ids from POST /api/v1/uploads/image-url (validated for size + content-type, max 10; preferred over screenshotUrls).",
+            "maxItems": 10,
             "type": "array",
             "items": {
               "type": "string"
@@ -16171,6 +18791,220 @@
           "opponentTeamScore"
         ],
         "description": "Map score submission payload for a single map."
+      },
+      "CreateMatchRequestBody": {
+        "type": "object",
+        "properties": {
+          "teamId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Creator team ID. The owner must captain it."
+          },
+          "gameId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game ID for the match."
+          },
+          "gameModeId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game mode ID (client-side definition)."
+          },
+          "matchType": {
+            "type": "string",
+            "enum": [
+              "XP_ONLY",
+              "WAGER"
+            ],
+            "description": "Match type."
+          },
+          "mapSelectionType": {
+            "type": "string",
+            "enum": [
+              "COMPETITIVE",
+              "FLEX"
+            ],
+            "description": "Map selection type."
+          },
+          "mapPreferenceMode": {
+            "type": "string",
+            "enum": [
+              "PREFERRED",
+              "VETO",
+              "MANUAL"
+            ],
+            "description": "Map preference mode."
+          },
+          "teamSize": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Players per team."
+          },
+          "bestOf": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Series length (best of N)."
+          },
+          "platform": {
+            "description": "Platform (defaults to CROSSPLAY).",
+            "type": "string",
+            "enum": [
+              "PC",
+              "XBOX",
+              "PLAYSTATION",
+              "CONSOLE_ONLY",
+              "CROSSPLAY"
+            ]
+          },
+          "inputDevice": {
+            "description": "Input device (defaults to ALL).",
+            "type": "string",
+            "enum": [
+              "ALL",
+              "CONTROLLER",
+              "KB_M"
+            ]
+          },
+          "region": {
+            "description": "Region (defaults to NONE).",
+            "type": "string",
+            "enum": [
+              "NONE",
+              "NA_EAST",
+              "NA_WEST",
+              "EU",
+              "ASIA",
+              "OCEANIA",
+              "SOUTH_AMERICA",
+              "MIDDLE_EAST",
+              "AFRICA"
+            ]
+          },
+          "scheduledAt": {
+            "description": "Scheduled start (epoch ms).",
+            "type": "number"
+          },
+          "wagerAmount": {
+            "description": "Wager amount (WAGER matches only).",
+            "type": "number"
+          },
+          "selectedMaps": {
+            "description": "Selected map IDs.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "selectedObjectives": {
+            "description": "Selected objective IDs.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gameSpecificOptions": {
+            "description": "Game-specific options.",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          },
+          "lockedRules": {
+            "description": "Locked rule flags.",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "type": "boolean"
+            }
+          },
+          "notes": {
+            "description": "Optional match notes.",
+            "type": "string"
+          },
+          "publishStatus": {
+            "description": "Publish status (defaults to DRAFT).",
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED",
+              "ARCHIVED"
+            ]
+          },
+          "activeRoster": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Active roster user IDs (must be creator-team members)."
+          },
+          "benchRoster": {
+            "description": "Optional bench roster.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Bench user ID."
+                },
+                "priority": {
+                  "type": "number",
+                  "description": "Bench priority."
+                }
+              },
+              "required": [
+                "id",
+                "priority"
+              ]
+            }
+          },
+          "isChallenge": {
+            "description": "Create as a direct challenge to another team.",
+            "type": "boolean"
+          },
+          "challengedTeamId": {
+            "description": "Challenged team ID (required when isChallenge is true).",
+            "type": "string",
+            "minLength": 1
+          },
+          "leagueId": {
+            "description": "League ID for a league match.",
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "teamId",
+          "gameId",
+          "gameModeId",
+          "matchType",
+          "mapSelectionType",
+          "mapPreferenceMode",
+          "teamSize",
+          "bestOf",
+          "activeRoster"
+        ],
+        "description": "Creates a new match as the API key owner."
       },
       "MatchDiscoverBody": {
         "type": "object",
@@ -16304,6 +19138,132 @@
           }
         },
         "description": "Filters and cursor pagination for listing matches."
+      },
+      "ApiBatchStreamStatusBody": {
+        "type": "object",
+        "properties": {
+          "userIds": {
+            "minItems": 1,
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "User IDs to look up (1-50)."
+          }
+        },
+        "required": [
+          "userIds"
+        ],
+        "description": "Batch live-status request body."
+      },
+      "CreateTicketRequestBody": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 150,
+            "description": "Ticket subject (max 150 chars)."
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "description": "Initial message / description (max 2000 chars)."
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "account",
+              "technical_bug",
+              "feature_request",
+              "billing",
+              "other"
+            ],
+            "description": "Support category. Entity-bound and staff-only categories are rejected."
+          },
+          "images": {
+            "description": "Optional storage IDs (from /uploads/image-url) to attach (max 10).",
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "subject",
+          "description",
+          "category"
+        ],
+        "description": "Creates a self-filed support ticket owned by the API key owner."
+      },
+      "AddTicketMessageRequestBody": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "description": "Reply message body (max 2000 chars)."
+          },
+          "images": {
+            "description": "Optional storage IDs (from /uploads/image-url) to attach (max 10).",
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "content"
+        ],
+        "description": "Adds a reply message to one of the API key owner's tickets."
+      },
+      "GameRankUpsertBody": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game definition ID to set the rank for."
+          },
+          "mode": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game mode / playlist the rank applies to."
+          },
+          "sr": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000,
+            "description": "Skill rating (integer, 0-100000)."
+          },
+          "isTop250": {
+            "description": "Whether the player is in the Top 250 ladder.",
+            "type": "boolean"
+          },
+          "top250Rank": {
+            "description": "Top 250 ladder position (1-250); only meaningful when isTop250.",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250
+          },
+          "winstreak": {
+            "description": "Current win streak count (0-99).",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 99
+          }
+        },
+        "required": [
+          "gameId",
+          "mode",
+          "sr"
+        ],
+        "description": "Upsert the API key owner's rank for one (gameId, mode) slot."
       },
       "CreateWebhookBody": {
         "type": "object",
@@ -18658,6 +21618,53 @@
         ],
         "description": "A trophy was awarded."
       },
+      "ReportChatMessageResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "reportId": {
+            "type": "string",
+            "description": "Report ID (existing one if already reported)."
+          },
+          "alreadyReported": {
+            "type": "boolean",
+            "description": "True if the owner had already reported this message."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "reportId",
+          "alreadyReported",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Stable machine-readable error code (e.g. error_api_key_invalid). Treat this, not the message, as the programmatic contract."
+          },
+          "details": {
+            "description": "Optional human-readable explanation. Often absent on auth/permission errors.",
+            "x-ms-primary-error-message": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "additionalProperties": false,
+        "description": "Standard API error response."
+      },
       "GameMatch": {
         "type": "object",
         "properties": {
@@ -18831,25 +21838,6 @@
         ],
         "additionalProperties": false,
         "description": "A team participating in a match."
-      },
-      "Error": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string",
-            "description": "Stable machine-readable error code (e.g. error_api_key_invalid). Treat this, not the message, as the programmatic contract."
-          },
-          "details": {
-            "description": "Optional human-readable explanation. Often absent on auth/permission errors.",
-            "x-ms-primary-error-message": true,
-            "type": "string"
-          }
-        },
-        "required": [
-          "error"
-        ],
-        "additionalProperties": false,
-        "description": "Standard API error response."
       },
       "GameMatchDetailResponse": {
         "type": "object",
@@ -22114,6 +25102,199 @@
         "additionalProperties": false,
         "description": "Team summary embedded in SP-2 match reads."
       },
+      "AcceptMatchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "acceptanceId": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "acceptanceId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "UpdateAttendanceResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "reclaimedSpot": {
+            "type": "boolean"
+          },
+          "replacedBy": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "CancelMatchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "matchId": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "matchId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "ChatMessage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "senderUserId": {
+            "type": "string"
+          },
+          "senderUsername": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "teamId": {
+            "type": "string"
+          },
+          "replyToId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "content",
+          "senderUserId",
+          "senderUsername",
+          "teamId",
+          "replyToId",
+          "createdAt"
+        ],
+        "additionalProperties": false
+      },
+      "SendChatMessageResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Created message ID."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "messageId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "ForfeitMatchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "matchId": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "matchId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "UpdateLobbyCodeResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "lobbyCode": {
+            "type": "string"
+          },
+          "statusChanged": {
+            "type": "boolean"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "lobbyCode",
+          "statusChanged",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "ApiMatchPlayersResponse": {
         "type": "object",
         "properties": {
@@ -22222,6 +25403,27 @@
         ],
         "additionalProperties": false,
         "description": "Player row for a participant-gated match."
+      },
+      "MarkMatchReadyResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "matchReady": {
+            "type": "boolean"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "matchReady",
+          "timestamp"
+        ],
+        "additionalProperties": false
       },
       "MapScores": {
         "type": "object",
@@ -22428,6 +25630,27 @@
         ],
         "additionalProperties": false,
         "description": "Result of submitting or confirming a map score."
+      },
+      "CreateMatchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "matchId": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "matchId",
+          "timestamp"
+        ],
+        "additionalProperties": false
       },
       "MatchDiscoverPage": {
         "type": "object",
@@ -22760,6 +25983,338 @@
         "additionalProperties": false,
         "description": "API-safe organization aggregate stats."
       },
+      "ApiStrategyEnvelope": {
+        "type": "object",
+        "properties": {
+          "strategy": {
+            "$ref": "#/components/schemas/ApiStrategy"
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "ISO 8601 timestamp."
+          }
+        },
+        "required": [
+          "strategy",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Strategy plus a response timestamp."
+      },
+      "ApiStrategy": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Strategy ID."
+          },
+          "ownerId": {
+            "type": "string",
+            "description": "Owning user ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "Strategy name."
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Author description, when set."
+          },
+          "game": {
+            "type": "string",
+            "description": "Game slug the strategy targets."
+          },
+          "mapId": {
+            "type": "string",
+            "description": "Built-in map slug, or the sentinel \"__custom\" for a custom map."
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/StrategyVisibility"
+          },
+          "shareSlug": {
+            "type": "string",
+            "description": "Public share slug."
+          },
+          "mapRotation": {
+            "type": "number",
+            "description": "Map render orientation in degrees (0, 90, 180, or 270)."
+          },
+          "playbackLoop": {
+            "type": "boolean",
+            "description": "Whether frame playback wraps from the last stage to the first."
+          },
+          "stages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiStrategyStage"
+            }
+          },
+          "stageCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "previewUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Freshly signed preview image URL, when a preview has been rendered."
+          },
+          "createdAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "ISO 8601 timestamp."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "updatedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "ISO 8601 timestamp."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "ownerId",
+          "name",
+          "description",
+          "game",
+          "mapId",
+          "visibility",
+          "shareSlug",
+          "mapRotation",
+          "playbackLoop",
+          "stages",
+          "stageCount",
+          "previewUrl",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false,
+        "description": "API-safe shareable strategy."
+      },
+      "StrategyVisibility": {
+        "type": "string",
+        "enum": [
+          "private",
+          "unlisted",
+          "public"
+        ],
+        "description": "Strategy share visibility setting."
+      },
+      "ApiStrategyStage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable stage id within the strategy."
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Author stage label, when set."
+          },
+          "durationMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Stage playback duration in milliseconds."
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "durationMs"
+        ],
+        "additionalProperties": false,
+        "description": "A single playback stage of a strategy."
+      },
+      "ApiStrategyShapesEnvelope": {
+        "type": "object",
+        "properties": {
+          "shapes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiStrategyShape"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "ISO 8601 timestamp."
+          }
+        },
+        "required": [
+          "shapes",
+          "count",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Strategy shapes, count, and a response timestamp."
+      },
+      "ApiStrategyShape": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Shape row ID."
+          },
+          "shapeId": {
+            "type": "string",
+            "description": "Stable client-side shape id."
+          },
+          "stageId": {
+            "type": "string",
+            "description": "Stage this shape belongs to."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ink",
+              "line",
+              "arrow",
+              "rect",
+              "ellipse",
+              "polygon",
+              "text",
+              "token",
+              "image"
+            ],
+            "description": "Shape primitive type."
+          },
+          "layer": {
+            "type": "string",
+            "enum": [
+              "drawing",
+              "tokens"
+            ],
+            "description": "Canvas layer the shape renders on."
+          },
+          "zIndex": {
+            "type": "number",
+            "description": "Stacking order within its layer."
+          },
+          "data": {
+            "description": "Opaque shape payload consumed by the canvas renderer."
+          },
+          "updatedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "ISO 8601 timestamp."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "shapeId",
+          "stageId",
+          "type",
+          "layer",
+          "zIndex",
+          "data",
+          "updatedAt"
+        ],
+        "additionalProperties": false,
+        "description": "API-safe strategy shape. Hidden working shapes are omitted from responses."
+      },
+      "ApiBatchStreamStatusEnvelope": {
+        "type": "object",
+        "properties": {
+          "statuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiBatchStreamStatus"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "ISO 8601 timestamp."
+          }
+        },
+        "required": [
+          "statuses",
+          "count",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Batch live-status results plus a response timestamp. Users not visible to the caller are omitted."
+      },
+      "ApiBatchStreamStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "User ID."
+          },
+          "isLive": {
+            "type": "boolean"
+          },
+          "platforms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StreamPlatform"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "isLive",
+          "platforms"
+        ],
+        "additionalProperties": false,
+        "description": "Compact live-status row returned by the batch endpoint."
+      },
+      "StreamPlatform": {
+        "type": "string",
+        "enum": [
+          "TWITCH",
+          "YOUTUBE",
+          "KICK"
+        ],
+        "description": "Supported streaming platform."
+      },
       "ApiTeamProfile": {
         "type": "object",
         "properties": {
@@ -22897,6 +26452,266 @@
         "additionalProperties": false,
         "description": "API-safe team profile."
       },
+      "TicketSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "ticketNumber": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "subject": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "in_progress",
+              "awaiting_response",
+              "resolved",
+              "closed"
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "urgent"
+            ]
+          },
+          "createdAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "updatedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "ticketNumber",
+          "subject",
+          "category",
+          "status",
+          "priority",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "CreateTicketResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "ticketId": {
+            "type": "string",
+            "description": "Created ticket ID."
+          },
+          "ticketNumber": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Human-facing sequential ticket number."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "ticketId",
+          "ticketNumber",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "TicketDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "ticketNumber": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "subject": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "in_progress",
+              "awaiting_response",
+              "resolved",
+              "closed"
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "urgent"
+            ]
+          },
+          "createdAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "updatedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "resolvedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "closedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "isSystem": {
+                  "type": "boolean"
+                },
+                "isOwnMessage": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "content",
+                "isSystem",
+                "isOwnMessage",
+                "createdAt"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "ticketNumber",
+          "subject",
+          "description",
+          "category",
+          "status",
+          "priority",
+          "createdAt",
+          "updatedAt",
+          "resolvedAt",
+          "closedAt",
+          "messages",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "AddTicketMessageResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Created message ID."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "messageId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "TwitchChannelBadges": {
         "type": "object",
         "properties": {
@@ -23033,6 +26848,254 @@
         ],
         "additionalProperties": false,
         "description": "Global Twitch chat badges."
+      },
+      "ImageUploadUrlResponse": {
+        "type": "object",
+        "properties": {
+          "uploadUrl": {
+            "type": "string",
+            "description": "Short-lived, single-use URL to POST the image bytes to."
+          }
+        },
+        "required": [
+          "uploadUrl"
+        ],
+        "additionalProperties": false,
+        "description": "A freshly minted Convex storage upload URL. POST the image to it to receive a storageId for use on a downstream write."
+      },
+      "ApiOwnConnection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Connection ID."
+          },
+          "platform": {
+            "type": "string",
+            "description": "Connected platform."
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "isPrimary": {
+            "type": "boolean"
+          },
+          "isVerified": {
+            "type": "boolean"
+          },
+          "connectedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "ISO 8601 timestamp."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "isSelfReported": {
+            "type": "boolean",
+            "description": "True when the connection was self-reported (ownership unverified)."
+          },
+          "showOnProfile": {
+            "type": "boolean",
+            "description": "Whether the owner has chosen to show this connection on their profile."
+          },
+          "region": {
+            "description": "Connection region, when set.",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "gamingPlatform": {
+            "description": "Gaming platform (e.g. pc / console), when set.",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "platform",
+          "isSelfReported",
+          "showOnProfile"
+        ],
+        "additionalProperties": false,
+        "description": "API-safe connection for the API key owner, including private fields."
+      },
+      "GameRankListResponse": {
+        "type": "object",
+        "properties": {
+          "gameRanks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiGameRank"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "ISO 8601 response timestamp."
+          }
+        },
+        "required": [
+          "gameRanks",
+          "count",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "The API key owner's game ranks."
+      },
+      "ApiGameRank": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Game rank row ID."
+          },
+          "gameId": {
+            "type": "string",
+            "description": "Game definition ID this rank belongs to."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Game mode / playlist the rank is tracked for."
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "manual",
+              "api"
+            ],
+            "description": "Origin of the rank: manual entry or an API push."
+          },
+          "sr": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Skill rating, when set."
+          },
+          "isTop250": {
+            "type": "boolean",
+            "description": "Whether the player is in the Top 250 ladder."
+          },
+          "top250Rank": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Top 250 ladder position (1-250), when applicable."
+          },
+          "winstreak": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Current win streak count."
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "When the rank was last updated."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the rank was first recorded."
+          }
+        },
+        "required": [
+          "id",
+          "gameId",
+          "mode",
+          "source",
+          "sr",
+          "isTop250",
+          "top250Rank",
+          "winstreak",
+          "updatedAt",
+          "createdAt"
+        ],
+        "additionalProperties": false,
+        "description": "API-safe game rank entry for the API key owner."
+      },
+      "GameRankUpsertResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of the upserted game rank row."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "ISO 8601 response timestamp."
+          }
+        },
+        "required": [
+          "id",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Result of upserting a game rank."
+      },
+      "GameRankDeleteResponse": {
+        "type": "object",
+        "properties": {
+          "deleted": {
+            "type": "boolean",
+            "description": "True when a rank was removed; false when none existed (no-op)."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "ISO 8601 response timestamp."
+          }
+        },
+        "required": [
+          "deleted",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Result of deleting a game rank."
       },
       "OngoingMatchesResponse": {
         "type": "object",
@@ -23235,6 +27298,162 @@
         ],
         "additionalProperties": false,
         "description": "API-safe aggregate user stats."
+      },
+      "ApiStreamStatusEnvelope": {
+        "type": "object",
+        "properties": {
+          "stream": {
+            "$ref": "#/components/schemas/ApiStreamStatus"
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "ISO 8601 timestamp."
+          }
+        },
+        "required": [
+          "stream",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "Stream status plus a response timestamp."
+      },
+      "ApiStreamStatus": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "User ID these stream details belong to."
+          },
+          "isLive": {
+            "type": "boolean",
+            "description": "Whether the user is live on any platform."
+          },
+          "platforms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StreamPlatform"
+            },
+            "description": "Platforms the user is currently live on."
+          },
+          "primaryStream": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ApiPrimaryStream"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Primary stream details, or null when offline."
+          }
+        },
+        "required": [
+          "userId",
+          "isLive",
+          "platforms",
+          "primaryStream"
+        ],
+        "additionalProperties": false,
+        "description": "API-safe live-stream status for a user."
+      },
+      "ApiPrimaryStream": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "$ref": "#/components/schemas/StreamPlatform"
+          },
+          "streamUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Watch URL, when known."
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Stream title, when known."
+          },
+          "gameName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Game/category being streamed, when known."
+          },
+          "viewerCount": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Current viewer count, when known."
+          },
+          "thumbnailUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Stream thumbnail URL, when known."
+          },
+          "startedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Stream start time (platform-provided ISO timestamp), when known."
+          },
+          "lastLiveAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "ISO timestamp the user was last observed live, when known."
+          }
+        },
+        "required": [
+          "platform",
+          "streamUrl",
+          "title",
+          "gameName",
+          "viewerCount",
+          "thumbnailUrl",
+          "startedAt",
+          "lastLiveAt"
+        ],
+        "additionalProperties": false,
+        "description": "The user's primary (highest-viewer) live stream."
       },
       "ApiUserTeamMembership": {
         "type": "object",
