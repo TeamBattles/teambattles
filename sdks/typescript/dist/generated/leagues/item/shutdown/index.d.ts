@@ -1,0 +1,20 @@
+import { type RequestRequestBuilder } from './request/index.js';
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata } from '@microsoft/kiota-abstractions';
+/**
+ * Builds and executes requests for operations under /leagues/{identifier}/shutdown
+ */
+export interface ShutdownRequestBuilder extends BaseRequestBuilder<ShutdownRequestBuilder> {
+    /**
+     * The request property
+     */
+    get request(): RequestRequestBuilder;
+}
+/**
+ * Uri template for the request builder.
+ */
+export declare const ShutdownRequestBuilderUriTemplate = "{+baseurl}/leagues/{identifier}/shutdown";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export declare const ShutdownRequestBuilderNavigationMetadata: Record<Exclude<keyof ShutdownRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata>;
+//# sourceMappingURL=index.d.ts.map
