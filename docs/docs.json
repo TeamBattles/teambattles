@@ -233,6 +233,7 @@
 					},
 					{
 						"group": "Public Read API",
+						"openapi": "api-reference/openapi.json",
 						"pages": [
 							"developers/public-read-api",
 							{
@@ -483,6 +484,7 @@
 					},
 					{
 						"group": "Platform Tools",
+						"openapi": "api-reference/openapi.json",
 						"pages": [
 							"developers/platform-tools",
 							{
