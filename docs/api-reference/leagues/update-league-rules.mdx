@@ -1,0 +1,107 @@
+---
+title: "Update League Game Rules"
+description: "Create or update the enforced rules for a league game."
+openapi: "POST /leagues/{identifier}/rules/update"
+---
+
+## Permission Required
+
+This endpoint requires a **league-operator API key bound to this league** with the `rules` league capability, plus the `leagueOperatorApi` plan feature (api_pro or higher). A free key receives `403 error_api_feature_required`.
+
+## Access / Membership Rules
+
+You must have a **MANAGER or higher** role in the league (or be a TeamBattles staff member) to manage enforced rules. If you lack the required access, you'll receive a `403` error.
+
+The `{identifier}` path parameter is the league **slug** - the URL-friendly league name (e.g., `my-league`).
+
+## What's Returned
+
+Creates or updates the enforced rules for one of the league's games. On success the response is `{ "success": true, "rulesId": "<id>", "timestamp": "<ISO 8601>" }`.
+
+## Request Body
+
+Only `gameId` is required. Every other field is optional - omitted fields keep their current value.
+
+| Parameter                         | Type    | Required | Description                                                                  |
+| --------------------------------- | ------- | -------- | ---------------------------------------------------------------------------- |
+| `gameId`                          | string  | Yes      | Game ID whose league rules should change.                                    |
+| `allowedPlaylistIds`              | array   | No       | Playlist IDs allowed for league matches.                                     |
+| `allowedMapIds`                   | array   | No       | Map IDs allowed for league matches.                                          |
+| `matchFormat`                     | string  | No       | Match format: `BEST_OF_1`, `BEST_OF_3`, `BEST_OF_5`, `BEST_OF_7`, `BEST_OF_9`. |
+| `teamSize`                        | object  | No       | Team size bounds as `{ min, max }`.                                          |
+| `forceCompetitive`                | boolean | No       | Whether matches are forced into competitive mode.                            |
+| `allowedDays`                     | array   | No       | Days of the week on which matches are allowed.                               |
+| `blockedDays`                     | array   | No       | Days of the week on which matches are blocked.                               |
+| `allowedTimeRange`                | object  | No       | Allowed time-of-day window as `{ start, end }`.                              |
+| `timezone`                        | string  | No       | Timezone used to evaluate day and time windows.                              |
+| `challengesEnabled`               | boolean | No       | Whether teams can issue challenges.                                          |
+| `maxChallengesPerTeamPerSeason`   | number  | No       | Cap on challenges a team may issue per season.                               |
+| `maxPointsMatchesPerPairPer24h`   | number  | No       | Cap on point-bearing matches between the same pair per 24h.                  |
+| `maxPendingChallengesPerOpponent` | number  | No       | Cap on pending challenges against a single opponent.                         |
+| `maxPendingChallengesTotal`       | number  | No       | Cap on total pending challenges a team may hold.                             |
+| `challengeCooldownMinutes`        | number  | No       | Cooldown (minutes) between a team's challenges.                              |
+| `wagersAllowed`                   | boolean | No       | Whether wagers are permitted on matches.                                     |
+| `minWagerAmount`                  | number  | No       | Minimum wager amount.                                                        |
+| `maxWagerAmount`                  | number  | No       | Maximum wager amount.                                                        |
+| `minRosterSize`                   | number  | No       | Minimum roster size for participating teams.                                 |
+| `maxRosterSize`                   | number  | No       | Maximum roster size for participating teams.                                 |
+| `rosterLockEnabled`               | boolean | No       | Whether roster changes are locked outside the change window.                 |
+| `rosterChangeWindowDays`          | array   | No       | Days of the week roster changes are permitted.                               |
+| `rosterChangeWindowTime`          | object  | No       | Time-of-day window for roster changes as `{ start, end }`.                   |
+| `maxRosterChangesPerWeek`         | number  | No       | Cap on roster changes per week.                                              |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/leagues/my-league/rules/update \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "gameId": "jh7game123",
+    "matchFormat": "BEST_OF_5",
+    "teamSize": { "min": 4, "max": 5 },
+    "challengesEnabled": true
+  }'
+```
+
+```javascript JavaScript
+const leagueSlug = "my-league";
+
+const response = await fetch(`https://teambattles.gg/api/v1/leagues/${leagueSlug}/rules/update`, {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify({
+		gameId: "jh7game123",
+		matchFormat: "BEST_OF_5",
+		teamSize: { min: 4, max: 5 },
+		challengesEnabled: true
+	})
+});
+
+const { success, rulesId, timestamp } = await response.json();
+console.log(success, rulesId, timestamp);
+```
+
+```python Python
+import requests
+
+league_slug = 'my-league'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/leagues/{league_slug}/rules/update',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={
+        'gameId': 'jh7game123',
+        'matchFormat': 'BEST_OF_5',
+        'teamSize': {'min': 4, 'max': 5},
+        'challengesEnabled': True
+    }
+)
+
+print(response.json())
+```
+
+</RequestExample>

@@ -28,7 +28,7 @@ export interface ConnectionsGetResponse extends Parsable {
  */
 export interface ConnectionsRequestBuilder extends BaseRequestBuilder<ConnectionsRequestBuilder> {
     /**
-     * Returns user connections for public profiles or self. Non-self responses include only connections marked visible on the profile. Requires users.profile:read.
+     * Returns a user's linked-account connections. Access requires a public profile or self: a non-self viewer of a limited or private profile gets 403, which is stricter than the stats, teams, and organizations endpoints that also allow limited profiles. Non-self responses include only the connections the user marked visible on their profile; self responses include all of them. isVerified is true when the connection's platform matches one of the user's linked OAuth providers, not the connection's self-reported flag. Not paginated: returns the full matching set as connections plus a count, in no guaranteed order. Banned users return 404. Requires users.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ConnectionsGetResponse>}
      * @throws {ErrorEscaped} error when the service returns a 401 status code
@@ -39,7 +39,7 @@ export interface ConnectionsRequestBuilder extends BaseRequestBuilder<Connection
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ConnectionsGetResponse | undefined>;
     /**
-     * Returns user connections for public profiles or self. Non-self responses include only connections marked visible on the profile. Requires users.profile:read.
+     * Returns a user's linked-account connections. Access requires a public profile or self: a non-self viewer of a limited or private profile gets 403, which is stricter than the stats, teams, and organizations endpoints that also allow limited profiles. Non-self responses include only the connections the user marked visible on their profile; self responses include all of them. isVerified is true when the connection's platform matches one of the user's linked OAuth providers, not the connection's self-reported flag. Not paginated: returns the full matching set as connections plus a count, in no guaranteed order. Banned users return 404. Requires users.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

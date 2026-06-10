@@ -1,0 +1,80 @@
+---
+title: "Submit Map Scores In A Batch"
+description: "Submit one or more map scores for a single match in one call; game scores are auto-confirmed."
+openapi: "POST /game/matches/{matchId}/scores"
+---
+
+## Permission Required
+
+This endpoint requires the `game.scores` permission with `write` access. (`game.scores` is a write-level permission - its levels are `none` or `write`, not `read-write`.) Your API key must be a **game-developer key bound to a game**. The binding asserts the match belongs to your bound game before the handler runs: a key bound to a different game, or a non-developer key, receives a `403 error_game_scope_mismatch`.
+
+## Access / Membership Rules
+
+This is batch-by-design: the body carries a `maps[]` array (at least one entry). Game-developer scores are auto-confirmed on submission. Each map's `creatorTeamScore` and `opponentTeamScore` must be non-negative integers in range `0-1000`. A single map can fail (e.g. already confirmed) without aborting the others - its outcome is reported in its per-map result. An unknown match returns `404 error_match_not_found`.
+
+## What's Returned
+
+Returns `{ success, submitted, count }`. `submitted[]` is the per-map result array (each `{ mapIndex, status, error? }`, `status` being `confirmed` or `failed`), `count` is the number confirmed, and `success` is `true` only when every map was confirmed.
+
+## Request Body
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `maps` | array | Yes | One or more map scores to submit (at least one entry). |
+
+Each `maps[]` entry:
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `mapIndex` | number | Yes | Zero-based index of the map within the series. |
+| `mapId` | string | Yes | Identifier of the map that was played. |
+| `creatorTeamScore` | number | Yes | Creator team score (integer, `0-1000`). |
+| `opponentTeamScore` | number | Yes | Opponent (accepted) team score (integer, `0-1000`). |
+| `screenshotUrls` | array | No | Optional public https screenshot URLs. |
+| `screenshotStorageIds` | array | No | Optional storage IDs from `POST /uploads/image-url` (preferred). |
+| `playerStats` | object | No | Optional per-player stats keyed by user ID. |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/game/matches/match_abc/scores \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"maps":[{"mapIndex":0,"mapId":"de_dust2","creatorTeamScore":13,"opponentTeamScore":7}]}'
+```
+
+```javascript JavaScript
+const matchId = "match_abc";
+const res = await fetch(
+	`https://teambattles.gg/api/v1/game/matches/${matchId}/scores`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			maps: [{ mapIndex: 0, mapId: "de_dust2", creatorTeamScore: 13, opponentTeamScore: 7 }]
+		})
+	}
+);
+const { submitted, count } = await res.json();
+```
+
+```python Python
+import requests
+
+match_id = "match_abc"
+res = requests.post(
+    f"https://teambattles.gg/api/v1/game/matches/{match_id}/scores",
+    headers={"Authorization": "Bearer tb_your_api_key"},
+    json={
+        "maps": [
+            {"mapIndex": 0, "mapId": "de_dust2", "creatorTeamScore": 13, "opponentTeamScore": 7}
+        ]
+    },
+)
+print(res.json()["count"], "confirmed")
+```
+
+</RequestExample>

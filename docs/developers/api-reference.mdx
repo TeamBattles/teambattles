@@ -1,157 +1,7 @@
 ---
-title: Endpoint Reference
-description: Complete endpoint reference for the TeamBattles Developer API.
+title: API Conventions
+description: Pagination envelopes and request limits shared across the TeamBattles API.
 ---
-
-## Interactive Endpoints
-
-Try out the API directly from the docs:
-
-<CardGroup cols={2}>
-	<Card title="User Matches" icon="user" href="/api-reference/user/matches">
-		Retrieve matches where you're on the roster
-	</Card>
-	<Card title="Game Catalog" icon="gamepad-2" href="/api-reference/games/list">
-		List public games, playlists, modes, maps, and objectives
-	</Card>
-	<Card title="Public Profiles" icon="id-card" href="/api-reference/profiles/users">
-		Read user, team, and organization profile resources
-	</Card>
-	<Card title="Leaderboards" icon="trophy" href="/api-reference/leaderboards/players">
-		Read player, team, and organization rankings
-	</Card>
-	<Card title="Team Matches" icon="users" href="/api-reference/teams/matches">
-		Retrieve matches for a specific team
-	</Card>
-	<Card title="Organization Matches" icon="building" href="/api-reference/orgs/matches">
-		Retrieve matches for all teams in an organization
-	</Card>
-	<Card title="Twitch Global Badges" icon="twitch" href="/api-reference/twitch/global-badges">
-		Access global Twitch badge data
-	</Card>
-	<Card title="Twitch Channel Badges" icon="twitch" href="/api-reference/twitch/channel-badges">
-		Access channel-specific Twitch badge data
-	</Card>
-</CardGroup>
-
-<Note>
-	The OpenAPI specification at `/api-reference/openapi.json` covers the documented v1 developer API: profile reads, game catalog reads, leaderboards, match reads, league reads, Twitch badge reads, game-developer score and lifecycle endpoints, and webhook management endpoints. Overlay endpoints and OAuth-proxy routes remain intentionally excluded.
-</Note>
-
-## API Key Permissions
-
-API keys carry a granular permission object. Every category appears in the create/edit dialog at `/settings/developer`; older keys are normalized to the current default shape before editing.
-
-| Category    | Scopes                                           | Values                          |
-| ----------- | ------------------------------------------------ | ------------------------------- |
-| Matches     | user_matches, team_matches, org_matches          | none / read / read-write        |
-| Matches     | public_matches                                   | none / read                     |
-| Connections | discord, twitch, github, battlenet               | none / enabled                  |
-| Game        | scores, lifecycle, ranks                         | none / write (scores), none / read / read-write (lifecycle), none / read (ranks) |
-| Users       | profile                                          | none / read                     |
-| Teams       | profile, roster                                  | none / read / read-write        |
-| Orgs        | profile                                          | none / read / read-write        |
-| Webhooks    | manage                                           | none / enabled                  |
-| Leagues     | league_public, league_admin, settings_read       | none / read, or none / read / read-write for league_admin |
-
-### Presets
-
-The create-key dialog ships with two one-click permission presets (`src/routes/(app)/settings/developer/(components)/api-key-edit-dialog.svelte:98-130`). A preset is only selectable when every connection in its `requiredConnections` list is linked on the user's account.
-
-| Preset           | Scopes set                                                                                | Required connections |
-| ---------------- | ----------------------------------------------------------------------------------------- | -------------------- |
-| `battles-replay` | `matches.user_matches: read`, `connections.twitch: enabled`                               | Twitch               |
-| `league-manager` | `matches.team_matches: read`, `leagues.league_public: read`, `leagues.league_admin: read` | none                 |
-
-## Read Expansion Endpoints
-
-SP-2 adds API-key read coverage for resources that were already public or participant-visible in the web app. The routes use the same durable API key wrapper and rate-limit headers as the existing v1 surface.
-
-| Family       | Endpoints                                                                                         | Permission |
-| ------------ | ------------------------------------------------------------------------------------------------- | ---------- |
-| Game catalog | `GET /games`, `GET /games/{id}/playlists`                                                         | Valid API key |
-| Profiles     | `GET /users/{identifier}/*`, `GET /teams/{identifier}/*`, `GET /orgs/*`                           | `users.profile`, `teams.profile`, `teams.roster`, or `orgs.profile` |
-| Leaderboards | `GET /leaderboards/{players|teams|organizations}`, rank lookups                                   | Matching profile scope |
-| Matches      | `GET /matches/{matchId}`, `GET /matches/{matchId}/players`, `POST /matches/discover`, `GET /user/ongoing-matches` | Match read scopes |
-| Leagues      | Existing league reads plus games, season detail/options, display rules, templates, apply eligibility | `leagues.league_public` |
-
-## Captain Score Endpoints
-
-These endpoints allow team captains to submit and manage scores.
-
-| Method  | Endpoint                    | Description              | Permission                         |
-| ------- | --------------------------- | ------------------------ | ---------------------------------- |
-| `POST`  | `/matches/{matchId}/scores` | Submit a map score       | `matches.team_matches: read-write` |
-| `PATCH` | `/matches/{matchId}/scores` | Confirm opponent's score | `matches.team_matches: read-write` |
-| `GET`   | `/matches/{matchId}/scores` | Get all map scores       | Any match read scope               |
-
-## Game Developer Endpoints
-
-These endpoints are for approved game developers.
-
-### Score Submission
-
-| Method | Endpoint                         | Description                        | Permission           |
-| ------ | -------------------------------- | ---------------------------------- | -------------------- |
-| `POST` | `/game/matches/{matchId}/scores` | Submit verified score              | `game.scores: write` |
-| `POST` | `/game/matches/batch-scores`     | Submit scores for up to 50 matches | `game.scores: write` |
-
-### Match Lifecycle
-
-| Method  | Endpoint                          | Description                          | Permission                   |
-| ------- | --------------------------------- | ------------------------------------ | ---------------------------- |
-| `POST`  | `/game/matches`                   | List matches (game from bound key)   | `game.lifecycle: read`       |
-| `GET`   | `/game/matches/{matchId}`         | Get match details                    | `game.lifecycle: read`       |
-| `GET`   | `/game/matches/{matchId}/rosters` | Get match rosters                    | `game.lifecycle: read`       |
-| `GET`   | `/game/matches/{matchId}/status`  | Get match status                     | `game.lifecycle: read`       |
-| `PATCH` | `/game/matches/{matchId}/status`  | Update match status                  | `game.lifecycle: read-write` |
-| `POST`  | `/game/matches/create`            | Create a two-sided match             | `game.lifecycle: read-write` |
-| `POST`  | `/game/matches/{matchId}/forfeit` | Forfeit a match (explicit team)      | `game.lifecycle: read-write` |
-
-### Player Stats
-
-| Method | Endpoint                               | Description                   | Permission           |
-| ------ | -------------------------------------- | ----------------------------- | -------------------- |
-| `POST` | `/game/matches/{matchId}/player-stats` | Submit player stats for a map | `game.scores: write` |
-
-## Common Response Codes
-
-| Status | Description                               |
-| ------ | ----------------------------------------- |
-| `200`  | Success                                   |
-| `201`  | Created                                   |
-| `400`  | Bad request - invalid parameters          |
-| `401`  | Unauthorized - missing or invalid API key |
-| `403`  | Forbidden - insufficient permissions      |
-| `404`  | Resource not found                        |
-| `409`  | Conflict - duplicate or invalid state     |
-| `429`  | Rate limited                              |
-| `500`  | Internal server error                     |
-
-## Error Format
-
-All errors follow a consistent format:
-
-```json
-{
-	"error": "ERROR_CODE",
-	"details": "Human-readable description"
-}
-```
-
-Treat the `error` machine code - not the `details` message - as the stable programmatic contract: parse and branch on `error`, and surface `details` only for human-readable context (it may be absent on auth and permission errors).
-
-### Common Error Codes
-
-The `error` field uses a stable machine-readable identifier. The most common pagination-related codes are:
-
-| Error code           | HTTP | When it occurs                                                                                                              |
-| -------------------- | ---- | --------------------------------------------------------------------------------------------------------------------------- |
-| `INVALID_NUM_ITEMS`  | 400  | Returned by the match listing endpoints when `numItems` is outside `1-100`. See `src/routes/api/v1/user/matches/+server.ts`. |
-| `INVALID_LIMIT`      | 400  | Returned by the league listing endpoints and `/game/matches` when `limit` is outside the supported range (`1-50` for `/leagues`, `1-100` elsewhere). |
-| `IDEMPOTENCY_KEY_CONFLICT` | 409  | An `Idempotency-Key` was reused with a different request body. See `src/convex/_helpers/errors.ts`. |
-
-Both codes map to HTTP 400 with the canonical Convex error identifiers `error_invalid_num_items` and `error_invalid_limit` (`src/convex/_helpers/errors.ts:21-22`). Clients should treat the `error` field, not the message, as the stable contract.
 
 ## Pagination
 
@@ -192,3 +42,13 @@ Content-Type: application/json
   "limit": 25
 }
 ```
+
+## Request limits
+
+| Code                      | HTTP | Meaning                                                                                                                          |
+| ------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `error_invalid_num_items` | 400  | Item count out of range: the `numItems` 1-100 range on match-listing endpoints, or the 50-item ceiling on score-batch endpoints. |
+| `error_invalid_limit`     | 400  | The `limit` is out of range: 1-50 on the league discovery list (`POST /leagues`), 1-100 on every other paginated endpoint (including league standings and penalties).                                                     |
+
+For `Idempotency-Key` conflicts (`409 error_idempotency_key_conflict`) see the
+[Idempotency](/developers/idempotency) guide.

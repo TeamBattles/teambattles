@@ -1,0 +1,71 @@
+---
+title: "Transfer League Ownership"
+description: "Hand off ownership of a league to another staff member."
+openapi: "POST /leagues/{identifier}/ownership/transfer"
+---
+
+## Permission Required
+
+This endpoint requires a **league-operator API key bound to this league** with the `leagues.league_admin:read-write` access permission, plus the `leagueOperatorApi` plan feature (api_pro or higher). A free key receives `403 error_api_feature_required`.
+
+## Access / Membership Rules
+
+This route is **OWNER-only**: only the current league owner may transfer ownership. Convex re-checks current OWNER authority on every call, so a key held by any non-owner staff member is rejected with a `403` error.
+
+The `{identifier}` path parameter is the league **slug** - the URL-friendly league name (e.g., `my-league`). The target user must already be a staff member of the league.
+
+## What's Returned
+
+Transfers league ownership to the target staff member. On success the response is `{ "success": true, "timestamp": "<ISO 8601>" }`. A conflicting target state (e.g. the target is not an existing staff member) returns `409`.
+
+## Request Body
+
+| Parameter      | Type   | Required | Description                          |
+| -------------- | ------ | -------- | ------------------------------------ |
+| `targetUserId` | string | Yes      | User ID of the new league owner.     |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/leagues/my-league/ownership/transfer \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"targetUserId": "jh7abc123def456"}'
+```
+
+```javascript JavaScript
+const leagueSlug = "my-league";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/leagues/${leagueSlug}/ownership/transfer`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			targetUserId: "jh7abc123def456"
+		})
+	}
+);
+
+const { success, timestamp } = await response.json();
+console.log(success, timestamp);
+```
+
+```python Python
+import requests
+
+league_slug = 'my-league'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/leagues/{league_slug}/ownership/transfer',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'targetUserId': 'jh7abc123def456'}
+)
+
+print(response.json())
+```
+
+</RequestExample>

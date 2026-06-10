@@ -33,7 +33,7 @@ func NewItemStatsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     urlParams["request-raw-url"] = rawUrl
     return NewItemStatsRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+// Get returns an organization's aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization's active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
 // Deprecated: This method is obsolete. Use GetAsStatsGetResponse instead.
 // returns a ItemStatsResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -62,7 +62,7 @@ func (m *ItemStatsRequestBuilder) Get(ctx context.Context, requestConfiguration 
     }
     return res.(ItemStatsResponseable), nil
 }
-// GetAsStatsGetResponse returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+// GetAsStatsGetResponse returns an organization's aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization's active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
 // returns a ItemStatsGetResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
 // returns a ErrorEscaped error when the service returns a 403 status code
@@ -90,7 +90,7 @@ func (m *ItemStatsRequestBuilder) GetAsStatsGetResponse(ctx context.Context, req
     }
     return res.(ItemStatsGetResponseable), nil
 }
-// ToGetRequestInformation returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+// ToGetRequestInformation returns an organization's aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization's active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
 // returns a *RequestInformation when successful
 func (m *ItemStatsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemStatsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

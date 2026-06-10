@@ -1,0 +1,70 @@
+---
+title: "Forfeit Match"
+description: "Forfeit a match as the API key owner, who must captain a participating team."
+openapi: "POST /matches/{matchId}/forfeit"
+---
+
+## Permission Required
+
+This endpoint requires `matches.user_matches:read-write` on your API key. A free (`api_free`) key receives `403 error_api_feature_required`; this requires an `api_pro`+ plan.
+
+## Access / Membership Rules
+
+The forfeit is recorded as the API key owner, derived from the key itself - it is never accepted as a body field. The owner must captain one participating team. A personal key can only forfeit matches for teams its owner actually captains - the route binding is a no-op and this authorization is enforced inside Convex. A non-personal key receives `403 API_KEY_PERMISSION_DENIED`.
+
+This route accepts an optional `Idempotency-Key` header so retries are safe.
+
+## Request Body
+
+| Field    | Type   | Required | Description                |
+| -------- | ------ | -------- | -------------------------- |
+| `reason` | string | No       | Optional forfeit reason.   |
+
+## What's Returned
+
+Returns `success: true`, the `matchId`, and a `timestamp`. Mintlify renders the full schema from the spec below.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/matches/jm7match123/forfeit \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"reason": "Cannot field a full roster"}'
+```
+
+```javascript JavaScript
+const matchId = "jm7match123";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/matches/${matchId}/forfeit`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ reason: "Cannot field a full roster" })
+	}
+);
+
+const { matchId: forfeitedId } = await response.json();
+console.log(`Forfeited match ${forfeitedId}`);
+```
+
+```python Python
+import requests
+
+match_id = 'jm7match123'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/matches/{match_id}/forfeit',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'reason': 'Cannot field a full roster'}
+)
+
+data = response.json()
+print(f"Forfeited match {data['matchId']}")
+```
+
+</RequestExample>

@@ -63,7 +63,7 @@ export interface TrophiesGetResponse extends Parsable {
  */
 export interface TrophiesRequestBuilder extends BaseRequestBuilder<TrophiesRequestBuilder> {
     /**
-     * Returns user trophies for public profiles or self. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.
+     * Returns every trophy awarded to the user, sorted newest first by awardedAt, as an unpaginated list with a count (no cursor or limit). The identifier is a username or Convex user ID. Visible only when the target profile is effectively public, or when the profile belongs to the API key owner (self-view is always treated as public); a non-self limited or private profile returns 403. An unknown or banned user returns 404. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<TrophiesGetResponse>}
      * @throws {ErrorEscaped} error when the service returns a 401 status code
@@ -74,7 +74,7 @@ export interface TrophiesRequestBuilder extends BaseRequestBuilder<TrophiesReque
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<TrophiesGetResponse | undefined>;
     /**
-     * Returns user trophies for public profiles or self. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.
+     * Returns every trophy awarded to the user, sorted newest first by awardedAt, as an unpaginated list with a count (no cursor or limit). The identifier is a username or Convex user ID. Visible only when the target profile is effectively public, or when the profile belongs to the API key owner (self-view is always treated as public); a non-self limited or private profile returns 403. An unknown or banned user returns 404. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

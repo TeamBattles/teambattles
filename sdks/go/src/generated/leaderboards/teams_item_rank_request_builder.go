@@ -13,7 +13,7 @@ import (
 type TeamsItemRankRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// TeamsItemRankRequestBuilderGetQueryParameters returns a team's rank for the requested leaderboard filters. Private teams return rank null unless they are otherwise excluded from the API leaderboard. Requires teams.profile:read.
+// TeamsItemRankRequestBuilderGetQueryParameters resolves a single team by slug or ID and returns its 1-indexed rank on the public team leaderboard. `sortBy` selects the ranking field: wins (default), winRate, or experience. Pass `gameSlug` to rank within one game's leaderboard; omit it for the global (all-games) board. An unknown `gameSlug` returns 404. `rank` is null when the team is excluded from the leaderboard (private or disabled) and also when the team ranks beyond the internal scan window, since the rank is a bounded best-effort computation rather than a full-table sort. A missing or inactive team returns 404; an active but excluded team returns 200 with rank null. Requires teams.profile:read.
 type TeamsItemRankRequestBuilderGetQueryParameters struct {
     GameSlug *string "uriparametername:\"gameSlug\""
     // Deprecated: This property is deprecated, use SortByAsLeaderboardSortBy instead
@@ -42,7 +42,7 @@ func NewTeamsItemRankRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee
     urlParams["request-raw-url"] = rawUrl
     return NewTeamsItemRankRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns a team's rank for the requested leaderboard filters. Private teams return rank null unless they are otherwise excluded from the API leaderboard. Requires teams.profile:read.
+// Get resolves a single team by slug or ID and returns its 1-indexed rank on the public team leaderboard. `sortBy` selects the ranking field: wins (default), winRate, or experience. Pass `gameSlug` to rank within one game's leaderboard; omit it for the global (all-games) board. An unknown `gameSlug` returns 404. `rank` is null when the team is excluded from the leaderboard (private or disabled) and also when the team ranks beyond the internal scan window, since the rank is a bounded best-effort computation rather than a full-table sort. A missing or inactive team returns 404; an active but excluded team returns 200 with rank null. Requires teams.profile:read.
 // returns a LeaderboardRankResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -72,7 +72,7 @@ func (m *TeamsItemRankRequestBuilder) Get(ctx context.Context, requestConfigurat
     }
     return res.(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.LeaderboardRankResponseable), nil
 }
-// ToGetRequestInformation returns a team's rank for the requested leaderboard filters. Private teams return rank null unless they are otherwise excluded from the API leaderboard. Requires teams.profile:read.
+// ToGetRequestInformation resolves a single team by slug or ID and returns its 1-indexed rank on the public team leaderboard. `sortBy` selects the ranking field: wins (default), winRate, or experience. Pass `gameSlug` to rank within one game's leaderboard; omit it for the global (all-games) board. An unknown `gameSlug` returns 404. `rank` is null when the team is excluded from the leaderboard (private or disabled) and also when the team ranks beyond the internal scan window, since the rank is a bounded best-effort computation rather than a full-table sort. A missing or inactive team returns 404; an active but excluded team returns 200 with rank null. Requires teams.profile:read.
 // returns a *RequestInformation when successful
 func (m *TeamsItemRankRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *TeamsItemRankRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

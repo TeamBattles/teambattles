@@ -33,7 +33,7 @@ func NewItemTeamsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     urlParams["request-raw-url"] = rawUrl
     return NewItemTeamsRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+// Get returns an organization's active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
 // Deprecated: This method is obsolete. Use GetAsTeamsGetResponse instead.
 // returns a ItemTeamsResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -62,7 +62,7 @@ func (m *ItemTeamsRequestBuilder) Get(ctx context.Context, requestConfiguration 
     }
     return res.(ItemTeamsResponseable), nil
 }
-// GetAsTeamsGetResponse returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+// GetAsTeamsGetResponse returns an organization's active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
 // returns a ItemTeamsGetResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
 // returns a ErrorEscaped error when the service returns a 403 status code
@@ -90,7 +90,7 @@ func (m *ItemTeamsRequestBuilder) GetAsTeamsGetResponse(ctx context.Context, req
     }
     return res.(ItemTeamsGetResponseable), nil
 }
-// ToGetRequestInformation returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+// ToGetRequestInformation returns an organization's active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
 // returns a *RequestInformation when successful
 func (m *ItemTeamsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemTeamsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

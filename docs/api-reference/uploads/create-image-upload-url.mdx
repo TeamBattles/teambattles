@@ -1,0 +1,109 @@
+---
+title: "Mint An Image Upload URL"
+description: "Mint a short-lived, single-use Convex storage upload URL, then PUT image bytes to it to receive a storageId for a downstream write."
+openapi: "POST /uploads/image-url"
+---
+
+## Permission Required
+
+This endpoint requires `uploads.upload:read-write` on your API key, plus the `writes` feature. The owner is always the API key owner, derived from the key itself - it is never accepted as a body field. A free (`api_free`) key receives `403 error_api_feature_required`; this requires an `api_pro`+ plan.
+
+## Access / Membership Rules
+
+This is a user-self route (`binding: "none"`) - it is not bound to a game or league. The minted URL belongs to the API key owner. The endpoint takes no request body and no parameters.
+
+## What's Returned
+
+Returns `{ uploadUrl }` - a short-lived, single-use Convex storage upload URL. The bytes do not exist yet at mint time, so no validation happens here.
+
+## The Upload Flow
+
+The image upload is a two-step, mint-then-upload flow:
+
+<Steps>
+	<Step title="Mint the URL">
+		Call this endpoint to get a fresh `uploadUrl`. The URL is single-use and short-lived, so mint it
+		just before you upload.
+	</Step>
+	<Step title="POST the image bytes">
+		POST the raw image bytes to the `uploadUrl` with the matching `Content-Type` header. The response
+		body is `{ "storageId": "..." }`.
+	</Step>
+	<Step title="Attach the storageId on a downstream write">
+		Supply the returned `storageId` on a consuming write - for example a score-ingest
+		`screenshotStorageIds`, or a support ticket's `images`.
+	</Step>
+</Steps>
+
+## Size And Content-Type Limits
+
+This endpoint mints the URL only - it does not validate the bytes. Validation happens on the **consuming write** when you attach the `storageId`:
+
+| Limit | Value |
+| --- | --- |
+| Max size | 5 MB |
+| Allowed types | `image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif` |
+
+An oversized or unsupported blob is rejected by the downstream write with `400 INVALID_INPUT`. `image/svg+xml` is intentionally not allowed (SVG can carry script).
+
+<Note>
+	The `storageId` is bound to you, the uploader. The consuming write rejects a `storageId` minted for
+	or by another tenant, so you cannot attach someone else's blob.
+</Note>
+
+<RequestExample>
+
+```bash cURL
+# 1. Mint the upload URL.
+UPLOAD_URL=$(curl -s -X POST https://teambattles.gg/api/v1/uploads/image-url \
+  -H "Authorization: Bearer tb_your_api_key" \
+  | python3 -c 'import sys,json;print(json.load(sys.stdin)["uploadUrl"])')
+
+# 2. POST the image bytes to the minted URL.
+curl -X POST "$UPLOAD_URL" \
+  -H "Content-Type: image/png" \
+  --data-binary @screenshot.png
+# -> { "storageId": "..." }
+```
+
+```javascript JavaScript
+// 1. Mint the upload URL.
+const mint = await fetch("https://teambattles.gg/api/v1/uploads/image-url", {
+	method: "POST",
+	headers: { Authorization: "Bearer tb_your_api_key" }
+});
+const { uploadUrl } = await mint.json();
+
+// 2. POST the image bytes to the minted URL.
+const imageBytes = await fetch("https://example.com/screenshot.png").then((r) => r.blob());
+const upload = await fetch(uploadUrl, {
+	method: "POST",
+	headers: { "Content-Type": "image/png" },
+	body: imageBytes
+});
+const { storageId } = await upload.json();
+
+// 3. Attach storageId on a downstream write (e.g. a score screenshot).
+console.log(storageId);
+```
+
+```python Python
+import requests
+
+# 1. Mint the upload URL.
+mint = requests.post(
+    "https://teambattles.gg/api/v1/uploads/image-url",
+    headers={"Authorization": "Bearer tb_your_api_key"},
+)
+upload_url = mint.json()["uploadUrl"]
+
+# 2. POST the image bytes to the minted URL.
+with open("screenshot.png", "rb") as f:
+    upload = requests.post(upload_url, headers={"Content-Type": "image/png"}, data=f)
+
+storage_id = upload.json()["storageId"]
+# 3. Attach storage_id on a downstream write.
+print(storage_id)
+```
+
+</RequestExample>

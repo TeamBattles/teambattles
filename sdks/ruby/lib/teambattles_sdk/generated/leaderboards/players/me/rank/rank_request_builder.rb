@@ -28,7 +28,7 @@ module TeamBattlesSdk
                                 super(path_parameters, request_adapter, "{+baseurl}/leaderboards/players/me/rank{?sortBy*}")
                             end
                             ## 
-                            ## Returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+                            ## Returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a Fiber of leaderboard_rank_response
                             ## 
@@ -45,7 +45,7 @@ module TeamBattlesSdk
                                 return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::LeaderboardRankResponse.create_from_discriminator_value(pn) }, error_mapping)
                             end
                             ## 
-                            ## Returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+                            ## Returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a request_information
                             ## 
@@ -73,7 +73,7 @@ module TeamBattlesSdk
                             end
 
                             ## 
-                            # Returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+                            # Returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
                             class RankRequestBuilderGetQueryParameters
                                 
                                 attr_accessor :sort_by

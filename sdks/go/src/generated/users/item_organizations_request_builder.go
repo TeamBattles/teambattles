@@ -33,7 +33,7 @@ func NewItemOrganizationsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7
     urlParams["request-raw-url"] = rawUrl
     return NewItemOrganizationsRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns API-safe organization affiliation rows for public or limited profiles, plus self. Non-self rows include only public organizations. Requires users.profile:read.
+// Get returns the target user's active organization memberships, each as an API-safe organization summary plus the membership role and joinedAt. The identifier is a username or Convex user ID. Requires the users.profile:read scope. Readable only for public or limited profiles (or the API key owner's own profile); a private profile returns 403, and an unknown or banned user returns 404. For anyone other than the profile owner, non-public organizations are omitted; the owner sees all of their memberships. Not paginated - the full set is returned with a count, in no guaranteed order (not sorted by name or joinedAt).
 // Deprecated: This method is obsolete. Use GetAsOrganizationsGetResponse instead.
 // returns a ItemOrganizationsResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -62,7 +62,7 @@ func (m *ItemOrganizationsRequestBuilder) Get(ctx context.Context, requestConfig
     }
     return res.(ItemOrganizationsResponseable), nil
 }
-// GetAsOrganizationsGetResponse returns API-safe organization affiliation rows for public or limited profiles, plus self. Non-self rows include only public organizations. Requires users.profile:read.
+// GetAsOrganizationsGetResponse returns the target user's active organization memberships, each as an API-safe organization summary plus the membership role and joinedAt. The identifier is a username or Convex user ID. Requires the users.profile:read scope. Readable only for public or limited profiles (or the API key owner's own profile); a private profile returns 403, and an unknown or banned user returns 404. For anyone other than the profile owner, non-public organizations are omitted; the owner sees all of their memberships. Not paginated - the full set is returned with a count, in no guaranteed order (not sorted by name or joinedAt).
 // returns a ItemOrganizationsGetResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
 // returns a ErrorEscaped error when the service returns a 403 status code
@@ -90,7 +90,7 @@ func (m *ItemOrganizationsRequestBuilder) GetAsOrganizationsGetResponse(ctx cont
     }
     return res.(ItemOrganizationsGetResponseable), nil
 }
-// ToGetRequestInformation returns API-safe organization affiliation rows for public or limited profiles, plus self. Non-self rows include only public organizations. Requires users.profile:read.
+// ToGetRequestInformation returns the target user's active organization memberships, each as an API-safe organization summary plus the membership role and joinedAt. The identifier is a username or Convex user ID. Requires the users.profile:read scope. Readable only for public or limited profiles (or the API key owner's own profile); a private profile returns 403, and an unknown or banned user returns 404. For anyone other than the profile owner, non-public organizations are omitted; the owner sees all of their memberships. Not paginated - the full set is returned with a count, in no guaranteed order (not sorted by name or joinedAt).
 // returns a *RequestInformation when successful
 func (m *ItemOrganizationsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemOrganizationsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

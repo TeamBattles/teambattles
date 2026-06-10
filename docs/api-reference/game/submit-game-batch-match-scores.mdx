@@ -1,0 +1,84 @@
+---
+title: "Submit Map Scores Across Multiple Matches In One Call"
+description: "Submit map scores spanning several of your game's matches in a single request, with per-item results."
+openapi: "POST /game/matches/batch-scores"
+---
+
+## Permission Required
+
+This endpoint requires the `game.scores` permission with `write` access. (`game.scores` is a write-level permission - its levels are `none` or `write`, not `read-write`.) Your API key must be a **game-developer key bound to a game**. There is no per-match route binding here (one call spans many matches with possibly different matchIds), so each item is independently scope-checked in the handler against your bound game. A non-developer key, or a key with no bound game, receives a `403 error_game_scope_mismatch`.
+
+## Access / Membership Rules
+
+A batch may contain `1-50` items (each carries its own `matchId`); over the cap returns `400 error_invalid_num_items`. Each item is checked independently: an item whose match does not belong to your bound game (or otherwise fails) is rejected in its own per-item envelope (`status: "failed"`, `error` = bare `error_*` code) **without** failing the whole request - the top-level response is always HTTP 200, so inspect each item's status. Score submission is naturally idempotent (an unconfirmed map is overwritten on re-submit; an already-confirmed map returns a per-item `error_score_already_submitted_by_game`), so a retried batch is safe and this endpoint does not use an `Idempotency-Key`.
+
+## Rate Limiting
+
+Batch items are metered per item against a dedicated per-key bucket (capacity 200, refilling 2/sec), separate from the standard per-request limiter. A 50-item batch charges 50 tokens; exceeding the bucket returns `429 error_api_rate_limited` with rate-limit headers.
+
+## What's Returned
+
+Returns `{ success, submitted, count }`. `submitted[]` is the per-item result array in submission order (each `{ matchId, mapIndex, status, error? }`), `count` is the number confirmed, and `success` is `true` only when every item was confirmed.
+
+## Request Body
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `items` | array | Yes | Map-score items across one or more matches (`1-50` entries). |
+
+Each `items[]` entry:
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `matchId` | string | Yes | ID of the match this map score belongs to. |
+| `mapIndex` | number | Yes | Zero-based index of the map within the series. |
+| `mapId` | string | Yes | Identifier of the map that was played. |
+| `creatorTeamScore` | number | Yes | Creator team score (integer, `0-1000`). |
+| `opponentTeamScore` | number | Yes | Opponent (accepted) team score (integer, `0-1000`). |
+| `screenshotUrls` | array | No | Optional public https screenshot URLs. |
+| `screenshotStorageIds` | array | No | Optional storage IDs from `POST /uploads/image-url` (preferred). |
+| `playerStats` | object | No | Optional per-player stats keyed by user ID. |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/game/matches/batch-scores \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"items":[{"matchId":"match_abc","mapIndex":0,"mapId":"de_dust2","creatorTeamScore":13,"opponentTeamScore":7},{"matchId":"match_xyz","mapIndex":0,"mapId":"de_mirage","creatorTeamScore":10,"opponentTeamScore":13}]}'
+```
+
+```javascript JavaScript
+const res = await fetch("https://teambattles.gg/api/v1/game/matches/batch-scores", {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify({
+		items: [
+			{ matchId: "match_abc", mapIndex: 0, mapId: "de_dust2", creatorTeamScore: 13, opponentTeamScore: 7 },
+			{ matchId: "match_xyz", mapIndex: 0, mapId: "de_mirage", creatorTeamScore: 10, opponentTeamScore: 13 }
+		]
+	})
+});
+const { submitted, count } = await res.json();
+```
+
+```python Python
+import requests
+
+res = requests.post(
+    "https://teambattles.gg/api/v1/game/matches/batch-scores",
+    headers={"Authorization": "Bearer tb_your_api_key"},
+    json={
+        "items": [
+            {"matchId": "match_abc", "mapIndex": 0, "mapId": "de_dust2", "creatorTeamScore": 13, "opponentTeamScore": 7},
+            {"matchId": "match_xyz", "mapIndex": 0, "mapId": "de_mirage", "creatorTeamScore": 10, "opponentTeamScore": 13},
+        ]
+    },
+)
+print(res.json()["count"], "confirmed")
+```
+
+</RequestExample>

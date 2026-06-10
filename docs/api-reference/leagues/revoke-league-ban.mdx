@@ -1,0 +1,73 @@
+---
+title: "Revoke A League Team Ban"
+description: "Revoke an active league team ban."
+openapi: "POST /leagues/{identifier}/bans/{banId}/revoke"
+---
+
+## Permission Required
+
+This endpoint requires a **league-operator API key bound to this league** with the `bans` league capability, plus the `leagueOperatorApi` plan feature (api_pro or higher). A free key receives `403 error_api_feature_required`.
+
+## Access / Membership Rules
+
+You must have a **MANAGER or higher** role in the league (or be a TeamBattles staff member) to revoke a ban. If you lack the required access, you'll receive a `403` error.
+
+The `{identifier}` path parameter is the league **slug** - the URL-friendly league name (e.g., `my-league`). The ban referenced by `{banId}` must belong to the bound league.
+
+## What's Returned
+
+Revokes an active league team ban. On success the response is `{ "success": true, "timestamp": "<ISO 8601>" }`.
+
+## Request Body
+
+The request body is optional - send an empty body, or include a revocation reason.
+
+| Parameter | Type   | Required | Description                                       |
+| --------- | ------ | -------- | ------------------------------------------------- |
+| `reason`  | string | No       | Optional revocation reason (up to 500 characters). |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/leagues/my-league/bans/jh7ban123/revoke \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"reason": "Appeal accepted"}'
+```
+
+```javascript JavaScript
+const leagueSlug = "my-league";
+const banId = "jh7ban123";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/leagues/${leagueSlug}/bans/${banId}/revoke`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ reason: "Appeal accepted" })
+	}
+);
+
+const { success, timestamp } = await response.json();
+console.log(success, timestamp);
+```
+
+```python Python
+import requests
+
+league_slug = 'my-league'
+ban_id = 'jh7ban123'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/leagues/{league_slug}/bans/{ban_id}/revoke',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'reason': 'Appeal accepted'}
+)
+
+print(response.json())
+```
+
+</RequestExample>

@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Users.Item.Connections
         {
         }
         /// <summary>
-        /// Returns user connections for public profiles or self. Non-self responses include only connections marked visible on the profile. Requires users.profile:read.
+        /// Returns a user&apos;s linked-account connections. Access requires a public profile or self: a non-self viewer of a limited or private profile gets 403, which is stricter than the stats, teams, and organizations endpoints that also allow limited profiles. Non-self responses include only the connections the user marked visible on their profile; self responses include all of them. isVerified is true when the connection&apos;s platform matches one of the user&apos;s linked OAuth providers, not the connection&apos;s self-reported flag. Not paginated: returns the full matching set as connections plus a count, in no guaranteed order. Banned users return 404. Requires users.profile:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Users.Item.Connections.ConnectionsGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace TeamBattles.Sdk.Users.Item.Connections
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Users.Item.Connections.ConnectionsGetResponse>(requestInfo, global::TeamBattles.Sdk.Users.Item.Connections.ConnectionsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns user connections for public profiles or self. Non-self responses include only connections marked visible on the profile. Requires users.profile:read.
+        /// Returns a user&apos;s linked-account connections. Access requires a public profile or self: a non-self viewer of a limited or private profile gets 403, which is stricter than the stats, teams, and organizations endpoints that also allow limited profiles. Non-self responses include only the connections the user marked visible on their profile; self responses include all of them. isVerified is true when the connection&apos;s platform matches one of the user&apos;s linked OAuth providers, not the connection&apos;s self-reported flag. Not paginated: returns the full matching set as connections plus a count, in no guaranteed order. Banned users return 404. Requires users.profile:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Users.Item.Connections.ConnectionsResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -97,7 +97,7 @@ namespace TeamBattles.Sdk.Users.Item.Connections
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Users.Item.Connections.ConnectionsResponse>(requestInfo, global::TeamBattles.Sdk.Users.Item.Connections.ConnectionsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns user connections for public profiles or self. Non-self responses include only connections marked visible on the profile. Requires users.profile:read.
+        /// Returns a user&apos;s linked-account connections. Access requires a public profile or self: a non-self viewer of a limited or private profile gets 403, which is stricter than the stats, teams, and organizations endpoints that also allow limited profiles. Non-self responses include only the connections the user marked visible on their profile; self responses include all of them. isVerified is true when the connection&apos;s platform matches one of the user&apos;s linked OAuth providers, not the connection&apos;s self-reported flag. Not paginated: returns the full matching set as connections plus a count, in no guaranteed order. Banned users return 404. Requires users.profile:read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

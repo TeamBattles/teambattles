@@ -1,0 +1,24 @@
+---
+title: "Get One Of Your Support Tickets"
+description: "Read one of the API key owner's tickets and its message thread."
+openapi: "GET /tickets/{ticketId}"
+---
+
+## Permission Required
+
+This endpoint requires `tickets.read:read` on your API key. The reader is always the API key owner, derived from the key itself - it is never accepted as a parameter.
+
+## Access / Membership Rules
+
+Tickets are owner-scoped (`binding: "none"`). You may read a ticket only if you own it. A ticket you do not own - or an unknown id - reads as `404 TICKET_NOT_FOUND` and never reveals its existence. Internal staff notes are excluded from the returned thread.
+
+## What's Returned
+
+Returns the ticket and its message thread: `id`, `ticketNumber`, `subject`, `description`, `category`, `status` (`open`, `in_progress`, `awaiting_response`, `resolved`, or `closed`), `priority` (`low`, `medium`, `high`, or `urgent`), `createdAt`, `updatedAt`, `resolvedAt`, `closedAt`, a `messages` array, and a `timestamp`.
+
+Each entry in `messages` carries `id`, `content`, `isSystem` (true for automated system messages), `isOwnMessage` (true when you sent it), and `createdAt`. Mintlify renders the full schema from the spec below.
+
+<Note>
+	To reply on this ticket, call
+	[Reply To One Of Your Tickets](/api-reference/support/add-ticket-message) with this ticket's `id`.
+</Note>

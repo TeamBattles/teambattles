@@ -24,7 +24,7 @@ module TeamBattlesSdk
                             super(path_parameters, request_adapter, "{+baseurl}/users/{identifier}/organizations")
                         end
                         ## 
-                        ## Returns API-safe organization affiliation rows for public or limited profiles, plus self. Non-self rows include only public organizations. Requires users.profile:read.
+                        ## Returns the target user's active organization memberships, each as an API-safe organization summary plus the membership role and joinedAt. The identifier is a username or Convex user ID. Requires the users.profile:read scope. Readable only for public or limited profiles (or the API key owner's own profile); a private profile returns 403, and an unknown or banned user returns 404. For anyone other than the profile owner, non-public organizations are omitted; the owner sees all of their memberships. Not paginated - the full set is returned with a count, in no guaranteed order (not sorted by name or joinedAt).
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a Fiber of organizations_get_response
                         ## 
@@ -41,7 +41,7 @@ module TeamBattlesSdk
                             return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Users::Item::Organizations::OrganizationsGetResponse.create_from_discriminator_value(pn) }, error_mapping)
                         end
                         ## 
-                        ## Returns API-safe organization affiliation rows for public or limited profiles, plus self. Non-self rows include only public organizations. Requires users.profile:read.
+                        ## Returns the target user's active organization memberships, each as an API-safe organization summary plus the membership role and joinedAt. The identifier is a username or Convex user ID. Requires the users.profile:read scope. Readable only for public or limited profiles (or the API key owner's own profile); a private profile returns 403, and an unknown or banned user returns 404. For anyone other than the profile owner, non-public organizations are omitted; the owner sees all of their memberships. Not paginated - the full set is returned with a count, in no guaranteed order (not sorted by name or joinedAt).
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a request_information
                         ## 

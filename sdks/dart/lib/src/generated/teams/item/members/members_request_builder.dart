@@ -19,7 +19,7 @@ class MembersRequestBuilder extends BaseRequestBuilder<MembersRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     MembersRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/teams/{identifier}/members", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Returns active roster rows when the team is public or the API key owner is an active team member. Requires teams.roster:read.
+    /// Returns the full active roster when the team is public or the API key owner is an active team member; otherwise responds 403. The team is resolved by slug or Convex team ID and must be active, returning 404 if not found. Rows are sorted by role - captains first, then co-captains, then members - and each row's id is the membership row ID, not the user ID. Not paginated: every active member is returned in one response with a count, and there is no limit, cursor, or page token. Requires teams.roster:read.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<MembersGetResponse?> getAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toGetRequestInformation(requestConfiguration);
@@ -32,7 +32,7 @@ class MembersRequestBuilder extends BaseRequestBuilder<MembersRequestBuilder> {
         };
         return await requestAdapter.send<MembersGetResponse>(requestInfo, MembersGetResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Returns active roster rows when the team is public or the API key owner is an active team member. Requires teams.roster:read.
+    /// Returns the full active roster when the team is public or the API key owner is an active team member; otherwise responds 403. The team is resolved by slug or Convex team ID and must be active, returning 404 if not found. Rows are sorted by role - captains first, then co-captains, then members - and each row's id is the membership row ID, not the user ID. Not paginated: every active member is returned in one response with a count, and there is no limit, cursor, or page token. Requires teams.roster:read.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toGetRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.get, urlTemplate : urlTemplate, pathParameters :  pathParameters);

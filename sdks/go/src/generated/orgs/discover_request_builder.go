@@ -13,7 +13,7 @@ import (
 type DiscoverRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// DiscoverRequestBuilderGetQueryParameters returns a neutral discovery list of active, public, non-disabled organizations. Results do not exclude organizations the API key owner belongs to and do not include join-request flags. Requires orgs.profile:read.
+// DiscoverRequestBuilderGetQueryParameters returns a neutral, ranked discovery list of active, public, non-disabled organizations. Each result is a small summary (id, slug, name, tag, avatarUrl, visibility); `count` is the size of the returned page, not a total. Results are sorted featured organizations first, then by most wins, then newest. `limit` is 1-100 (default 50); ranking is computed over at most the first 1000 candidate organizations and there is no cursor pagination, so the response is a single ranked page. `search` filters by case-insensitive name substring and is only applied when it is at least 2 characters (shorter values are ignored). Unlike an in-app feed, results do not exclude organizations the API key owner belongs to and do not include membership or join-request flags. Requires orgs.profile:read.
 type DiscoverRequestBuilderGetQueryParameters struct {
     Limit *int32 "uriparametername:\"limit\""
     // Optional organization name search.
@@ -41,7 +41,7 @@ func NewDiscoverRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26337
     urlParams["request-raw-url"] = rawUrl
     return NewDiscoverRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns a neutral discovery list of active, public, non-disabled organizations. Results do not exclude organizations the API key owner belongs to and do not include join-request flags. Requires orgs.profile:read.
+// Get returns a neutral, ranked discovery list of active, public, non-disabled organizations. Each result is a small summary (id, slug, name, tag, avatarUrl, visibility); `count` is the size of the returned page, not a total. Results are sorted featured organizations first, then by most wins, then newest. `limit` is 1-100 (default 50); ranking is computed over at most the first 1000 candidate organizations and there is no cursor pagination, so the response is a single ranked page. `search` filters by case-insensitive name substring and is only applied when it is at least 2 characters (shorter values are ignored). Unlike an in-app feed, results do not exclude organizations the API key owner belongs to and do not include membership or join-request flags. Requires orgs.profile:read.
 // Deprecated: This method is obsolete. Use GetAsDiscoverGetResponse instead.
 // returns a DiscoverResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
@@ -70,7 +70,7 @@ func (m *DiscoverRequestBuilder) Get(ctx context.Context, requestConfiguration *
     }
     return res.(DiscoverResponseable), nil
 }
-// GetAsDiscoverGetResponse returns a neutral discovery list of active, public, non-disabled organizations. Results do not exclude organizations the API key owner belongs to and do not include join-request flags. Requires orgs.profile:read.
+// GetAsDiscoverGetResponse returns a neutral, ranked discovery list of active, public, non-disabled organizations. Each result is a small summary (id, slug, name, tag, avatarUrl, visibility); `count` is the size of the returned page, not a total. Results are sorted featured organizations first, then by most wins, then newest. `limit` is 1-100 (default 50); ranking is computed over at most the first 1000 candidate organizations and there is no cursor pagination, so the response is a single ranked page. `search` filters by case-insensitive name substring and is only applied when it is at least 2 characters (shorter values are ignored). Unlike an in-app feed, results do not exclude organizations the API key owner belongs to and do not include membership or join-request flags. Requires orgs.profile:read.
 // returns a DiscoverGetResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -98,7 +98,7 @@ func (m *DiscoverRequestBuilder) GetAsDiscoverGetResponse(ctx context.Context, r
     }
     return res.(DiscoverGetResponseable), nil
 }
-// ToGetRequestInformation returns a neutral discovery list of active, public, non-disabled organizations. Results do not exclude organizations the API key owner belongs to and do not include join-request flags. Requires orgs.profile:read.
+// ToGetRequestInformation returns a neutral, ranked discovery list of active, public, non-disabled organizations. Each result is a small summary (id, slug, name, tag, avatarUrl, visibility); `count` is the size of the returned page, not a total. Results are sorted featured organizations first, then by most wins, then newest. `limit` is 1-100 (default 50); ranking is computed over at most the first 1000 candidate organizations and there is no cursor pagination, so the response is a single ranked page. `search` filters by case-insensitive name substring and is only applied when it is at least 2 characters (shorter values are ignored). Unlike an in-app feed, results do not exclude organizations the API key owner belongs to and do not include membership or join-request flags. Requires orgs.profile:read.
 // returns a *RequestInformation when successful
 func (m *DiscoverRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *DiscoverRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

@@ -1,17 +1,19 @@
 plugins {
     id 'java-library'
-    id 'maven-publish'
+    // Publishes to the Sonatype Central Portal (the OSSRH successor) and handles sources/javadoc
+    // jars, POM, and GPG signing. Replaces the bare `maven-publish` setup, which could not target
+    // the Central Portal nor satisfy its mandatory-signing requirement.
+    id 'com.vanniktech.maven.publish' version '0.36.0'
 }
 
-group = 'gg.teambattles'
 version = '0.1.0'
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
-    withSourcesJar()
-    withJavadocJar()
+    // NOTE: the vanniktech plugin adds the sources + javadoc jars itself; do not also call
+    // withSourcesJar()/withJavadocJar() here or the publication gets duplicate artifacts.
 }
 
 repositories {
@@ -33,11 +35,39 @@ tasks.withType(Javadoc).configureEach {
     options.addStringOption('Xdoclint:none', '-quiet')
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-            artifactId = 'sdk'
+// Maven Central (Sonatype Central Portal) publishing. Credentials + signing are supplied by CI as
+// Gradle properties via environment variables (see .github/workflows/sdks.yml, the `java` leg):
+//   ORG_GRADLE_PROJECT_mavenCentralUsername / _mavenCentralPassword       -> Central Portal user token
+//   ORG_GRADLE_PROJECT_signingInMemoryKey   / _signingInMemoryKeyPassword -> ASCII-armored GPG key + passphrase
+// GPG signing is a hard Central requirement, and the `gg.teambattles` namespace must be verified
+// on the Central Portal account (DNS TXT on teambattles.gg) before the first upload succeeds.
+mavenPublishing {
+    publishToMavenCentral(true) // automaticRelease: push straight through instead of staging for manual release
+    signAllPublications()
+
+    coordinates('gg.teambattles', 'sdk', '0.1.0')
+
+    pom {
+        name.set('TeamBattles Java SDK')
+        description.set('Official Java SDK for the TeamBattles public developer API.')
+        url.set('https://teambattles.gg')
+        licenses {
+            license {
+                name.set('MIT License')
+                url.set('https://opensource.org/licenses/MIT')
+            }
+        }
+        developers {
+            developer {
+                id.set('teambattles')
+                name.set('TeamBattles')
+                url.set('https://teambattles.gg')
+            }
+        }
+        scm {
+            url.set('https://github.com/KarandeepSWranch/teambattles')
+            connection.set('scm:git:git://github.com/KarandeepSWranch/teambattles.git')
+            developerConnection.set('scm:git:ssh://git@github.com/KarandeepSWranch/teambattles.git')
         }
     }
 }

@@ -47,7 +47,7 @@ func NewItemScoresRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
     urlParams["request-raw-url"] = rawUrl
     return NewItemScoresRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
+// Get retrieve every map score for a match plus a series summary. Returns the full unpaginated list of map scores (no cursor or limit) and a seriesScore counting map wins per side, computed only from CONFIRMED maps and awarding a map to the side with the strictly higher score (equal scores count for neither). Each score's scoreStatus is CONFIRMED or PENDING; submittedBy, confirmedBy, and createdAt may be null. Screenshot URLs are suppressed (empty array) for any score whose API-uploaded image has not passed content moderation. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read. The caller must be an active member of one of the match's two teams; non-participants receive 403, unless they hold a TeamBattles staff role, which can read any match's scores.
 // returns a MapScoresable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
 // returns a ErrorEscaped error when the service returns a 403 status code
@@ -123,7 +123,7 @@ func (m *ItemScoresRequestBuilder) Post(ctx context.Context, body i9ac5c274a78aa
     }
     return res.(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.ScoreSubmissionResultable), nil
 }
-// ToGetRequestInformation retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
+// ToGetRequestInformation retrieve every map score for a match plus a series summary. Returns the full unpaginated list of map scores (no cursor or limit) and a seriesScore counting map wins per side, computed only from CONFIRMED maps and awarding a map to the side with the strictly higher score (equal scores count for neither). Each score's scoreStatus is CONFIRMED or PENDING; submittedBy, confirmedBy, and createdAt may be null. Screenshot URLs are suppressed (empty array) for any score whose API-uploaded image has not passed content moderation. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read. The caller must be an active member of one of the match's two teams; non-participants receive 403, unless they hold a TeamBattles staff role, which can read any match's scores.
 // returns a *RequestInformation when successful
 func (m *ItemScoresRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemScoresRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

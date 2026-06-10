@@ -1,0 +1,24 @@
+---
+title: "List Your Support Tickets"
+description: "Page through the API key owner's support tickets, newest first."
+openapi: "GET /tickets"
+---
+
+## Permission Required
+
+This endpoint requires `tickets.read:read` on your API key. The reader is always the API key owner, derived from the key itself - it is never accepted as a parameter.
+
+## Access / Membership Rules
+
+Tickets are owner-scoped. This route returns only the tickets owned by the API key owner - you can never see another user's tickets. The owner is derived from the key (`binding: "none"`), never from a request field.
+
+Results are cursor-paginated. Use the `limit` query parameter (1-100, default 25) for page size and pass a prior page's `nextCursor` as the `cursor` query parameter to continue. A `limit` outside 1-100 returns `400 INVALID_LIMIT`, and a malformed cursor returns `400 INVALID_CURSOR`.
+
+## What's Returned
+
+Returns the cursor-page envelope: a `data` array of ticket summaries, a `nextCursor` (null when the last page is reached), a `hasMore` flag, and a `timestamp`. Each ticket summary carries `id`, `ticketNumber` (the human-facing sequential number), `subject`, `category`, `status` (`open`, `in_progress`, `awaiting_response`, `resolved`, or `closed`), `priority` (`low`, `medium`, `high`, or `urgent`), `createdAt`, and `updatedAt`. Mintlify renders the full schema from the spec below.
+
+<Note>
+	To read a ticket's full description and message thread, call
+	[Get One Of Your Tickets](/api-reference/support/get-ticket) with the ticket's `id`.
+</Note>

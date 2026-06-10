@@ -1,0 +1,17 @@
+---
+title: "List The API Key Owner's Connections"
+description: "Read the full set of connections for the API key owner, including private fields."
+openapi: "GET /user/connections"
+---
+
+## Permission Required
+
+This endpoint requires `users.profile` with `read` access on your API key. The user is always the API key owner, derived from the key itself - it is never accepted as a parameter, so a key can only read its own connections.
+
+## Access / Membership Rules
+
+This is a self-read route. The owner is always derived from `principal.user._id`, so there is no membership or participant gating - the key reads exactly the owner's own data. Unlike the public `/users/{id}/connections` endpoint, no `showOnProfile` filter is applied: the full set is returned, including the owner-only `isSelfReported` and `showOnProfile` fields.
+
+## What's Returned
+
+Returns a list envelope with a `connections` array. Each entry is the API-safe owner-connection projection, which includes the owner-only `isSelfReported` and `showOnProfile` flags alongside the public connection fields. Mintlify renders the full schema from the spec below.

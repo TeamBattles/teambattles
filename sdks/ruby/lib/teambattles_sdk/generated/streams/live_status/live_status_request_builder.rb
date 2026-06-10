@@ -24,7 +24,7 @@ module TeamBattlesSdk
                         super(path_parameters, request_adapter, "{+baseurl}/streams/live-status")
                     end
                     ## 
-                    ## Returns compact live status for up to 50 users. Users that do not exist or whose profile hides stream status from the caller are omitted from the response. Requires stream.read.
+                    ## Filtered read returning compact live status for a batch of users (POST is used only to carry the id list; no data is written). Send a body of 1 - 50 Convex user IDs; duplicates are ignored and over-50 is rejected. Each response row is { id, isLive, platforms } and does not include the primaryStream detail returned by GET /users/{identifier}/stream. Users that do not exist, are banned, or whose profile hides stream status from the caller are omitted from the response (the batch never reveals which case applied or that a hidden user exists), so count may be less than the number of IDs sent. Unlike the single-user stream endpoint, IDs are matched by user ID only; usernames are not resolved. No pagination and no guaranteed ordering. Requires stream.read.
                     ## @param body Batch live-status request body.
                     ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                     ## @return a Fiber of api_batch_stream_status_envelope
@@ -43,7 +43,7 @@ module TeamBattlesSdk
                         return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::ApiBatchStreamStatusEnvelope.create_from_discriminator_value(pn) }, error_mapping)
                     end
                     ## 
-                    ## Returns compact live status for up to 50 users. Users that do not exist or whose profile hides stream status from the caller are omitted from the response. Requires stream.read.
+                    ## Filtered read returning compact live status for a batch of users (POST is used only to carry the id list; no data is written). Send a body of 1 - 50 Convex user IDs; duplicates are ignored and over-50 is rejected. Each response row is { id, isLive, platforms } and does not include the primaryStream detail returned by GET /users/{identifier}/stream. Users that do not exist, are banned, or whose profile hides stream status from the caller are omitted from the response (the batch never reveals which case applied or that a hidden user exists), so count may be less than the number of IDs sent. Unlike the single-user stream endpoint, IDs are matched by user ID only; usernames are not resolved. No pagination and no guaranteed ordering. Requires stream.read.
                     ## @param body Batch live-status request body.
                     ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                     ## @return a request_information

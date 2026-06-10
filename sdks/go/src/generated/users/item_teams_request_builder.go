@@ -33,7 +33,7 @@ func NewItemTeamsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     urlParams["request-raw-url"] = rawUrl
     return NewItemTeamsRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns API-safe team affiliation rows for public or limited profiles, plus self. Non-self rows follow the public-profile affiliation filters. Requires users.profile:read.
+// Get returns the user's active team memberships as a non-paginated list with a count and response timestamp - there is no cursor, limit, or sort parameter, and rows come back in storage order. Each row is an API-safe team summary plus the membership role, joinedAt, and the team's parent organization (null when the team has no organization). Only active memberships are included. Requires the target profile to be public or limited (a private profile returns 403); the requester always sees their own affiliations regardless of visibility. For any profile other than your own, only teams that belong to a public organization are returned - teams in a private or organization-less context are omitted. Banned or unknown identifiers return 404. The identifier may be a username or a Convex user ID. Requires the users.profile:read scope.
 // Deprecated: This method is obsolete. Use GetAsTeamsGetResponse instead.
 // returns a ItemTeamsResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -62,7 +62,7 @@ func (m *ItemTeamsRequestBuilder) Get(ctx context.Context, requestConfiguration 
     }
     return res.(ItemTeamsResponseable), nil
 }
-// GetAsTeamsGetResponse returns API-safe team affiliation rows for public or limited profiles, plus self. Non-self rows follow the public-profile affiliation filters. Requires users.profile:read.
+// GetAsTeamsGetResponse returns the user's active team memberships as a non-paginated list with a count and response timestamp - there is no cursor, limit, or sort parameter, and rows come back in storage order. Each row is an API-safe team summary plus the membership role, joinedAt, and the team's parent organization (null when the team has no organization). Only active memberships are included. Requires the target profile to be public or limited (a private profile returns 403); the requester always sees their own affiliations regardless of visibility. For any profile other than your own, only teams that belong to a public organization are returned - teams in a private or organization-less context are omitted. Banned or unknown identifiers return 404. The identifier may be a username or a Convex user ID. Requires the users.profile:read scope.
 // returns a ItemTeamsGetResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
 // returns a ErrorEscaped error when the service returns a 403 status code
@@ -90,7 +90,7 @@ func (m *ItemTeamsRequestBuilder) GetAsTeamsGetResponse(ctx context.Context, req
     }
     return res.(ItemTeamsGetResponseable), nil
 }
-// ToGetRequestInformation returns API-safe team affiliation rows for public or limited profiles, plus self. Non-self rows follow the public-profile affiliation filters. Requires users.profile:read.
+// ToGetRequestInformation returns the user's active team memberships as a non-paginated list with a count and response timestamp - there is no cursor, limit, or sort parameter, and rows come back in storage order. Each row is an API-safe team summary plus the membership role, joinedAt, and the team's parent organization (null when the team has no organization). Only active memberships are included. Requires the target profile to be public or limited (a private profile returns 403); the requester always sees their own affiliations regardless of visibility. For any profile other than your own, only teams that belong to a public organization are returned - teams in a private or organization-less context are omitted. Banned or unknown identifiers return 404. The identifier may be a username or a Convex user ID. Requires the users.profile:read scope.
 // returns a *RequestInformation when successful
 func (m *ItemTeamsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemTeamsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

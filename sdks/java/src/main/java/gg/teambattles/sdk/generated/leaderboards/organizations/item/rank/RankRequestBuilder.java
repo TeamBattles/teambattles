@@ -38,7 +38,7 @@ public class RankRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leaderboards/organizations/{identifier}/rank{?gameSlug*,sortBy*}", rawUrl);
     }
     /**
-     * Returns an organization&apos;s rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
+     * Returns an organization&apos;s 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game&apos;s stats only; omit it for the global all-games rank. Organization stats are aggregated from the org&apos;s active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.
      * @return a {@link LeaderboardRankResponse}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -52,7 +52,7 @@ public class RankRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Returns an organization&apos;s rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
+     * Returns an organization&apos;s 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game&apos;s stats only; omit it for the global all-games rank. Organization stats are aggregated from the org&apos;s active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link LeaderboardRankResponse}
      * @throws Error When receiving a 400 status code
@@ -75,7 +75,7 @@ public class RankRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, LeaderboardRankResponse::createFromDiscriminatorValue);
     }
     /**
-     * Returns an organization&apos;s rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
+     * Returns an organization&apos;s 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game&apos;s stats only; omit it for the global all-games rank. Organization stats are aggregated from the org&apos;s active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -83,7 +83,7 @@ public class RankRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Returns an organization&apos;s rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
+     * Returns an organization&apos;s 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game&apos;s stats only; omit it for the global all-games rank. Organization stats are aggregated from the org&apos;s active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */
@@ -105,7 +105,7 @@ public class RankRequestBuilder extends BaseRequestBuilder {
         return new RankRequestBuilder(rawUrl, requestAdapter);
     }
     /**
-     * Returns an organization&apos;s rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
+     * Returns an organization&apos;s 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game&apos;s stats only; omit it for the global all-games rank. Organization stats are aggregated from the org&apos;s active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.
      */
     @jakarta.annotation.Generated("com.microsoft.kiota")
     public class GetQueryParameters implements QueryParameters {

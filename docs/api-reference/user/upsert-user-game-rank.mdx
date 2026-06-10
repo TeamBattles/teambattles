@@ -1,0 +1,71 @@
+---
+title: "Upsert One Of The API Key Owner's Game Ranks"
+description: "Create or overwrite the API key owner's rank for a single game and mode."
+openapi: "POST /user/game-ranks"
+---
+
+## Permission Required
+
+This endpoint requires `game.ranks:read-write` on your API key. The user is always the API key owner, derived from the key itself - it is never accepted as a body field, so a key can only write its own ranks. A free (`api_free`) key receives `403 error_api_feature_required`; this requires an `api_pro`+ plan.
+
+## Access / Membership Rules
+
+This is a self-write route. The owner is always derived from `principal.user._id`, so there is no membership or participant gating - the key writes exactly the owner's own rank. The upsert targets a single `(gameId, mode)` slot, creating it or overwriting it in place, and forces the rank's `source` to `"api"`. The `gameId` and `mode` are validated against the playable-game and playlist catalog; junk values are rejected with `400 INVALID_INPUT` (re-enforced in the data layer as `INVALID_GAME_RANK`).
+
+## Request Body
+
+| Field        | Type    | Required | Description                                                       |
+| ------------ | ------- | -------- | ----------------------------------------------------------------- |
+| `gameId`     | string  | Yes      | Game definition ID to set the rank for (a playable game).         |
+| `mode`       | string  | Yes      | Game mode / playlist the rank applies to (a valid playlist ID).   |
+| `sr`         | number  | Yes      | Skill rating (integer, 0-100000).                                 |
+| `isTop250`   | boolean | No       | Whether the player is in the Top 250 ladder.                      |
+| `top250Rank` | number  | No       | Top 250 ladder position (1-250); only meaningful when `isTop250`. |
+| `winstreak`  | number  | No       | Current win streak count (0-99).                                  |
+
+## What's Returned
+
+Returns an object with the `id` of the upserted game rank row and a `timestamp`. Mintlify renders the full schema from the spec below.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/user/game-ranks \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"gameId": "bo6", "mode": "ranked", "sr": 4200, "winstreak": 5}'
+```
+
+```javascript JavaScript
+const response = await fetch("https://teambattles.gg/api/v1/user/game-ranks", {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify({
+		gameId: "bo6",
+		mode: "ranked",
+		sr: 4200,
+		winstreak: 5
+	})
+});
+
+const { id } = await response.json();
+console.log(`Upserted game rank ${id}`);
+```
+
+```python Python
+import requests
+
+response = requests.post(
+    'https://teambattles.gg/api/v1/user/game-ranks',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'gameId': 'bo6', 'mode': 'ranked', 'sr': 4200, 'winstreak': 5}
+)
+
+data = response.json()
+print(f"Upserted game rank {data['id']}")
+```
+
+</RequestExample>

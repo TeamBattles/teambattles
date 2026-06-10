@@ -30,7 +30,7 @@ class StatsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+     * Returns an organization's aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization's active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
      * @param StatsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<StatsGetResponse|null>
      * @throws Exception
@@ -48,7 +48,7 @@ class StatsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+     * Returns an organization's aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization's active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
      * @param StatsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

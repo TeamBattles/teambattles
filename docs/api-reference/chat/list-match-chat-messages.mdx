@@ -1,0 +1,19 @@
+---
+title: "List A Match Chat Room's Messages"
+description: "Read the messages of a match's chat room as a participant."
+openapi: "GET /matches/{matchId}/chat"
+---
+
+## Permission Required
+
+This endpoint requires `chat.read:read` on your API key. The reader is always the API key owner, derived from the key itself - it is never accepted as a parameter.
+
+## Access / Membership Rules
+
+This route is **participant-gated**. The API key owner may only read a match's chat room if they participate in the match (a member of one of the match's teams). The gate is enforced inside Convex: a non-participant - or a match that has no chat room - returns `404 CHAT_ROOM_NOT_FOUND`, never revealing whether the room exists.
+
+Results are cursor-paginated. Use the `limit` query parameter (1-100, default 50) for page size and pass a prior page's `nextCursor` as the `cursor` query parameter to continue. An invalid cursor returns `400 INVALID_CURSOR`.
+
+## What's Returned
+
+Returns the cursor-page envelope: a `data` array of chat messages (each with `id`, `content`, `senderUserId`, `senderUsername`, `teamId`, `replyToId`, and `createdAt`), a `nextCursor` (null when the last page is reached), a `hasMore` flag, and a `timestamp`. Mintlify renders the full schema from the spec below.

@@ -22,7 +22,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ScoresRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/matches/{matchId}/scores", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
+    /// Retrieve every map score for a match plus a series summary. Returns the full unpaginated list of map scores (no cursor or limit) and a seriesScore counting map wins per side, computed only from CONFIRMED maps and awarding a map to the side with the strictly higher score (equal scores count for neither). Each score's scoreStatus is CONFIRMED or PENDING; submittedBy, confirmedBy, and createdAt may be null. Screenshot URLs are suppressed (empty array) for any score whose API-uploaded image has not passed content moderation. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read. The caller must be an active member of one of the match's two teams; non-participants receive 403, unless they hold a TeamBattles staff role, which can read any match's scores.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<MapScores?> getAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toGetRequestInformation(requestConfiguration);
@@ -59,7 +59,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBuilder> {
         };
         return await requestAdapter.send<ScoreSubmissionResult>(requestInfo, ScoreSubmissionResult.createFromDiscriminatorValue, errorMapping);
     }
-    /// Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
+    /// Retrieve every map score for a match plus a series summary. Returns the full unpaginated list of map scores (no cursor or limit) and a seriesScore counting map wins per side, computed only from CONFIRMED maps and awarding a map to the side with the strictly higher score (equal scores count for neither). Each score's scoreStatus is CONFIRMED or PENDING; submittedBy, confirmedBy, and createdAt may be null. Screenshot URLs are suppressed (empty array) for any score whose API-uploaded image has not passed content moderation. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read. The caller must be an active member of one of the match's two teams; non-participants receive 403, unless they hold a TeamBattles staff role, which can read any match's scores.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toGetRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.get, urlTemplate : urlTemplate, pathParameters :  pathParameters);

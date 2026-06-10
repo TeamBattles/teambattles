@@ -36,7 +36,7 @@ public class StreamRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/users/{identifier}/stream", rawUrl);
     }
     /**
-     * Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.
+     * Returns whether a user is live, the platforms they are live on, and their primary (highest-viewer) stream details. The {identifier} may be a username or a Convex user ID. Visible for public or limited profiles, plus self; a private non-self profile returns 403. Unknown or currently-banned users return 404 (a banned user&apos;s existence is not leaked). When offline, isLive is false, platforms is empty, and primaryStream is null. Requires stream.read.
      * @return a {@link ApiStreamStatusEnvelope}
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
@@ -49,7 +49,7 @@ public class StreamRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.
+     * Returns whether a user is live, the platforms they are live on, and their primary (highest-viewer) stream details. The {identifier} may be a username or a Convex user ID. Visible for public or limited profiles, plus self; a private non-self profile returns 403. Unknown or currently-banned users return 404 (a banned user&apos;s existence is not leaked). When offline, isLive is false, platforms is empty, and primaryStream is null. Requires stream.read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link ApiStreamStatusEnvelope}
      * @throws Error When receiving a 401 status code
@@ -70,7 +70,7 @@ public class StreamRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, ApiStreamStatusEnvelope::createFromDiscriminatorValue);
     }
     /**
-     * Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.
+     * Returns whether a user is live, the platforms they are live on, and their primary (highest-viewer) stream details. The {identifier} may be a username or a Convex user ID. Visible for public or limited profiles, plus self; a private non-self profile returns 403. Unknown or currently-banned users return 404 (a banned user&apos;s existence is not leaked). When offline, isLive is false, platforms is empty, and primaryStream is null. Requires stream.read.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -78,7 +78,7 @@ public class StreamRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.
+     * Returns whether a user is live, the platforms they are live on, and their primary (highest-viewer) stream details. The {identifier} may be a username or a Convex user ID. Visible for public or limited profiles, plus self; a private non-self profile returns 403. Unknown or currently-banned users return 404 (a banned user&apos;s existence is not leaked). When offline, isLive is false, platforms is empty, and primaryStream is null. Requires stream.read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

@@ -1,0 +1,62 @@
+---
+title: "Update A Match's Lifecycle Status"
+description: "Transition one of your game's matches between its allowed lifecycle states."
+openapi: "PATCH /game/matches/{matchId}/status"
+---
+
+## Permission Required
+
+This endpoint requires the `game.lifecycle` permission with `read-write` access. Your API key must be a **game-developer key bound to a game**. The binding asserts the match belongs to your bound game before the handler runs: a key bound to a different game, or a non-developer key, receives a `403 error_game_scope_mismatch`.
+
+## Access / Membership Rules
+
+Only these transitions are accepted: `READY -> IN_PROGRESS`, `IN_PROGRESS -> CANCELLED`, and `ACCEPTED -> CANCELLED`. Any other target (or a `COMPLETED` target) returns `409 error_match_not_in_valid_state`. Matches do not complete here - they complete automatically once enough map scores are confirmed, so submit scores via the scores endpoints instead. Use the dedicated forfeit endpoint for forfeits. An unknown match returns `404 error_match_not_found`.
+
+## What's Returned
+
+Returns `{ "success": true, matchId, previousStatus, newStatus, timestamp }`.
+
+## Request Body
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `status` | string | Yes | Target status. Must be a valid transition target: `IN_PROGRESS` or `CANCELLED`. |
+
+<RequestExample>
+
+```bash cURL
+curl -X PATCH https://teambattles.gg/api/v1/game/matches/match_abc/status \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"status":"IN_PROGRESS"}'
+```
+
+```javascript JavaScript
+const matchId = "match_abc";
+const res = await fetch(
+	`https://teambattles.gg/api/v1/game/matches/${matchId}/status`,
+	{
+		method: "PATCH",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ status: "IN_PROGRESS" })
+	}
+);
+const { previousStatus, newStatus } = await res.json();
+```
+
+```python Python
+import requests
+
+match_id = "match_abc"
+res = requests.patch(
+    f"https://teambattles.gg/api/v1/game/matches/{match_id}/status",
+    headers={"Authorization": "Bearer tb_your_api_key"},
+    json={"status": "IN_PROGRESS"},
+)
+print(res.json()["newStatus"])
+```
+
+</RequestExample>

@@ -1,0 +1,75 @@
+---
+title: "Get League Activity Feed"
+description: "Read recent league activity entries with cursor pagination."
+openapi: "POST /leagues/{identifier}/activity-feed"
+---
+
+## Permission Required
+
+This endpoint is an **admin read**. It requires a **league-operator API key bound to this league** with the `leagues.league_admin:read` access permission, plus the `leagueOperatorApi` plan feature (api_pro or higher). A free key receives `403 error_api_feature_required`.
+
+The `POST` method is used to deliver an authenticated, paginated read; this endpoint does not modify the league.
+
+## Access / Membership Rules
+
+You must have a **MANAGER or higher** role in the league (or be a TeamBattles staff member) to read the activity feed. If you lack the required access, you'll receive a `403` error.
+
+The `{identifier}` path parameter is the league **slug** - the URL-friendly league name (e.g., `my-league`).
+
+## What's Returned
+
+Returns recent league activity entries for the bound league as `{ "activities": [ ... ], "nextCursor": "<cursor>", "hasMore": <boolean>, "timestamp": "<ISO 8601>" }`. Page through the feed by passing `nextCursor` back as `cursor` while `hasMore` is `true`.
+
+## Request Body
+
+The request body is optional - both fields default. Omit it to read the first page with the default page size.
+
+| Parameter | Type   | Required | Description                                                          |
+| --------- | ------ | -------- | ------------------------------------------------------------------- |
+| `limit`   | number | No       | Page size, from 1 to 100 (default 25).                             |
+| `cursor`  | string | No       | Pagination cursor from a previous response's `nextCursor`. Omit or pass `null` for the first page. |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/leagues/my-league/activity-feed \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"limit": 25}'
+```
+
+```javascript JavaScript
+const leagueSlug = "my-league";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/leagues/${leagueSlug}/activity-feed`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ limit: 25 })
+	}
+);
+
+const { activities, nextCursor, hasMore } = await response.json();
+console.log(activities.length, hasMore, nextCursor);
+```
+
+```python Python
+import requests
+
+league_slug = 'my-league'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/leagues/{league_slug}/activity-feed',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'limit': 25}
+)
+
+data = response.json()
+print(len(data['activities']), data['hasMore'], data['nextCursor'])
+```
+
+</RequestExample>

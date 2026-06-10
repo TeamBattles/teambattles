@@ -33,7 +33,7 @@ func NewItemConnectionsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7da
     urlParams["request-raw-url"] = rawUrl
     return NewItemConnectionsRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns user connections for public profiles or self. Non-self responses include only connections marked visible on the profile. Requires users.profile:read.
+// Get returns a user's linked-account connections. Access requires a public profile or self: a non-self viewer of a limited or private profile gets 403, which is stricter than the stats, teams, and organizations endpoints that also allow limited profiles. Non-self responses include only the connections the user marked visible on their profile; self responses include all of them. isVerified is true when the connection's platform matches one of the user's linked OAuth providers, not the connection's self-reported flag. Not paginated: returns the full matching set as connections plus a count, in no guaranteed order. Banned users return 404. Requires users.profile:read.
 // Deprecated: This method is obsolete. Use GetAsConnectionsGetResponse instead.
 // returns a ItemConnectionsResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -62,7 +62,7 @@ func (m *ItemConnectionsRequestBuilder) Get(ctx context.Context, requestConfigur
     }
     return res.(ItemConnectionsResponseable), nil
 }
-// GetAsConnectionsGetResponse returns user connections for public profiles or self. Non-self responses include only connections marked visible on the profile. Requires users.profile:read.
+// GetAsConnectionsGetResponse returns a user's linked-account connections. Access requires a public profile or self: a non-self viewer of a limited or private profile gets 403, which is stricter than the stats, teams, and organizations endpoints that also allow limited profiles. Non-self responses include only the connections the user marked visible on their profile; self responses include all of them. isVerified is true when the connection's platform matches one of the user's linked OAuth providers, not the connection's self-reported flag. Not paginated: returns the full matching set as connections plus a count, in no guaranteed order. Banned users return 404. Requires users.profile:read.
 // returns a ItemConnectionsGetResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
 // returns a ErrorEscaped error when the service returns a 403 status code
@@ -90,7 +90,7 @@ func (m *ItemConnectionsRequestBuilder) GetAsConnectionsGetResponse(ctx context.
     }
     return res.(ItemConnectionsGetResponseable), nil
 }
-// ToGetRequestInformation returns user connections for public profiles or self. Non-self responses include only connections marked visible on the profile. Requires users.profile:read.
+// ToGetRequestInformation returns a user's linked-account connections. Access requires a public profile or self: a non-self viewer of a limited or private profile gets 403, which is stricter than the stats, teams, and organizations endpoints that also allow limited profiles. Non-self responses include only the connections the user marked visible on their profile; self responses include all of them. isVerified is true when the connection's platform matches one of the user's linked OAuth providers, not the connection's self-reported flag. Not paginated: returns the full matching set as connections plus a count, in no guaranteed order. Banned users return 404. Requires users.profile:read.
 // returns a *RequestInformation when successful
 func (m *ItemConnectionsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemConnectionsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

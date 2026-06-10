@@ -13,7 +13,7 @@ import (
 type OrganizationsItemRankRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// OrganizationsItemRankRequestBuilderGetQueryParameters returns an organization's rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
+// OrganizationsItemRankRequestBuilderGetQueryParameters returns an organization's 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game's stats only; omit it for the global all-games rank. Organization stats are aggregated from the org's active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.
 type OrganizationsItemRankRequestBuilderGetQueryParameters struct {
     GameSlug *string "uriparametername:\"gameSlug\""
     // Deprecated: This property is deprecated, use SortByAsLeaderboardSortBy instead
@@ -42,7 +42,7 @@ func NewOrganizationsItemRankRequestBuilder(rawUrl string, requestAdapter i2ae41
     urlParams["request-raw-url"] = rawUrl
     return NewOrganizationsItemRankRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns an organization's rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
+// Get returns an organization's 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game's stats only; omit it for the global all-games rank. Organization stats are aggregated from the org's active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.
 // returns a LeaderboardRankResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -72,7 +72,7 @@ func (m *OrganizationsItemRankRequestBuilder) Get(ctx context.Context, requestCo
     }
     return res.(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.LeaderboardRankResponseable), nil
 }
-// ToGetRequestInformation returns an organization's rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
+// ToGetRequestInformation returns an organization's 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game's stats only; omit it for the global all-games rank. Organization stats are aggregated from the org's active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.
 // returns a *RequestInformation when successful
 func (m *OrganizationsItemRankRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *OrganizationsItemRankRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

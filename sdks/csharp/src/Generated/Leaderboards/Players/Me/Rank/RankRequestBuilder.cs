@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leaderboards.Players.Me.Rank
         {
         }
         /// <summary>
-        /// Returns the API key owner&apos;s rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+        /// Returns the API key owner&apos;s own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.LeaderboardRankResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace TeamBattles.Sdk.Leaderboards.Players.Me.Rank
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.LeaderboardRankResponse>(requestInfo, global::TeamBattles.Sdk.Models.LeaderboardRankResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the API key owner&apos;s rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+        /// Returns the API key owner&apos;s own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,7 +93,7 @@ namespace TeamBattles.Sdk.Leaderboards.Players.Me.Rank
             return new global::TeamBattles.Sdk.Leaderboards.Players.Me.Rank.RankRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns the API key owner&apos;s rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+        /// Returns the API key owner&apos;s own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RankRequestBuilderGetQueryParameters 

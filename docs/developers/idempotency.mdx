@@ -1,0 +1,61 @@
+---
+title: Idempotency
+description: Safely retry write requests with the Idempotency-Key header without creating duplicate side effects.
+---
+
+## Overview
+
+State-changing `POST` endpoints accept an optional `Idempotency-Key` request header. Supply
+a unique key (a UUID is ideal) per logical operation, and you can safely retry on a network
+failure: the first request is processed and its response is stored; a retry with the **same
+key and the same body** replays the stored response instead of repeating the work.
+
+```
+Idempotency-Key: 8f1c4b6e-2d3a-4f5b-9c1e-0a2b3c4d5e6f
+```
+
+A request is deduplicated per (your API key, the route, the idempotency key) - so the same
+key may be reused freely across different endpoints.
+
+## Behavior
+
+| Situation                    | Result                                                          |
+| ---------------------------- | -------------------------------------------------------------- |
+| Same key, same body          | The original response is replayed (no duplicate side effect).   |
+| Same key, **different** body | `409 error_idempotency_key_conflict`.                          |
+| No `Idempotency-Key` header  | Normal processing (no dedupe).                                  |
+
+Stored idempotency records are retained for **24 hours**, after which the same key may be
+reused for a new operation.
+
+## Where it applies
+
+`Idempotency-Key` is honored on the write endpoints where a retry could otherwise create a
+duplicate or double-apply an effect:
+
+- **Game developer matches** - create a match, forfeit a match.
+- **League operator** - create a season.
+- **Personal match writes** - create / accept / ready / cancel / set lobby code / forfeit /
+  submit attendance for a match you captain.
+- **Chat** - send a message, report a message.
+- **Support & league tickets** - create a ticket, reply to a ticket.
+
+Endpoints that are not in this list ignore the header.
+
+## Score submission is naturally idempotent
+
+Score endpoints do **not** use `Idempotency-Key` and do not need it. Re-submitting an
+**unconfirmed** map overwrites it; re-submitting an **already-confirmed** map returns a
+per-item `error_score_already_submitted_by_game`. So a retried score submission is always
+safe without a key.
+
+State-guarded transitions are likewise naturally idempotent: endpoints that gate on the
+match's current state (the game-developer `start` / `cancel` / status PATCH)
+reject a re-run against an already-transitioned match with `error_match_not_in_valid_state`
+instead of double-applying the transition, so retrying one is safe.
+
+## Error codes
+
+| Code                             | HTTP | Meaning                                                     |
+| -------------------------------- | ---- | ---------------------------------------------------------- |
+| `error_idempotency_key_conflict` | 409  | The key was already used with a different request body.     |

@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Orgs.Item.Teams
         {
         }
         /// <summary>
-        /// Returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+        /// Returns an organization&apos;s active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Orgs.Item.Teams.TeamsGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace TeamBattles.Sdk.Orgs.Item.Teams
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Orgs.Item.Teams.TeamsGetResponse>(requestInfo, global::TeamBattles.Sdk.Orgs.Item.Teams.TeamsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+        /// Returns an organization&apos;s active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Orgs.Item.Teams.TeamsResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -97,7 +97,7 @@ namespace TeamBattles.Sdk.Orgs.Item.Teams
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Orgs.Item.Teams.TeamsResponse>(requestInfo, global::TeamBattles.Sdk.Orgs.Item.Teams.TeamsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+        /// Returns an organization&apos;s active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

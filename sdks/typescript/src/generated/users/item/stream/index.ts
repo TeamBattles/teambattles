@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface StreamRequestBuilder extends BaseRequestBuilder<StreamRequestBuilder> {
     /**
-     * Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.
+     * Returns whether a user is live, the platforms they are live on, and their primary (highest-viewer) stream details. The {identifier} may be a username or a Convex user ID. Visible for public or limited profiles, plus self; a private non-self profile returns 403. Unknown or currently-banned users return 404 (a banned user's existence is not leaked). When offline, isLive is false, platforms is empty, and primaryStream is null. Requires stream.read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ApiStreamStatusEnvelope>}
      * @throws {ErrorEscaped} error when the service returns a 401 status code
@@ -22,7 +22,7 @@ export interface StreamRequestBuilder extends BaseRequestBuilder<StreamRequestBu
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ApiStreamStatusEnvelope | undefined>;
     /**
-     * Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.
+     * Returns whether a user is live, the platforms they are live on, and their primary (highest-viewer) stream details. The {identifier} may be a username or a Convex user ID. Visible for public or limited profiles, plus self; a private non-self profile returns 403. Unknown or currently-banned users return 404 (a banned user's existence is not leaked). When offline, isLive is false, platforms is empty, and primaryStream is null. Requires stream.read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

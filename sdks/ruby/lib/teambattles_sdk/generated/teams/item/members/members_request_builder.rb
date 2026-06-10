@@ -24,7 +24,7 @@ module TeamBattlesSdk
                             super(path_parameters, request_adapter, "{+baseurl}/teams/{identifier}/members")
                         end
                         ## 
-                        ## Returns active roster rows when the team is public or the API key owner is an active team member. Requires teams.roster:read.
+                        ## Returns the full active roster when the team is public or the API key owner is an active team member; otherwise responds 403. The team is resolved by slug or Convex team ID and must be active, returning 404 if not found. Rows are sorted by role - captains first, then co-captains, then members - and each row's id is the membership row ID, not the user ID. Not paginated: every active member is returned in one response with a count, and there is no limit, cursor, or page token. Requires teams.roster:read.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a Fiber of members_get_response
                         ## 
@@ -41,7 +41,7 @@ module TeamBattlesSdk
                             return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Teams::Item::Members::MembersGetResponse.create_from_discriminator_value(pn) }, error_mapping)
                         end
                         ## 
-                        ## Returns active roster rows when the team is public or the API key owner is an active team member. Requires teams.roster:read.
+                        ## Returns the full active roster when the team is public or the API key owner is an active team member; otherwise responds 403. The team is resolved by slug or Convex team ID and must be active, returning 404 if not found. Rows are sorted by role - captains first, then co-captains, then members - and each row's id is the membership row ID, not the user ID. Not paginated: every active member is returned in one response with a count, and there is no limit, cursor, or page token. Requires teams.roster:read.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a request_information
                         ## 

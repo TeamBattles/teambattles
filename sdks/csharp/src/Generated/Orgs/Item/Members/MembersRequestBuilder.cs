@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Orgs.Item.Members
         {
         }
         /// <summary>
-        /// Returns active member rows when the organization is public or the API key owner is an active organization member. Requires orgs.profile:read.
+        /// Returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row&apos;s `id` is the membership row ID, not the user ID, and the row carries the member&apos;s API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Orgs.Item.Members.MembersGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace TeamBattles.Sdk.Orgs.Item.Members
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Orgs.Item.Members.MembersGetResponse>(requestInfo, global::TeamBattles.Sdk.Orgs.Item.Members.MembersGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns active member rows when the organization is public or the API key owner is an active organization member. Requires orgs.profile:read.
+        /// Returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row&apos;s `id` is the membership row ID, not the user ID, and the row carries the member&apos;s API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Orgs.Item.Members.MembersResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -97,7 +97,7 @@ namespace TeamBattles.Sdk.Orgs.Item.Members
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Orgs.Item.Members.MembersResponse>(requestInfo, global::TeamBattles.Sdk.Orgs.Item.Members.MembersResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns active member rows when the organization is public or the API key owner is an active organization member. Requires orgs.profile:read.
+        /// Returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row&apos;s `id` is the membership row ID, not the user ID, and the row carries the member&apos;s API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

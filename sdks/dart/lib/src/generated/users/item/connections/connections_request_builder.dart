@@ -19,7 +19,7 @@ class ConnectionsRequestBuilder extends BaseRequestBuilder<ConnectionsRequestBui
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ConnectionsRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/users/{identifier}/connections", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Returns user connections for public profiles or self. Non-self responses include only connections marked visible on the profile. Requires users.profile:read.
+    /// Returns a user's linked-account connections. Access requires a public profile or self: a non-self viewer of a limited or private profile gets 403, which is stricter than the stats, teams, and organizations endpoints that also allow limited profiles. Non-self responses include only the connections the user marked visible on their profile; self responses include all of them. isVerified is true when the connection's platform matches one of the user's linked OAuth providers, not the connection's self-reported flag. Not paginated: returns the full matching set as connections plus a count, in no guaranteed order. Banned users return 404. Requires users.profile:read.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<ConnectionsGetResponse?> getAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toGetRequestInformation(requestConfiguration);
@@ -32,7 +32,7 @@ class ConnectionsRequestBuilder extends BaseRequestBuilder<ConnectionsRequestBui
         };
         return await requestAdapter.send<ConnectionsGetResponse>(requestInfo, ConnectionsGetResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Returns user connections for public profiles or self. Non-self responses include only connections marked visible on the profile. Requires users.profile:read.
+    /// Returns a user's linked-account connections. Access requires a public profile or self: a non-self viewer of a limited or private profile gets 403, which is stricter than the stats, teams, and organizations endpoints that also allow limited profiles. Non-self responses include only the connections the user marked visible on their profile; self responses include all of them. isVerified is true when the connection's platform matches one of the user's linked OAuth providers, not the connection's self-reported flag. Not paginated: returns the full matching set as connections plus a count, in no guaranteed order. Banned users return 404. Requires users.profile:read.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toGetRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.get, urlTemplate : urlTemplate, pathParameters :  pathParameters);

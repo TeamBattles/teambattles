@@ -1,0 +1,17 @@
+---
+title: "Read All Map Scores For A Match"
+description: "Read every recorded map score and the aggregate series tally for one of your game's matches."
+openapi: "GET /game/matches/{matchId}/scores"
+---
+
+## Permission Required
+
+This is a read that accepts **either** scope: a key with `game.lifecycle` at `read` access **or** a key with `game.scores` at `write` access passes. Your API key must be a **game-developer key bound to a game**. The binding asserts the match belongs to your bound game before the handler runs: a key bound to a different game, or a non-developer key, receives a `403 error_game_scope_mismatch`.
+
+## Access / Membership Rules
+
+The `{matchId}` must resolve to a match in your bound game. An unknown match returns `404 error_match_not_found`.
+
+## What's Returned
+
+Returns `{ scores, seriesScore, timestamp }`. Each `scores[]` entry carries `mapIndex`, `mapId`, `creatorTeamScore`, `opponentTeamScore`, a `scoreStatus` of `CONFIRMED` or `PENDING`, optional `playerStats`, and the ISO `submittedAt` / `confirmedAt` timestamps. `seriesScore` is the aggregate `{ creatorMapWins, opponentMapWins }` counted from the confirmed maps.

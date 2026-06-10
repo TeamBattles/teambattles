@@ -1,0 +1,103 @@
+---
+title: "Update League Points Config"
+description: "Create or update the points configuration for a league game."
+openapi: "POST /leagues/{identifier}/points/update"
+---
+
+## Permission Required
+
+This endpoint requires a **league-operator API key bound to this league** with the `points` league capability, plus the `leagueOperatorApi` plan feature (api_pro or higher). A free key receives `403 error_api_feature_required`.
+
+## Access / Membership Rules
+
+You must have a **MANAGER or higher** role in the league (or be a TeamBattles staff member) to manage the points config. If you lack the required access, you'll receive a `403` error.
+
+The `{identifier}` path parameter is the league **slug** - the URL-friendly league name (e.g., `my-league`).
+
+## What's Returned
+
+Creates or updates the points configuration for one of the league's games. On success the response is `{ "success": true, "configId": "<id>", "timestamp": "<ISO 8601>" }`.
+
+## Request Body
+
+Only `gameId` is required. Every other field is optional - omitted fields keep their current value.
+
+| Parameter                          | Type    | Required | Description                                                        |
+| ---------------------------------- | ------- | -------- | ------------------------------------------------------------------ |
+| `gameId`                           | string  | Yes      | Game ID whose points config should change.                         |
+| `unitLabel`                        | string  | No       | Scoring unit label: `POINTS` or `EXPERIENCE`.                       |
+| `baseWin`                          | number  | No       | Base points awarded for a win.                                     |
+| `baseLoss`                         | number  | No       | Base points awarded (or deducted) for a loss.                      |
+| `baseDraw`                         | number  | No       | Base points awarded for a draw.                                    |
+| `allowNegative`                    | boolean | No       | Whether team totals may go below zero.                             |
+| `streakBonusEnabled`               | boolean | No       | Whether win-streak bonuses are applied.                            |
+| `streakBreakpoints`                | array   | No       | Streak bonus tiers as `{ count, bonus }` pairs.                    |
+| `challengerWinBonus`               | number  | No       | Extra points when the challenger wins.                             |
+| `challengedWinBonus`               | number  | No       | Extra points when the challenged team wins.                        |
+| `forfeitPenalty`                   | number  | No       | Points penalty applied on a forfeit.                               |
+| `challengeRefuseAdditionalPenalty` | number  | No       | Additional penalty for refusing a challenge.                       |
+| `challengeCancelGracePeriodHours`  | number  | No       | Grace period (hours) before a cancelled challenge is penalized.    |
+| `matchupCooldownHours`             | number  | No       | Cooldown (hours) between point-bearing matchups for the same pair. |
+| `scrimmageAwardsPoints`            | boolean | No       | Whether scrimmage matches award points.                            |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/leagues/my-league/points/update \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "gameId": "jh7game123",
+    "unitLabel": "POINTS",
+    "baseWin": 3,
+    "baseLoss": 0,
+    "streakBonusEnabled": true,
+    "streakBreakpoints": [{ "count": 3, "bonus": 1 }]
+  }'
+```
+
+```javascript JavaScript
+const leagueSlug = "my-league";
+
+const response = await fetch(`https://teambattles.gg/api/v1/leagues/${leagueSlug}/points/update`, {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify({
+		gameId: "jh7game123",
+		unitLabel: "POINTS",
+		baseWin: 3,
+		baseLoss: 0,
+		streakBonusEnabled: true,
+		streakBreakpoints: [{ count: 3, bonus: 1 }]
+	})
+});
+
+const { success, configId, timestamp } = await response.json();
+console.log(success, configId, timestamp);
+```
+
+```python Python
+import requests
+
+league_slug = 'my-league'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/leagues/{league_slug}/points/update',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={
+        'gameId': 'jh7game123',
+        'unitLabel': 'POINTS',
+        'baseWin': 3,
+        'baseLoss': 0,
+        'streakBonusEnabled': True,
+        'streakBreakpoints': [{'count': 3, 'bonus': 1}]
+    }
+)
+
+print(response.json())
+```
+
+</RequestExample>

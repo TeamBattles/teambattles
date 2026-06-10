@@ -27,7 +27,7 @@ curl -H "Authorization: Bearer tb_your_api_key_here" \
 
 ### Permission Scopes
 
-Each API key carries granular permission scopes. Most scopes use access levels (`none`, `read`, `read-write`); connection scopes use `none`/`enabled`; write-only scopes use `none`/`write`.
+Each API key carries granular permission scopes, and each scope uses one of four level shapes: most use access levels (`none`, `read`, `read-write`); read-only scopes use `none`/`read`; write-only scopes use `none`/`write`; and connection scopes use `none`/`enabled`.
 
 | Category        | Scope                                      | Values                 | Description                            |
 | --------------- | ------------------------------------------ | ---------------------- | -------------------------------------- |
@@ -38,7 +38,7 @@ Each API key carries granular permission scopes. Most scopes use access levels (
 | **Connections** | `discord`, `twitch`, `github`, `battlenet` | none, enabled          | Access linked platform data            |
 | **Game**        | `scores`                                   | none, write            | Submit scores via API                  |
 | **Game**        | `lifecycle`                                | none, read, read-write | Query/manage match lifecycle           |
-| **Game**        | `ranks`                                    | none, read             | Read player game ranks                 |
+| **Game**        | `ranks`                                    | none, read, read-write | Read player game ranks                 |
 | **Users**       | `profile`                                  | none, read             | Read user profile data                 |
 | **Teams**       | `profile`, `roster`                        | none, read, read-write | Read or manage team profile and roster |
 | **Orgs**        | `profile`                                  | none, read, read-write | Read or manage organization profile    |
@@ -50,6 +50,7 @@ Each API key carries granular permission scopes. Most scopes use access levels (
 | **Chat**        | `write`                                    | none, write            | Send match chat messages               |
 | **Stream**      | `read`                                     | none, read             | Read overlay and streaming config      |
 | **Webhooks**    | `manage`                                   | none, enabled          | Create and manage webhook endpoints    |
+| **Uploads**     | `upload`                                   | none, read, read-write | Mint short-lived upload URLs for images (requires read-write) |
 
 #### League capabilities
 
@@ -61,6 +62,66 @@ Keys bound to a league (a League developer account) also carry a `leagues` block
 	Game API permissions (scores, lifecycle, ranks) are only available to approved Game Developers,
 	and league capabilities only to approved League Developers. Webhook management requires General
 	Developer access. League capabilities are write-only - they are ignored unless set to `write`.
+</Note>
+
+### Key presets
+
+The create-key dialog ships two one-click permission presets. A preset is only selectable
+when every connection in its required-connections list is linked on your account.
+
+| Preset           | Scopes set                                                                                | Required connections |
+| ---------------- | ----------------------------------------------------------------------------------------- | -------------------- |
+| `battles-replay` | `matches.user_matches: read`, `connections.twitch: enabled`                               | Twitch               |
+| `league-manager` | `matches.team_matches: read`, `leagues.league_public: read`, `leagues.league_admin: read` | none                 |
+
+### How scopes combine
+
+A request is authorized by checking the calling key against the endpoint's scope
+requirement. Every requirement is one of six kinds:
+
+| Kind               | What it checks                                                                 |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `access`           | A category permission at a level (`read` / `read-write` / `write`).            |
+| `game`             | A game scope (`scores` / `lifecycle` / `ranks`) on a game-developer key.       |
+| `connection`       | A connection toggle (`discord` / `twitch` / `github` / `battlenet`) is `enabled`. |
+| `leagueCapability` | A league capability (e.g. `scores`, `seasons`) - satisfiable **only** by a league-operator key. |
+| `webhook`          | The `webhooks.manage` scope.                                                    |
+| `anyOf`            | A set of requirements where **any one** match authorizes the request.          |
+
+Most endpoints need a single scope. Some accept `anyOf` - for example, reading a league is
+granted by **either** the `league_public` read scope **or** the `league_admin` access scope,
+so a public-read key and a league-operator key can both call it.
+
+### Principal types
+
+Every API key is one of three principal types, which determines what it can act on:
+
+- **Personal** - acts as you, over your own data (your matches, connections, profile).
+- **Game developer** - bound to a single game; submits verified scores and drives the
+  match lifecycle for that game.
+- **League operator** - bound to a single league; performs league-admin actions using the
+  league capability scopes.
+
+A league capability can only be satisfied by a league-operator key - a game-developer or
+personal key can never exercise one, even if the scope value is set.
+
+### Plans and feature gates
+
+API access is sold on three developer plans: **API Free**, **API Pro**, and **API
+Business**. Three capabilities are gated behind a paid (**API Pro** or higher) plan:
+
+| Feature              | Requires  | What it unlocks                                  |
+| -------------------- | --------- | ------------------------------------------------ |
+| `writes`             | API Pro   | Any write/mutating endpoint.                     |
+| `webhooks`           | API Pro   | Creating and managing webhook endpoints.         |
+| `leagueOperatorApi`  | API Pro   | The League Operator API.                         |
+
+If your plan is too low you receive `403 error_api_plan_required`; if the specific feature
+is not on your plan you receive `403 error_api_feature_required`.
+
+<Note>
+	A **league-operator** key is gated on the **league owner's** plan, not the key
+	creator's - one owner purchase covers all of that owner's leagues.
 </Note>
 
 ### Key Prefix
@@ -104,7 +165,7 @@ The `error` field is a stable, machine-readable code. Branch on `error`, not on 
 | `error_league_season_not_found`   | 404         | League season ID was not found for that league      |
 | `error_invalid_request`           | 400         | Request body or parameters are invalid              |
 | `error_invalid_cursor`            | 400         | Pagination cursor is invalid or expired             |
-| `error_invalid_limit`             | 400         | Limit must be between 1 and 100                     |
+| `error_invalid_limit`             | 400         | Pagination `limit` out of range: 1-50 on `POST /leagues`, 1-100 elsewhere |
 | `error_invalid_date_format`       | 400         | Date parameter is not valid ISO 8601                |
 | `error_internal`                  | 500         | Internal server error                               |
 

@@ -1,0 +1,86 @@
+---
+title: Rate Limits
+description: How TeamBattles meters API requests with durable token buckets, the 429 error codes, and the rate-limit response headers.
+---
+
+## Overview
+
+The TeamBattles API meters requests with durable **token buckets**. Each bucket has a
+fixed capacity (the burst you can spend at once) and refills at a steady rate. A
+request spends one token; a batch request spends one token per item. When a bucket is
+empty the request is rejected with `429`.
+
+Three buckets apply, in this order:
+
+1. A per-IP flood guard (before your key is even validated).
+2. Your per-key request bucket.
+3. A dedicated batch bucket (only on batch endpoints).
+
+## Per-key limit
+
+Every request you make spends one token from your key's bucket.
+
+| Setting  | Value          |
+| -------- | -------------- |
+| Capacity | 60 tokens      |
+| Refill   | 1 token/second |
+
+So you can burst up to 60 requests, then settle into ~1 request/second sustained. When
+the bucket is empty you receive `429 error_api_rate_limited`.
+
+<Note>
+	The 60 / 1-per-second values are the current default for every key. Plan-tiered
+	ceilings are not yet active, so all keys share this limit today.
+</Note>
+
+## Per-IP flood guard
+
+Before your API key is validated, an IP-keyed bucket throttles raw request volume from a
+single address. This protects the validation path from floods; it is a defensive guard,
+not a per-key contract.
+
+| Setting  | Value            |
+| -------- | ---------------- |
+| Capacity | 300 tokens       |
+| Refill   | 50 tokens/second |
+
+Exhausting it returns `429 error_ip_rate_limited`. If the client IP cannot be
+determined the guard is skipped (it fails open).
+
+## Batch endpoints
+
+Batch endpoints (for example `POST /api/v1/game/matches/batch-scores`) charge **one
+token per item** against a separate batch bucket, so a 50-item batch costs 50 tokens.
+
+| Setting           | Value            |
+| ----------------- | ---------------- |
+| Capacity          | 200 tokens       |
+| Refill            | 2 tokens/second  |
+| Charge            | 1 token per item |
+| Max items / batch | 50               |
+
+A batch larger than 50 items is rejected with `400 error_invalid_num_items` before any
+work is done. If the batch bucket is empty the response is `429 error_api_rate_limited`
+(the same code as the per-key bucket). The per-key bucket is also charged on batch
+routes, so a `429` there can mean either bucket was exhausted.
+
+## Response headers
+
+Every response - both successful and rate-limited - carries:
+
+| Header                  | Meaning                                                              |
+| ----------------------- | ------------------------------------------------------------------- |
+| `X-RateLimit-Limit`     | The bucket capacity.                                                 |
+| `X-RateLimit-Remaining` | Tokens left after this request (never negative).                    |
+| `X-RateLimit-Reset`     | **Seconds until** the bucket has enough tokens again (not a Unix timestamp). |
+
+On a `429` only, a `Retry-After` header is also set, with the same whole-seconds value
+as `X-RateLimit-Reset`. Wait that many seconds, then retry.
+
+## Error codes
+
+| Code                      | HTTP | Meaning                                          |
+| ------------------------- | ---- | ------------------------------------------------ |
+| `error_api_rate_limited`  | 429  | Your per-key (or batch) bucket is empty.         |
+| `error_ip_rate_limited`   | 429  | The per-IP flood guard tripped.                  |
+| `error_invalid_num_items` | 400  | Item count out of range: the 50-item ceiling on score-batch endpoints, or the `numItems` 1-100 range on match-listing endpoints. |

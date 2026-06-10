@@ -36,7 +36,7 @@ public class ShapesRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/strategies/{slug}/shapes", rawUrl);
     }
     /**
-     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.
+     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index (zIndex). Hidden working shapes are omitted. The full set is returned in a single response - there is no pagination - and the read is bounded to the first 2000 rows in stacking order, so a board larger than that is truncated. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it; public and unlisted are readable by any key). Requires strategies.read.
      * @return a {@link ApiStrategyShapesEnvelope}
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
@@ -49,7 +49,7 @@ public class ShapesRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.
+     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index (zIndex). Hidden working shapes are omitted. The full set is returned in a single response - there is no pagination - and the read is bounded to the first 2000 rows in stacking order, so a board larger than that is truncated. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it; public and unlisted are readable by any key). Requires strategies.read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link ApiStrategyShapesEnvelope}
      * @throws Error When receiving a 401 status code
@@ -70,7 +70,7 @@ public class ShapesRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, ApiStrategyShapesEnvelope::createFromDiscriminatorValue);
     }
     /**
-     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.
+     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index (zIndex). Hidden working shapes are omitted. The full set is returned in a single response - there is no pagination - and the read is bounded to the first 2000 rows in stacking order, so a board larger than that is truncated. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it; public and unlisted are readable by any key). Requires strategies.read.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -78,7 +78,7 @@ public class ShapesRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.
+     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index (zIndex). Hidden working shapes are omitted. The full set is returned in a single response - there is no pagination - and the read is bounded to the first 2000 rows in stacking order, so a board larger than that is truncated. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it; public and unlisted are readable by any key). Requires strategies.read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

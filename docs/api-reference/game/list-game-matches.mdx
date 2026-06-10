@@ -1,0 +1,62 @@
+---
+title: "List Matches For The Developer's Approved Game"
+description: "Page through the matches that belong to your bound game, optionally filtered by status."
+openapi: "POST /game/matches"
+---
+
+## Permission Required
+
+This endpoint requires the `game.lifecycle` permission with `read` access. Your API key must be a **game-developer key bound to a game**. Although it is a `POST`, this operation is a filtered read - it never mutates. The game is derived from the key's bound game (never a body field), so a key bound to game X can only ever list game-X matches. A non-developer key, or a key with no bound game, receives a `403 error_game_scope_mismatch`.
+
+## Access / Membership Rules
+
+There is no per-match binding here (the call spans many matches); the bound game is the only scope boundary, applied in the handler. A `limit` outside `1-100` returns `400 error_invalid_limit`.
+
+## What's Returned
+
+Returns `{ matches, count, pagination, timestamp }`. Each `matches[]` entry carries `id`, `status`, `gameMode`, `bestOf`, both teams, the aggregate scores, and the ISO lifecycle timestamps. `pagination` is a legacy cursor page: pass `pagination.cursor` back unchanged as the next request's `cursor` and stop when `pagination.hasMore` is `false`.
+
+## Request Body
+
+All fields are optional - an empty body returns the first page.
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `status` | string | No | Filter by `MatchStatus` (e.g. `IN_PROGRESS`). |
+| `limit` | number | No | Page size, `1-100`. Defaults to the handler's internal default. |
+| `cursor` | string | No | Opaque continuation cursor from a prior page's `pagination.cursor`. |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/game/matches \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"status":"IN_PROGRESS","limit":25}'
+```
+
+```javascript JavaScript
+const res = await fetch("https://teambattles.gg/api/v1/game/matches", {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify({ status: "IN_PROGRESS", limit: 25 })
+});
+const { matches, pagination } = await res.json();
+```
+
+```python Python
+import requests
+
+res = requests.post(
+    "https://teambattles.gg/api/v1/game/matches",
+    headers={"Authorization": "Bearer tb_your_api_key"},
+    json={"status": "IN_PROGRESS", "limit": 25},
+)
+data = res.json()
+print(data["count"], "matches")
+```
+
+</RequestExample>

@@ -20,7 +20,7 @@ class RankRequestBuilder extends BaseRequestBuilder<RankRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     RankRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leaderboards/players/me/rank{?sortBy*}", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+    /// Returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<LeaderboardRankResponse?> getAsync([void Function(RequestConfiguration<RankRequestBuilderGetQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toGetRequestInformation(requestConfiguration);
@@ -33,7 +33,7 @@ class RankRequestBuilder extends BaseRequestBuilder<RankRequestBuilder> {
         };
         return await requestAdapter.send<LeaderboardRankResponse>(requestInfo, LeaderboardRankResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+    /// Returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toGetRequestInformation([void Function(RequestConfiguration<RankRequestBuilderGetQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.get, urlTemplate : urlTemplate, pathParameters :  pathParameters);

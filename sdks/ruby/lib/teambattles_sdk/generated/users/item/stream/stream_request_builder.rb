@@ -25,7 +25,7 @@ module TeamBattlesSdk
                             super(path_parameters, request_adapter, "{+baseurl}/users/{identifier}/stream")
                         end
                         ## 
-                        ## Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.
+                        ## Returns whether a user is live, the platforms they are live on, and their primary (highest-viewer) stream details. The {identifier} may be a username or a Convex user ID. Visible for public or limited profiles, plus self; a private non-self profile returns 403. Unknown or currently-banned users return 404 (a banned user's existence is not leaked). When offline, isLive is false, platforms is empty, and primaryStream is null. Requires stream.read.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a Fiber of api_stream_status_envelope
                         ## 
@@ -42,7 +42,7 @@ module TeamBattlesSdk
                             return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::ApiStreamStatusEnvelope.create_from_discriminator_value(pn) }, error_mapping)
                         end
                         ## 
-                        ## Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.
+                        ## Returns whether a user is live, the platforms they are live on, and their primary (highest-viewer) stream details. The {identifier} may be a username or a Convex user ID. Visible for public or limited profiles, plus self; a private non-self profile returns 403. Unknown or currently-banned users return 404 (a banned user's existence is not leaked). When offline, isLive is false, platforms is empty, and primaryStream is null. Requires stream.read.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a request_information
                         ## 

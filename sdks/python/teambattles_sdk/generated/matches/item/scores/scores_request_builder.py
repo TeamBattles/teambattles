@@ -35,7 +35,7 @@ class ScoresRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MapScores]:
         """
-        Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
+        Retrieve every map score for a match plus a series summary. Returns the full unpaginated list of map scores (no cursor or limit) and a seriesScore counting map wins per side, computed only from CONFIRMED maps and awarding a map to the side with the strictly higher score (equal scores count for neither). Each score's scoreStatus is CONFIRMED or PENDING; submittedBy, confirmedBy, and createdAt may be null. Screenshot URLs are suppressed (empty array) for any score whose API-uploaded image has not passed content moderation. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read. The caller must be an active member of one of the match's two teams; non-participants receive 403, unless they hold a TeamBattles staff role, which can read any match's scores.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MapScores]
         """
@@ -109,7 +109,7 @@ class ScoresRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
+        Retrieve every map score for a match plus a series summary. Returns the full unpaginated list of map scores (no cursor or limit) and a seriesScore counting map wins per side, computed only from CONFIRMED maps and awarding a map to the side with the strictly higher score (equal scores count for neither). Each score's scoreStatus is CONFIRMED or PENDING; submittedBy, confirmedBy, and createdAt may be null. Screenshot URLs are suppressed (empty array) for any score whose API-uploaded image has not passed content moderation. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read. The caller must be an active member of one of the match's two teams; non-participants receive 403, unless they hold a TeamBattles staff role, which can read any match's scores.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

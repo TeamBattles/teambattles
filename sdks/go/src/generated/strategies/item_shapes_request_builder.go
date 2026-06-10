@@ -33,7 +33,7 @@ func NewItemShapesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
     urlParams["request-raw-url"] = rawUrl
     return NewItemShapesRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.
+// Get returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index (zIndex). Hidden working shapes are omitted. The full set is returned in a single response - there is no pagination - and the read is bounded to the first 2000 rows in stacking order, so a board larger than that is truncated. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it; public and unlisted are readable by any key). Requires strategies.read.
 // returns a ApiStrategyShapesEnvelopeable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
 // returns a ErrorEscaped error when the service returns a 403 status code
@@ -61,7 +61,7 @@ func (m *ItemShapesRequestBuilder) Get(ctx context.Context, requestConfiguration
     }
     return res.(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.ApiStrategyShapesEnvelopeable), nil
 }
-// ToGetRequestInformation returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.
+// ToGetRequestInformation returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index (zIndex). Hidden working shapes are omitted. The full set is returned in a single response - there is no pagination - and the read is bounded to the first 2000 rows in stacking order, so a board larger than that is truncated. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it; public and unlisted are readable by any key). Requires strategies.read.
 // returns a *RequestInformation when successful
 func (m *ItemShapesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemShapesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

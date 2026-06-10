@@ -13,7 +13,7 @@ import (
 type PlayersMeRankRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// PlayersMeRankRequestBuilderGetQueryParameters returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+// PlayersMeRankRequestBuilderGetQueryParameters returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
 type PlayersMeRankRequestBuilderGetQueryParameters struct {
     // Deprecated: This property is deprecated, use SortByAsLeaderboardSortBy instead
     SortBy *string "uriparametername:\"sortBy\""
@@ -41,7 +41,7 @@ func NewPlayersMeRankRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee
     urlParams["request-raw-url"] = rawUrl
     return NewPlayersMeRankRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+// Get returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
 // returns a LeaderboardRankResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -69,7 +69,7 @@ func (m *PlayersMeRankRequestBuilder) Get(ctx context.Context, requestConfigurat
     }
     return res.(i9ac5c274a78aacc60be5220718abbbe997d33af370bb0ebbe6aca45a8b13cfeb.LeaderboardRankResponseable), nil
 }
-// ToGetRequestInformation returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+// ToGetRequestInformation returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
 // returns a *RequestInformation when successful
 func (m *PlayersMeRankRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PlayersMeRankRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

@@ -1,0 +1,88 @@
+---
+title: "Reorder League Display Rules"
+description: "Reorder the display rules for a league game."
+openapi: "POST /leagues/{identifier}/display-rules/reorder"
+---
+
+## Permission Required
+
+This endpoint requires a **league-operator API key bound to this league** with the `display_rules` league capability, plus the `leagueOperatorApi` plan feature (api_pro or higher). A free key receives `403 error_api_feature_required`.
+
+## Access / Membership Rules
+
+You must have a **MANAGER or higher** role in the league (or be a TeamBattles staff member) to manage display rules. If you lack the required access, you'll receive a `403` error.
+
+The `{identifier}` path parameter is the league **slug** - the URL-friendly league name (e.g., `my-league`).
+
+## What's Returned
+
+Reorders the display rules for one of the league's games. On success the response is `{ "success": true, "timestamp": "<ISO 8601>" }`.
+
+## Request Body
+
+| Parameter | Type   | Required | Description                                                                   |
+| --------- | ------ | -------- | ----------------------------------------------------------------------------- |
+| `gameId`  | string | Yes      | Game ID whose display rules should reorder.                                   |
+| `items`   | array  | Yes      | Ordered list of `{ id, order }` pairs, where `id` is a display rule ID.       |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/leagues/my-league/display-rules/reorder \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "gameId": "jh7game123",
+    "items": [
+      { "id": "jh7rule111", "order": 0 },
+      { "id": "jh7rule222", "order": 1 }
+    ]
+  }'
+```
+
+```javascript JavaScript
+const leagueSlug = "my-league";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/leagues/${leagueSlug}/display-rules/reorder`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			gameId: "jh7game123",
+			items: [
+				{ id: "jh7rule111", order: 0 },
+				{ id: "jh7rule222", order: 1 }
+			]
+		})
+	}
+);
+
+const { success, timestamp } = await response.json();
+console.log(success, timestamp);
+```
+
+```python Python
+import requests
+
+league_slug = 'my-league'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/leagues/{league_slug}/display-rules/reorder',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={
+        'gameId': 'jh7game123',
+        'items': [
+            {'id': 'jh7rule111', 'order': 0},
+            {'id': 'jh7rule222', 'order': 1}
+        ]
+    }
+)
+
+print(response.json())
+```
+
+</RequestExample>

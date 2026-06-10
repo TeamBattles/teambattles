@@ -35,7 +35,7 @@ public class MembersRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/orgs/{identifier}/members", rawUrl);
     }
     /**
-     * Returns active member rows when the organization is public or the API key owner is an active organization member. Requires orgs.profile:read.
+     * Returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row&apos;s `id` is the membership row ID, not the user ID, and the row carries the member&apos;s API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.
      * @return a {@link MembersGetResponse}
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
@@ -48,7 +48,7 @@ public class MembersRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Returns active member rows when the organization is public or the API key owner is an active organization member. Requires orgs.profile:read.
+     * Returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row&apos;s `id` is the membership row ID, not the user ID, and the row carries the member&apos;s API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link MembersGetResponse}
      * @throws Error When receiving a 401 status code
@@ -69,7 +69,7 @@ public class MembersRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, MembersGetResponse::createFromDiscriminatorValue);
     }
     /**
-     * Returns active member rows when the organization is public or the API key owner is an active organization member. Requires orgs.profile:read.
+     * Returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row&apos;s `id` is the membership row ID, not the user ID, and the row carries the member&apos;s API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -77,7 +77,7 @@ public class MembersRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Returns active member rows when the organization is public or the API key owner is an active organization member. Requires orgs.profile:read.
+     * Returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row&apos;s `id` is the membership row ID, not the user ID, and the row carries the member&apos;s API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

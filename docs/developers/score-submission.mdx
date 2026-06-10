@@ -1,16 +1,16 @@
 ---
 title: Score Submission
-description: Submit match scores programmatically using the TeamBattles API for both captain and game developer flows.
+description: Submit match scores programmatically using the TeamBattles API for captain, game developer, and league operator flows.
 ---
 
 ## Overview
 
-TeamBattles supports two score submission flows:
+TeamBattles supports three score submission flows, which differ in authentication,
+endpoint, and confirmation behavior:
 
-1. **Captain Score Submission** - Team captains submit scores on behalf of their team
-2. **Game Developer Score Submission** - Game servers submit verified scores directly
-
-Both flows use the same base endpoint but differ in authentication and auto-confirmation behavior.
+1. **Captain Score Submission** - a team captain submits on `POST /api/v1/matches/{matchId}/scores`; the opposing captain must confirm.
+2. **Game Developer Score Submission** - a game server submits verified scores on `POST /api/v1/game/matches/{matchId}/scores`; scores are auto-confirmed.
+3. **League Operator Score Submission** - a league operator submits verified scores on `POST /api/v1/leagues/{identifier}/matches/{matchId}/scores`; scores are auto-confirmed.
 
 ## Captain Score Submission
 
@@ -144,15 +144,16 @@ Content-Type: application/json
 
 ```json
 {
-	"scores": {
-		"team_123": 250,
-		"team_456": 180
-	},
-	"metadata": {
-		"map": "dust2",
-		"duration": 2400,
-		"rounds": 24
-	}
+	"maps": [
+		{
+			"mapIndex": 0,
+			"mapId": "de_dust2",
+			"creatorTeamScore": 13,
+			"opponentTeamScore": 9,
+			"screenshotUrls": ["https://..."],
+			"playerStats": {}
+		}
+	]
 }
 ```
 
@@ -161,11 +162,42 @@ Content-Type: application/json
 ```json
 {
 	"success": true,
-	"scoreId": "score_789",
-	"status": "CONFIRMED",
-	"autoConfirmed": true
+	"submitted": [{ "mapIndex": 0, "status": "confirmed" }],
+	"count": 1
 }
 ```
+
+`success` is `true` only when every map confirms; `count` is the number of confirmed maps. A failed map appears as `{ "mapIndex": n, "status": "failed", "error": "<code>" }` and does not abort the others. The per-item `status` is lowercase.
+
+### Submit Single Map Score
+
+```bash
+POST /api/v1/game/matches/{matchId}/scores/{mapIndex}
+```
+
+Submit one map. `mapIndex` comes from the URL path, so it is not in the body.
+
+**Body:**
+
+```json
+{
+	"mapId": "de_dust2",
+	"creatorTeamScore": 13,
+	"opponentTeamScore": 9
+}
+```
+
+**Response:**
+
+```json
+{
+	"success": true,
+	"mapIndex": 0,
+	"scoreStatus": "CONFIRMED"
+}
+```
+
+(`scoreStatus` is uppercase `CONFIRMED` here, unlike the lowercase batch `status`.)
 
 ### Batch Match Scores
 
@@ -222,12 +254,79 @@ Batch submission is naturally idempotent (re-submitting an unconfirmed map overw
 
 Requires `game.scores: write`.
 
-### Key Differences
+## League Operator Score Submission
 
-| Feature             | Captain Submission                 | Game Developer Submission |
-| ------------------- | ---------------------------------- | ------------------------- |
-| Authentication      | User API key                       | Game developer API key    |
-| Auto-confirmation   | No (requires opponent)             | Yes                       |
-| Metadata support    | No                                 | Yes                       |
-| Game scope          | Any                                | Approved games only       |
-| Permission required | `matches.team_matches: read-write` | `game.scores: write`      |
+<Note>
+	League operators submit verified scores with a league-operator API key. Scores
+	auto-confirm immediately - the opposing captain does not need to confirm. The key
+	must be bound to the league whose match you are scoring.
+</Note>
+
+### Submit Map Scores
+
+```bash
+POST /api/v1/leagues/{identifier}/matches/{matchId}/scores
+```
+
+Submit every map for the match in one request (same envelope as the game-developer batch).
+
+**Body:**
+
+```json
+{
+	"maps": [
+		{ "mapIndex": 0, "mapId": "de_dust2", "creatorTeamScore": 13, "opponentTeamScore": 9 }
+	]
+}
+```
+
+**Response:**
+
+```json
+{
+	"success": true,
+	"submitted": [{ "mapIndex": 0, "status": "confirmed" }],
+	"count": 1
+}
+```
+
+### Submit Single Map Score
+
+```bash
+POST /api/v1/leagues/{identifier}/matches/{matchId}/scores/{mapIndex}
+```
+
+Submit one map. `mapIndex` comes from the URL path, so it is not in the body.
+
+**Body:**
+
+```json
+{
+	"mapId": "de_dust2",
+	"creatorTeamScore": 13,
+	"opponentTeamScore": 9
+}
+```
+
+**Response:**
+
+```json
+{
+	"success": true,
+	"mapIndex": 0,
+	"scoreStatus": "CONFIRMED"
+}
+```
+
+This flow requires the league `scores` capability (`leagueCapability: scores`) and the
+`leagueOperatorApi` feature, which is gated on the league owner's plan.
+
+## Key Differences
+
+| Feature             | Captain Submission                 | Game Developer Submission | League Operator              |
+| ------------------- | ---------------------------------- | ------------------------- | ---------------------------- |
+| Authentication      | User API key                       | Game developer API key    | League-operator API key      |
+| Auto-confirmation   | No (requires opponent)             | Yes                       | Yes                          |
+| Metadata support    | No                                 | Yes                       | Yes                          |
+| Game scope          | Any                                | Approved games only       | Bound league only            |
+| Permission required | `matches.team_matches: read-write` | `game.scores: write`      | `leagueCapability: scores` (feature-gated `leagueOperatorApi`) |

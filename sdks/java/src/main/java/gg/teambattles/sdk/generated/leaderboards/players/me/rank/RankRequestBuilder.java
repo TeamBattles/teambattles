@@ -38,7 +38,7 @@ public class RankRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leaderboards/players/me/rank{?sortBy*}", rawUrl);
     }
     /**
-     * Returns the API key owner&apos;s rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+     * Returns the API key owner&apos;s own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
      * @return a {@link LeaderboardRankResponse}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -51,7 +51,7 @@ public class RankRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Returns the API key owner&apos;s rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+     * Returns the API key owner&apos;s own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link LeaderboardRankResponse}
      * @throws Error When receiving a 400 status code
@@ -72,7 +72,7 @@ public class RankRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, LeaderboardRankResponse::createFromDiscriminatorValue);
     }
     /**
-     * Returns the API key owner&apos;s rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+     * Returns the API key owner&apos;s own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -80,7 +80,7 @@ public class RankRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Returns the API key owner&apos;s rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+     * Returns the API key owner&apos;s own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */
@@ -102,7 +102,7 @@ public class RankRequestBuilder extends BaseRequestBuilder {
         return new RankRequestBuilder(rawUrl, requestAdapter);
     }
     /**
-     * Returns the API key owner&apos;s rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+     * Returns the API key owner&apos;s own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
      */
     @jakarta.annotation.Generated("com.microsoft.kiota")
     public class GetQueryParameters implements QueryParameters {

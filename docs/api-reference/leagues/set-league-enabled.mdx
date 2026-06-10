@@ -1,0 +1,71 @@
+---
+title: "Set League Enabled State"
+description: "Enable or disable a league you own."
+openapi: "POST /leagues/{identifier}/settings/enabled"
+---
+
+## Permission Required
+
+This endpoint requires a **league-operator API key bound to this league** with the `leagues.league_admin:read-write` access permission, plus the `leagueOperatorApi` plan feature (api_pro or higher). A free key receives `403 error_api_feature_required`.
+
+## Access / Membership Rules
+
+This route is **OWNER-only**: only the current league owner may enable or disable the league. Convex re-checks current OWNER authority on every call, so a key held by any non-owner staff member is rejected with a `403` error.
+
+The `{identifier}` path parameter is the league **slug** - the URL-friendly league name (e.g., `my-league`).
+
+## What's Returned
+
+Enables or disables the league. On success the response is `{ "success": true, "timestamp": "<ISO 8601>" }`. A disabled league is no longer discoverable.
+
+## Request Body
+
+| Parameter   | Type    | Required | Description                                       |
+| ----------- | ------- | -------- | ------------------------------------------------- |
+| `isEnabled` | boolean | Yes      | Whether the league is enabled and discoverable.   |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/leagues/my-league/settings/enabled \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"isEnabled": false}'
+```
+
+```javascript JavaScript
+const leagueSlug = "my-league";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/leagues/${leagueSlug}/settings/enabled`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			isEnabled: false
+		})
+	}
+);
+
+const { success, timestamp } = await response.json();
+console.log(success, timestamp);
+```
+
+```python Python
+import requests
+
+league_slug = 'my-league'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/leagues/{league_slug}/settings/enabled',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'isEnabled': False}
+)
+
+print(response.json())
+```
+
+</RequestExample>

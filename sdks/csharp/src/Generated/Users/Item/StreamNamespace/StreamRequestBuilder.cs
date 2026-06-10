@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Users.Item.StreamNamespace
         {
         }
         /// <summary>
-        /// Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.
+        /// Returns whether a user is live, the platforms they are live on, and their primary (highest-viewer) stream details. The {identifier} may be a username or a Convex user ID. Visible for public or limited profiles, plus self; a private non-self profile returns 403. Unknown or currently-banned users return 404 (a banned user&apos;s existence is not leaked). When offline, isLive is false, platforms is empty, and primaryStream is null. Requires stream.read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiStreamStatusEnvelope"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace TeamBattles.Sdk.Users.Item.StreamNamespace
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.ApiStreamStatusEnvelope>(requestInfo, global::TeamBattles.Sdk.Models.ApiStreamStatusEnvelope.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.
+        /// Returns whether a user is live, the platforms they are live on, and their primary (highest-viewer) stream details. The {identifier} may be a username or a Convex user ID. Visible for public or limited profiles, plus self; a private non-self profile returns 403. Unknown or currently-banned users return 404 (a banned user&apos;s existence is not leaked). When offline, isLive is false, platforms is empty, and primaryStream is null. Requires stream.read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

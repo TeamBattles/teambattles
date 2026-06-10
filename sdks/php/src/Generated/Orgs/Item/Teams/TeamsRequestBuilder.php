@@ -30,7 +30,7 @@ class TeamsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+     * Returns an organization's active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
      * @param TeamsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<TeamsGetResponse|null>
      * @throws Exception
@@ -48,7 +48,7 @@ class TeamsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+     * Returns an organization's active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
      * @param TeamsRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

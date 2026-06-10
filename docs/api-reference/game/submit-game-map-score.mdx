@@ -1,0 +1,69 @@
+---
+title: "Submit A Single Map's Score"
+description: "Submit the score for one map of a match; the map index comes from the path."
+openapi: "POST /game/matches/{matchId}/scores/{mapIndex}"
+---
+
+## Permission Required
+
+This endpoint requires the `game.scores` permission with `write` access. (`game.scores` is a write-level permission - its levels are `none` or `write`, not `read-write`.) Your API key must be a **game-developer key bound to a game**. The binding asserts the match belongs to your bound game before the handler runs: a key bound to a different game, or a non-developer key, receives a `403 error_game_scope_mismatch`.
+
+## Access / Membership Rules
+
+The `{mapIndex}` path segment is the zero-based map index within the series. Game-developer scores are auto-confirmed on submission. `creatorTeamScore` and `opponentTeamScore` must be non-negative integers in range `0-1000`. An unknown match returns `404 error_match_not_found`.
+
+## What's Returned
+
+Returns `{ "success": true, mapIndex, scoreStatus }`, where `scoreStatus` is always `CONFIRMED` on success.
+
+## Request Body
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `mapId` | string | Yes | Identifier of the map that was played. |
+| `creatorTeamScore` | number | Yes | Creator team score (integer, `0-1000`). |
+| `opponentTeamScore` | number | Yes | Opponent (accepted) team score (integer, `0-1000`). |
+| `screenshotUrls` | array | No | Optional public https screenshot URLs. |
+| `screenshotStorageIds` | array | No | Optional storage IDs from `POST /uploads/image-url` (preferred). |
+| `playerStats` | object | No | Optional per-player stats keyed by user ID. |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/game/matches/match_abc/scores/0 \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"mapId":"de_dust2","creatorTeamScore":13,"opponentTeamScore":7}'
+```
+
+```javascript JavaScript
+const matchId = "match_abc";
+const mapIndex = 0;
+const res = await fetch(
+	`https://teambattles.gg/api/v1/game/matches/${matchId}/scores/${mapIndex}`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ mapId: "de_dust2", creatorTeamScore: 13, opponentTeamScore: 7 })
+	}
+);
+const { scoreStatus } = await res.json();
+```
+
+```python Python
+import requests
+
+match_id = "match_abc"
+map_index = 0
+res = requests.post(
+    f"https://teambattles.gg/api/v1/game/matches/{match_id}/scores/{map_index}",
+    headers={"Authorization": "Bearer tb_your_api_key"},
+    json={"mapId": "de_dust2", "creatorTeamScore": 13, "opponentTeamScore": 7},
+)
+print(res.json()["scoreStatus"])
+```
+
+</RequestExample>

@@ -1,0 +1,66 @@
+---
+title: "Submit Or Update Player Stats For A Map"
+description: "Set per-player stats on an existing map score for one of your game's matches."
+openapi: "POST /game/matches/{matchId}/player-stats"
+---
+
+## Permission Required
+
+This endpoint requires the `game.scores` permission with `write` access. (`game.scores` is a write-level permission - its levels are `none` or `write`, not `read-write`.) Your API key must be a **game-developer key bound to a game**. The binding asserts the match belongs to your bound game before the handler runs: a key bound to a different game, or a non-developer key, receives a `403 error_game_scope_mismatch`.
+
+## Access / Membership Rules
+
+The map score for the given `mapIndex` must already exist - submit the score first via the scores endpoints, then attach player stats here. `mapIndex` must be a non-negative integer. An unknown match returns `404 error_match_not_found`.
+
+## What's Returned
+
+Returns `{ "success": true, mapIndex, action }`, where `action` is always `updated` on success.
+
+## Request Body
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `mapIndex` | number | Yes | Zero-based index of the map whose stats are being set. |
+| `playerStats` | object | Yes | Per-player stats keyed by user ID. The map score must already exist. |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/game/matches/match_abc/player-stats \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"mapIndex":0,"playerStats":{"user_123":{"kills":24,"deaths":11}}}'
+```
+
+```javascript JavaScript
+const matchId = "match_abc";
+const res = await fetch(
+	`https://teambattles.gg/api/v1/game/matches/${matchId}/player-stats`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			mapIndex: 0,
+			playerStats: { user_123: { kills: 24, deaths: 11 } }
+		})
+	}
+);
+const { action } = await res.json();
+```
+
+```python Python
+import requests
+
+match_id = "match_abc"
+res = requests.post(
+    f"https://teambattles.gg/api/v1/game/matches/{match_id}/player-stats",
+    headers={"Authorization": "Bearer tb_your_api_key"},
+    json={"mapIndex": 0, "playerStats": {"user_123": {"kills": 24, "deaths": 11}}},
+)
+print(res.json()["action"])
+```
+
+</RequestExample>

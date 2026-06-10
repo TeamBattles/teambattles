@@ -33,7 +33,7 @@ class RankRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RankRequestBuilderGetQueryParameters]] = None) -> Optional[LeaderboardRankResponse]:
         """
-        Returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+        Returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LeaderboardRankResponse]
         """
@@ -57,7 +57,7 @@ class RankRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RankRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+        Returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +79,7 @@ class RankRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RankRequestBuilderGetQueryParameters():
         """
-        Returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.
+        Returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

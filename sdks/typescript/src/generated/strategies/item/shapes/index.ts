@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ShapesRequestBuilder extends BaseRequestBuilder<ShapesRequestBuilder> {
     /**
-     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.
+     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index (zIndex). Hidden working shapes are omitted. The full set is returned in a single response - there is no pagination - and the read is bounded to the first 2000 rows in stacking order, so a board larger than that is truncated. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it; public and unlisted are readable by any key). Requires strategies.read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ApiStrategyShapesEnvelope>}
      * @throws {ErrorEscaped} error when the service returns a 401 status code
@@ -22,7 +22,7 @@ export interface ShapesRequestBuilder extends BaseRequestBuilder<ShapesRequestBu
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ApiStrategyShapesEnvelope | undefined>;
     /**
-     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.
+     * Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index (zIndex). Hidden working shapes are omitted. The full set is returned in a single response - there is no pagination - and the read is bounded to the first 2000 rows in stacking order, so a board larger than that is truncated. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it; public and unlisted are readable by any key). Requires strategies.read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

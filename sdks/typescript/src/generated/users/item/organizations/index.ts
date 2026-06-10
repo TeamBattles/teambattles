@@ -50,7 +50,7 @@ export interface OrganizationsGetResponse extends Parsable {
  */
 export interface OrganizationsRequestBuilder extends BaseRequestBuilder<OrganizationsRequestBuilder> {
     /**
-     * Returns API-safe organization affiliation rows for public or limited profiles, plus self. Non-self rows include only public organizations. Requires users.profile:read.
+     * Returns the target user's active organization memberships, each as an API-safe organization summary plus the membership role and joinedAt. The identifier is a username or Convex user ID. Requires the users.profile:read scope. Readable only for public or limited profiles (or the API key owner's own profile); a private profile returns 403, and an unknown or banned user returns 404. For anyone other than the profile owner, non-public organizations are omitted; the owner sees all of their memberships. Not paginated - the full set is returned with a count, in no guaranteed order (not sorted by name or joinedAt).
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationsGetResponse>}
      * @throws {ErrorEscaped} error when the service returns a 401 status code
@@ -61,7 +61,7 @@ export interface OrganizationsRequestBuilder extends BaseRequestBuilder<Organiza
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationsGetResponse | undefined>;
     /**
-     * Returns API-safe organization affiliation rows for public or limited profiles, plus self. Non-self rows include only public organizations. Requires users.profile:read.
+     * Returns the target user's active organization memberships, each as an API-safe organization summary plus the membership role and joinedAt. The identifier is a username or Convex user ID. Requires the users.profile:read scope. Readable only for public or limited profiles (or the API key owner's own profile); a private profile returns 403, and an unknown or banned user returns 404. For anyone other than the profile owner, non-public organizations are omitted; the owner sees all of their memberships. Not paginated - the full set is returned with a count, in no guaranteed order (not sorted by name or joinedAt).
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

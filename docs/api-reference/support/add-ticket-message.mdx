@@ -1,0 +1,78 @@
+---
+title: "Reply To One Of Your Support Tickets"
+description: "Add a reply message to one of the API key owner's tickets."
+openapi: "POST /tickets/{ticketId}/messages"
+---
+
+## Permission Required
+
+This endpoint requires `tickets.write:write` on your API key, plus the `writes` feature. The sender is always the API key owner, derived from the key itself - it is never accepted as a body field. A free (`api_free`) key receives `403 error_api_feature_required`; this requires an `api_pro`+ plan.
+
+## Access / Membership Rules
+
+Tickets are owner-scoped (`binding: "none"`). You may reply only on a ticket you own. The gate is re-enforced inside Convex: a non-existent ticket returns `404 TICKET_NOT_FOUND`, a ticket you cannot write returns `403 TICKET_ACCESS_DENIED`, and a closed ticket returns `400`. Image and length limits are re-checked server-side.
+
+The route supports the `Idempotency-Key` header. Supplying one makes a retried reply safe - the same key and request body returns the original result rather than posting a duplicate message.
+
+## What's Returned
+
+Returns an object with `success: true`, the created `messageId`, and a `timestamp`. Mintlify renders the full schema from the spec below.
+
+## Request Body
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `content` | string | Yes | Reply message body (1-2000 chars). |
+| `images` | string[] | No | Storage IDs from [the image upload endpoint](/api-reference/uploads/create-image-upload-url) to attach (max 10). |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/tickets/TICKET_ID/messages \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: 9f1c2b3a-reply-1" \
+  -d '{"content":"Still seeing the issue after a retry - here is a screenshot."}'
+```
+
+```javascript JavaScript
+const ticketId = "TICKET_ID";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/tickets/${ticketId}/messages`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json",
+			"Idempotency-Key": "9f1c2b3a-reply-1"
+		},
+		body: JSON.stringify({
+			content: "Still seeing the issue after a retry - here is a screenshot."
+		})
+	}
+);
+
+const { messageId } = await response.json();
+console.log(`Added reply ${messageId}`);
+```
+
+```python Python
+import requests
+
+ticket_id = "TICKET_ID"
+
+response = requests.post(
+    f"https://teambattles.gg/api/v1/tickets/{ticket_id}/messages",
+    headers={
+        "Authorization": "Bearer tb_your_api_key",
+        "Idempotency-Key": "9f1c2b3a-reply-1",
+    },
+    json={"content": "Still seeing the issue after a retry - here is a screenshot."},
+)
+
+data = response.json()
+print(f"Added reply {data['messageId']}")
+```
+
+</RequestExample>

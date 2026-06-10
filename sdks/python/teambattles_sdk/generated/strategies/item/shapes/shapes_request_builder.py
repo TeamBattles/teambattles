@@ -32,7 +32,7 @@ class ShapesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ApiStrategyShapesEnvelope]:
         """
-        Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.
+        Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index (zIndex). Hidden working shapes are omitted. The full set is returned in a single response - there is no pagination - and the read is bounded to the first 2000 rows in stacking order, so a board larger than that is truncated. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it; public and unlisted are readable by any key). Requires strategies.read.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApiStrategyShapesEnvelope]
         """
@@ -56,7 +56,7 @@ class ShapesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.
+        Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index (zIndex). Hidden working shapes are omitted. The full set is returned in a single response - there is no pagination - and the read is bounded to the first 2000 rows in stacking order, so a board larger than that is truncated. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it; public and unlisted are readable by any key). Requires strategies.read.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

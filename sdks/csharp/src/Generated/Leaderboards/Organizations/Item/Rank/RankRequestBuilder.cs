@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leaderboards.Organizations.Item.Rank
         {
         }
         /// <summary>
-        /// Returns an organization&apos;s rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
+        /// Returns an organization&apos;s 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game&apos;s stats only; omit it for the global all-games rank. Organization stats are aggregated from the org&apos;s active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.LeaderboardRankResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -67,7 +67,7 @@ namespace TeamBattles.Sdk.Leaderboards.Organizations.Item.Rank
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.LeaderboardRankResponse>(requestInfo, global::TeamBattles.Sdk.Models.LeaderboardRankResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns an organization&apos;s rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
+        /// Returns an organization&apos;s 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game&apos;s stats only; omit it for the global all-games rank. Organization stats are aggregated from the org&apos;s active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -95,7 +95,7 @@ namespace TeamBattles.Sdk.Leaderboards.Organizations.Item.Rank
             return new global::TeamBattles.Sdk.Leaderboards.Organizations.Item.Rank.RankRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns an organization&apos;s rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.
+        /// Returns an organization&apos;s 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game&apos;s stats only; omit it for the global all-games rank. Organization stats are aggregated from the org&apos;s active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RankRequestBuilderGetQueryParameters 

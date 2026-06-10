@@ -35,7 +35,7 @@ public class TeamsRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/orgs/{identifier}/teams", rawUrl);
     }
     /**
-     * Returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+     * Returns an organization&apos;s active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
      * @return a {@link TeamsGetResponse}
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
@@ -48,7 +48,7 @@ public class TeamsRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+     * Returns an organization&apos;s active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link TeamsGetResponse}
      * @throws Error When receiving a 401 status code
@@ -69,7 +69,7 @@ public class TeamsRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, TeamsGetResponse::createFromDiscriminatorValue);
     }
     /**
-     * Returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+     * Returns an organization&apos;s active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -77,7 +77,7 @@ public class TeamsRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.
+     * Returns an organization&apos;s active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

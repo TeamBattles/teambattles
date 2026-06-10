@@ -1,0 +1,70 @@
+---
+title: "Update Match Attendance"
+description: "Update the API key owner's own attendance status for a match."
+openapi: "POST /matches/{matchId}/attendance"
+---
+
+## Permission Required
+
+This endpoint requires `matches.user_matches:read-write` on your API key. A free (`api_free`) key receives `403 error_api_feature_required`; this requires an `api_pro`+ plan.
+
+## Access / Membership Rules
+
+This updates the API key owner's own attendance, derived from the key itself - it is never accepted as a body field, so a key can only change its own status. The owner must already be rostered in the match. When attendance changes, the platform may automatically swap active and bench players (reflected in `reclaimedSpot` and `replacedBy`). A personal key can only act on matches its owner is rostered in - the route binding is a no-op and this authorization is enforced inside Convex. A non-personal key receives `403 API_KEY_PERMISSION_DENIED`.
+
+This route accepts an optional `Idempotency-Key` header so retries are safe.
+
+## Request Body
+
+| Field    | Type   | Required | Description                                                              |
+| -------- | ------ | -------- | ------------------------------------------------------------------------ |
+| `status` | string | Yes      | The owner's attendance status: `ATTENDING`, `NOT_ATTENDING`, or `TENTATIVE`. |
+
+## What's Returned
+
+Returns `success`, plus the optional `reclaimedSpot` (boolean), `replacedBy` (user ID), and `message` fields describing any roster swap, and a `timestamp`. Mintlify renders the full schema from the spec below.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/matches/jm7match123/attendance \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"status": "ATTENDING"}'
+```
+
+```javascript JavaScript
+const matchId = "jm7match123";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/matches/${matchId}/attendance`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ status: "ATTENDING" })
+	}
+);
+
+const { success, reclaimedSpot } = await response.json();
+console.log(`Attendance updated: ${success}, reclaimed spot: ${reclaimedSpot}`);
+```
+
+```python Python
+import requests
+
+match_id = 'jm7match123'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/matches/{match_id}/attendance',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'status': 'ATTENDING'}
+)
+
+data = response.json()
+print(f"Attendance updated: {data['success']}")
+```
+
+</RequestExample>

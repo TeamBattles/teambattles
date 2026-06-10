@@ -11,12 +11,202 @@
       "description": "Production"
     }
   ],
+  "tags": [
+    {
+      "name": "Games",
+      "description": "Public game catalog and playlists.",
+      "x-group": "Public Read API"
+    },
+    {
+      "name": "Players",
+      "description": "Public player profiles, stats, connections, affiliations, and trophies.",
+      "x-group": "Public Read API"
+    },
+    {
+      "name": "Teams",
+      "description": "Public team profiles and rosters.",
+      "x-group": "Public Read API"
+    },
+    {
+      "name": "Organizations",
+      "description": "Public organization profiles, members, teams, stats, and discovery.",
+      "x-group": "Public Read API"
+    },
+    {
+      "name": "Leaderboards",
+      "description": "Player, team, and organization leaderboards and rank lookups.",
+      "x-group": "Public Read API"
+    },
+    {
+      "name": "Match Discovery",
+      "description": "Open-match discovery and read-only match detail, players, and scores.",
+      "x-group": "Public Read API"
+    },
+    {
+      "name": "League Discovery",
+      "description": "Public league discovery, profiles, standings, seasons, rules, and eligibility.",
+      "x-group": "Public Read API"
+    },
+    {
+      "name": "My Account",
+      "description": "The API key owner's own connections and game ranks.",
+      "x-group": "Personal API"
+    },
+    {
+      "name": "My Matches",
+      "description": "The key owner's matches and captain match writes (create, accept, ready, scores, lifecycle).",
+      "x-group": "Personal API"
+    },
+    {
+      "name": "Match Chat",
+      "description": "Read, send, and report messages in a match chat room.",
+      "x-group": "Personal API"
+    },
+    {
+      "name": "Game: Matches",
+      "description": "Game-developer match lifecycle: create, read, status, and forfeit.",
+      "x-group": "Game Developer API"
+    },
+    {
+      "name": "Game: Scores",
+      "description": "Game-developer score submission: single, per-map, and batch.",
+      "x-group": "Game Developer API"
+    },
+    {
+      "name": "Game: Rosters & Stats",
+      "description": "Game-developer roster reads and player-stat submission.",
+      "x-group": "Game Developer API"
+    },
+    {
+      "name": "League: Membership & Teams",
+      "description": "League staff membership, team applications, and ownership transfer.",
+      "x-group": "League Operator API"
+    },
+    {
+      "name": "League: Seasons",
+      "description": "League season lifecycle: create, activate, complete, delete.",
+      "x-group": "League Operator API"
+    },
+    {
+      "name": "League: Rules & Config",
+      "description": "League rules, points, display rules, branding, settings, games, and shutdown.",
+      "x-group": "League Operator API"
+    },
+    {
+      "name": "League: Scores",
+      "description": "League-operator match score and player-stat submission and status.",
+      "x-group": "League Operator API"
+    },
+    {
+      "name": "League: Moderation",
+      "description": "League bans, penalties, and cooldowns.",
+      "x-group": "League Operator API"
+    },
+    {
+      "name": "League: Tickets",
+      "description": "League support-ticket workflow.",
+      "x-group": "League Operator API"
+    },
+    {
+      "name": "League: Overview",
+      "description": "League operator dashboards and activity feed.",
+      "x-group": "League Operator API"
+    },
+    {
+      "name": "Webhooks",
+      "description": "Webhook endpoint management, test, secret rotation, and delivery replay.",
+      "x-group": "Webhooks"
+    },
+    {
+      "name": "Strategies",
+      "description": "Read shared strategy boards and shapes by slug.",
+      "x-group": "Platform Tools"
+    },
+    {
+      "name": "Streaming",
+      "description": "Live-stream status lookups.",
+      "x-group": "Platform Tools"
+    },
+    {
+      "name": "Twitch",
+      "description": "Twitch chat badge proxies.",
+      "x-group": "Platform Tools"
+    },
+    {
+      "name": "Uploads",
+      "description": "Image upload URL minting.",
+      "x-group": "Platform Tools"
+    },
+    {
+      "name": "Support",
+      "description": "The key owner's support tickets and replies.",
+      "x-group": "Platform Tools"
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "Public Read API",
+      "tags": [
+        "Games",
+        "Players",
+        "Teams",
+        "Organizations",
+        "Leaderboards",
+        "Match Discovery",
+        "League Discovery"
+      ]
+    },
+    {
+      "name": "Personal API",
+      "tags": [
+        "My Account",
+        "My Matches",
+        "Match Chat"
+      ]
+    },
+    {
+      "name": "Game Developer API",
+      "tags": [
+        "Game: Matches",
+        "Game: Scores",
+        "Game: Rosters & Stats"
+      ]
+    },
+    {
+      "name": "League Operator API",
+      "tags": [
+        "League: Membership & Teams",
+        "League: Seasons",
+        "League: Rules & Config",
+        "League: Scores",
+        "League: Moderation",
+        "League: Tickets",
+        "League: Overview"
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "name": "Platform Tools",
+      "tags": [
+        "Strategies",
+        "Streaming",
+        "Twitch",
+        "Uploads",
+        "Support"
+      ]
+    }
+  ],
   "paths": {
     "/chat/messages/{messageId}/report": {
       "post": {
         "operationId": "reportChatMessage",
         "tags": [
-          "Chat"
+          "Match Chat"
         ],
         "summary": "Report a chat message",
         "description": "Reports a chat message for staff moderation as the API key owner. The owner must be a participant of the message's chat room; a non-participant receives 403. System messages and the owner's own messages cannot be reported. Reporting the same message twice is idempotent (returns the existing report with alreadyReported: true). Requires the chat.write scope and the writes feature. Supports the Idempotency-Key header.",
@@ -134,7 +324,7 @@
       "post": {
         "operationId": "listGameMatches",
         "tags": [
-          "Game"
+          "Game: Matches"
         ],
         "summary": "List matches for the developer's approved game",
         "description": "Returns matches for the API key owner's approved (bound) game, with legacy cursor pagination. Requires the game.lifecycle:read permission.",
@@ -246,7 +436,7 @@
       "get": {
         "operationId": "getGameMatch",
         "tags": [
-          "Game"
+          "Game: Matches"
         ],
         "summary": "Get a single match's details",
         "description": "Returns detailed info for one match, validated to belong to the API key owner's approved game. Requires the game.lifecycle:read permission.",
@@ -315,7 +505,7 @@
       "post": {
         "operationId": "forfeitGameMatch",
         "tags": [
-          "Game"
+          "Game: Matches"
         ],
         "summary": "Forfeit a match on behalf of one participating team",
         "description": "Forfeits the match for the supplied team; the other participating team wins. Valid only while the match is ACCEPTED, READY, or IN_PROGRESS. Requires the game.lifecycle:read-write permission and a key bound to the match's game. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict.",
@@ -423,7 +613,7 @@
       "post": {
         "operationId": "submitGamePlayerStats",
         "tags": [
-          "Game"
+          "Game: Rosters & Stats"
         ],
         "summary": "Submit or update player stats for a map",
         "description": "Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.",
@@ -511,7 +701,7 @@
       "get": {
         "operationId": "getGameMatchRosters",
         "tags": [
-          "Game"
+          "Game: Rosters & Stats"
         ],
         "summary": "Get a match's team rosters",
         "description": "Returns the creator and accepted team rosters for a match, validated to belong to the API key owner's approved game. Requires the game.lifecycle:read permission.",
@@ -580,7 +770,7 @@
       "get": {
         "operationId": "getGameScores",
         "tags": [
-          "Game"
+          "Game: Scores"
         ],
         "summary": "Read all map scores for a match",
         "description": "Returns every recorded map score plus the aggregate series tally. Requires the game.scores:write OR game.lifecycle:read permission.",
@@ -647,7 +837,7 @@
       "post": {
         "operationId": "submitGameScores",
         "tags": [
-          "Game"
+          "Game: Scores"
         ],
         "summary": "Submit map scores in a batch",
         "description": "Submits scores for one or more maps; game-developer scores are auto-confirmed. Requires the game.scores:write permission.",
@@ -735,7 +925,7 @@
       "post": {
         "operationId": "submitGameMapScore",
         "tags": [
-          "Game"
+          "Game: Scores"
         ],
         "summary": "Submit a single map's score",
         "description": "Submits the score for one map (mapIndex from the path); game-developer scores are auto-confirmed. Requires the game.scores:write permission.",
@@ -833,7 +1023,7 @@
       "patch": {
         "operationId": "updateGameMatchStatus",
         "tags": [
-          "Game"
+          "Game: Matches"
         ],
         "summary": "Update a match's lifecycle status",
         "description": "Transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission.",
@@ -931,7 +1121,7 @@
       "post": {
         "operationId": "submitGameBatchMatchScores",
         "tags": [
-          "Game"
+          "Game: Scores"
         ],
         "summary": "Submit map scores across multiple matches in one call",
         "description": "Submits map scores for up to 50 (match, map) items in a single request. Each item is independently scope-checked against the key's bound game; an off-scope or otherwise failing item is rejected in its per-item envelope (status \"failed\", error = bare error_* code) WITHOUT failing the whole request. The response is ALWAYS HTTP 200 - inspect per-item status. Requires the game.scores:write permission. Score submission is naturally idempotent: an unconfirmed map is overwritten on re-submit and an already-confirmed map returns a per-item error_score_already_submitted_by_game, so a retried batch is safe without an Idempotency-Key.",
@@ -1017,7 +1207,7 @@
       "post": {
         "operationId": "createGameMatch",
         "tags": [
-          "Game"
+          "Game: Matches"
         ],
         "summary": "Create a two-sided game-originated match",
         "description": "Creates an ACCEPTED + PUBLISHED match for the API key's bound game between two active teams in that game. Requires the game.lifecycle:read-write permission. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key + body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict.",
@@ -1364,7 +1554,7 @@
           "Leaderboards"
         ],
         "summary": "Get an organization's leaderboard rank",
-        "description": "Returns an organization's rank for the requested leaderboard filters. Organization stats are computed from active, enabled, non-private teams. Requires orgs.profile:read.",
+        "description": "Returns an organization's 1-based rank for the requested leaderboard filters, or null when the organization is unranked (no qualifying match activity for the filter). Resolve the org by slug or Convex organization ID. sortBy defaults to wins (also winRate, experience). Pass gameSlug to rank by that game's stats only; omit it for the global all-games rank. Organization stats are aggregated from the org's active, enabled, non-private teams. Ranking counts only public, active, non-disabled organizations with at least one match. Requires orgs.profile:read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -1572,7 +1762,7 @@
           "Leaderboards"
         ],
         "summary": "Get the API key owner's player rank",
-        "description": "Returns the API key owner's rank in the global player leaderboard. gameSlug is not supported. Requires users.profile:read.",
+        "description": "Returns the API key owner's own rank in the global player leaderboard (the principal is ranked, so there is no identifier path param, unlike the team and organization rank endpoints). Sort with sortBy (wins, winRate, or experience; default wins). rank is null when the owner has no completed matches, has a private profile, is currently banned, or ranks beyond the bounded best-effort scan window (about 2000 entries). gameSlug is not supported and returns 400. Requires users.profile:read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -1770,7 +1960,7 @@
           "Leaderboards"
         ],
         "summary": "Get a team's leaderboard rank",
-        "description": "Returns a team's rank for the requested leaderboard filters. Private teams return rank null unless they are otherwise excluded from the API leaderboard. Requires teams.profile:read.",
+        "description": "Resolves a single team by slug or ID and returns its 1-indexed rank on the public team leaderboard. `sortBy` selects the ranking field: wins (default), winRate, or experience. Pass `gameSlug` to rank within one game's leaderboard; omit it for the global (all-games) board. An unknown `gameSlug` returns 404. `rank` is null when the team is excluded from the leaderboard (private or disabled) and also when the team ranks beyond the internal scan window, since the rank is a bounded best-effort computation rather than a full-table sort. A missing or inactive team returns 404; an active but excluded team returns 200 with rank null. Requires teams.profile:read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -1880,7 +2070,7 @@
       "post": {
         "operationId": "discoverLeagues",
         "tags": [
-          "Leagues"
+          "League Discovery"
         ],
         "summary": "Discover public leagues",
         "description": "Returns a paginated list of public leagues with optional search and game filtering. Requires the leagues.league_public:read permission.",
@@ -2001,7 +2191,7 @@
       "post": {
         "operationId": "getLeagueProfile",
         "tags": [
-          "Leagues"
+          "League Discovery"
         ],
         "summary": "Get a league profile",
         "description": "Returns the public profile for a single league, resolved by slug or Convex ID. Requires the leagues.league_public:read permission.",
@@ -2070,7 +2260,7 @@
       "post": {
         "operationId": "getLeagueActivityFeed",
         "tags": [
-          "Leagues"
+          "League: Overview"
         ],
         "summary": "Get league activity feed",
         "description": "Returns recent league activity entries. Requires a league-operator key bound to the league and leagues.league_admin:read.",
@@ -2178,7 +2368,7 @@
       "post": {
         "operationId": "getLeagueApplyEligibility",
         "tags": [
-          "Leagues"
+          "League Discovery"
         ],
         "summary": "Get league application eligibility",
         "description": "Returns apply-to-join eligibility for the API key owner's applicable teams, or for a specified team the owner leads. Requires leagues.league_public:read.",
@@ -2286,7 +2476,7 @@
       "post": {
         "operationId": "getLeagueBans",
         "tags": [
-          "Leagues"
+          "League: Moderation"
         ],
         "summary": "Get league team bans",
         "description": "Returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.",
@@ -2374,7 +2564,7 @@
       "post": {
         "operationId": "revokeLeagueBan",
         "tags": [
-          "Leagues"
+          "League: Moderation"
         ],
         "summary": "Revoke a league team ban",
         "description": "Revokes an active league team ban. Requires a league-operator key bound to the league and the league bans capability.",
@@ -2492,7 +2682,7 @@
       "post": {
         "operationId": "createLeagueBan",
         "tags": [
-          "Leagues"
+          "League: Moderation"
         ],
         "summary": "Create a league team ban",
         "description": "Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.",
@@ -2600,7 +2790,7 @@
       "post": {
         "operationId": "updateLeagueBranding",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Update league branding",
         "description": "Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.",
@@ -2718,7 +2908,7 @@
       "post": {
         "operationId": "clearLeagueCooldown",
         "tags": [
-          "Leagues"
+          "League: Moderation"
         ],
         "summary": "Clear a league cooldown",
         "description": "Clears an active league member cooldown early. Requires a league-operator key bound to the league and the league cooldowns capability.",
@@ -2827,7 +3017,7 @@
       "post": {
         "operationId": "updateLeagueCooldownConfig",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Update league cooldown config",
         "description": "Updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.",
@@ -2945,7 +3135,7 @@
       "post": {
         "operationId": "issueLeagueCooldown",
         "tags": [
-          "Leagues"
+          "League: Moderation"
         ],
         "summary": "Issue a league cooldown",
         "description": "Issues or updates a manual cooldown for a league member. Requires a league-operator key bound to the league and the league cooldowns capability.",
@@ -3053,7 +3243,7 @@
       "post": {
         "operationId": "getLeagueDashboardStats",
         "tags": [
-          "Leagues"
+          "League: Overview"
         ],
         "summary": "Get league dashboard stats",
         "description": "Returns aggregate league admin dashboard counts. Requires a league-operator key bound to the league and leagues.league_admin:read.",
@@ -3142,7 +3332,7 @@
       "post": {
         "operationId": "getLeagueDisplayRules",
         "tags": [
-          "Leagues"
+          "League Discovery"
         ],
         "summary": "Get league display rules",
         "description": "Returns display rules configured for a league game. Requires leagues.league_public:read.",
@@ -3250,7 +3440,7 @@
       "delete": {
         "operationId": "removeLeagueDisplayRule",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Remove a league display rule",
         "description": "Removes an informational display rule. Requires a league-operator key bound to the league and the league display_rules capability.",
@@ -3359,7 +3549,7 @@
       "post": {
         "operationId": "reorderLeagueDisplayRules",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Reorder league display rules",
         "description": "Reorders display rules for a league game. Requires a league-operator key bound to the league and the league display_rules capability.",
@@ -3467,7 +3657,7 @@
       "post": {
         "operationId": "upsertLeagueDisplayRule",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Upsert a league display rule",
         "description": "Creates or updates an informational display rule for a league game. Requires a league-operator key bound to the league and the league display_rules capability.",
@@ -3585,7 +3775,7 @@
       "post": {
         "operationId": "getLeagueGames",
         "tags": [
-          "Leagues"
+          "League Discovery"
         ],
         "summary": "Get league games",
         "description": "Returns games configured for a league resolved by slug or Convex ID. Requires leagues.league_public:read.",
@@ -3674,7 +3864,7 @@
       "delete": {
         "operationId": "removeLeagueGame",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Remove a league game",
         "description": "Removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.",
@@ -3793,7 +3983,7 @@
       "post": {
         "operationId": "toggleLeagueGame",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Toggle a league game",
         "description": "Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires the league games capability.",
@@ -3921,7 +4111,7 @@
       "post": {
         "operationId": "addLeagueGame",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Add a league game",
         "description": "Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.",
@@ -4039,7 +4229,7 @@
       "post": {
         "operationId": "submitLeaguePlayerStats",
         "tags": [
-          "Leagues"
+          "League: Scores"
         ],
         "summary": "Submit or update league player stats for a map",
         "description": "Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.",
@@ -4147,7 +4337,7 @@
       "post": {
         "operationId": "submitLeagueScores",
         "tags": [
-          "Leagues"
+          "League: Scores"
         ],
         "summary": "Submit league match scores in a batch",
         "description": "Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.",
@@ -4265,7 +4455,7 @@
       "post": {
         "operationId": "submitLeagueMapScore",
         "tags": [
-          "Leagues"
+          "League: Scores"
         ],
         "summary": "Submit one league match map score",
         "description": "Submits the score for one map in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.",
@@ -4393,7 +4583,7 @@
       "patch": {
         "operationId": "updateLeagueMatchStatus",
         "tags": [
-          "Leagues"
+          "League: Scores"
         ],
         "summary": "Update a league match's lifecycle status",
         "description": "Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.",
@@ -4511,7 +4701,7 @@
       "post": {
         "operationId": "submitLeagueBatchMatchScores",
         "tags": [
-          "Leagues"
+          "League: Scores"
         ],
         "summary": "Submit league map scores across multiple matches",
         "description": "Submits map scores for up to 50 league match items in one request. Each item is independently checked against the key's bound league and returns a per-item result. Requires the league scores capability.",
@@ -4609,7 +4799,7 @@
       "post": {
         "operationId": "getLeagueMembers",
         "tags": [
-          "Leagues"
+          "League: Membership & Teams"
         ],
         "summary": "Get league staff members",
         "description": "Returns staff members for a league resolved by slug. The API key owner must have a MEMBER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.",
@@ -4678,7 +4868,7 @@
       "post": {
         "operationId": "removeLeagueMember",
         "tags": [
-          "Leagues"
+          "League: Membership & Teams"
         ],
         "summary": "Remove a league staff member",
         "description": "Deactivates a league staff membership. Requires a league-operator key bound to the league and the league members capability.",
@@ -4788,7 +4978,7 @@
       "post": {
         "operationId": "updateLeagueMemberRole",
         "tags": [
-          "Leagues"
+          "League: Membership & Teams"
         ],
         "summary": "Update a league staff member role",
         "description": "Updates a league staff member role. Requires a league-operator key bound to the league and the league members capability.",
@@ -4907,7 +5097,7 @@
       "post": {
         "operationId": "addLeagueMember",
         "tags": [
-          "Leagues"
+          "League: Membership & Teams"
         ],
         "summary": "Add a league staff member",
         "description": "Adds or reactivates a league staff member. Requires a league-operator key bound to the league and the league members capability.",
@@ -5015,7 +5205,7 @@
       "post": {
         "operationId": "transferLeagueOwnership",
         "tags": [
-          "Leagues"
+          "League: Membership & Teams"
         ],
         "summary": "Transfer league ownership",
         "description": "Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.",
@@ -5133,7 +5323,7 @@
       "post": {
         "operationId": "getLeaguePenalties",
         "tags": [
-          "Leagues"
+          "League: Moderation"
         ],
         "summary": "Get league penalties and cooldowns",
         "description": "Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.",
@@ -5221,7 +5411,7 @@
       "post": {
         "operationId": "createLeaguePenalty",
         "tags": [
-          "Leagues"
+          "League: Moderation"
         ],
         "summary": "Create a league penalty",
         "description": "Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a league-operator key bound to the league and the league penalties capability.",
@@ -5329,7 +5519,7 @@
       "post": {
         "operationId": "updateLeaguePointsConfig",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Update league points config",
         "description": "Creates or updates the points configuration for a league game. Requires a league-operator key bound to the league and the league points capability.",
@@ -5447,7 +5637,7 @@
       "post": {
         "operationId": "getLeagueRules",
         "tags": [
-          "Leagues"
+          "League Discovery"
         ],
         "summary": "Get league rules and points config",
         "description": "Returns the game rules and points configuration for a league + game, resolved by league slug. Requires the leagues.league_public:read permission.",
@@ -5535,7 +5725,7 @@
       "post": {
         "operationId": "applyLeagueRuleTemplate",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Apply a league rule template",
         "description": "Applies a rule template to a league game. Requires a league-operator key bound to the league and the league rules capability.",
@@ -5653,7 +5843,7 @@
       "post": {
         "operationId": "updateLeagueRules",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Update league game rules",
         "description": "Creates or updates enforced rules for a league game. Requires a league-operator key bound to the league and the league rules capability.",
@@ -5771,7 +5961,7 @@
       "post": {
         "operationId": "getLeagueSeasonOptions",
         "tags": [
-          "Leagues"
+          "League Discovery"
         ],
         "summary": "Get league season options",
         "description": "Returns season selector options for a league game. Requires leagues.league_public:read.",
@@ -5879,7 +6069,7 @@
       "post": {
         "operationId": "getLeagueSeasons",
         "tags": [
-          "Leagues"
+          "League Discovery"
         ],
         "summary": "Get league seasons",
         "description": "Returns seasons for a league resolved by slug, with optional game and status filtering. Requires the leagues.league_public:read permission.",
@@ -5967,7 +6157,7 @@
       "delete": {
         "operationId": "deleteLeagueSeason",
         "tags": [
-          "Leagues"
+          "League: Seasons"
         ],
         "summary": "Delete a league season",
         "description": "Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.",
@@ -6074,7 +6264,7 @@
       "post": {
         "operationId": "getLeagueSeason",
         "tags": [
-          "Leagues"
+          "League Discovery"
         ],
         "summary": "Get a league season",
         "description": "Returns a single season that belongs to the resolved league. Requires leagues.league_public:read.",
@@ -6173,7 +6363,7 @@
       "post": {
         "operationId": "activateLeagueSeason",
         "tags": [
-          "Leagues"
+          "League: Seasons"
         ],
         "summary": "Activate a league season",
         "description": "Activates an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.",
@@ -6282,7 +6472,7 @@
       "post": {
         "operationId": "completeLeagueSeason",
         "tags": [
-          "Leagues"
+          "League: Seasons"
         ],
         "summary": "Complete a league season",
         "description": "Completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.",
@@ -6391,7 +6581,7 @@
       "post": {
         "operationId": "createLeagueSeason",
         "tags": [
-          "Leagues"
+          "League: Seasons"
         ],
         "summary": "Create a league season",
         "description": "Creates an upcoming season for a league game. Requires the league seasons capability. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.",
@@ -6509,7 +6699,7 @@
       "post": {
         "operationId": "getLeagueSettings",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Get league settings",
         "description": "Returns full league settings for admin tooling. Requires a league-operator key bound to the league and leagues.settings_read:read.",
@@ -6598,7 +6788,7 @@
       "post": {
         "operationId": "setLeagueEnabled",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Set league enabled state",
         "description": "Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.",
@@ -6706,7 +6896,7 @@
       "post": {
         "operationId": "requestLeagueShutdown",
         "tags": [
-          "Leagues"
+          "League: Rules & Config"
         ],
         "summary": "Request league shutdown",
         "description": "Requests TeamBattles staff review for league shutdown. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API.",
@@ -6805,7 +6995,7 @@
       "post": {
         "operationId": "getLeagueStandings",
         "tags": [
-          "Leagues"
+          "League Discovery"
         ],
         "summary": "Get league standings",
         "description": "Returns approved teams with their season stats, ranked by standings position, for a league resolved by slug. Requires the leagues.league_public:read permission.",
@@ -6893,7 +7083,7 @@
       "post": {
         "operationId": "approveLeagueTeamApplication",
         "tags": [
-          "Leagues"
+          "League: Membership & Teams"
         ],
         "summary": "Approve a league team application",
         "description": "Approves a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.",
@@ -7013,7 +7203,7 @@
       "post": {
         "operationId": "denyLeagueTeamApplication",
         "tags": [
-          "Leagues"
+          "League: Membership & Teams"
         ],
         "summary": "Deny a league team application",
         "description": "Denies a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.",
@@ -7132,7 +7322,7 @@
       "post": {
         "operationId": "removeLeagueTeam",
         "tags": [
-          "Leagues"
+          "League: Membership & Teams"
         ],
         "summary": "Remove a league team",
         "description": "Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a league-operator key bound to the league and the league teams capability.",
@@ -7261,7 +7451,7 @@
       "patch": {
         "operationId": "updateLeagueTicket",
         "tags": [
-          "Leagues"
+          "League: Tickets"
         ],
         "summary": "Update a league support ticket",
         "description": "Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.",
@@ -7379,7 +7569,7 @@
       "post": {
         "operationId": "escalateLeagueTicket",
         "tags": [
-          "Leagues"
+          "League: Tickets"
         ],
         "summary": "Escalate a league support ticket",
         "description": "Escalates a league-scoped support ticket to TeamBattles staff. Requires a league-operator key bound to the league and the league tickets capability.",
@@ -7507,7 +7697,7 @@
       "post": {
         "operationId": "replyToLeagueTicket",
         "tags": [
-          "Leagues"
+          "League: Tickets"
         ],
         "summary": "Reply to a league support ticket",
         "description": "Adds a reply or internal note to a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.",
@@ -7625,7 +7815,7 @@
       "post": {
         "operationId": "createLeagueTicket",
         "tags": [
-          "Leagues"
+          "League: Tickets"
         ],
         "summary": "Create a league support ticket",
         "description": "Creates a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.",
@@ -7733,7 +7923,7 @@
       "post": {
         "operationId": "getLeagueTemplates",
         "tags": [
-          "Leagues"
+          "League Discovery"
         ],
         "summary": "Get league rule templates",
         "description": "Returns league rule templates visible to authenticated API clients, optionally filtered by game or official status. Requires leagues.league_public:read.",
@@ -7829,7 +8019,7 @@
       "get": {
         "operationId": "getMatchDetail",
         "tags": [
-          "Matches"
+          "Match Discovery"
         ],
         "summary": "Get match detail",
         "description": "Returns a participant-gated match detail projection. Lobby codes and raw match documents are intentionally omitted. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.",
@@ -7918,7 +8108,7 @@
       "post": {
         "operationId": "createMatchAcceptance",
         "tags": [
-          "Matches"
+          "My Matches"
         ],
         "summary": "Create a match acceptance request",
         "description": "Creates a match acceptance request as the personal API key owner. The owner must captain the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
@@ -8036,7 +8226,7 @@
       "post": {
         "operationId": "updateMatchAttendance",
         "tags": [
-          "Matches"
+          "My Matches"
         ],
         "summary": "Update match attendance",
         "description": "Updates the personal API key owner's own attendance status for a match. The owner must already be rostered in the match; the platform may swap active and bench players automatically. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
@@ -8154,7 +8344,7 @@
       "post": {
         "operationId": "cancelMatch",
         "tags": [
-          "Matches"
+          "My Matches"
         ],
         "summary": "Cancel a match",
         "description": "Cancels a match as the personal API key owner. The owner must be able to manage the match (captain a participating team or be an admin). Past the league grace period an accepted league match is treated as a forfeit. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
@@ -8272,7 +8462,7 @@
       "get": {
         "operationId": "listMatchChatMessages",
         "tags": [
-          "Chat"
+          "Match Chat"
         ],
         "summary": "List a match chat room's messages",
         "description": "Returns the messages of a match's chat room, newest first, with cursor pagination. The API key owner must be a participant of the match (a member of one of the match's teams); a non-participant receives 404. Requires the chat.read scope.",
@@ -8418,7 +8608,7 @@
       "post": {
         "operationId": "sendMatchChatMessage",
         "tags": [
-          "Chat"
+          "Match Chat"
         ],
         "summary": "Send a message to a match chat room",
         "description": "Sends a message to a match's chat room as the API key owner. The owner must be a participant of the match; a non-participant receives 403. Requires the chat.write scope and the writes feature. Supports the Idempotency-Key header.",
@@ -8536,7 +8726,7 @@
       "post": {
         "operationId": "forfeitMatch",
         "tags": [
-          "Matches"
+          "My Matches"
         ],
         "summary": "Forfeit a match",
         "description": "Forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
@@ -8654,7 +8844,7 @@
       "post": {
         "operationId": "updateMatchLobbyCode",
         "tags": [
-          "Matches"
+          "My Matches"
         ],
         "summary": "Set a match lobby code",
         "description": "Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
@@ -8772,7 +8962,7 @@
       "get": {
         "operationId": "getMatchPlayers",
         "tags": [
-          "Matches"
+          "Match Discovery"
         ],
         "summary": "Get match players",
         "description": "Returns participant-gated player rows for a match, including roster type and attendance state. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.",
@@ -8861,7 +9051,7 @@
       "post": {
         "operationId": "markMatchReady",
         "tags": [
-          "Matches"
+          "My Matches"
         ],
         "summary": "Mark a match team ready",
         "description": "Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
@@ -8979,10 +9169,10 @@
       "get": {
         "operationId": "getMatchScores",
         "tags": [
-          "Matches"
+          "Match Discovery"
         ],
         "summary": "Get all map scores",
-        "description": "Retrieve all map scores for a match, including a series score summary. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.",
+        "description": "Retrieve every map score for a match plus a series summary. Returns the full unpaginated list of map scores (no cursor or limit) and a seriesScore counting map wins per side, computed only from CONFIRMED maps and awarding a map to the side with the strictly higher score (equal scores count for neither). Each score's scoreStatus is CONFIRMED or PENDING; submittedBy, confirmedBy, and createdAt may be null. Screenshot URLs are suppressed (empty array) for any score whose API-uploaded image has not passed content moderation. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read. The caller must be an active member of one of the match's two teams; non-participants receive 403, unless they hold a TeamBattles staff role, which can read any match's scores.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -9046,7 +9236,7 @@
       "patch": {
         "operationId": "confirmMatchScores",
         "tags": [
-          "Matches"
+          "My Matches"
         ],
         "summary": "Confirm a map score",
         "description": "Confirm a map score submitted by the opposing team. Only the opposing team's captain can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.",
@@ -9132,7 +9322,7 @@
       "post": {
         "operationId": "submitMatchScores",
         "tags": [
-          "Matches"
+          "My Matches"
         ],
         "summary": "Submit a map score",
         "description": "Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.",
@@ -9220,7 +9410,7 @@
       "post": {
         "operationId": "createMatch",
         "tags": [
-          "Matches"
+          "My Matches"
         ],
         "summary": "Create a match",
         "description": "Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
@@ -9326,7 +9516,7 @@
       "post": {
         "operationId": "discoverMatches",
         "tags": [
-          "Matches"
+          "Match Discovery"
         ],
         "summary": "Discover open matches",
         "description": "Returns published pending open matches. League matches are excluded unless leagueId is provided. gameId and gameSlug are mutually exclusive. Requires matches.public_matches:read.",
@@ -9526,7 +9716,7 @@
       "post": {
         "operationId": "listOrgMatches",
         "tags": [
-          "Matches"
+          "Match Discovery"
         ],
         "summary": "List an organization's matches",
         "description": "Returns matches across all teams in an organization (resolved by id or slug), newest first, with cursor pagination. The authenticated user must be an active member of the organization. Requires the matches.org_matches:read permission.",
@@ -9637,7 +9827,7 @@
           "Organizations"
         ],
         "summary": "List active organization members",
-        "description": "Returns active member rows when the organization is public or the API key owner is an active organization member. Requires orgs.profile:read.",
+        "description": "Returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row's `id` is the membership row ID, not the user ID, and the row carries the member's API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -9750,7 +9940,7 @@
           "Organizations"
         ],
         "summary": "Get organization aggregate stats",
-        "description": "Returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.",
+        "description": "Returns an organization's aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization's active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -9854,7 +10044,7 @@
           "Organizations"
         ],
         "summary": "List organization teams",
-        "description": "Returns organization teams when the organization is public or the API key owner is an active organization member. Non-members do not receive private or disabled teams. Requires orgs.profile:read.",
+        "description": "Returns an organization's active teams, resolved by slug or organization ID. Readable when the organization is public or the API key owner is an active member - otherwise responds 403. Members see all active teams; non-members do not receive private or disabled teams. The full result set is returned in one response with a count - there is no pagination, limit, or guaranteed sort order. Requires orgs.profile:read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -9967,7 +10157,7 @@
           "Organizations"
         ],
         "summary": "Discover public organizations",
-        "description": "Returns a neutral discovery list of active, public, non-disabled organizations. Results do not exclude organizations the API key owner belongs to and do not include join-request flags. Requires orgs.profile:read.",
+        "description": "Returns a neutral, ranked discovery list of active, public, non-disabled organizations. Each result is a small summary (id, slug, name, tag, avatarUrl, visibility); `count` is the size of the returned page, not a total. Results are sorted featured organizations first, then by most wins, then newest. `limit` is 1-100 (default 50); ranking is computed over at most the first 1000 candidate organizations and there is no cursor pagination, so the response is a single ranked page. `search` filters by case-insensitive name substring and is only applied when it is at least 2 characters (shorter values are ignored). Unlike an in-app feed, results do not exclude organizations the API key owner belongs to and do not include membership or join-request flags. Requires orgs.profile:read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -10177,7 +10367,7 @@
           "Strategies"
         ],
         "summary": "Get the shapes of a strategy by share slug",
-        "description": "Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index. Hidden working shapes are omitted. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it). Requires strategies.read.",
+        "description": "Returns the canvas shapes of a shareable strategy resolved by its public share slug, ordered by stacking index (zIndex). Hidden working shapes are omitted. The full set is returned in a single response - there is no pagination - and the read is bounded to the first 2000 rows in stacking order, so a board larger than that is truncated. The same visibility gate as the strategy read applies (private returns 404 unless the API key owner owns it; public and unlisted are readable by any key). Requires strategies.read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -10266,7 +10456,7 @@
           "Streaming"
         ],
         "summary": "Batch live-stream status lookup",
-        "description": "Returns compact live status for up to 50 users. Users that do not exist or whose profile hides stream status from the caller are omitted from the response. Requires stream.read.",
+        "description": "Filtered read returning compact live status for a batch of users (POST is used only to carry the id list; no data is written). Send a body of 1 - 50 Convex user IDs; duplicates are ignored and over-50 is rejected. Each response row is { id, isLive, platforms } and does not include the primaryStream detail returned by GET /users/{identifier}/stream. Users that do not exist, are banned, or whose profile hides stream status from the caller are omitted from the response (the batch never reveals which case applied or that a hidden user exists), so count may be less than the number of IDs sent. Unlike the single-user stream endpoint, IDs are matched by user ID only; usernames are not resolved. No pagination and no guaranteed ordering. Requires stream.read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -10453,7 +10643,7 @@
       "post": {
         "operationId": "listTeamMatches",
         "tags": [
-          "Matches"
+          "Match Discovery"
         ],
         "summary": "List a team's matches",
         "description": "Returns matches for a specific team (resolved by id or slug), newest first, with cursor pagination. The authenticated user must be an active member of the team. Requires the matches.team_matches:read permission.",
@@ -10564,7 +10754,7 @@
           "Teams"
         ],
         "summary": "List active team members",
-        "description": "Returns active roster rows when the team is public or the API key owner is an active team member. Requires teams.roster:read.",
+        "description": "Returns the full active roster when the team is public or the API key owner is an active team member; otherwise responds 403. The team is resolved by slug or Convex team ID and must be active, returning 404 if not found. Rows are sorted by role - captains first, then co-captains, then members - and each row's id is the membership row ID, not the user ID. Not paginated: every active member is returned in one response with a count, and there is no limit, cursor, or page token. Requires teams.roster:read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -10674,7 +10864,7 @@
       "get": {
         "operationId": "listTickets",
         "tags": [
-          "Tickets"
+          "Support"
         ],
         "summary": "List the API key owner's support tickets",
         "description": "Returns the API key owner's tickets, newest first, with cursor pagination. Requires the tickets.read scope.",
@@ -10800,7 +10990,7 @@
       "post": {
         "operationId": "createTicket",
         "tags": [
-          "Tickets"
+          "Support"
         ],
         "summary": "Create a support ticket",
         "description": "Creates a support ticket owned by the API key owner. Requires the tickets.write scope and the writes feature. Supports the Idempotency-Key header.",
@@ -10896,7 +11086,7 @@
       "get": {
         "operationId": "getTicket",
         "tags": [
-          "Tickets"
+          "Support"
         ],
         "summary": "Get one of the API key owner's tickets",
         "description": "Returns one of the API key owner's tickets and its message thread (internal staff notes excluded). A ticket the owner does not own reads as 404. Requires the tickets.read scope.",
@@ -10995,7 +11185,7 @@
       "post": {
         "operationId": "addTicketMessage",
         "tags": [
-          "Tickets"
+          "Support"
         ],
         "summary": "Reply to one of the API key owner's tickets",
         "description": "Adds a reply message to one of the API key owner's tickets. Closed tickets are rejected. Requires the tickets.write scope and the writes feature. Supports the Idempotency-Key header.",
@@ -11314,7 +11504,7 @@
       "get": {
         "operationId": "listUserOwnConnections",
         "tags": [
-          "Users"
+          "My Account"
         ],
         "summary": "List the API key owner's connections",
         "description": "Returns the full set of connections for the API key owner, including private connections and the owner-only isSelfReported and showOnProfile flags. The user is always derived from the API key. Requires users.profile:read.",
@@ -11415,7 +11605,7 @@
       "get": {
         "operationId": "listUserGameRanks",
         "tags": [
-          "Users"
+          "My Account"
         ],
         "summary": "List the API key owner's game ranks",
         "description": "Returns every game rank for the API key owner. The user is always derived from the API key. Requires game.ranks:read.",
@@ -11480,7 +11670,7 @@
       "post": {
         "operationId": "upsertUserGameRank",
         "tags": [
-          "Users"
+          "My Account"
         ],
         "summary": "Upsert one of the API key owner's game ranks",
         "description": "Creates or overwrites the API key owner's rank for a single (gameId, mode) slot, forcing source to \"api\". The user is always derived from the API key. Requires game.ranks:read-write and the writes feature (api_pro).",
@@ -11566,7 +11756,7 @@
       "delete": {
         "operationId": "deleteUserGameRank",
         "tags": [
-          "Users"
+          "My Account"
         ],
         "summary": "Delete one of the API key owner's game ranks",
         "description": "Deletes the API key owner's rank for a single (gameId, mode) slot. No-op when no such rank exists. The user is always derived from the API key. Requires game.ranks:read-write and the writes feature (api_pro).",
@@ -11665,7 +11855,7 @@
       "post": {
         "operationId": "listUserMatches",
         "tags": [
-          "Matches"
+          "My Matches"
         ],
         "summary": "List the authenticated user's matches",
         "description": "Returns matches the API key owner participates in, newest first, with cursor pagination. Requires the matches.user_matches:read permission.",
@@ -11751,7 +11941,7 @@
       "get": {
         "operationId": "listUserOngoingMatches",
         "tags": [
-          "Matches"
+          "My Matches"
         ],
         "summary": "List the API key owner's ongoing matches",
         "description": "Returns published ACCEPTED, READY, and IN_PROGRESS matches for active teams the API key owner belongs to. The user is always derived from the API key. Requires matches.user_matches:read.",
@@ -11828,7 +12018,7 @@
       "get": {
         "operationId": "getUserProfile",
         "tags": [
-          "Users"
+          "Players"
         ],
         "summary": "Get a public user profile",
         "description": "Returns an API-safe user profile projection. Private profiles return only the base profile envelope. Requires users.profile:read.",
@@ -11932,10 +12122,10 @@
       "get": {
         "operationId": "listUserConnections",
         "tags": [
-          "Users"
+          "Players"
         ],
         "summary": "List public user connections",
-        "description": "Returns user connections for public profiles or self. Non-self responses include only connections marked visible on the profile. Requires users.profile:read.",
+        "description": "Returns a user's linked-account connections. Access requires a public profile or self: a non-self viewer of a limited or private profile gets 403, which is stricter than the stats, teams, and organizations endpoints that also allow limited profiles. Non-self responses include only the connections the user marked visible on their profile; self responses include all of them. isVerified is true when the connection's platform matches one of the user's linked OAuth providers, not the connection's self-reported flag. Not paginated: returns the full matching set as connections plus a count, in no guaranteed order. Banned users return 404. Requires users.profile:read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -12045,10 +12235,10 @@
       "get": {
         "operationId": "listUserOrganizations",
         "tags": [
-          "Users"
+          "Players"
         ],
-        "summary": "List user organization affiliations",
-        "description": "Returns API-safe organization affiliation rows for public or limited profiles, plus self. Non-self rows include only public organizations. Requires users.profile:read.",
+        "summary": "List a user's organization affiliations",
+        "description": "Returns the target user's active organization memberships, each as an API-safe organization summary plus the membership role and joinedAt. The identifier is a username or Convex user ID. Requires the users.profile:read scope. Readable only for public or limited profiles (or the API key owner's own profile); a private profile returns 403, and an unknown or banned user returns 404. For anyone other than the profile owner, non-public organizations are omitted; the owner sees all of their memberships. Not paginated - the full set is returned with a count, in no guaranteed order (not sorted by name or joinedAt).",
         "security": [
           {
             "ApiKeyAuth": []
@@ -12158,7 +12348,7 @@
       "get": {
         "operationId": "getUserStats",
         "tags": [
-          "Users"
+          "Players"
         ],
         "summary": "Get user aggregate stats",
         "description": "Returns aggregate user stats for public or limited profiles, plus self. Private non-self profiles return 403. Requires users.profile:read.",
@@ -12265,7 +12455,7 @@
           "Streaming"
         ],
         "summary": "Get a user's live-stream status",
-        "description": "Returns whether a user is live, on which platforms, and their primary stream details for public or limited profiles, plus self. Private non-self profiles return 403. Requires stream.read.",
+        "description": "Returns whether a user is live, the platforms they are live on, and their primary (highest-viewer) stream details. The {identifier} may be a username or a Convex user ID. Visible for public or limited profiles, plus self; a private non-self profile returns 403. Unknown or currently-banned users return 404 (a banned user's existence is not leaked). When offline, isLive is false, platforms is empty, and primaryStream is null. Requires stream.read.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -12351,10 +12541,10 @@
       "get": {
         "operationId": "listUserTeams",
         "tags": [
-          "Users"
+          "Players"
         ],
         "summary": "List user team affiliations",
-        "description": "Returns API-safe team affiliation rows for public or limited profiles, plus self. Non-self rows follow the public-profile affiliation filters. Requires users.profile:read.",
+        "description": "Returns the user's active team memberships as a non-paginated list with a count and response timestamp - there is no cursor, limit, or sort parameter, and rows come back in storage order. Each row is an API-safe team summary plus the membership role, joinedAt, and the team's parent organization (null when the team has no organization). Only active memberships are included. Requires the target profile to be public or limited (a private profile returns 403); the requester always sees their own affiliations regardless of visibility. For any profile other than your own, only teams that belong to a public organization are returned - teams in a private or organization-less context are omitted. Banned or unknown identifiers return 404. The identifier may be a username or a Convex user ID. Requires the users.profile:read scope.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -12464,10 +12654,10 @@
       "get": {
         "operationId": "listUserTrophies",
         "tags": [
-          "Users"
+          "Players"
         ],
         "summary": "List user trophies",
-        "description": "Returns user trophies for public profiles or self. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.",
+        "description": "Returns every trophy awarded to the user, sorted newest first by awardedAt, as an unpaginated list with a count (no cursor or limit). The identifier is a username or Convex user ID. Visible only when the target profile is effectively public, or when the profile belongs to the API key owner (self-view is always treated as public); a non-self limited or private profile returns 403. An unknown or banned user returns 404. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.",
         "security": [
           {
             "ApiKeyAuth": []

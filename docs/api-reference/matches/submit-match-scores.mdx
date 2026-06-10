@@ -1,0 +1,83 @@
+---
+title: "Submit A Map Score"
+description: "Submit or overwrite a single map score as a team captain; the opponent confirms it."
+openapi: "POST /matches/{matchId}/scores"
+---
+
+## Permission Required
+
+This endpoint requires `matches.team_matches:read-write` on your API key. A free (`api_free`) key receives `403 error_api_feature_required`; this requires an `api_pro`+ plan.
+
+## Access / Membership Rules
+
+The submission is recorded as the API key owner, derived from the key itself - it is never accepted as a body field. Only a team captain can submit (or overwrite) a map score. The submitted score starts as `PENDING` and must be confirmed by the opposing team's captain before it counts (see [Confirm A Map Score](/api-reference/matches/confirm-match-scores)). A personal key can only submit scores for matches whose teams its owner captains - the route binding is a no-op and this authorization is enforced inside Convex. A non-personal key receives `403 API_KEY_PERMISSION_DENIED`.
+
+## Request Body
+
+| Field                  | Type   | Required | Description                                                                                  |
+| ---------------------- | ------ | -------- | -------------------------------------------------------------------------------------------- |
+| `mapIndex`             | number | Yes      | Zero-based map index (non-negative integer).                                                 |
+| `mapId`                | string | Yes      | Map identifier string (e.g. `dust2`).                                                         |
+| `creatorTeamScore`     | number | Yes      | Creator team score (integer, 0 to the per-game maximum).                                      |
+| `opponentTeamScore`    | number | Yes      | Accepted/opponent team score (integer, 0 to the per-game maximum).                            |
+| `screenshotUrls`       | array  | No       | External screenshot URLs (validated as public https server-side, max 10).                    |
+| `screenshotStorageIds` | array  | No       | Convex storage IDs from `POST /uploads/image-url` (validated, max 10; preferred over URLs).  |
+
+## What's Returned
+
+Returns `success: true`, `action: "submitted"`, the `mapIndex`, and `scoreStatus: "PENDING"`. Mintlify renders the full schema from the spec below.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/matches/jm7match123/scores \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"mapIndex": 0, "mapId": "dust2", "creatorTeamScore": 13, "opponentTeamScore": 7}'
+```
+
+```javascript JavaScript
+const matchId = "jm7match123";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/matches/${matchId}/scores`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			mapIndex: 0,
+			mapId: "dust2",
+			creatorTeamScore: 13,
+			opponentTeamScore: 7
+		})
+	}
+);
+
+const { action, scoreStatus } = await response.json();
+console.log(`Score ${action} (${scoreStatus})`);
+```
+
+```python Python
+import requests
+
+match_id = 'jm7match123'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/matches/{match_id}/scores',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={
+        'mapIndex': 0,
+        'mapId': 'dust2',
+        'creatorTeamScore': 13,
+        'opponentTeamScore': 7
+    }
+)
+
+data = response.json()
+print(f"Score {data['action']} ({data['scoreStatus']})")
+```
+
+</RequestExample>

@@ -35,7 +35,7 @@ public class StatsRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/orgs/{identifier}/stats", rawUrl);
     }
     /**
-     * Returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+     * Returns an organization&apos;s aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization&apos;s active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
      * @return a {@link StatsGetResponse}
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
@@ -48,7 +48,7 @@ public class StatsRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+     * Returns an organization&apos;s aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization&apos;s active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link StatsGetResponse}
      * @throws Error When receiving a 401 status code
@@ -69,7 +69,7 @@ public class StatsRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, StatsGetResponse::createFromDiscriminatorValue);
     }
     /**
-     * Returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+     * Returns an organization&apos;s aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization&apos;s active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -77,7 +77,7 @@ public class StatsRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+     * Returns an organization&apos;s aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization&apos;s active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

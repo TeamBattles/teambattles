@@ -1,0 +1,70 @@
+---
+title: "Mark A Match Team Ready"
+description: "Mark a participating team ready as the API key owner, who must captain it."
+openapi: "POST /matches/{matchId}/ready"
+---
+
+## Permission Required
+
+This endpoint requires `matches.user_matches:read-write` on your API key. A free (`api_free`) key receives `403 error_api_feature_required`; this requires an `api_pro`+ plan.
+
+## Access / Membership Rules
+
+The readiness state is set as the API key owner, derived from the key itself - it is never accepted as a body field. The owner must captain the team being marked ready (`teamId`). A personal key can only mark a team ready when its owner actually captains it - the route binding is a no-op and this authorization is enforced inside Convex. A non-personal key receives `403 API_KEY_PERMISSION_DENIED`.
+
+This route accepts an optional `Idempotency-Key` header so retries are safe.
+
+## Request Body
+
+| Field    | Type   | Required | Description                  |
+| -------- | ------ | -------- | ---------------------------- |
+| `teamId` | string | Yes      | Team ID to mark ready.       |
+
+## What's Returned
+
+Returns `success: true`, a `matchReady` boolean indicating whether both teams are now ready, and a `timestamp`. Mintlify renders the full schema from the spec below.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/matches/jm7match123/ready \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"teamId": "jh7abc123"}'
+```
+
+```javascript JavaScript
+const matchId = "jm7match123";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/matches/${matchId}/ready`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ teamId: "jh7abc123" })
+	}
+);
+
+const { matchReady } = await response.json();
+console.log(`Match ready: ${matchReady}`);
+```
+
+```python Python
+import requests
+
+match_id = 'jm7match123'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/matches/{match_id}/ready',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'teamId': 'jh7abc123'}
+)
+
+data = response.json()
+print(f"Match ready: {data['matchReady']}")
+```
+
+</RequestExample>

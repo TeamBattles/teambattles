@@ -1,0 +1,70 @@
+---
+title: "Cancel Match"
+description: "Cancel a match as the API key owner, who must be able to manage it."
+openapi: "POST /matches/{matchId}/cancel"
+---
+
+## Permission Required
+
+This endpoint requires `matches.user_matches:read-write` on your API key. A free (`api_free`) key receives `403 error_api_feature_required`; this requires an `api_pro`+ plan.
+
+## Access / Membership Rules
+
+The cancellation is performed as the API key owner, derived from the key itself - it is never accepted as a body field. The owner must be able to manage the match: captain a participating team or be an admin. Past the league grace period, an accepted league match is treated as a forfeit rather than a plain cancellation. A personal key can only cancel matches its owner can manage - the route binding is a no-op and this authorization is enforced inside Convex. A non-personal key receives `403 API_KEY_PERMISSION_DENIED`.
+
+This route accepts an optional `Idempotency-Key` header so retries are safe.
+
+## Request Body
+
+| Field    | Type   | Required | Description                    |
+| -------- | ------ | -------- | ------------------------------ |
+| `reason` | string | No       | Optional cancellation reason.  |
+
+## What's Returned
+
+Returns `success: true`, the `matchId`, and a `timestamp`. Mintlify renders the full schema from the spec below.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/matches/jm7match123/cancel \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"reason": "Opponent no-showed"}'
+```
+
+```javascript JavaScript
+const matchId = "jm7match123";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/matches/${matchId}/cancel`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ reason: "Opponent no-showed" })
+	}
+);
+
+const { matchId: cancelledId } = await response.json();
+console.log(`Cancelled match ${cancelledId}`);
+```
+
+```python Python
+import requests
+
+match_id = 'jm7match123'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/matches/{match_id}/cancel',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'reason': 'Opponent no-showed'}
+)
+
+data = response.json()
+print(f"Cancelled match {data['matchId']}")
+```
+
+</RequestExample>

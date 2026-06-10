@@ -1,0 +1,17 @@
+---
+title: "Get A Single Match's Details"
+description: "Read detailed lifecycle, team, and score information for one of your game's matches."
+openapi: "GET /game/matches/{matchId}"
+---
+
+## Permission Required
+
+This endpoint requires the `game.lifecycle` permission with `read` access. Your API key must be a **game-developer key bound to a game**. The binding asserts the match belongs to your bound game before the handler runs: a key bound to a different game, or a non-developer key, receives a `403 error_game_scope_mismatch`.
+
+## Access / Membership Rules
+
+The `{matchId}` must resolve to a match in your bound game. An unknown match returns `404 error_match_not_found`.
+
+## What's Returned
+
+Returns `{ match, timestamp }`. The `match` object carries the match `id`, `gameId`, `gameMode`, `status`, `bestOf`, both teams (`creatorTeam` / `acceptedTeam` as `{ _id, name, tag }`), the aggregate `creatorTeamScore` / `acceptedTeamScore`, `winnerTeamId` / `loserTeamId` once decided, the ISO lifecycle timestamps (`scheduledAt`, `startedAt`, `completedAt`, `createdAt`), and `leagueId` / `leagueSeasonId` if the match belongs to a league.

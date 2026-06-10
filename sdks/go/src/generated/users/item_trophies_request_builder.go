@@ -33,7 +33,7 @@ func NewItemTrophiesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2
     urlParams["request-raw-url"] = rawUrl
     return NewItemTrophiesRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns user trophies for public profiles or self. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.
+// Get returns every trophy awarded to the user, sorted newest first by awardedAt, as an unpaginated list with a count (no cursor or limit). The identifier is a username or Convex user ID. Visible only when the target profile is effectively public, or when the profile belongs to the API key owner (self-view is always treated as public); a non-self limited or private profile returns 403. An unknown or banned user returns 404. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.
 // Deprecated: This method is obsolete. Use GetAsTrophiesGetResponse instead.
 // returns a ItemTrophiesResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -62,7 +62,7 @@ func (m *ItemTrophiesRequestBuilder) Get(ctx context.Context, requestConfigurati
     }
     return res.(ItemTrophiesResponseable), nil
 }
-// GetAsTrophiesGetResponse returns user trophies for public profiles or self. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.
+// GetAsTrophiesGetResponse returns every trophy awarded to the user, sorted newest first by awardedAt, as an unpaginated list with a count (no cursor or limit). The identifier is a username or Convex user ID. Visible only when the target profile is effectively public, or when the profile belongs to the API key owner (self-view is always treated as public); a non-self limited or private profile returns 403. An unknown or banned user returns 404. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.
 // returns a ItemTrophiesGetResponseable when successful
 // returns a ErrorEscaped error when the service returns a 401 status code
 // returns a ErrorEscaped error when the service returns a 403 status code
@@ -90,7 +90,7 @@ func (m *ItemTrophiesRequestBuilder) GetAsTrophiesGetResponse(ctx context.Contex
     }
     return res.(ItemTrophiesGetResponseable), nil
 }
-// ToGetRequestInformation returns user trophies for public profiles or self. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.
+// ToGetRequestInformation returns every trophy awarded to the user, sorted newest first by awardedAt, as an unpaginated list with a count (no cursor or limit). The identifier is a username or Convex user ID. Visible only when the target profile is effectively public, or when the profile belongs to the API key owner (self-view is always treated as public); a non-self limited or private profile returns 403. An unknown or banned user returns 404. Event linkage fields such as matchId and tournamentId are omitted. Requires users.profile:read.
 // returns a *RequestInformation when successful
 func (m *ItemTrophiesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemTrophiesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

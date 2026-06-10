@@ -1,0 +1,70 @@
+---
+title: "Set A Match Lobby Code"
+description: "Set or update the lobby code as the API key owner, who must captain a participating team."
+openapi: "POST /matches/{matchId}/lobby-code"
+---
+
+## Permission Required
+
+This endpoint requires `matches.user_matches:read-write` on your API key. A free (`api_free`) key receives `403 error_api_feature_required`; this requires an `api_pro`+ plan.
+
+## Access / Membership Rules
+
+The lobby code is set as the API key owner, derived from the key itself - it is never accepted as a body field. The owner must captain one participating team. Setting the code may advance the match status (reflected in `statusChanged`). A personal key can only set the lobby code for matches whose teams its owner captains - the route binding is a no-op and this authorization is enforced inside Convex. A non-personal key receives `403 API_KEY_PERMISSION_DENIED`.
+
+This route accepts an optional `Idempotency-Key` header so retries are safe.
+
+## Request Body
+
+| Field       | Type   | Required | Description                                          |
+| ----------- | ------ | -------- | ---------------------------------------------------- |
+| `lobbyCode` | string | Yes      | Lobby code to set for the match (1-50 characters).   |
+
+## What's Returned
+
+Returns `success: true`, the `lobbyCode` that was stored, a `statusChanged` boolean indicating whether the match status advanced, and a `timestamp`. Mintlify renders the full schema from the spec below.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/matches/jm7match123/lobby-code \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"lobbyCode": "TB-1234"}'
+```
+
+```javascript JavaScript
+const matchId = "jm7match123";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/matches/${matchId}/lobby-code`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ lobbyCode: "TB-1234" })
+	}
+);
+
+const { lobbyCode, statusChanged } = await response.json();
+console.log(`Lobby code set to ${lobbyCode}, status changed: ${statusChanged}`);
+```
+
+```python Python
+import requests
+
+match_id = 'jm7match123'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/matches/{match_id}/lobby-code',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'lobbyCode': 'TB-1234'}
+)
+
+data = response.json()
+print(f"Lobby code set to {data['lobbyCode']}")
+```
+
+</RequestExample>

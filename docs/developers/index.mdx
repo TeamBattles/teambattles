@@ -54,16 +54,8 @@ https://teambattles.gg/api/v1
 
 ## Rate Limits
 
-| Tier              | Requests per minute |
-| ----------------- | ------------------- |
-| General Developer | 60                  |
-| Game Developer    | 120                 |
-
-Rate limit headers are included in every response:
-
-- `X-RateLimit-Limit` - Maximum requests per window
-- `X-RateLimit-Remaining` - Remaining requests in current window
-- `X-RateLimit-Reset` - Unix timestamp when the window resets
+The API meters requests with token buckets. See the [Rate Limits](/developers/rate-limits)
+guide for the per-key, per-IP, and batch limits, the `429` codes, and the response headers.
 
 ## OpenAPI Specification
 
@@ -72,6 +64,11 @@ The full API schema is available as an OpenAPI 3.1 JSON file. Use it to generate
 <Card title="Download OpenAPI Spec" icon="file-code" href="/api-reference/openapi.json">
 	OpenAPI 3.1 JSON - compatible with Postman, Swagger, and other API tools
 </Card>
+
+## Idempotency
+
+Safely retry writes with the `Idempotency-Key` header - see the
+[Idempotency](/developers/idempotency) guide.
 
 ## SDKs & Libraries
 

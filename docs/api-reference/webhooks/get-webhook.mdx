@@ -1,0 +1,22 @@
+---
+title: "Get A Webhook Endpoint"
+description: "Read one webhook endpoint's configuration and delivery health by id."
+openapi: "GET /webhooks/{id}"
+---
+
+## Permission Required
+
+This endpoint requires the `webhooks.manage` permission (the `{ kind: "webhook" }` scope) on your API key, plus the `webhooks` feature. Webhooks are gated to **`api_pro` or higher** plans: a key on a free plan receives `403 error_api_feature_required`.
+
+## Access / Membership Rules
+
+Webhooks are owner-scoped. The `{id}` must resolve to an endpoint in your key's own derived scope (`user`, `game`, or `league`, depending on your key type). An endpoint owned by another scope - or an unknown id - is reported as `404 error_webhook_not_found`; a cross-scope read is indistinguishable from a real miss.
+
+## What's Returned
+
+Returns the endpoint object: `id`, `scopeType`, `scopeId`, `url`, `secretPrefix` (first 8 chars of the signing secret, display only - never the full secret), `events`, `isActive`, `label`, `failureCount` (consecutive dead-lettered deliveries; the endpoint auto-disables at 50), `lastDeliveredAt`, `lastFailedAt`, `createdAt`, and `updatedAt`. Secret material is never included.
+
+<Note>
+	For the signature scheme, request headers, and the full event catalog, see the
+	[Webhooks guide](/developers/webhooks).
+</Note>

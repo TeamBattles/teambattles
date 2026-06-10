@@ -1,0 +1,68 @@
+---
+title: "Confirm A Map Score"
+description: "Confirm a map score the opposing team submitted; only their opponent can confirm."
+openapi: "PATCH /matches/{matchId}/scores"
+---
+
+## Permission Required
+
+This endpoint requires `matches.team_matches:read-write` on your API key. A free (`api_free`) key receives `403 error_api_feature_required`; this requires an `api_pro`+ plan.
+
+## Access / Membership Rules
+
+The confirmation is recorded as the API key owner, derived from the key itself - it is never accepted as a body field. Only the opposing team's captain can confirm a score: a captain cannot confirm their own team's submission. Confirming moves the map score from `PENDING` to `CONFIRMED` (see [Submit A Map Score](/api-reference/matches/submit-match-scores)). A personal key can only confirm scores for matches whose teams its owner captains - the route binding is a no-op and this authorization is enforced inside Convex. A non-personal key receives `403 API_KEY_PERMISSION_DENIED`.
+
+## Request Body
+
+| Field      | Type   | Required | Description                                            |
+| ---------- | ------ | -------- | ------------------------------------------------------ |
+| `mapIndex` | number | Yes      | Zero-based map index to confirm (non-negative integer). |
+
+## What's Returned
+
+Returns `success: true`, `action: "confirmed"`, the `mapIndex`, and `scoreStatus: "CONFIRMED"`. Mintlify renders the full schema from the spec below.
+
+<RequestExample>
+
+```bash cURL
+curl -X PATCH https://teambattles.gg/api/v1/matches/jm7match123/scores \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"mapIndex": 0}'
+```
+
+```javascript JavaScript
+const matchId = "jm7match123";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/matches/${matchId}/scores`,
+	{
+		method: "PATCH",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ mapIndex: 0 })
+	}
+);
+
+const { action, scoreStatus } = await response.json();
+console.log(`Score ${action} (${scoreStatus})`);
+```
+
+```python Python
+import requests
+
+match_id = 'jm7match123'
+
+response = requests.patch(
+    f'https://teambattles.gg/api/v1/matches/{match_id}/scores',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'mapIndex': 0}
+)
+
+data = response.json()
+print(f"Score {data['action']} ({data['scoreStatus']})")
+```
+
+</RequestExample>

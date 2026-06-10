@@ -1,0 +1,17 @@
+---
+title: "List The API Key Owner's Game Ranks"
+description: "Read every game rank recorded for the API key owner."
+openapi: "GET /user/game-ranks"
+---
+
+## Permission Required
+
+This endpoint requires `game.ranks:read` on your API key. The user is always the API key owner, derived from the key itself - it is never accepted as a parameter, so a key can only read its own ranks.
+
+## Access / Membership Rules
+
+This is a self-read route. The owner is always derived from `principal.user._id`, so there is no membership or participant gating - the key reads exactly the owner's own game ranks.
+
+## What's Returned
+
+Returns an object with a `gameRanks` array, a `count` of how many ranks were returned, and a `timestamp`. Each rank entry is the API-safe projection (structured rank columns - `gameId`, `mode`, `source`, `sr`, `isTop250`, `top250Rank`, `winstreak`, plus `createdAt` / `updatedAt`), never the freeform raw rank blob. Mintlify renders the full schema from the spec below.

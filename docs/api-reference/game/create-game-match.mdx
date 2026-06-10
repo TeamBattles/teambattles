@@ -1,0 +1,99 @@
+---
+title: "Create Game Match"
+description: "Create an accepted, published match for your game between two of its teams."
+openapi: "POST /game/matches/create"
+---
+
+## Permission Required
+
+This endpoint requires the `game.lifecycle` permission with `read-write` access. Your API key must be a **game-developer key bound to a game**; the match is created for that bound game (the game is never a request field).
+
+## Access / Membership Rules
+
+Both `creatorTeamId` and `acceptedTeamId` must be active teams in your bound game. A key bound to a different game, or a non-developer key, receives a `403 error_game_scope_mismatch`.
+
+## Idempotency
+
+Supply an optional `Idempotency-Key` request header to make retries safe: an identical key + body replays the original response, while the same key with a different body returns `409 error_idempotency_key_conflict`.
+
+## What's Returned
+
+Returns `{ "success": true, "matchId": "<id>", "timestamp": "<ISO-8601>" }`. The created match is `ACCEPTED` and `PUBLISHED`.
+
+## Request Body
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `creatorTeamId` | string | Yes | Active team in your game that creates the match. |
+| `acceptedTeamId` | string | Yes | Active opposing team in your game. |
+| `gameModeId` | string | Yes | Game mode identifier (e.g. `search_and_destroy`). |
+| `bestOf` | number | Yes | Series length: one of `1`, `3`, `5`, `7`. |
+| `teamSize` | number | Yes | Players per team (validated against the game's min/max). |
+| `platform` | enum | Yes | `PC` / `XBOX` / `PLAYSTATION` / `CONSOLE_ONLY` / `CROSSPLAY`. |
+| `inputDevice` | enum | Yes | `ALL` / `CONTROLLER` / `KB_M`. |
+| `region` | enum | Yes | `NONE` / `NA_EAST` / `NA_WEST` / `EU` / `ASIA` / `OCEANIA` / `SOUTH_AMERICA` / `MIDDLE_EAST` / `AFRICA`. |
+| `mapSelectionType` | enum | Yes | `COMPETITIVE` / `FLEX`. |
+| `mapPreferenceMode` | enum | Yes | `PREFERRED` / `VETO` / `MANUAL`. |
+
+<Note>Only `selectedMaps`, `selectedObjectives`, and `scheduledAt` are optional; they are rendered from the schema in the playground below.</Note>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/game/matches/create \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: 8f3c-unique-per-create" \
+  -d '{"creatorTeamId":"team_abc","acceptedTeamId":"team_xyz","gameModeId":"search_and_destroy","bestOf":5,"teamSize":4,"platform":"CROSSPLAY","inputDevice":"ALL","region":"NONE","mapSelectionType":"COMPETITIVE","mapPreferenceMode":"PREFERRED"}'
+```
+
+```javascript JavaScript
+const res = await fetch("https://teambattles.gg/api/v1/game/matches/create", {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json",
+		"Idempotency-Key": "8f3c-unique-per-create"
+	},
+	body: JSON.stringify({
+		creatorTeamId: "team_abc",
+		acceptedTeamId: "team_xyz",
+		gameModeId: "search_and_destroy",
+		bestOf: 5,
+		teamSize: 4,
+		platform: "CROSSPLAY",
+		inputDevice: "ALL",
+		region: "NONE",
+		mapSelectionType: "COMPETITIVE",
+		mapPreferenceMode: "PREFERRED"
+	})
+});
+const { matchId } = await res.json();
+```
+
+```python Python
+import requests
+
+res = requests.post(
+    "https://teambattles.gg/api/v1/game/matches/create",
+    headers={
+        "Authorization": "Bearer tb_your_api_key",
+        "Idempotency-Key": "8f3c-unique-per-create",
+    },
+    json={
+        "creatorTeamId": "team_abc",
+        "acceptedTeamId": "team_xyz",
+        "gameModeId": "search_and_destroy",
+        "bestOf": 5,
+        "teamSize": 4,
+        "platform": "CROSSPLAY",
+        "inputDevice": "ALL",
+        "region": "NONE",
+        "mapSelectionType": "COMPETITIVE",
+        "mapPreferenceMode": "PREFERRED",
+    },
+)
+print(res.json()["matchId"])
+```
+
+</RequestExample>

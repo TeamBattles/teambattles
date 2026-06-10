@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Orgs.Item.Stats
         {
         }
         /// <summary>
-        /// Returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+        /// Returns an organization&apos;s aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization&apos;s active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Orgs.Item.Stats.StatsGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace TeamBattles.Sdk.Orgs.Item.Stats
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Orgs.Item.Stats.StatsGetResponse>(requestInfo, global::TeamBattles.Sdk.Orgs.Item.Stats.StatsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+        /// Returns an organization&apos;s aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization&apos;s active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Orgs.Item.Stats.StatsResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -97,7 +97,7 @@ namespace TeamBattles.Sdk.Orgs.Item.Stats
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Orgs.Item.Stats.StatsResponse>(requestInfo, global::TeamBattles.Sdk.Orgs.Item.Stats.StatsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns organization stats when the organization is limited/public or the API key owner is an active organization member. Requires orgs.profile:read.
+        /// Returns an organization&apos;s aggregate competitive stats by slug or organization ID. Stats are returned when the organization profile is limited or public, or when the API key owner is an active organization member (members can read stats for a private org too); a private organization viewed by a non-member returns 403, and an inactive or unknown organization returns 404. `teams` and `members` count only active, enabled teams and active members. `wins`, `losses`, and `matchesPlayed` are aggregated across the organization&apos;s active, enabled teams. `winRate` is wins divided by matchesPlayed and is 0 when no matches have been played. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

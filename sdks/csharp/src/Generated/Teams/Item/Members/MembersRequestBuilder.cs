@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Teams.Item.Members
         {
         }
         /// <summary>
-        /// Returns active roster rows when the team is public or the API key owner is an active team member. Requires teams.roster:read.
+        /// Returns the full active roster when the team is public or the API key owner is an active team member; otherwise responds 403. The team is resolved by slug or Convex team ID and must be active, returning 404 if not found. Rows are sorted by role - captains first, then co-captains, then members - and each row&apos;s id is the membership row ID, not the user ID. Not paginated: every active member is returned in one response with a count, and there is no limit, cursor, or page token. Requires teams.roster:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Teams.Item.Members.MembersGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace TeamBattles.Sdk.Teams.Item.Members
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Teams.Item.Members.MembersGetResponse>(requestInfo, global::TeamBattles.Sdk.Teams.Item.Members.MembersGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns active roster rows when the team is public or the API key owner is an active team member. Requires teams.roster:read.
+        /// Returns the full active roster when the team is public or the API key owner is an active team member; otherwise responds 403. The team is resolved by slug or Convex team ID and must be active, returning 404 if not found. Rows are sorted by role - captains first, then co-captains, then members - and each row&apos;s id is the membership row ID, not the user ID. Not paginated: every active member is returned in one response with a count, and there is no limit, cursor, or page token. Requires teams.roster:read.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Teams.Item.Members.MembersResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -97,7 +97,7 @@ namespace TeamBattles.Sdk.Teams.Item.Members
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Teams.Item.Members.MembersResponse>(requestInfo, global::TeamBattles.Sdk.Teams.Item.Members.MembersResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns active roster rows when the team is public or the API key owner is an active team member. Requires teams.roster:read.
+        /// Returns the full active roster when the team is public or the API key owner is an active team member; otherwise responds 403. The team is resolved by slug or Convex team ID and must be active, returning 404 if not found. Rows are sorted by role - captains first, then co-captains, then members - and each row&apos;s id is the membership row ID, not the user ID. Not paginated: every active member is returned in one response with a count, and there is no limit, cursor, or page token. Requires teams.roster:read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

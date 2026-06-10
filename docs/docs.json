@@ -226,57 +226,301 @@
 						"pages": [
 							"developers/score-submission",
 							"developers/match-lifecycle",
-							"developers/webhooks"
+							"developers/webhooks",
+							"developers/rate-limits",
+							"developers/idempotency"
 						]
 					},
 					{
-						"group": "Endpoints",
+						"group": "Public Read API",
 						"pages": [
-							"api-reference/games/list",
-							"api-reference/games/playlists",
-							"api-reference/profiles/users",
-							"api-reference/profiles/teams",
-							"api-reference/profiles/orgs",
-							"api-reference/leaderboards/players",
-							"api-reference/leaderboards/teams",
-							"api-reference/leaderboards/organizations",
-							"api-reference/matches/detail",
-							"api-reference/matches/players",
-							"api-reference/matches/discover",
-							"api-reference/matches/ongoing",
-							"api-reference/user/matches",
-							"api-reference/teams/matches",
-							"api-reference/orgs/matches",
-							"api-reference/twitch/global-badges",
-							"api-reference/twitch/channel-badges"
+							"developers/public-read-api",
+							{
+								"group": "Games",
+								"pages": [
+									"api-reference/games/list",
+									"api-reference/games/playlists"
+								]
+							},
+							{
+								"group": "Players",
+								"pages": [
+									"api-reference/profiles/users",
+									"GET /users/{identifier}/connections",
+									"GET /users/{identifier}/organizations",
+									"GET /users/{identifier}/stats",
+									"GET /users/{identifier}/teams",
+									"GET /users/{identifier}/trophies"
+								]
+							},
+							{
+								"group": "Teams",
+								"pages": [
+									"api-reference/profiles/teams",
+									"GET /teams/{identifier}/members"
+								]
+							},
+							{
+								"group": "Organizations",
+								"pages": [
+									"GET /orgs/discover",
+									"api-reference/profiles/orgs",
+									"GET /orgs/{identifier}/members",
+									"GET /orgs/{identifier}/stats",
+									"GET /orgs/{identifier}/teams"
+								]
+							},
+							{
+								"group": "Leaderboards",
+								"pages": [
+									"api-reference/leaderboards/organizations",
+									"GET /leaderboards/organizations/{identifier}/rank",
+									"api-reference/leaderboards/players",
+									"GET /leaderboards/players/me/rank",
+									"api-reference/leaderboards/teams",
+									"GET /leaderboards/teams/{identifier}/rank"
+								]
+							},
+							{
+								"group": "Match Discovery",
+								"pages": [
+									"api-reference/matches/detail",
+									"api-reference/matches/players",
+									"GET /matches/{matchId}/scores",
+									"api-reference/matches/discover",
+									"api-reference/orgs/matches",
+									"api-reference/teams/matches"
+								]
+							},
+							{
+								"group": "League Discovery",
+								"pages": [
+									"api-reference/leagues/discover",
+									"api-reference/leagues/templates",
+									"api-reference/leagues/profile",
+									"api-reference/leagues/apply-eligibility",
+									"api-reference/leagues/display-rules",
+									"api-reference/leagues/games",
+									"api-reference/leagues/rules",
+									"api-reference/leagues/season-options",
+									"api-reference/leagues/seasons",
+									"api-reference/leagues/season",
+									"api-reference/leagues/standings"
+								]
+							}
 						]
 					},
 					{
-						"group": "League Endpoints",
+						"group": "Personal API",
 						"pages": [
-							"api-reference/leagues/discover",
-							"api-reference/leagues/profile",
-							"api-reference/leagues/league-branding-update",
-							"api-reference/leagues/games",
-							"api-reference/leagues/standings",
-							"api-reference/leagues/seasons",
-							"api-reference/leagues/season",
-							"api-reference/leagues/season-options",
-							"api-reference/leagues/rules",
-							"api-reference/leagues/display-rules",
-							"api-reference/leagues/templates",
-							"api-reference/leagues/apply-eligibility",
-							"api-reference/leagues/team-approve",
-							"api-reference/leagues/team-deny",
-							"api-reference/leagues/team-remove",
-							"api-reference/leagues/members",
-							"api-reference/leagues/bans",
-							"api-reference/leagues/league-cooldown-config-update",
-							"api-reference/leagues/penalties",
-							"api-reference/leagues/ticket-create",
-							"api-reference/leagues/ticket-reply",
-							"api-reference/leagues/ticket-update",
-							"api-reference/leagues/ticket-escalate"
+							"developers/personal-api",
+							{
+								"group": "My Account",
+								"pages": [
+									"api-reference/user/delete-user-game-rank",
+									"api-reference/user/list-user-own-connections",
+									"api-reference/user/list-user-game-ranks",
+									"api-reference/user/upsert-user-game-rank"
+								]
+							},
+							{
+								"group": "My Matches",
+								"pages": [
+									"api-reference/matches/ongoing",
+									"api-reference/matches/confirm-match-scores",
+									"api-reference/matches/create-match",
+									"api-reference/matches/create-match-acceptance",
+									"api-reference/matches/update-match-attendance",
+									"api-reference/matches/cancel-match",
+									"api-reference/matches/forfeit-match",
+									"api-reference/matches/update-match-lobby-code",
+									"api-reference/matches/mark-match-ready",
+									"api-reference/matches/submit-match-scores",
+									"api-reference/user/matches"
+								]
+							},
+							{
+								"group": "Match Chat",
+								"pages": [
+									"api-reference/chat/list-match-chat-messages",
+									"api-reference/chat/report-chat-message",
+									"api-reference/chat/send-match-chat-message"
+								]
+							}
+						]
+					},
+					{
+						"group": "Game Developer API",
+						"pages": [
+							"developers/game-developer-api",
+							{
+								"group": "Game: Matches",
+								"pages": [
+									"api-reference/game/get-game-match",
+									"api-reference/game/update-game-match-status",
+									"api-reference/game/list-game-matches",
+									"api-reference/game/create-game-match",
+									"api-reference/game/forfeit-game-match"
+								]
+							},
+							{
+								"group": "Game: Scores",
+								"pages": [
+									"api-reference/game/get-game-scores",
+									"api-reference/game/submit-game-batch-match-scores",
+									"api-reference/game/submit-game-scores",
+									"api-reference/game/submit-game-map-score"
+								]
+							},
+							{
+								"group": "Game: Rosters & Stats",
+								"pages": [
+									"api-reference/game/get-game-match-rosters",
+									"api-reference/game/submit-game-player-stats"
+								]
+							}
+						]
+					},
+					{
+						"group": "League Operator API",
+						"pages": [
+							"developers/league-operator-api",
+							{
+								"group": "League: Membership & Teams",
+								"pages": [
+									"api-reference/leagues/members",
+									"api-reference/leagues/add-league-member",
+									"api-reference/leagues/remove-league-member",
+									"api-reference/leagues/update-league-member-role",
+									"api-reference/leagues/transfer-league-ownership",
+									"api-reference/leagues/team-approve",
+									"api-reference/leagues/team-deny",
+									"api-reference/leagues/team-remove"
+								]
+							},
+							{
+								"group": "League: Seasons",
+								"pages": [
+									"api-reference/leagues/delete-league-season",
+									"api-reference/leagues/create-league-season",
+									"api-reference/leagues/activate-league-season",
+									"api-reference/leagues/complete-league-season"
+								]
+							},
+							{
+								"group": "League: Rules & Config",
+								"pages": [
+									"api-reference/leagues/remove-league-display-rule",
+									"api-reference/leagues/remove-league-game",
+									"api-reference/leagues/league-branding-update",
+									"api-reference/leagues/league-cooldown-config-update",
+									"api-reference/leagues/reorder-league-display-rules",
+									"api-reference/leagues/upsert-league-display-rule",
+									"api-reference/leagues/add-league-game",
+									"api-reference/leagues/toggle-league-game",
+									"api-reference/leagues/update-league-points-config",
+									"api-reference/leagues/apply-league-rule-template",
+									"api-reference/leagues/update-league-rules",
+									"api-reference/leagues/get-league-settings",
+									"api-reference/leagues/set-league-enabled",
+									"api-reference/leagues/request-league-shutdown"
+								]
+							},
+							{
+								"group": "League: Scores",
+								"pages": [
+									"api-reference/leagues/update-league-match-status",
+									"api-reference/leagues/submit-league-batch-match-scores",
+									"api-reference/leagues/submit-league-player-stats",
+									"api-reference/leagues/submit-league-scores",
+									"api-reference/leagues/submit-league-map-score"
+								]
+							},
+							{
+								"group": "League: Moderation",
+								"pages": [
+									"api-reference/leagues/bans",
+									"api-reference/leagues/create-league-ban",
+									"api-reference/leagues/revoke-league-ban",
+									"api-reference/leagues/issue-league-cooldown",
+									"api-reference/leagues/clear-league-cooldown",
+									"api-reference/leagues/penalties",
+									"api-reference/leagues/create-league-penalty"
+								]
+							},
+							{
+								"group": "League: Tickets",
+								"pages": [
+									"api-reference/leagues/ticket-update",
+									"api-reference/leagues/ticket-create",
+									"api-reference/leagues/ticket-escalate",
+									"api-reference/leagues/ticket-reply"
+								]
+							},
+							{
+								"group": "League: Overview",
+								"pages": [
+									"api-reference/leagues/get-league-activity-feed",
+									"api-reference/leagues/get-league-dashboard-stats"
+								]
+							}
+						]
+					},
+					{
+						"group": "Webhooks",
+						"pages": [
+							"developers/webhooks-api",
+							"api-reference/webhooks/delete-webhook",
+							"api-reference/webhooks/list-webhooks",
+							"api-reference/webhooks/get-webhook",
+							"api-reference/webhooks/list-webhook-deliveries",
+							"api-reference/webhooks/update-webhook",
+							"api-reference/webhooks/create-webhook",
+							"api-reference/webhooks/replay-webhook-delivery",
+							"api-reference/webhooks/rotate-webhook-secret",
+							"api-reference/webhooks/test-webhook"
+						]
+					},
+					{
+						"group": "Platform Tools",
+						"pages": [
+							"developers/platform-tools",
+							{
+								"group": "Strategies",
+								"pages": [
+									"GET /strategies/{slug}",
+									"GET /strategies/{slug}/shapes"
+								]
+							},
+							{
+								"group": "Streaming",
+								"pages": [
+									"GET /users/{identifier}/stream",
+									"POST /streams/live-status"
+								]
+							},
+							{
+								"group": "Twitch",
+								"pages": [
+									"api-reference/twitch/channel-badges",
+									"api-reference/twitch/global-badges"
+								]
+							},
+							{
+								"group": "Uploads",
+								"pages": [
+									"api-reference/uploads/create-image-upload-url"
+								]
+							},
+							{
+								"group": "Support",
+								"pages": [
+									"api-reference/support/list-tickets",
+									"api-reference/support/get-ticket",
+									"api-reference/support/create-ticket",
+									"api-reference/support/add-ticket-message"
+								]
+							}
 						]
 					},
 					{

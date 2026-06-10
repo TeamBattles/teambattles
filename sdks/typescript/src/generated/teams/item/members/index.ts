@@ -50,7 +50,7 @@ export interface MembersGetResponse extends Parsable {
  */
 export interface MembersRequestBuilder extends BaseRequestBuilder<MembersRequestBuilder> {
     /**
-     * Returns active roster rows when the team is public or the API key owner is an active team member. Requires teams.roster:read.
+     * Returns the full active roster when the team is public or the API key owner is an active team member; otherwise responds 403. The team is resolved by slug or Convex team ID and must be active, returning 404 if not found. Rows are sorted by role - captains first, then co-captains, then members - and each row's id is the membership row ID, not the user ID. Not paginated: every active member is returned in one response with a count, and there is no limit, cursor, or page token. Requires teams.roster:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<MembersGetResponse>}
      * @throws {ErrorEscaped} error when the service returns a 401 status code
@@ -61,7 +61,7 @@ export interface MembersRequestBuilder extends BaseRequestBuilder<MembersRequest
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<MembersGetResponse | undefined>;
     /**
-     * Returns active roster rows when the team is public or the API key owner is an active team member. Requires teams.roster:read.
+     * Returns the full active roster when the team is public or the API key owner is an active team member; otherwise responds 403. The team is resolved by slug or Convex team ID and must be active, returning 404 if not found. Rows are sorted by role - captains first, then co-captains, then members - and each row's id is the membership row ID, not the user ID. Not paginated: every active member is returned in one response with a count, and there is no limit, cursor, or page token. Requires teams.roster:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
