@@ -15,7 +15,9 @@ Gem::Specification.new do |spec|
 
   # Ruby Kiota serialization is JSON-only (Text/Form/Multipart are not released).
   # This is acceptable for a JSON API.
-  spec.add_dependency "microsoft_kiota_abstractions", "~> 0.18"
+  # faraday and serialization_json both cap abstractions at < 0.16, and 0.15.1 is the latest published
+  # abstractions, so pin to the 0.15 line (0.18 was never released).
+  spec.add_dependency "microsoft_kiota_abstractions", "~> 0.15"
   spec.add_dependency "microsoft_kiota_faraday", "~> 0.13"
   spec.add_dependency "microsoft_kiota_serialization_json", "~> 0.7"
 end

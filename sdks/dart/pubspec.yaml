@@ -8,13 +8,15 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  # Every package the generated client and wrapper actually import.
-  microsoft_kiota_abstractions: ^0.4.0
-  microsoft_kiota_http: ^0.4.0
-  microsoft_kiota_serialization_form: ^0.4.0
-  microsoft_kiota_serialization_json: ^0.4.0
-  microsoft_kiota_serialization_multipart: ^0.4.0
-  microsoft_kiota_serialization_text: ^0.4.0
+  # Every package the generated client and wrapper actually import. The Dart Kiota runtime is still
+  # pre-1.0 and each package versions independently, so these are pinned to the latest published line
+  # of each (not a shared ^0.x): abstractions tops out at 0.1.0, the rest at 0.0.x.
+  microsoft_kiota_abstractions: ^0.1.0
+  microsoft_kiota_http: ^0.0.7
+  microsoft_kiota_serialization_form: ^0.0.5
+  microsoft_kiota_serialization_json: ^0.0.8
+  microsoft_kiota_serialization_multipart: ^0.0.4
+  microsoft_kiota_serialization_text: ^0.0.5
 
 dev_dependencies:
   lints: ^4.0.0

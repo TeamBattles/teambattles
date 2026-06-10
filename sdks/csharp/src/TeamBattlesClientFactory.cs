@@ -24,7 +24,9 @@ internal sealed class StaticKeyAccessTokenProvider : IAccessTokenProvider
     public StaticKeyAccessTokenProvider(string apiKey, string host)
     {
         _apiKey = apiKey;
-        AllowedHostsValidator = new AllowedHostsValidator(host);
+        // Kiota's AllowedHostsValidator only exposes an IEnumerable<string> constructor, so wrap the
+        // single host. A non-empty list scopes the bearer token to requests bound for that host.
+        AllowedHostsValidator = new AllowedHostsValidator(new[] { host });
     }
 
     public AllowedHostsValidator AllowedHostsValidator { get; }
