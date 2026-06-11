@@ -1,16 +1,14 @@
 // Package sdk is the hand-written convenience wrapper for the TeamBattles Go SDK.
 //
-// It lives at the module root (sdks/go/), OUTSIDE the Kiota output path (./src/generated), so a
+// It lives at the module root (sdks/go/), OUTSIDE the Kiota output path (./generated), so a
 // `kiota generate --clean-output` regeneration never wipes it and it does not collide with the
 // generated package. Consumers import it as the module root:
 //
 //	import sdk "github.com/teambattles/sdk-go"
 //
-// The Kiota-generated client is its own module named `teambattles` (its clientNamespaceName): the Go
-// generator emits module-relative imports like `teambattles/game` and `teambattles/models`, so the
-// entrypoint `package teambattles` is the root of a module literally named `teambattles`. We import it
-// by that module path and alias it to `generated` for readability. The wrapper go.mod replaces
-// `teambattles` with the local ./src/generated dir, and go.work joins the two modules.
+// The Kiota-generated client is a normal subpackage of this same module (./generated), generated with
+// clientNamespaceName `github.com/teambattles/sdk-go/generated`, so it imports as a full module path
+// and ships as one self-contained module (no `replace`/`go.work`, which are ignored for dependencies).
 //
 // Kiota's Go generator emits the FACTORY `NewTeamBattlesApiClient(adapter)` in that package.
 package sdk
@@ -22,7 +20,7 @@ import (
 	auth "github.com/microsoft/kiota-abstractions-go/authentication"
 	nethttplibrary "github.com/microsoft/kiota-http-go"
 
-	generated "teambattles"
+	generated "github.com/teambattles/sdk-go/generated"
 )
 
 // DefaultBaseURL is the production TeamBattles API base URL.

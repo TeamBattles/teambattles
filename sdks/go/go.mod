@@ -2,16 +2,10 @@ module github.com/teambattles/sdk-go
 
 go 1.22
 
-// The Kiota-generated client (sdks/go/src/generated) is its OWN module named `teambattles`
-// (its clientNamespaceName), because Kiota's Go generator emits module-relative imports such as
-// `teambattles/game` and `teambattles/models`. That generated dir is wiped on every regeneration
-// (`kiota generate --clean-output`), so it cannot carry a committed go.mod; build.sh runs
-// `go mod init teambattles` there before building, and the replace below points this wrapper module
-// at the local generated module. The companion go.work joins both modules for `go build ./...`.
-require teambattles v0.0.0
-
-replace teambattles => ./src/generated
-
+// Single self-contained module: the Kiota-generated client lives in ./generated (package
+// `github.com/teambattles/sdk-go/generated`) as a normal subpackage of this module, so consumers can
+// `go get github.com/teambattles/sdk-go` with no `replace`/`go.work` (those only apply to the main
+// module, never to a dependency). Indirect deps + go.sum are materialized by build.sh (`go mod tidy`).
 require (
 	github.com/microsoft/kiota-abstractions-go v1.9.4
 	github.com/microsoft/kiota-http-go v1.5.4
