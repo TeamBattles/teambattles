@@ -21,12 +21,12 @@ repositories {
 }
 
 dependencies {
-    api 'com.microsoft.kiota:microsoft-kiota-abstractions:1.+'
-    api 'com.microsoft.kiota:microsoft-kiota-http-okHttp:1.+'
-    api 'com.microsoft.kiota:microsoft-kiota-serialization-json:1.+'
-    api 'com.microsoft.kiota:microsoft-kiota-serialization-text:1.+'
-    api 'com.microsoft.kiota:microsoft-kiota-serialization-form:1.+'
-    api 'com.microsoft.kiota:microsoft-kiota-serialization-multipart:1.+'
+    api 'com.microsoft.kiota:microsoft-kiota-abstractions:1.9.3'
+    api 'com.microsoft.kiota:microsoft-kiota-http-okHttp:1.9.3'
+    api 'com.microsoft.kiota:microsoft-kiota-serialization-json:1.9.3'
+    api 'com.microsoft.kiota:microsoft-kiota-serialization-text:1.9.3'
+    api 'com.microsoft.kiota:microsoft-kiota-serialization-form:1.9.3'
+    api 'com.microsoft.kiota:microsoft-kiota-serialization-multipart:1.9.3'
     api 'jakarta.annotation:jakarta.annotation-api:2.1.1'
 }
 
