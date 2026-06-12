@@ -14,11 +14,28 @@ curl -H "Authorization: Bearer tb_your_api_key_here" \
 
 ### Creating an API Key
 
-1. Go to [Settings > Developer](https://teambattles.gg/settings/developer)
-2. Click "Create API Key"
-3. Enter a descriptive label (e.g., "Production Server")
-4. Select the permissions your integration needs
-5. Click "Save" - the full API key is shown only once
+Keys are created with a four-step wizard from [Settings > Developer](https://teambattles.gg/settings/developer):
+
+<Steps>
+  <Step title="Template">
+    Pick a preset from the template gallery to pre-fill the scopes for a common use
+    case (see [Key presets](#key-presets) below), or start from a blank key and set
+    everything yourself.
+  </Step>
+  <Step title="Identity">
+    Give the key a descriptive label (e.g. "Production Server"), choose the **key type**
+    (personal, developer-app, or league-operator), bind it to a game or league where the
+    type requires it, and optionally set an expiry date.
+  </Step>
+  <Step title="Permissions">
+    Select the granular [permission scopes](#permission-scopes) your integration needs.
+    Scopes that your plan or account type cannot grant are disabled.
+  </Step>
+  <Step title="Review">
+    Confirm the key's identity and scopes, then create it. The full API key is revealed
+    once on this step - copy it immediately.
+  </Step>
+</Steps>
 
 <Warning>
 	Copy your API key immediately after creation. It cannot be retrieved later. If you lose it, you
@@ -66,8 +83,8 @@ Keys bound to a league (a League developer account) also carry a `leagues` block
 
 ### Key presets
 
-The create-key dialog ships two one-click permission presets. A preset is only selectable
-when every connection in its required-connections list is linked on your account.
+The wizard's template gallery ships two one-click permission presets. A preset is only
+selectable when every connection in its required-connections list is linked on your account.
 
 | Preset           | Scopes set                                                                                | Required connections |
 | ---------------- | ----------------------------------------------------------------------------------------- | -------------------- |
@@ -107,22 +124,48 @@ personal key can never exercise one, even if the scope value is set.
 
 ### Plans and feature gates
 
-API access is sold on three developer plans: **API Free**, **API Pro**, and **API
-Business**. Three capabilities are gated behind a paid (**API Pro** or higher) plan:
+API access is sold on three developer plans: **Free**, **Pro**, and **Studio**. Your
+developer plan governs your write access, how many developer-app keys and webhook
+endpoints you can create, and your rate-limit ceiling.
+
+| Capability               | Free          | Pro              | Studio           |
+| ------------------------ | ------------- | ---------------- | ---------------- |
+| Developer-app keys       | 1 (read-only) | 10 (read+write)  | 50 (read+write)  |
+| Webhook endpoints        | 0             | 20               | 100              |
+| Write access             | -             | Yes              | Yes              |
+| League Operator API      | -             | Yes              | Yes              |
+| Rate limit (refill/burst)| 1/sec, 60     | 10/sec, 300      | 30/sec, 1000     |
+
+Three capabilities are gated behind a paid (**Pro** or higher) plan:
 
 | Feature              | Requires  | What it unlocks                                  |
 | -------------------- | --------- | ------------------------------------------------ |
-| `writes`             | API Pro   | Any write/mutating endpoint.                     |
-| `webhooks`           | API Pro   | Creating and managing webhook endpoints.         |
-| `leagueOperatorApi`  | API Pro   | The League Operator API.                         |
+| `writes`             | Pro       | Any write/mutating endpoint (Free is read-only). |
+| `webhooks`           | Pro       | Creating and managing webhook endpoints.         |
+| `leagueOperatorApi`  | Pro       | The League Operator API.                         |
 
 If your plan is too low you receive `403 error_api_plan_required`; if the specific feature
 is not on your plan you receive `403 error_api_feature_required`.
 
 <Note>
 	A **league-operator** key is gated on the **league owner's** plan, not the key
-	creator's - one owner purchase covers all of that owner's leagues.
+	creator's - one owner purchase covers all of that owner's leagues. A league may have
+	at most **5** league-operator keys.
 </Note>
+
+#### Personal keys vs developer capability
+
+These are two independent axes:
+
+- **Personal key count scales with your account subscription.** Personal keys
+  (`principalType: personal`) are governed by your consumer account tier, not your
+  developer plan.
+- **Developer capability scales with your developer plan.** The developer-app key limit,
+  webhook endpoint limit, write access, league-operator access, and rate-limit ceiling
+  above all come from your developer plan (Free / Pro / Studio).
+
+A user can hold a consumer subscription and a developer plan at the same time; each axis
+is purchased and counted separately.
 
 ### Key Prefix
 

@@ -37,7 +37,7 @@ A developer account is one of exactly two types - `general` or `game`. Both are 
     Staff will review your application. You will be notified when it is approved.
   </Step>
   <Step title="Create an API Key">
-    Once approved, create an API key with the permissions you need. The key is shown only once - copy it immediately.
+    Once approved, create an API key with the four-step wizard (Template, Identity, Permissions, Review). The key is shown only once on the Review step - copy it immediately. See [Authentication](/developers/authentication#creating-an-api-key) for the full flow.
   </Step>
   <Step title="Start Building">
     Use your API key to authenticate requests. See the [Authentication](/developers/authentication) guide for details.
@@ -52,10 +52,21 @@ All API requests use the following base URL:
 https://teambattles.gg/api/v1
 ```
 
+## Plans
+
+API capability is sold on three developer plans - **Free**, **Pro**, and **Studio**.
+Your plan governs write access, your developer-app key and webhook endpoint limits, and
+your rate-limit ceiling. Personal key count is separate: it scales with your consumer
+account subscription, not your developer plan. See
+[Authentication](/developers/authentication#plans-and-feature-gates) for the full
+entitlement matrix.
+
 ## Rate Limits
 
-The API meters requests with token buckets. See the [Rate Limits](/developers/rate-limits)
-guide for the per-key, per-IP, and batch limits, the `429` codes, and the response headers.
+The API meters requests with token buckets, and the per-key ceiling scales with your
+developer plan (Free 1/sec burst 60, Pro 10/sec burst 300, Studio 30/sec burst 1000). See
+the [Rate Limits](/developers/rate-limits) guide for the per-key, per-IP, and batch
+limits, the `429` codes, and the response headers.
 
 ## OpenAPI Specification
 

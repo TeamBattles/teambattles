@@ -7,6 +7,20 @@ description: Receive real-time event notifications from TeamBattles via webhook 
 
 Webhooks allow your application to receive real-time HTTP POST notifications when events occur on TeamBattles. Instead of polling the API, you register an endpoint URL and select which events to receive.
 
+## Plan limits
+
+Webhooks require a paid developer plan. The number of endpoints you can register scales
+with your developer plan:
+
+| Plan       | Webhook endpoints |
+| ---------- | ----------------- |
+| **Free**   | 0                 |
+| **Pro**    | 20                |
+| **Studio** | 100               |
+
+On the Free plan webhooks are unavailable; calls to the Webhooks API return
+`403 error_api_feature_required`. Creating an endpoint past your plan's limit is rejected.
+
 ## Setup
 
 ### Register an Endpoint
@@ -22,10 +36,13 @@ POST /api/v1/webhooks
 ```json
 {
 	"url": "https://your-server.com/webhooks/teambattles",
-	"events": ["match.started", "match.completed", "score.submitted"],
+	"events": ["match.started", "match.completed", "league.*"],
 	"label": "Production Server"
 }
 ```
+
+When you create an endpoint you also select which **game** it is scoped to, so a game
+server only receives the events for the game it operates.
 
 ### Webhook Secret
 
@@ -35,6 +52,18 @@ When you create an endpoint, a signing secret is generated. This secret is used 
 	The webhook secret is shown only once when the endpoint is created. Store it securely.
 </Warning>
 
+### Managing an Endpoint
+
+After creation you can manage each endpoint from the dashboard or the API:
+
+- **Pause / resume** - temporarily stop deliveries to an endpoint without deleting it,
+  then resume when your server is ready again. A paused endpoint keeps its configuration
+  and signing secret.
+- **Regenerate the signing secret** - rotate the secret if it may be compromised. The new
+  secret is shown only once. During a short rotation grace window both the new and previous
+  secret sign each delivery, so accept any valid signature while you roll the secret out
+  (see [Signature Verification](#signature-verification)).
+
 ## Events
 
 <Note>
@@ -42,6 +71,15 @@ When you create an endpoint, a signing secret is generated. This secret is used 
 	before their runtime emitters are wired; those events start delivering once the owning
 	product surface emits them.
 </Note>
+
+### Family wildcards
+
+Instead of listing every event in a family, you can subscribe to a **family wildcard**
+`<family>.*` to receive all current and future events in that family. For example,
+`league.*` delivers every `league.` event, and `match.*` delivers every `match.` event.
+Wildcards future-proof a subscription: events added to the family later are delivered
+automatically without changing your endpoint. You can mix wildcards and individual event
+names in the same `events` list.
 
 ### Match
 

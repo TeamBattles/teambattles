@@ -18,19 +18,23 @@ Three buckets apply, in this order:
 
 ## Per-key limit
 
-Every request you make spends one token from your key's bucket.
+Every request you make spends one token from your key's bucket. The bucket's capacity
+(your burst) and refill rate scale with your **developer plan**:
 
-| Setting  | Value          |
-| -------- | -------------- |
-| Capacity | 60 tokens      |
-| Refill   | 1 token/second |
+| Plan       | Capacity (burst) | Refill           | Sustained rate |
+| ---------- | ---------------- | ---------------- | -------------- |
+| **Free**   | 60 tokens        | 1 token/second   | ~1 req/second  |
+| **Pro**    | 300 tokens       | 10 tokens/second | ~10 req/second |
+| **Studio** | 1000 tokens      | 30 tokens/second | ~30 req/second |
 
-So you can burst up to 60 requests, then settle into ~1 request/second sustained. When
-the bucket is empty you receive `429 error_api_rate_limited`.
+So on the Free plan you can burst up to 60 requests, then settle into ~1 request/second
+sustained; Pro and Studio raise both the burst and the sustained rate. When the bucket is
+empty you receive `429 error_api_rate_limited`.
 
 <Note>
-	The 60 / 1-per-second values are the current default for every key. Plan-tiered
-	ceilings are not yet active, so all keys share this limit today.
+	These ceilings are enforced per plan. A key is metered at the plan of the principal
+	it acts for: a personal key uses your account's developer plan, and a league-operator
+	key uses the league owner's developer plan.
 </Note>
 
 ## Per-IP flood guard

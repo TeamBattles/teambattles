@@ -4,6 +4,8 @@ description: Submit verified scores and drive the match lifecycle for your game 
 ---
 
 The **Game Developer API** lets a game server submit verified scores, manage the match
-lifecycle, and report rosters and player stats. It requires a **game-developer** key bound
-to a specific game, the `game.scores`/`game.lifecycle` scopes, and a paid (API Pro) plan for
-writes.
+lifecycle, and report rosters and player stats. It requires a **game-developer** key
+(`principalType: developer-app`) bound to a specific game, the
+`game.scores`/`game.lifecycle` scopes, and a paid (Pro or higher) developer plan for
+writes. The Free plan allows a single read-only developer-app key; write access starts at
+Pro. See [Plans and feature gates](/developers/authentication#plans-and-feature-gates).
