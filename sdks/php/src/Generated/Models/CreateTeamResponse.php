@@ -1,0 +1,129 @@
+<?php
+
+namespace TeamBattles\Sdk\Generated\Models;
+
+use Microsoft\Kiota\Abstractions\Serialization\Parsable;
+use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
+use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
+
+class CreateTeamResponse implements Parsable 
+{
+    /**
+     * @var string|null $id The created team ID.
+    */
+    private ?string $id = null;
+    
+    /**
+     * @var string|null $slug The created team slug.
+    */
+    private ?string $slug = null;
+    
+    /**
+     * @var bool|null $success The success property
+    */
+    private ?bool $success = null;
+    
+    /**
+     * @var string|null $timestamp Response generation time (ISO 8601).
+    */
+    private ?string $timestamp = null;
+    
+    /**
+     * Creates a new instance of the appropriate class based on discriminator value
+     * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
+     * @return CreateTeamResponse
+    */
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): CreateTeamResponse {
+        return new CreateTeamResponse();
+    }
+
+    /**
+     * The deserialization information for the current model
+     * @return array<string, callable(ParseNode): void>
+    */
+    public function getFieldDeserializers(): array {
+        $o = $this;
+        return  [
+            'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
+            'slug' => fn(ParseNode $n) => $o->setSlug($n->getStringValue()),
+            'success' => fn(ParseNode $n) => $o->setSuccess($n->getBooleanValue()),
+            'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
+        ];
+    }
+
+    /**
+     * Gets the id property value. The created team ID.
+     * @return string|null
+    */
+    public function getId(): ?string {
+        return $this->id;
+    }
+
+    /**
+     * Gets the slug property value. The created team slug.
+     * @return string|null
+    */
+    public function getSlug(): ?string {
+        return $this->slug;
+    }
+
+    /**
+     * Gets the success property value. The success property
+     * @return bool|null
+    */
+    public function getSuccess(): ?bool {
+        return $this->success;
+    }
+
+    /**
+     * Gets the timestamp property value. Response generation time (ISO 8601).
+     * @return string|null
+    */
+    public function getTimestamp(): ?string {
+        return $this->timestamp;
+    }
+
+    /**
+     * Serializes information the current object
+     * @param SerializationWriter $writer Serialization writer to use to serialize this model
+    */
+    public function serialize(SerializationWriter $writer): void {
+        $writer->writeStringValue('id', $this->getId());
+        $writer->writeStringValue('slug', $this->getSlug());
+        $writer->writeBooleanValue('success', $this->getSuccess());
+        $writer->writeStringValue('timestamp', $this->getTimestamp());
+    }
+
+    /**
+     * Sets the id property value. The created team ID.
+     * @param string|null $value Value to set for the id property.
+    */
+    public function setId(?string $value): void {
+        $this->id = $value;
+    }
+
+    /**
+     * Sets the slug property value. The created team slug.
+     * @param string|null $value Value to set for the slug property.
+    */
+    public function setSlug(?string $value): void {
+        $this->slug = $value;
+    }
+
+    /**
+     * Sets the success property value. The success property
+     * @param bool|null $value Value to set for the success property.
+    */
+    public function setSuccess(?bool $value): void {
+        $this->success = $value;
+    }
+
+    /**
+     * Sets the timestamp property value. Response generation time (ISO 8601).
+     * @param string|null $value Value to set for the timestamp property.
+    */
+    public function setTimestamp(?string $value): void {
+        $this->timestamp = $value;
+    }
+
+}

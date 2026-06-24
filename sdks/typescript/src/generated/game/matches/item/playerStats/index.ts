@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface PlayerStatsRequestBuilder extends BaseRequestBuilder<PlayerStatsRequestBuilder> {
     /**
-     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<GamePlayerStatsResponse>}
@@ -19,10 +19,11 @@ export interface PlayerStatsRequestBuilder extends BaseRequestBuilder<PlayerStat
      * @throws {ErrorEscaped} error when the service returns a 401 status code
      * @throws {ErrorEscaped} error when the service returns a 403 status code
      * @throws {ErrorEscaped} error when the service returns a 404 status code
+     * @throws {ErrorEscaped} error when the service returns a 409 status code
      */
      post(body: GamePlayerStatsBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<GamePlayerStatsResponse | undefined>;
     /**
-     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -45,6 +46,7 @@ export const PlayerStatsRequestBuilderRequestsMetadata: RequestsMetadata = {
             401: createErrorEscapedFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createErrorEscapedFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createErrorEscapedFromDiscriminatorValue as ParsableFactory<Parsable>,
+            409: createErrorEscapedFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createGamePlayerStatsResponseFromDiscriminatorValue,

@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Game.Matches.Item.PlayerStats
         {
         }
         /// <summary>
-        /// Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+        /// Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GamePlayerStatsResponse"/></returns>
         /// <param name="body">Request body for submitting or updating player stats for an existing map score.</param>
@@ -44,6 +44,7 @@ namespace TeamBattles.Sdk.Game.Matches.Item.PlayerStats
         /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 401 status code</exception>
         /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::TeamBattles.Sdk.Models.GamePlayerStatsResponse?> PostAsync(global::TeamBattles.Sdk.Models.GamePlayerStatsBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -61,11 +62,12 @@ namespace TeamBattles.Sdk.Game.Matches.Item.PlayerStats
                 { "401", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
                 { "403", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
                 { "404", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "409", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.GamePlayerStatsResponse>(requestInfo, global::TeamBattles.Sdk.Models.GamePlayerStatsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+        /// Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Request body for submitting or updating player stats for an existing map score.</param>

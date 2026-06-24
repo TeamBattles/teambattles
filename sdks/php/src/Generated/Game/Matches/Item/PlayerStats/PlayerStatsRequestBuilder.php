@@ -32,7 +32,7 @@ class PlayerStatsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
      * @param GamePlayerStatsBody $body Request body for submitting or updating player stats for an existing map score.
      * @param PlayerStatsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<GamePlayerStatsResponse|null>
@@ -45,12 +45,13 @@ class PlayerStatsRequestBuilder extends BaseRequestBuilder
                 '401' => [Error::class, 'createFromDiscriminatorValue'],
                 '403' => [Error::class, 'createFromDiscriminatorValue'],
                 '404' => [Error::class, 'createFromDiscriminatorValue'],
+                '409' => [Error::class, 'createFromDiscriminatorValue'],
         ];
         return $this->requestAdapter->sendAsync($requestInfo, [GamePlayerStatsResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
-     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
      * @param GamePlayerStatsBody $body Request body for submitting or updating player stats for an existing map score.
      * @param PlayerStatsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

@@ -1,0 +1,110 @@
+---
+title: "Telegram"
+description: "Use the Battles Bot on Telegram: web-first account linking, group install, per-group toggles, force-reply write flows, and how Telegram differs from Discord"
+---
+
+The Battles Bot runs on Telegram as well as Discord. The same ten slash commands work; this page covers the Telegram-specific install, linking, and the documented platform differences. For the cross-platform DM and event-routing model, see [Notifications & event routing](/tools/bot/notifications).
+
+<Note>
+	In a private chat with the bot, every reply is already private. In a group, the private part of a
+	button action surfaces as a transient in-Telegram callback toast (the small popup over the chat,
+	truncated to about 200 characters) - it is never posted to the group and is not a "check your
+	direct chat" message.
+</Note>
+
+## Add to Telegram
+
+Find the Battles Bot on Telegram (the BotFather username your operator set up) and either start a private chat with it or add it to a group.
+
+## Link your account
+
+Before the bot can act on your behalf, link it to your TeamBattles account and complete a one-time human verification, the same web-first flow as Discord.
+
+<Steps>
+	<Step title="Open the link page">
+		Go to [teambattles.gg/bot/link](https://teambattles.gg/bot/link) and switch to the
+		**Telegram** tab. You must be signed in to TeamBattles.
+	</Step>
+	<Step title="Complete human verification">
+		Finish the Cloudflare verification on the Telegram tab. This one-time check confirms you are a
+		real person. Completing it is what makes you write-eligible the moment `/start` lands, so do
+		this before opening the deep link in the next step.
+	</Step>
+	<Step title="Open the deep link">
+		The page shows a `t.me/<bot>?start=<code>` deep link (and a QR code). Tap it to send
+		`/start <code>` to the bot. The code is single-use and expires after about ten minutes -
+		refreshing the page mints a new one (mints are rate-limited to 5 per hour, so a barrage of
+		refreshes is eventually throttled).
+	</Step>
+	<Step title="Done">
+		The bot confirms the link. Run `/profile` to check everything is connected.
+	</Step>
+</Steps>
+
+<Note>
+	If your operator has not configured `TELEGRAM_BOT_USERNAME`, the page cannot build the `t.me`
+	deep link or QR code. The tab instead shows the raw code with a manual instruction: open the bot
+	yourself and send it (`/start <code>`).
+</Note>
+
+<Note>
+	If you send a bare `/start` with no code, the bot replies with a button into the
+	[link page](https://teambattles.gg/bot/link) so you can mint a code.
+</Note>
+
+### When `/start <code>` fails
+
+A `/start <code>` can fail two documented ways:
+
+- **Invalid code** - the code is expired, unknown, or no longer pending. The bot tells you the code is invalid; mint a fresh one from the link page.
+- **Already linked to another user** - this Telegram account is already linked to a *different* TeamBattles account. Unlink it from that account first (see below), then link it here.
+
+### Unlink
+
+Once linked, the **Telegram** tab on the link page shows an **Unlink** button. Unlinking removes both the connection mirror and the trusted identity row, so the bot can no longer act on your behalf until you link again.
+
+## Use the bot in a group
+
+Add the bot to a Telegram group to use the group commands (`/setup` and `/league`) there.
+
+- When the person who **adds the bot** is already a linked TeamBattles user, the group binds automatically (via Telegram's membership update).
+- If the person who adds the bot is **not** a linked TeamBattles user, no group binding is created at all - a linked group **admin** must run `/setup` to claim the group. This is why the "otherwise an admin runs `/setup`" path exists.
+
+Group commands are gated by your Telegram **group-admin** status - the bot checks the group's administrators before running an admin-only action. `/setup` and `/league` are group-only (they do not run in a private chat), matching their Discord behavior.
+
+<Info>
+	Telegram has no per-channel or per-role allowlists like Discord. The on / off model for a group is
+	the per-group plugin and command toggles in the web [bot settings](/tools/bot/settings).
+</Info>
+
+## Per-group toggles
+
+Plugins and commands are enabled per group from the web [bot settings](/tools/bot/settings), the same model as Discord servers. A Telegram group has no channel tree, so routed messages (like announcements) target the group chat itself.
+
+Because a group has a single delivery target, a Telegram event route offers only **Inherit / Channel / Mute** - there is no per-channel picker. When a route is set to **Channel**, the worker posts to the group chat itself. See [Notifications & event routing](/tools/bot/notifications) for the full routing matrix.
+
+## Write actions (force-reply flows)
+
+Telegram has no modal dialogs, so multi-field write actions - entering a score, setting a lobby code, creating a team or org, league staff actions, and so on - are guided **force-reply prompt sequences**. The bot asks for one field at a time; reply to each prompt to answer it.
+
+- Reply to the bot's prompt to provide each value.
+- Send `/cancel` to abort the flow. There is no Cancel button: a force-reply prompt cannot also carry inline buttons on Telegram (the two are mutually exclusive on one message), so `/cancel` is the sole abort path.
+- A flow times out after about 15 minutes of inactivity; a stranded flow is then cleaned up automatically.
+
+<Note>
+	You have one active flow at a time. Starting a new flow supersedes any in-progress one. In a
+	group, your replies route to your own in-progress flow.
+</Note>
+
+## Platform parity
+
+Everything the Discord bot does, the Telegram bot does. The slash commands come from the same shared catalog - see the [Commands](/tools/bot/commands) page - but the *registered set* differs slightly per platform: Telegram registers 8 commands in private chats and 2 group-only commands (`/setup` and `/league`) in groups, while Discord registers all 10 (using per-command DM permissions for the two group-only ones). Command descriptions are registered in English only. The documented behavioral differences are:
+
+- **Private replies** - Discord uses per-message ephemeral replies. On Telegram, a private chat is already private; in a group, the private part of a button action surfaces as a transient in-Telegram callback toast (truncated to about 200 characters), never posted to the group.
+- **No member picker** - Discord member dropdowns are simply dropped on Telegram (a bot cannot enumerate chat members). The substitute is typing an `@username` or picking from a numbered list.
+- **Cards are images, DMs are text** - image summary cards render the same, but Telegram clamps text to 4096 characters and image-card captions to 1024 characters, so long card text that fits on Discord can truncate inside a Telegram caption. Direct-message notifications are text only, with no avatar or photo embedding.
+- **Direct messages are opt-in** - bot DMs are off by default. You turn the master toggle on, and can mute individual notification types, from [bot settings](/tools/bot/settings) (see also [Notifications & event routing](/tools/bot/notifications)). A small critical-notification set bypasses per-type mutes but still requires the master toggle to be on. DMs auto-disable after 5 consecutive delivery rejections.
+
+## Operator setup
+
+Standing up the Telegram bot requires the `TELEGRAM_BOT_TOKEN` and `TELEGRAM_WEBHOOK_SECRET` secrets, plus the optional `TELEGRAM_BOT_USERNAME` (without it the link page falls back to the manual paste-the-code step above). Run `pnpm bot:register-telegram` to register the command set (`setMyCommands` for the private and group scopes) and point Telegram at the webhook (`setWebhook`).

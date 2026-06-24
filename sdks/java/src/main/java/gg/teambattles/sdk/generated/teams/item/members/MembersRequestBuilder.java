@@ -9,6 +9,7 @@ import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
 import gg.teambattles.sdk.generated.models.Error;
+import gg.teambattles.sdk.generated.teams.item.members.item.WithUserItemRequestBuilder;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,18 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class MembersRequestBuilder extends BaseRequestBuilder {
+    /**
+     * Gets an item from the gg.teambattles.sdk.generated.teams.item.members.item collection
+     * @param userId Convex user ID of the member to remove.
+     * @return a {@link WithUserItemRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public WithUserItemRequestBuilder byUserId(@jakarta.annotation.Nonnull final String userId) {
+        Objects.requireNonNull(userId);
+        final HashMap<String, Object> urlTplParams = new HashMap<String, Object>(this.pathParameters);
+        urlTplParams.put("userId", userId);
+        return new WithUserItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /**
      * Instantiates a new {@link MembersRequestBuilder} and sets the default values.
      * @param pathParameters Path parameters for the request

@@ -33,7 +33,7 @@ func NewMatchesItemStatusRequestBuilder(rawUrl string, requestAdapter i2ae4187f7
     urlParams["request-raw-url"] = rawUrl
     return NewMatchesItemStatusRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Patch transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission.
+// Patch transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission. Supports an optional `Idempotency-Key` request header that deduplicates concurrent duplicate submissions: while one request is in flight, a second request with the same key and body resolves to the same outcome, and the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match and per target status. Note that this endpoint validates the live match state first, so a sequential retry sent after the transition has already succeeded returns the normal transition error (error_match_not_in_valid_state) - the live state no longer permits the transition - rather than a replayed success.
 // returns a GameStatusUpdateResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -61,7 +61,7 @@ func (m *MatchesItemStatusRequestBuilder) Patch(ctx context.Context, body i2d9c6
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.GameStatusUpdateResponseable), nil
 }
-// ToPatchRequestInformation transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission.
+// ToPatchRequestInformation transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission. Supports an optional `Idempotency-Key` request header that deduplicates concurrent duplicate submissions: while one request is in flight, a second request with the same key and body resolves to the same outcome, and the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match and per target status. Note that this endpoint validates the live match state first, so a sequential retry sent after the transition has already succeeded returns the normal transition error (error_match_not_in_valid_state) - the live state no longer permits the transition - rather than a replayed success.
 // returns a *RequestInformation when successful
 func (m *MatchesItemStatusRequestBuilder) ToPatchRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.GameStatusUpdateBodyable, requestConfiguration *MatchesItemStatusRequestBuilderPatchRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PATCH, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

@@ -14,13 +14,13 @@ import { LeaguesRequestBuilderNavigationMetadata, LeaguesRequestBuilderRequestsM
 // @ts-ignore
 import { MatchesRequestBuilderNavigationMetadata, type MatchesRequestBuilder } from './matches/index.js';
 // @ts-ignore
-import { OrgsRequestBuilderNavigationMetadata, type OrgsRequestBuilder } from './orgs/index.js';
+import { OrgsRequestBuilderNavigationMetadata, OrgsRequestBuilderRequestsMetadata, type OrgsRequestBuilder } from './orgs/index.js';
 // @ts-ignore
 import { StrategiesRequestBuilderNavigationMetadata, type StrategiesRequestBuilder } from './strategies/index.js';
 // @ts-ignore
 import { StreamsRequestBuilderNavigationMetadata, type StreamsRequestBuilder } from './streams/index.js';
 // @ts-ignore
-import { TeamsRequestBuilderNavigationMetadata, type TeamsRequestBuilder } from './teams/index.js';
+import { TeamsRequestBuilderNavigationMetadata, TeamsRequestBuilderRequestsMetadata, type TeamsRequestBuilder } from './teams/index.js';
 // @ts-ignore
 import { TicketsRequestBuilderNavigationMetadata, TicketsRequestBuilderRequestsMetadata, type TicketsRequestBuilder } from './tickets/index.js';
 // @ts-ignore
@@ -176,6 +176,7 @@ export const TeamBattlesApiClientNavigationMetadata: Record<Exclude<keyof TeamBa
         navigationMetadata: MatchesRequestBuilderNavigationMetadata,
     },
     orgs: {
+        requestsMetadata: OrgsRequestBuilderRequestsMetadata,
         navigationMetadata: OrgsRequestBuilderNavigationMetadata,
     },
     strategies: {
@@ -185,6 +186,7 @@ export const TeamBattlesApiClientNavigationMetadata: Record<Exclude<keyof TeamBa
         navigationMetadata: StreamsRequestBuilderNavigationMetadata,
     },
     teams: {
+        requestsMetadata: TeamsRequestBuilderRequestsMetadata,
         navigationMetadata: TeamsRequestBuilderNavigationMetadata,
     },
     tickets: {

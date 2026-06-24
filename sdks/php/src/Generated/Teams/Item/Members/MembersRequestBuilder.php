@@ -9,12 +9,24 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use TeamBattles\Sdk\Generated\Models\Error;
+use TeamBattles\Sdk\Generated\Teams\Item\Members\Item\WithUserItemRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /teams/{identifier}/members
 */
 class MembersRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * Gets an item from the TeamBattles/Sdk/Generated.teams.item.members.item collection
+     * @param string $userId Convex user ID of the member to remove.
+     * @return WithUserItemRequestBuilder
+    */
+    public function byUserId(string $userId): WithUserItemRequestBuilder {
+        $urlTplParams = $this->pathParameters;
+        $urlTplParams['userId'] = $userId;
+        return new WithUserItemRequestBuilder($urlTplParams, $this->requestAdapter);
+    }
+
     /**
      * Instantiates a new MembersRequestBuilder and sets the default values.
      * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.

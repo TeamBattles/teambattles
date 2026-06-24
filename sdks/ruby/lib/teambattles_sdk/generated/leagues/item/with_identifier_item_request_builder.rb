@@ -4,6 +4,7 @@ require_relative '../../models/league_profile_response'
 require_relative '../../team_battles_sdk::_generated'
 require_relative '../leagues'
 require_relative './activity_feed/activity_feed_request_builder'
+require_relative './announcements/announcements_request_builder'
 require_relative './apply_eligibility/apply_eligibility_request_builder'
 require_relative './bans/bans_request_builder'
 require_relative './branding/branding_request_builder'
@@ -38,6 +39,11 @@ module TeamBattlesSdk
                     # The activityFeed property
                     def activity_feed()
                         return TeamBattlesSdk::Generated::Leagues::Item::ActivityFeed::ActivityFeedRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
+                    # The announcements property
+                    def announcements()
+                        return TeamBattlesSdk::Generated::Leagues::Item::Announcements::AnnouncementsRequestBuilder.new(@path_parameters, @request_adapter)
                     end
                     ## 
                     # The applyEligibility property

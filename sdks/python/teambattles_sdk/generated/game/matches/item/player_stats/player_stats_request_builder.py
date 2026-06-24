@@ -33,7 +33,7 @@ class PlayerStatsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: GamePlayerStatsBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[GamePlayerStatsResponse]:
         """
-        Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+        Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
         param body: Request body for submitting or updating player stats for an existing map score.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GamePlayerStatsResponse]
@@ -50,6 +50,7 @@ class PlayerStatsRequestBuilder(BaseRequestBuilder):
             "401": Error,
             "403": Error,
             "404": Error,
+            "409": Error,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
@@ -59,7 +60,7 @@ class PlayerStatsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: GamePlayerStatsBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+        Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
         param body: Request body for submitting or updating player stats for an existing map score.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

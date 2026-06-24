@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "TeamBattles API",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Public developer API for TeamBattles. Authenticate with an API key: Authorization: Bearer tb_<key>."
   },
   "servers": [
@@ -58,6 +58,16 @@
       "x-group": "Personal API"
     },
     {
+      "name": "My Teams",
+      "description": "The key owner's team writes: create, edit, disband, manage members, roles, and captaincy.",
+      "x-group": "Personal API"
+    },
+    {
+      "name": "My Organizations",
+      "description": "The key owner's organization writes: create, edit, delete, manage members, roles, and ownership.",
+      "x-group": "Personal API"
+    },
+    {
       "name": "Match Chat",
       "description": "Read, send, and report messages in a match chat room.",
       "x-group": "Personal API"
@@ -80,6 +90,11 @@
     {
       "name": "League: Membership & Teams",
       "description": "League staff membership, team applications, and ownership transfer.",
+      "x-group": "League Operator API"
+    },
+    {
+      "name": "League: Announcements",
+      "description": "League-operator announcement posts to league members.",
       "x-group": "League Operator API"
     },
     {
@@ -161,6 +176,8 @@
       "tags": [
         "My Account",
         "My Matches",
+        "My Teams",
+        "My Organizations",
         "Match Chat"
       ]
     },
@@ -176,6 +193,7 @@
       "name": "League Operator API",
       "tags": [
         "League: Membership & Teams",
+        "League: Announcements",
         "League: Seasons",
         "League: Rules & Config",
         "League: Scores",
@@ -616,7 +634,7 @@
           "Game: Rosters & Stats"
         ],
         "summary": "Submit or update player stats for a map",
-        "description": "Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.",
+        "description": "Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -686,6 +704,16 @@
           },
           "404": {
             "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1026,7 +1054,7 @@
           "Game: Matches"
         ],
         "summary": "Update a match's lifecycle status",
-        "description": "Transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission.",
+        "description": "Transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission. Supports an optional `Idempotency-Key` request header that deduplicates concurrent duplicate submissions: while one request is in flight, a second request with the same key and body resolves to the same outcome, and the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match and per target status. Note that this endpoint validates the live match state first, so a sequential retry sent after the transition has already succeeded returns the normal transition error (error_match_not_in_valid_state) - the live state no longer permits the transition - rather than a replayed success.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -2297,6 +2325,114 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LeagueActivityFeedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leagues/{identifier}/announcements": {
+      "post": {
+        "operationId": "announceLeague",
+        "tags": [
+          "League: Announcements"
+        ],
+        "summary": "Send a league announcement",
+        "description": "Sends an announcement to all members of the league. Requires a league-operator key bound to the league and the league announcements capability.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "League slug or Convex league ID."
+            },
+            "required": true,
+            "description": "League slug or Convex league ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnnounceLeagueRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The announcement was sent.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnnounceLeagueResponse"
                 }
               }
             }
@@ -8222,6 +8358,262 @@
         }
       }
     },
+    "/matches/{matchId}/acceptances/{acceptanceId}/approve": {
+      "post": {
+        "operationId": "approveMatchAcceptance",
+        "tags": [
+          "My Matches"
+        ],
+        "summary": "Approve a match acceptance",
+        "description": "Approves a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          },
+          {
+            "in": "path",
+            "name": "acceptanceId",
+            "schema": {
+              "type": "string",
+              "description": "Match acceptance ID."
+            },
+            "required": true,
+            "description": "Match acceptance ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApproveAcceptanceRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The acceptance was approved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApproveAcceptanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches/{matchId}/acceptances/{acceptanceId}/decline": {
+      "post": {
+        "operationId": "declineMatchAcceptance",
+        "tags": [
+          "My Matches"
+        ],
+        "summary": "Decline a match acceptance",
+        "description": "Declines a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          },
+          {
+            "in": "path",
+            "name": "acceptanceId",
+            "schema": {
+              "type": "string",
+              "description": "Match acceptance ID."
+            },
+            "required": true,
+            "description": "Match acceptance ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeclineAcceptanceRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The acceptance was declined successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeclineAcceptanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/matches/{matchId}/attendance": {
       "post": {
         "operationId": "updateMatchAttendance",
@@ -8381,6 +8773,242 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CancelMatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches/{matchId}/challenges/accept": {
+      "post": {
+        "operationId": "acceptMatchChallenge",
+        "tags": [
+          "My Matches"
+        ],
+        "summary": "Accept a match challenge",
+        "description": "Accepts a pending challenge as the personal API key owner. The owner must captain the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcceptChallengeRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The challenge was accepted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptChallengeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches/{matchId}/challenges/refuse": {
+      "post": {
+        "operationId": "refuseMatchChallenge",
+        "tags": [
+          "My Matches"
+        ],
+        "summary": "Refuse a match challenge",
+        "description": "Refuses a pending challenge as the personal API key owner. The owner must captain the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefuseChallengeRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The challenge was refused successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefuseChallengeResponse"
                 }
               }
             }
@@ -9047,6 +9675,105 @@
         }
       }
     },
+    "/matches/{matchId}/publish": {
+      "post": {
+        "operationId": "publishMatch",
+        "tags": [
+          "My Matches"
+        ],
+        "summary": "Publish a match",
+        "description": "Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The match was published successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishMatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/matches/{matchId}/ready": {
       "post": {
         "operationId": "markMatchReady",
@@ -9406,6 +10133,105 @@
         }
       }
     },
+    "/matches/{matchId}/start": {
+      "post": {
+        "operationId": "startMatch",
+        "tags": [
+          "My Matches"
+        ],
+        "summary": "Start a match",
+        "description": "Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matchId",
+            "schema": {
+              "type": "string",
+              "description": "Match ID."
+            },
+            "required": true,
+            "description": "Match ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The match was started successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartMatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/matches/create": {
       "post": {
         "operationId": "createMatch",
@@ -9608,7 +10434,190 @@
         }
       }
     },
+    "/orgs": {
+      "post": {
+        "operationId": "createOrg",
+        "tags": [
+          "My Organizations"
+        ],
+        "summary": "Create an organization",
+        "description": "Creates a new organization as the personal API key owner. The owner becomes the organization owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.profile:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrgBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The organization was created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrgResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/orgs/{identifier}": {
+      "delete": {
+        "operationId": "deleteOrganization",
+        "tags": [
+          "My Organizations"
+        ],
+        "summary": "Delete an organization",
+        "description": "Deletes an organization. The caller (key owner) must be the organization owner. Requires orgs.profile:read-write.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Organization slug or Convex organization ID."
+            },
+            "required": true,
+            "description": "Organization slug or Convex organization ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Organization deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOrgResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "operationId": "getOrganizationProfile",
         "tags": [
@@ -9655,6 +10664,112 @@
                   ],
                   "additionalProperties": false,
                   "description": "Envelope containing organization plus a response timestamp."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateOrganization",
+        "tags": [
+          "My Organizations"
+        ],
+        "summary": "Update an organization",
+        "description": "Updates an organization's profile fields. The caller (key owner) must be an organization owner or admin. Requires orgs.profile:read-write.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Organization slug or Convex organization ID."
+            },
+            "required": true,
+            "description": "Organization slug or Convex organization ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOrgBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Organization updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateOrgResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -9876,6 +10991,447 @@
                   ],
                   "additionalProperties": false,
                   "description": "Envelope containing members, count, and a response timestamp."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "addOrganizationMember",
+        "tags": [
+          "My Organizations"
+        ],
+        "summary": "Add an organization member",
+        "description": "Adds a user to the organization with the ADMIN or MEMBER role. The caller (key owner) must be an organization admin or owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.roster:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Organization slug or Convex organization ID."
+            },
+            "required": true,
+            "description": "Organization slug or Convex organization ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddOrgMemberBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The member was added.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddOrgMemberResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{identifier}/members/{userId}": {
+      "delete": {
+        "operationId": "removeOrgMember",
+        "tags": [
+          "My Organizations"
+        ],
+        "summary": "Remove an organization member",
+        "description": "Removes a member from an organization. The caller (key owner) must be an organization admin. The organization owner cannot be removed this way - transfer ownership first. Requires orgs.roster:read-write.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Organization slug or Convex organization ID."
+            },
+            "required": true,
+            "description": "Organization slug or Convex organization ID."
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "schema": {
+              "type": "string",
+              "description": "Convex user ID of the member to remove."
+            },
+            "required": true,
+            "description": "Convex user ID of the member to remove."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member removed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveOrgMemberResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{identifier}/members/{userId}/role": {
+      "patch": {
+        "operationId": "setOrgMemberRole",
+        "tags": [
+          "My Organizations"
+        ],
+        "summary": "Set an organization member's role",
+        "description": "Sets an organization member's role to ADMIN, MANAGER, or MEMBER. The caller (key owner) must be the organization owner. The owner role cannot be assigned or removed this way - use ownership transfer instead. Requires orgs.roster:read-write.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Organization slug or Convex organization ID."
+            },
+            "required": true,
+            "description": "Organization slug or Convex organization ID."
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "schema": {
+              "type": "string",
+              "description": "Convex user ID of the member whose role is changing."
+            },
+            "required": true,
+            "description": "Convex user ID of the member whose role is changing."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetOrgMemberRoleBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Member role updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetOrgMemberRoleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{identifier}/ownership/transfer": {
+      "post": {
+        "operationId": "transferOrgOwnership",
+        "tags": [
+          "My Organizations"
+        ],
+        "summary": "Transfer organization ownership",
+        "description": "Transfers organization ownership from the caller (key owner) to another active member, who becomes the new owner. The caller must currently be the organization owner and is demoted to admin. Requires orgs.roster:read-write.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Organization slug or Convex organization ID."
+            },
+            "required": true,
+            "description": "Organization slug or Convex organization ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferOrgOwnershipBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ownership transferred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferOrgOwnershipResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -10535,7 +12091,190 @@
         }
       }
     },
+    "/teams": {
+      "post": {
+        "operationId": "createTeam",
+        "tags": [
+          "My Teams"
+        ],
+        "summary": "Create a team",
+        "description": "Creates a new team as the personal API key owner. The owner must manage the owning organization. Role ceilings and cascades are enforced exactly as in the web app. Requires teams.profile:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTeamBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The team was created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTeamResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/teams/{identifier}": {
+      "delete": {
+        "operationId": "disbandTeam",
+        "tags": [
+          "My Teams"
+        ],
+        "summary": "Disband a team",
+        "description": "Disbands a team (soft-deletes it and deactivates its members). The caller (key owner) must be the team captain. Requires teams.profile:read-write.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Team slug or Convex team ID."
+            },
+            "required": true,
+            "description": "Team slug or Convex team ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team disbanded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DisbandTeamResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "operationId": "getTeamProfile",
         "tags": [
@@ -10582,6 +12321,220 @@
                   ],
                   "additionalProperties": false,
                   "description": "Envelope containing team plus a response timestamp."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTeam",
+        "tags": [
+          "My Teams"
+        ],
+        "summary": "Update a team",
+        "description": "Updates a team's profile fields. The caller (key owner) must be the team captain. Requires teams.profile:read-write.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Team slug or Convex team ID."
+            },
+            "required": true,
+            "description": "Team slug or Convex team ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTeamBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Team updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateTeamResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams/{identifier}/captaincy/transfer": {
+      "post": {
+        "operationId": "transferTeamCaptaincy",
+        "tags": [
+          "My Teams"
+        ],
+        "summary": "Transfer team captaincy",
+        "description": "Transfers team captaincy from the caller (key owner) to another active member, who becomes the new captain. The caller must currently be the team captain and is demoted to co-captain. Requires teams.roster:read-write.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Team slug or Convex team ID."
+            },
+            "required": true,
+            "description": "Team slug or Convex team ID."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferTeamCaptaincyBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Captaincy transferred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferTeamCaptaincyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -10803,6 +12756,223 @@
                   ],
                   "additionalProperties": false,
                   "description": "Envelope containing members, count, and a response timestamp."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams/{identifier}/members/{userId}": {
+      "delete": {
+        "operationId": "removeTeamMember",
+        "tags": [
+          "My Teams"
+        ],
+        "summary": "Remove a team member",
+        "description": "Removes a member from a team, or removes yourself to leave it. To remove another member, the caller (key owner) must be the team captain or co-captain; any member may remove themselves. The team captain cannot be removed this way - disband the team or transfer captaincy first. Requires teams.roster:read-write.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Team slug or Convex team ID."
+            },
+            "required": true,
+            "description": "Team slug or Convex team ID."
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "schema": {
+              "type": "string",
+              "description": "Convex user ID of the member to remove."
+            },
+            "required": true,
+            "description": "Convex user ID of the member to remove."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member removed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveTeamMemberResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams/{identifier}/members/{userId}/role": {
+      "patch": {
+        "operationId": "setTeamMemberRole",
+        "tags": [
+          "My Teams"
+        ],
+        "summary": "Set a team member's role",
+        "description": "Sets a team member's role to CO_CAPTAIN or MEMBER. The caller (key owner) must be the team captain or co-captain. The captain role cannot be assigned or removed this way - use captaincy transfer instead. Requires teams.roster:read-write.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "schema": {
+              "type": "string",
+              "description": "Team slug or Convex team ID."
+            },
+            "required": true,
+            "description": "Team slug or Convex team ID."
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "schema": {
+              "type": "string",
+              "description": "Convex user ID of the member whose role is changing."
+            },
+            "required": true,
+            "description": "Convex user ID of the member whose role is changing."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetTeamMemberRoleBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Member role updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetTeamMemberRoleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -13726,6 +15896,51 @@
                   "data"
                 ],
                 "description": "Webhook envelope for custommap.scan_completed."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged. Return 2xx to mark the delivery successful."
+          }
+        }
+      }
+    },
+    "league.announcement": {
+      "post": {
+        "operationId": "webhook_league_announcement",
+        "summary": "league.announcement webhook delivery",
+        "description": "Delivered to a registered endpoint when a league.announcement event occurs.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Stable delivery id, reused across retries (idempotency key)."
+                  },
+                  "event": {
+                    "type": "string",
+                    "const": "league.announcement"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "description": "ISO-8601 timestamp the event was emitted."
+                  },
+                  "data": {
+                    "$ref": "#/components/schemas/LeagueAnnouncementPayload"
+                  }
+                },
+                "required": [
+                  "id",
+                  "event",
+                  "created_at",
+                  "data"
+                ],
+                "description": "Webhook envelope for league.announcement."
               }
             }
           }
@@ -17798,6 +20013,26 @@
         },
         "description": "Cursor pagination options for a league activity feed."
       },
+      "AnnounceLeagueRequestBody": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Announcement title."
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Announcement body text."
+          }
+        },
+        "required": [
+          "title",
+          "body"
+        ],
+        "description": "Sends an announcement to all members of the league."
+      },
       "LeagueApplyEligibilityRequestBody": {
         "type": "object",
         "properties": {
@@ -18850,6 +21085,33 @@
         ],
         "description": "Creates a match acceptance request as the API key owner."
       },
+      "ApproveAcceptanceRequestBody": {
+        "type": "object",
+        "properties": {
+          "responseMessage": {
+            "description": "Optional message sent to the accepting team.",
+            "type": "string"
+          },
+          "availableMaps": {
+            "description": "Optional list of available map IDs for the match.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Approves a pending match acceptance as the API key owner."
+      },
+      "DeclineAcceptanceRequestBody": {
+        "type": "object",
+        "properties": {
+          "responseMessage": {
+            "description": "Optional message sent to the declined team.",
+            "type": "string"
+          }
+        },
+        "description": "Declines a pending match acceptance as the API key owner."
+      },
       "UpdateAttendanceRequestBody": {
         "type": "object",
         "properties": {
@@ -18877,6 +21139,56 @@
           }
         },
         "description": "Cancels the match as the API key owner."
+      },
+      "AcceptChallengeRequestBody": {
+        "type": "object",
+        "properties": {
+          "activeRoster": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Active roster user IDs for the challenge response."
+          },
+          "benchRoster": {
+            "description": "Optional bench roster users.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Bench user ID."
+                },
+                "priority": {
+                  "type": "number",
+                  "description": "Bench priority."
+                }
+              },
+              "required": [
+                "id",
+                "priority"
+              ]
+            }
+          }
+        },
+        "required": [
+          "activeRoster"
+        ],
+        "description": "Accepts a pending challenge as the API key owner."
+      },
+      "RefuseChallengeRequestBody": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "description": "Optional reason shown to the challenging team.",
+            "type": "string"
+          }
+        },
+        "description": "Refuses a pending challenge as the API key owner."
       },
       "SendChatMessageRequestBody": {
         "type": "object",
@@ -19282,6 +21594,58 @@
         },
         "description": "Filters and cursor pagination for public open-match discovery."
       },
+      "CreateOrgBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Organization name."
+          },
+          "tag": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Organization tag (short identifier)."
+          },
+          "description": {
+            "description": "Optional organization description.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "tag"
+        ],
+        "description": "Creates a new organization as the API key owner."
+      },
+      "UpdateOrgBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tag": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "isPublic": {
+            "type": "boolean"
+          },
+          "profileVisibility": {
+            "type": "string",
+            "enum": [
+              "public",
+              "limited",
+              "private"
+            ]
+          }
+        },
+        "description": "Fields to update on the organization. All optional."
+      },
       "MatchesRequestBody": {
         "type": "object",
         "properties": {
@@ -19344,6 +21708,61 @@
         },
         "description": "Filters and cursor pagination for listing matches."
       },
+      "AddOrgMemberBody": {
+        "type": "object",
+        "properties": {
+          "targetUserId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Convex user ID of the member to add."
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "MEMBER"
+            ],
+            "description": "The role to assign to the new member. Ownership is set on creation."
+          }
+        },
+        "required": [
+          "targetUserId",
+          "role"
+        ],
+        "description": "Add a member to the organization."
+      },
+      "SetOrgMemberRoleBody": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "MANAGER",
+              "MEMBER"
+            ],
+            "description": "The new role for the member. The owner role is changed via ownership transfer."
+          }
+        },
+        "required": [
+          "role"
+        ],
+        "description": "Set an organization member's role."
+      },
+      "TransferOrgOwnershipBody": {
+        "type": "object",
+        "properties": {
+          "newOwnerId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Convex user ID of the active organization member to promote to owner."
+          }
+        },
+        "required": [
+          "newOwnerId"
+        ],
+        "description": "Transfer organization ownership to another member."
+      },
       "ApiBatchStreamStatusBody": {
         "type": "object",
         "properties": {
@@ -19361,6 +21780,129 @@
           "userIds"
         ],
         "description": "Batch live-status request body."
+      },
+      "CreateTeamBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Team name."
+          },
+          "tag": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Team tag (short identifier)."
+          },
+          "gameId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game ID the team competes in."
+          },
+          "playlistId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Game playlist ID."
+          },
+          "organizationId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Owning organization ID. The owner must manage it."
+          },
+          "description": {
+            "description": "Optional team description.",
+            "type": "string"
+          },
+          "platform": {
+            "description": "Optional platform.",
+            "type": "string"
+          },
+          "region": {
+            "description": "Optional region.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "tag",
+          "gameId",
+          "playlistId",
+          "organizationId"
+        ],
+        "description": "Creates a new team as the API key owner."
+      },
+      "UpdateTeamBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tag": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string",
+            "enum": [
+              "NONE",
+              "NA_EAST",
+              "NA_WEST",
+              "EU",
+              "ASIA",
+              "OCEANIA",
+              "SOUTH_AMERICA",
+              "MIDDLE_EAST",
+              "AFRICA"
+            ]
+          },
+          "profileVisibility": {
+            "type": "string",
+            "enum": [
+              "public",
+              "limited",
+              "private"
+            ]
+          }
+        },
+        "description": "Fields to update on the team. All optional."
+      },
+      "TransferTeamCaptaincyBody": {
+        "type": "object",
+        "properties": {
+          "newCaptainId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Convex user ID of the active team member to promote to captain."
+          }
+        },
+        "required": [
+          "newCaptainId"
+        ],
+        "description": "Transfer team captaincy to another member."
+      },
+      "SetTeamMemberRoleBody": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "CO_CAPTAIN",
+              "MEMBER"
+            ],
+            "description": "The new role for the member. Captaincy is changed via captaincy transfer."
+          }
+        },
+        "required": [
+          "role"
+        ],
+        "description": "Set a team member's role."
       },
       "CreateTicketRequestBody": {
         "type": "object",
@@ -19594,6 +22136,44 @@
           "customMapId"
         ],
         "description": "A custom map scan completed."
+      },
+      "LeagueAnnouncementPayload": {
+        "type": "object",
+        "properties": {
+          "leagueId": {
+            "type": "string",
+            "description": "TeamBattles document id."
+          },
+          "actorId": {
+            "type": "string",
+            "description": "TeamBattles document id."
+          },
+          "targetType": {
+            "type": "string"
+          },
+          "targetId": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": {}
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "announcedByUserId": {
+            "type": "string",
+            "description": "TeamBattles document id."
+          }
+        },
+        "required": [
+          "leagueId"
+        ],
+        "description": "A league staff announcement was published."
       },
       "LeagueBanRevokedPayload": {
         "type": "object",
@@ -23938,6 +26518,29 @@
         "additionalProperties": false,
         "description": "A paginated league activity feed."
       },
+      "AnnounceLeagueResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "notified": {
+            "type": "number",
+            "description": "Number of members notified by the announcement."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "notified",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "LeagueApplyEligibility": {
         "type": "object",
         "properties": {
@@ -25334,6 +27937,42 @@
         ],
         "additionalProperties": false
       },
+      "ApproveAcceptanceResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "DeclineAcceptanceResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "UpdateAttendanceResponse": {
         "type": "object",
         "properties": {
@@ -25376,6 +28015,42 @@
         "required": [
           "success",
           "matchId",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "AcceptChallengeResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "RefuseChallengeResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
           "timestamp"
         ],
         "additionalProperties": false
@@ -25615,6 +28290,24 @@
         "additionalProperties": false,
         "description": "Player row for a participant-gated match."
       },
+      "PublishMatchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "MarkMatchReadyResponse": {
         "type": "object",
         "properties": {
@@ -25842,6 +28535,24 @@
         "additionalProperties": false,
         "description": "Result of submitting or confirming a map score."
       },
+      "StartMatchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "CreateMatchResponse": {
         "type": "object",
         "properties": {
@@ -25897,6 +28608,52 @@
         ],
         "additionalProperties": false,
         "description": "SP-2 open-match discovery page."
+      },
+      "CreateOrgResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "id": {
+            "type": "string",
+            "description": "The created organization ID."
+          },
+          "slug": {
+            "type": "string",
+            "description": "The created organization slug."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "id",
+          "slug",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "DeleteOrgResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
       },
       "ApiOrganizationProfile": {
         "type": "object",
@@ -26018,6 +28775,24 @@
         ],
         "additionalProperties": false,
         "description": "API-safe organization profile."
+      },
+      "UpdateOrgResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
       },
       "UserMatch": {
         "type": "object",
@@ -26144,6 +28919,78 @@
         ],
         "additionalProperties": false,
         "description": "API-safe team or organization member."
+      },
+      "AddOrgMemberResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "RemoveOrgMemberResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "SetOrgMemberRoleResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "TransferOrgOwnershipResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
       },
       "ApiOrganizationStats": {
         "type": "object",
@@ -26526,6 +29373,52 @@
         ],
         "description": "Supported streaming platform."
       },
+      "CreateTeamResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "id": {
+            "type": "string",
+            "description": "The created team ID."
+          },
+          "slug": {
+            "type": "string",
+            "description": "The created team slug."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "id",
+          "slug",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "DisbandTeamResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
       "ApiTeamProfile": {
         "type": "object",
         "properties": {
@@ -26662,6 +29555,78 @@
         ],
         "additionalProperties": false,
         "description": "API-safe team profile."
+      },
+      "UpdateTeamResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "TransferTeamCaptaincyResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "RemoveTeamMemberResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "SetTeamMemberRoleResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "success",
+          "timestamp"
+        ],
+        "additionalProperties": false
       },
       "TicketSummary": {
         "type": "object",
@@ -28167,7 +31132,77 @@
           "error_webhook_delivery_not_found",
           "error_webhook_replay_not_allowed",
           "error_webhook_scope_invalid",
-          "error_idempotency_key_conflict"
+          "error_idempotency_key_conflict",
+          "error_team_name_taken",
+          "error_team_tag_taken",
+          "error_team_not_active",
+          "error_team_game_mismatch",
+          "error_team_not_in_match",
+          "error_only_team_leaders_can_add_members",
+          "error_only_team_leaders_can_remove_members",
+          "error_cannot_remove_captain",
+          "error_captain_must_transfer_before_leave",
+          "error_captain_role_requires_transfer",
+          "error_captain_cannot_change_own_role",
+          "error_captain_required",
+          "error_not_team_member",
+          "error_already_team_member",
+          "error_no_permission_disable_team",
+          "error_no_permission_enable_team",
+          "error_cannot_enable_team_org_disabled",
+          "error_no_permission_invite_members",
+          "error_must_be_org_member_to_join_team",
+          "error_only_org_admins_can_add_members",
+          "error_only_org_admins_can_remove_members",
+          "error_only_org_admins_can_create_teams",
+          "error_cannot_remove_org_owner",
+          "error_only_org_owner_can_change_roles",
+          "error_cannot_change_owner_role",
+          "error_only_org_owner_can_transfer",
+          "error_new_owner_must_be_member",
+          "error_only_org_owner_can_delete",
+          "error_only_org_owner_can_disable",
+          "error_only_org_owner_can_enable",
+          "error_not_org_member",
+          "error_already_org_member",
+          "error_must_leave_teams_first",
+          "error_org_already_disabled",
+          "error_org_not_disabled",
+          "error_match_already_published",
+          "error_match_not_published",
+          "error_match_already_accepted",
+          "error_match_already_started",
+          "error_match_not_accepted",
+          "error_match_not_ready",
+          "error_match_no_accepted_team",
+          "error_match_has_acceptances",
+          "error_match_cannot_accept_own",
+          "error_match_not_challenge",
+          "error_challenge_not_pending",
+          "error_challenge_already_pending",
+          "error_challenge_game_mismatch",
+          "error_cannot_challenge_self",
+          "error_challenged_team_not_found",
+          "error_max_open_challenges_reached",
+          "error_only_captains_can_start_match",
+          "error_only_captains_can_respond_challenge",
+          "error_only_captains_can_pass_host",
+          "error_only_host_can_pass_host",
+          "error_only_captains_can_update_lobby",
+          "error_acceptance_not_found",
+          "error_acceptance_not_pending",
+          "error_acceptance_already_pending",
+          "error_acceptance_rejected",
+          "error_lobby_code_required",
+          "error_lobby_code_too_long",
+          "error_lobby_code_invalid_status",
+          "error_invalid_game_mode",
+          "error_invalid_map_selection",
+          "error_invalid_map_selection_type",
+          "error_invalid_game_specific_option",
+          "error_map_not_released",
+          "error_map_selection_not_supported",
+          "error_validation_failed"
         ],
         "description": "Stable machine-readable API error code (documentation enum)."
       },
@@ -28214,6 +31249,7 @@
               "organization.unbanned",
               "organization.updated",
               "organization.user_banned",
+              "league.announcement",
               "league.ban_revoked",
               "league.cooldown_cleared",
               "league.cooldown_issued",

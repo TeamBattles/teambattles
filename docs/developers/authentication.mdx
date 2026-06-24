@@ -58,7 +58,7 @@ Each API key carries granular permission scopes, and each scope uses one of four
 | **Game**        | `ranks`                                    | none, read, read-write | Read player game ranks                 |
 | **Users**       | `profile`                                  | none, read             | Read user profile data                 |
 | **Teams**       | `profile`, `roster`                        | none, read, read-write | Read or manage team profile and roster |
-| **Orgs**        | `profile`                                  | none, read, read-write | Read or manage organization profile    |
+| **Orgs**        | `profile`, `roster`                        | none, read, read-write | Read profile/members or manage organization roster |
 | **Billing**     | `read`                                     | none, read             | Read your billing and subscription     |
 | **Tickets**     | `read`                                     | none, read             | Read your support tickets              |
 | **Tickets**     | `write`                                    | none, write            | Create or update support tickets       |
@@ -71,15 +71,24 @@ Each API key carries granular permission scopes, and each scope uses one of four
 
 #### League capabilities
 
-Keys bound to a league (a League developer account) also carry a `leagues` block with three access scopes - `league_public` (read), `league_admin` (read or read-write), and `settings_read` (read) - plus an optional `leagues.capabilities` allowlist. Each capability is **write-only**: it grants its action only when explicitly set to `write`. The 13 capability keys are:
+Keys bound to a league (a League developer account) also carry a `leagues` block with three access scopes - `league_public` (read), `league_admin` (read or read-write), and `settings_read` (read) - plus an optional `leagues.capabilities` allowlist. Each capability is **write-only**: it grants its action only when explicitly set to `write`. The 14 capability keys are:
 
-`scores`, `seasons`, `teams`, `members`, `bans`, `penalties`, `cooldowns`, `rules`, `points`, `branding`, `games`, `display_rules`, `tickets`.
+`scores`, `seasons`, `teams`, `members`, `bans`, `penalties`, `cooldowns`, `rules`, `points`, `branding`, `games`, `display_rules`, `tickets`, `announcements`.
 
 <Note>
 	Game API permissions (scores, lifecycle, ranks) are only available to approved Game Developers,
 	and league capabilities only to approved League Developers. Webhook management requires General
 	Developer access. League capabilities are write-only - they are ignored unless set to `write`.
 </Note>
+
+### Scope and behavior notes for write operations
+
+A few intentional asymmetries apply to the public write surfaces. Branch on these so your integration sets the right scopes and handles transfers correctly.
+
+- **Organizations read-via-profile, write-via-roster split.** Reading organization members (`GET /orgs/{identifier}/members`) authorizes on `orgs.profile`, the same scope that reads the org profile. Adding, removing, or changing the role of a member - and transferring ownership - requires `orgs.roster` (read-write). Teams are symmetric (both reads and roster writes key off `teams.roster`); organizations deliberately keep the existing GET on `orgs.profile` and gate only the new writes on `orgs.roster`.
+- **Match-lifecycle endpoints reject unresolved auth conflicts.** The six match-lifecycle write endpoints (`publish`, `challenges/accept`, `challenges/refuse`, `acceptances/{id}/approve`, `acceptances/{id}/decline`, `start`) use a conflict-aware identity gate. If the key's principal has an unresolved account auth conflict, these endpoints return `401` (`error_unauthorized`). The earlier match-write endpoints use a no-conflict gate and do not reject in this case. Resolve the account conflict in-app before calling the lifecycle endpoints.
+- **Captaincy transfer emits two events; ownership transfer emits one.** `POST /teams/{identifier}/captaincy/transfer` does not emit a dedicated transfer event - it emits **two** `team.member_role_changed` webhook events (one for the outgoing captain, one for the incoming captain). `POST /orgs/{identifier}/ownership/transfer` emits a single `organization.ownership_transferred` event. Subscribe accordingly when reacting to leadership changes.
+- **Not every match-lifecycle write emits a webhook.** Only three of the six match-lifecycle endpoints emit an event: `publish` emits `match.published`, `acceptances/{id}/approve` emits `match.accepted` (plus `roster.updated`), and `start` emits `match.started`. The other three - `challenges/accept`, `challenges/refuse`, and `acceptances/{id}/decline` - transition the match but emit **no** webhook event; they notify the affected users in-app only. Do not assume a webhook fires on every transition. Team, organization, and league-announcement writes do emit their documented events (`team.*` / `organization.*` / `league.announcement`).
 
 ### Key presets
 

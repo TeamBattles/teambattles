@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Game.Matches.Item.Status
         {
         }
         /// <summary>
-        /// Transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission.
+        /// Transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission. Supports an optional `Idempotency-Key` request header that deduplicates concurrent duplicate submissions: while one request is in flight, a second request with the same key and body resolves to the same outcome, and the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match and per target status. Note that this endpoint validates the live match state first, so a sequential retry sent after the transition has already succeeded returns the normal transition error (error_match_not_in_valid_state) - the live state no longer permits the transition - rather than a replayed success.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameStatusUpdateResponse"/></returns>
         /// <param name="body">Request body for updating a match&apos;s lifecycle status.</param>
@@ -67,7 +67,7 @@ namespace TeamBattles.Sdk.Game.Matches.Item.Status
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.GameStatusUpdateResponse>(requestInfo, global::TeamBattles.Sdk.Models.GameStatusUpdateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission.
+        /// Transitions a match between lifecycle states (validated against allowed transitions). Requires the game.lifecycle:read-write permission. Supports an optional `Idempotency-Key` request header that deduplicates concurrent duplicate submissions: while one request is in flight, a second request with the same key and body resolves to the same outcome, and the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match and per target status. Note that this endpoint validates the live match state first, so a sequential retry sent after the transition has already succeeded returns the normal transition error (error_match_not_in_valid_state) - the live state no longer permits the transition - rather than a replayed success.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Request body for updating a match&apos;s lifecycle status.</param>

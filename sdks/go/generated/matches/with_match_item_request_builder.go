@@ -25,6 +25,11 @@ type WithMatchItemRequestBuilderGetRequestConfiguration struct {
 func (m *WithMatchItemRequestBuilder) Accept()(*ItemAcceptRequestBuilder) {
     return NewItemAcceptRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Acceptances the acceptances property
+// returns a *ItemAcceptancesRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) Acceptances()(*ItemAcceptancesRequestBuilder) {
+    return NewItemAcceptancesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Attendance the attendance property
 // returns a *ItemAttendanceRequestBuilder when successful
 func (m *WithMatchItemRequestBuilder) Attendance()(*ItemAttendanceRequestBuilder) {
@@ -34,6 +39,11 @@ func (m *WithMatchItemRequestBuilder) Attendance()(*ItemAttendanceRequestBuilder
 // returns a *ItemCancelRequestBuilder when successful
 func (m *WithMatchItemRequestBuilder) Cancel()(*ItemCancelRequestBuilder) {
     return NewItemCancelRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Challenges the challenges property
+// returns a *ItemChallengesRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) Challenges()(*ItemChallengesRequestBuilder) {
+    return NewItemChallengesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Chat the chat property
 // returns a *ItemChatRequestBuilder when successful
@@ -96,6 +106,11 @@ func (m *WithMatchItemRequestBuilder) LobbyCode()(*ItemLobbyCodeRequestBuilder) 
 func (m *WithMatchItemRequestBuilder) Players()(*ItemPlayersRequestBuilder) {
     return NewItemPlayersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Publish the publish property
+// returns a *ItemPublishRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) Publish()(*ItemPublishRequestBuilder) {
+    return NewItemPublishRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Ready the ready property
 // returns a *ItemReadyRequestBuilder when successful
 func (m *WithMatchItemRequestBuilder) Ready()(*ItemReadyRequestBuilder) {
@@ -105,6 +120,11 @@ func (m *WithMatchItemRequestBuilder) Ready()(*ItemReadyRequestBuilder) {
 // returns a *ItemScoresRequestBuilder when successful
 func (m *WithMatchItemRequestBuilder) Scores()(*ItemScoresRequestBuilder) {
     return NewItemScoresRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Start the start property
+// returns a *ItemStartRequestBuilder when successful
+func (m *WithMatchItemRequestBuilder) Start()(*ItemStartRequestBuilder) {
+    return NewItemStartRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // ToGetRequestInformation returns a participant-gated match detail projection. Lobby codes and raw match documents are intentionally omitted. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
 // returns a *RequestInformation when successful

@@ -6,6 +6,8 @@ import { createErrorEscapedFromDiscriminatorValue, createLeagueProfileResponseFr
 // @ts-ignore
 import { ActivityFeedRequestBuilderRequestsMetadata, type ActivityFeedRequestBuilder } from './activityFeed/index.js';
 // @ts-ignore
+import { AnnouncementsRequestBuilderRequestsMetadata, type AnnouncementsRequestBuilder } from './announcements/index.js';
+// @ts-ignore
 import { ApplyEligibilityRequestBuilderRequestsMetadata, type ApplyEligibilityRequestBuilder } from './applyEligibility/index.js';
 // @ts-ignore
 import { BansRequestBuilderNavigationMetadata, BansRequestBuilderRequestsMetadata, type BansRequestBuilder } from './bans/index.js';
@@ -56,6 +58,10 @@ export interface WithIdentifierItemRequestBuilder extends BaseRequestBuilder<Wit
      * The activityFeed property
      */
     get activityFeed(): ActivityFeedRequestBuilder;
+    /**
+     * The announcements property
+     */
+    get announcements(): AnnouncementsRequestBuilder;
     /**
      * The applyEligibility property
      */
@@ -162,6 +168,9 @@ export const WithIdentifierItemRequestBuilderUriTemplate = "{+baseurl}/leagues/{
 export const WithIdentifierItemRequestBuilderNavigationMetadata: Record<Exclude<keyof WithIdentifierItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     activityFeed: {
         requestsMetadata: ActivityFeedRequestBuilderRequestsMetadata,
+    },
+    announcements: {
+        requestsMetadata: AnnouncementsRequestBuilderRequestsMetadata,
     },
     applyEligibility: {
         requestsMetadata: ApplyEligibilityRequestBuilderRequestsMetadata,

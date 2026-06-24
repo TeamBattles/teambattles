@@ -25,6 +25,11 @@ type WithIdentifierItemRequestBuilderPostRequestConfiguration struct {
 func (m *WithIdentifierItemRequestBuilder) ActivityFeed()(*ItemActivityFeedRequestBuilder) {
     return NewItemActivityFeedRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Announcements the announcements property
+// returns a *ItemAnnouncementsRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Announcements()(*ItemAnnouncementsRequestBuilder) {
+    return NewItemAnnouncementsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ApplyEligibility the applyEligibility property
 // returns a *ItemApplyEligibilityRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) ApplyEligibility()(*ItemApplyEligibilityRequestBuilder) {

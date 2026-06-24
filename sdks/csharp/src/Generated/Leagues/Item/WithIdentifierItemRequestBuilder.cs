@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using TeamBattles.Sdk.Leagues.Item.ActivityFeed;
+using TeamBattles.Sdk.Leagues.Item.Announcements;
 using TeamBattles.Sdk.Leagues.Item.ApplyEligibility;
 using TeamBattles.Sdk.Leagues.Item.Bans;
 using TeamBattles.Sdk.Leagues.Item.Branding;
@@ -42,6 +43,11 @@ namespace TeamBattles.Sdk.Leagues.Item
         public global::TeamBattles.Sdk.Leagues.Item.ActivityFeed.ActivityFeedRequestBuilder ActivityFeed
         {
             get => new global::TeamBattles.Sdk.Leagues.Item.ActivityFeed.ActivityFeedRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The announcements property</summary>
+        public global::TeamBattles.Sdk.Leagues.Item.Announcements.AnnouncementsRequestBuilder Announcements
+        {
+            get => new global::TeamBattles.Sdk.Leagues.Item.Announcements.AnnouncementsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The applyEligibility property</summary>
         public global::TeamBattles.Sdk.Leagues.Item.ApplyEligibility.ApplyEligibilityRequestBuilder ApplyEligibility

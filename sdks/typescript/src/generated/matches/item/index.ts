@@ -6,9 +6,13 @@ import { createApiMatchDetailResponseFromDiscriminatorValue, createErrorEscapedF
 // @ts-ignore
 import { AcceptRequestBuilderRequestsMetadata, type AcceptRequestBuilder } from './accept/index.js';
 // @ts-ignore
+import { AcceptancesRequestBuilderNavigationMetadata, type AcceptancesRequestBuilder } from './acceptances/index.js';
+// @ts-ignore
 import { AttendanceRequestBuilderRequestsMetadata, type AttendanceRequestBuilder } from './attendance/index.js';
 // @ts-ignore
 import { CancelRequestBuilderRequestsMetadata, type CancelRequestBuilder } from './cancel/index.js';
+// @ts-ignore
+import { ChallengesRequestBuilderNavigationMetadata, type ChallengesRequestBuilder } from './challenges/index.js';
 // @ts-ignore
 import { ChatRequestBuilderRequestsMetadata, type ChatRequestBuilder } from './chat/index.js';
 // @ts-ignore
@@ -18,9 +22,13 @@ import { LobbyCodeRequestBuilderRequestsMetadata, type LobbyCodeRequestBuilder }
 // @ts-ignore
 import { PlayersRequestBuilderRequestsMetadata, type PlayersRequestBuilder } from './players/index.js';
 // @ts-ignore
+import { PublishRequestBuilderRequestsMetadata, type PublishRequestBuilder } from './publish/index.js';
+// @ts-ignore
 import { ReadyRequestBuilderRequestsMetadata, type ReadyRequestBuilder } from './ready/index.js';
 // @ts-ignore
 import { ScoresRequestBuilderRequestsMetadata, type ScoresRequestBuilder } from './scores/index.js';
+// @ts-ignore
+import { StartRequestBuilderRequestsMetadata, type StartRequestBuilder } from './start/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
@@ -33,6 +41,10 @@ export interface WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatc
      */
     get accept(): AcceptRequestBuilder;
     /**
+     * The acceptances property
+     */
+    get acceptances(): AcceptancesRequestBuilder;
+    /**
      * The attendance property
      */
     get attendance(): AttendanceRequestBuilder;
@@ -40,6 +52,10 @@ export interface WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatc
      * The cancel property
      */
     get cancel(): CancelRequestBuilder;
+    /**
+     * The challenges property
+     */
+    get challenges(): ChallengesRequestBuilder;
     /**
      * The chat property
      */
@@ -57,6 +73,10 @@ export interface WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatc
      */
     get players(): PlayersRequestBuilder;
     /**
+     * The publish property
+     */
+    get publish(): PublishRequestBuilder;
+    /**
      * The ready property
      */
     get ready(): ReadyRequestBuilder;
@@ -64,6 +84,10 @@ export interface WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatc
      * The scores property
      */
     get scores(): ScoresRequestBuilder;
+    /**
+     * The start property
+     */
+    get start(): StartRequestBuilder;
     /**
      * Returns a participant-gated match detail projection. Lobby codes and raw match documents are intentionally omitted. Requires one of matches.user_matches:read, matches.team_matches:read, or matches.org_matches:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -93,11 +117,17 @@ export const WithMatchItemRequestBuilderNavigationMetadata: Record<Exclude<keyof
     accept: {
         requestsMetadata: AcceptRequestBuilderRequestsMetadata,
     },
+    acceptances: {
+        navigationMetadata: AcceptancesRequestBuilderNavigationMetadata,
+    },
     attendance: {
         requestsMetadata: AttendanceRequestBuilderRequestsMetadata,
     },
     cancel: {
         requestsMetadata: CancelRequestBuilderRequestsMetadata,
+    },
+    challenges: {
+        navigationMetadata: ChallengesRequestBuilderNavigationMetadata,
     },
     chat: {
         requestsMetadata: ChatRequestBuilderRequestsMetadata,
@@ -111,11 +141,17 @@ export const WithMatchItemRequestBuilderNavigationMetadata: Record<Exclude<keyof
     players: {
         requestsMetadata: PlayersRequestBuilderRequestsMetadata,
     },
+    publish: {
+        requestsMetadata: PublishRequestBuilderRequestsMetadata,
+    },
     ready: {
         requestsMetadata: ReadyRequestBuilderRequestsMetadata,
     },
     scores: {
         requestsMetadata: ScoresRequestBuilderRequestsMetadata,
+    },
+    start: {
+        requestsMetadata: StartRequestBuilderRequestsMetadata,
     },
 };
 /**

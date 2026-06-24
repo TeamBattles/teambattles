@@ -1,0 +1,123 @@
+---
+title: "Notifications & Event Routing"
+description: "How the Battles Bot reaches a server (channel announcements with a tri-state routing matrix) and a person (opt-in direct messages)"
+---
+
+The bot delivers TeamBattles activity two different ways:
+
+- **Channel announcements** post to a **server** (a Discord channel or a Telegram group). They are configured by a server's owners and managers, per attached league, followed org/team, or attached matchmaking game.
+- **Direct messages** reach a **person**. They are opt-in and configured by each user from their own settings.
+
+The two are fully independent surfaces - a server's channel routing has nothing to do with whether you personally receive DMs.
+
+## Channel announcements & event routing
+
+The bot posts an event to a server only when that server is **attached** to (or **following**) the thing the event is about. There are three sources you can route from:
+
+| Source | How you attach it | Set up on |
+| --- | --- | --- |
+| **Leagues** | Attach a league on the [bot settings](/tools/bot/settings#league-attachments) page | League attachment card |
+| **Organizations & teams** | [Follow](/tools/bot/settings#following-organizations-and-teams) an org or team you manage | Follow card |
+| **Matchmaking games** | Attach a game on the bot settings page | Matchmaking game card |
+
+Each attached league, followed org/team, and attached matchmaking game has a **Configure routing** deep-link on its card. That opens a routing matrix for that source.
+
+### The routing matrix
+
+Routing works on **event families**. Every family has a single **default channel**, and individual events inside that family inherit it unless you override them. Each event row has a tri-state control:
+
+| State | Meaning |
+| --- | --- |
+| **Inherit** | No override - the event uses its **family default** channel. |
+| **Channel** | Post this event to a specific channel you choose. |
+| **Mute** | Stop this event entirely, **overriding the family default** so it is not posted even though the family has a default channel. |
+
+<Note>
+	Setting a family's **default channel** routes every event in that family there. You only need to
+	touch individual event rows when you want one event to go somewhere else (**Channel**) or to stay
+	silent (**Mute**) while the rest of the family keeps posting.
+</Note>
+
+### The three axes and their families
+
+Each source can only route the families it owns:
+
+| Axis | Event families |
+| --- | --- |
+| **Leagues** | `league` |
+| **Follows** (orgs & teams) | `organization`, `team`, `roster`, `player` |
+| **Matchmaking** | `match`, `score` |
+
+### Event catalog
+
+What each family emits:
+
+| Family | Events |
+| --- | --- |
+| `league` | created, season activated, season completed, team approved, team banned, announcement |
+| `match` | 6 match lifecycle events |
+| `score` | 2 score events (per-team scores injected into the card) |
+| `roster` | roster updated |
+| `player` | player stats updated |
+| `organization` | 11 organization events |
+| `team` | 6 team events |
+
+<Info>
+	**`stream.online`** and **`rank.updated`** are personal, user-scope events. They are deliberately
+	**never** channel-routable and never appear as rows in the routing matrix - they only ever reach you
+	as a [direct message](#direct-messages-bot-dms).
+</Info>
+
+### Auto-disable & re-enable
+
+If the bot repeatedly can't post to a channel (for example the channel was deleted or the bot lost permission), that routing row is **auto-disabled after 5 consecutive delivery rejections** (the bot is forbidden from, or can no longer find, the channel - transient errors are retried instead and never count toward this). The cell turns **amber** in the matrix and shows a **Re-enable** action.
+
+A re-enabled (or any still-active) route **auto-recovers** the moment a delivery succeeds: a single successful post resets the failure counter and restores the route.
+
+### The per-league Announce channel
+
+The **Announce channel** picker on a league's card (see [bot settings](/tools/bot/settings#announce-channel)) is a shortcut for the `league.announcement` family default - it is one row in the **same** routing system. Setting it there is equivalent to setting the default channel for the `league` family's announcement event in the routing matrix.
+
+### Telegram routing
+
+A Telegram group has no channel tree, so routing there targets the **group chat itself** as the single delivery destination. The control is still tri-state - **Inherit / Channel / Mute** - but there is **no channel picker**: choosing **Channel** simply means "post to this group," and **Mute** stops the event for the group.
+
+## Direct messages (bot DMs)
+
+Direct messages reach you personally, on whichever platform you linked. They are **opt-in**.
+
+### Turning DMs on
+
+The master switch `botDmEnabled` is **OFF by default**. Turn it on from [`/settings`](/tools/bot/commands#settings) or the web notification settings. Until you opt in, the bot never DMs you.
+
+### Per-type mutes
+
+With DMs on, you can **mute individual notification types**. These per-type mutes are **independent of in-app suppression** - muting a type in-app does not mute its DM, and vice versa, so you can (for example) silence a type in-app while still receiving it as a DM.
+
+### Critical notifications
+
+A small set of **critical** types always send a DM even when their type is muted:
+
+- Payment completed
+- Subscription activated
+- Developer account suspended
+
+These **bypass per-type mutes**, but they still require the master opt-in - if `botDmEnabled` is off, you receive no DMs at all, critical included.
+
+<Note>
+	DMs are **text-only**. Unlike channel announcements, a direct message has no image card.
+</Note>
+
+### DM auto-disable
+
+If your DMs repeatedly bounce - you blocked the bot, closed the chat, or share no server with it - the bot **auto-disables your DMs after 5 consecutive bounces** and turns the master switch off. Re-enable it from [`/settings`](/tools/bot/commands#settings) once the chat is reachable again.
+
+---
+
+<Note>
+	Outbound announcement and DM **text** is currently English-only (locale `en`), pending translation.
+	The in-bot rendered UI is machine-translated across the supported locales, but routed announcements
+	and direct-message text are not yet localized.
+</Note>
+
+See also: [Bot settings](/tools/bot/settings), [`/settings` command](/tools/bot/commands#settings), and [Telegram](/tools/bot/telegram).

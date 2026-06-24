@@ -179,6 +179,16 @@
 									"strategy/keybinds",
 									"strategy/drawing-tool-styles"
 								]
+							},
+							{
+								"group": "TeamBattles Bot",
+								"pages": [
+									"tools/bot/index",
+									"tools/bot/commands",
+									"tools/bot/settings",
+									"tools/bot/notifications",
+									"tools/bot/telegram"
+								]
 							}
 						]
 					},
@@ -313,6 +323,7 @@
 					},
 					{
 						"group": "Personal API",
+						"openapi": "api-reference/openapi.json",
 						"pages": [
 							"developers/personal-api",
 							{
@@ -337,7 +348,36 @@
 									"api-reference/matches/update-match-lobby-code",
 									"api-reference/matches/mark-match-ready",
 									"api-reference/matches/submit-match-scores",
-									"api-reference/user/matches"
+									"api-reference/user/matches",
+									"POST /matches/{matchId}/publish",
+									"POST /matches/{matchId}/start",
+									"POST /matches/{matchId}/challenges/accept",
+									"POST /matches/{matchId}/challenges/refuse",
+									"POST /matches/{matchId}/acceptances/{acceptanceId}/approve",
+									"POST /matches/{matchId}/acceptances/{acceptanceId}/decline"
+								]
+							},
+							{
+								"group": "My Teams",
+								"pages": [
+									"POST /teams",
+									"PATCH /teams/{identifier}",
+									"DELETE /teams/{identifier}",
+									"DELETE /teams/{identifier}/members/{userId}",
+									"PATCH /teams/{identifier}/members/{userId}/role",
+									"POST /teams/{identifier}/captaincy/transfer"
+								]
+							},
+							{
+								"group": "My Organizations",
+								"pages": [
+									"POST /orgs",
+									"PATCH /orgs/{identifier}",
+									"DELETE /orgs/{identifier}",
+									"POST /orgs/{identifier}/members",
+									"DELETE /orgs/{identifier}/members/{userId}",
+									"PATCH /orgs/{identifier}/members/{userId}/role",
+									"POST /orgs/{identifier}/ownership/transfer"
 								]
 							},
 							{
@@ -384,6 +424,7 @@
 					},
 					{
 						"group": "League Operator API",
+						"openapi": "api-reference/openapi.json",
 						"pages": [
 							"developers/league-operator-api",
 							{
@@ -463,6 +504,12 @@
 								"pages": [
 									"api-reference/leagues/get-league-activity-feed",
 									"api-reference/leagues/get-league-dashboard-stats"
+								]
+							},
+							{
+								"group": "League: Announcements",
+								"pages": [
+									"POST /leagues/{identifier}/announcements"
 								]
 							}
 						]

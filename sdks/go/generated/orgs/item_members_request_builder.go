@@ -20,6 +20,25 @@ type ItemMembersRequestBuilderGetRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// ItemMembersRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type ItemMembersRequestBuilderPostRequestConfiguration struct {
+    // Request headers
+    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+    // Request options
+    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+}
+// ByUserId gets an item from the github.com/teambattles/sdk-go/generated.orgs.item.members.item collection
+// returns a *ItemMembersWithUserItemRequestBuilder when successful
+func (m *ItemMembersRequestBuilder) ByUserId(userId string)(*ItemMembersWithUserItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.BaseRequestBuilder.PathParameters {
+        urlTplParams[idx] = item
+    }
+    if userId != "" {
+        urlTplParams["userId"] = userId
+    }
+    return NewItemMembersWithUserItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewItemMembersRequestBuilderInternal instantiates a new ItemMembersRequestBuilder and sets the default values.
 func NewItemMembersRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemMembersRequestBuilder) {
     m := &ItemMembersRequestBuilder{
@@ -90,6 +109,38 @@ func (m *ItemMembersRequestBuilder) GetAsMembersGetResponse(ctx context.Context,
     }
     return res.(ItemMembersGetResponseable), nil
 }
+// Post adds a user to the organization with the ADMIN or MEMBER role. The caller (key owner) must be an organization admin or owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.roster:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+// returns a AddOrgMemberResponseable when successful
+// returns a ErrorEscaped error when the service returns a 400 status code
+// returns a ErrorEscaped error when the service returns a 401 status code
+// returns a ErrorEscaped error when the service returns a 403 status code
+// returns a ErrorEscaped error when the service returns a 404 status code
+// returns a ErrorEscaped error when the service returns a 409 status code
+// returns a ErrorEscaped error when the service returns a 429 status code
+// returns a ErrorEscaped error when the service returns a 500 status code
+func (m *ItemMembersRequestBuilder) Post(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.AddOrgMemberBodyable, requestConfiguration *ItemMembersRequestBuilderPostRequestConfiguration)(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.AddOrgMemberResponseable, error) {
+    requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
+    if err != nil {
+        return nil, err
+    }
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "401": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "403": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "404": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "409": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "429": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "500": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateAddOrgMemberResponseFromDiscriminatorValue, errorMapping)
+    if err != nil {
+        return nil, err
+    }
+    if res == nil {
+        return nil, nil
+    }
+    return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.AddOrgMemberResponseable), nil
+}
 // ToGetRequestInformation returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row's `id` is the membership row ID, not the user ID, and the row carries the member's API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.
 // returns a *RequestInformation when successful
 func (m *ItemMembersRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemMembersRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
@@ -99,6 +150,21 @@ func (m *ItemMembersRequestBuilder) ToGetRequestInformation(ctx context.Context,
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
     requestInfo.Headers.TryAdd("Accept", "application/json")
+    return requestInfo, nil
+}
+// ToPostRequestInformation adds a user to the organization with the ADMIN or MEMBER role. The caller (key owner) must be an organization admin or owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.roster:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+// returns a *RequestInformation when successful
+func (m *ItemMembersRequestBuilder) ToPostRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.AddOrgMemberBodyable, requestConfiguration *ItemMembersRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+    if requestConfiguration != nil {
+        requestInfo.Headers.AddAll(requestConfiguration.Headers)
+        requestInfo.AddRequestOptions(requestConfiguration.Options)
+    }
+    requestInfo.Headers.TryAdd("Accept", "application/json")
+    err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
+    if err != nil {
+        return nil, err
+    }
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.

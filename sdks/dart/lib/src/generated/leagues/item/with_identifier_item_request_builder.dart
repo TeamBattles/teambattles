@@ -3,6 +3,7 @@ import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../models/error.dart';
 import '../../models/league_profile_response.dart';
 import './activityFeed/activity_feed_request_builder.dart';
+import './announcements/announcements_request_builder.dart';
 import './applyEligibility/apply_eligibility_request_builder.dart';
 import './bans/bans_request_builder.dart';
 import './branding/branding_request_builder.dart';
@@ -30,6 +31,10 @@ class WithIdentifierItemRequestBuilder extends BaseRequestBuilder<WithIdentifier
     ///  The activityFeed property
     ActivityFeedRequestBuilder get activityFeed {
         return ActivityFeedRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The announcements property
+    AnnouncementsRequestBuilder get announcements {
+        return AnnouncementsRequestBuilder(pathParameters, requestAdapter);
     }
     ///  The applyEligibility property
     ApplyEligibilityRequestBuilder get applyEligibility {

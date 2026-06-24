@@ -9,6 +9,7 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use TeamBattles\Sdk\Generated\Leagues\Item\ActivityFeed\ActivityFeedRequestBuilder;
+use TeamBattles\Sdk\Generated\Leagues\Item\Announcements\AnnouncementsRequestBuilder;
 use TeamBattles\Sdk\Generated\Leagues\Item\ApplyEligibility\ApplyEligibilityRequestBuilder;
 use TeamBattles\Sdk\Generated\Leagues\Item\Bans\BansRequestBuilder;
 use TeamBattles\Sdk\Generated\Leagues\Item\Branding\BrandingRequestBuilder;
@@ -42,6 +43,13 @@ class WithIdentifierItemRequestBuilder extends BaseRequestBuilder
     */
     public function activityFeed(): ActivityFeedRequestBuilder {
         return new ActivityFeedRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The announcements property
+    */
+    public function announcements(): AnnouncementsRequestBuilder {
+        return new AnnouncementsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

@@ -1,0 +1,176 @@
+---
+title: "Battles Bot"
+description: "Install the Battles Bot for Discord and Telegram, link your account with one-time human verification, and run matchmaking and league commands without leaving your server"
+---
+
+The Battles Bot brings matchmaking and league management into Discord. Install it in your server, link it to your TeamBattles account once, and use slash commands from any enabled channel.
+
+<Note>
+	Every **reply to a command you run** is private (ephemeral) - only the person who ran the command
+	sees it. The bot only posts into a channel when a server operator has configured an
+	**announcement route**, and only sends you a **direct message** if you opt in. See
+	[Notifications & Event Routing](/tools/bot/notifications).
+</Note>
+
+## Add to Discord
+
+<Steps>
+	<Step title="Open the Tools page">
+		Go to the [Battles Bot tool page](https://teambattles.gg/bot).
+	</Step>
+	<Step title="Click Add to Discord">
+		Choose a server you manage and authorize the bot. You need the **Manage Server** permission in
+		Discord to install an app.
+	</Step>
+	<Step title="Confirm the install">
+		Discord shows a confirmation once the bot joins. The bot's slash commands become available in
+		your server - see the [Commands](/tools/bot/commands) page for the full list.
+	</Step>
+</Steps>
+
+<Tip>
+	The bot runs on **both Discord and Telegram**. To use it on Telegram, see the
+	[Telegram](/tools/bot/telegram) page for the install and link flow.
+</Tip>
+
+## Link your account
+
+Before the bot can act on your behalf, you connect it to your TeamBattles account and complete a one-time human verification. This keeps automated abuse out and proves a real person owns the linked account.
+
+<Steps>
+	<Step title="Run /link">
+		Type `/link` in any channel where the bot is enabled, or click the link button in the bot's
+		reply. The reply is private, so only you see it.
+	</Step>
+	<Step title="Open the link page">
+		The bot replies with a button to [teambattles.gg/bot/link](https://teambattles.gg/bot/link).
+		You must be signed in to TeamBattles - if you are not, you will be sent to the login page first.
+	</Step>
+	<Step title="Connect Discord">
+		On the link page, connect your Discord account to TeamBattles if it is not already connected.
+	</Step>
+	<Step title="Complete human verification">
+		Finish the Cloudflare verification on the link page. This one-time check confirms you are a real
+		person.
+	</Step>
+	<Step title="Done">
+		The page shows verification complete and the bot is ready to use. Run `/profile` to confirm
+		everything is linked.
+	</Step>
+</Steps>
+
+<Note>
+	If your Discord is connected but you have not finished verification, the bot reminds you and links
+	you back to the [link page](https://teambattles.gg/bot/link) to complete it.
+</Note>
+
+## Commands
+
+See the full list on the [Commands](/tools/bot/commands) page. The bot ships ten slash commands - `/link`, `/help`, `/profile`, `/setup`, `/match`, `/league`, `/team`, `/org`, `/settings`, and `/tools`. All ten are defined for both Discord and Telegram. On Telegram the two group-only commands (`/setup` and `/league`) register only to group chats, so Telegram private chats show eight commands and group chats show two; Discord registers all ten.
+
+## Privacy
+
+The bot only acts on the account you explicitly link, and command replies are visible only to the person who ran the command. Human verification is a one-time Cloudflare check tied to your TeamBattles account. The bot does not read channel messages; it only posts to a channel when a server operator has configured an [announcement route](/tools/bot/notifications), and only sends you a direct message if you have opted in.
+
+Linking has two tiers. Your account is **linked** once a connection between your TeamBattles account and the platform (Discord or Telegram) exists, and **verified** once you complete the one-time Cloudflare human check (`botVerifiedAt` is stamped). Running commands requires both linked and verified; actions that write data re-check verification at the time you run them. On Telegram there is no OAuth connect step - identity is established by a one-time link code you mint on the link page and consume with `/start <code>` in chat (see the [Telegram](/tools/bot/telegram) page).
+
+## Operator setup
+
+<Note>
+	This section is for operators deploying TeamBattles, not for end users. A one-time setup wires
+	Discord to your Convex deployment and registers the slash commands. The full operator runbook
+	(background jobs, table names, rate-bucket constants) lives in the repo at
+	`docs/operations/bot-runbook.md`.
+</Note>
+
+### Configure the Discord endpoints
+
+In the [Discord Developer Portal](https://discord.com/developers/applications), open your application and set:
+
+<Steps>
+	<Step title="Interactions Endpoint URL">
+		Under **General Information**, set the **Interactions Endpoint URL** to
+		`https://<your-convex-deployment>.convex.site/discord/interactions`. Discord verifies this URL
+		with a signed ping, so `DISCORD_PUBLIC_KEY` must already be set in the Convex runtime.
+	</Step>
+	<Step title="Events Webhook URL (recommended)">
+		Set the **Events Webhook URL** to `https://<your-convex-deployment>.convex.site/discord/events`
+		so installs are tracked (`APPLICATION_AUTHORIZED`). This route needs only `DISCORD_PUBLIC_KEY`.
+		Uninstalls are detected **lazily** - `APPLICATION_DEAUTHORIZED` is not handled, so a guild is
+		flipped to uninstalled only when a later REST call returns 403/404.
+	</Step>
+</Steps>
+
+<Note>
+	The same Convex `.convex.site` host also serves `POST /telegram/webhook` (Telegram receiver) and
+	`GET /health` (deployment health probe).
+</Note>
+
+### Register slash commands
+
+Run the registration script from a shell that has `DISCORD_APPLICATION_ID` and `DISCORD_BOT_TOKEN` set:
+
+```bash
+# Global registration (propagation can take up to an hour)
+pnpm bot:register-commands
+
+# Guild-scoped registration (propagates instantly, ideal for dev)
+pnpm bot:register-commands --guild <guild-id>
+```
+
+### Required environment variables
+
+<Note>
+	`DISCORD_APPLICATION_ID` is the same Discord snowflake as `DISCORD_CLIENT_ID`. The Convex
+	`/discord/interactions` route and the registration script both read it. Rate-bucket capacities and
+	delivery timing are **hardcoded code constants** (`deliveryConstants.ts`), not env vars - there are
+	no `DISCORD_*_CAPACITY` / `BOT_DELIVERY_*` variables to set.
+</Note>
+
+Set the Convex runtime variables with `npx convex env set <NAME> <value>`. App (Cloudflare Worker) variables are read by the SvelteKit app via `$env`.
+
+| Variable | Runtime | Purpose |
+| --- | --- | --- |
+| `DISCORD_PUBLIC_KEY` | Convex | Verifies signed interaction requests from Discord |
+| `DISCORD_BOT_TOKEN` | Convex | Authenticates bot API calls and command registration |
+| `DISCORD_APPLICATION_ID` | Convex | Bot application id (interaction route, slash-command registration) |
+| `DISCORD_CLIENT_ID` | Convex | Discord OAuth client id for the link-page **Connect Discord** step |
+| `DISCORD_CLIENT_SECRET` | Convex | Discord OAuth client secret for the connect callback |
+| `CONVEX_SITE_URL` | Convex | App URL used as the OAuth callback host and the Telegram webhook base |
+| `SITE_URL` | Convex | Card-render base host for `/og/bot/*` (defaults to `https://teambattles.gg`) |
+| `BOT_RENDER_SECRET` | Convex + App (Cloudflare Worker) | Shared secret on the `/og/bot/*` card-render call (`x-bot-render-secret`) |
+| `PUBLIC_TURNSTILE_SITE_KEY` | App (Cloudflare Worker) | Cloudflare Turnstile site key for the link-page human check |
+| `TURNSTILE_SECRET_KEY` | App (Cloudflare Worker) | Cloudflare Turnstile server-side verification (dev falls back to `TURNSTILE_TEST_SECRET`) |
+| `DISCORD_INVITE_URL` | App (Cloudflare Worker) | Discord invite link surfaced on landing/maintenance pages |
+
+### Configure Telegram
+
+The bot also runs on Telegram via a separate webhook receiver. Operator steps:
+
+<Steps>
+	<Step title="Create the Telegram bot">
+		In Telegram, talk to [@BotFather](https://t.me/BotFather), create a bot, and copy its **bot
+		token**.
+	</Step>
+	<Step title="Set the Telegram secrets">
+		Set `TELEGRAM_BOT_TOKEN` (the BotFather token) and `TELEGRAM_WEBHOOK_SECRET` (a random secret
+		that Telegram echoes back so the receiver can verify updates) in the Convex runtime with
+		`npx convex env set <NAME> <value>`. Set `CONVEX_SITE_URL` (Convex) and `TELEGRAM_BOT_USERNAME`
+		(App) too - the latter builds the `t.me` deep link and QR on the link page; if it is unset the
+		Telegram link tab degrades to a manual copy-the-code step.
+	</Step>
+	<Step title="Register commands and webhook">
+		Run `pnpm bot:register-telegram` from a shell that exports `TELEGRAM_BOT_TOKEN`,
+		`TELEGRAM_WEBHOOK_SECRET`, and `CONVEX_SITE_URL` (the script throws without all three). It calls
+		`setMyCommands` **twice** - eight private-chat commands and two group-chat commands, both
+		projected from the same catalog - then `setWebhook` to `${CONVEX_SITE_URL}/telegram/webhook`
+		with `allowed_updates` `[message, callback_query, my_chat_member]`.
+	</Step>
+</Steps>
+
+| Variable | Runtime | Purpose |
+| --- | --- | --- |
+| `TELEGRAM_BOT_TOKEN` | Convex | Authenticates Telegram Bot API calls and command registration |
+| `TELEGRAM_WEBHOOK_SECRET` | Convex | Verifies incoming Telegram webhook updates (secret-token check) |
+| `CONVEX_SITE_URL` | Convex | Telegram webhook base (`/telegram/webhook`) and OAuth callback host |
+| `TELEGRAM_BOT_USERNAME` | App (Cloudflare Worker) | Builds the `t.me` deep link / QR; absent degrades the link tab to a manual copy-the-code step |

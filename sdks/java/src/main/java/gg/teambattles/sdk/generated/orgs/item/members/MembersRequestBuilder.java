@@ -8,7 +8,10 @@ import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
+import gg.teambattles.sdk.generated.models.AddOrgMemberBody;
+import gg.teambattles.sdk.generated.models.AddOrgMemberResponse;
 import gg.teambattles.sdk.generated.models.Error;
+import gg.teambattles.sdk.generated.orgs.item.members.item.WithUserItemRequestBuilder;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +21,18 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class MembersRequestBuilder extends BaseRequestBuilder {
+    /**
+     * Gets an item from the gg.teambattles.sdk.generated.orgs.item.members.item collection
+     * @param userId Convex user ID of the member to remove.
+     * @return a {@link WithUserItemRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public WithUserItemRequestBuilder byUserId(@jakarta.annotation.Nonnull final String userId) {
+        Objects.requireNonNull(userId);
+        final HashMap<String, Object> urlTplParams = new HashMap<String, Object>(this.pathParameters);
+        urlTplParams.put("userId", userId);
+        return new WithUserItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /**
      * Instantiates a new {@link MembersRequestBuilder} and sets the default values.
      * @param pathParameters Path parameters for the request
@@ -69,6 +84,49 @@ public class MembersRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, MembersGetResponse::createFromDiscriminatorValue);
     }
     /**
+     * Adds a user to the organization with the ADMIN or MEMBER role. The caller (key owner) must be an organization admin or owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.roster:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * @param body Add a member to the organization.
+     * @return a {@link AddOrgMemberResponse}
+     * @throws Error When receiving a 400 status code
+     * @throws Error When receiving a 401 status code
+     * @throws Error When receiving a 403 status code
+     * @throws Error When receiving a 404 status code
+     * @throws Error When receiving a 409 status code
+     * @throws Error When receiving a 429 status code
+     * @throws Error When receiving a 500 status code
+     */
+    @jakarta.annotation.Nullable
+    public AddOrgMemberResponse post(@jakarta.annotation.Nonnull final AddOrgMemberBody body) {
+        return post(body, null);
+    }
+    /**
+     * Adds a user to the organization with the ADMIN or MEMBER role. The caller (key owner) must be an organization admin or owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.roster:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * @param body Add a member to the organization.
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return a {@link AddOrgMemberResponse}
+     * @throws Error When receiving a 400 status code
+     * @throws Error When receiving a 401 status code
+     * @throws Error When receiving a 403 status code
+     * @throws Error When receiving a 404 status code
+     * @throws Error When receiving a 409 status code
+     * @throws Error When receiving a 429 status code
+     * @throws Error When receiving a 500 status code
+     */
+    @jakarta.annotation.Nullable
+    public AddOrgMemberResponse post(@jakarta.annotation.Nonnull final AddOrgMemberBody body, @jakarta.annotation.Nullable final java.util.function.Consumer<PostRequestConfiguration> requestConfiguration) {
+        Objects.requireNonNull(body);
+        final RequestInformation requestInfo = toPostRequestInformation(body, requestConfiguration);
+        final HashMap<String, ParsableFactory<? extends Parsable>> errorMapping = new HashMap<String, ParsableFactory<? extends Parsable>>();
+        errorMapping.put("400", Error::createFromDiscriminatorValue);
+        errorMapping.put("401", Error::createFromDiscriminatorValue);
+        errorMapping.put("403", Error::createFromDiscriminatorValue);
+        errorMapping.put("404", Error::createFromDiscriminatorValue);
+        errorMapping.put("409", Error::createFromDiscriminatorValue);
+        errorMapping.put("429", Error::createFromDiscriminatorValue);
+        errorMapping.put("500", Error::createFromDiscriminatorValue);
+        return this.requestAdapter.send(requestInfo, errorMapping, AddOrgMemberResponse::createFromDiscriminatorValue);
+    }
+    /**
      * Returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row&apos;s `id` is the membership row ID, not the user ID, and the row carries the member&apos;s API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.
      * @return a {@link RequestInformation}
      */
@@ -89,6 +147,30 @@ public class MembersRequestBuilder extends BaseRequestBuilder {
         return requestInfo;
     }
     /**
+     * Adds a user to the organization with the ADMIN or MEMBER role. The caller (key owner) must be an organization admin or owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.roster:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * @param body Add a member to the organization.
+     * @return a {@link RequestInformation}
+     */
+    @jakarta.annotation.Nonnull
+    public RequestInformation toPostRequestInformation(@jakarta.annotation.Nonnull final AddOrgMemberBody body) {
+        return toPostRequestInformation(body, null);
+    }
+    /**
+     * Adds a user to the organization with the ADMIN or MEMBER role. The caller (key owner) must be an organization admin or owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.roster:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * @param body Add a member to the organization.
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return a {@link RequestInformation}
+     */
+    @jakarta.annotation.Nonnull
+    public RequestInformation toPostRequestInformation(@jakarta.annotation.Nonnull final AddOrgMemberBody body, @jakarta.annotation.Nullable final java.util.function.Consumer<PostRequestConfiguration> requestConfiguration) {
+        Objects.requireNonNull(body);
+        final RequestInformation requestInfo = new RequestInformation(HttpMethod.POST, urlTemplate, pathParameters);
+        requestInfo.configure(requestConfiguration, PostRequestConfiguration::new);
+        requestInfo.headers.tryAdd("Accept", "application/json");
+        requestInfo.setContentFromParsable(requestAdapter, "application/json", body);
+        return requestInfo;
+    }
+    /**
      * Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
      * @param rawUrl The raw URL to use for the request builder.
      * @return a {@link MembersRequestBuilder}
@@ -103,5 +185,11 @@ public class MembersRequestBuilder extends BaseRequestBuilder {
      */
     @jakarta.annotation.Generated("com.microsoft.kiota")
     public class GetRequestConfiguration extends BaseRequestConfiguration {
+    }
+    /**
+     * Configuration for the request such as headers, query parameters, and middleware options.
+     */
+    @jakarta.annotation.Generated("com.microsoft.kiota")
+    public class PostRequestConfiguration extends BaseRequestConfiguration {
     }
 }

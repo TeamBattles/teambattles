@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using TeamBattles.Sdk.Models;
+using TeamBattles.Sdk.Teams.Item.Captaincy;
 using TeamBattles.Sdk.Teams.Item.Matches;
 using TeamBattles.Sdk.Teams.Item.Members;
 namespace TeamBattles.Sdk.Teams.Item
@@ -19,6 +20,11 @@ namespace TeamBattles.Sdk.Teams.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithIdentifierItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The captaincy property</summary>
+        public global::TeamBattles.Sdk.Teams.Item.Captaincy.CaptaincyRequestBuilder Captaincy
+        {
+            get => new global::TeamBattles.Sdk.Teams.Item.Captaincy.CaptaincyRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The matches property</summary>
         public global::TeamBattles.Sdk.Teams.Item.Matches.MatchesRequestBuilder Matches
         {
@@ -44,6 +50,37 @@ namespace TeamBattles.Sdk.Teams.Item
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         public WithIdentifierItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{identifier}", rawUrl)
         {
+        }
+        /// <summary>
+        /// Disbands a team (soft-deletes it and deactivates its members). The caller (key owner) must be the team captain. Requires teams.profile:read-write.
+        /// </summary>
+        /// <returns>A <see cref="global::TeamBattles.Sdk.Models.DisbandTeamResponse"/></returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 429 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 500 status code</exception>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::TeamBattles.Sdk.Models.DisbandTeamResponse?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::TeamBattles.Sdk.Models.DisbandTeamResponse> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToDeleteRequestInformation(requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "401", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "429", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.DisbandTeamResponse>(requestInfo, global::TeamBattles.Sdk.Models.DisbandTeamResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns an API-safe team profile projection. Active team members are treated as public visibility for their own team. Requires teams.profile:read.
@@ -109,6 +146,60 @@ namespace TeamBattles.Sdk.Teams.Item
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Teams.Item.WithIdentifierResponse>(requestInfo, global::TeamBattles.Sdk.Teams.Item.WithIdentifierResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
+        /// Updates a team&apos;s profile fields. The caller (key owner) must be the team captain. Requires teams.profile:read-write.
+        /// </summary>
+        /// <returns>A <see cref="global::TeamBattles.Sdk.Models.UpdateTeamResponse"/></returns>
+        /// <param name="body">Fields to update on the team. All optional.</param>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 429 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 500 status code</exception>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::TeamBattles.Sdk.Models.UpdateTeamResponse?> PatchAsync(global::TeamBattles.Sdk.Models.UpdateTeamBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::TeamBattles.Sdk.Models.UpdateTeamResponse> PatchAsync(global::TeamBattles.Sdk.Models.UpdateTeamBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "401", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "429", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.UpdateTeamResponse>(requestInfo, global::TeamBattles.Sdk.Models.UpdateTeamResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
+        /// Disbands a team (soft-deletes it and deactivates its members). The caller (key owner) must be the team captain. Requires teams.profile:read-write.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
         /// Returns an API-safe team profile projection. Active team members are treated as public visibility for their own team. Requires teams.profile:read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
@@ -128,6 +219,28 @@ namespace TeamBattles.Sdk.Teams.Item
             return requestInfo;
         }
         /// <summary>
+        /// Updates a team&apos;s profile fields. The caller (key owner) must be the team captain. Requires teams.profile:read-write.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">Fields to update on the team. All optional.</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(global::TeamBattles.Sdk.Models.UpdateTeamBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(global::TeamBattles.Sdk.Models.UpdateTeamBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
+            return requestInfo;
+        }
+        /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Teams.Item.WithIdentifierItemRequestBuilder"/></returns>
@@ -141,7 +254,23 @@ namespace TeamBattles.Sdk.Teams.Item
         /// </summary>
         [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class WithIdentifierItemRequestBuilderDeleteRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
+        {
+        }
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
+        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithIdentifierItemRequestBuilderGetRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
+        {
+        }
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
+        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class WithIdentifierItemRequestBuilderPatchRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
         {
         }
     }

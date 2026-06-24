@@ -1,0 +1,235 @@
+---
+title: "Bot Commands"
+description: "Reference for the Battles Bot slash commands on Discord and Telegram: /link, /help, /profile, /setup, /match, /league, /team, /org, /settings, and /tools"
+---
+
+The Battles Bot uses Discord slash commands. Type `/` in any channel where the bot is enabled to see them.
+
+<Note>
+	Every reply is **private** (ephemeral) - only the person who ran the command sees it. Nothing the
+	bot sends is posted publicly in the channel.
+</Note>
+
+<Note>
+	The registered command **names and descriptions** (what you see in the slash-command picker) are
+	English only - they are not translated across the TeamBattles UI locales. The bot's in-chat
+	replies and image cards are localized.
+</Note>
+
+## Command reference
+
+| Command    | What it does                                                                                            |
+| ---------- | ------------------------------------------------------------------------------------------------------- |
+| `/link`    | Link your TeamBattles account. Replies with a button to the link page where you connect Discord and complete one-time human verification. |
+| `/help`    | Show how to use the Battles Bot and the list of available commands.                                  |
+| `/profile` | View your TeamBattles profile - your username and level, with a button to open the full profile online.  |
+| `/setup`   | Open this server's bot settings. Owners and managers get a private link to the settings page; if the bot was added without a linked owner, the first linked member to run it claims ownership. See [Set up the bot in a server](#set-up-the-bot-in-a-server) below. |
+| `/match`   | Browse open matches, view your own matches, and open match details as image cards, plus create, accept, score, and manage matches (lobby code, ready, start, forfeit, cancel, attendance) through interactive menus. `action`: `browse`, `my-matches`, `create`, `accept`. See [Matchmaking](#matchmaking) below. |
+| `/league`  | Browse the leagues attached to this channel - standings, schedule, your team's stats and next fixture, and report a league fixture's score - all as private image cards, plus league staff actions (announce, applications, bans, penalties, seasons, ownership transfer) for managers and above. Guild-only. `action`: `hub`, `standings`, `schedule`, `my-team`, `report-score`, `manage`. See [Leagues](#leagues) below. |
+| `/team`    | View and manage your teams - view your teams as image cards, create a team, edit core fields, leave, transfer captaincy, kick members, promote / demote co-captains, and disband, all in chat (destructive actions use a two-step in-chat confirm). `action`: `view`, `create`. See [Account and entity commands](#account-and-entity-commands) below. |
+| `/org`     | View and manage your organizations - view, create, edit core fields, add members / change roles / remove members, transfer ownership, and delete, in chat with a two-step confirm on destructive actions. `action`: `view`, `create`. See [Account and entity commands](#account-and-entity-commands) below. |
+| `/settings`| Manage your TeamBattles notification settings - turn the bot DM master switch on or off and mute individual notification types. (Per-user; distinct from the per-server `/setup`.) |
+| `/tools`   | View your overlays, strategies, boards, and tools as image summary cards, with deep-link buttons into teambattles.gg to create / edit / use them (no editor in the bot). `action`: `overlays`, `strategies`, `boards`, `replay`, `record`. See [Tools](#tools) below. |
+
+<Info>
+	Every command except `/link` and `/help` requires a **linked and human-verified** account to do
+	anything - both reads and writes. Until you finish the one-time human verification on the link
+	page, the bot replies with a verify/link prompt and the command never runs. `/team`, `/org`, and
+	`/profile` edits additionally re-check verification at the moment you press a write button, and
+	`/settings` shows an in-flow verify button instead of blocking. If you have not linked yet, run
+	`/link` first. See [Link your account](/tools/bot#link-your-account).
+</Info>
+
+## Set up the bot in a server
+
+Run `/setup` in any server where the bot is installed to manage it from the web.
+
+- **Owner or manager** - you get a private link to that server's [bot settings](/tools/bot/settings), where you enable plugins and commands and manage who can configure the bot.
+- **Linked member, not yet a manager** - the bot tells you to ask the server's owner or a manager to add you.
+- **No owner set yet** (the bot was added through a raw invite link) - the first linked TeamBattles member to run `/setup` becomes the owner of the bot's settings for that server.
+- **Not linked** - run `/link` first, then `/setup` again.
+
+<Info>
+	`/setup` only configures the **bot**, not your Discord server. It never changes Discord roles,
+	channels, or permissions.
+</Info>
+
+## Matchmaking
+
+`/match` is the matchmaking surface. Run it on its own for a menu of actions, or jump straight to one with the `action` option.
+
+### Browse and view
+
+- **Browse** (`/match action:browse`) - choose a game (required), then optionally narrow by platform, region, and scheduling window. You get back paginated image cards of open matches, with **Prev**/**Next** to page through them and a **Details** button on each result. Browse shows public open matches only. The game picker lists up to **25 games** (a Discord menu limit); games beyond the first 25 are not selectable yet.
+- **My matches** (`/match action:my-matches`) - your own matches as paginated image cards, each with a **Details** button.
+- **Details** - opens a rich match card (the teams, game, mode, best-of, schedule, status, and scores) with a **View on web** link to open the match on teambattles.gg and a **Back** button to return to your results. The detail card is also where you reach the write actions below - **Accept this match**, **Review acceptances**, **Enter scores**, and **Confirm scores** - plus the [management actions](#manage-a-match), whenever you are eligible.
+
+### Create a match
+
+`/match action:create` opens a five-step wizard. Each step edits the same private message, so you stay in one place the whole way:
+
+1. **Team** - pick one of your captain teams. You must be the team's captain to create a match.
+2. **Game** - pick the game. Your choice sets which modes, maps, and team sizes are available.
+3. **Format** - choose the game mode, team size, and series length (best-of).
+4. **Map options** - choose the map selection type and map preference, and optionally a platform and region.
+5. **Schedule** - pick **now**, **+1 hour**, **tonight** (approximate - about 6 hours out), or leave it unscheduled, then press **Create**.
+
+The match publishes straight away, and your roster is filled automatically from your team's active members (up to the team size you chose).
+
+<Note>
+	In this release the bot creates **XP-only** matches - wager matches are created on
+	[teambattles.gg](https://teambattles.gg). There is no per-map picker or screenshot step in the bot.
+</Note>
+
+### Accept matches and challenges
+
+`/match action:accept` shows your **challenge inbox**, and an open match's detail card carries an **Accept this match** button. All three accept flows require you to be a team captain:
+
+- **Propose acceptance** on an open match - choose the team you are accepting with, and your proposal is sent to the match creator.
+- **Review acceptances** on a match you created - use the **Review acceptances** button on your match's detail card to approve or decline the acceptances you have received.
+- **Accept or refuse a direct challenge** sent to your team, straight from the challenge inbox.
+
+### Enter and confirm scores
+
+When a match is **READY** or **IN PROGRESS**, its detail card shows the scoring actions for the two captains:
+
+- **Enter scores** opens a short form with two number inputs - your team's score and your opponent's.
+- The other team's captain then taps **Confirm scores** to confirm the result.
+
+<Note>
+	Scores are entered as numbers - the bot has no screenshot upload in this release, so screenshot
+	evidence stays on [teambattles.gg](https://teambattles.gg).
+</Note>
+
+### Manage a match
+
+A match's detail card (reached from **Browse** or **My matches** -> **Details**) also carries the lifecycle management actions, alongside the accept and score buttons. Each action only appears when it would actually apply to that match's state and your role, and every reply is private (ephemeral):
+
+- **Set lobby code** - opens a short form where a captain of either team enters the lobby/room code (1 to 50 characters) while the match is **ACCEPTED** or **READY**. The current code is shown above the card.
+- **Mark ready** - a captain marks their own team ready on an **ACCEPTED** match. When both teams are ready the match advances to **READY**. If you captain both teams you get a separate ready button per side.
+- **Start match** - a captain of either team (or an admin) starts a **READY** match, moving it to **IN PROGRESS**.
+- **Forfeit** - a captain of either team forfeits an **ACCEPTED**, **READY**, or **IN PROGRESS** match (their team takes the loss). It opens a form with an optional reason.
+- **Cancel match** - a captain of either team, or a staff/management/admin, cancels a **PENDING**, **ACCEPTED**, or **READY** match. It opens a form with an optional reason. For a **league** match cancelled after the scheduled grace period, the cancellation may be recorded as a forfeit - the form title and hint call this out.
+- **Set your attendance** - any player on the match roster sets their attendance (**Attending**, **Not attending**, or **Tentative**) from a dropdown while the match is **PENDING**, **ACCEPTED**, or **READY**.
+
+<Note>
+	`/match` replies are private (ephemeral) in this release, like every other command. Creating,
+	accepting, scoring, and managing matches (lobby code, ready, start, forfeit, cancel) all require you
+	to be a team **captain** - cancel additionally allows staff/management/admins, start additionally
+	allows admins, and attendance is open to any rostered player. Shareable public match cards are
+	planned for a later phase.
+</Note>
+
+<Info>
+	Matchmaking is enabled per server and is **off by default**. A server admin turns it on from the
+	in-app [bot settings](/tools/bot/settings) before `/match` will list matches in that server.
+	Running `/match` in a direct message always works.
+</Info>
+
+## Leagues
+
+`/league` is the league member surface. Run it on its own for a menu of actions, or jump straight to one with the `action` option. It is **guild-only** (it cannot run in a DM) because it needs a server to resolve which league(s) you are working with, and every reply is **private** (ephemeral).
+
+<Info>
+	`/league` works in a channel a server owner or manager has **attached a league to** (from the
+	[bot settings](/tools/bot/settings) page). In a thread, the bot checks the thread's parent channel
+	too. If no attached league covers the channel you run it in, the bot tells you there is no league
+	here. When more than one league is attached, the bot first asks you to pick one.
+</Info>
+
+### Hub
+
+`/league` on its own (or `/league action:hub`) opens the league hub: the league's name plus buttons for **Standings**, **Schedule**, **My team**, and **Report score**. Pick a league first if the channel has more than one attached.
+
+### Standings
+
+`/league action:standings` - if the league runs more than one game you first pick the **game**, then the **season** (including pre-season where it applies). Press **Show standings** to get a ranked image card - `# | Team | W-L-D | Pts | Streak` - **10 teams per page**, with **Prev**/**Next** to page through. The standings are a snapshot, so paging never reshuffles the ranking under you. Standings page through the **top 100** teams; in a larger league the page label reads "of top N (M teams)".
+
+### Schedule
+
+`/league action:schedule` - a league-wide image card of fixtures, **6 per page**. It opens on **Upcoming** (sorted by scheduled time); a **Recent results** button switches to completed fixtures (with scores and the result), and **Upcoming** switches back. **Prev**/**Next** page through the active view.
+
+### My team
+
+`/league action:my-team` - your team's standing in this league as a single image card: placement, full record (wins, losses, draws, points), streaks, challenge record, forfeits, point deductions, and your **next fixture**. If you are on teams in more than one of the league's games, the bot asks you to pick the game first. You see this for any team you are a roster member of - you do not have to be the captain.
+
+### Report score
+
+`/league action:report-score` - pick one of your league fixtures that is **READY** or **IN PROGRESS**, then use the same score form as `/match`: **Enter scores** opens a modal with two number inputs (your team's score and the opponent's), and the other team's captain taps **Confirm scores** to confirm. Reporting a score is **captain-only** - the picker only lists fixtures for teams you are the **active captain** of.
+
+<Note>
+	`/league` replies are private (ephemeral), like every other command. Browsing standings, the
+	schedule, and your team is open to any rostered member; **reporting a score is captain-only**.
+	The **Leagues** plugin is enabled per server and is **off by default**, so a server owner or
+	manager must turn it on in the [bot settings](/tools/bot/settings) before `/league` works there.
+	Shareable public league cards are planned for a later phase.
+</Note>
+
+### Manage (staff)
+
+`/league action:manage` (or the **Manage league** button on the hub, shown to
+managers and above) opens a private staff hub for the attached league. You only
+see the actions your league role allows - everything is re-checked on the server,
+so a button you should not have never does anything:
+
+- **Announce** (manager and above) - post a title + message to the league's team
+  captains as an in-app announcement.
+- **Applications** (manager and above) - review pending team applications and
+  **Approve** or **Deny** each (deny takes an optional reason).
+- **Ban a team** (manager and above) - ban a league team **permanently** or for
+  **7 / 30 / 90 days**, with a reason. Lift a ban from the web.
+- **Penalty** (manager and above) - apply a **point deduction**, **forfeit**, or
+  **warning** to a team, with a reason (point deductions take a value).
+- **Seasons** (admin and above) - **create** a season (name + start/end dates) or
+  **activate / complete** an existing one. Removing a season stays on the web.
+- **Transfer ownership** (owner only) - hand the league to another member. Pick
+  them from a Discord member menu, or **enter their TeamBattles username** if they
+  have not linked Discord. You confirm before it applies; you are demoted to admin
+  and it cannot be undone.
+- **Manage points on web** - a link to the league admin page (the points engine is
+  configured on the web, not in the bot).
+
+<Note>
+	Staff actions only work on **public** (approved, enabled) leagues, and only in a
+	channel the league is attached to. Managing a not-yet-public league stays on the
+	web. The member who you transfer ownership to must be an active league member who
+	has linked their TeamBattles account.
+</Note>
+
+## Account and entity commands
+
+These commands manage your own TeamBattles account and the teams and organizations you belong to, entirely in chat. They require a linked and human-verified account to view or change anything; write actions are additionally re-checked for verification at the moment you confirm. Destructive actions (leave, kick, disband, remove member, delete) use a two-step in-chat confirm, and a subscription upsell button appears only at a real entitlement wall (it never gates the free competitive core).
+
+### /profile
+
+`/profile` shows your username and level as an image card with a button to open your full profile online. From the same reply you can edit your core profile fields, rename your display name, set your profile visibility (**public**, **limited**, or **private**), and manage your per-game ranks (add, edit, and remove ranks), and reach a deep link to manage your connected accounts on the web.
+
+### /team
+
+`/team` (or `/team action:view`) lists the teams you are on as image cards. `/team action:create` walks you through creating a team - it starts by picking one of your **organizations** (you must own or administer one first), then the game and playlist, then a name and tag. On a team you manage you can edit its core fields, set its visibility (public / limited / private), leave, transfer captaincy, kick a member, promote or demote a co-captain, and disband the team. Captains cannot leave or be removed without transferring captaincy first; destructive actions take a two-step confirm.
+
+### /org
+
+`/org` (or `/org action:view`) lists your organizations as image cards. `/org action:create` creates one. On an org you own or administer you can edit core fields, add members, change member roles, remove members, transfer ownership, and delete the org. Organizations have **two independent visibility axes** that are edited from separate selects (not collapsed into one toggle): a public/listed switch (the paid discovery gate) and a profile-visibility select (public / limited / private). The owner cannot be removed or self-leave without transferring ownership first; destructive actions take a two-step confirm.
+
+### /settings
+
+`/settings` manages your personal TeamBattles notification settings from chat: the bot **DM master switch** (opt-in, off by default) and per-type mutes for individual notification categories. It is per-user and is separate from the per-server `/setup` that configures the bot for a whole server. For how bot DMs are delivered and which events route to you, see [Notifications & event routing](/tools/bot/notifications).
+
+## Tools
+
+`/tools` is a read-only hub for your overlays, strategies, strategy boards, and the TeamBattles desktop tools. Every reply is a private image summary card with deep-link buttons into teambattles.gg - the bot never edits your tools, it points you to the web app to create, edit, or use them.
+
+- **Overlays** (`/tools action:overlays`) - your overlay configs as summary cards, with buttons to open or edit each in the web overlay editor and to copy the OBS render URL.
+- **Strategies** (`/tools action:strategies`) - your strategies as summary cards (game, map, stages, visibility, votes), with buttons to open or edit them on the web.
+- **Boards** (`/tools action:boards`) - your strategy boards and the strategies they contain, with buttons to open them on the web.
+- **Battles Replay** (`/tools action:replay`) and **Battles Record** (`/tools action:record`) - static info cards for the two desktop tools, with learn-more and download links.
+
+<Note>
+	`/tools` is view-only in the bot: it has no editor and makes no changes. Creating, editing, and
+	using your overlays, strategies, and boards all happen in the web app via the deep-link buttons.
+</Note>
+
+## More commands
+
+The bot ships ten slash commands: `/link`, `/help`, `/profile`, `/setup`, `/match` (browse, my matches, details, create, accept, scores, and match management - lobby code, ready, start, forfeit, cancel, attendance), `/league` (member: hub, standings, schedule, my team, report score; staff: announce, applications, bans, penalties, seasons, ownership transfer), `/team`, `/org`, `/settings`, and `/tools`. All ten come from a single shared command catalog, so Discord and Telegram cannot drift. Discord registers all ten (with per-command DM permissions); Telegram's registered set splits by chat type - **8 commands** register to private chats (`/link`, `/help`, `/profile`, `/match`, `/team`, `/org`, `/settings`, `/tools`) and only **2** to group chats (`/setup` and `/league`, which are group-only). See the [Telegram](/tools/bot/telegram) page for the Telegram link flow, group install, and the documented platform differences.

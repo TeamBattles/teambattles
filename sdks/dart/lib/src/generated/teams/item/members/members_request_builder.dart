@@ -1,11 +1,19 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../../models/error.dart';
+import './item/with_user_item_request_builder.dart';
 import './members_get_response.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \teams\{identifier}\members
 class MembersRequestBuilder extends BaseRequestBuilder<MembersRequestBuilder> {
+    /// Gets an item from the teambattles.teams.item.members.item collection
+    ///  [userId] Convex user ID of the member to remove.
+    WithUserItemRequestBuilder byUserId(String userId) {
+        var urlTplParams = Map.of(pathParameters);
+        urlTplParams.putIfAbsent('userId', () => userId);
+        return WithUserItemRequestBuilder(urlTplParams, requestAdapter);
+    }
     /// Clones the requestbuilder.
     @override
     MembersRequestBuilder clone() {

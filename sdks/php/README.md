@@ -53,12 +53,12 @@ foreach ($result->getPage() as $match) {
 Every request is authenticated with an API key sent as a bearer token:
 
 ```
-Authorization: Bearer tb_<your-key>
+Authorization: Bearer tb_YOUR_KEY
 ```
 
 Create and manage keys at [Settings > Developer](https://teambattles.gg/settings/developer). Keys carry granular permission scopes - listing the authenticated user's matches requires `matches.user_matches: read`.
 
-Errors return a JSON body of the form `{ "error": "<machine_code>", "details": "<optional message>" }`. Treat the `error` machine code - not the `details` message - as the stable programmatic contract: branch on `error`, and use `details` only for human-readable context (it may be absent on auth and permission errors).
+Errors return a JSON body of the form `{ "error": "machine_code", "details": "optional message" }`. Treat the `error` machine code - not the `details` message - as the stable programmatic contract: branch on `error`, and use `details` only for human-readable context (it may be absent on auth and permission errors).
 
 ## Documentation
 

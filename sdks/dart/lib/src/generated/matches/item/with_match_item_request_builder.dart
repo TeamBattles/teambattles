@@ -3,14 +3,18 @@ import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../models/api_match_detail_response.dart';
 import '../../models/error.dart';
 import './accept/accept_request_builder.dart';
+import './acceptances/acceptances_request_builder.dart';
 import './attendance/attendance_request_builder.dart';
 import './cancel/cancel_request_builder.dart';
+import './challenges/challenges_request_builder.dart';
 import './chat/chat_request_builder.dart';
 import './forfeit/forfeit_request_builder.dart';
 import './lobbyCode/lobby_code_request_builder.dart';
 import './players/players_request_builder.dart';
+import './publish/publish_request_builder.dart';
 import './ready/ready_request_builder.dart';
 import './scores/scores_request_builder.dart';
+import './start/start_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \matches\{matchId}
@@ -19,6 +23,10 @@ class WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatchItemReques
     AcceptRequestBuilder get accept {
         return AcceptRequestBuilder(pathParameters, requestAdapter);
     }
+    ///  The acceptances property
+    AcceptancesRequestBuilder get acceptances {
+        return AcceptancesRequestBuilder(pathParameters, requestAdapter);
+    }
     ///  The attendance property
     AttendanceRequestBuilder get attendance {
         return AttendanceRequestBuilder(pathParameters, requestAdapter);
@@ -26,6 +34,10 @@ class WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatchItemReques
     ///  The cancel property
     CancelRequestBuilder get cancel {
         return CancelRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The challenges property
+    ChallengesRequestBuilder get challenges {
+        return ChallengesRequestBuilder(pathParameters, requestAdapter);
     }
     ///  The chat property
     ChatRequestBuilder get chat {
@@ -43,6 +55,10 @@ class WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatchItemReques
     PlayersRequestBuilder get players {
         return PlayersRequestBuilder(pathParameters, requestAdapter);
     }
+    ///  The publish property
+    PublishRequestBuilder get publish {
+        return PublishRequestBuilder(pathParameters, requestAdapter);
+    }
     ///  The ready property
     ReadyRequestBuilder get ready {
         return ReadyRequestBuilder(pathParameters, requestAdapter);
@@ -50,6 +66,10 @@ class WithMatchItemRequestBuilder extends BaseRequestBuilder<WithMatchItemReques
     ///  The scores property
     ScoresRequestBuilder get scores {
         return ScoresRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The start property
+    StartRequestBuilder get start {
+        return StartRequestBuilder(pathParameters, requestAdapter);
     }
     /// Clones the requestbuilder.
     @override

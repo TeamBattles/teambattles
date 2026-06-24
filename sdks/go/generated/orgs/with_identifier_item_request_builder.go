@@ -13,8 +13,22 @@ import (
 type WithIdentifierItemRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// WithIdentifierItemRequestBuilderDeleteRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type WithIdentifierItemRequestBuilderDeleteRequestConfiguration struct {
+    // Request headers
+    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+    // Request options
+    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+}
 // WithIdentifierItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type WithIdentifierItemRequestBuilderGetRequestConfiguration struct {
+    // Request headers
+    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+    // Request options
+    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+}
+// WithIdentifierItemRequestBuilderPatchRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type WithIdentifierItemRequestBuilderPatchRequestConfiguration struct {
     // Request headers
     Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
     // Request options
@@ -32,6 +46,34 @@ func NewWithIdentifierItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
     return NewWithIdentifierItemRequestBuilderInternal(urlParams, requestAdapter)
+}
+// Delete deletes an organization. The caller (key owner) must be the organization owner. Requires orgs.profile:read-write.
+// returns a DeleteOrgResponseable when successful
+// returns a ErrorEscaped error when the service returns a 401 status code
+// returns a ErrorEscaped error when the service returns a 403 status code
+// returns a ErrorEscaped error when the service returns a 404 status code
+// returns a ErrorEscaped error when the service returns a 429 status code
+// returns a ErrorEscaped error when the service returns a 500 status code
+func (m *WithIdentifierItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *WithIdentifierItemRequestBuilderDeleteRequestConfiguration)(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.DeleteOrgResponseable, error) {
+    requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
+    if err != nil {
+        return nil, err
+    }
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "401": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "403": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "404": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "429": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "500": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateDeleteOrgResponseFromDiscriminatorValue, errorMapping)
+    if err != nil {
+        return nil, err
+    }
+    if res == nil {
+        return nil, nil
+    }
+    return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.DeleteOrgResponseable), nil
 }
 // Get returns an API-safe organization profile projection. Active organization members are treated as public visibility for their own organization. Requires orgs.profile:read.
 // Deprecated: This method is obsolete. Use GetAsWithIdentifierGetResponse instead.
@@ -100,6 +142,41 @@ func (m *WithIdentifierItemRequestBuilder) Matches()(*ItemMatchesRequestBuilder)
 func (m *WithIdentifierItemRequestBuilder) Members()(*ItemMembersRequestBuilder) {
     return NewItemMembersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Ownership the ownership property
+// returns a *ItemOwnershipRequestBuilder when successful
+func (m *WithIdentifierItemRequestBuilder) Ownership()(*ItemOwnershipRequestBuilder) {
+    return NewItemOwnershipRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Patch updates an organization's profile fields. The caller (key owner) must be an organization owner or admin. Requires orgs.profile:read-write.
+// returns a UpdateOrgResponseable when successful
+// returns a ErrorEscaped error when the service returns a 400 status code
+// returns a ErrorEscaped error when the service returns a 401 status code
+// returns a ErrorEscaped error when the service returns a 403 status code
+// returns a ErrorEscaped error when the service returns a 404 status code
+// returns a ErrorEscaped error when the service returns a 429 status code
+// returns a ErrorEscaped error when the service returns a 500 status code
+func (m *WithIdentifierItemRequestBuilder) Patch(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.UpdateOrgBodyable, requestConfiguration *WithIdentifierItemRequestBuilderPatchRequestConfiguration)(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.UpdateOrgResponseable, error) {
+    requestInfo, err := m.ToPatchRequestInformation(ctx, body, requestConfiguration);
+    if err != nil {
+        return nil, err
+    }
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "401": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "403": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "404": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "429": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "500": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateUpdateOrgResponseFromDiscriminatorValue, errorMapping)
+    if err != nil {
+        return nil, err
+    }
+    if res == nil {
+        return nil, nil
+    }
+    return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.UpdateOrgResponseable), nil
+}
 // Stats the stats property
 // returns a *ItemStatsRequestBuilder when successful
 func (m *WithIdentifierItemRequestBuilder) Stats()(*ItemStatsRequestBuilder) {
@@ -110,6 +187,17 @@ func (m *WithIdentifierItemRequestBuilder) Stats()(*ItemStatsRequestBuilder) {
 func (m *WithIdentifierItemRequestBuilder) Teams()(*ItemTeamsRequestBuilder) {
     return NewItemTeamsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// ToDeleteRequestInformation deletes an organization. The caller (key owner) must be the organization owner. Requires orgs.profile:read-write.
+// returns a *RequestInformation when successful
+func (m *WithIdentifierItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *WithIdentifierItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+    if requestConfiguration != nil {
+        requestInfo.Headers.AddAll(requestConfiguration.Headers)
+        requestInfo.AddRequestOptions(requestConfiguration.Options)
+    }
+    requestInfo.Headers.TryAdd("Accept", "application/json")
+    return requestInfo, nil
+}
 // ToGetRequestInformation returns an API-safe organization profile projection. Active organization members are treated as public visibility for their own organization. Requires orgs.profile:read.
 // returns a *RequestInformation when successful
 func (m *WithIdentifierItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *WithIdentifierItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
@@ -119,6 +207,21 @@ func (m *WithIdentifierItemRequestBuilder) ToGetRequestInformation(ctx context.C
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
     requestInfo.Headers.TryAdd("Accept", "application/json")
+    return requestInfo, nil
+}
+// ToPatchRequestInformation updates an organization's profile fields. The caller (key owner) must be an organization owner or admin. Requires orgs.profile:read-write.
+// returns a *RequestInformation when successful
+func (m *WithIdentifierItemRequestBuilder) ToPatchRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.UpdateOrgBodyable, requestConfiguration *WithIdentifierItemRequestBuilderPatchRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PATCH, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+    if requestConfiguration != nil {
+        requestInfo.Headers.AddAll(requestConfiguration.Headers)
+        requestInfo.AddRequestOptions(requestConfiguration.Options)
+    }
+    requestInfo.Headers.TryAdd("Accept", "application/json")
+    err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
+    if err != nil {
+        return nil, err
+    }
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.

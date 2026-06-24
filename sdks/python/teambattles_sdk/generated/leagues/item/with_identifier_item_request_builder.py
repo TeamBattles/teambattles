@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.error import Error
     from ...models.league_profile_response import LeagueProfileResponse
     from .activity_feed.activity_feed_request_builder import ActivityFeedRequestBuilder
+    from .announcements.announcements_request_builder import AnnouncementsRequestBuilder
     from .apply_eligibility.apply_eligibility_request_builder import ApplyEligibilityRequestBuilder
     from .bans.bans_request_builder import BansRequestBuilder
     from .branding.branding_request_builder import BrandingRequestBuilder
@@ -102,6 +103,15 @@ class WithIdentifierItemRequestBuilder(BaseRequestBuilder):
         from .activity_feed.activity_feed_request_builder import ActivityFeedRequestBuilder
 
         return ActivityFeedRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def announcements(self) -> AnnouncementsRequestBuilder:
+        """
+        The announcements property
+        """
+        from .announcements.announcements_request_builder import AnnouncementsRequestBuilder
+
+        return AnnouncementsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def apply_eligibility(self) -> ApplyEligibilityRequestBuilder:

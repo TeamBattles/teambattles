@@ -9,14 +9,18 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using TeamBattles.Sdk.Matches.Item.Accept;
+using TeamBattles.Sdk.Matches.Item.Acceptances;
 using TeamBattles.Sdk.Matches.Item.Attendance;
 using TeamBattles.Sdk.Matches.Item.Cancel;
+using TeamBattles.Sdk.Matches.Item.Challenges;
 using TeamBattles.Sdk.Matches.Item.Chat;
 using TeamBattles.Sdk.Matches.Item.Forfeit;
 using TeamBattles.Sdk.Matches.Item.LobbyCode;
 using TeamBattles.Sdk.Matches.Item.Players;
+using TeamBattles.Sdk.Matches.Item.Publish;
 using TeamBattles.Sdk.Matches.Item.Ready;
 using TeamBattles.Sdk.Matches.Item.Scores;
+using TeamBattles.Sdk.Matches.Item.Start;
 using TeamBattles.Sdk.Models;
 namespace TeamBattles.Sdk.Matches.Item
 {
@@ -31,6 +35,11 @@ namespace TeamBattles.Sdk.Matches.Item
         {
             get => new global::TeamBattles.Sdk.Matches.Item.Accept.AcceptRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The acceptances property</summary>
+        public global::TeamBattles.Sdk.Matches.Item.Acceptances.AcceptancesRequestBuilder Acceptances
+        {
+            get => new global::TeamBattles.Sdk.Matches.Item.Acceptances.AcceptancesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The attendance property</summary>
         public global::TeamBattles.Sdk.Matches.Item.Attendance.AttendanceRequestBuilder Attendance
         {
@@ -40,6 +49,11 @@ namespace TeamBattles.Sdk.Matches.Item
         public global::TeamBattles.Sdk.Matches.Item.Cancel.CancelRequestBuilder Cancel
         {
             get => new global::TeamBattles.Sdk.Matches.Item.Cancel.CancelRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The challenges property</summary>
+        public global::TeamBattles.Sdk.Matches.Item.Challenges.ChallengesRequestBuilder Challenges
+        {
+            get => new global::TeamBattles.Sdk.Matches.Item.Challenges.ChallengesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The chat property</summary>
         public global::TeamBattles.Sdk.Matches.Item.Chat.ChatRequestBuilder Chat
@@ -61,6 +75,11 @@ namespace TeamBattles.Sdk.Matches.Item
         {
             get => new global::TeamBattles.Sdk.Matches.Item.Players.PlayersRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The publish property</summary>
+        public global::TeamBattles.Sdk.Matches.Item.Publish.PublishRequestBuilder Publish
+        {
+            get => new global::TeamBattles.Sdk.Matches.Item.Publish.PublishRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The ready property</summary>
         public global::TeamBattles.Sdk.Matches.Item.Ready.ReadyRequestBuilder Ready
         {
@@ -70,6 +89,11 @@ namespace TeamBattles.Sdk.Matches.Item
         public global::TeamBattles.Sdk.Matches.Item.Scores.ScoresRequestBuilder Scores
         {
             get => new global::TeamBattles.Sdk.Matches.Item.Scores.ScoresRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The start property</summary>
+        public global::TeamBattles.Sdk.Matches.Item.Start.StartRequestBuilder Start
+        {
+            get => new global::TeamBattles.Sdk.Matches.Item.Start.StartRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Matches.Item.WithMatchItemRequestBuilder"/> and sets the default values.

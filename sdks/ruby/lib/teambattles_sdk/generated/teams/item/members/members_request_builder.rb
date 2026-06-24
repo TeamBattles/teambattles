@@ -3,6 +3,7 @@ require_relative '../../../models/error'
 require_relative '../../../team_battles_sdk::_generated'
 require_relative '../../teams'
 require_relative '../item'
+require_relative './item/with_user_item_request_builder'
 require_relative './members'
 
 module TeamBattlesSdk
@@ -14,6 +15,17 @@ module TeamBattlesSdk
                     # Builds and executes requests for operations under #teams#{identifier}#members
                     class MembersRequestBuilder < MicrosoftKiotaAbstractions::BaseRequestBuilder
                         
+                        ## 
+                        ## Gets an item from the TeamBattlesSdk::Generated.teams.item.members.item collection
+                        ## @param user_id Convex user ID of the member to remove.
+                        ## @return a with_user_item_request_builder
+                        ## 
+                        def by_user_id(user_id)
+                            raise StandardError, 'user_id cannot be null' if user_id.nil?
+                            url_tpl_params = @path_parameters.clone
+                            url_tpl_params["userId"] = user_id
+                            return TeamBattlesSdk::Generated::Teams::Item::Members::Item::WithUserItemRequestBuilder.new(url_tpl_params, @request_adapter)
+                        end
                         ## 
                         ## Instantiates a new MembersRequestBuilder and sets the default values.
                         ## @param path_parameters Path parameters for the request

@@ -14,7 +14,10 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
+    from ....models.add_org_member_body import AddOrgMemberBody
+    from ....models.add_org_member_response import AddOrgMemberResponse
     from ....models.error import Error
+    from .item.with_user_item_request_builder import WithUserItemRequestBuilder
     from .members_get_response import MembersGetResponse
 
 class MembersRequestBuilder(BaseRequestBuilder):
@@ -29,6 +32,20 @@ class MembersRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/orgs/{identifier}/members", path_parameters)
+    
+    def by_user_id(self,user_id: str) -> WithUserItemRequestBuilder:
+        """
+        Gets an item from the teambattles_sdk.generated.orgs.item.members.item collection
+        param user_id: Convex user ID of the member to remove.
+        Returns: WithUserItemRequestBuilder
+        """
+        if user_id is None:
+            raise TypeError("user_id cannot be null.")
+        from .item.with_user_item_request_builder import WithUserItemRequestBuilder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userId"] = user_id
+        return WithUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MembersGetResponse]:
         """
@@ -54,6 +71,35 @@ class MembersRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MembersGetResponse, error_mapping)
     
+    async def post(self,body: AddOrgMemberBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AddOrgMemberResponse]:
+        """
+        Adds a user to the organization with the ADMIN or MEMBER role. The caller (key owner) must be an organization admin or owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.roster:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        param body: Add a member to the organization.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[AddOrgMemberResponse]
+        """
+        if body is None:
+            raise TypeError("body cannot be null.")
+        request_info = self.to_post_request_information(
+            body, request_configuration
+        )
+        from ....models.error import Error
+
+        error_mapping: dict[str, type[ParsableFactory]] = {
+            "400": Error,
+            "401": Error,
+            "403": Error,
+            "404": Error,
+            "409": Error,
+            "429": Error,
+            "500": Error,
+        }
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        from ....models.add_org_member_response import AddOrgMemberResponse
+
+        return await self.request_adapter.send_async(request_info, AddOrgMemberResponse, error_mapping)
+    
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row's `id` is the membership row ID, not the user ID, and the row carries the member's API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.
@@ -63,6 +109,21 @@ class MembersRequestBuilder(BaseRequestBuilder):
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
+        return request_info
+    
+    def to_post_request_information(self,body: AddOrgMemberBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+        """
+        Adds a user to the organization with the ADMIN or MEMBER role. The caller (key owner) must be an organization admin or owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.roster:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        param body: Add a member to the organization.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        if body is None:
+            raise TypeError("body cannot be null.")
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
+        request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
+        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
     def with_url(self,raw_url: str) -> MembersRequestBuilder:
@@ -77,6 +138,13 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     @dataclass
     class MembersRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class MembersRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

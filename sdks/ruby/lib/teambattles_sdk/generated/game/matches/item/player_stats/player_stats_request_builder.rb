@@ -28,7 +28,7 @@ module TeamBattlesSdk
                                 super(path_parameters, request_adapter, "{+baseurl}/game/matches/{matchId}/player-stats")
                             end
                             ## 
-                            ## Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+                            ## Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
                             ## @param body Request body for submitting or updating player stats for an existing map score.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a Fiber of game_player_stats_response
@@ -43,10 +43,11 @@ module TeamBattlesSdk
                                 error_mapping["401"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                                 error_mapping["403"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                                 error_mapping["404"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
+                                error_mapping["409"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                                 return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::GamePlayerStatsResponse.create_from_discriminator_value(pn) }, error_mapping)
                             end
                             ## 
-                            ## Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+                            ## Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
                             ## @param body Request body for submitting or updating player stats for an existing map score.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a request_information

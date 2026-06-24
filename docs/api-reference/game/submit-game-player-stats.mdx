@@ -12,6 +12,10 @@ This endpoint requires the `game.scores` permission with `write` access. (`game.
 
 The map score for the given `mapIndex` must already exist - submit the score first via the scores endpoints, then attach player stats here. `mapIndex` must be a non-negative integer. An unknown match returns `404 error_match_not_found`.
 
+## Idempotency
+
+Supply an optional `Idempotency-Key` request header to make retries safe: an identical key + body replays the original response, while the same key with a different body returns `409 error_idempotency_key_conflict`. The idempotency identity is scoped per match, so reusing the same key on a different match is treated as a fresh request.
+
 ## What's Returned
 
 Returns `{ "success": true, mapIndex, action }`, where `action` is always `updated` on success.

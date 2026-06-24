@@ -1,0 +1,259 @@
+---
+title: "Bot Settings"
+description: "Enable plugins and commands, and manage who can configure the Battles Bot in your Discord or Telegram server"
+---
+
+The bot settings page lets owners and managers control what the Battles Bot does in each Discord or Telegram server, and who can change those settings.
+
+<Note>
+	A few sections are **Discord-only** and are hidden entirely for Telegram-linked
+	groups: the [Discord admin bypass](#discord-admin-bypass) toggle, the per-command
+	**Allowed roles / Allowed channels** editor under [Command access](#command-access),
+	and the channel pickers in [Event routing](#event-routing). Telegram has no Discord
+	Administrator permission and no channel allowlists; on a Telegram group these controls
+	never render and no allowlist is ever written.
+</Note>
+
+## Open your settings
+
+Run [`/setup`](/tools/bot/commands#set-up-the-bot-in-a-server) in your server, or go to **[Bot settings](/tools/bot/settings)** and pick a server. You'll see every server where you're the **owner**, a **manager**, or (for TeamBattles staff) any server with the bot installed.
+
+<Note>
+	You must be signed in to TeamBattles to open this page - guests are redirected to
+	the **[Battles Bot page](/tools/bot)**. TeamBattles staff see up to **50** installed servers in the
+	list (on top of any they own or manage). Opening a server you can't manage redirects
+	you back to the server picker rather than showing an error page.
+</Note>
+
+## Plugins and commands
+
+Features are grouped into **plugins**. A command works only when its plugin is enabled **and** the command itself isn't turned off. Only two commands are plugin-owned and therefore toggleable: [`/match`](/tools/bot/commands#matchmaking) and [`/league`](/tools/bot/commands#leagues).
+
+- **Matchmaking** - powers [`/match`](/tools/bot/commands#matchmaking). Turn the plugin on, [attach a game](#matchmaking) to enable per-game match and score announcements, then optionally disable individual commands under it.
+- **Leagues** - powers [`/league`](/tools/bot/commands#leagues). The `/league` command is **live** and is gated by [league attachment](#league-attachments) rather than by a plugin toggle - attach one or more leagues and it works in that server. In the settings web UI the Leagues plugin currently shows as a read-only **Coming soon** badge with **no on/off switch**, so there is nothing to "turn on" here; just attach the leagues you want.
+
+The Matchmaking plugin starts **off** when the bot is first added. Enabling a plugin makes its commands available in that server; disabling a plugin turns off every command it owns, regardless of each command's own toggle.
+
+<Note>
+	Core commands - `/link`, `/help`, `/setup`, `/profile`, `/team`, `/org`, `/settings`, and
+	`/tools` - have no owning plugin, are always available, and can't be disabled or restricted.
+	Only `/match` and `/league` are plugin-toggleable.
+</Note>
+
+## Access
+
+Each server has exactly one **owner** (the person who added the bot) and any number of **managers**.
+
+- **Owner** - can do everything below, plus add or remove managers and transfer ownership.
+- **Managers** - can enable plugins and commands, but can't change the roster.
+- **TeamBattles staff** - can view and edit any server's bot settings.
+
+### Add a manager
+
+Owners can add any TeamBattles member by username. Managers don't need to have used the bot - they manage it from the web. You can't add **yourself** (you're already the owner) or someone who is **already a manager** - both are rejected.
+
+### Transfer ownership
+
+Owners can hand ownership to an existing manager. You can't transfer ownership to yourself. After a transfer, the former owner is **demoted into the same managers roster** (added back as a manager) and the new owner takes over - so you keep manage access but lose the owner-only actions (adding/removing managers and transferring ownership).
+
+## Command access
+
+Both plugin-owned commands - [`/match`](/tools/bot/commands#matchmaking) and [`/league`](/tools/bot/commands#leagues) - have a **Configure** button next to their toggle. It opens a per-command page where you control **who** and **where** the command can be used. Core commands have no plugin and no Configure page.
+
+- **Allowed roles** - pick one or more Discord roles. Only members with at least one of them can use the command. Leave it empty to allow everyone.
+- **Allowed channels** - pick the text, announcement, or forum channels where the command works. Threads inherit their parent channel's access. Leave it empty to allow every channel.
+
+Roles and channels are pulled live from your Discord server when you open the page. If a saved role or channel was deleted in Discord, it shows as **Unknown (deleted)** so you can remove it.
+
+<Note>
+	This editor is **Discord-only**. On a Telegram group the per-command Allowed roles /
+	Allowed channels editor is hidden entirely and no allowlist is ever written - Telegram
+	commands are gated by the group's own admin status instead.
+</Note>
+
+<Note>
+	If Discord can't be reached when you open the page (a transient error fetching your
+	roles and channels), the picker becomes temporarily **read-only** and your saved roles
+	and channels are preserved exactly as stored (shown by their raw id), **not** relabeled
+	**Unknown (deleted)**. This is deliberate: a save while the list is unavailable can't
+	accidentally wipe valid configuration. Reopen the page once Discord responds.
+</Note>
+
+<Note>
+	Saving an empty selection means "no restriction" - the command becomes usable by everyone /
+	everywhere again. Access settings on a **disabled** command are kept but only take effect once you
+	re-enable the command.
+</Note>
+
+### Discord admin bypass
+
+This section appears **only for Discord servers** - it is hidden entirely for Telegram-linked groups, which have no Discord Administrator permission concept.
+
+On the main server settings page you can turn on **Discord admins bypass command restrictions**. When it's on, members with the Discord **Administrator** permission can use any **enabled** command regardless of its role and channel restrictions. It never overrides a disabled plugin or command - those stay off for everyone, including admins. It's off by default.
+
+<Warning>
+	If you lock yourself out in Discord, you can always reconfigure access here on the web - the
+	settings page is gated by TeamBattles ownership/manager access, not by your Discord roles.
+</Warning>
+
+## League attachments
+
+Attach a TeamBattles **league** to a Discord server so members and staff can use [`/league`](/tools/bot/commands#leagues) there. Once a league is attached, members read its standings, schedule, and their team's stats, and managers and above run the league's staff actions - all from the server. Attaching does not change anything on the league itself.
+
+- **Attach** - pick a league from the dropdown and choose **Attach league**. The dropdown lists only the leagues **you manage** (you must be a league manager or higher, and the league must not be shut down). Leagues already attached to this server are hidden from the list.
+- **Detach** - every attached league has a **Detach** button with a confirmation. Detaching unlinks the league from this server; you can re-attach it later.
+
+<Note>
+	You can attach up to **25 leagues** per server. If a league is later deleted on TeamBattles, its
+	card stays in the list marked as unavailable with only a **Detach** action, so the server is never
+	stuck with an orphaned attachment.
+</Note>
+
+**Who can attach or detach:**
+
+- **Attaching** needs **both keys**: you must be an owner, manager, or TeamBattles staff for this server's bot settings **and** a manager (or higher) of the league. TeamBattles staff can attach any league.
+- **Detaching** needs only **bot settings access** (owner, manager, or staff) - the league role is not required, so a server's managers can always tidy up attachments even if the person who attached the league has since left it.
+
+### Command channels
+
+By default, `/league` works in **every channel** an attached league covers. To
+restrict a league to specific channels, open its card and pick one or more
+channels under **Command channels**. Once you pick at least one, `/league`
+resolves that league only in those channels (and their threads); leave it empty to
+allow every channel again.
+
+Channels are pulled live from your Discord server, the same way as
+[command access](#command-access). A saved channel that was deleted in Discord
+shows as **Unknown (deleted)** so you can remove it. Changes save immediately -
+there is no separate Save button.
+
+<Note>
+	This is the **per-league** channel restriction. It is separate from the
+	per-command **Allowed channels** under [Command access](#command-access): one
+	scopes which channels resolve a league, the other scopes where a single command
+	runs.
+</Note>
+
+### Announce channel
+
+Each attached league has an **Announce channel** picker on its card. Pick one
+channel and the bot posts that league's **announcements** there: when a league
+manager sends an announcement (via the `/league` staff hub), the bot posts a card
+with the announcement title, message, and a **View league** link to the chosen
+channel. Leave it empty to turn league announcements off for this server.
+
+Channels are pulled live from your Discord server, the same as the other pickers;
+a saved channel deleted in Discord shows as **Unknown (deleted)**. Changes save
+immediately.
+
+<Note>
+	The announce channel is **separate** from [Command channels](#command-channels):
+	command channels scope where members can _run_ `/league`, while the announce
+	channel is only where the bot _posts_ that league's announcements. If the bot
+	lacks permission to post in the chosen channel, that announcement is skipped (it
+	does not affect the rest of your settings).
+</Note>
+
+<Info>
+	The **Announce channel** is one row of the same [event-routing](#event-routing)
+	system that powers every other bot announcement - it sets the family-default
+	channel for the single `league.announcement` event. Clearing the picker removes
+	that row (announcements off). For per-event control over the rest of a league's
+	events (created, season activated/completed, team approved/banned), open
+	**Configure routing** on the league's card.
+</Info>
+
+## Following organizations and teams
+
+Follow a TeamBattles **organization** or **team** you manage so the server receives their events in the channels you route them to. A follow carries **four event families**, not just announcements:
+
+- **organization** - the organization's own events (created, renamed, members added/removed, and more)
+- **team** - the team's events
+- **roster** - roster updates
+- **player** - player stat updates
+
+Open **Configure routing** on a follow's card to set a default channel per family and override individual events - see [Event routing](#event-routing) for the full control.
+
+- **Follow** - the section has two lists, **Organizations** and **Teams**, each with its own picker and a **Follow** button. The organization picker lists organizations where you are an **owner or admin**; the team picker lists teams where you are a **captain**. Entities you already follow are hidden from the pickers.
+- **Unfollow** - every followed organization or team has an **Unfollow** button with a confirmation. A followed entity that was later deleted on TeamBattles shows as **No longer available** with only an **Unfollow** action.
+
+<Note>
+	You can follow up to **25 organizations and teams combined** per server. Following requires you to
+	actually manage the entity - unlike league attachments, **TeamBattles staff do not get a bypass**
+	here, so you can only follow an organization or team you are an active owner, admin, or captain of.
+</Note>
+
+**Who can follow or unfollow:**
+
+- **Following** needs **both keys**: bot settings access for this server **and** the org/team role (org owner/admin, or team captain).
+- **Unfollowing** needs only **bot settings access** - the org/team role is not required.
+
+## Matchmaking
+
+Attach a **game** to a server so it receives that game's **match** and **score** announcements. The Matchmaking section is on the main server settings page.
+
+- **Attach** - pick a game from the dropdown (it lists active games not already attached) and choose to attach it. Each attached game gets its own [routing matrix](#event-routing) for the **match** and **score** families.
+- **Detach** - every attached game has a **Detach** action. Detaching removes the game **and cascade-deletes that game's routing configuration**, so a re-attached game always starts with a clean routing slate.
+
+<Note>
+	If the **Matchmaking plugin** is turned off, an amber **plugin off** banner appears
+	over the attached games and **no match or score announcements are delivered** -
+	your attachments and routing are kept, just paused. Turn the plugin back on to
+	resume. (Toggling Matchmaking off does not affect the league or follow routing axes.)
+</Note>
+
+## Event routing
+
+Every announcement the bot posts to a channel flows through one routing system. Each **league**, **follow**, and attached **matchmaking game** card has a **Configure routing** action that opens its routing matrix.
+
+A routing matrix groups events into **families**. Each family has a **family-default channel** (a single-select), and each event under it has a tri-state control:
+
+| State | What it does |
+| --- | --- |
+| **Inherit** | No per-event rule - the event falls through to the **family-default channel**. This is the default. |
+| **Channel** | Post this event to a **specific channel** you pick (pre-filled with the family default if one is set). |
+| **Mute** | **Stop** this event for this server - it overrides the family default, so the event is not posted even if the family has a default channel. |
+
+Set a family-default channel to route a whole family with one pick, then flip individual events to **Channel** or **Mute** only where you want to differ.
+
+### Routing axes and their families
+
+| Axis (card type) | Families it routes |
+| --- | --- |
+| **Leagues** | `league` |
+| **Follows** (orgs/teams) | `organization`, `team`, `roster`, `player` |
+| **Matchmaking games** | `match`, `score` |
+
+Each family broadcasts a fixed set of events - for example the `league` family covers created, season activated, season completed, team approved, team banned, and announcement; `match` and `score` cover the match lifecycle and reported scores; `roster` covers roster updates and `player` covers stat updates.
+
+<Note>
+	Two events are **personal** (user-scope) and are **never** channel-routable - they
+	never appear as rows in any matrix: a creator going **live** and a member's **rank
+	update**. These reach people through [DM notifications](#per-server-channels-vs-personal-dms),
+	not server channels.
+</Note>
+
+### When a channel stops working
+
+If the bot fails to deliver to a routed channel **5 times in a row** (for example the channel was deleted, or the bot lost permission to post), that route is **auto-disabled**: the cell turns **amber** and shows a **Re-enable** action. A single successful delivery resets the counter and restores the route automatically, so a brief outage heals itself once the channel is reachable again.
+
+### Telegram routing
+
+On a **Telegram** group there are **no channel pickers** - a Telegram bot delivers to the **one linked group chat**. Flipping an event to **Channel** simply enables delivery to that group; **Mute** stops it. Family-default channel selection is not shown because there is only one possible target.
+
+## Per-server channels vs personal DMs
+
+This page configures **per-server channel routing** - where the bot posts announcements into a server's channels, controlled by that server's owners and managers.
+
+That is a **completely separate** surface from **per-user DM notifications**, which each member controls for themselves:
+
+- DMs are **opt-in** - the master switch is **off by default**. A user turns it on with [`/settings`](/tools/bot/commands#settings) (or the web notification settings).
+- Users can **mute individual notification types** for DMs independently of what a server routes to channels.
+- A small set of **critical notifications** (payment completed, subscription activated, developer account suspended) bypass per-type mutes - but they still require the DM master switch to be on.
+- The two axes are fully independent: a server routing an event to a channel does not DM anyone, and a user enabling DMs does not change any server's channel routing.
+
+<Info>
+	For the full personal DM model, see
+	[Notifications & event routing](/tools/bot/notifications) and the Telegram
+	[DM note](/tools/bot/telegram).
+</Info>

@@ -4,15 +4,19 @@ require_relative '../../models/error'
 require_relative '../../team_battles_sdk::_generated'
 require_relative '../matches'
 require_relative './accept/accept_request_builder'
+require_relative './acceptances/acceptances_request_builder'
 require_relative './attendance/attendance_request_builder'
 require_relative './cancel/cancel_request_builder'
+require_relative './challenges/challenges_request_builder'
 require_relative './chat/chat_request_builder'
 require_relative './forfeit/forfeit_request_builder'
 require_relative './item'
 require_relative './lobby_code/lobby_code_request_builder'
 require_relative './players/players_request_builder'
+require_relative './publish/publish_request_builder'
 require_relative './ready/ready_request_builder'
 require_relative './scores/scores_request_builder'
+require_relative './start/start_request_builder'
 
 module TeamBattlesSdk
     module Generated
@@ -28,6 +32,11 @@ module TeamBattlesSdk
                         return TeamBattlesSdk::Generated::Matches::Item::Accept::AcceptRequestBuilder.new(@path_parameters, @request_adapter)
                     end
                     ## 
+                    # The acceptances property
+                    def acceptances()
+                        return TeamBattlesSdk::Generated::Matches::Item::Acceptances::AcceptancesRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
                     # The attendance property
                     def attendance()
                         return TeamBattlesSdk::Generated::Matches::Item::Attendance::AttendanceRequestBuilder.new(@path_parameters, @request_adapter)
@@ -36,6 +45,11 @@ module TeamBattlesSdk
                     # The cancel property
                     def cancel()
                         return TeamBattlesSdk::Generated::Matches::Item::Cancel::CancelRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
+                    # The challenges property
+                    def challenges()
+                        return TeamBattlesSdk::Generated::Matches::Item::Challenges::ChallengesRequestBuilder.new(@path_parameters, @request_adapter)
                     end
                     ## 
                     # The chat property
@@ -58,6 +72,11 @@ module TeamBattlesSdk
                         return TeamBattlesSdk::Generated::Matches::Item::Players::PlayersRequestBuilder.new(@path_parameters, @request_adapter)
                     end
                     ## 
+                    # The publish property
+                    def publish()
+                        return TeamBattlesSdk::Generated::Matches::Item::Publish::PublishRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
                     # The ready property
                     def ready()
                         return TeamBattlesSdk::Generated::Matches::Item::Ready::ReadyRequestBuilder.new(@path_parameters, @request_adapter)
@@ -66,6 +85,11 @@ module TeamBattlesSdk
                     # The scores property
                     def scores()
                         return TeamBattlesSdk::Generated::Matches::Item::Scores::ScoresRequestBuilder.new(@path_parameters, @request_adapter)
+                    end
+                    ## 
+                    # The start property
+                    def start()
+                        return TeamBattlesSdk::Generated::Matches::Item::Start::StartRequestBuilder.new(@path_parameters, @request_adapter)
                     end
                     ## 
                     ## Instantiates a new WithMatchItemRequestBuilder and sets the default values.

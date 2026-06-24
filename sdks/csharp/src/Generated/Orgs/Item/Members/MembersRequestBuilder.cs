@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using TeamBattles.Sdk.Models;
+using TeamBattles.Sdk.Orgs.Item.Members.Item;
 namespace TeamBattles.Sdk.Orgs.Item.Members
 {
     /// <summary>
@@ -17,6 +18,18 @@ namespace TeamBattles.Sdk.Orgs.Item.Members
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MembersRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>Gets an item from the TeamBattles.Sdk.orgs.item.members.item collection</summary>
+        /// <param name="position">Convex user ID of the member to remove.</param>
+        /// <returns>A <see cref="global::TeamBattles.Sdk.Orgs.Item.Members.Item.WithUserItemRequestBuilder"/></returns>
+        public global::TeamBattles.Sdk.Orgs.Item.Members.Item.WithUserItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("userId", position);
+                return new global::TeamBattles.Sdk.Orgs.Item.Members.Item.WithUserItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Orgs.Item.Members.MembersRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -97,6 +110,43 @@ namespace TeamBattles.Sdk.Orgs.Item.Members
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Orgs.Item.Members.MembersResponse>(requestInfo, global::TeamBattles.Sdk.Orgs.Item.Members.MembersResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
+        /// Adds a user to the organization with the ADMIN or MEMBER role. The caller (key owner) must be an organization admin or owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.roster:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// </summary>
+        /// <returns>A <see cref="global::TeamBattles.Sdk.Models.AddOrgMemberResponse"/></returns>
+        /// <param name="body">Add a member to the organization.</param>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 409 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 429 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 500 status code</exception>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::TeamBattles.Sdk.Models.AddOrgMemberResponse?> PostAsync(global::TeamBattles.Sdk.Models.AddOrgMemberBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::TeamBattles.Sdk.Models.AddOrgMemberResponse> PostAsync(global::TeamBattles.Sdk.Models.AddOrgMemberBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPostRequestInformation(body, requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "401", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "409", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "429", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.AddOrgMemberResponse>(requestInfo, global::TeamBattles.Sdk.Models.AddOrgMemberResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
         /// Returns every active member of the organization in a single response. This list is not paginated and accepts no limit or cursor parameter. Members are sorted by role (owner first, then admin, manager, and member; unrecognized roles tie with member). Each row&apos;s `id` is the membership row ID, not the user ID, and the row carries the member&apos;s API-safe user profile, role label, and join timestamp. Visible only when the organization profile is public, or when the API key owner is an active member of the organization; otherwise this returns 403. A non-existent or inactive organization returns 404. Requires orgs.profile:read.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
@@ -116,6 +166,28 @@ namespace TeamBattles.Sdk.Orgs.Item.Members
             return requestInfo;
         }
         /// <summary>
+        /// Adds a user to the organization with the ADMIN or MEMBER role. The caller (key owner) must be an organization admin or owner. Role ceilings and cascades are enforced exactly as in the web app. Requires orgs.roster:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">Add a member to the organization.</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(global::TeamBattles.Sdk.Models.AddOrgMemberBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(global::TeamBattles.Sdk.Models.AddOrgMemberBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
+            return requestInfo;
+        }
+        /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Orgs.Item.Members.MembersRequestBuilder"/></returns>
@@ -130,6 +202,14 @@ namespace TeamBattles.Sdk.Orgs.Item.Members
         [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class MembersRequestBuilderGetRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
+        {
+        }
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
+        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class MembersRequestBuilderPostRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
         {
         }
     }

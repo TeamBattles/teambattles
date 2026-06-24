@@ -4,7 +4,9 @@
 // @ts-ignore
 import { createApiMemberFromDiscriminatorValue, createErrorEscapedFromDiscriminatorValue, serializeApiMember, type ApiMember, type ErrorEscaped } from '../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
+import { type WithUserItemRequestBuilder, WithUserItemRequestBuilderNavigationMetadata, WithUserItemRequestBuilderRequestsMetadata } from './item/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -50,6 +52,12 @@ export interface MembersGetResponse extends Parsable {
  */
 export interface MembersRequestBuilder extends BaseRequestBuilder<MembersRequestBuilder> {
     /**
+     * Gets an item from the teambattles.teams.item.members.item collection
+     * @param userId Convex user ID of the member to remove.
+     * @returns {WithUserItemRequestBuilder}
+     */
+     byUserId(userId: string) : WithUserItemRequestBuilder;
+    /**
      * Returns the full active roster when the team is public or the API key owner is an active team member; otherwise responds 403. The team is resolved by slug or Convex team ID and must be active, returning 404 if not found. Rows are sorted by role - captains first, then co-captains, then members - and each row's id is the membership row ID, not the user ID. Not paginated: every active member is returned in one response with a count, and there is no limit, cursor, or page token. Requires teams.roster:read.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<MembersGetResponse>}
@@ -84,6 +92,16 @@ export function serializeMembersGetResponse(writer: SerializationWriter, members
  * Uri template for the request builder.
  */
 export const MembersRequestBuilderUriTemplate = "{+baseurl}/teams/{identifier}/members";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const MembersRequestBuilderNavigationMetadata: Record<Exclude<keyof MembersRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    byUserId: {
+        requestsMetadata: WithUserItemRequestBuilderRequestsMetadata,
+        navigationMetadata: WithUserItemRequestBuilderNavigationMetadata,
+        pathParametersMappings: ["userId"],
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

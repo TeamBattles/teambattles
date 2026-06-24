@@ -17,14 +17,18 @@ if TYPE_CHECKING:
     from ...models.api_match_detail_response import ApiMatchDetailResponse
     from ...models.error import Error
     from .accept.accept_request_builder import AcceptRequestBuilder
+    from .acceptances.acceptances_request_builder import AcceptancesRequestBuilder
     from .attendance.attendance_request_builder import AttendanceRequestBuilder
     from .cancel.cancel_request_builder import CancelRequestBuilder
+    from .challenges.challenges_request_builder import ChallengesRequestBuilder
     from .chat.chat_request_builder import ChatRequestBuilder
     from .forfeit.forfeit_request_builder import ForfeitRequestBuilder
     from .lobby_code.lobby_code_request_builder import LobbyCodeRequestBuilder
     from .players.players_request_builder import PlayersRequestBuilder
+    from .publish.publish_request_builder import PublishRequestBuilder
     from .ready.ready_request_builder import ReadyRequestBuilder
     from .scores.scores_request_builder import ScoresRequestBuilder
+    from .start.start_request_builder import StartRequestBuilder
 
 class WithMatchItemRequestBuilder(BaseRequestBuilder):
     """
@@ -94,6 +98,15 @@ class WithMatchItemRequestBuilder(BaseRequestBuilder):
         return AcceptRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def acceptances(self) -> AcceptancesRequestBuilder:
+        """
+        The acceptances property
+        """
+        from .acceptances.acceptances_request_builder import AcceptancesRequestBuilder
+
+        return AcceptancesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def attendance(self) -> AttendanceRequestBuilder:
         """
         The attendance property
@@ -110,6 +123,15 @@ class WithMatchItemRequestBuilder(BaseRequestBuilder):
         from .cancel.cancel_request_builder import CancelRequestBuilder
 
         return CancelRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def challenges(self) -> ChallengesRequestBuilder:
+        """
+        The challenges property
+        """
+        from .challenges.challenges_request_builder import ChallengesRequestBuilder
+
+        return ChallengesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def chat(self) -> ChatRequestBuilder:
@@ -148,6 +170,15 @@ class WithMatchItemRequestBuilder(BaseRequestBuilder):
         return PlayersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def publish(self) -> PublishRequestBuilder:
+        """
+        The publish property
+        """
+        from .publish.publish_request_builder import PublishRequestBuilder
+
+        return PublishRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def ready(self) -> ReadyRequestBuilder:
         """
         The ready property
@@ -164,6 +195,15 @@ class WithMatchItemRequestBuilder(BaseRequestBuilder):
         from .scores.scores_request_builder import ScoresRequestBuilder
 
         return ScoresRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def start(self) -> StartRequestBuilder:
+        """
+        The start property
+        """
+        from .start.start_request_builder import StartRequestBuilder
+
+        return StartRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class WithMatchItemRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):

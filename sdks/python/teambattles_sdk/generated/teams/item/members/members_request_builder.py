@@ -15,6 +15,7 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.error import Error
+    from .item.with_user_item_request_builder import WithUserItemRequestBuilder
     from .members_get_response import MembersGetResponse
 
 class MembersRequestBuilder(BaseRequestBuilder):
@@ -29,6 +30,20 @@ class MembersRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/teams/{identifier}/members", path_parameters)
+    
+    def by_user_id(self,user_id: str) -> WithUserItemRequestBuilder:
+        """
+        Gets an item from the teambattles_sdk.generated.teams.item.members.item collection
+        param user_id: Convex user ID of the member to remove.
+        Returns: WithUserItemRequestBuilder
+        """
+        if user_id is None:
+            raise TypeError("user_id cannot be null.")
+        from .item.with_user_item_request_builder import WithUserItemRequestBuilder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userId"] = user_id
+        return WithUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MembersGetResponse]:
         """

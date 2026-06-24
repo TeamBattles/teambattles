@@ -12,6 +12,10 @@ This endpoint requires the `game.lifecycle` permission with `read-write` access.
 
 Only these transitions are accepted: `READY -> IN_PROGRESS`, `IN_PROGRESS -> CANCELLED`, and `ACCEPTED -> CANCELLED`. Any other target (or a `COMPLETED` target) returns `409 error_match_not_in_valid_state`. Matches do not complete here - they complete automatically once enough map scores are confirmed, so submit scores via the scores endpoints instead. Use the dedicated forfeit endpoint for forfeits. An unknown match returns `404 error_match_not_found`.
 
+## Idempotency
+
+Supply an optional `Idempotency-Key` request header to make retries safe: an identical key + body replays the original response, while the same key with a different body returns `409 error_idempotency_key_conflict`. The idempotency identity is scoped per match and per target status, so the same key applied to a different match - or to a different transition (start vs cancel) - is treated as a fresh request.
+
 ## What's Returned
 
 Returns `{ "success": true, matchId, previousStatus, newStatus, timestamp }`.

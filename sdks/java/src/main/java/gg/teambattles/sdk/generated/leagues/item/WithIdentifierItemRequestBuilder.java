@@ -9,6 +9,7 @@ import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
 import gg.teambattles.sdk.generated.leagues.item.activityfeed.ActivityFeedRequestBuilder;
+import gg.teambattles.sdk.generated.leagues.item.announcements.AnnouncementsRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.applyeligibility.ApplyEligibilityRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.bans.BansRequestBuilder;
 import gg.teambattles.sdk.generated.leagues.item.branding.BrandingRequestBuilder;
@@ -47,6 +48,14 @@ public class WithIdentifierItemRequestBuilder extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public ActivityFeedRequestBuilder activityFeed() {
         return new ActivityFeedRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The announcements property
+     * @return a {@link AnnouncementsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public AnnouncementsRequestBuilder announcements() {
+        return new AnnouncementsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * The applyEligibility property

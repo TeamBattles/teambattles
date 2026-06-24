@@ -33,12 +33,13 @@ func NewMatchesItemPlayerStatsRequestBuilder(rawUrl string, requestAdapter i2ae4
     urlParams["request-raw-url"] = rawUrl
     return NewMatchesItemPlayerStatsRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+// Post sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
 // returns a GamePlayerStatsResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
 // returns a ErrorEscaped error when the service returns a 403 status code
 // returns a ErrorEscaped error when the service returns a 404 status code
+// returns a ErrorEscaped error when the service returns a 409 status code
 func (m *MatchesItemPlayerStatsRequestBuilder) Post(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.GamePlayerStatsBodyable, requestConfiguration *MatchesItemPlayerStatsRequestBuilderPostRequestConfiguration)(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.GamePlayerStatsResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
@@ -49,6 +50,7 @@ func (m *MatchesItemPlayerStatsRequestBuilder) Post(ctx context.Context, body i2
         "401": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
         "403": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
         "404": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "409": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateGamePlayerStatsResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
@@ -59,7 +61,7 @@ func (m *MatchesItemPlayerStatsRequestBuilder) Post(ctx context.Context, body i2
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.GamePlayerStatsResponseable), nil
 }
-// ToPostRequestInformation sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+// ToPostRequestInformation sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
 // returns a *RequestInformation when successful
 func (m *MatchesItemPlayerStatsRequestBuilder) ToPostRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.GamePlayerStatsBodyable, requestConfiguration *MatchesItemPlayerStatsRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

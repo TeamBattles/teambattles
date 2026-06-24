@@ -9,14 +9,18 @@ use Microsoft\Kiota\Abstractions\HttpMethod;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use Microsoft\Kiota\Abstractions\RequestInformation;
 use TeamBattles\Sdk\Generated\Matches\Item\Accept\AcceptRequestBuilder;
+use TeamBattles\Sdk\Generated\Matches\Item\Acceptances\AcceptancesRequestBuilder;
 use TeamBattles\Sdk\Generated\Matches\Item\Attendance\AttendanceRequestBuilder;
 use TeamBattles\Sdk\Generated\Matches\Item\Cancel\CancelRequestBuilder;
+use TeamBattles\Sdk\Generated\Matches\Item\Challenges\ChallengesRequestBuilder;
 use TeamBattles\Sdk\Generated\Matches\Item\Chat\ChatRequestBuilder;
 use TeamBattles\Sdk\Generated\Matches\Item\Forfeit\ForfeitRequestBuilder;
 use TeamBattles\Sdk\Generated\Matches\Item\LobbyCode\LobbyCodeRequestBuilder;
 use TeamBattles\Sdk\Generated\Matches\Item\Players\PlayersRequestBuilder;
+use TeamBattles\Sdk\Generated\Matches\Item\Publish\PublishRequestBuilder;
 use TeamBattles\Sdk\Generated\Matches\Item\Ready\ReadyRequestBuilder;
 use TeamBattles\Sdk\Generated\Matches\Item\Scores\ScoresRequestBuilder;
+use TeamBattles\Sdk\Generated\Matches\Item\Start\StartRequestBuilder;
 use TeamBattles\Sdk\Generated\Models\ApiMatchDetailResponse;
 use TeamBattles\Sdk\Generated\Models\Error;
 
@@ -33,6 +37,13 @@ class WithMatchItemRequestBuilder extends BaseRequestBuilder
     }
     
     /**
+     * The acceptances property
+    */
+    public function acceptances(): AcceptancesRequestBuilder {
+        return new AcceptancesRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
      * The attendance property
     */
     public function attendance(): AttendanceRequestBuilder {
@@ -44,6 +55,13 @@ class WithMatchItemRequestBuilder extends BaseRequestBuilder
     */
     public function cancel(): CancelRequestBuilder {
         return new CancelRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The challenges property
+    */
+    public function challenges(): ChallengesRequestBuilder {
+        return new ChallengesRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**
@@ -75,6 +93,13 @@ class WithMatchItemRequestBuilder extends BaseRequestBuilder
     }
     
     /**
+     * The publish property
+    */
+    public function publish(): PublishRequestBuilder {
+        return new PublishRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
      * The ready property
     */
     public function ready(): ReadyRequestBuilder {
@@ -86,6 +111,13 @@ class WithMatchItemRequestBuilder extends BaseRequestBuilder
     */
     public function scores(): ScoresRequestBuilder {
         return new ScoresRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The start property
+    */
+    public function start(): StartRequestBuilder {
+        return new StartRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

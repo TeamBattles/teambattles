@@ -9,14 +9,18 @@ import com.microsoft.kiota.RequestOption;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParsableFactory;
 import gg.teambattles.sdk.generated.matches.item.accept.AcceptRequestBuilder;
+import gg.teambattles.sdk.generated.matches.item.acceptances.AcceptancesRequestBuilder;
 import gg.teambattles.sdk.generated.matches.item.attendance.AttendanceRequestBuilder;
 import gg.teambattles.sdk.generated.matches.item.cancel.CancelRequestBuilder;
+import gg.teambattles.sdk.generated.matches.item.challenges.ChallengesRequestBuilder;
 import gg.teambattles.sdk.generated.matches.item.chat.ChatRequestBuilder;
 import gg.teambattles.sdk.generated.matches.item.forfeit.ForfeitRequestBuilder;
 import gg.teambattles.sdk.generated.matches.item.lobbycode.LobbyCodeRequestBuilder;
 import gg.teambattles.sdk.generated.matches.item.players.PlayersRequestBuilder;
+import gg.teambattles.sdk.generated.matches.item.publish.PublishRequestBuilder;
 import gg.teambattles.sdk.generated.matches.item.ready.ReadyRequestBuilder;
 import gg.teambattles.sdk.generated.matches.item.scores.ScoresRequestBuilder;
+import gg.teambattles.sdk.generated.matches.item.start.StartRequestBuilder;
 import gg.teambattles.sdk.generated.models.ApiMatchDetailResponse;
 import gg.teambattles.sdk.generated.models.Error;
 import java.util.Collection;
@@ -37,6 +41,14 @@ public class WithMatchItemRequestBuilder extends BaseRequestBuilder {
         return new AcceptRequestBuilder(pathParameters, requestAdapter);
     }
     /**
+     * The acceptances property
+     * @return a {@link AcceptancesRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public AcceptancesRequestBuilder acceptances() {
+        return new AcceptancesRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
      * The attendance property
      * @return a {@link AttendanceRequestBuilder}
      */
@@ -51,6 +63,14 @@ public class WithMatchItemRequestBuilder extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public CancelRequestBuilder cancel() {
         return new CancelRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The challenges property
+     * @return a {@link ChallengesRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ChallengesRequestBuilder challenges() {
+        return new ChallengesRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * The chat property
@@ -85,6 +105,14 @@ public class WithMatchItemRequestBuilder extends BaseRequestBuilder {
         return new PlayersRequestBuilder(pathParameters, requestAdapter);
     }
     /**
+     * The publish property
+     * @return a {@link PublishRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public PublishRequestBuilder publish() {
+        return new PublishRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
      * The ready property
      * @return a {@link ReadyRequestBuilder}
      */
@@ -99,6 +127,14 @@ public class WithMatchItemRequestBuilder extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public ScoresRequestBuilder scores() {
         return new ScoresRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The start property
+     * @return a {@link StartRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public StartRequestBuilder start() {
+        return new StartRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * Instantiates a new {@link WithMatchItemRequestBuilder} and sets the default values.

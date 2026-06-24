@@ -5,6 +5,39 @@
 import { createUntypedNodeFromDiscriminatorValue, type AdditionalDataHolder, type ApiError, type Parsable, type ParseNode, type SerializationWriter, type UntypedNode } from '@microsoft/kiota-abstractions';
 
 /**
+ * Accepts a pending challenge as the API key owner.
+ */
+export interface AcceptChallengeRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Active roster user IDs for the challenge response.
+     */
+    activeRoster?: string[] | null;
+    /**
+     * Optional bench roster users.
+     */
+    benchRoster?: AcceptChallengeRequestBody_benchRoster[] | null;
+}
+export interface AcceptChallengeRequestBody_benchRoster extends AdditionalDataHolder, Parsable {
+    /**
+     * Bench user ID.
+     */
+    id?: string | null;
+    /**
+     * Bench priority.
+     */
+    priority?: number | null;
+}
+export interface AcceptChallengeResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
  * Creates a match acceptance request as the API key owner.
  */
 export interface AcceptMatchRequestBody extends AdditionalDataHolder, Parsable {
@@ -111,6 +144,30 @@ export interface AddLeagueMemberResponse extends Parsable {
     timestamp?: string | null;
 }
 /**
+ * Add a member to the organization.
+ */
+export interface AddOrgMemberBody extends AdditionalDataHolder, Parsable {
+    /**
+     * The role to assign to the new member. Ownership is set on creation.
+     */
+    role?: AddOrgMemberBody_role | null;
+    /**
+     * Convex user ID of the member to add.
+     */
+    targetUserId?: string | null;
+}
+export type AddOrgMemberBody_role = (typeof AddOrgMemberBody_roleObject)[keyof typeof AddOrgMemberBody_roleObject];
+export interface AddOrgMemberResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
  * Adds a reply message to one of the API key owner's tickets.
  */
 export interface AddTicketMessageRequestBody extends AdditionalDataHolder, Parsable {
@@ -128,6 +185,33 @@ export interface AddTicketMessageResponse extends Parsable {
      * Created message ID.
      */
     messageId?: string | null;
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * Sends an announcement to all members of the league.
+ */
+export interface AnnounceLeagueRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Announcement body text.
+     */
+    body?: string | null;
+    /**
+     * Announcement title.
+     */
+    title?: string | null;
+}
+export interface AnnounceLeagueResponse extends Parsable {
+    /**
+     * Number of members notified by the announcement.
+     */
+    notified?: number | null;
     /**
      * The success property
      */
@@ -1722,6 +1806,29 @@ export interface ApplyRuleTemplateResponse extends Parsable {
      */
     timestamp?: string | null;
 }
+/**
+ * Approves a pending match acceptance as the API key owner.
+ */
+export interface ApproveAcceptanceRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional list of available map IDs for the match.
+     */
+    availableMaps?: string[] | null;
+    /**
+     * Optional message sent to the accepting team.
+     */
+    responseMessage?: string | null;
+}
+export interface ApproveAcceptanceResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
 export interface ApproveLeagueTeamResponse extends Parsable {
     /**
      * The success property
@@ -1836,6 +1943,33 @@ export interface ConfirmScoreBody extends AdditionalDataHolder, Parsable {
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AcceptChallengeRequestBody_benchRoster}
+ */
+// @ts-ignore
+export function createAcceptChallengeRequestBody_benchRosterFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAcceptChallengeRequestBody_benchRoster;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AcceptChallengeRequestBody}
+ */
+// @ts-ignore
+export function createAcceptChallengeRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAcceptChallengeRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AcceptChallengeResponse}
+ */
+// @ts-ignore
+export function createAcceptChallengeResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAcceptChallengeResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {AcceptMatchRequestBody_benchRoster}
  */
 // @ts-ignore
@@ -1908,6 +2042,24 @@ export function createAddLeagueMemberResponseFromDiscriminatorValue(parseNode: P
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AddOrgMemberBody}
+ */
+// @ts-ignore
+export function createAddOrgMemberBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAddOrgMemberBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AddOrgMemberResponse}
+ */
+// @ts-ignore
+export function createAddOrgMemberResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAddOrgMemberResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {AddTicketMessageRequestBody}
  */
 // @ts-ignore
@@ -1922,6 +2074,24 @@ export function createAddTicketMessageRequestBodyFromDiscriminatorValue(parseNod
 // @ts-ignore
 export function createAddTicketMessageResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoAddTicketMessageResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AnnounceLeagueRequestBody}
+ */
+// @ts-ignore
+export function createAnnounceLeagueRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAnnounceLeagueRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AnnounceLeagueResponse}
+ */
+// @ts-ignore
+export function createAnnounceLeagueResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAnnounceLeagueResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -3960,6 +4130,24 @@ export function createApplyRuleTemplateResponseFromDiscriminatorValue(parseNode:
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApproveAcceptanceRequestBody}
+ */
+// @ts-ignore
+export function createApproveAcceptanceRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApproveAcceptanceRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ApproveAcceptanceResponse}
+ */
+// @ts-ignore
+export function createApproveAcceptanceResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApproveAcceptanceResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ApproveLeagueTeamResponse}
  */
 // @ts-ignore
@@ -4202,6 +4390,24 @@ export function createCreateMatchResponseFromDiscriminatorValue(parseNode: Parse
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CreateOrgBody}
+ */
+// @ts-ignore
+export function createCreateOrgBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCreateOrgBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CreateOrgResponse}
+ */
+// @ts-ignore
+export function createCreateOrgResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCreateOrgResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {CreatePenaltyRequestBody}
  */
 // @ts-ignore
@@ -4238,6 +4444,24 @@ export function createCreateSeasonResponseFromDiscriminatorValue(parseNode: Pars
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CreateTeamBody}
+ */
+// @ts-ignore
+export function createCreateTeamBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCreateTeamBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CreateTeamResponse}
+ */
+// @ts-ignore
+export function createCreateTeamResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCreateTeamResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {CreateTicketRequestBody}
  */
 // @ts-ignore
@@ -4265,11 +4489,38 @@ export function createCreateWebhookBodyFromDiscriminatorValue(parseNode: ParseNo
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {DeclineAcceptanceRequestBody}
+ */
+// @ts-ignore
+export function createDeclineAcceptanceRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoDeclineAcceptanceRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {DeclineAcceptanceResponse}
+ */
+// @ts-ignore
+export function createDeclineAcceptanceResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoDeclineAcceptanceResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {DeleteLeagueSeasonResponse}
  */
 // @ts-ignore
 export function createDeleteLeagueSeasonResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoDeleteLeagueSeasonResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {DeleteOrgResponse}
+ */
+// @ts-ignore
+export function createDeleteOrgResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoDeleteOrgResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4288,6 +4539,15 @@ export function createDenyLeagueTeamRequestBodyFromDiscriminatorValue(parseNode:
 // @ts-ignore
 export function createDenyLeagueTeamResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoDenyLeagueTeamResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {DisbandTeamResponse}
+ */
+// @ts-ignore
+export function createDisbandTeamResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoDisbandTeamResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6039,6 +6299,41 @@ export function createOrganizationLeaderboardResponseFromDiscriminatorValue(pars
     return deserializeIntoOrganizationLeaderboardResponse;
 }
 /**
+ * Creates a new organization as the API key owner.
+ */
+export interface CreateOrgBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional organization description.
+     */
+    description?: string | null;
+    /**
+     * Organization name.
+     */
+    name?: string | null;
+    /**
+     * Organization tag (short identifier).
+     */
+    tag?: string | null;
+}
+export interface CreateOrgResponse extends Parsable {
+    /**
+     * The created organization ID.
+     */
+    id?: string | null;
+    /**
+     * The created organization slug.
+     */
+    slug?: string | null;
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PenaltiesRequestBody}
@@ -6112,6 +6407,33 @@ export function createPlayerLeaderboardResponseFromDiscriminatorValue(parseNode:
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PublishMatchResponse}
+ */
+// @ts-ignore
+export function createPublishMatchResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPublishMatchResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {RefuseChallengeRequestBody}
+ */
+// @ts-ignore
+export function createRefuseChallengeRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoRefuseChallengeRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {RefuseChallengeResponse}
+ */
+// @ts-ignore
+export function createRefuseChallengeResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoRefuseChallengeResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {RemoveDisplayRuleResponse}
  */
 // @ts-ignore
@@ -6153,6 +6475,24 @@ export function createRemoveLeagueTeamRequestBodyFromDiscriminatorValue(parseNod
 // @ts-ignore
 export function createRemoveLeagueTeamResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoRemoveLeagueTeamResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {RemoveOrgMemberResponse}
+ */
+// @ts-ignore
+export function createRemoveOrgMemberResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoRemoveOrgMemberResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {RemoveTeamMemberResponse}
+ */
+// @ts-ignore
+export function createRemoveTeamMemberResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoRemoveTeamMemberResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6408,11 +6748,56 @@ export function createSetLeagueEnabledResponseFromDiscriminatorValue(parseNode: 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SetOrgMemberRoleBody}
+ */
+// @ts-ignore
+export function createSetOrgMemberRoleBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSetOrgMemberRoleBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SetOrgMemberRoleResponse}
+ */
+// @ts-ignore
+export function createSetOrgMemberRoleResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSetOrgMemberRoleResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SetTeamMemberRoleBody}
+ */
+// @ts-ignore
+export function createSetTeamMemberRoleBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSetTeamMemberRoleBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SetTeamMemberRoleResponse}
+ */
+// @ts-ignore
+export function createSetTeamMemberRoleResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSetTeamMemberRoleResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {StandingsRequestBody}
  */
 // @ts-ignore
 export function createStandingsRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoStandingsRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {StartMatchResponse}
+ */
+// @ts-ignore
+export function createStartMatchResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoStartMatchResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6440,6 +6825,43 @@ export function createTeam_avatarUrlFromDiscriminatorValue(parseNode: ParseNode 
 // @ts-ignore
 export function createTeam_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoTeam_avatarUrlMember1;
+}
+/**
+ * Creates a new team as the API key owner.
+ */
+export interface CreateTeamBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional team description.
+     */
+    description?: string | null;
+    /**
+     * Game ID the team competes in.
+     */
+    gameId?: string | null;
+    /**
+     * Team name.
+     */
+    name?: string | null;
+    /**
+     * Owning organization ID. The owner must manage it.
+     */
+    organizationId?: string | null;
+    /**
+     * Optional platform.
+     */
+    platform?: string | null;
+    /**
+     * Game playlist ID.
+     */
+    playlistId?: string | null;
+    /**
+     * Optional region.
+     */
+    region?: string | null;
+    /**
+     * Team tag (short identifier).
+     */
+    tag?: string | null;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6503,6 +6925,24 @@ export function createTeamLeaderboardResponse_gameSlugMember1FromDiscriminatorVa
 // @ts-ignore
 export function createTeamLeaderboardResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoTeamLeaderboardResponse;
+}
+export interface CreateTeamResponse extends Parsable {
+    /**
+     * The created team ID.
+     */
+    id?: string | null;
+    /**
+     * The created team slug.
+     */
+    slug?: string | null;
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6732,6 +7172,42 @@ export function createTransferLeagueOwnershipRequestBodyFromDiscriminatorValue(p
 // @ts-ignore
 export function createTransferLeagueOwnershipResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoTransferLeagueOwnershipResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TransferOrgOwnershipBody}
+ */
+// @ts-ignore
+export function createTransferOrgOwnershipBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTransferOrgOwnershipBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TransferOrgOwnershipResponse}
+ */
+// @ts-ignore
+export function createTransferOrgOwnershipResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTransferOrgOwnershipResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TransferTeamCaptaincyBody}
+ */
+// @ts-ignore
+export function createTransferTeamCaptaincyBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTransferTeamCaptaincyBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TransferTeamCaptaincyResponse}
+ */
+// @ts-ignore
+export function createTransferTeamCaptaincyResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTransferTeamCaptaincyResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6970,6 +7446,24 @@ export function createUpdateLobbyCodeResponseFromDiscriminatorValue(parseNode: P
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UpdateOrgBody}
+ */
+// @ts-ignore
+export function createUpdateOrgBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUpdateOrgBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UpdateOrgResponse}
+ */
+// @ts-ignore
+export function createUpdateOrgResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUpdateOrgResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {UpdatePointsConfigRequestBody_streakBreakpoints}
  */
 // @ts-ignore
@@ -6993,6 +7487,24 @@ export function createUpdatePointsConfigRequestBodyFromDiscriminatorValue(parseN
 // @ts-ignore
 export function createUpdatePointsConfigResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoUpdatePointsConfigResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UpdateTeamBody}
+ */
+// @ts-ignore
+export function createUpdateTeamBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUpdateTeamBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UpdateTeamResponse}
+ */
+// @ts-ignore
+export function createUpdateTeamResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUpdateTeamResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -7317,6 +7829,25 @@ export function createWebhookSecretFromDiscriminatorValue(parseNode: ParseNode |
 export function createWebhookTestResultFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoWebhookTestResult;
 }
+/**
+ * Declines a pending match acceptance as the API key owner.
+ */
+export interface DeclineAcceptanceRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional message sent to the declined team.
+     */
+    responseMessage?: string | null;
+}
+export interface DeclineAcceptanceResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
 export interface DeleteLeagueSeasonResponse extends Parsable {
     /**
      * The success property
@@ -7324,6 +7855,16 @@ export interface DeleteLeagueSeasonResponse extends Parsable {
     success?: boolean | null;
     /**
      * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export interface DeleteOrgResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
      */
     timestamp?: string | null;
 }
@@ -7345,6 +7886,42 @@ export interface DenyLeagueTeamResponse extends Parsable {
      * Response generation time (ISO 8601).
      */
     timestamp?: string | null;
+}
+/**
+ * The deserialization information for the current model
+ * @param AcceptChallengeRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAcceptChallengeRequestBody(acceptChallengeRequestBody: Partial<AcceptChallengeRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "activeRoster": n => { acceptChallengeRequestBody.activeRoster = n.getCollectionOfPrimitiveValues<string>(); },
+        "benchRoster": n => { acceptChallengeRequestBody.benchRoster = n.getCollectionOfObjectValues<AcceptChallengeRequestBody_benchRoster>(createAcceptChallengeRequestBody_benchRosterFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AcceptChallengeRequestBody_benchRoster The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAcceptChallengeRequestBody_benchRoster(acceptChallengeRequestBody_benchRoster: Partial<AcceptChallengeRequestBody_benchRoster> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { acceptChallengeRequestBody_benchRoster.id = n.getStringValue(); },
+        "priority": n => { acceptChallengeRequestBody_benchRoster.priority = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AcceptChallengeResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAcceptChallengeResponse(acceptChallengeResponse: Partial<AcceptChallengeResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { acceptChallengeResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { acceptChallengeResponse.timestamp = n.getStringValue(); },
+    }
 }
 /**
  * The deserialization information for the current model
@@ -7447,6 +8024,30 @@ export function deserializeIntoAddLeagueMemberResponse(addLeagueMemberResponse: 
 }
 /**
  * The deserialization information for the current model
+ * @param AddOrgMemberBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAddOrgMemberBody(addOrgMemberBody: Partial<AddOrgMemberBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "role": n => { addOrgMemberBody.role = n.getEnumValue<AddOrgMemberBody_role>(AddOrgMemberBody_roleObject); },
+        "targetUserId": n => { addOrgMemberBody.targetUserId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AddOrgMemberResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAddOrgMemberResponse(addOrgMemberResponse: Partial<AddOrgMemberResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { addOrgMemberResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { addOrgMemberResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param AddTicketMessageRequestBody The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -7468,6 +8069,31 @@ export function deserializeIntoAddTicketMessageResponse(addTicketMessageResponse
         "messageId": n => { addTicketMessageResponse.messageId = n.getStringValue(); },
         "success": n => { addTicketMessageResponse.success = n.getBooleanValue(); },
         "timestamp": n => { addTicketMessageResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AnnounceLeagueRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAnnounceLeagueRequestBody(announceLeagueRequestBody: Partial<AnnounceLeagueRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "body": n => { announceLeagueRequestBody.body = n.getStringValue(); },
+        "title": n => { announceLeagueRequestBody.title = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AnnounceLeagueResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAnnounceLeagueResponse(announceLeagueResponse: Partial<AnnounceLeagueResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "notified": n => { announceLeagueResponse.notified = n.getNumberValue(); },
+        "success": n => { announceLeagueResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { announceLeagueResponse.timestamp = n.getStringValue(); },
     }
 }
 /**
@@ -10194,6 +10820,30 @@ export function deserializeIntoApplyRuleTemplateResponse(applyRuleTemplateRespon
 }
 /**
  * The deserialization information for the current model
+ * @param ApproveAcceptanceRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApproveAcceptanceRequestBody(approveAcceptanceRequestBody: Partial<ApproveAcceptanceRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "availableMaps": n => { approveAcceptanceRequestBody.availableMaps = n.getCollectionOfPrimitiveValues<string>(); },
+        "responseMessage": n => { approveAcceptanceRequestBody.responseMessage = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ApproveAcceptanceResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApproveAcceptanceResponse(approveAcceptanceResponse: Partial<ApproveAcceptanceResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { approveAcceptanceResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { approveAcceptanceResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param ApproveLeagueTeamResponse The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -10491,6 +11141,33 @@ export function deserializeIntoCreateMatchResponse(createMatchResponse: Partial<
 }
 /**
  * The deserialization information for the current model
+ * @param CreateOrgBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCreateOrgBody(createOrgBody: Partial<CreateOrgBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "description": n => { createOrgBody.description = n.getStringValue(); },
+        "name": n => { createOrgBody.name = n.getStringValue(); },
+        "tag": n => { createOrgBody.tag = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param CreateOrgResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCreateOrgResponse(createOrgResponse: Partial<CreateOrgResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { createOrgResponse.id = n.getStringValue(); },
+        "slug": n => { createOrgResponse.slug = n.getStringValue(); },
+        "success": n => { createOrgResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { createOrgResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param CreatePenaltyRequestBody The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -10547,6 +11224,38 @@ export function deserializeIntoCreateSeasonResponse(createSeasonResponse: Partia
 }
 /**
  * The deserialization information for the current model
+ * @param CreateTeamBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCreateTeamBody(createTeamBody: Partial<CreateTeamBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "description": n => { createTeamBody.description = n.getStringValue(); },
+        "gameId": n => { createTeamBody.gameId = n.getStringValue(); },
+        "name": n => { createTeamBody.name = n.getStringValue(); },
+        "organizationId": n => { createTeamBody.organizationId = n.getStringValue(); },
+        "platform": n => { createTeamBody.platform = n.getStringValue(); },
+        "playlistId": n => { createTeamBody.playlistId = n.getStringValue(); },
+        "region": n => { createTeamBody.region = n.getStringValue(); },
+        "tag": n => { createTeamBody.tag = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param CreateTeamResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCreateTeamResponse(createTeamResponse: Partial<CreateTeamResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { createTeamResponse.id = n.getStringValue(); },
+        "slug": n => { createTeamResponse.slug = n.getStringValue(); },
+        "success": n => { createTeamResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { createTeamResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param CreateTicketRequestBody The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -10588,6 +11297,29 @@ export function deserializeIntoCreateWebhookBody(createWebhookBody: Partial<Crea
 }
 /**
  * The deserialization information for the current model
+ * @param DeclineAcceptanceRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoDeclineAcceptanceRequestBody(declineAcceptanceRequestBody: Partial<DeclineAcceptanceRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "responseMessage": n => { declineAcceptanceRequestBody.responseMessage = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param DeclineAcceptanceResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoDeclineAcceptanceResponse(declineAcceptanceResponse: Partial<DeclineAcceptanceResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { declineAcceptanceResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { declineAcceptanceResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param DeleteLeagueSeasonResponse The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -10596,6 +11328,18 @@ export function deserializeIntoDeleteLeagueSeasonResponse(deleteLeagueSeasonResp
     return {
         "success": n => { deleteLeagueSeasonResponse.success = n.getBooleanValue(); },
         "timestamp": n => { deleteLeagueSeasonResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param DeleteOrgResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoDeleteOrgResponse(deleteOrgResponse: Partial<DeleteOrgResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { deleteOrgResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { deleteOrgResponse.timestamp = n.getStringValue(); },
     }
 }
 /**
@@ -10619,6 +11363,18 @@ export function deserializeIntoDenyLeagueTeamResponse(denyLeagueTeamResponse: Pa
     return {
         "success": n => { denyLeagueTeamResponse.success = n.getBooleanValue(); },
         "timestamp": n => { denyLeagueTeamResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param DisbandTeamResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoDisbandTeamResponse(disbandTeamResponse: Partial<DisbandTeamResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { disbandTeamResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { disbandTeamResponse.timestamp = n.getStringValue(); },
     }
 }
 /**
@@ -12818,6 +13574,41 @@ export function deserializeIntoPlayerLeaderboardResponse(playerLeaderboardRespon
 }
 /**
  * The deserialization information for the current model
+ * @param PublishMatchResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPublishMatchResponse(publishMatchResponse: Partial<PublishMatchResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { publishMatchResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { publishMatchResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param RefuseChallengeRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoRefuseChallengeRequestBody(refuseChallengeRequestBody: Partial<RefuseChallengeRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "reason": n => { refuseChallengeRequestBody.reason = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param RefuseChallengeResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoRefuseChallengeResponse(refuseChallengeResponse: Partial<RefuseChallengeResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { refuseChallengeResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { refuseChallengeResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param RemoveDisplayRuleResponse The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -12873,6 +13664,30 @@ export function deserializeIntoRemoveLeagueTeamResponse(removeLeagueTeamResponse
     return {
         "success": n => { removeLeagueTeamResponse.success = n.getBooleanValue(); },
         "timestamp": n => { removeLeagueTeamResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param RemoveOrgMemberResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoRemoveOrgMemberResponse(removeOrgMemberResponse: Partial<RemoveOrgMemberResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { removeOrgMemberResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { removeOrgMemberResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param RemoveTeamMemberResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoRemoveTeamMemberResponse(removeTeamMemberResponse: Partial<RemoveTeamMemberResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { removeTeamMemberResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { removeTeamMemberResponse.timestamp = n.getStringValue(); },
     }
 }
 /**
@@ -13164,6 +13979,52 @@ export function deserializeIntoSetLeagueEnabledResponse(setLeagueEnabledResponse
 }
 /**
  * The deserialization information for the current model
+ * @param SetOrgMemberRoleBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSetOrgMemberRoleBody(setOrgMemberRoleBody: Partial<SetOrgMemberRoleBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "role": n => { setOrgMemberRoleBody.role = n.getEnumValue<SetOrgMemberRoleBody_role>(SetOrgMemberRoleBody_roleObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SetOrgMemberRoleResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSetOrgMemberRoleResponse(setOrgMemberRoleResponse: Partial<SetOrgMemberRoleResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { setOrgMemberRoleResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { setOrgMemberRoleResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SetTeamMemberRoleBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSetTeamMemberRoleBody(setTeamMemberRoleBody: Partial<SetTeamMemberRoleBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "role": n => { setTeamMemberRoleBody.role = n.getEnumValue<SetTeamMemberRoleBody_role>(SetTeamMemberRoleBody_roleObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SetTeamMemberRoleResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSetTeamMemberRoleResponse(setTeamMemberRoleResponse: Partial<SetTeamMemberRoleResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { setTeamMemberRoleResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { setTeamMemberRoleResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param StandingsRequestBody The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -13173,6 +14034,18 @@ export function deserializeIntoStandingsRequestBody(standingsRequestBody: Partia
         "gameId": n => { standingsRequestBody.gameId = n.getStringValue(); },
         "limit": n => { standingsRequestBody.limit = n.getNumberValue() ?? 50; },
         "seasonId": n => { standingsRequestBody.seasonId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param StartMatchResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoStartMatchResponse(startMatchResponse: Partial<StartMatchResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { startMatchResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { startMatchResponse.timestamp = n.getStringValue(); },
     }
 }
 /**
@@ -13558,6 +14431,52 @@ export function deserializeIntoTransferLeagueOwnershipResponse(transferLeagueOwn
 }
 /**
  * The deserialization information for the current model
+ * @param TransferOrgOwnershipBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTransferOrgOwnershipBody(transferOrgOwnershipBody: Partial<TransferOrgOwnershipBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "newOwnerId": n => { transferOrgOwnershipBody.newOwnerId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TransferOrgOwnershipResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTransferOrgOwnershipResponse(transferOrgOwnershipResponse: Partial<TransferOrgOwnershipResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { transferOrgOwnershipResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { transferOrgOwnershipResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TransferTeamCaptaincyBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTransferTeamCaptaincyBody(transferTeamCaptaincyBody: Partial<TransferTeamCaptaincyBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "newCaptainId": n => { transferTeamCaptaincyBody.newCaptainId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TransferTeamCaptaincyResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTransferTeamCaptaincyResponse(transferTeamCaptaincyResponse: Partial<TransferTeamCaptaincyResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { transferTeamCaptaincyResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { transferTeamCaptaincyResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param TwitchBadgeSet The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -13905,6 +14824,33 @@ export function deserializeIntoUpdateLobbyCodeResponse(updateLobbyCodeResponse: 
 }
 /**
  * The deserialization information for the current model
+ * @param UpdateOrgBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUpdateOrgBody(updateOrgBody: Partial<UpdateOrgBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "description": n => { updateOrgBody.description = n.getStringValue(); },
+        "isPublic": n => { updateOrgBody.isPublic = n.getBooleanValue(); },
+        "name": n => { updateOrgBody.name = n.getStringValue(); },
+        "profileVisibility": n => { updateOrgBody.profileVisibility = n.getEnumValue<UpdateOrgBody_profileVisibility>(UpdateOrgBody_profileVisibilityObject); },
+        "tag": n => { updateOrgBody.tag = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param UpdateOrgResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUpdateOrgResponse(updateOrgResponse: Partial<UpdateOrgResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { updateOrgResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { updateOrgResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param UpdatePointsConfigRequestBody The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -13951,6 +14897,34 @@ export function deserializeIntoUpdatePointsConfigResponse(updatePointsConfigResp
         "configId": n => { updatePointsConfigResponse.configId = n.getStringValue(); },
         "success": n => { updatePointsConfigResponse.success = n.getBooleanValue(); },
         "timestamp": n => { updatePointsConfigResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param UpdateTeamBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUpdateTeamBody(updateTeamBody: Partial<UpdateTeamBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "description": n => { updateTeamBody.description = n.getStringValue(); },
+        "name": n => { updateTeamBody.name = n.getStringValue(); },
+        "platform": n => { updateTeamBody.platform = n.getStringValue(); },
+        "profileVisibility": n => { updateTeamBody.profileVisibility = n.getEnumValue<UpdateTeamBody_profileVisibility>(UpdateTeamBody_profileVisibilityObject); },
+        "region": n => { updateTeamBody.region = n.getEnumValue<UpdateTeamBody_region>(UpdateTeamBody_regionObject); },
+        "tag": n => { updateTeamBody.tag = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param UpdateTeamResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUpdateTeamResponse(updateTeamResponse: Partial<UpdateTeamResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { updateTeamResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { updateTeamResponse.timestamp = n.getStringValue(); },
     }
 }
 /**
@@ -14376,6 +15350,16 @@ export function deserializeIntoWebhookTestResult(webhookTestResult: Partial<Webh
     return {
         "delivered": n => { webhookTestResult.delivered = n.getBooleanValue(); },
     }
+}
+export interface DisbandTeamResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
 }
 /**
  * Filters and offset pagination for discovering leagues.
@@ -16341,6 +17325,35 @@ export interface PlayerLeaderboardResponse extends Parsable {
     timestamp?: string | null;
 }
 export type ProfileVisibility = (typeof ProfileVisibilityObject)[keyof typeof ProfileVisibilityObject];
+export interface PublishMatchResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * Refuses a pending challenge as the API key owner.
+ */
+export interface RefuseChallengeRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional reason shown to the challenging team.
+     */
+    reason?: string | null;
+}
+export interface RefuseChallengeResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
 export interface RemoveDisplayRuleResponse extends Parsable {
     /**
      * The success property
@@ -16381,6 +17394,26 @@ export interface RemoveLeagueTeamRequestBody extends AdditionalDataHolder, Parsa
     reason?: string | null;
 }
 export interface RemoveLeagueTeamResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+export interface RemoveOrgMemberResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+export interface RemoveTeamMemberResponse extends Parsable {
     /**
      * The success property
      */
@@ -16625,6 +17658,44 @@ export interface SendChatMessageResponse extends Parsable {
 }
 /**
  * Serializes information the current object
+ * @param AcceptChallengeRequestBody The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAcceptChallengeRequestBody(writer: SerializationWriter, acceptChallengeRequestBody: Partial<AcceptChallengeRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!acceptChallengeRequestBody || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfPrimitiveValues<string>("activeRoster", acceptChallengeRequestBody.activeRoster);
+    writer.writeCollectionOfObjectValues<AcceptChallengeRequestBody_benchRoster>("benchRoster", acceptChallengeRequestBody.benchRoster, serializeAcceptChallengeRequestBody_benchRoster);
+    writer.writeAdditionalData(acceptChallengeRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AcceptChallengeRequestBody_benchRoster The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAcceptChallengeRequestBody_benchRoster(writer: SerializationWriter, acceptChallengeRequestBody_benchRoster: Partial<AcceptChallengeRequestBody_benchRoster> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!acceptChallengeRequestBody_benchRoster || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", acceptChallengeRequestBody_benchRoster.id);
+    writer.writeNumberValue("priority", acceptChallengeRequestBody_benchRoster.priority);
+    writer.writeAdditionalData(acceptChallengeRequestBody_benchRoster.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AcceptChallengeResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAcceptChallengeResponse(writer: SerializationWriter, acceptChallengeResponse: Partial<AcceptChallengeResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!acceptChallengeResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", acceptChallengeResponse.success);
+    writer.writeStringValue("timestamp", acceptChallengeResponse.timestamp);
+}
+/**
+ * Serializes information the current object
  * @param AcceptMatchRequestBody The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -16729,6 +17800,31 @@ export function serializeAddLeagueMemberResponse(writer: SerializationWriter, ad
 }
 /**
  * Serializes information the current object
+ * @param AddOrgMemberBody The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAddOrgMemberBody(writer: SerializationWriter, addOrgMemberBody: Partial<AddOrgMemberBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!addOrgMemberBody || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<AddOrgMemberBody_role>("role", addOrgMemberBody.role);
+    writer.writeStringValue("targetUserId", addOrgMemberBody.targetUserId);
+    writer.writeAdditionalData(addOrgMemberBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AddOrgMemberResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAddOrgMemberResponse(writer: SerializationWriter, addOrgMemberResponse: Partial<AddOrgMemberResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!addOrgMemberResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", addOrgMemberResponse.success);
+    writer.writeStringValue("timestamp", addOrgMemberResponse.timestamp);
+}
+/**
+ * Serializes information the current object
  * @param AddTicketMessageRequestBody The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -16752,6 +17848,32 @@ export function serializeAddTicketMessageResponse(writer: SerializationWriter, a
     writer.writeStringValue("messageId", addTicketMessageResponse.messageId);
     writer.writeBooleanValue("success", addTicketMessageResponse.success);
     writer.writeStringValue("timestamp", addTicketMessageResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param AnnounceLeagueRequestBody The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAnnounceLeagueRequestBody(writer: SerializationWriter, announceLeagueRequestBody: Partial<AnnounceLeagueRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!announceLeagueRequestBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("body", announceLeagueRequestBody.body);
+    writer.writeStringValue("title", announceLeagueRequestBody.title);
+    writer.writeAdditionalData(announceLeagueRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AnnounceLeagueResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAnnounceLeagueResponse(writer: SerializationWriter, announceLeagueResponse: Partial<AnnounceLeagueResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!announceLeagueResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("notified", announceLeagueResponse.notified);
+    writer.writeBooleanValue("success", announceLeagueResponse.success);
+    writer.writeStringValue("timestamp", announceLeagueResponse.timestamp);
 }
 /**
  * Serializes information the current object
@@ -19853,6 +20975,31 @@ export function serializeApplyRuleTemplateResponse(writer: SerializationWriter, 
 }
 /**
  * Serializes information the current object
+ * @param ApproveAcceptanceRequestBody The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApproveAcceptanceRequestBody(writer: SerializationWriter, approveAcceptanceRequestBody: Partial<ApproveAcceptanceRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!approveAcceptanceRequestBody || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfPrimitiveValues<string>("availableMaps", approveAcceptanceRequestBody.availableMaps);
+    writer.writeStringValue("responseMessage", approveAcceptanceRequestBody.responseMessage);
+    writer.writeAdditionalData(approveAcceptanceRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ApproveAcceptanceResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApproveAcceptanceResponse(writer: SerializationWriter, approveAcceptanceResponse: Partial<ApproveAcceptanceResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!approveAcceptanceResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", approveAcceptanceResponse.success);
+    writer.writeStringValue("timestamp", approveAcceptanceResponse.timestamp);
+}
+/**
+ * Serializes information the current object
  * @param ApproveLeagueTeamResponse The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -20171,6 +21318,34 @@ export function serializeCreateMatchResponse(writer: SerializationWriter, create
 }
 /**
  * Serializes information the current object
+ * @param CreateOrgBody The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCreateOrgBody(writer: SerializationWriter, createOrgBody: Partial<CreateOrgBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!createOrgBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("description", createOrgBody.description);
+    writer.writeStringValue("name", createOrgBody.name);
+    writer.writeStringValue("tag", createOrgBody.tag);
+    writer.writeAdditionalData(createOrgBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param CreateOrgResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCreateOrgResponse(writer: SerializationWriter, createOrgResponse: Partial<CreateOrgResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!createOrgResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", createOrgResponse.id);
+    writer.writeStringValue("slug", createOrgResponse.slug);
+    writer.writeBooleanValue("success", createOrgResponse.success);
+    writer.writeStringValue("timestamp", createOrgResponse.timestamp);
+}
+/**
+ * Serializes information the current object
  * @param CreatePenaltyRequestBody The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -20229,6 +21404,39 @@ export function serializeCreateSeasonResponse(writer: SerializationWriter, creat
 }
 /**
  * Serializes information the current object
+ * @param CreateTeamBody The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCreateTeamBody(writer: SerializationWriter, createTeamBody: Partial<CreateTeamBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!createTeamBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("description", createTeamBody.description);
+    writer.writeStringValue("gameId", createTeamBody.gameId);
+    writer.writeStringValue("name", createTeamBody.name);
+    writer.writeStringValue("organizationId", createTeamBody.organizationId);
+    writer.writeStringValue("platform", createTeamBody.platform);
+    writer.writeStringValue("playlistId", createTeamBody.playlistId);
+    writer.writeStringValue("region", createTeamBody.region);
+    writer.writeStringValue("tag", createTeamBody.tag);
+    writer.writeAdditionalData(createTeamBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param CreateTeamResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCreateTeamResponse(writer: SerializationWriter, createTeamResponse: Partial<CreateTeamResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!createTeamResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", createTeamResponse.id);
+    writer.writeStringValue("slug", createTeamResponse.slug);
+    writer.writeBooleanValue("success", createTeamResponse.success);
+    writer.writeStringValue("timestamp", createTeamResponse.timestamp);
+}
+/**
+ * Serializes information the current object
  * @param CreateTicketRequestBody The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -20272,6 +21480,30 @@ export function serializeCreateWebhookBody(writer: SerializationWriter, createWe
 }
 /**
  * Serializes information the current object
+ * @param DeclineAcceptanceRequestBody The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeDeclineAcceptanceRequestBody(writer: SerializationWriter, declineAcceptanceRequestBody: Partial<DeclineAcceptanceRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!declineAcceptanceRequestBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("responseMessage", declineAcceptanceRequestBody.responseMessage);
+    writer.writeAdditionalData(declineAcceptanceRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param DeclineAcceptanceResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeDeclineAcceptanceResponse(writer: SerializationWriter, declineAcceptanceResponse: Partial<DeclineAcceptanceResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!declineAcceptanceResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", declineAcceptanceResponse.success);
+    writer.writeStringValue("timestamp", declineAcceptanceResponse.timestamp);
+}
+/**
+ * Serializes information the current object
  * @param DeleteLeagueSeasonResponse The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -20281,6 +21513,18 @@ export function serializeDeleteLeagueSeasonResponse(writer: SerializationWriter,
     if (!deleteLeagueSeasonResponse || isSerializingDerivedType) { return; }
     writer.writeBooleanValue("success", deleteLeagueSeasonResponse.success);
     writer.writeStringValue("timestamp", deleteLeagueSeasonResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param DeleteOrgResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeDeleteOrgResponse(writer: SerializationWriter, deleteOrgResponse: Partial<DeleteOrgResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!deleteOrgResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", deleteOrgResponse.success);
+    writer.writeStringValue("timestamp", deleteOrgResponse.timestamp);
 }
 /**
  * Serializes information the current object
@@ -20305,6 +21549,18 @@ export function serializeDenyLeagueTeamResponse(writer: SerializationWriter, den
     if (!denyLeagueTeamResponse || isSerializingDerivedType) { return; }
     writer.writeBooleanValue("success", denyLeagueTeamResponse.success);
     writer.writeStringValue("timestamp", denyLeagueTeamResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param DisbandTeamResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeDisbandTeamResponse(writer: SerializationWriter, disbandTeamResponse: Partial<DisbandTeamResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!disbandTeamResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", disbandTeamResponse.success);
+    writer.writeStringValue("timestamp", disbandTeamResponse.timestamp);
 }
 /**
  * Serializes information the current object
@@ -22691,6 +23947,42 @@ export function serializePlayerLeaderboardResponse(writer: SerializationWriter, 
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PublishMatchResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePublishMatchResponse(writer: SerializationWriter, publishMatchResponse: Partial<PublishMatchResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!publishMatchResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", publishMatchResponse.success);
+    writer.writeStringValue("timestamp", publishMatchResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param RefuseChallengeRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeRefuseChallengeRequestBody(writer: SerializationWriter, refuseChallengeRequestBody: Partial<RefuseChallengeRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!refuseChallengeRequestBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("reason", refuseChallengeRequestBody.reason);
+    writer.writeAdditionalData(refuseChallengeRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param RefuseChallengeResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeRefuseChallengeResponse(writer: SerializationWriter, refuseChallengeResponse: Partial<RefuseChallengeResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!refuseChallengeResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", refuseChallengeResponse.success);
+    writer.writeStringValue("timestamp", refuseChallengeResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param RemoveDisplayRuleResponse The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -22747,6 +24039,30 @@ export function serializeRemoveLeagueTeamResponse(writer: SerializationWriter, r
     if (!removeLeagueTeamResponse || isSerializingDerivedType) { return; }
     writer.writeBooleanValue("success", removeLeagueTeamResponse.success);
     writer.writeStringValue("timestamp", removeLeagueTeamResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param RemoveOrgMemberResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeRemoveOrgMemberResponse(writer: SerializationWriter, removeOrgMemberResponse: Partial<RemoveOrgMemberResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!removeOrgMemberResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", removeOrgMemberResponse.success);
+    writer.writeStringValue("timestamp", removeOrgMemberResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param RemoveTeamMemberResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeRemoveTeamMemberResponse(writer: SerializationWriter, removeTeamMemberResponse: Partial<RemoveTeamMemberResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!removeTeamMemberResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", removeTeamMemberResponse.success);
+    writer.writeStringValue("timestamp", removeTeamMemberResponse.timestamp);
 }
 /**
  * Serializes information the current object
@@ -23055,6 +24371,54 @@ export function serializeSetLeagueEnabledResponse(writer: SerializationWriter, s
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SetOrgMemberRoleBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSetOrgMemberRoleBody(writer: SerializationWriter, setOrgMemberRoleBody: Partial<SetOrgMemberRoleBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!setOrgMemberRoleBody || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<SetOrgMemberRoleBody_role>("role", setOrgMemberRoleBody.role);
+    writer.writeAdditionalData(setOrgMemberRoleBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SetOrgMemberRoleResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSetOrgMemberRoleResponse(writer: SerializationWriter, setOrgMemberRoleResponse: Partial<SetOrgMemberRoleResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!setOrgMemberRoleResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", setOrgMemberRoleResponse.success);
+    writer.writeStringValue("timestamp", setOrgMemberRoleResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SetTeamMemberRoleBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSetTeamMemberRoleBody(writer: SerializationWriter, setTeamMemberRoleBody: Partial<SetTeamMemberRoleBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!setTeamMemberRoleBody || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<SetTeamMemberRoleBody_role>("role", setTeamMemberRoleBody.role);
+    writer.writeAdditionalData(setTeamMemberRoleBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SetTeamMemberRoleResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSetTeamMemberRoleResponse(writer: SerializationWriter, setTeamMemberRoleResponse: Partial<SetTeamMemberRoleResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!setTeamMemberRoleResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", setTeamMemberRoleResponse.success);
+    writer.writeStringValue("timestamp", setTeamMemberRoleResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param StandingsRequestBody The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -23065,6 +24429,18 @@ export function serializeStandingsRequestBody(writer: SerializationWriter, stand
     writer.writeNumberValue("limit", standingsRequestBody.limit ?? 50);
     writer.writeStringValue("seasonId", standingsRequestBody.seasonId);
     writer.writeAdditionalData(standingsRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param StartMatchResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeStartMatchResponse(writer: SerializationWriter, startMatchResponse: Partial<StartMatchResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!startMatchResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", startMatchResponse.success);
+    writer.writeStringValue("timestamp", startMatchResponse.timestamp);
 }
 /**
  * Serializes information the current object
@@ -23493,6 +24869,54 @@ export function serializeTransferLeagueOwnershipResponse(writer: SerializationWr
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TransferOrgOwnershipBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTransferOrgOwnershipBody(writer: SerializationWriter, transferOrgOwnershipBody: Partial<TransferOrgOwnershipBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!transferOrgOwnershipBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("newOwnerId", transferOrgOwnershipBody.newOwnerId);
+    writer.writeAdditionalData(transferOrgOwnershipBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TransferOrgOwnershipResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTransferOrgOwnershipResponse(writer: SerializationWriter, transferOrgOwnershipResponse: Partial<TransferOrgOwnershipResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!transferOrgOwnershipResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", transferOrgOwnershipResponse.success);
+    writer.writeStringValue("timestamp", transferOrgOwnershipResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TransferTeamCaptaincyBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTransferTeamCaptaincyBody(writer: SerializationWriter, transferTeamCaptaincyBody: Partial<TransferTeamCaptaincyBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!transferTeamCaptaincyBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("newCaptainId", transferTeamCaptaincyBody.newCaptainId);
+    writer.writeAdditionalData(transferTeamCaptaincyBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TransferTeamCaptaincyResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTransferTeamCaptaincyResponse(writer: SerializationWriter, transferTeamCaptaincyResponse: Partial<TransferTeamCaptaincyResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!transferTeamCaptaincyResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", transferTeamCaptaincyResponse.success);
+    writer.writeStringValue("timestamp", transferTeamCaptaincyResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param TwitchBadgeSet The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -23862,6 +25286,34 @@ export function serializeUpdateLobbyCodeResponse(writer: SerializationWriter, up
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UpdateOrgBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUpdateOrgBody(writer: SerializationWriter, updateOrgBody: Partial<UpdateOrgBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!updateOrgBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("description", updateOrgBody.description);
+    writer.writeBooleanValue("isPublic", updateOrgBody.isPublic);
+    writer.writeStringValue("name", updateOrgBody.name);
+    writer.writeEnumValue<UpdateOrgBody_profileVisibility>("profileVisibility", updateOrgBody.profileVisibility);
+    writer.writeStringValue("tag", updateOrgBody.tag);
+    writer.writeAdditionalData(updateOrgBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UpdateOrgResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUpdateOrgResponse(writer: SerializationWriter, updateOrgResponse: Partial<UpdateOrgResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!updateOrgResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", updateOrgResponse.success);
+    writer.writeStringValue("timestamp", updateOrgResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param UpdatePointsConfigRequestBody The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -23910,6 +25362,35 @@ export function serializeUpdatePointsConfigResponse(writer: SerializationWriter,
     writer.writeStringValue("configId", updatePointsConfigResponse.configId);
     writer.writeBooleanValue("success", updatePointsConfigResponse.success);
     writer.writeStringValue("timestamp", updatePointsConfigResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UpdateTeamBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUpdateTeamBody(writer: SerializationWriter, updateTeamBody: Partial<UpdateTeamBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!updateTeamBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("description", updateTeamBody.description);
+    writer.writeStringValue("name", updateTeamBody.name);
+    writer.writeStringValue("platform", updateTeamBody.platform);
+    writer.writeEnumValue<UpdateTeamBody_profileVisibility>("profileVisibility", updateTeamBody.profileVisibility);
+    writer.writeEnumValue<UpdateTeamBody_region>("region", updateTeamBody.region);
+    writer.writeStringValue("tag", updateTeamBody.tag);
+    writer.writeAdditionalData(updateTeamBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UpdateTeamResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUpdateTeamResponse(writer: SerializationWriter, updateTeamResponse: Partial<UpdateTeamResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!updateTeamResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", updateTeamResponse.success);
+    writer.writeStringValue("timestamp", updateTeamResponse.timestamp);
 }
 /**
  * Serializes information the current object
@@ -24400,6 +25881,46 @@ export interface SetLeagueEnabledResponse extends Parsable {
     timestamp?: string | null;
 }
 /**
+ * Set an organization member's role.
+ */
+export interface SetOrgMemberRoleBody extends AdditionalDataHolder, Parsable {
+    /**
+     * The new role for the member. The owner role is changed via ownership transfer.
+     */
+    role?: SetOrgMemberRoleBody_role | null;
+}
+export type SetOrgMemberRoleBody_role = (typeof SetOrgMemberRoleBody_roleObject)[keyof typeof SetOrgMemberRoleBody_roleObject];
+export interface SetOrgMemberRoleResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * Set a team member's role.
+ */
+export interface SetTeamMemberRoleBody extends AdditionalDataHolder, Parsable {
+    /**
+     * The new role for the member. Captaincy is changed via captaincy transfer.
+     */
+    role?: SetTeamMemberRoleBody_role | null;
+}
+export type SetTeamMemberRoleBody_role = (typeof SetTeamMemberRoleBody_roleObject)[keyof typeof SetTeamMemberRoleBody_roleObject];
+export interface SetTeamMemberRoleResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
  * Season and game filters for league standings.
  */
 export interface StandingsRequestBody extends AdditionalDataHolder, Parsable {
@@ -24415,6 +25936,16 @@ export interface StandingsRequestBody extends AdditionalDataHolder, Parsable {
      * Filter standings to a specific season id.
      */
     seasonId?: string | null;
+}
+export interface StartMatchResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
 }
 export type StrategyVisibility = (typeof StrategyVisibilityObject)[keyof typeof StrategyVisibilityObject];
 export type StreamPlatform = (typeof StreamPlatformObject)[keyof typeof StreamPlatformObject];
@@ -24693,6 +26224,44 @@ export interface TransferLeagueOwnershipResponse extends Parsable {
     success?: boolean | null;
     /**
      * The timestamp property
+     */
+    timestamp?: string | null;
+}
+/**
+ * Transfer organization ownership to another member.
+ */
+export interface TransferOrgOwnershipBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Convex user ID of the active organization member to promote to owner.
+     */
+    newOwnerId?: string | null;
+}
+export interface TransferOrgOwnershipResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * Transfer team captaincy to another member.
+ */
+export interface TransferTeamCaptaincyBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Convex user ID of the active team member to promote to captain.
+     */
+    newCaptainId?: string | null;
+}
+export interface TransferTeamCaptaincyResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
      */
     timestamp?: string | null;
 }
@@ -25108,6 +26677,42 @@ export interface UpdateLobbyCodeResponse extends Parsable {
     timestamp?: string | null;
 }
 /**
+ * Fields to update on the organization. All optional.
+ */
+export interface UpdateOrgBody extends AdditionalDataHolder, Parsable {
+    /**
+     * The description property
+     */
+    description?: string | null;
+    /**
+     * The isPublic property
+     */
+    isPublic?: boolean | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+    /**
+     * The profileVisibility property
+     */
+    profileVisibility?: UpdateOrgBody_profileVisibility | null;
+    /**
+     * The tag property
+     */
+    tag?: string | null;
+}
+export type UpdateOrgBody_profileVisibility = (typeof UpdateOrgBody_profileVisibilityObject)[keyof typeof UpdateOrgBody_profileVisibilityObject];
+export interface UpdateOrgResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
  * Updates league points configuration.
  */
 export interface UpdatePointsConfigRequestBody extends AdditionalDataHolder, Parsable {
@@ -25194,6 +26799,47 @@ export interface UpdatePointsConfigResponse extends Parsable {
     success?: boolean | null;
     /**
      * The timestamp property
+     */
+    timestamp?: string | null;
+}
+/**
+ * Fields to update on the team. All optional.
+ */
+export interface UpdateTeamBody extends AdditionalDataHolder, Parsable {
+    /**
+     * The description property
+     */
+    description?: string | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+    /**
+     * The platform property
+     */
+    platform?: string | null;
+    /**
+     * The profileVisibility property
+     */
+    profileVisibility?: UpdateTeamBody_profileVisibility | null;
+    /**
+     * The region property
+     */
+    region?: UpdateTeamBody_region | null;
+    /**
+     * The tag property
+     */
+    tag?: string | null;
+}
+export type UpdateTeamBody_profileVisibility = (typeof UpdateTeamBody_profileVisibilityObject)[keyof typeof UpdateTeamBody_profileVisibilityObject];
+export type UpdateTeamBody_region = (typeof UpdateTeamBody_regionObject)[keyof typeof UpdateTeamBody_regionObject];
+export interface UpdateTeamResponse extends Parsable {
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
      */
     timestamp?: string | null;
 }
@@ -25559,6 +27205,13 @@ export const AddLeagueMemberRequestBody_roleObject = {
     MEMBER: "MEMBER",
 } as const;
 /**
+ * The role to assign to the new member. Ownership is set on creation.
+ */
+export const AddOrgMemberBody_roleObject = {
+    ADMIN: "ADMIN",
+    MEMBER: "MEMBER",
+} as const;
+/**
  * Origin of the rank: manual entry or an API push.
  */
 export const ApiGameRank_sourceObject = {
@@ -25822,6 +27475,21 @@ export const SeasonsRequestBody_statusObject = {
     COMPLETED: "COMPLETED",
 } as const;
 /**
+ * The new role for the member. The owner role is changed via ownership transfer.
+ */
+export const SetOrgMemberRoleBody_roleObject = {
+    ADMIN: "ADMIN",
+    MANAGER: "MANAGER",
+    MEMBER: "MEMBER",
+} as const;
+/**
+ * The new role for the member. Captaincy is changed via captaincy transfer.
+ */
+export const SetTeamMemberRoleBody_roleObject = {
+    CO_CAPTAIN: "CO_CAPTAIN",
+    MEMBER: "MEMBER",
+} as const;
+/**
  * Strategy share visibility setting.
  */
 export const StrategyVisibilityObject = {
@@ -25899,9 +27567,30 @@ export const UpdateLeagueTicketRequestBody_statusObject = {
     Resolved: "resolved",
     Closed: "closed",
 } as const;
+export const UpdateOrgBody_profileVisibilityObject = {
+    Public: "public",
+    Limited: "limited",
+    Private: "private",
+} as const;
 export const UpdatePointsConfigRequestBody_unitLabelObject = {
     POINTS: "POINTS",
     EXPERIENCE: "EXPERIENCE",
+} as const;
+export const UpdateTeamBody_profileVisibilityObject = {
+    Public: "public",
+    Limited: "limited",
+    Private: "private",
+} as const;
+export const UpdateTeamBody_regionObject = {
+    NONE: "NONE",
+    NA_EAST: "NA_EAST",
+    NA_WEST: "NA_WEST",
+    EU: "EU",
+    ASIA: "ASIA",
+    OCEANIA: "OCEANIA",
+    SOUTH_AMERICA: "SOUTH_AMERICA",
+    MIDDLE_EAST: "MIDDLE_EAST",
+    AFRICA: "AFRICA",
 } as const;
 /**
  * Lifecycle status of one logical delivery (endpoint x idempotency id).

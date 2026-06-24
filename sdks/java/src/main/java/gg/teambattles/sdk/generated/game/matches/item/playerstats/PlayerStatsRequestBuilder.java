@@ -37,20 +37,21 @@ public class PlayerStatsRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/game/matches/{matchId}/player-stats", rawUrl);
     }
     /**
-     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @return a {@link GamePlayerStatsResponse}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
      * @throws Error When receiving a 404 status code
+     * @throws Error When receiving a 409 status code
      */
     @jakarta.annotation.Nullable
     public GamePlayerStatsResponse post(@jakarta.annotation.Nonnull final GamePlayerStatsBody body) {
         return post(body, null);
     }
     /**
-     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link GamePlayerStatsResponse}
@@ -58,6 +59,7 @@ public class PlayerStatsRequestBuilder extends BaseRequestBuilder {
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
      * @throws Error When receiving a 404 status code
+     * @throws Error When receiving a 409 status code
      */
     @jakarta.annotation.Nullable
     public GamePlayerStatsResponse post(@jakarta.annotation.Nonnull final GamePlayerStatsBody body, @jakarta.annotation.Nullable final java.util.function.Consumer<PostRequestConfiguration> requestConfiguration) {
@@ -68,10 +70,11 @@ public class PlayerStatsRequestBuilder extends BaseRequestBuilder {
         errorMapping.put("401", Error::createFromDiscriminatorValue);
         errorMapping.put("403", Error::createFromDiscriminatorValue);
         errorMapping.put("404", Error::createFromDiscriminatorValue);
+        errorMapping.put("409", Error::createFromDiscriminatorValue);
         return this.requestAdapter.send(requestInfo, errorMapping, GamePlayerStatsResponse::createFromDiscriminatorValue);
     }
     /**
-     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @return a {@link RequestInformation}
      */
@@ -80,7 +83,7 @@ public class PlayerStatsRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission.
+     * Sets per-player stats on an existing map score for the given mapIndex. Requires the game.scores:write permission. Supports an optional `Idempotency-Key` request header: a retry with the same key and body replays the original response, while the same key with a different body returns 409 error_idempotency_key_conflict. The idempotency identity is scoped per match.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

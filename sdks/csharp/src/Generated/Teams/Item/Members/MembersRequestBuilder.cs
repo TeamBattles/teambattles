@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using TeamBattles.Sdk.Models;
+using TeamBattles.Sdk.Teams.Item.Members.Item;
 namespace TeamBattles.Sdk.Teams.Item.Members
 {
     /// <summary>
@@ -17,6 +18,18 @@ namespace TeamBattles.Sdk.Teams.Item.Members
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MembersRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>Gets an item from the TeamBattles.Sdk.teams.item.members.item collection</summary>
+        /// <param name="position">Convex user ID of the member to remove.</param>
+        /// <returns>A <see cref="global::TeamBattles.Sdk.Teams.Item.Members.Item.WithUserItemRequestBuilder"/></returns>
+        public global::TeamBattles.Sdk.Teams.Item.Members.Item.WithUserItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("userId", position);
+                return new global::TeamBattles.Sdk.Teams.Item.Members.Item.WithUserItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Teams.Item.Members.MembersRequestBuilder"/> and sets the default values.
         /// </summary>
