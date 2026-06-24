@@ -8,7 +8,7 @@
     <RootNamespace>TeamBattles.Sdk</RootNamespace>
     <AssemblyName>TeamBattles.Sdk</AssemblyName>
     <PackageId>TeamBattles.Sdk</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Description>Official C# SDK for the TeamBattles public developer API.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

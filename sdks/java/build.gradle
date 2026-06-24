@@ -6,7 +6,7 @@ plugins {
     id 'com.vanniktech.maven.publish' version '0.36.0'
 }
 
-version = '0.1.0'
+version = '0.2.0'
 
 java {
     toolchain {
@@ -45,7 +45,7 @@ mavenPublishing {
     publishToMavenCentral(true) // automaticRelease: push straight through instead of staging for manual release
     signAllPublications()
 
-    coordinates('gg.teambattles', 'sdk', '0.1.0')
+    coordinates('gg.teambattles', 'sdk', '0.2.0')
 
     pom {
         name.set('TeamBattles Java SDK')

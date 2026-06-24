@@ -11,7 +11,7 @@ Auto-generated from the TeamBattles OpenAPI 3.1 specification with [Microsoft Ki
 ## Install
 
 ```groovy
-implementation "gg.teambattles:sdk:0.1.0"
+implementation "gg.teambattles:sdk:0.2.0"
 ```
 
 ## Dependencies

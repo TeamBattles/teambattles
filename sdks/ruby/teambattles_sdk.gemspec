@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "teambattles_sdk"
-  spec.version       = "0.1.0"
+  spec.version       = "0.2.0"
   spec.summary       = "Official Ruby SDK for the TeamBattles public developer API."
   spec.description   = "A Kiota-generated client plus a one-call convenience wrapper for the TeamBattles API."
   spec.authors       = ["TeamBattles"]
