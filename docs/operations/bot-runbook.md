@@ -33,25 +33,34 @@ All four are served by the Convex deployment, not the SvelteKit Worker.
    first `/setup` runner.
 2. Set the Convex env vars: `DISCORD_PUBLIC_KEY`, `DISCORD_APPLICATION_ID`,
    `DISCORD_BOT_TOKEN`, `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET`.
-3. Register the command set:
-   - `pnpm bot:register-commands` - PUTs the catalog **globally** to
-     `applications/<APP_ID>/commands`. Re-run after any command-set change.
-   - `pnpm bot:register-commands --guild <id>` - registers to one guild for
-     instant dev propagation (global registration can take up to an hour).
-   The script needs `DISCORD_APPLICATION_ID` + `DISCORD_BOT_TOKEN` exported; auth
-   header is `Bot <TOKEN>`.
+3. Command registration is **automatic** on every production deploy (the Cloudflare
+   Workers Build runs `convex deploy` plus the appended reconcile) and via the daily
+   `reconcile bot commands` cron. To enable it, set the prod-only Convex env var
+   `npx convex env set DISCORD_COMMAND_SCOPE global` (or `guild:<id>` to scope to one
+   guild; unset / `off` disables it - the safe default that prevents a dev/preview
+   deployment from overwriting the shared application's global commands).
+   - Manual / emergency CLI path (unchanged): `pnpm bot:register-commands` PUTs the
+     catalog **globally**; `pnpm bot:register-commands --guild <id>` registers to one
+     guild for instant dev propagation. Needs `DISCORD_APPLICATION_ID` +
+     `DISCORD_BOT_TOKEN` exported; auth header is `Bot <TOKEN>`.
+   - Manual force override (re-register even when the catalog-hash gate would skip):
+     `npx convex run functions/bot/commandRegistration:reconcile '{"force":true}'`.
 
 ## Telegram setup
 1. Create the bot via **BotFather**; copy its token.
 2. Set the Convex env vars: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_WEBHOOK_SECRET`,
-   `CONVEX_SITE_URL` (webhook base), and `TELEGRAM_BOT_USERNAME` (deep links;
-   optional - see below).
-3. Run `pnpm bot:register-telegram`. It calls `setMyCommands` **twice** (the
-   private-chat scope `all_private_chats` and the group scope `all_group_chats`),
-   then `setWebhook` to `<CONVEX_SITE_URL>/telegram/webhook` with
+   `TELEGRAM_WEBHOOK_BASE` (the deployment's `.convex.site` host that actually serves
+   `/telegram/webhook` - NOT `CONVEX_SITE_URL`, which in this repo is the SvelteKit
+   app URL), and `TELEGRAM_BOT_USERNAME` (deep links; optional - see below). To enable
+   automatic registration, also set `npx convex env set TELEGRAM_AUTO_REGISTER true`
+   (prod only; anything other than `true` disables the auto path).
+3. Automatic registration runs on every production deploy + the daily cron. The
+   manual CLI path remains: `pnpm bot:register-telegram` calls `setMyCommands` **twice**
+   (the private-chat scope `all_private_chats` and the group scope `all_group_chats`),
+   then `setWebhook` to `<TELEGRAM_WEBHOOK_BASE>/telegram/webhook` with
    `secret_token = TELEGRAM_WEBHOOK_SECRET` and
    `allowed_updates = ['message','callback_query','my_chat_member']`. Needs
-   `TELEGRAM_BOT_TOKEN` + `TELEGRAM_WEBHOOK_SECRET` + `CONVEX_SITE_URL` exported.
+   `TELEGRAM_BOT_TOKEN` + `TELEGRAM_WEBHOOK_SECRET` + `TELEGRAM_WEBHOOK_BASE` exported.
 
 With `TELEGRAM_BOT_USERNAME` unset, the link tab degrades gracefully: no `t.me`
 deep link / QR is built and the user is shown a documented manual code-paste step.
@@ -70,7 +79,10 @@ exist as env vars - see *Delivery behavior* below.
 | `DISCORD_CLIENT_SECRET` | Discord OAuth (account link) |
 | `TELEGRAM_BOT_TOKEN` | Telegram Bot API calls |
 | `TELEGRAM_WEBHOOK_SECRET` | Secret-token gate for `/telegram/webhook` |
-| `CONVEX_SITE_URL` | SvelteKit app URL: OAuth callback host + Telegram `setWebhook` base |
+| `CONVEX_SITE_URL` | SvelteKit app URL: OAuth callback host (NOT the Telegram webhook base) |
+| `TELEGRAM_WEBHOOK_BASE` | The `.convex.site` host that serves `/telegram/webhook`; the auto-reconcile + CLI build `<base>/telegram/webhook` |
+| `DISCORD_COMMAND_SCOPE` | Auto command-registration gate: unset/`off` = disabled, `global`, or `guild:<id>` (prod only) |
+| `TELEGRAM_AUTO_REGISTER` | Auto Telegram registration gate: `true` enables; anything else disables (prod only) |
 | `SITE_URL` | Card-render base host for `/og/bot/*`. Defaults to `https://teambattles.gg` if unset (so requests still go *somewhere* - the wrong host in a dev/preview deploy) |
 | `BOT_RENDER_SECRET` | Shared secret sent as `x-bot-render-secret` on every `/og/bot/*` render call |
 
@@ -128,19 +140,56 @@ lowercase `provider:'telegram'` row) - no new bot index.
 above.
 
 ## Crons
-Five bot-specific crons in `src/convex/crons.ts`; each self-reschedules to drain
-any backlog beyond one bounded batch.
+Seven bot-specific crons in `src/convex/crons.ts`. The sweep/reaper crons each
+self-reschedule to drain backlog beyond one bounded batch; `reconcile bot commands`
+is a single idempotent pass over a fixed-size catalog and does not self-reschedule.
 | Name | Schedule | Sweeps |
 | --- | --- | --- |
 | `cleanup expired bot interaction state` | every 5 min | expired `botInteractionState` rows |
 | `cleanup expired bot input flows` | every 5 min | expired `botInputFlows` rows |
+| `cleanup expired bot link codes` | every 5 min | expired `botLinkCodes` rows (Telegram link-code retention) |
 | `reap stale delivering bot deliveries` | every 5 min | re-queues `botDeliveries` stranded in `delivering` past timeout + margin |
 | `sweep bot delivery retention` | daily, `hourUTC 3` | deletes `delivered`/`dead_lettered` `botDeliveries` older than 7 days |
 | `sweep telegram processed updates` | daily, `hourUTC 2` | deletes `botProcessedUpdates` older than ~2 days |
+| `reconcile bot commands` | daily, `hourUTC 0` | re-asserts the slash-command catalog and self-heals external/MEE6 live drift (Discord `GET /applications/{id}/commands` + Telegram `getWebhookInfo`); re-registers only on a hash/live diff |
 
 (`probe service health`, every 1 min, is general infra - not bot-specific.)
 `botGuildEntityCache` has no cron; it is bounded by guild count and expires at
 read time.
+
+## Command auto-registration
+Registration is automatic and idempotent (2026-06-24 spec):
+- **Triggers:** (1) the production deploy step - the Cloudflare Workers Build command
+  is `npx convex deploy --cmd 'pnpm build' && (npx convex run functions/bot/commandRegistration:reconcile || true)`
+  (configured in the CF dashboard, not the repo; the `(... || true)` makes the
+  reconcile non-fatal while a `convex deploy` failure still fails the build). The deploy
+  trigger is catalog-hash-only (passes `{}`). (2) the daily `reconcile bot commands`
+  cron (`hourUTC 0`), which passes `{ checkLiveState: true }`: in addition to the
+  catalog-hash gate it GETs the platform's LIVE command state (Discord `GET
+  /applications/{id}/commands`, Telegram `getWebhookInfo`), hashes/compares it, and
+  re-registers on live drift - so the cron self-heals an external/MEE6 overwrite even
+  when no deploy and no catalog change happened.
+- **Drift gate:** the reconcile hashes the catalog payload (Telegram also hashes the
+  webhook URL, `allowed_updates`, and a fingerprint of `TELEGRAM_WEBHOOK_SECRET`) and
+  compares it to the `botCommandRegistrations` row. It re-registers only on a diff, so
+  it stays clear of the platform daily command-create limits. The daily cron is a true
+  no-op (zero platform writes) ONLY when both the catalog hash AND the live state match;
+  it always performs the live-state GET (a read, not subject to the create limit).
+- **Prod gate:** `DISCORD_COMMAND_SCOPE` and `TELEGRAM_AUTO_REGISTER` are unset on dev,
+  so a dev / preview reconcile is a no-op and can never clobber the shared application's
+  global commands.
+
+### MEE6 / stale-command troubleshooting
+The first successful reconcile bulk-overwrites the live set, wiping any MEE6 residue.
+If stale commands re-appear (an external Dev-Portal edit or another tool), the daily
+`reconcile bot commands` cron auto-cleans them within ~24h via its live-state GET (it
+detects `liveHash != catalogHash` and re-PUTs). To clean them immediately rather than
+waiting for the next cron tick, run the manual force override:
+`npx convex run functions/bot/commandRegistration:reconcile '{"force":true}'`.
+(Note: Telegram's live check compares only the observable webhook `url` +
+`allowed_updates`; `getWebhookInfo` never echoes the secret_token, so a secret-rotation
+drift is healed by the catalog-hash path - the secret fingerprint is part of the catalog
+hash - not by the live-state GET.)
 
 ## Delivery behavior
 Rate-bucket capacities/refill and all delivery timing are HARDCODED constants in
