@@ -601,7 +601,8 @@
 						"group": "Legal Documents",
 						"pages": [
 							"legal/terms",
-							"legal/privacy"
+							"legal/privacy",
+							"legal/security"
 						]
 					}
 				]
