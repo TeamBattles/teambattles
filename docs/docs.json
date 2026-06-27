@@ -181,7 +181,7 @@
 								]
 							},
 							{
-								"group": "TeamBattles Bot",
+								"group": "Battles Bot",
 								"pages": [
 									"tools/bot/index",
 									"tools/bot/commands",

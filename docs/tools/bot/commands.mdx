@@ -21,7 +21,7 @@ The Battles Bot uses Discord slash commands. Type `/` in any channel where the b
 | Command    | What it does                                                                                            |
 | ---------- | ------------------------------------------------------------------------------------------------------- |
 | `/link`    | Link your TeamBattles account. Replies with a button to the link page where you connect Discord and complete one-time human verification. |
-| `/help`    | Show how to use the Battles Bot and the list of available commands.                                  |
+| `/help`    | An interactive command guide. Shows a grouped overview of every command, then lets you pick a command to see how it works (usage, sub-actions, example, scope) and run it straight from chat. See [How /help works](#how-help-works) below. |
 | `/profile` | View your TeamBattles profile - your username and level, with a button to open the full profile online.  |
 | `/setup`   | Open this server's bot settings. Owners and managers get a private link to the settings page; if the bot was added without a linked owner, the first linked member to run it claims ownership. See [Set up the bot in a server](#set-up-the-bot-in-a-server) below. |
 | `/match`   | Browse open matches, view your own matches, and open match details as image cards, plus create, accept, score, and manage matches (lobby code, ready, start, forfeit, cancel, attendance) through interactive menus. `action`: `browse`, `my-matches`, `create`, `accept`. See [Matchmaking](#matchmaking) below. |
@@ -39,6 +39,15 @@ The Battles Bot uses Discord slash commands. Type `/` in any channel where the b
 	`/settings` shows an in-flow verify button instead of blocking. If you have not linked yet, run
 	`/link` first. See [Link your account](/tools/bot#link-your-account).
 </Info>
+
+## How /help works
+
+`/help` is an interactive command guide, not a static list. It works **without linking** (it is identity-exempt) and its replies stay private (ephemeral), so you can explore the commands before you connect your account.
+
+- **Grouped overview** - the bot's commands grouped into **Account**, **Compete**, **Tools**, and **Server**. The overview is generated from the same shared command catalog the bot registers from, so it never drifts from the commands you actually have.
+- **Command picker** - on **Discord** a dropdown lists every command; on **Telegram** (which has no dropdown) you get one button per command. Pick a command to open its detail view.
+- **Per-command detail** - a localized view of what the command does, its **usage** syntax (e.g. `/match [action: browse | my-matches | create | accept]`), each sub-action explained, an **example**, and a scope or permission **note** where it applies (e.g. "Server only", "Needs a linked account"), plus an **Open on web** link where one exists.
+- **Launch buttons** - the detail view's buttons run the command (or a specific sub-action) straight from chat. Launching re-applies the normal access gate, so an unlinked member who taps a launch button gets the link prompt, and a command disabled in a server is still rejected.
 
 ## Set up the bot in a server
 
