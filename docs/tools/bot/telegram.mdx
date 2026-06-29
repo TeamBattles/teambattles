@@ -65,7 +65,7 @@ Once linked, the **Telegram** tab on the link page shows an **Unlink** button. U
 
 ## Use the bot in a group
 
-Add the bot to a Telegram group to use the group commands (`/setup` and `/league`) there.
+Add the bot to a Telegram group to use it there. The group's `/` command menu lists every command, including the two group-only ones (`/setup` and `/league`).
 
 - When the person who **adds the bot** is already a linked TeamBattles user, the group binds automatically (via Telegram's membership update).
 - If the person who adds the bot is **not** a linked TeamBattles user, no group binding is created at all - a linked group **admin** must run `/setup` to claim the group. This is why the "otherwise an admin runs `/setup`" path exists.
@@ -98,7 +98,7 @@ Telegram has no modal dialogs, so multi-field write actions - entering a score, 
 
 ## Platform parity
 
-Everything the Discord bot does, the Telegram bot does. The slash commands come from the same shared catalog - see the [Commands](/tools/bot/commands) page - but the *registered set* differs slightly per platform: Telegram registers 8 commands in private chats and 2 group-only commands (`/setup` and `/league`) in groups, while Discord registers all 10 (using per-command DM permissions for the two group-only ones). Command descriptions are registered in English only. The documented behavioral differences are:
+Everything the Discord bot does, the Telegram bot does. The slash commands come from the same shared catalog - see the [Commands](/tools/bot/commands) page - but the *registered set* differs slightly per platform: Telegram registers 8 commands in private chats and all 10 in groups (those 8 plus the two group-only ones, `/setup` and `/league`), while Discord registers all 10 (using per-command DM permissions for the two group-only ones). Telegram shows a chat's command menu from a single scope without merging across scopes, so the group set has to carry the full list - otherwise the 8 universal commands would be missing from a group's `/` autocomplete (they would still run when typed, just not appear). Command descriptions are registered in English only. The documented behavioral differences are:
 
 - **Private replies** - Discord uses per-message ephemeral replies. On Telegram, a private chat is already private; in a group, the private part of a button action surfaces as a transient in-Telegram callback toast (truncated to about 200 characters), never posted to the group.
 - **No member picker** - Discord member dropdowns are simply dropped on Telegram (a bot cannot enumerate chat members). The substitute is typing an `@username` or picking from a numbered list.

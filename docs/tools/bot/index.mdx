@@ -66,7 +66,7 @@ Before the bot can act on your behalf, you connect it to your TeamBattles accoun
 
 ## Commands
 
-See the full list on the [Commands](/tools/bot/commands) page. The bot ships ten slash commands - `/link`, `/help`, `/profile`, `/setup`, `/match`, `/league`, `/team`, `/org`, `/settings`, and `/tools`. All ten are defined for both Discord and Telegram. On Telegram the two group-only commands (`/setup` and `/league`) register only to group chats, so Telegram private chats show eight commands and group chats show two; Discord registers all ten.
+See the full list on the [Commands](/tools/bot/commands) page. The bot ships ten slash commands - `/link`, `/help`, `/profile`, `/setup`, `/match`, `/league`, `/team`, `/org`, `/settings`, and `/tools`. All ten are defined for both Discord and Telegram. On Telegram the two group-only commands (`/setup` and `/league`) cannot run in a DM, so private chats show eight commands while group chats show all ten (the eight universal plus the two group-only); Discord registers all ten.
 
 ## Privacy
 
@@ -162,7 +162,7 @@ The bot also runs on Telegram via a separate webhook receiver. Operator steps:
 	<Step title="Register commands and webhook">
 		Run `pnpm bot:register-telegram` from a shell that exports `TELEGRAM_BOT_TOKEN`,
 		`TELEGRAM_WEBHOOK_SECRET`, and `CONVEX_SITE_URL` (the script throws without all three). It calls
-		`setMyCommands` **twice** - eight private-chat commands and two group-chat commands, both
+		`setMyCommands` **twice** - eight private-chat commands and all ten group-chat commands, both
 		projected from the same catalog - then `setWebhook` to `${CONVEX_SITE_URL}/telegram/webhook`
 		with `allowed_updates` `[message, callback_query, my_chat_member]`.
 	</Step>

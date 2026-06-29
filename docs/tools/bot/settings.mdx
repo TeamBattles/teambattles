@@ -22,7 +22,7 @@ There are three ways in:
 - From the **[Battles Bot page](/tools/bot)**, signed-in users who own or manage at least one server see a **Manage servers** button that opens the server picker. (It only appears once you actually own or manage a server, so users with none aren't sent to an empty page.)
 - Go straight to the server picker and choose a server.
 
-You'll see every server where you're the **owner**, a **manager**, or (for TeamBattles staff) any server with the bot installed.
+You'll see every server where you're the **owner**, a **manager**, or (for TeamBattles staff) any server with the bot installed. Each server is tagged with its platform - **Discord** or **Telegram** - so the two are easy to tell apart at a glance.
 
 <Note>
 	You must be signed in to TeamBattles to open this page - guests are redirected to
@@ -35,6 +35,13 @@ You'll see every server where you're the **owner**, a **manager**, or (for TeamB
 	The server picker also has a **Manage linking** shortcut in its header that opens the
 	[account linking page](/tools/bot#link-your-account), where you connect or re-verify your
 	Discord and Telegram accounts.
+</Note>
+
+<Note>
+	Once you open a server, its header shows the server's name, icon, and your role. If the
+	name or icon is stale, owners and managers can use the **Refetch** button in the header to
+	pull the server's current name and icon from Discord or Telegram on demand. (The bot also
+	refreshes these automatically, so you usually won't need it.)
 </Note>
 
 ## Plugins and commands
@@ -223,7 +230,7 @@ A routing matrix groups events into **families**. Each family has a **family-def
 | State | What it does |
 | --- | --- |
 | **Inherit** | No per-event rule - the event falls through to the **family-default channel**. This is the default. |
-| **Channel** | Post this event to a **specific channel** you pick (pre-filled with the family default if one is set). |
+| **Channel** | Post this event to a **specific channel** you pick. Choosing **Channel** always opens the picker, whether or not a family default is set - it's pre-filled with the family default when one exists, and starts empty otherwise. |
 | **Mute** | **Stop** this event for this server - it overrides the family default, so the event is not posted even if the family has a default channel. |
 
 Set a family-default channel to route a whole family with one pick, then flip individual events to **Channel** or **Mute** only where you want to differ.
