@@ -26,12 +26,12 @@ The **What's this?** link on the overlay opens the keyboard-shortcuts and help r
 
 ### Starter tokens on supported maps
 
-When you start a new strategy on a map that ships with spawn data - currently every Black Ops 6 and Black Ops 7 map - the canvas opens with player tokens pre-placed at the two spawn areas instead of being empty. Counter-Strike 2, League of Legends, and custom maps open empty for now; you can drag tokens from the **Tokens** panel as usual.
+When you start a new strategy on a map that ships with spawn data - currently every Black Ops 6 and Black Ops 7 map, all 10 Counter-Strike 2 maps, and League of Legends Summoner's Rift and Howling Abyss (both the minimap and detailed variants) - the canvas opens with player tokens pre-placed at the two spawn areas instead of being empty. League of Legends Arena maps and custom maps open empty for now; you can drag tokens from the **Tokens** panel as usual.
 
 The starter tokens follow a few rules:
 
-- **One coloured team per side.** Tokens at one spawn are blue and tokens at the other are red so the two sides are visually distinct from the first glance. On Black Ops 7 the blue side is JSOC and the red side is Guild; on Black Ops 6 the blue side is Crimson One and the red side is Pantheon. You can recolor any token from the **Properties** panel.
-- **Tokens per side match the game.** Black Ops 6 and Black Ops 7 both use 4 players per side, so the canvas opens with 8 tokens in two compact grids (4 blue, 4 red).
+- **One coloured team per side.** Tokens at one spawn are blue and tokens at the other are red so the two sides are visually distinct from the first glance. On Black Ops 7 the blue side is JSOC and the red side is Guild; on Black Ops 6 the blue side is Crimson One and the red side is Pantheon. On Counter-Strike 2 the blue side is the CT spawn and the red side is the T spawn; on League of Legends the blue side is the blue-team base (bottom-left) and the red side is the red-team base (top-right). You can recolor any token from the **Properties** panel.
+- **Tokens per side match the game.** Black Ops 6 and Black Ops 7 both use 4 players per side, so the canvas opens with 8 tokens in two compact grids (4 blue, 4 red). Counter-Strike 2 and League of Legends use 5 players per side, so those maps open with 10 tokens (5 blue, 5 red).
 - **Each side faces the opposite spawn (snapped to a cardinal direction).** Both teams open pointed toward the other spawn, with the facing snapped to the nearest of the four cardinal directions (north, south, east, west). The bigger of the horizontal and vertical distance between the two spawns picks the axis, so an opponent that's mostly east of you puts your tokens facing east. On a small number of maps (Plaza is the worked example) the facing is authored explicitly via per-spawn overrides in the map's spawn data file instead of being computed from the opposite-spawn axis - those maps' tokens face the direction the operator chose for the map's natural orientation. Drag a token to rotate it to any angle like any other.
 - **One undo to clear them all.** Press <kbd>Ctrl</kbd>+<kbd>Z</kbd> (<kbd>Cmd</kbd>+<kbd>Z</kbd> on macOS) once to remove every auto-placed token in a single step. Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> to bring them back.
 - **Only on brand-new strategies.** Auto-placement fires once when you create the strategy. It never re-fires when you change the map on an existing strategy, duplicate a strategy, or reopen a saved one.
@@ -265,7 +265,7 @@ When a token's `tokenId` changes between stages (for example, a player throws a 
 
 ## Overlay filters
 
-The header **Overlays** button opens the overlay-filters panel. The panel only shows toggles for layers the active game actually ships with, so a CS2 strategy and a BO7 strategy see very different rows.
+The header **Overlays** button opens the overlay-filters panel. The panel only shows toggles for layers the active game actually ships with, so a CS2 strategy and a BO7 strategy see very different rows. Games with no overlay layers at all (for example League of Legends) don't show the **Overlays** button.
 
 | Group       | Toggle                | Notes                                            |
 | ----------- | --------------------- | ------------------------------------------------ |
