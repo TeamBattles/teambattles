@@ -38,6 +38,30 @@ Routing works on **event families**. Every family has a single **default channel
 	silent (**Mute**) while the rest of the family keeps posting.
 </Note>
 
+### Message mode (new / update / replace)
+
+Alongside the per-event channel control, every **family** has a **message mode** that decides how its notifications behave in the channel. It applies on **both Discord and Telegram** and is set per attachment in the routing matrix:
+
+| Mode | Behavior |
+| --- | --- |
+| **New** | Every event posts a brand-new message, leaving earlier ones untouched. |
+| **Update** | Edits the family's **previous message for the same subject** in place. If that message is gone (deleted, or expired), a fresh one is posted instead. |
+| **Replace** | Deletes the family's previous message and posts a new one. If the old one is already gone, it just posts. |
+
+The "previous message" is tracked per **(family, subject entity, channel)** - so a match's lifecycle events collapse onto one evolving **match** card and its score events onto one evolving **score** card, per channel. The pointer is kept for a sliding **14-day** window (refreshed on each post or edit); after that, the next event starts a fresh card.
+
+| Family | Default mode |
+| --- | --- |
+| `match`, `score` | **Update** (one evolving card per match per channel) |
+| `league`, `organization`, `team`, `roster`, `player` | **New** (every event is its own message) |
+
+<Note>
+	**Update** and **Replace** always fall back to posting a new message whenever the previous one is
+	missing - a moderator deleting the card never breaks future notifications, and it never
+	auto-disables the route. Only a channel the bot can no longer post to triggers
+	[auto-disable](#auto-disable--re-enable).
+</Note>
+
 ### The three axes and their families
 
 Each source can only route the families it owns:
