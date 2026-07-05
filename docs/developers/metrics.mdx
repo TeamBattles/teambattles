@@ -1,0 +1,93 @@
+---
+title: Monitoring Your API Usage
+description: Track request volume, error rates, rate-limit pressure, latency, and webhook health for your TeamBattles API keys on the metrics page.
+---
+
+## Overview
+
+The metrics page at [Settings > Developer > Metrics](https://teambattles.gg/settings/developer/metrics)
+shows, per key and in aggregate, how your integration consumes your plan's allowances:
+request volume, error rates, 429 pressure, latency, per-route attribution, live rate
+headroom, webhook delivery health, and plan-cap utilization. All three key types appear -
+personal, developer-app, and league-operator (league-operator keys appear for the user
+who created them).
+
+You need at least one [API key](/developers/authentication) with recorded traffic; a key
+that has never made a request shows a first-run state with a copy-paste `curl` snippet.
+
+## What is recorded
+
+Every request that resolves to one of your API keys produces one metering event - both
+successes and failures, including denials (expired or paused key, missing scope, rate
+limit, binding mismatch, plan gate). Each event carries the route, method, HTTP status,
+latency, and - for denials - the phase that rejected it.
+
+<Note>
+	Requests that never resolve to a key are not recorded: a missing or unknown `tb_` key,
+	or requests rejected by the per-IP flood guard. They are unattributable and do not
+	appear on the page.
+</Note>
+
+Retention:
+
+| Data                          | Retention  |
+| ----------------------------- | ---------- |
+| Raw request events            | 7 days     |
+| Hourly rollups                | 90 days    |
+| Daily rollups                 | Indefinite |
+
+## Freshness
+
+Charts read background rollups and can lag your live traffic by ~10-15 minutes. Two
+surfaces are near-live instead: the recent-requests inspector and the burst-budget gauge
+refresh on a short poll, so a request you just made shows up there within seconds.
+
+## Reading the page
+
+- **KPI strip** - total requests (with delta vs the prior window), error rate, 429
+  count, p95 latency (a histogram estimate, labeled as such), busiest-hour utilization
+  against your plan ceiling, and recent webhook delivery success.
+- **Key cards** - one card per key with its type, plan, 24h sparkline, and live token
+  headroom. Click a card to filter every section to that key. Paused and expired keys
+  render labeled; revoked keys are deleted along with their history.
+- **Requests over time** - stacked bars by status class (OK, 4xx, 429, 5xx). Every
+  chart has a table view for the same data.
+- **Rate pressure** - a 7x24 heatmap of 429s (labeled in your local time), a
+  burst-budget gauge with a time-to-throttle estimate at your current pace, and a
+  classification of the last 48 hours as bursty (jittered retries or client-side
+  batching would remove the throttles) or saturated (sustained near-ceiling hours -
+  upgrading raises the ceiling). See [Rate Limits](/developers/rate-limits) for the
+  bucket model behind these numbers.
+- **Attribution** - share of requests by key, plus a per-route table with volume share,
+  p50/p95 latency, error rate, 429s, and last-called time.
+- **Errors** - a breakdown by route, error code, and denied phase, and a live
+  recent-requests inspector with an errors-only toggle.
+
+<Note>
+	Batch endpoints charge a separate fixed batch bucket that does not scale with your
+	plan. Batch-route 429s are excluded from the saturated classification and the upgrade
+	what-if, and are footnoted separately - reduce batch size or frequency instead of
+	upgrading.
+</Note>
+
+## Exporting raw events
+
+The recent-requests inspector exports the filtered raw-event window (up to the 7-day raw
+retention) as CSV or NDJSON, capped at 10,000 rows per export. For noisy keys, use the
+errors-only toggle or a narrower window before exporting.
+
+## Webhook health
+
+Each webhook endpoint gets a health card: a dead-letter runway meter showing how many
+more consecutive dead-lettered deliveries remain before the endpoint is automatically
+disabled (the counter resets on any successful delivery), recent delivery outcomes, and
+the last delivery's HTTP status and age. See [Webhooks](/developers/webhooks#delivery)
+for the delivery and retry model.
+
+## Plan capacity
+
+Capacity meters show API keys used vs your cap (personal keys scale with your consumer
+subscription; developer-app keys and webhook endpoints scale with your
+[developer plan](/developers/authentication#plans-and-feature-gates)). Meters above 80%
+get a warning treatment with a contextual upgrade prompt - prompts appear only under
+documented thresholds, never as ambient ads.

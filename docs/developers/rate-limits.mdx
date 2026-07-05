@@ -88,3 +88,13 @@ as `X-RateLimit-Reset`. Wait that many seconds, then retry.
 | `error_api_rate_limited`  | 429  | Your per-key (or batch) bucket is empty.         |
 | `error_ip_rate_limited`   | 429  | The per-IP flood guard tripped.                  |
 | `error_invalid_num_items` | 400  | Item count out of range: the 50-item ceiling on score-batch endpoints, or the `numItems` 1-100 range on match-listing endpoints. |
+
+## Monitoring your usage
+
+The [metrics page](https://teambattles.gg/settings/developer/metrics) in your developer
+settings visualizes how these buckets behave for your keys: a live burst-budget gauge
+(effective tokens vs capacity for the selected key), a 7x24 heatmap of 429s, and a
+bursty-vs-saturated classification of your last 48 hours. The gauge reflects your main
+per-key bucket only - batch-bucket throttles are called out separately, since upgrading
+your plan does not raise the fixed batch bucket. See
+[Monitoring Your API Usage](/developers/metrics) for the full tour.

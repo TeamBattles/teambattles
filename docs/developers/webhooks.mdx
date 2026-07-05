@@ -318,6 +318,11 @@ Deliveries use **at-least-once** semantics with automatic retries. Every attempt
 	Settings &gt; Developer (or via the API) once your server is healthy again.
 </Note>
 
+The [metrics page](https://teambattles.gg/settings/developer/metrics) shows each
+endpoint's dead-letter runway (how many more consecutive dead-lettered deliveries remain
+before auto-disable), recent delivery outcomes, and the last delivery's HTTP status and
+age - see [Monitoring Your API Usage](/developers/metrics#webhook-health).
+
 ## Testing
 
 Use the "Test" button next to any webhook endpoint in the dashboard to send a test event. This sends a `test.ping` event to verify your endpoint is working.

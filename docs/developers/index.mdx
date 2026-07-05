@@ -25,6 +25,7 @@ A developer account is one of exactly two types - `general` or `game`. Both are 
 - **Submit Scores** - Game servers can automatically submit match scores via API
 - **Manage Match Lifecycle** - Query match details, rosters, and status
 - **Receive Webhooks** - Get real-time notifications for match events, score submissions, and roster changes
+- **Monitor Usage** - Per-key request volume, error rates, latency, and rate-limit pressure on the metrics page
 - **Integrate Connections** - Access linked platform data (Discord, Twitch, GitHub, Battle.net)
 
 ## Getting Started
@@ -69,6 +70,13 @@ The API meters requests with token buckets, and the per-key ceiling scales with 
 developer plan (Free 1/sec burst 60, Pro 10/sec burst 300, Studio 30/sec burst 1000). See
 the [Rate Limits](/developers/rate-limits) guide for the per-key, per-IP, and batch
 limits, the `429` codes, and the response headers.
+
+## Usage Metrics
+
+Once your integration is live, the
+[metrics page](https://teambattles.gg/settings/developer/metrics) shows per-key request
+volume, error rates (down to individual recent requests), latency, rate-limit pressure,
+and webhook delivery health. See [Monitoring Your API Usage](/developers/metrics).
 
 ## OpenAPI Specification
 

@@ -215,3 +215,11 @@ These error codes may be returned by the public REST API or by the Battles Strat
 **Fix `error_strategy_board_limit_exceeded`:** delete unused boards from the Battles Strategy editor before creating new ones.
 
 **Fix `error_custom_map_limit_reached`:** open the Battles Strategy editor's custom maps panel and delete unused custom maps. Custom maps are a Premium feature with a 50-per-user cap.
+
+## Link preview shows no image or a stale image
+
+Discord, Twitter/X, and Slack cache link previews by page URL. If you shared a
+link before a card existed, the platform may keep showing the old preview until
+its cache expires. Pasting the link in a new message does not force a refresh.
+If a preview is missing entirely, confirm the page is publicly reachable while
+logged out - protected pages intentionally show the TeamBattles home card.
