@@ -37,6 +37,16 @@ empty you receive `429 error_api_rate_limited`.
 	key uses the league owner's developer plan.
 </Note>
 
+<Note>
+	Enforcement is **shard-approximate at the margin**. To stay fast when many requests
+	for the same key arrive at once, the per-key bucket is split into parallel shards. Your
+	**sustained** rate is still enforced exactly and the advertised ceiling
+	(`X-RateLimit-Limit`) is exact, but a sharp concurrent burst may be denied slightly
+	before, or allowed slightly past, the exact aggregate capacity - by up to about a
+	quarter of your burst. Do not treat a single `429` near the limit as an exact cutoff:
+	honor `Retry-After` and retry.
+</Note>
+
 ## Per-IP flood guard
 
 Before your API key is validated, an IP-keyed bucket throttles raw request volume from a
@@ -49,7 +59,9 @@ not a per-key contract.
 | Refill   | 50 tokens/second |
 
 Exhausting it returns `429 error_ip_rate_limited`. If the client IP cannot be
-determined the guard is skipped (it fails open).
+determined the guard is skipped (it fails open). Like the per-key bucket, the flood
+guard is sharded, so its cutoff is approximate at the margin under a concurrent burst
+from one address; its sustained ceiling holds exactly.
 
 ## Batch endpoints
 
@@ -68,26 +80,37 @@ work is done. If the batch bucket is empty the response is `429 error_api_rate_l
 (the same code as the per-key bucket). The per-key bucket is also charged on batch
 routes, so a `429` there can mean either bucket was exhausted.
 
+Unlike the per-key and per-IP buckets, the batch bucket is **exact and unsharded**: its
+per-item cost accounting is not approximated at the margin.
+
 ## Response headers
 
 Every response - both successful and rate-limited - carries:
 
 | Header                  | Meaning                                                              |
 | ----------------------- | ------------------------------------------------------------------- |
-| `X-RateLimit-Limit`     | The bucket capacity.                                                 |
-| `X-RateLimit-Remaining` | Tokens left after this request (never negative).                    |
-| `X-RateLimit-Reset`     | **Seconds until** the bucket has enough tokens again (not a Unix timestamp). |
+| `X-RateLimit-Limit`     | The bucket capacity. This value is exact.                            |
+| `X-RateLimit-Remaining` | Estimated tokens left after this request (never negative). Because the bucket is sharded, this is an approximation, not an exact count. |
+| `X-RateLimit-Reset`     | **Seconds until** the bucket has enough tokens again (not a Unix timestamp). A conservative upper bound - a retry may succeed sooner. |
 
 On a `429` only, a `Retry-After` header is also set, with the same whole-seconds value
-as `X-RateLimit-Reset`. Wait that many seconds, then retry.
+as `X-RateLimit-Reset`. It is a conservative upper bound: wait at most that many seconds,
+then retry (a retry may succeed sooner).
 
 ## Error codes
 
 | Code                      | HTTP | Meaning                                          |
 | ------------------------- | ---- | ------------------------------------------------ |
-| `error_api_rate_limited`  | 429  | Your per-key (or batch) bucket is empty.         |
+| `error_api_rate_limited`  | 429  | Your per-key (or batch) bucket is empty, or the API shed momentary write contention from many concurrent requests on the same key. |
 | `error_ip_rate_limited`   | 429  | The per-IP flood guard tripped.                  |
 | `error_invalid_num_items` | 400  | Item count out of range: the 50-item ceiling on score-batch endpoints, or the `numItems` 1-100 range on match-listing endpoints. |
+
+<Note>
+	`error_api_rate_limited` can also surface a momentary contention shed: when a burst of
+	requests on the same key or IP contend on the metering state, the API returns `429`
+	instead of failing the request. Honor `Retry-After` and retry - a retry usually
+	succeeds quickly. (This failure mode previously surfaced as a raw `500`.)
+</Note>
 
 ## Monitoring your usage
 

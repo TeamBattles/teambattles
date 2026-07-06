@@ -216,7 +216,7 @@ The `error` field is a stable, machine-readable code. Branch on `error`, not on 
 | `error_game_scope_mismatch`       | 403         | API key is not approved for the requested game      |
 | `error_league_scope_mismatch`     | 403         | API key is bound to a different league              |
 | `error_not_match_participant`     | 403         | User is not allowed to read that match              |
-| `error_api_rate_limited`          | 429         | Rate limit exceeded (see rate-limit headers below)  |
+| `error_api_rate_limited`          | 429         | Rate limit exceeded, or momentary write contention from concurrent requests (see rate-limit headers below) |
 | `error_team_membership_required`  | 403         | User is not an active member of the team            |
 | `error_org_membership_required`   | 403         | User is not an active member of the organization    |
 | `error_team_not_found`            | 404         | Team ID or slug not found                           |
@@ -236,9 +236,12 @@ API responses carry rate-limit headers on both allowed and rejected requests:
 
 | Header                  | Description                                              |
 | ----------------------- | ------------------------------------------------------- |
-| `X-RateLimit-Limit`     | Maximum requests allowed in the current window          |
-| `X-RateLimit-Remaining` | Requests remaining in the current window                |
-| `X-RateLimit-Reset`     | Seconds until the window resets                         |
-| `Retry-After`           | Seconds to wait before retrying (only on a 429 response) |
+| `X-RateLimit-Limit`     | Maximum requests allowed in the current window (exact)  |
+| `X-RateLimit-Remaining` | Estimated requests remaining (approximate, since buckets are sharded) |
+| `X-RateLimit-Reset`     | Seconds until the window resets (a conservative upper bound) |
+| `Retry-After`           | Seconds to wait before retrying, a conservative upper bound (only on a 429 response) |
 
-When the limit is exceeded, the API returns `429` with `error_api_rate_limited`. Wait `Retry-After` seconds before retrying.
+When the limit is exceeded, the API returns `429` with `error_api_rate_limited`. The same
+`429` code can also indicate momentary write contention when many requests for one key or
+IP arrive at once; in both cases, wait `Retry-After` seconds (at most) before retrying. See
+the [Rate Limits](/developers/rate-limits) guide for the bucket model and header semantics.

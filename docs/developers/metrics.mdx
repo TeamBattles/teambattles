@@ -57,7 +57,9 @@ refresh on a short poll, so a request you just made shows up there within second
   classification of the last 48 hours as bursty (jittered retries or client-side
   batching would remove the throttles) or saturated (sustained near-ceiling hours -
   upgrading raises the ceiling). See [Rate Limits](/developers/rate-limits) for the
-  bucket model behind these numbers.
+  bucket model behind these numbers. Momentary contention denials (concurrent-burst
+  `429`s) are metered like any other throttle, so they show up here rather than as
+  unmetered `5xx` errors.
 - **Attribution** - share of requests by key, plus a per-route table with volume share,
   p50/p95 latency, error rate, 429s, and last-called time.
 - **Errors** - a breakdown by route, error code, and denied phase, and a live

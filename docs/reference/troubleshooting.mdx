@@ -216,6 +216,20 @@ These error codes may be returned by the public REST API or by the Battles Strat
 
 **Fix `error_custom_map_limit_reached`:** open the Battles Strategy editor's custom maps panel and delete unused custom maps. Custom maps are a Premium feature with a 50-per-user cap.
 
+### 429 during concurrent bursts from one key or IP (`error_api_rate_limited`)
+
+If you fire many requests for the same API key (or from the same IP) at the same instant,
+some may return `429 error_api_rate_limited` even when you are not obviously over your
+sustained rate. Under a tight concurrent burst, the API sheds momentary write contention
+on its rate-limit state by returning `429` rather than failing the request. Enforcement is
+also shard-approximate at the margin, so the cutoff can land slightly before the exact
+aggregate limit.
+
+**Fix:** honor the `Retry-After` header (a conservative upper bound - a retry usually
+succeeds sooner), add jittered backoff, and avoid firing a large batch of requests
+simultaneously on one key. Treat `X-RateLimit-Remaining` as an estimate, not an exact
+budget.
+
 ## Link preview shows no image or a stale image
 
 Discord, Twitter/X, and Slack cache link previews by page URL. If you shared a
