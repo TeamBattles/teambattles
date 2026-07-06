@@ -3,7 +3,7 @@ title: "Setup Guide"
 description: "Step-by-step guide to setting up your Battles Overlay in OBS, Streamlabs, XSplit, and other streaming software"
 ---
 
-This guide walks you through configuring your overlay in the editor and adding it to OBS Studio. **No API key is required** - overlay URLs are public.
+This guide walks you through configuring your overlay in the editor and adding it to OBS Studio. Overlay URLs are public and contain no secrets - you only need the URL.
 
 ## Prerequisites
 
@@ -15,41 +15,44 @@ This guide walks you through configuring your overlay in the editor and adding i
 
 <Steps>
 	<Step title="Open the editor">
-		Navigate to [/overlay/editor](https://teambattles.gg/overlay/editor) and sign in. You'll see a blank canvas and a sidebar with configuration options.
+		Navigate to [/overlay/editor](https://teambattles.gg/overlay/editor). You'll see a live canvas next to a guided 4-step wizard: **Widgets**, **Style**, **Arrange**, and **Go Live**. Steps unlock as your config becomes valid; you'll need to sign in before saving.
 	</Step>
-	<Step title="Configure widgets">
-		Toggle on the widgets you want to display. Each widget appears on the canvas where you can:
-
-    	- **Click** to select a widget
-    	- **Drag** to reposition it
-    	- Use the **Grid** toggle for alignment guidelines
-    	- Use the **Snap** toggle to snap widgets to the canvas center or other widget edges
+	<Step title="Step 1 - Widgets">
+		Toggle on the widgets you want to display from the **TeamBattles** and **Game ranks** groups. When you enable Team Stats or Org Stats, a picker appears under the toggle to choose the team or organization.
 
     	See the [Widget Reference](/tools/battles-overlay/widgets) for details on each widget.
     </Step>
-    <Step title="Customize style">
-    	Use the sidebar style controls to adjust:
+    <Step title="Step 2 - Style">
+    	Set the global look of your overlay:
 
-    	- **Accent color** - Matches your brand or stream theme
-    	- **Opacity** - Background transparency (0-100%)
     	- **Theme** - Light or dark mode
-    	- **Scale** - Overall size multiplier
+    	- **Layout** - Rounded, Angular, or Minimal (with per-widget overrides in the **Widget styles** list)
+    	- **Customize Colors** - Accent color plus optional text, border, and background overrides
+    	- **Opacity** and **Scale** - Background/text transparency and overall size multiplier
     </Step>
-    <Step title="Save and copy URL">
-    	Click **Save** to store your configuration, then click **Copy URL** to get the overlay URL. The URL follows the pattern `https://teambattles.gg/overlay/render/{configId}` and contains only the config id - no secrets, no API key.
+    <Step title="Step 3 - Arrange">
+    	Drag widgets into position on the canvas:
+
+    	- **Click** to select a widget, then **drag** to reposition it
+    	- Use the **Grid** toggle in the canvas toolbar for alignment guidelines
+    	- Use the **Snap** toggle to snap widgets to the canvas center or other widget edges
+    	- On free accounts, choose which widget carries the teambattles.gg watermark
+    </Step>
+    <Step title="Step 4 - Go Live">
+    	Give your config a name, set the refresh interval (30-300 seconds), and click **Save** (sign-in required, up to 5 configs). The step then shows your overlay URL with a copy button. The URL follows the pattern `https://teambattles.gg/overlay/render/{configId}` and contains only the config id - no secrets.
 
     	<Tip>
-    		You can also copy individual widget URLs by clicking the copy icon next to each widget toggle. This lets you add each widget as a separate browser source.
+    		Go Live also lists a per-widget URL (with its own copy button) for every enabled widget. This lets you add each widget as a separate browser source.
     	</Tip>
     </Step>
     <Step title="Add to OBS">
-    	In OBS Studio:
+    	The Go Live step recommends a Browser Source at **1920 x 1080** running at **30 FPS** for the full canvas. In OBS Studio:
 
     	1. Click the **+** button in the Sources panel
     	2. Select **Browser**
     	3. Give it a name like "Battles Overlay"
     	4. Paste the overlay URL
-    	5. Set **Width** to `1920` and **Height** to `1080`
+    	5. Set **Width** to `1920`, **Height** to `1080`, and leave **FPS** at `30`
     	6. In the **Custom CSS** field, enter:
 
     	```css
@@ -114,7 +117,8 @@ This guide walks you through configuring your overlay in the editor and adding i
 
 <Tip>
 	**Refresh interval**: The default refresh interval is 60 seconds, which works well for most use
-	cases. You can lower it for faster updates during active matches.
+	cases. You can lower it (down to 30 seconds) in the editor's Go Live step for faster updates
+	during active matches.
 </Tip>
 
 <Tip>

@@ -25,15 +25,15 @@ body {
 
 Specific widgets are missing from the overlay.
 
-1. **Check widget is enabled** - Open the [editor](https://teambattles.gg/overlay/editor) and verify the widget toggle is on.
-2. **Check entity visibility** - Team Stats requires the selected team to be public (`profileVisibility: "public"`). Organization Stats requires the org's `isPublic` flag. User-scoped widgets require your profile visibility be non-private. See [Visibility & Privacy](/tools/battles-overlay/api-permissions).
-3. **Check context selection** - Team Stats and Organization Stats require a team or organization to be selected in the editor.
+1. **Check widget is enabled** - Open the [editor](https://teambattles.gg/overlay/editor) and verify the widget is toggled on in the Widgets step.
+2. **Check entity visibility** - Team Stats requires the selected team to be public (`profileVisibility: "public"`). Organization Stats requires the org's `isPublic` flag. User-scoped widgets require your profile visibility be non-private. The editor's Widgets step warns inline when the selected team or org will appear empty in OBS. See [Visibility & Privacy](/tools/battles-overlay/api-permissions).
+3. **Check context selection** - Team Stats and Organization Stats require a team or organization to be selected in the picker under the widget's toggle in the Widgets step.
 
 ## Stale or Outdated Data
 
 Stats on the overlay are not updating.
 
-1. **Check refresh interval** - The default is 60 seconds. You can lower it in the editor's advanced settings for faster updates.
+1. **Check refresh interval** - The default is 60 seconds. You can lower it (down to 30 seconds) in the editor's Go Live step for faster updates.
 2. **Verify internet connection** - The overlay requires an active connection to fetch data from the API.
 3. **Refresh the Browser Source** - Right-click the Browser Source in OBS and select **Refresh cache of current page**.
 
@@ -49,14 +49,14 @@ body {
 }
 ```
 
-Also make sure the **Opacity** setting in the editor is not set to 100%. An opacity of 70-85% typically works well for stream overlays.
+Also make sure the **Background opacity** setting in the editor's Style step is not set to 100%. An opacity of 70-85% typically works well for stream overlays.
 
 ## Overlay Too Small or Too Large
 
 Widgets appear at the wrong size on stream.
 
-1. **Adjust scale in the editor** - Use the scale slider in the sidebar style controls to resize all widgets proportionally.
-2. **Check OBS dimensions** - Set the Browser Source width to `1920` and height to `1080` for the intended layout. Other resolutions may cause scaling issues.
+1. **Adjust scale in the editor** - Use the scale slider in the editor's Style step to resize all widgets proportionally.
+2. **Check OBS dimensions** - Set the Browser Source width to `1920` and height to `1080` (the recommended full-canvas size) for the intended layout. Other resolutions may cause scaling issues.
 3. **Use OBS transform** - Right-click the source in OBS and use **Transform > Edit Transform** to fine-tune size and position.
 
 ## Active Match Widget Not Showing
