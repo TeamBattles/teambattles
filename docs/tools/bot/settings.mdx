@@ -11,7 +11,8 @@ The bot settings page lets owners and managers control what the Battles Bot does
 	**Allowed roles / Allowed channels** editor under [Command access](#command-access),
 	and the channel pickers in [Event routing](#event-routing). Telegram has no Discord
 	Administrator permission and no channel allowlists; on a Telegram group these controls
-	never render and no allowlist is ever written.
+	never render and no allowlist is ever written. Telegram's per-command access is a
+	single **Admins only** toggle instead (see [Command access](#command-access)).
 </Note>
 
 ## Open your settings
@@ -77,17 +78,26 @@ Owners can hand ownership to an existing manager. You can't transfer ownership t
 
 ## Command access
 
-Both plugin-owned commands - [`/match`](/tools/bot/commands#matchmaking) and [`/league`](/tools/bot/commands#leagues) - have a **Configure** button next to their toggle. It opens a per-command page where you control **who** and **where** the command can be used. Core commands have no plugin and no Configure page.
+Both plugin-owned commands - [`/match`](/tools/bot/commands#matchmaking) and [`/league`](/tools/bot/commands#leagues) - have a **Configure** button next to their toggle. It opens a per-command page where you control who can use the command. Core commands have no plugin and no Configure page. The controls differ by platform: **Discord** supports roles and channels, **Telegram** supports an admins-only toggle.
+
+**On Discord:**
 
 - **Allowed roles** - pick one or more Discord roles. Only members with at least one of them can use the command. Leave it empty to allow everyone.
 - **Allowed channels** - pick the text, announcement, or forum channels where the command works. Threads inherit their parent channel's access. Leave it empty to allow every channel.
 
 Roles and channels are pulled live from your Discord server when you open the page. If a saved role or channel was deleted in Discord, it shows as **Unknown (deleted)** so you can remove it.
 
+**On Telegram:**
+
+- **Admins only** - a single toggle (off by default). When on, only the group's administrators can run that command - everyone else gets a short "admins only" reply. Admin status is read live from Telegram, and the restriction also applies to the command's mid-flow button taps. Leave it off to allow everyone in the group.
+
 <Note>
-	This editor is **Discord-only**. On a Telegram group the per-command Allowed roles /
-	Allowed channels editor is hidden entirely and no allowlist is ever written - Telegram
-	commands are gated by the group's own admin status instead.
+	Telegram has no channels or roles the Bot API can enumerate, so the Discord **Allowed
+	roles / Allowed channels** editor is hidden on a Telegram group and no allowlist is ever
+	written. The **Admins only** toggle is the whole Telegram per-command surface. There is
+	**no topic allowlist**: the Telegram Bot API can't list a forum supergroup's topics, so a
+	web picker isn't possible. The Admins-only restriction is independent of the Discord admin
+	bypass and, like the Discord allowlists, never overrides a disabled plugin or command.
 </Note>
 
 <Note>

@@ -10,7 +10,7 @@ This endpoint requires `matches.user_matches:read-write` on your API key. A free
 
 ## Access / Membership Rules
 
-The cancellation is performed as the API key owner, derived from the key itself - it is never accepted as a body field. The owner must be able to manage the match: captain a participating team or be an admin. Past the league grace period, an accepted league match is treated as a forfeit rather than a plain cancellation. A personal key can only cancel matches its owner can manage - the route binding is a no-op and this authorization is enforced inside Convex. A non-personal key receives `403 API_KEY_PERMISSION_DENIED`.
+The cancellation is performed as the API key owner, derived from the key itself - it is never accepted as a body field. For a regular match the owner must be able to manage it: captain a participating team or be an admin. Past the league grace period, an accepted league match is treated as a forfeit rather than a plain cancellation. Cancelling a **pending challenge** is stricter: only the creator team's leadership (captain, co-captain, or org owner of the challenging team) may cancel it, and past the challenge grace window (24 hours by default, league-overridable) the cancellation is recorded as a forfeit with the creator team taking the loss - league or not. A personal key can only cancel matches its owner can manage - the route binding is a no-op and this authorization is enforced inside Convex. A non-personal key receives `403 API_KEY_PERMISSION_DENIED`.
 
 This route accepts an optional `Idempotency-Key` header so retries are safe.
 

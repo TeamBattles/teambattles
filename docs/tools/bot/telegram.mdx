@@ -70,7 +70,7 @@ Add the bot to a Telegram group to use it there. The group's `/` command menu li
 - When the person who **adds the bot** is already a linked TeamBattles user, the group binds automatically (via Telegram's membership update).
 - If the person who adds the bot is **not** a linked TeamBattles user, no group binding is created at all - a linked group **admin** must run `/setup` to claim the group. This is why the "otherwise an admin runs `/setup`" path exists.
 
-Group commands are gated by your Telegram **group-admin** status - the bot checks the group's administrators before running an admin-only action. `/setup` and `/league` are group-only (they do not run in a private chat), matching their Discord behavior.
+Group commands are gated by your Telegram **group-admin** status - the bot checks the group's administrators before running an admin-only action. `/setup` and `/league` are group-only (they do not run in a private chat), matching their Discord behavior. Beyond those built-in admin actions, an owner or manager can also restrict a plugin command (`/match` or `/league`) to group admins with the per-command **Admins only** toggle in [bot settings](/tools/bot/settings#command-access) - Telegram's equivalent of Discord's role and channel allowlists.
 
 <Info>
 	Telegram has no per-channel or per-role allowlists like Discord. The on / off model for a group is

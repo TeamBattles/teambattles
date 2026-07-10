@@ -8247,7 +8247,7 @@
           "My Matches"
         ],
         "summary": "Create a match acceptance request",
-        "description": "Creates a match acceptance request as the personal API key owner. The owner must captain the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Creates a match acceptance request as the personal API key owner. The owner must be a captain, co-captain, or org owner of the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -8365,7 +8365,7 @@
           "My Matches"
         ],
         "summary": "Approve a match acceptance",
-        "description": "Approves a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Approves a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -8493,7 +8493,7 @@
           "My Matches"
         ],
         "summary": "Decline a match acceptance",
-        "description": "Declines a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Declines a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -8739,7 +8739,7 @@
           "My Matches"
         ],
         "summary": "Cancel a match",
-        "description": "Cancels a match as the personal API key owner. The owner must be able to manage the match (captain a participating team or be an admin). Past the league grace period an accepted league match is treated as a forfeit. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Cancels a match as the personal API key owner. For a regular match the owner must be able to manage it (be a captain, co-captain, or org owner of a participating team, or an admin); past the league grace period an accepted league match is treated as a forfeit. For a PENDING challenge the owner must lead the creator team (captain, co-captain, or org owner of the challenging team), and past the challenge grace window (default 24h, league-overridable) cancelling any pending challenge - league or not - is recorded as a forfeit with the creator team taking the loss. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -8857,7 +8857,7 @@
           "My Matches"
         ],
         "summary": "Accept a match challenge",
-        "description": "Accepts a pending challenge as the personal API key owner. The owner must captain the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Accepts a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -8975,7 +8975,7 @@
           "My Matches"
         ],
         "summary": "Refuse a match challenge",
-        "description": "Refuses a pending challenge as the personal API key owner. The owner must captain the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Refuses a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -9357,7 +9357,7 @@
           "My Matches"
         ],
         "summary": "Forfeit a match",
-        "description": "Forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Forfeits a match as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -9475,7 +9475,7 @@
           "My Matches"
         ],
         "summary": "Set a match lobby code",
-        "description": "Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Sets or updates the lobby code as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -9682,7 +9682,7 @@
           "My Matches"
         ],
         "summary": "Publish a match",
-        "description": "Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain, co-captain, or org owner of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -9781,7 +9781,7 @@
           "My Matches"
         ],
         "summary": "Mark a match team ready",
-        "description": "Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -9966,7 +9966,7 @@
           "My Matches"
         ],
         "summary": "Confirm a map score",
-        "description": "Confirm a map score submitted by the opposing team. Only the opposing team's captain can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.",
+        "description": "Confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -10052,7 +10052,7 @@
           "My Matches"
         ],
         "summary": "Submit a map score",
-        "description": "Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.",
+        "description": "Submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -10140,7 +10140,7 @@
           "My Matches"
         ],
         "summary": "Start a match",
-        "description": "Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain, co-captain, or org owner of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -10239,7 +10239,7 @@
           "My Matches"
         ],
         "summary": "Create a match",
-        "description": "Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
+        "description": "Creates a new match as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -14408,7 +14408,7 @@
           "Players"
         ],
         "summary": "List a user's organization affiliations",
-        "description": "Returns the target user's active organization memberships, each as an API-safe organization summary plus the membership role and joinedAt. The identifier is a username or Convex user ID. Requires the users.profile:read scope. Readable only for public or limited profiles (or the API key owner's own profile); a private profile returns 403, and an unknown or banned user returns 404. For anyone other than the profile owner, non-public organizations are omitted; the owner sees all of their memberships. Not paginated - the full set is returned with a count, in no guaranteed order (not sorted by name or joinedAt).",
+        "description": "Returns the target user's active organization memberships, each as an API-safe organization summary plus the membership role and joinedAt. The identifier is a username or Convex user ID. Requires the users.profile:read scope. Readable only for public or limited profiles (or the API key owner's own profile); a private profile returns 403, and an unknown or banned user returns 404. For anyone other than the profile owner, only organizations whose profile visibility is public are returned; the owner sees all of their memberships (regardless of profile visibility or discovery). Note this gates on the organization's profile-visibility axis, not the separate paid public-discovery flag. Not paginated - the full set is returned with a count, in no guaranteed order (not sorted by name or joinedAt).",
         "security": [
           {
             "ApiKeyAuth": []
@@ -14714,7 +14714,7 @@
           "Players"
         ],
         "summary": "List user team affiliations",
-        "description": "Returns the user's active team memberships as a non-paginated list with a count and response timestamp - there is no cursor, limit, or sort parameter, and rows come back in storage order. Each row is an API-safe team summary plus the membership role, joinedAt, and the team's parent organization (null when the team has no organization). Only active memberships are included. Requires the target profile to be public or limited (a private profile returns 403); the requester always sees their own affiliations regardless of visibility. For any profile other than your own, only teams that belong to a public organization are returned - teams in a private or organization-less context are omitted. Banned or unknown identifiers return 404. The identifier may be a username or a Convex user ID. Requires the users.profile:read scope.",
+        "description": "Returns the user's active team memberships as a non-paginated list with a count and response timestamp - there is no cursor, limit, or sort parameter, and rows come back in storage order. Each row is an API-safe team summary plus the membership role, joinedAt, and the team's parent organization (null when the team has no organization). Only active memberships are included. Requires the target profile to be public or limited (a private profile returns 403); the requester always sees their own affiliations regardless of visibility. For any profile other than your own, only teams that belong to an organization with a public profile are returned - teams in a non-public-profile or organization-less context are omitted. Banned or unknown identifiers return 404. The identifier may be a username or a Convex user ID. Requires the users.profile:read scope.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -21315,7 +21315,7 @@
           "teamId": {
             "type": "string",
             "minLength": 1,
-            "description": "Creator team ID. The owner must captain it."
+            "description": "Creator team ID. The owner must be a captain, co-captain, or org owner of it."
           },
           "gameId": {
             "type": "string",
