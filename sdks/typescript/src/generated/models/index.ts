@@ -6173,7 +6173,7 @@ export interface CreateMatchRequestBody extends AdditionalDataHolder, Parsable {
      */
     selectedObjectives?: string[] | null;
     /**
-     * Creator team ID. The owner must captain it.
+     * Creator team ID. The owner must be a captain, co-captain, or org owner of it.
      */
     teamId?: string | null;
     /**
@@ -7635,6 +7635,10 @@ export interface CreateWebhookBody extends AdditionalDataHolder, Parsable {
      * Optional human label for the endpoint.
      */
     label?: string | null;
+    /**
+     * League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+     */
+    leagueId?: string | null;
     /**
      * HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
      */
@@ -11292,6 +11296,7 @@ export function deserializeIntoCreateWebhookBody(createWebhookBody: Partial<Crea
     return {
         "events": n => { createWebhookBody.events = n.getCollectionOfPrimitiveValues<string>(); },
         "label": n => { createWebhookBody.label = n.getStringValue(); },
+        "leagueId": n => { createWebhookBody.leagueId = n.getStringValue(); },
         "url": n => { createWebhookBody.url = n.getStringValue(); },
     }
 }
@@ -21475,6 +21480,7 @@ export function serializeCreateWebhookBody(writer: SerializationWriter, createWe
     if (!createWebhookBody || isSerializingDerivedType) { return; }
     writer.writeCollectionOfPrimitiveValues<string>("events", createWebhookBody.events);
     writer.writeStringValue("label", createWebhookBody.label);
+    writer.writeStringValue("leagueId", createWebhookBody.leagueId);
     writer.writeStringValue("url", createWebhookBody.url);
     writer.writeAdditionalData(createWebhookBody.additionalData);
 }

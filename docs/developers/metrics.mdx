@@ -8,9 +8,9 @@ description: Track request volume, error rates, rate-limit pressure, latency, an
 The metrics page at [Settings > Developer > Metrics](https://teambattles.gg/settings/developer/metrics)
 shows, per key and in aggregate, how your integration consumes your plan's allowances:
 request volume, error rates, 429 pressure, latency, per-route attribution, live rate
-headroom, webhook delivery health, and plan-cap utilization. All three key types appear -
-personal, developer-app, and league-operator (league-operator keys appear for the user
-who created them).
+headroom, webhook delivery health, and plan-cap utilization. Both key types appear -
+personal and developer-app. League Admin API traffic is attributed to the personal or
+developer key that made the request, shown to that key's creator.
 
 You need at least one [API key](/developers/authentication) with recorded traffic; a key
 that has never made a request shows a first-run state with a copy-paste `curl` snippet.

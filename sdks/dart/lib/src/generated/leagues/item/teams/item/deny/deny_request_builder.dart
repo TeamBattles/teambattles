@@ -20,7 +20,7 @@ class DenyRequestBuilder extends BaseRequestBuilder<DenyRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     DenyRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/teams/{leagueTeamId}/deny", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Denies a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.
+    /// Denies a pending team application for the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Denies a pending league team application.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<DenyLeagueTeamResponse?> postAsync(DenyLeagueTeamRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -35,7 +35,7 @@ class DenyRequestBuilder extends BaseRequestBuilder<DenyRequestBuilder> {
         };
         return await requestAdapter.send<DenyLeagueTeamResponse>(requestInfo, DenyLeagueTeamResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Denies a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.
+    /// Denies a pending team application for the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Denies a pending league team application.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(DenyLeagueTeamRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

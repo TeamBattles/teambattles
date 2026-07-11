@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface EnabledRequestBuilder extends BaseRequestBuilder<EnabledRequestBuilder> {
     /**
-     * Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+     * Enables or disables a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
      * @param body League enabled-state update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SetLeagueEnabledResponse>}
@@ -24,7 +24,7 @@ export interface EnabledRequestBuilder extends BaseRequestBuilder<EnabledRequest
      */
      post(body: SetLeagueEnabledRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SetLeagueEnabledResponse | undefined>;
     /**
-     * Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+     * Enables or disables a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
      * @param body League enabled-state update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

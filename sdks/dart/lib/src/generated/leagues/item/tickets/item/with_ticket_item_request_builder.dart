@@ -30,7 +30,7 @@ class WithTicketItemRequestBuilder extends BaseRequestBuilder<WithTicketItemRequ
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     WithTicketItemRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/tickets/{ticketId}", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+    /// Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Updates league ticket status, priority, or assignment.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<UpdateLeagueTicketResponse?> patchAsync(UpdateLeagueTicketRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -45,7 +45,7 @@ class WithTicketItemRequestBuilder extends BaseRequestBuilder<WithTicketItemRequ
         };
         return await requestAdapter.send<UpdateLeagueTicketResponse>(requestInfo, UpdateLeagueTicketResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+    /// Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Updates league ticket status, priority, or assignment.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPatchRequestInformation(UpdateLeagueTicketRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

@@ -49,7 +49,7 @@ class WebhooksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WebhookListResponse]:
         """
-        Lists the API key's webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+        Lists your webhook endpoints: those in the API key's derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebhookListResponse]
         """
@@ -72,7 +72,7 @@ class WebhooksRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CreateWebhookBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WebhookSecret]:
         """
-        Creates a webhook endpoint in the API key's derived scope (personal -> user, developer-app -> game, league-operator -> league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+        Creates a webhook endpoint. By default it is bound to the API key's derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner's plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
         param body: Create a webhook endpoint in the caller's scope.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebhookSecret]
@@ -88,6 +88,7 @@ class WebhooksRequestBuilder(BaseRequestBuilder):
             "400": Error,
             "401": Error,
             "403": Error,
+            "404": Error,
             "409": Error,
             "429": Error,
         }
@@ -99,7 +100,7 @@ class WebhooksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Lists the API key's webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+        Lists your webhook endpoints: those in the API key's derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +111,7 @@ class WebhooksRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CreateWebhookBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Creates a webhook endpoint in the API key's derived scope (personal -> user, developer-app -> game, league-operator -> league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+        Creates a webhook endpoint. By default it is bound to the API key's derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner's plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
         param body: Create a webhook endpoint in the caller's scope.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

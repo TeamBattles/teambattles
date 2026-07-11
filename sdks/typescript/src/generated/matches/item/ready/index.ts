@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ReadyRequestBuilder extends BaseRequestBuilder<ReadyRequestBuilder> {
     /**
-     * Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Marks one participating team ready as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<MarkMatchReadyResponse>}
@@ -25,7 +25,7 @@ export interface ReadyRequestBuilder extends BaseRequestBuilder<ReadyRequestBuil
      */
      post(body: MarkMatchReadyRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<MarkMatchReadyResponse | undefined>;
     /**
-     * Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Marks one participating team ready as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

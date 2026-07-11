@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Bans.Create
         {
         }
         /// <summary>
-        /// Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.
+        /// Bans a team from the league and removes it from active/pending league participation. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.CreateBanResponse"/></returns>
         /// <param name="body">Creates a league team ban.</param>
@@ -69,7 +69,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Bans.Create
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.CreateBanResponse>(requestInfo, global::TeamBattles.Sdk.Models.CreateBanResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.
+        /// Bans a team from the league and removes it from active/pending league participation. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Creates a league team ban.</param>

@@ -33,7 +33,7 @@ class RemoveRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: RemoveLeagueTeamRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[RemoveLeagueTeamResponse]:
         """
-        Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a league-operator key bound to the league and the league teams capability.
+        Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Removes an approved team from a league.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RemoveLeagueTeamResponse]
@@ -62,7 +62,7 @@ class RemoveRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: RemoveLeagueTeamRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a league-operator key bound to the league and the league teams capability.
+        Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Removes an approved team from a league.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

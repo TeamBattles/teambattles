@@ -40,7 +40,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Games.Item
         {
         }
         /// <summary>
-        /// Removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.
+        /// Removes a game from a league and deletes its non-active league configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.RemoveLeagueGameResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -75,7 +75,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Games.Item
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.RemoveLeagueGameResponse>(requestInfo, global::TeamBattles.Sdk.Models.RemoveLeagueGameResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.
+        /// Removes a game from a league and deletes its non-active league configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

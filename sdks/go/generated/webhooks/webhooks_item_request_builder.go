@@ -47,7 +47,7 @@ func NewWebhooksItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2
     urlParams["request-raw-url"] = rawUrl
     return NewWebhooksItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Delete deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+// Delete deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
 // returns a WebhookOkable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -80,7 +80,7 @@ func (m *WebhooksItemRequestBuilder) Delete(ctx context.Context, requestConfigur
 func (m *WebhooksItemRequestBuilder) Deliveries()(*ItemDeliveriesRequestBuilder) {
     return NewItemDeliveriesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Get returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+// Get returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
 // returns a WebhookEndpointable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -108,7 +108,7 @@ func (m *WebhooksItemRequestBuilder) Get(ctx context.Context, requestConfigurati
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.WebhookEndpointable), nil
 }
-// Patch partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+// Patch partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
 // returns a WebhookOkable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -146,7 +146,7 @@ func (m *WebhooksItemRequestBuilder) RotateSecret()(*ItemRotateSecretRequestBuil
 func (m *WebhooksItemRequestBuilder) Test()(*ItemTestRequestBuilder) {
     return NewItemTestRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// ToDeleteRequestInformation deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+// ToDeleteRequestInformation deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
 // returns a *RequestInformation when successful
 func (m *WebhooksItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *WebhooksItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
@@ -157,7 +157,7 @@ func (m *WebhooksItemRequestBuilder) ToDeleteRequestInformation(ctx context.Cont
     requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
-// ToGetRequestInformation returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+// ToGetRequestInformation returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
 // returns a *RequestInformation when successful
 func (m *WebhooksItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *WebhooksItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
@@ -168,7 +168,7 @@ func (m *WebhooksItemRequestBuilder) ToGetRequestInformation(ctx context.Context
     requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
-// ToPatchRequestInformation partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+// ToPatchRequestInformation partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
 // returns a *RequestInformation when successful
 func (m *WebhooksItemRequestBuilder) ToPatchRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.UpdateWebhookBodyable, requestConfiguration *WebhooksItemRequestBuilderPatchRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PATCH, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

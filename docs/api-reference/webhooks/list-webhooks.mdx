@@ -10,7 +10,7 @@ This endpoint requires the `webhooks.manage` permission (the `{ kind: "webhook" 
 
 ## Access / Membership Rules
 
-Webhook endpoints are owner-scoped - you only ever see the endpoints in your key's own derived scope. The scope is derived from your key type: a personal key resolves to your `user` scope, a game-developer key to its bound `game`, and a league-operator key to its bound `league`. Endpoints owned by another scope are never returned.
+Webhook endpoints are per-creator - you only ever see the endpoints you created. That includes the endpoints in your key's derived scope (a personal key resolves to your `user` scope, a game-developer key to its bound `game`) plus any league-scoped endpoints you created. Endpoints created by anyone else are never returned.
 
 ## What's Returned
 

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface TestRequestBuilder extends BaseRequestBuilder<TestRequestBuilder> {
     /**
-     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission and the webhooks feature.
+     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<WebhookTestResult>}
      * @throws {ErrorEscaped} error when the service returns a 400 status code
@@ -22,7 +22,7 @@ export interface TestRequestBuilder extends BaseRequestBuilder<TestRequestBuilde
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<WebhookTestResult | undefined>;
     /**
-     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission and the webhooks feature.
+     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

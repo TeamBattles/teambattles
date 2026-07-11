@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Tickets.Item.Escalate
         {
         }
         /// <summary>
-        /// Escalates a league-scoped support ticket to TeamBattles staff. Requires a league-operator key bound to the league and the league tickets capability.
+        /// Escalates a league-scoped support ticket to TeamBattles staff. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.EscalateLeagueTicketResponse"/></returns>
         /// <param name="body">Escalates a league support ticket to TeamBattles staff.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Tickets.Item.Escalate
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.EscalateLeagueTicketResponse>(requestInfo, global::TeamBattles.Sdk.Models.EscalateLeagueTicketResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Escalates a league-scoped support ticket to TeamBattles staff. Requires a league-operator key bound to the league and the league tickets capability.
+        /// Escalates a league-scoped support ticket to TeamBattles staff. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Escalates a league support ticket to TeamBattles staff.</param>

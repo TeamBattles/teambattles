@@ -50,7 +50,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/matches/{matchId}/scores", rawUrl);
     }
     /**
-     * Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+     * Submits scores for one or more maps in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for submitting one or more map scores in a single call.
      * @return a {@link GameBatchScoresResponse}
      * @throws Error When receiving a 400 status code
@@ -65,7 +65,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+     * Submits scores for one or more maps in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for submitting one or more map scores in a single call.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link GameBatchScoresResponse}
@@ -90,7 +90,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, GameBatchScoresResponse::createFromDiscriminatorValue);
     }
     /**
-     * Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+     * Submits scores for one or more maps in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for submitting one or more map scores in a single call.
      * @return a {@link RequestInformation}
      */
@@ -99,7 +99,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+     * Submits scores for one or more maps in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for submitting one or more map scores in a single call.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

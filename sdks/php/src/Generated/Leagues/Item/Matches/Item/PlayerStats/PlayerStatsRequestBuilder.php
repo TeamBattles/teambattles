@@ -32,7 +32,7 @@ class PlayerStatsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+     * Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param GamePlayerStatsBody $body Request body for submitting or updating player stats for an existing map score.
      * @param PlayerStatsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<GamePlayerStatsResponse|null>
@@ -51,7 +51,7 @@ class PlayerStatsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+     * Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param GamePlayerStatsBody $body Request body for submitting or updating player stats for an existing map score.
      * @param PlayerStatsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

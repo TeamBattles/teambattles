@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Matches.Item.Publish
         {
         }
         /// <summary>
-        /// Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain, co-captain, or org owner of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.PublishMatchResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -67,7 +67,7 @@ namespace TeamBattles.Sdk.Matches.Item.Publish
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.PublishMatchResponse>(requestInfo, global::TeamBattles.Sdk.Models.PublishMatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain, co-captain, or org owner of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

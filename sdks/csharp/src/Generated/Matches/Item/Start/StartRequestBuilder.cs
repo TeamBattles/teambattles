@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Matches.Item.Start
         {
         }
         /// <summary>
-        /// Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain, co-captain, or org owner of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.StartMatchResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -67,7 +67,7 @@ namespace TeamBattles.Sdk.Matches.Item.Start
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.StartMatchResponse>(requestInfo, global::TeamBattles.Sdk.Models.StartMatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain, co-captain, or org owner of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

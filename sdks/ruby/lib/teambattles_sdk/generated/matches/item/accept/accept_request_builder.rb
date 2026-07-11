@@ -26,7 +26,7 @@ module TeamBattlesSdk
                             super(path_parameters, request_adapter, "{+baseurl}/matches/{matchId}/accept")
                         end
                         ## 
-                        ## Creates a match acceptance request as the personal API key owner. The owner must captain the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+                        ## Creates a match acceptance request as the personal API key owner. The owner must be a captain, co-captain, or org owner of the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
                         ## @param body Creates a match acceptance request as the API key owner.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a Fiber of accept_match_response
@@ -47,7 +47,7 @@ module TeamBattlesSdk
                             return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::AcceptMatchResponse.create_from_discriminator_value(pn) }, error_mapping)
                         end
                         ## 
-                        ## Creates a match acceptance request as the personal API key owner. The owner must captain the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+                        ## Creates a match acceptance request as the personal API key owner. The owner must be a captain, co-captain, or org owner of the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
                         ## @param body Creates a match acceptance request as the API key owner.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a request_information

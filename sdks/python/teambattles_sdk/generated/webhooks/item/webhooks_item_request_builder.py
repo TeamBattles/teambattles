@@ -37,7 +37,7 @@ class WebhooksItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WebhookOk]:
         """
-        Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+        Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebhookOk]
         """
@@ -61,7 +61,7 @@ class WebhooksItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WebhookEndpoint]:
         """
-        Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+        Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebhookEndpoint]
         """
@@ -85,7 +85,7 @@ class WebhooksItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: UpdateWebhookBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WebhookOk]:
         """
-        Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+        Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
         param body: Partial update of a webhook endpoint.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebhookOk]
@@ -112,7 +112,7 @@ class WebhooksItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+        Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -123,7 +123,7 @@ class WebhooksItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+        Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +134,7 @@ class WebhooksItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: UpdateWebhookBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+        Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
         param body: Partial update of a webhook endpoint.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

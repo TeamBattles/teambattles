@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Matches.Create
         {
         }
         /// <summary>
-        /// Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Creates a new match as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.CreateMatchResponse"/></returns>
         /// <param name="body">Creates a new match as the API key owner.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Matches.Create
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.CreateMatchResponse>(requestInfo, global::TeamBattles.Sdk.Models.CreateMatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Creates a new match as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Creates a new match as the API key owner.</param>

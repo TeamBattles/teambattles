@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Branding.Update
         {
         }
         /// <summary>
-        /// Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+        /// Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.UpdateLeagueBrandingResponse"/></returns>
         /// <param name="body">Updates league profile branding and public metadata.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Branding.Update
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.UpdateLeagueBrandingResponse>(requestInfo, global::TeamBattles.Sdk.Models.UpdateLeagueBrandingResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+        /// Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Updates league profile branding and public metadata.</param>

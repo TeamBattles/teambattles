@@ -37,7 +37,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/matches/create", rawUrl);
     }
     /**
-     * Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a new match as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a new match as the API key owner.
      * @return a {@link CreateMatchResponse}
      * @throws Error When receiving a 400 status code
@@ -53,7 +53,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a new match as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a new match as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link CreateMatchResponse}
@@ -80,7 +80,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, CreateMatchResponse::createFromDiscriminatorValue);
     }
     /**
-     * Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a new match as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a new match as the API key owner.
      * @return a {@link RequestInformation}
      */
@@ -89,7 +89,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a new match as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a new match as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

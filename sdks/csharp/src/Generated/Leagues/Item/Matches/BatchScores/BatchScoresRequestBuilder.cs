@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Matches.BatchScores
         {
         }
         /// <summary>
-        /// Submits map scores for up to 50 league match items in one request. Each item is independently checked against the key&apos;s bound league and returns a per-item result. Requires the league scores capability.
+        /// Submits map scores for up to 50 league match items in one request. Each item is independently checked to belong to the league in the path and returns a per-item result. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameBatchMatchScoresResponse"/></returns>
         /// <param name="body">Request body for submitting map scores across multiple matches in a single call (capped at 50 items).</param>
@@ -67,7 +67,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Matches.BatchScores
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.GameBatchMatchScoresResponse>(requestInfo, global::TeamBattles.Sdk.Models.GameBatchMatchScoresResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Submits map scores for up to 50 league match items in one request. Each item is independently checked against the key&apos;s bound league and returns a per-item result. Requires the league scores capability.
+        /// Submits map scores for up to 50 league match items in one request. Each item is independently checked to belong to the league in the path and returns a per-item result. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Request body for submitting map scores across multiple matches in a single call (capped at 50 items).</param>

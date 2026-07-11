@@ -28,7 +28,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ScoresRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/matches/{matchId}/scores", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+    /// Submits scores for one or more maps in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Request body for submitting one or more map scores in a single call.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<GameBatchScoresResponse?> postAsync(GameBatchScoresBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -43,7 +43,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBuilder> {
         };
         return await requestAdapter.send<GameBatchScoresResponse>(requestInfo, GameBatchScoresResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+    /// Submits scores for one or more maps in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Request body for submitting one or more map scores in a single call.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(GameBatchScoresBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

@@ -33,7 +33,7 @@ func NewItemOwnershipTransferRequestBuilder(rawUrl string, requestAdapter i2ae41
     urlParams["request-raw-url"] = rawUrl
     return NewItemOwnershipTransferRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+// Post transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
 // returns a TransferLeagueOwnershipResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -65,7 +65,7 @@ func (m *ItemOwnershipTransferRequestBuilder) Post(ctx context.Context, body i2d
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.TransferLeagueOwnershipResponseable), nil
 }
-// ToPostRequestInformation transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+// ToPostRequestInformation transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
 // returns a *RequestInformation when successful
 func (m *ItemOwnershipTransferRequestBuilder) ToPostRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.TransferLeagueOwnershipRequestBodyable, requestConfiguration *ItemOwnershipTransferRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

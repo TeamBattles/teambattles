@@ -33,7 +33,7 @@ func NewItemSeasonsItemCompleteRequestBuilder(rawUrl string, requestAdapter i2ae
     urlParams["request-raw-url"] = rawUrl
     return NewItemSeasonsItemCompleteRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
+// Post completes an active league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
 // returns a CompleteLeagueSeasonResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -63,7 +63,7 @@ func (m *ItemSeasonsItemCompleteRequestBuilder) Post(ctx context.Context, reques
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CompleteLeagueSeasonResponseable), nil
 }
-// ToPostRequestInformation completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
+// ToPostRequestInformation completes an active league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
 // returns a *RequestInformation when successful
 func (m *ItemSeasonsItemCompleteRequestBuilder) ToPostRequestInformation(ctx context.Context, requestConfiguration *ItemSeasonsItemCompleteRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

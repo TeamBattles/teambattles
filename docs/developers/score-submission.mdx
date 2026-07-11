@@ -1,6 +1,6 @@
 ---
 title: Score Submission
-description: Submit match scores programmatically using the TeamBattles API for captain, game developer, and league operator flows.
+description: Submit match scores programmatically using the TeamBattles API for captain, game developer, and league admin flows.
 ---
 
 ## Overview
@@ -10,7 +10,7 @@ endpoint, and confirmation behavior:
 
 1. **Captain Score Submission** - a team captain submits on `POST /api/v1/matches/{matchId}/scores`; the opposing captain must confirm.
 2. **Game Developer Score Submission** - a game server submits verified scores on `POST /api/v1/game/matches/{matchId}/scores`; scores are auto-confirmed.
-3. **League Operator Score Submission** - a league operator submits verified scores on `POST /api/v1/leagues/{identifier}/matches/{matchId}/scores`; scores are auto-confirmed.
+3. **League Admin Score Submission** - a league admin submits verified scores on `POST /api/v1/leagues/{identifier}/matches/{matchId}/scores`; scores are auto-confirmed.
 
 ## Captain Score Submission
 
@@ -254,12 +254,12 @@ Batch submission is naturally idempotent (re-submitting an unconfirmed map overw
 
 Requires `game.scores: write`.
 
-## League Operator Score Submission
+## League Admin Score Submission
 
 <Note>
-	League operators submit verified scores with a league-operator API key. Scores
-	auto-confirm immediately - the opposing captain does not need to confirm. The key
-	must be bound to the league whose match you are scoring.
+	League admins submit verified scores with a personal or developer API key whose owner
+	is currently a league ADMIN of the league whose match you are scoring. Scores
+	auto-confirm immediately - the opposing captain does not need to confirm.
 </Note>
 
 ### Submit Map Scores
@@ -323,10 +323,10 @@ This flow requires the league `scores` capability (`leagueCapability: scores`) a
 
 ## Key Differences
 
-| Feature             | Captain Submission                 | Game Developer Submission | League Operator              |
+| Feature             | Captain Submission                 | Game Developer Submission | League Admin                 |
 | ------------------- | ---------------------------------- | ------------------------- | ---------------------------- |
-| Authentication      | User API key                       | Game developer API key    | League-operator API key      |
+| Authentication      | User API key                       | Game developer API key    | Personal/developer key, owner is league ADMIN |
 | Auto-confirmation   | No (requires opponent)             | Yes                       | Yes                          |
 | Metadata support    | No                                 | Yes                       | Yes                          |
-| Game scope          | Any                                | Approved games only       | Bound league only            |
+| Game scope          | Any                                | Approved games only       | League in the URL path       |
 | Permission required | `matches.team_matches: read-write` | `game.scores: write`      | `leagueCapability: scores` (feature-gated `leagueOperatorApi`) |

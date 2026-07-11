@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface CompleteRequestBuilder extends BaseRequestBuilder<CompleteRequestBuilder> {
     /**
-     * Completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
+     * Completes an active league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<CompleteLeagueSeasonResponse>}
      * @throws {ErrorEscaped} error when the service returns a 400 status code
@@ -23,7 +23,7 @@ export interface CompleteRequestBuilder extends BaseRequestBuilder<CompleteReque
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<CompleteLeagueSeasonResponse | undefined>;
     /**
-     * Completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
+     * Completes an active league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

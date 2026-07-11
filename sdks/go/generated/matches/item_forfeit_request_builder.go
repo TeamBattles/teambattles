@@ -33,7 +33,7 @@ func NewItemForfeitRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
     urlParams["request-raw-url"] = rawUrl
     return NewItemForfeitRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+// Post forfeits a match as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
 // returns a ForfeitMatchResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -65,7 +65,7 @@ func (m *ItemForfeitRequestBuilder) Post(ctx context.Context, body i2d9c680fd977
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.ForfeitMatchResponseable), nil
 }
-// ToPostRequestInformation forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+// ToPostRequestInformation forfeits a match as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
 // returns a *RequestInformation when successful
 func (m *ItemForfeitRequestBuilder) ToPostRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.ForfeitMatchRequestBodyable, requestConfiguration *ItemForfeitRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

@@ -20,7 +20,7 @@ class AcceptRequestBuilder extends BaseRequestBuilder<AcceptRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     AcceptRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/matches/{matchId}/challenges/accept", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Accepts a pending challenge as the personal API key owner. The owner must captain the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Accepts a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Accepts a pending challenge as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<AcceptChallengeResponse?> postAsync(AcceptChallengeRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class AcceptRequestBuilder extends BaseRequestBuilder<AcceptRequestBuilder> {
         };
         return await requestAdapter.send<AcceptChallengeResponse>(requestInfo, AcceptChallengeResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Accepts a pending challenge as the personal API key owner. The owner must captain the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Accepts a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Accepts a pending challenge as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(AcceptChallengeRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

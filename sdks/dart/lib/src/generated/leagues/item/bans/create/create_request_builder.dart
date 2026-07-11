@@ -20,7 +20,7 @@ class CreateRequestBuilder extends BaseRequestBuilder<CreateRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     CreateRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/bans/create", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.
+    /// Bans a team from the league and removes it from active/pending league participation. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Creates a league team ban.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<CreateBanResponse?> postAsync(CreateBanRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -35,7 +35,7 @@ class CreateRequestBuilder extends BaseRequestBuilder<CreateRequestBuilder> {
         };
         return await requestAdapter.send<CreateBanResponse>(requestInfo, CreateBanResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.
+    /// Bans a team from the league and removes it from active/pending league participation. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Creates a league team ban.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(CreateBanRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

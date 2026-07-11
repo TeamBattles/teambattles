@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Matches.Item.PlayerStats
         {
         }
         /// <summary>
-        /// Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+        /// Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GamePlayerStatsResponse"/></returns>
         /// <param name="body">Request body for submitting or updating player stats for an existing map score.</param>
@@ -67,7 +67,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Matches.Item.PlayerStats
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.GamePlayerStatsResponse>(requestInfo, global::TeamBattles.Sdk.Models.GamePlayerStatsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+        /// Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Request body for submitting or updating player stats for an existing map score.</param>

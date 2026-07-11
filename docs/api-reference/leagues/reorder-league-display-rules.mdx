@@ -6,7 +6,7 @@ openapi: "POST /leagues/{identifier}/display-rules/reorder"
 
 ## Permission Required
 
-This endpoint requires a **league-operator API key bound to this league** with the `display_rules` league capability, plus the `leagueOperatorApi` plan feature (api_pro or higher). A free key receives `403 error_api_feature_required`.
+This endpoint requires a personal or developer API key whose owner is currently a league **ADMIN** of the league in the path, with the `display_rules` league capability set to `write` on the key. League API access is gated at api_pro on the **league owner's** plan; when the owner's plan lacks it, the request receives `403 error_api_feature_required`.
 
 ## Access / Membership Rules
 

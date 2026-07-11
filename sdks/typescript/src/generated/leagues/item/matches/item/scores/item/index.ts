@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface WithMapIndexItemRequestBuilder extends BaseRequestBuilder<WithMapIndexItemRequestBuilder> {
     /**
-     * Submits the score for one map in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+     * Submits the score for one map in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Request body for submitting a single map's score (mapIndex comes from the path).
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<GameSingleMapScoreResponse>}
@@ -24,7 +24,7 @@ export interface WithMapIndexItemRequestBuilder extends BaseRequestBuilder<WithM
      */
      post(body: GameSingleMapScoreBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<GameSingleMapScoreResponse | undefined>;
     /**
-     * Submits the score for one map in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+     * Submits the score for one map in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Request body for submitting a single map's score (mapIndex comes from the path).
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

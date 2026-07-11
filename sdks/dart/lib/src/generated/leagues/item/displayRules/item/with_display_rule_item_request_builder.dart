@@ -19,7 +19,7 @@ class WithDisplayRuleItemRequestBuilder extends BaseRequestBuilder<WithDisplayRu
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     WithDisplayRuleItemRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/display-rules/{displayRuleId}", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Removes an informational display rule. Requires a league-operator key bound to the league and the league display_rules capability.
+    /// Removes an informational display rule. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league display_rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<RemoveDisplayRuleResponse?> deleteAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toDeleteRequestInformation(requestConfiguration);
@@ -33,7 +33,7 @@ class WithDisplayRuleItemRequestBuilder extends BaseRequestBuilder<WithDisplayRu
         };
         return await requestAdapter.send<RemoveDisplayRuleResponse>(requestInfo, RemoveDisplayRuleResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Removes an informational display rule. Requires a league-operator key bound to the league and the league display_rules capability.
+    /// Removes an informational display rule. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league display_rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toDeleteRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.delete, urlTemplate : urlTemplate, pathParameters :  pathParameters);

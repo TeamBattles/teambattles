@@ -19,7 +19,7 @@ class ReplayRequestBuilder extends BaseRequestBuilder<ReplayRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ReplayRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/webhooks/{id}/deliveries/{deliveryId}/replay", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Re-queues a dead-lettered delivery for a fresh attempt. Delivered, in-flight, or still-retrying (failed) deliveries cannot be replayed (409). Requires the webhooks.manage permission and the webhooks feature.
+    /// Re-queues a dead-lettered delivery for a fresh attempt. Delivered, in-flight, or still-retrying (failed) deliveries cannot be replayed (409). Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<WebhookReplayResult?> postAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toPostRequestInformation(requestConfiguration);
@@ -33,7 +33,7 @@ class ReplayRequestBuilder extends BaseRequestBuilder<ReplayRequestBuilder> {
         };
         return await requestAdapter.send<WebhookReplayResult>(requestInfo, WebhookReplayResult.createFromDiscriminatorValue, errorMapping);
     }
-    /// Re-queues a dead-lettered delivery for a fresh attempt. Delivered, in-flight, or still-retrying (failed) deliveries cannot be replayed (409). Requires the webhooks.manage permission and the webhooks feature.
+    /// Re-queues a dead-lettered delivery for a fresh attempt. Delivered, in-flight, or still-retrying (failed) deliveries cannot be replayed (409). Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.post, urlTemplate : urlTemplate, pathParameters :  pathParameters);

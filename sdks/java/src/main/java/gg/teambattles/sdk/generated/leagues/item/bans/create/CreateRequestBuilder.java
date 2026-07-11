@@ -37,7 +37,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/bans/create", rawUrl);
     }
     /**
-     * Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.
+     * Bans a team from the league and removes it from active/pending league participation. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Creates a league team ban.
      * @return a {@link CreateBanResponse}
      * @throws Error When receiving a 400 status code
@@ -52,7 +52,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.
+     * Bans a team from the league and removes it from active/pending league participation. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Creates a league team ban.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link CreateBanResponse}
@@ -77,7 +77,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, CreateBanResponse::createFromDiscriminatorValue);
     }
     /**
-     * Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.
+     * Bans a team from the league and removes it from active/pending league participation. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Creates a league team ban.
      * @return a {@link RequestInformation}
      */
@@ -86,7 +86,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.
+     * Bans a team from the league and removes it from active/pending league participation. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Creates a league team ban.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

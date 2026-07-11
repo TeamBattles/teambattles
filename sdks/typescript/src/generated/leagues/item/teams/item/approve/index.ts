@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ApproveRequestBuilder extends BaseRequestBuilder<ApproveRequestBuilder> {
     /**
-     * Approves a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.
+     * Approves a pending team application for the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ApproveLeagueTeamResponse>}
      * @throws {ErrorEscaped} error when the service returns a 400 status code
@@ -24,7 +24,7 @@ export interface ApproveRequestBuilder extends BaseRequestBuilder<ApproveRequest
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ApproveLeagueTeamResponse | undefined>;
     /**
-     * Approves a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.
+     * Approves a pending team application for the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

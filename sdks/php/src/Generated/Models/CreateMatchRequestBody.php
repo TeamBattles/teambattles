@@ -124,7 +124,7 @@ class CreateMatchRequestBody implements AdditionalDataHolder, Parsable
     private ?array $selectedObjectives = null;
     
     /**
-     * @var string|null $teamId Creator team ID. The owner must captain it.
+     * @var string|null $teamId Creator team ID. The owner must be a captain, co-captain, or org owner of it.
     */
     private ?string $teamId = null;
     
@@ -386,7 +386,7 @@ class CreateMatchRequestBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the teamId property value. Creator team ID. The owner must captain it.
+     * Gets the teamId property value. Creator team ID. The owner must be a captain, co-captain, or org owner of it.
      * @return string|null
     */
     public function getTeamId(): ?string {
@@ -618,7 +618,7 @@ class CreateMatchRequestBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the teamId property value. Creator team ID. The owner must captain it.
+     * Sets the teamId property value. Creator team ID. The owner must be a captain, co-captain, or org owner of it.
      * @param string|null $value Value to set for the teamId property.
     */
     public function setTeamId(?string $value): void {

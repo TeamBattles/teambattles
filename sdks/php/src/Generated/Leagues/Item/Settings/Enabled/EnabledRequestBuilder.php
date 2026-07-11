@@ -32,7 +32,7 @@ class EnabledRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+     * Enables or disables a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
      * @param SetLeagueEnabledRequestBody $body League enabled-state update.
      * @param EnabledRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<SetLeagueEnabledResponse|null>
@@ -52,7 +52,7 @@ class EnabledRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+     * Enables or disables a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
      * @param SetLeagueEnabledRequestBody $body League enabled-state update.
      * @param EnabledRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

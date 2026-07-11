@@ -25,7 +25,7 @@ export interface BansRequestBuilder extends BaseRequestBuilder<BansRequestBuilde
      */
      byBanId(banId: string) : WithBanItemRequestBuilder;
     /**
-     * Returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+     * Returns team bans for a league resolved by slug, with optional status filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Status filter for league team bans.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeagueBans>}
@@ -36,7 +36,7 @@ export interface BansRequestBuilder extends BaseRequestBuilder<BansRequestBuilde
      */
      post(body: BansRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeagueBans | undefined>;
     /**
-     * Returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+     * Returns team bans for a league resolved by slug, with optional status filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Status filter for league team bans.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

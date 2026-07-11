@@ -50,7 +50,7 @@ func NewItemBansRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26337
 func (m *ItemBansRequestBuilder) Create()(*ItemBansCreateRequestBuilder) {
     return NewItemBansCreateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Post returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+// Post returns team bans for a league resolved by slug, with optional status filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
 // returns a LeagueBansable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -76,7 +76,7 @@ func (m *ItemBansRequestBuilder) Post(ctx context.Context, body i2d9c680fd9772d4
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.LeagueBansable), nil
 }
-// ToPostRequestInformation returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+// ToPostRequestInformation returns team bans for a league resolved by slug, with optional status filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
 // returns a *RequestInformation when successful
 func (m *ItemBansRequestBuilder) ToPostRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.BansRequestBodyable, requestConfiguration *ItemBansRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

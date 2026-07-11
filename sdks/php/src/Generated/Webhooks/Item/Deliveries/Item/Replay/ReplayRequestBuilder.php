@@ -31,7 +31,7 @@ class ReplayRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Re-queues a dead-lettered delivery for a fresh attempt. Delivered, in-flight, or still-retrying (failed) deliveries cannot be replayed (409). Requires the webhooks.manage permission and the webhooks feature.
+     * Re-queues a dead-lettered delivery for a fresh attempt. Delivered, in-flight, or still-retrying (failed) deliveries cannot be replayed (409). Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
      * @param ReplayRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<WebhookReplayResult|null>
      * @throws Exception
@@ -50,7 +50,7 @@ class ReplayRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Re-queues a dead-lettered delivery for a fresh attempt. Delivered, in-flight, or still-retrying (failed) deliveries cannot be replayed (409). Requires the webhooks.manage permission and the webhooks feature.
+     * Re-queues a dead-lettered delivery for a fresh attempt. Delivered, in-flight, or still-retrying (failed) deliveries cannot be replayed (409). Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
      * @param ReplayRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

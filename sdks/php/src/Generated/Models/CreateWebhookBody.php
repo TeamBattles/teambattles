@@ -29,6 +29,11 @@ class CreateWebhookBody implements AdditionalDataHolder, Parsable
     private ?string $label = null;
     
     /**
+     * @var string|null $leagueId League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+    */
+    private ?string $leagueId = null;
+    
+    /**
      * @var string|null $url HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
     */
     private ?string $url = null;
@@ -81,6 +86,7 @@ class CreateWebhookBody implements AdditionalDataHolder, Parsable
                 $this->setEvents($val);
             },
             'label' => fn(ParseNode $n) => $o->setLabel($n->getStringValue()),
+            'leagueId' => fn(ParseNode $n) => $o->setLeagueId($n->getStringValue()),
             'url' => fn(ParseNode $n) => $o->setUrl($n->getStringValue()),
         ];
     }
@@ -91,6 +97,14 @@ class CreateWebhookBody implements AdditionalDataHolder, Parsable
     */
     public function getLabel(): ?string {
         return $this->label;
+    }
+
+    /**
+     * Gets the leagueId property value. League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+     * @return string|null
+    */
+    public function getLeagueId(): ?string {
+        return $this->leagueId;
     }
 
     /**
@@ -108,6 +122,7 @@ class CreateWebhookBody implements AdditionalDataHolder, Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfPrimitiveValues('events', $this->getEvents());
         $writer->writeStringValue('label', $this->getLabel());
+        $writer->writeStringValue('leagueId', $this->getLeagueId());
         $writer->writeStringValue('url', $this->getUrl());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -134,6 +149,14 @@ class CreateWebhookBody implements AdditionalDataHolder, Parsable
     */
     public function setLabel(?string $value): void {
         $this->label = $value;
+    }
+
+    /**
+     * Sets the leagueId property value. League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+     * @param string|null $value Value to set for the leagueId property.
+    */
+    public function setLeagueId(?string $value): void {
+        $this->leagueId = $value;
     }
 
     /**

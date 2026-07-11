@@ -37,7 +37,7 @@ public class StatusRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/matches/{matchId}/status", rawUrl);
     }
     /**
-     * Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+     * Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for updating a league match&apos;s lifecycle status.
      * @return a {@link GameStatusUpdateResponse}
      * @throws Error When receiving a 400 status code
@@ -52,7 +52,7 @@ public class StatusRequestBuilder extends BaseRequestBuilder {
         return patch(body, null);
     }
     /**
-     * Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+     * Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for updating a league match&apos;s lifecycle status.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link GameStatusUpdateResponse}
@@ -77,7 +77,7 @@ public class StatusRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, GameStatusUpdateResponse::createFromDiscriminatorValue);
     }
     /**
-     * Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+     * Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for updating a league match&apos;s lifecycle status.
      * @return a {@link RequestInformation}
      */
@@ -86,7 +86,7 @@ public class StatusRequestBuilder extends BaseRequestBuilder {
         return toPatchRequestInformation(body, null);
     }
     /**
-     * Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+     * Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for updating a league match&apos;s lifecycle status.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

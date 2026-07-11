@@ -32,7 +32,7 @@ class UpdateRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Creates or updates the points configuration for a league game. Requires a league-operator key bound to the league and the league points capability.
+     * Creates or updates the points configuration for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league points capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param UpdatePointsConfigRequestBody $body Updates league points configuration.
      * @param UpdateRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<UpdatePointsConfigResponse|null>
@@ -53,7 +53,7 @@ class UpdateRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Creates or updates the points configuration for a league game. Requires a league-operator key bound to the league and the league points capability.
+     * Creates or updates the points configuration for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league points capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param UpdatePointsConfigRequestBody $body Updates league points configuration.
      * @param UpdateRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

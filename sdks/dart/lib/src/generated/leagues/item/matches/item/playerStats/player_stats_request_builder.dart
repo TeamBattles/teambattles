@@ -20,7 +20,7 @@ class PlayerStatsRequestBuilder extends BaseRequestBuilder<PlayerStatsRequestBui
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     PlayerStatsRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/matches/{matchId}/player-stats", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+    /// Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Request body for submitting or updating player stats for an existing map score.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<GamePlayerStatsResponse?> postAsync(GamePlayerStatsBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -34,7 +34,7 @@ class PlayerStatsRequestBuilder extends BaseRequestBuilder<PlayerStatsRequestBui
         };
         return await requestAdapter.send<GamePlayerStatsResponse>(requestInfo, GamePlayerStatsResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+    /// Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Request body for submitting or updating player stats for an existing map score.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(GamePlayerStatsBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

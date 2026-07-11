@@ -19,7 +19,7 @@ class StatsRequestBuilder extends BaseRequestBuilder<StatsRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     StatsRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/dashboard/stats", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Returns aggregate league admin dashboard counts. Requires a league-operator key bound to the league and leagues.league_admin:read.
+    /// Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<LeagueDashboardStatsResponse?> postAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toPostRequestInformation(requestConfiguration);
@@ -32,7 +32,7 @@ class StatsRequestBuilder extends BaseRequestBuilder<StatsRequestBuilder> {
         };
         return await requestAdapter.send<LeagueDashboardStatsResponse>(requestInfo, LeagueDashboardStatsResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Returns aggregate league admin dashboard counts. Requires a league-operator key bound to the league and leagues.league_admin:read.
+    /// Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.post, urlTemplate : urlTemplate, pathParameters :  pathParameters);

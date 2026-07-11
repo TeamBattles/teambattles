@@ -20,7 +20,7 @@ class IssueRequestBuilder extends BaseRequestBuilder<IssueRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     IssueRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/cooldowns/issue", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Issues or updates a manual cooldown for a league member. Requires a league-operator key bound to the league and the league cooldowns capability.
+    /// Issues or updates a manual cooldown for a league member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Issues or updates a manual league member cooldown.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<IssueCooldownResponse?> postAsync(IssueCooldownRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -35,7 +35,7 @@ class IssueRequestBuilder extends BaseRequestBuilder<IssueRequestBuilder> {
         };
         return await requestAdapter.send<IssueCooldownResponse>(requestInfo, IssueCooldownResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Issues or updates a manual cooldown for a league member. Requires a league-operator key bound to the league and the league cooldowns capability.
+    /// Issues or updates a manual cooldown for a league member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Issues or updates a manual league member cooldown.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(IssueCooldownRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

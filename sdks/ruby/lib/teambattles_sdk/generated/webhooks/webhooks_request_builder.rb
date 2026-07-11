@@ -35,7 +35,7 @@ module TeamBattlesSdk
                     super(path_parameters, request_adapter, "{+baseurl}/webhooks")
                 end
                 ## 
-                ## Lists the API key's webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+                ## Lists your webhook endpoints: those in the API key's derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                 ## @return a Fiber of webhook_list_response
                 ## 
@@ -51,7 +51,7 @@ module TeamBattlesSdk
                     return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::WebhookListResponse.create_from_discriminator_value(pn) }, error_mapping)
                 end
                 ## 
-                ## Creates a webhook endpoint in the API key's derived scope (personal -> user, developer-app -> game, league-operator -> league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+                ## Creates a webhook endpoint. By default it is bound to the API key's derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner's plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
                 ## @param body Create a webhook endpoint in the caller's scope.
                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                 ## @return a Fiber of webhook_secret
@@ -65,12 +65,13 @@ module TeamBattlesSdk
                     error_mapping["400"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                     error_mapping["401"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                     error_mapping["403"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
+                    error_mapping["404"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                     error_mapping["409"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                     error_mapping["429"] = lambda {|pn| TeamBattlesSdk::Generated::Models::Error.create_from_discriminator_value(pn) }
                     return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::WebhookSecret.create_from_discriminator_value(pn) }, error_mapping)
                 end
                 ## 
-                ## Lists the API key's webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+                ## Lists your webhook endpoints: those in the API key's derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                 ## @return a request_information
                 ## 
@@ -87,7 +88,7 @@ module TeamBattlesSdk
                     return request_info
                 end
                 ## 
-                ## Creates a webhook endpoint in the API key's derived scope (personal -> user, developer-app -> game, league-operator -> league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+                ## Creates a webhook endpoint. By default it is bound to the API key's derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner's plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
                 ## @param body Create a webhook endpoint in the caller's scope.
                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                 ## @return a request_information

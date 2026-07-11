@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface TransferRequestBuilder extends BaseRequestBuilder<TransferRequestBuilder> {
     /**
-     * Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+     * Transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
      * @param body Transfers league ownership to an existing staff member.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<TransferLeagueOwnershipResponse>}
@@ -25,7 +25,7 @@ export interface TransferRequestBuilder extends BaseRequestBuilder<TransferReque
      */
      post(body: TransferLeagueOwnershipRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<TransferLeagueOwnershipResponse | undefined>;
     /**
-     * Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+     * Transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
      * @param body Transfers league ownership to an existing staff member.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

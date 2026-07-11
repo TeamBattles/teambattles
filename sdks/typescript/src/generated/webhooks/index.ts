@@ -19,7 +19,7 @@ export interface WebhooksRequestBuilder extends BaseRequestBuilder<WebhooksReque
      */
      byId(id: string) : WebhooksItemRequestBuilder;
     /**
-     * Lists the API key's webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+     * Lists your webhook endpoints: those in the API key's derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<WebhookListResponse>}
      * @throws {ErrorEscaped} error when the service returns a 400 status code
@@ -29,25 +29,26 @@ export interface WebhooksRequestBuilder extends BaseRequestBuilder<WebhooksReque
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<WebhookListResponse | undefined>;
     /**
-     * Creates a webhook endpoint in the API key's derived scope (personal -> user, developer-app -> game, league-operator -> league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+     * Creates a webhook endpoint. By default it is bound to the API key's derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner's plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
      * @param body Create a webhook endpoint in the caller's scope.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<WebhookSecret>}
      * @throws {ErrorEscaped} error when the service returns a 400 status code
      * @throws {ErrorEscaped} error when the service returns a 401 status code
      * @throws {ErrorEscaped} error when the service returns a 403 status code
+     * @throws {ErrorEscaped} error when the service returns a 404 status code
      * @throws {ErrorEscaped} error when the service returns a 409 status code
      * @throws {ErrorEscaped} error when the service returns a 429 status code
      */
      post(body: CreateWebhookBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<WebhookSecret | undefined>;
     /**
-     * Lists the API key's webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+     * Lists your webhook endpoints: those in the API key's derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Creates a webhook endpoint in the API key's derived scope (personal -> user, developer-app -> game, league-operator -> league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+     * Creates a webhook endpoint. By default it is bound to the API key's derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner's plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
      * @param body Create a webhook endpoint in the caller's scope.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -91,6 +92,7 @@ export const WebhooksRequestBuilderRequestsMetadata: RequestsMetadata = {
             400: createErrorEscapedFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createErrorEscapedFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createErrorEscapedFromDiscriminatorValue as ParsableFactory<Parsable>,
+            404: createErrorEscapedFromDiscriminatorValue as ParsableFactory<Parsable>,
             409: createErrorEscapedFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createErrorEscapedFromDiscriminatorValue as ParsableFactory<Parsable>,
         },

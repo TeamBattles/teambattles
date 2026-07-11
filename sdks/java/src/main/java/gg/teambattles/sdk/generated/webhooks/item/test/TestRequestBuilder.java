@@ -36,7 +36,7 @@ public class TestRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/webhooks/{id}/test", rawUrl);
     }
     /**
-     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission and the webhooks feature.
+     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @return a {@link WebhookTestResult}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -49,7 +49,7 @@ public class TestRequestBuilder extends BaseRequestBuilder {
         return post(null);
     }
     /**
-     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission and the webhooks feature.
+     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link WebhookTestResult}
      * @throws Error When receiving a 400 status code
@@ -70,7 +70,7 @@ public class TestRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, WebhookTestResult::createFromDiscriminatorValue);
     }
     /**
-     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission and the webhooks feature.
+     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -78,7 +78,7 @@ public class TestRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(null);
     }
     /**
-     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission and the webhooks feature.
+     * Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

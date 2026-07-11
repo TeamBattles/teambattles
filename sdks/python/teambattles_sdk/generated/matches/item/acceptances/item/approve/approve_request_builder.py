@@ -33,7 +33,7 @@ class ApproveRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ApproveAcceptanceRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ApproveAcceptanceResponse]:
         """
-        Approves a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        Approves a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         param body: Approves a pending match acceptance as the API key owner.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApproveAcceptanceResponse]
@@ -62,7 +62,7 @@ class ApproveRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ApproveAcceptanceRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Approves a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        Approves a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         param body: Approves a pending match acceptance as the API key owner.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

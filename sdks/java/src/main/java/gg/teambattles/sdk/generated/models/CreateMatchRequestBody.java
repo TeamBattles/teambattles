@@ -101,7 +101,7 @@ public class CreateMatchRequestBody implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<String> selectedObjectives;
     /**
-     * Creator team ID. The owner must captain it.
+     * Creator team ID. The owner must be a captain, co-captain, or org owner of it.
      */
     private String teamId;
     /**
@@ -338,7 +338,7 @@ public class CreateMatchRequestBody implements AdditionalDataHolder, Parsable {
         return this.selectedObjectives;
     }
     /**
-     * Gets the teamId property value. Creator team ID. The owner must captain it.
+     * Gets the teamId property value. Creator team ID. The owner must be a captain, co-captain, or org owner of it.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -548,7 +548,7 @@ public class CreateMatchRequestBody implements AdditionalDataHolder, Parsable {
         this.selectedObjectives = value;
     }
     /**
-     * Sets the teamId property value. Creator team ID. The owner must captain it.
+     * Sets the teamId property value. Creator team ID. The owner must be a captain, co-captain, or org owner of it.
      * @param value Value to set for the teamId property.
      */
     public void setTeamId(@jakarta.annotation.Nullable final String value) {

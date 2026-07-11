@@ -47,7 +47,7 @@ class DeliveriesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeliveriesRequestBuilderGetQueryParameters]] = None) -> Optional[DeliveriesGetResponse]:
         """
-        Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+        Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeliveriesGetResponse]
         """
@@ -71,7 +71,7 @@ class DeliveriesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeliveriesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+        Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -93,7 +93,7 @@ class DeliveriesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeliveriesRequestBuilderGetQueryParameters():
         """
-        Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+        Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
         """
         # Opaque continuation cursor from a prior page's continueCursor.
         cursor: Optional[str] = None

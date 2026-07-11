@@ -37,7 +37,7 @@ public class AcceptRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/matches/{matchId}/accept", rawUrl);
     }
     /**
-     * Creates a match acceptance request as the personal API key owner. The owner must captain the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a match acceptance request as the personal API key owner. The owner must be a captain, co-captain, or org owner of the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a match acceptance request as the API key owner.
      * @return a {@link AcceptMatchResponse}
      * @throws Error When receiving a 400 status code
@@ -53,7 +53,7 @@ public class AcceptRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Creates a match acceptance request as the personal API key owner. The owner must captain the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a match acceptance request as the personal API key owner. The owner must be a captain, co-captain, or org owner of the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a match acceptance request as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link AcceptMatchResponse}
@@ -80,7 +80,7 @@ public class AcceptRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, AcceptMatchResponse::createFromDiscriminatorValue);
     }
     /**
-     * Creates a match acceptance request as the personal API key owner. The owner must captain the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a match acceptance request as the personal API key owner. The owner must be a captain, co-captain, or org owner of the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a match acceptance request as the API key owner.
      * @return a {@link RequestInformation}
      */
@@ -89,7 +89,7 @@ public class AcceptRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Creates a match acceptance request as the personal API key owner. The owner must captain the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a match acceptance request as the personal API key owner. The owner must be a captain, co-captain, or org owner of the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a match acceptance request as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

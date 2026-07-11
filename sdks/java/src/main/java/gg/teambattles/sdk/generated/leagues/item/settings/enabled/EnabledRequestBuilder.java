@@ -37,7 +37,7 @@ public class EnabledRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/settings/enabled", rawUrl);
     }
     /**
-     * Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+     * Enables or disables a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body League enabled-state update.
      * @return a {@link SetLeagueEnabledResponse}
      * @throws Error When receiving a 400 status code
@@ -52,7 +52,7 @@ public class EnabledRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+     * Enables or disables a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body League enabled-state update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link SetLeagueEnabledResponse}
@@ -77,7 +77,7 @@ public class EnabledRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, SetLeagueEnabledResponse::createFromDiscriminatorValue);
     }
     /**
-     * Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+     * Enables or disables a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body League enabled-state update.
      * @return a {@link RequestInformation}
      */
@@ -86,7 +86,7 @@ public class EnabledRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+     * Enables or disables a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body League enabled-state update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

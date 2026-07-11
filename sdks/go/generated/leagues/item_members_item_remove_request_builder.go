@@ -33,7 +33,7 @@ func NewItemMembersItemRemoveRequestBuilder(rawUrl string, requestAdapter i2ae41
     urlParams["request-raw-url"] = rawUrl
     return NewItemMembersItemRemoveRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post deactivates a league staff membership. Requires a league-operator key bound to the league and the league members capability.
+// Post deactivates a league staff membership. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
 // returns a RemoveLeagueMemberResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -63,7 +63,7 @@ func (m *ItemMembersItemRemoveRequestBuilder) Post(ctx context.Context, requestC
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.RemoveLeagueMemberResponseable), nil
 }
-// ToPostRequestInformation deactivates a league staff membership. Requires a league-operator key bound to the league and the league members capability.
+// ToPostRequestInformation deactivates a league staff membership. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
 // returns a *RequestInformation when successful
 func (m *ItemMembersItemRemoveRequestBuilder) ToPostRequestInformation(ctx context.Context, requestConfiguration *ItemMembersItemRemoveRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

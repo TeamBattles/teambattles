@@ -20,7 +20,7 @@ class ForfeitRequestBuilder extends BaseRequestBuilder<ForfeitRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ForfeitRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/matches/{matchId}/forfeit", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Forfeits a match as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Forfeits the match as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<ForfeitMatchResponse?> postAsync(ForfeitMatchRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class ForfeitRequestBuilder extends BaseRequestBuilder<ForfeitRequestBuilder> {
         };
         return await requestAdapter.send<ForfeitMatchResponse>(requestInfo, ForfeitMatchResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Forfeits a match as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Forfeits the match as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(ForfeitMatchRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface RemoveRequestBuilder extends BaseRequestBuilder<RemoveRequestBuilder> {
     /**
-     * Deactivates a league staff membership. Requires a league-operator key bound to the league and the league members capability.
+     * Deactivates a league staff membership. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<RemoveLeagueMemberResponse>}
      * @throws {ErrorEscaped} error when the service returns a 400 status code
@@ -23,7 +23,7 @@ export interface RemoveRequestBuilder extends BaseRequestBuilder<RemoveRequestBu
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<RemoveLeagueMemberResponse | undefined>;
     /**
-     * Deactivates a league staff membership. Requires a league-operator key bound to the league and the league members capability.
+     * Deactivates a league staff membership. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

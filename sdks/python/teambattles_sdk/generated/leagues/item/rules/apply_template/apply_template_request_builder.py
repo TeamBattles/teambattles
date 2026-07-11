@@ -33,7 +33,7 @@ class ApplyTemplateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ApplyRuleTemplateRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ApplyRuleTemplateResponse]:
         """
-        Applies a rule template to a league game. Requires a league-operator key bound to the league and the league rules capability.
+        Applies a rule template to a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Applies a rule template.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApplyRuleTemplateResponse]
@@ -62,7 +62,7 @@ class ApplyTemplateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ApplyRuleTemplateRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Applies a rule template to a league game. Requires a league-operator key bound to the league and the league rules capability.
+        Applies a rule template to a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Applies a rule template.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

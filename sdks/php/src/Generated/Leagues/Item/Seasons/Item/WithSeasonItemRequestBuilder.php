@@ -48,7 +48,7 @@ class WithSeasonItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+     * Deletes an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
      * @param WithSeasonItemRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<DeleteLeagueSeasonResponse|null>
      * @throws Exception
@@ -85,7 +85,7 @@ class WithSeasonItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+     * Deletes an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
      * @param WithSeasonItemRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

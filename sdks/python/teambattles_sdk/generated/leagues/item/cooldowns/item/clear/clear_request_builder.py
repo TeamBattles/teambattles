@@ -32,7 +32,7 @@ class ClearRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ClearCooldownResponse]:
         """
-        Clears an active league member cooldown early. Requires a league-operator key bound to the league and the league cooldowns capability.
+        Clears an active league member cooldown early. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ClearCooldownResponse]
         """
@@ -57,7 +57,7 @@ class ClearRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Clears an active league member cooldown early. Requires a league-operator key bound to the league and the league cooldowns capability.
+        Clears an active league member cooldown early. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

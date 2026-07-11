@@ -33,7 +33,7 @@ module TeamBattlesSdk
                                 super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/games/{leagueGameId}")
                             end
                             ## 
-                            ## Removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.
+                            ## Removes a game from a league and deletes its non-active league configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a Fiber of remove_league_game_response
                             ## 
@@ -52,7 +52,7 @@ module TeamBattlesSdk
                                 return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::RemoveLeagueGameResponse.create_from_discriminator_value(pn) }, error_mapping)
                             end
                             ## 
-                            ## Removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.
+                            ## Removes a game from a league and deletes its non-active league configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a request_information
                             ## 

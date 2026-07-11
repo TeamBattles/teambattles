@@ -32,7 +32,7 @@ class RemoveRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a league-operator key bound to the league and the league teams capability.
+     * Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param RemoveLeagueTeamRequestBody $body Removes an approved team from a league.
      * @param RemoveRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<RemoveLeagueTeamResponse|null>
@@ -53,7 +53,7 @@ class RemoveRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a league-operator key bound to the league and the league teams capability.
+     * Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param RemoveLeagueTeamRequestBody $body Removes an approved team from a league.
      * @param RemoveRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

@@ -33,8 +33,8 @@ empty you receive `429 error_api_rate_limited`.
 
 <Note>
 	These ceilings are enforced per plan. A key is metered at the plan of the principal
-	it acts for: a personal key uses your account's developer plan, and a league-operator
-	key uses the league owner's developer plan.
+	it acts for: most requests use your account's developer plan, while a request on a
+	League Admin API route is metered at the league owner's developer plan.
 </Note>
 
 <Note>

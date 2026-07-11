@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface RefuseRequestBuilder extends BaseRequestBuilder<RefuseRequestBuilder> {
     /**
-     * Refuses a pending challenge as the personal API key owner. The owner must captain the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Refuses a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Refuses a pending challenge as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<RefuseChallengeResponse>}
@@ -25,7 +25,7 @@ export interface RefuseRequestBuilder extends BaseRequestBuilder<RefuseRequestBu
      */
      post(body: RefuseChallengeRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<RefuseChallengeResponse | undefined>;
     /**
-     * Refuses a pending challenge as the personal API key owner. The owner must captain the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Refuses a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Refuses a pending challenge as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

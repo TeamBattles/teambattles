@@ -52,7 +52,7 @@ namespace TeamBattles.Sdk.Webhooks.Item
         {
         }
         /// <summary>
-        /// Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+        /// Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.WebhookOk"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -83,7 +83,7 @@ namespace TeamBattles.Sdk.Webhooks.Item
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.WebhookOk>(requestInfo, global::TeamBattles.Sdk.Models.WebhookOk.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+        /// Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.WebhookEndpoint"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -114,7 +114,7 @@ namespace TeamBattles.Sdk.Webhooks.Item
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.WebhookEndpoint>(requestInfo, global::TeamBattles.Sdk.Models.WebhookEndpoint.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+        /// Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.WebhookOk"/></returns>
         /// <param name="body">Partial update of a webhook endpoint.</param>
@@ -147,7 +147,7 @@ namespace TeamBattles.Sdk.Webhooks.Item
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.WebhookOk>(requestInfo, global::TeamBattles.Sdk.Models.WebhookOk.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+        /// Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -166,7 +166,7 @@ namespace TeamBattles.Sdk.Webhooks.Item
             return requestInfo;
         }
         /// <summary>
-        /// Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+        /// Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +185,7 @@ namespace TeamBattles.Sdk.Webhooks.Item
             return requestInfo;
         }
         /// <summary>
-        /// Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+        /// Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Partial update of a webhook endpoint.</param>

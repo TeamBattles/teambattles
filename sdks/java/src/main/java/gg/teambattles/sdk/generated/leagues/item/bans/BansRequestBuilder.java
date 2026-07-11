@@ -59,7 +59,7 @@ public class BansRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/bans", rawUrl);
     }
     /**
-     * Returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+     * Returns team bans for a league resolved by slug, with optional status filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Status filter for league team bans.
      * @return a {@link LeagueBans}
      * @throws Error When receiving a 400 status code
@@ -72,7 +72,7 @@ public class BansRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+     * Returns team bans for a league resolved by slug, with optional status filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Status filter for league team bans.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link LeagueBans}
@@ -93,7 +93,7 @@ public class BansRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, LeagueBans::createFromDiscriminatorValue);
     }
     /**
-     * Returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+     * Returns team bans for a league resolved by slug, with optional status filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Status filter for league team bans.
      * @return a {@link RequestInformation}
      */
@@ -102,7 +102,7 @@ public class BansRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+     * Returns team bans for a league resolved by slug, with optional status filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Status filter for league team bans.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

@@ -32,7 +32,7 @@ class ForfeitRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Forfeits a match as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param ForfeitMatchRequestBody $body Forfeits the match as the API key owner.
      * @param ForfeitRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ForfeitMatchResponse|null>
@@ -53,7 +53,7 @@ class ForfeitRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Forfeits a match as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param ForfeitMatchRequestBody $body Forfeits the match as the API key owner.
      * @param ForfeitRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

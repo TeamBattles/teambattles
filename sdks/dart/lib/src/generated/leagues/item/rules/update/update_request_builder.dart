@@ -20,7 +20,7 @@ class UpdateRequestBuilder extends BaseRequestBuilder<UpdateRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     UpdateRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/rules/update", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Creates or updates enforced rules for a league game. Requires a league-operator key bound to the league and the league rules capability.
+    /// Creates or updates enforced rules for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Updates league game rules.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<RuleWriteResponse?> postAsync(UpdateGameRulesRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class UpdateRequestBuilder extends BaseRequestBuilder<UpdateRequestBuilder> {
         };
         return await requestAdapter.send<RuleWriteResponse>(requestInfo, RuleWriteResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Creates or updates enforced rules for a league game. Requires a league-operator key bound to the league and the league rules capability.
+    /// Creates or updates enforced rules for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Updates league game rules.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(UpdateGameRulesRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

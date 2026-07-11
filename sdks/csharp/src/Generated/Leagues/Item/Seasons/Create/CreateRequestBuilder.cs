@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Seasons.Create
         {
         }
         /// <summary>
-        /// Creates an upcoming season for a league game. Requires the league seasons capability. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.
+        /// Creates an upcoming season for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.CreateSeasonResponse"/></returns>
         /// <param name="body">League season creation payload.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Seasons.Create
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.CreateSeasonResponse>(requestInfo, global::TeamBattles.Sdk.Models.CreateSeasonResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates an upcoming season for a league game. Requires the league seasons capability. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.
+        /// Creates an upcoming season for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">League season creation payload.</param>

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface StartRequestBuilder extends BaseRequestBuilder<StartRequestBuilder> {
     /**
-     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain, co-captain, or org owner of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<StartMatchResponse>}
      * @throws {ErrorEscaped} error when the service returns a 400 status code
@@ -23,7 +23,7 @@ export interface StartRequestBuilder extends BaseRequestBuilder<StartRequestBuil
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<StartMatchResponse | undefined>;
     /**
-     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain, co-captain, or org owner of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

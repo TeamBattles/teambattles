@@ -57,7 +57,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+     * Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
      * @param WebhooksItemRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<WebhookOk|null>
      * @throws Exception
@@ -75,7 +75,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
      * @param WebhooksItemRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<WebhookEndpoint|null>
      * @throws Exception
@@ -93,7 +93,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+     * Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
      * @param UpdateWebhookBody $body Partial update of a webhook endpoint.
      * @param WebhooksItemRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<WebhookOk|null>
@@ -112,7 +112,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+     * Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
      * @param WebhooksItemRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -130,7 +130,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
      * @param WebhooksItemRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */
@@ -148,7 +148,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+     * Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
      * @param UpdateWebhookBody $body Partial update of a webhook endpoint.
      * @param WebhooksItemRequestBuilderPatchRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

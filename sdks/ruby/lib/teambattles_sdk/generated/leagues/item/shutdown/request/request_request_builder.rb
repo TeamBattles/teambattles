@@ -27,7 +27,7 @@ module TeamBattlesSdk
                                 super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/shutdown/request")
                             end
                             ## 
-                            ## Requests TeamBattles staff review for league shutdown. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API.
+                            ## Requests TeamBattles staff review for league shutdown. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API. League API access is gated at api_pro on the league owner's plan.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a Fiber of request_league_shutdown_response
                             ## 
@@ -45,7 +45,7 @@ module TeamBattlesSdk
                                 return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::RequestLeagueShutdownResponse.create_from_discriminator_value(pn) }, error_mapping)
                             end
                             ## 
-                            ## Requests TeamBattles staff review for league shutdown. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API.
+                            ## Requests TeamBattles staff review for league shutdown. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API. League API access is gated at api_pro on the league owner's plan.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a request_information
                             ## 

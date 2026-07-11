@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Webhooks.Item.RotateSecret
         {
         }
         /// <summary>
-        /// Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+        /// Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.WebhookSecret"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace TeamBattles.Sdk.Webhooks.Item.RotateSecret
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.WebhookSecret>(requestInfo, global::TeamBattles.Sdk.Models.WebhookSecret.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+        /// Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

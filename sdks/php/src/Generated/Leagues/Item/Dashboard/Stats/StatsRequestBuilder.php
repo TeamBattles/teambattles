@@ -31,7 +31,7 @@ class StatsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns aggregate league admin dashboard counts. Requires a league-operator key bound to the league and leagues.league_admin:read.
+     * Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param StatsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<LeagueDashboardStatsResponse|null>
      * @throws Exception
@@ -49,7 +49,7 @@ class StatsRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns aggregate league admin dashboard counts. Requires a league-operator key bound to the league and leagues.league_admin:read.
+     * Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param StatsRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

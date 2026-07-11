@@ -37,7 +37,7 @@ public class PlayerStatsRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/matches/{matchId}/player-stats", rawUrl);
     }
     /**
-     * Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+     * Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @return a {@link GamePlayerStatsResponse}
      * @throws Error When receiving a 400 status code
@@ -51,7 +51,7 @@ public class PlayerStatsRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+     * Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link GamePlayerStatsResponse}
@@ -74,7 +74,7 @@ public class PlayerStatsRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, GamePlayerStatsResponse::createFromDiscriminatorValue);
     }
     /**
-     * Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+     * Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @return a {@link RequestInformation}
      */
@@ -83,7 +83,7 @@ public class PlayerStatsRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+     * Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

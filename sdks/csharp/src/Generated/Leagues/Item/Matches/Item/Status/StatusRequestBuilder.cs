@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Matches.Item.Status
         {
         }
         /// <summary>
-        /// Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+        /// Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameStatusUpdateResponse"/></returns>
         /// <param name="body">Request body for updating a league match&apos;s lifecycle status.</param>
@@ -69,7 +69,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Matches.Item.Status
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.GameStatusUpdateResponse>(requestInfo, global::TeamBattles.Sdk.Models.GameStatusUpdateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+        /// Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Request body for updating a league match&apos;s lifecycle status.</param>

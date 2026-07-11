@@ -32,7 +32,7 @@ class CompleteRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CompleteLeagueSeasonResponse]:
         """
-        Completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
+        Completes an active league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CompleteLeagueSeasonResponse]
         """
@@ -57,7 +57,7 @@ class CompleteRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
+        Completes an active league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

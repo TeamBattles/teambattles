@@ -31,7 +31,7 @@ class ActivateRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Activates an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
+     * Activates an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
      * @param ActivateRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ActivateLeagueSeasonResponse|null>
      * @throws Exception
@@ -50,7 +50,7 @@ class ActivateRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Activates an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
+     * Activates an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
      * @param ActivateRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

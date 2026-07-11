@@ -40,7 +40,7 @@ module TeamBattlesSdk
                                 super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/tickets/{ticketId}")
                             end
                             ## 
-                            ## Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+                            ## Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                             ## @param body Updates league ticket status, priority, or assignment.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a Fiber of update_league_ticket_response
@@ -60,7 +60,7 @@ module TeamBattlesSdk
                                 return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::UpdateLeagueTicketResponse.create_from_discriminator_value(pn) }, error_mapping)
                             end
                             ## 
-                            ## Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+                            ## Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                             ## @param body Updates league ticket status, priority, or assignment.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a request_information

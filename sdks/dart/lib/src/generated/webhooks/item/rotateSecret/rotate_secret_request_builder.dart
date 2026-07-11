@@ -19,7 +19,7 @@ class RotateSecretRequestBuilder extends BaseRequestBuilder<RotateSecretRequestB
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     RotateSecretRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/webhooks/{id}/rotate-secret", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Rotates the endpoint's signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+    /// Rotates the endpoint's signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<WebhookSecret?> postAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toPostRequestInformation(requestConfiguration);
@@ -32,7 +32,7 @@ class RotateSecretRequestBuilder extends BaseRequestBuilder<RotateSecretRequestB
         };
         return await requestAdapter.send<WebhookSecret>(requestInfo, WebhookSecret.createFromDiscriminatorValue, errorMapping);
     }
-    /// Rotates the endpoint's signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+    /// Rotates the endpoint's signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.post, urlTemplate : urlTemplate, pathParameters :  pathParameters);

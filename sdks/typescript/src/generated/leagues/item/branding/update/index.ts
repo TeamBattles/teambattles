@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface UpdateRequestBuilder extends BaseRequestBuilder<UpdateRequestBuilder> {
     /**
-     * Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+     * Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Updates league profile branding and public metadata.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UpdateLeagueBrandingResponse>}
@@ -25,7 +25,7 @@ export interface UpdateRequestBuilder extends BaseRequestBuilder<UpdateRequestBu
      */
      post(body: UpdateLeagueBrandingRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UpdateLeagueBrandingResponse | undefined>;
     /**
-     * Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+     * Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Updates league profile branding and public metadata.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface RevokeRequestBuilder extends BaseRequestBuilder<RevokeRequestBuilder> {
     /**
-     * Revokes an active league team ban. Requires a league-operator key bound to the league and the league bans capability.
+     * Revokes an active league team ban. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Optional reason for revoking a league ban.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<RevokeBanResponse>}
@@ -24,7 +24,7 @@ export interface RevokeRequestBuilder extends BaseRequestBuilder<RevokeRequestBu
      */
      post(body: RevokeBanRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<RevokeBanResponse | undefined>;
     /**
-     * Revokes an active league team ban. Requires a league-operator key bound to the league and the league bans capability.
+     * Revokes an active league team ban. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Optional reason for revoking a league ban.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

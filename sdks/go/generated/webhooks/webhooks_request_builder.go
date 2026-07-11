@@ -52,7 +52,7 @@ func NewWebhooksRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26337
     urlParams["request-raw-url"] = rawUrl
     return NewWebhooksRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get lists the API key's webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+// Get lists your webhook endpoints: those in the API key's derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
 // returns a WebhookListResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -78,11 +78,12 @@ func (m *WebhooksRequestBuilder) Get(ctx context.Context, requestConfiguration *
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.WebhookListResponseable), nil
 }
-// Post creates a webhook endpoint in the API key's derived scope (personal -> user, developer-app -> game, league-operator -> league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+// Post creates a webhook endpoint. By default it is bound to the API key's derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner's plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
 // returns a WebhookSecretable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
 // returns a ErrorEscaped error when the service returns a 403 status code
+// returns a ErrorEscaped error when the service returns a 404 status code
 // returns a ErrorEscaped error when the service returns a 409 status code
 // returns a ErrorEscaped error when the service returns a 429 status code
 func (m *WebhooksRequestBuilder) Post(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateWebhookBodyable, requestConfiguration *WebhooksRequestBuilderPostRequestConfiguration)(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.WebhookSecretable, error) {
@@ -94,6 +95,7 @@ func (m *WebhooksRequestBuilder) Post(ctx context.Context, body i2d9c680fd9772d4
         "400": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
         "401": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
         "403": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
+        "404": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
         "409": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
         "429": i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateErrorEscapedFromDiscriminatorValue,
     }
@@ -106,7 +108,7 @@ func (m *WebhooksRequestBuilder) Post(ctx context.Context, body i2d9c680fd9772d4
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.WebhookSecretable), nil
 }
-// ToGetRequestInformation lists the API key's webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+// ToGetRequestInformation lists your webhook endpoints: those in the API key's derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
 // returns a *RequestInformation when successful
 func (m *WebhooksRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *WebhooksRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
@@ -117,7 +119,7 @@ func (m *WebhooksRequestBuilder) ToGetRequestInformation(ctx context.Context, re
     requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
-// ToPostRequestInformation creates a webhook endpoint in the API key's derived scope (personal -> user, developer-app -> game, league-operator -> league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+// ToPostRequestInformation creates a webhook endpoint. By default it is bound to the API key's derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner's plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
 // returns a *RequestInformation when successful
 func (m *WebhooksRequestBuilder) ToPostRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CreateWebhookBodyable, requestConfiguration *WebhooksRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

@@ -3,7 +3,7 @@
 namespace TeamBattles\Sdk\Generated\Webhooks\Item\Deliveries;
 
 /**
- * Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+ * Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
 */
 class DeliveriesRequestBuilderGetQueryParameters 
 {

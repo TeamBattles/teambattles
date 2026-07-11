@@ -13,7 +13,7 @@ import (
 type ItemDeliveriesRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// ItemDeliveriesRequestBuilderGetQueryParameters returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+// ItemDeliveriesRequestBuilderGetQueryParameters returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
 type ItemDeliveriesRequestBuilderGetQueryParameters struct {
     // Opaque continuation cursor from a prior page's continueCursor.
     Cursor *string "uriparametername:\"cursor\""
@@ -54,7 +54,7 @@ func NewItemDeliveriesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7dae
     urlParams["request-raw-url"] = rawUrl
     return NewItemDeliveriesRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+// Get returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
 // Deprecated: This method is obsolete. Use GetAsDeliveriesGetResponse instead.
 // returns a ItemDeliveriesResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
@@ -83,7 +83,7 @@ func (m *ItemDeliveriesRequestBuilder) Get(ctx context.Context, requestConfigura
     }
     return res.(ItemDeliveriesResponseable), nil
 }
-// GetAsDeliveriesGetResponse returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+// GetAsDeliveriesGetResponse returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
 // returns a ItemDeliveriesGetResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -111,7 +111,7 @@ func (m *ItemDeliveriesRequestBuilder) GetAsDeliveriesGetResponse(ctx context.Co
     }
     return res.(ItemDeliveriesGetResponseable), nil
 }
-// ToGetRequestInformation returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+// ToGetRequestInformation returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
 // returns a *RequestInformation when successful
 func (m *ItemDeliveriesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemDeliveriesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

@@ -20,7 +20,7 @@ class ReplyRequestBuilder extends BaseRequestBuilder<ReplyRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ReplyRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/tickets/{ticketId}/reply", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Adds a reply or internal note to a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+    /// Adds a reply or internal note to a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Adds a reply or internal note to a league support ticket.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<ReplyLeagueTicketResponse?> postAsync(ReplyLeagueTicketRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -35,7 +35,7 @@ class ReplyRequestBuilder extends BaseRequestBuilder<ReplyRequestBuilder> {
         };
         return await requestAdapter.send<ReplyLeagueTicketResponse>(requestInfo, ReplyLeagueTicketResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Adds a reply or internal note to a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+    /// Adds a reply or internal note to a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Adds a reply or internal note to a league support ticket.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(ReplyLeagueTicketRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

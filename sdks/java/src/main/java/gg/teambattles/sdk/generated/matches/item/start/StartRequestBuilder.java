@@ -36,7 +36,7 @@ public class StartRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/matches/{matchId}/start", rawUrl);
     }
     /**
-     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain, co-captain, or org owner of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @return a {@link StartMatchResponse}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -50,7 +50,7 @@ public class StartRequestBuilder extends BaseRequestBuilder {
         return post(null);
     }
     /**
-     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain, co-captain, or org owner of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link StartMatchResponse}
      * @throws Error When receiving a 400 status code
@@ -73,7 +73,7 @@ public class StartRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, StartMatchResponse::createFromDiscriminatorValue);
     }
     /**
-     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain, co-captain, or org owner of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -81,7 +81,7 @@ public class StartRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(null);
     }
     /**
-     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Starts a ready match as the personal API key owner, moving it to in-progress. The owner must be a captain, co-captain, or org owner of the creating or accepted team, and the match must be in the ready state. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

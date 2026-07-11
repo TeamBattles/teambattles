@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Matches.Item.Forfeit
         {
         }
         /// <summary>
-        /// Forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Forfeits a match as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ForfeitMatchResponse"/></returns>
         /// <param name="body">Forfeits the match as the API key owner.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Matches.Item.Forfeit
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.ForfeitMatchResponse>(requestInfo, global::TeamBattles.Sdk.Models.ForfeitMatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Forfeits a match as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Forfeits the match as the API key owner.</param>

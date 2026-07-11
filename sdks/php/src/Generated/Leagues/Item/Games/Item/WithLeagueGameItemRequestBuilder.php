@@ -39,7 +39,7 @@ class WithLeagueGameItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.
+     * Removes a game from a league and deletes its non-active league configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param WithLeagueGameItemRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<RemoveLeagueGameResponse|null>
      * @throws Exception
@@ -59,7 +59,7 @@ class WithLeagueGameItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.
+     * Removes a game from a league and deletes its non-active league configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param WithLeagueGameItemRequestBuilderDeleteRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

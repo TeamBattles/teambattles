@@ -32,7 +32,7 @@ class UpsertRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Creates or updates an informational display rule for a league game. Requires a league-operator key bound to the league and the league display_rules capability.
+     * Creates or updates an informational display rule for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league display_rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param UpsertDisplayRuleRequestBody $body Creates or updates a display rule.
      * @param UpsertRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<UpsertDisplayRuleResponse|null>
@@ -53,7 +53,7 @@ class UpsertRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Creates or updates an informational display rule for a league game. Requires a league-operator key bound to the league and the league display_rules capability.
+     * Creates or updates an informational display rule for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league display_rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param UpsertDisplayRuleRequestBody $body Creates or updates a display rule.
      * @param UpsertRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

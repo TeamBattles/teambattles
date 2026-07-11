@@ -65,7 +65,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/webhooks/{id}", rawUrl);
     }
     /**
-     * Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+     * Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
      * @return a {@link WebhookOk}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -78,7 +78,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         return delete(null);
     }
     /**
-     * Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+     * Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link WebhookOk}
      * @throws Error When receiving a 400 status code
@@ -99,7 +99,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, WebhookOk::createFromDiscriminatorValue);
     }
     /**
-     * Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
      * @return a {@link WebhookEndpoint}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -112,7 +112,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link WebhookEndpoint}
      * @throws Error When receiving a 400 status code
@@ -133,7 +133,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, WebhookEndpoint::createFromDiscriminatorValue);
     }
     /**
-     * Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+     * Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @param body Partial update of a webhook endpoint.
      * @return a {@link WebhookOk}
      * @throws Error When receiving a 400 status code
@@ -147,7 +147,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         return patch(body, null);
     }
     /**
-     * Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+     * Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @param body Partial update of a webhook endpoint.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link WebhookOk}
@@ -170,7 +170,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, WebhookOk::createFromDiscriminatorValue);
     }
     /**
-     * Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+     * Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -178,7 +178,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         return toDeleteRequestInformation(null);
     }
     /**
-     * Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+     * Deletes a webhook endpoint in the caller&apos;s scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */
@@ -190,7 +190,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         return requestInfo;
     }
     /**
-     * Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -198,7 +198,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns one webhook endpoint in the caller&apos;s scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */
@@ -210,7 +210,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         return requestInfo;
     }
     /**
-     * Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+     * Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @param body Partial update of a webhook endpoint.
      * @return a {@link RequestInformation}
      */
@@ -219,7 +219,7 @@ public class WebhooksItemRequestBuilder extends BaseRequestBuilder {
         return toPatchRequestInformation(body, null);
     }
     /**
-     * Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+     * Partially updates a webhook endpoint in the caller&apos;s scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @param body Partial update of a webhook endpoint.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

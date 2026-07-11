@@ -45,7 +45,7 @@ public class SettingsRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/settings", rawUrl);
     }
     /**
-     * Returns full league settings for admin tooling. Requires a league-operator key bound to the league and leagues.settings_read:read.
+     * Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @return a {@link LeagueSettingsResponse}
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
@@ -58,7 +58,7 @@ public class SettingsRequestBuilder extends BaseRequestBuilder {
         return post(null);
     }
     /**
-     * Returns full league settings for admin tooling. Requires a league-operator key bound to the league and leagues.settings_read:read.
+     * Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link LeagueSettingsResponse}
      * @throws Error When receiving a 401 status code
@@ -79,7 +79,7 @@ public class SettingsRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, LeagueSettingsResponse::createFromDiscriminatorValue);
     }
     /**
-     * Returns full league settings for admin tooling. Requires a league-operator key bound to the league and leagues.settings_read:read.
+     * Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -87,7 +87,7 @@ public class SettingsRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(null);
     }
     /**
-     * Returns full league settings for admin tooling. Requires a league-operator key bound to the league and leagues.settings_read:read.
+     * Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

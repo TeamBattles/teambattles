@@ -20,7 +20,7 @@ class RefuseRequestBuilder extends BaseRequestBuilder<RefuseRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     RefuseRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/matches/{matchId}/challenges/refuse", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Refuses a pending challenge as the personal API key owner. The owner must captain the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Refuses a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Refuses a pending challenge as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<RefuseChallengeResponse?> postAsync(RefuseChallengeRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class RefuseRequestBuilder extends BaseRequestBuilder<RefuseRequestBuilder> {
         };
         return await requestAdapter.send<RefuseChallengeResponse>(requestInfo, RefuseChallengeResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Refuses a pending challenge as the personal API key owner. The owner must captain the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Refuses a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Refuses a pending challenge as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(RefuseChallengeRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

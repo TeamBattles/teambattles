@@ -33,7 +33,7 @@ class AcceptRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: AcceptChallengeRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AcceptChallengeResponse]:
         """
-        Accepts a pending challenge as the personal API key owner. The owner must captain the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        Accepts a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         param body: Accepts a pending challenge as the API key owner.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AcceptChallengeResponse]
@@ -62,7 +62,7 @@ class AcceptRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: AcceptChallengeRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Accepts a pending challenge as the personal API key owner. The owner must captain the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        Accepts a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         param body: Accepts a pending challenge as the API key owner.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -32,7 +32,7 @@ class LobbyCodeRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Sets or updates the lobby code as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param UpdateLobbyCodeRequestBody $body Sets or updates the match lobby code as the API key owner.
      * @param LobbyCodeRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<UpdateLobbyCodeResponse|null>
@@ -53,7 +53,7 @@ class LobbyCodeRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Sets or updates the lobby code as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param UpdateLobbyCodeRequestBody $body Sets or updates the match lobby code as the API key owner.
      * @param LobbyCodeRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

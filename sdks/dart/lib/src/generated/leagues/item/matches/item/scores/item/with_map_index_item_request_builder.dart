@@ -20,7 +20,7 @@ class WithMapIndexItemRequestBuilder extends BaseRequestBuilder<WithMapIndexItem
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     WithMapIndexItemRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/matches/{matchId}/scores/{mapIndex}", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Submits the score for one map in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+    /// Submits the score for one map in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Request body for submitting a single map's score (mapIndex comes from the path).
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<GameSingleMapScoreResponse?> postAsync(GameSingleMapScoreBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -35,7 +35,7 @@ class WithMapIndexItemRequestBuilder extends BaseRequestBuilder<WithMapIndexItem
         };
         return await requestAdapter.send<GameSingleMapScoreResponse>(requestInfo, GameSingleMapScoreResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Submits the score for one map in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+    /// Submits the score for one map in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Request body for submitting a single map's score (mapIndex comes from the path).
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(GameSingleMapScoreBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

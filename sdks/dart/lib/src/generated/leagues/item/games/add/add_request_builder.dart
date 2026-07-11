@@ -20,7 +20,7 @@ class AddRequestBuilder extends BaseRequestBuilder<AddRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     AddRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/games/add", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+    /// Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Adds a league game.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<LeagueGameWriteResponse?> postAsync(AddLeagueGameRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class AddRequestBuilder extends BaseRequestBuilder<AddRequestBuilder> {
         };
         return await requestAdapter.send<LeagueGameWriteResponse>(requestInfo, LeagueGameWriteResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+    /// Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Adds a league game.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(AddLeagueGameRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

@@ -36,7 +36,7 @@ module TeamBattlesSdk
                             super(path_parameters, request_adapter, "{+baseurl}/webhooks/{id}/deliveries{?cursor*,limit*}")
                         end
                         ## 
-                        ## Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+                        ## Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a Fiber of deliveries_get_response
                         ## 
@@ -53,7 +53,7 @@ module TeamBattlesSdk
                             return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Webhooks::Item::Deliveries::DeliveriesGetResponse.create_from_discriminator_value(pn) }, error_mapping)
                         end
                         ## 
-                        ## Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+                        ## Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a request_information
                         ## 
@@ -81,7 +81,7 @@ module TeamBattlesSdk
                         end
 
                         ## 
-                        # Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+                        # Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
                         class DeliveriesRequestBuilderGetQueryParameters
                             
                             ## 

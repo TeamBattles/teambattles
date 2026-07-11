@@ -20,7 +20,7 @@ class ReadyRequestBuilder extends BaseRequestBuilder<ReadyRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ReadyRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/matches/{matchId}/ready", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Marks one participating team ready as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<MarkMatchReadyResponse?> postAsync(MarkMatchReadyRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class ReadyRequestBuilder extends BaseRequestBuilder<ReadyRequestBuilder> {
         };
         return await requestAdapter.send<MarkMatchReadyResponse>(requestInfo, MarkMatchReadyResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Marks one participating team ready as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(MarkMatchReadyRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Matches.Item.Scores.Item
         {
         }
         /// <summary>
-        /// Submits the score for one map in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+        /// Submits the score for one map in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameSingleMapScoreResponse"/></returns>
         /// <param name="body">Request body for submitting a single map&apos;s score (mapIndex comes from the path).</param>
@@ -69,7 +69,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Matches.Item.Scores.Item
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.GameSingleMapScoreResponse>(requestInfo, global::TeamBattles.Sdk.Models.GameSingleMapScoreResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Submits the score for one map in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+        /// Submits the score for one map in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Request body for submitting a single map&apos;s score (mapIndex comes from the path).</param>

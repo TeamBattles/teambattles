@@ -37,7 +37,7 @@ public class EscalateRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/tickets/{ticketId}/escalate", rawUrl);
     }
     /**
-     * Escalates a league-scoped support ticket to TeamBattles staff. Requires a league-operator key bound to the league and the league tickets capability.
+     * Escalates a league-scoped support ticket to TeamBattles staff. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Escalates a league support ticket to TeamBattles staff.
      * @return a {@link EscalateLeagueTicketResponse}
      * @throws Error When receiving a 400 status code
@@ -53,7 +53,7 @@ public class EscalateRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Escalates a league-scoped support ticket to TeamBattles staff. Requires a league-operator key bound to the league and the league tickets capability.
+     * Escalates a league-scoped support ticket to TeamBattles staff. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Escalates a league support ticket to TeamBattles staff.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link EscalateLeagueTicketResponse}
@@ -80,7 +80,7 @@ public class EscalateRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, EscalateLeagueTicketResponse::createFromDiscriminatorValue);
     }
     /**
-     * Escalates a league-scoped support ticket to TeamBattles staff. Requires a league-operator key bound to the league and the league tickets capability.
+     * Escalates a league-scoped support ticket to TeamBattles staff. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Escalates a league support ticket to TeamBattles staff.
      * @return a {@link RequestInformation}
      */
@@ -89,7 +89,7 @@ public class EscalateRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Escalates a league-scoped support ticket to TeamBattles staff. Requires a league-operator key bound to the league and the league tickets capability.
+     * Escalates a league-scoped support ticket to TeamBattles staff. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Escalates a league support ticket to TeamBattles staff.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

@@ -37,7 +37,7 @@ public class ApproveRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/matches/{matchId}/acceptances/{acceptanceId}/approve", rawUrl);
     }
     /**
-     * Approves a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Approves a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Approves a pending match acceptance as the API key owner.
      * @return a {@link ApproveAcceptanceResponse}
      * @throws Error When receiving a 400 status code
@@ -53,7 +53,7 @@ public class ApproveRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Approves a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Approves a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Approves a pending match acceptance as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link ApproveAcceptanceResponse}
@@ -80,7 +80,7 @@ public class ApproveRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, ApproveAcceptanceResponse::createFromDiscriminatorValue);
     }
     /**
-     * Approves a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Approves a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Approves a pending match acceptance as the API key owner.
      * @return a {@link RequestInformation}
      */
@@ -89,7 +89,7 @@ public class ApproveRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Approves a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Approves a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Approves a pending match acceptance as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

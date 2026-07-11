@@ -32,7 +32,7 @@ module TeamBattlesSdk
                             super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/penalties")
                         end
                         ## 
-                        ## Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+                        ## Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
                         ## @param body Type, team, game, and limit filters for league penalties and cooldowns.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a Fiber of league_penalties
@@ -50,7 +50,7 @@ module TeamBattlesSdk
                             return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::LeaguePenalties.create_from_discriminator_value(pn) }, error_mapping)
                         end
                         ## 
-                        ## Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+                        ## Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
                         ## @param body Type, team, game, and limit filters for league penalties and cooldowns.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a request_information

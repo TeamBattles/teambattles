@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Matches.Item.LobbyCode
         {
         }
         /// <summary>
-        /// Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Sets or updates the lobby code as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.UpdateLobbyCodeResponse"/></returns>
         /// <param name="body">Sets or updates the match lobby code as the API key owner.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Matches.Item.LobbyCode
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.UpdateLobbyCodeResponse>(requestInfo, global::TeamBattles.Sdk.Models.UpdateLobbyCodeResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Sets or updates the lobby code as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Sets or updates the match lobby code as the API key owner.</param>

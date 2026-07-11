@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Matches.Item.Challenges.Accept
         {
         }
         /// <summary>
-        /// Accepts a pending challenge as the personal API key owner. The owner must captain the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Accepts a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.AcceptChallengeResponse"/></returns>
         /// <param name="body">Accepts a pending challenge as the API key owner.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Matches.Item.Challenges.Accept
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.AcceptChallengeResponse>(requestInfo, global::TeamBattles.Sdk.Models.AcceptChallengeResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Accepts a pending challenge as the personal API key owner. The owner must captain the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Accepts a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Accepts a pending challenge as the API key owner.</param>

@@ -40,7 +40,7 @@ class PenaltiesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param PenaltiesRequestBody $body Type, team, game, and limit filters for league penalties and cooldowns.
      * @param PenaltiesRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<LeaguePenalties|null>
@@ -58,7 +58,7 @@ class PenaltiesRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param PenaltiesRequestBody $body Type, team, game, and limit filters for league penalties and cooldowns.
      * @param PenaltiesRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

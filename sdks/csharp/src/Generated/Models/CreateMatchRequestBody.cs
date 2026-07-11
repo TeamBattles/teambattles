@@ -123,7 +123,7 @@ namespace TeamBattles.Sdk.Models
 #else
         public List<string> SelectedObjectives { get; set; }
 #endif
-        /// <summary>Creator team ID. The owner must captain it.</summary>
+        /// <summary>Creator team ID. The owner must be a captain, co-captain, or org owner of it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TeamId { get; set; }

@@ -37,7 +37,7 @@ public class RevokeRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/bans/{banId}/revoke", rawUrl);
     }
     /**
-     * Revokes an active league team ban. Requires a league-operator key bound to the league and the league bans capability.
+     * Revokes an active league team ban. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Optional reason for revoking a league ban.
      * @return a {@link RevokeBanResponse}
      * @throws Error When receiving a 400 status code
@@ -52,7 +52,7 @@ public class RevokeRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Revokes an active league team ban. Requires a league-operator key bound to the league and the league bans capability.
+     * Revokes an active league team ban. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Optional reason for revoking a league ban.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RevokeBanResponse}
@@ -77,7 +77,7 @@ public class RevokeRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, RevokeBanResponse::createFromDiscriminatorValue);
     }
     /**
-     * Revokes an active league team ban. Requires a league-operator key bound to the league and the league bans capability.
+     * Revokes an active league team ban. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Optional reason for revoking a league ban.
      * @return a {@link RequestInformation}
      */
@@ -86,7 +86,7 @@ public class RevokeRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Revokes an active league team ban. Requires a league-operator key bound to the league and the league bans capability.
+     * Revokes an active league team ban. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Optional reason for revoking a league ban.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

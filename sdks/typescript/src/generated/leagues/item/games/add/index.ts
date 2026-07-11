@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface AddRequestBuilder extends BaseRequestBuilder<AddRequestBuilder> {
     /**
-     * Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+     * Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Adds a league game.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeagueGameWriteResponse>}
@@ -25,7 +25,7 @@ export interface AddRequestBuilder extends BaseRequestBuilder<AddRequestBuilder>
      */
      post(body: AddLeagueGameRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeagueGameWriteResponse | undefined>;
     /**
-     * Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+     * Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Adds a league game.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

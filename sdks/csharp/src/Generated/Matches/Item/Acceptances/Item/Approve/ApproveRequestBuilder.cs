@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Matches.Item.Acceptances.Item.Approve
         {
         }
         /// <summary>
-        /// Approves a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Approves a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApproveAcceptanceResponse"/></returns>
         /// <param name="body">Approves a pending match acceptance as the API key owner.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Matches.Item.Acceptances.Item.Approve
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.ApproveAcceptanceResponse>(requestInfo, global::TeamBattles.Sdk.Models.ApproveAcceptanceResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Approves a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Approves a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Approves a pending match acceptance as the API key owner.</param>

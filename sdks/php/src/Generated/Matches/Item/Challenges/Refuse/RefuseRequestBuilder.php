@@ -32,7 +32,7 @@ class RefuseRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Refuses a pending challenge as the personal API key owner. The owner must captain the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Refuses a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param RefuseChallengeRequestBody $body Refuses a pending challenge as the API key owner.
      * @param RefuseRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<RefuseChallengeResponse|null>
@@ -53,7 +53,7 @@ class RefuseRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Refuses a pending challenge as the personal API key owner. The owner must captain the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Refuses a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param RefuseChallengeRequestBody $body Refuses a pending challenge as the API key owner.
      * @param RefuseRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

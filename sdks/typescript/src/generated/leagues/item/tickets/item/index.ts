@@ -23,7 +23,7 @@ export interface WithTicketItemRequestBuilder extends BaseRequestBuilder<WithTic
      */
     get reply(): ReplyRequestBuilder;
     /**
-     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Updates league ticket status, priority, or assignment.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UpdateLeagueTicketResponse>}
@@ -36,7 +36,7 @@ export interface WithTicketItemRequestBuilder extends BaseRequestBuilder<WithTic
      */
      patch(body: UpdateLeagueTicketRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UpdateLeagueTicketResponse | undefined>;
     /**
-     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Updates league ticket status, priority, or assignment.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

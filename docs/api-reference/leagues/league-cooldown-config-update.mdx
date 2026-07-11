@@ -6,7 +6,7 @@ openapi: "POST /leagues/{identifier}/cooldowns/config/update"
 
 ## Permission Required
 
-This endpoint requires a `league-operator` API key bound to the league with the `cooldowns` capability set to `write`.
+This endpoint requires a personal or developer API key whose owner is currently a league **ADMIN** of the league in the path, with the `cooldowns` capability set to `write` on the key. League API access is gated at api_pro on the **league owner's** plan.
 
 ## Membership Required
 

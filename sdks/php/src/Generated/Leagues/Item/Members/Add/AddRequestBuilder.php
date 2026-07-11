@@ -32,7 +32,7 @@ class AddRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Adds or reactivates a league staff member. Requires a league-operator key bound to the league and the league members capability.
+     * Adds or reactivates a league staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param AddLeagueMemberRequestBody $body Adds or reactivates a league staff member.
      * @param AddRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<AddLeagueMemberResponse|null>
@@ -52,7 +52,7 @@ class AddRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Adds or reactivates a league staff member. Requires a league-operator key bound to the league and the league members capability.
+     * Adds or reactivates a league staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param AddLeagueMemberRequestBody $body Adds or reactivates a league staff member.
      * @param AddRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

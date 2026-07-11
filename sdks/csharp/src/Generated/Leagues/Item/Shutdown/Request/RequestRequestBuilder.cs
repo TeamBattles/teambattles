@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Shutdown.Request
         {
         }
         /// <summary>
-        /// Requests TeamBattles staff review for league shutdown. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API.
+        /// Requests TeamBattles staff review for league shutdown. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.RequestLeagueShutdownResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -67,7 +67,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Shutdown.Request
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.RequestLeagueShutdownResponse>(requestInfo, global::TeamBattles.Sdk.Models.RequestLeagueShutdownResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Requests TeamBattles staff review for league shutdown. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API.
+        /// Requests TeamBattles staff review for league shutdown. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

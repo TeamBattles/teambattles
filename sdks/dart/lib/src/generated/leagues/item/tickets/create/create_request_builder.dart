@@ -20,7 +20,7 @@ class CreateRequestBuilder extends BaseRequestBuilder<CreateRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     CreateRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/tickets/create", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Creates a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+    /// Creates a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Creates a league-scoped support ticket.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<CreateLeagueTicketResponse?> postAsync(CreateLeagueTicketRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -35,7 +35,7 @@ class CreateRequestBuilder extends BaseRequestBuilder<CreateRequestBuilder> {
         };
         return await requestAdapter.send<CreateLeagueTicketResponse>(requestInfo, CreateLeagueTicketResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Creates a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+    /// Creates a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Creates a league-scoped support ticket.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(CreateLeagueTicketRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

@@ -33,7 +33,7 @@ func NewItemMatchesBatchScoresRequestBuilder(rawUrl string, requestAdapter i2ae4
     urlParams["request-raw-url"] = rawUrl
     return NewItemMatchesBatchScoresRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post submits map scores for up to 50 league match items in one request. Each item is independently checked against the key's bound league and returns a per-item result. Requires the league scores capability.
+// Post submits map scores for up to 50 league match items in one request. Each item is independently checked to belong to the league in the path and returns a per-item result. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
 // returns a GameBatchMatchScoresResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -61,7 +61,7 @@ func (m *ItemMatchesBatchScoresRequestBuilder) Post(ctx context.Context, body i2
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.GameBatchMatchScoresResponseable), nil
 }
-// ToPostRequestInformation submits map scores for up to 50 league match items in one request. Each item is independently checked against the key's bound league and returns a per-item result. Requires the league scores capability.
+// ToPostRequestInformation submits map scores for up to 50 league match items in one request. Each item is independently checked to belong to the league in the path and returns a per-item result. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
 // returns a *RequestInformation when successful
 func (m *ItemMatchesBatchScoresRequestBuilder) ToPostRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.GameBatchMatchScoresBodyable, requestConfiguration *ItemMatchesBatchScoresRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

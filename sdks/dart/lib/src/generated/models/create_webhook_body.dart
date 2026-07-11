@@ -11,6 +11,8 @@ class CreateWebhookBody implements AdditionalDataHolder, Parsable {
     Iterable<String>? events;
     ///  Optional human label for the endpoint.
     String? label;
+    ///  League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+    String? leagueId;
     ///  HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
     String? url;
     /// Instantiates a new [CreateWebhookBody] and sets the default values.
@@ -27,6 +29,7 @@ class CreateWebhookBody implements AdditionalDataHolder, Parsable {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['events'] = (node) => events = node.getCollectionOfPrimitiveValues<String>();
         deserializerMap['label'] = (node) => label = node.getStringValue();
+        deserializerMap['leagueId'] = (node) => leagueId = node.getStringValue();
         deserializerMap['url'] = (node) => url = node.getStringValue();
         return deserializerMap;
     }
@@ -36,6 +39,7 @@ class CreateWebhookBody implements AdditionalDataHolder, Parsable {
     void serialize(SerializationWriter writer) {
         writer.writeCollectionOfPrimitiveValues<String?>('events', events);
         writer.writeStringValue('label', label);
+        writer.writeStringValue('leagueId', leagueId);
         writer.writeStringValue('url', url);
         writer.writeAdditionalData(additionalData);
     }

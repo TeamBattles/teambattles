@@ -1,12 +1,35 @@
 ---
-title: League Operator API
+title: League Admin API
 description: Run a league programmatically - membership, seasons, rules, scores, moderation, and tickets.
 ---
 
-The **League Operator API** performs league-admin actions: membership and teams, seasons,
-rules and config, scores, moderation, tickets, and dashboard reads. It requires a
-**league-operator** key bound to a league, the relevant league capability scopes, and the
-`leagueOperatorApi` feature - which is gated on the **league owner's** developer plan (Pro
-or higher), so one owner purchase covers all of that owner's leagues. A league may have at
-most **5** league-operator keys. See
-[Plans and feature gates](/developers/authentication#plans-and-feature-gates).
+The **League Admin API** performs league-admin actions: membership and teams, seasons,
+rules and config, scores, moderation, tickets, and dashboard reads. There is no separate
+league key type. You call it with a **personal or developer** API key whose owner is
+currently a league **ADMIN** of the league named in the request path.
+
+## What you need
+
+- A personal or developer API key whose owner is a **current league ADMIN** of the league
+  in the URL path. Admin status is resolved from your league membership on every request,
+  so losing the role revokes access immediately.
+- **Read** routes need `leagues.league_admin:read` (or `leagues.settings_read:read` for the
+  settings read) access on the key. **Write** routes additionally need the relevant
+  [league capability](/developers/authentication#league-capabilities) set to `write` on the
+  key (for example, `scores`, `seasons`, or `bans`).
+- The **league owner's** developer plan must include the `leagueOperatorApi` feature
+  (**api_pro** or higher). This is billed to the league owner, not to the calling key's
+  owner, so one owner purchase covers every league that owner runs. On the League Admin API,
+  the rate-limit ceiling is also the league owner's plan.
+
+See [Plans and feature gates](/developers/authentication#plans-and-feature-gates) and
+[Principal types](/developers/authentication#principal-types).
+
+## Errors on league routes
+
+| Code                          | HTTP | When                                                                                       |
+| ----------------------------- | ---- | ------------------------------------------------------------------------------------------ |
+| `error_league_not_found`      | 404  | The league slug in the path does not exist. Returned before any token is consumed.         |
+| `error_league_admin_required` | 403  | Your key's owner is not currently a league ADMIN of that league.                           |
+| `error_api_feature_required`  | 403  | The league owner's plan does not include the League Admin API feature.                     |
+| `error_league_scope_mismatch` | 403  | On the match write routes: the `matchId` does not belong to the league in the path.        |

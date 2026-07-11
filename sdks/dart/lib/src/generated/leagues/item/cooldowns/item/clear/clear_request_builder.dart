@@ -19,7 +19,7 @@ class ClearRequestBuilder extends BaseRequestBuilder<ClearRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ClearRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/cooldowns/{cooldownId}/clear", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Clears an active league member cooldown early. Requires a league-operator key bound to the league and the league cooldowns capability.
+    /// Clears an active league member cooldown early. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<ClearCooldownResponse?> postAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toPostRequestInformation(requestConfiguration);
@@ -33,7 +33,7 @@ class ClearRequestBuilder extends BaseRequestBuilder<ClearRequestBuilder> {
         };
         return await requestAdapter.send<ClearCooldownResponse>(requestInfo, ClearCooldownResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Clears an active league member cooldown early. Requires a league-operator key bound to the league and the league cooldowns capability.
+    /// Clears an active league member cooldown early. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.post, urlTemplate : urlTemplate, pathParameters :  pathParameters);

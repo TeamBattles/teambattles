@@ -20,7 +20,7 @@ class CreateRequestBuilder extends BaseRequestBuilder<CreateRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     CreateRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/penalties/create", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a league-operator key bound to the league and the league penalties capability.
+    /// Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league penalties capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Creates a league team penalty.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<CreatePenaltyResponse?> postAsync(CreatePenaltyRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -35,7 +35,7 @@ class CreateRequestBuilder extends BaseRequestBuilder<CreateRequestBuilder> {
         };
         return await requestAdapter.send<CreatePenaltyResponse>(requestInfo, CreatePenaltyResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a league-operator key bound to the league and the league penalties capability.
+    /// Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league penalties capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Creates a league team penalty.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(CreatePenaltyRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

@@ -19,7 +19,7 @@ class CompleteRequestBuilder extends BaseRequestBuilder<CompleteRequestBuilder> 
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     CompleteRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/seasons/{seasonId}/complete", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
+    /// Completes an active league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<CompleteLeagueSeasonResponse?> postAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toPostRequestInformation(requestConfiguration);
@@ -33,7 +33,7 @@ class CompleteRequestBuilder extends BaseRequestBuilder<CompleteRequestBuilder> 
         };
         return await requestAdapter.send<CompleteLeagueSeasonResponse>(requestInfo, CompleteLeagueSeasonResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
+    /// Completes an active league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.post, urlTemplate : urlTemplate, pathParameters :  pathParameters);

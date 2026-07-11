@@ -37,7 +37,7 @@ public class AddRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/games/add", rawUrl);
     }
     /**
-     * Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+     * Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Adds a league game.
      * @return a {@link LeagueGameWriteResponse}
      * @throws Error When receiving a 400 status code
@@ -53,7 +53,7 @@ public class AddRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+     * Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Adds a league game.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link LeagueGameWriteResponse}
@@ -80,7 +80,7 @@ public class AddRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, LeagueGameWriteResponse::createFromDiscriminatorValue);
     }
     /**
-     * Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+     * Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Adds a league game.
      * @return a {@link RequestInformation}
      */
@@ -89,7 +89,7 @@ public class AddRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+     * Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Adds a league game.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

@@ -30,7 +30,7 @@ module TeamBattlesSdk
                                     super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/matches/{matchId}/status")
                                 end
                                 ## 
-                                ## Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+                                ## Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                                 ## @param body Request body for updating a league match's lifecycle status.
                                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                 ## @return a Fiber of game_status_update_response
@@ -50,7 +50,7 @@ module TeamBattlesSdk
                                     return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::GameStatusUpdateResponse.create_from_discriminator_value(pn) }, error_mapping)
                                 end
                                 ## 
-                                ## Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+                                ## Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                                 ## @param body Request body for updating a league match's lifecycle status.
                                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                 ## @return a request_information

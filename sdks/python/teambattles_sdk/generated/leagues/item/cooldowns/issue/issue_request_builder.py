@@ -33,7 +33,7 @@ class IssueRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: IssueCooldownRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[IssueCooldownResponse]:
         """
-        Issues or updates a manual cooldown for a league member. Requires a league-operator key bound to the league and the league cooldowns capability.
+        Issues or updates a manual cooldown for a league member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Issues or updates a manual league member cooldown.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IssueCooldownResponse]
@@ -61,7 +61,7 @@ class IssueRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: IssueCooldownRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Issues or updates a manual cooldown for a league member. Requires a league-operator key bound to the league and the league cooldowns capability.
+        Issues or updates a manual cooldown for a league member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Issues or updates a manual league member cooldown.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

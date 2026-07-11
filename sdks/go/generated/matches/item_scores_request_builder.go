@@ -71,7 +71,7 @@ func (m *ItemScoresRequestBuilder) Get(ctx context.Context, requestConfiguration
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.MapScoresable), nil
 }
-// Patch confirm a map score submitted by the opposing team. Only the opposing team's captain can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
+// Patch confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
 // returns a ScoreSubmissionResultable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -97,7 +97,7 @@ func (m *ItemScoresRequestBuilder) Patch(ctx context.Context, body i2d9c680fd977
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.ScoreSubmissionResultable), nil
 }
-// Post submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+// Post submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
 // returns a ScoreSubmissionResultable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -134,7 +134,7 @@ func (m *ItemScoresRequestBuilder) ToGetRequestInformation(ctx context.Context, 
     requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
-// ToPatchRequestInformation confirm a map score submitted by the opposing team. Only the opposing team's captain can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
+// ToPatchRequestInformation confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
 // returns a *RequestInformation when successful
 func (m *ItemScoresRequestBuilder) ToPatchRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.ConfirmScoreBodyable, requestConfiguration *ItemScoresRequestBuilderPatchRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PATCH, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
@@ -149,7 +149,7 @@ func (m *ItemScoresRequestBuilder) ToPatchRequestInformation(ctx context.Context
     }
     return requestInfo, nil
 }
-// ToPostRequestInformation submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+// ToPostRequestInformation submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
 // returns a *RequestInformation when successful
 func (m *ItemScoresRequestBuilder) ToPostRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.SubmitScoreBodyable, requestConfiguration *ItemScoresRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

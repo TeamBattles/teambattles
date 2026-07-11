@@ -15,6 +15,8 @@ type CreateWebhookBody struct {
     events []string
     // Optional human label for the endpoint.
     label *string
+    // League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+    leagueId *string
     // HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
     url *string
 }
@@ -70,6 +72,16 @@ func (m *CreateWebhookBody) GetFieldDeserializers()(map[string]func(i878a80d2330
         }
         return nil
     }
+    res["leagueId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLeagueId(val)
+        }
+        return nil
+    }
     res["url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -87,6 +99,11 @@ func (m *CreateWebhookBody) GetFieldDeserializers()(map[string]func(i878a80d2330
 func (m *CreateWebhookBody) GetLabel()(*string) {
     return m.label
 }
+// GetLeagueId gets the leagueId property value. League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+// returns a *string when successful
+func (m *CreateWebhookBody) GetLeagueId()(*string) {
+    return m.leagueId
+}
 // GetUrl gets the url property value. HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
 // returns a *string when successful
 func (m *CreateWebhookBody) GetUrl()(*string) {
@@ -102,6 +119,12 @@ func (m *CreateWebhookBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     }
     {
         err := writer.WriteStringValue("label", m.GetLabel())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("leagueId", m.GetLeagueId())
         if err != nil {
             return err
         }
@@ -132,6 +155,10 @@ func (m *CreateWebhookBody) SetEvents(value []string)() {
 func (m *CreateWebhookBody) SetLabel(value *string)() {
     m.label = value
 }
+// SetLeagueId sets the leagueId property value. League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+func (m *CreateWebhookBody) SetLeagueId(value *string)() {
+    m.leagueId = value
+}
 // SetUrl sets the url property value. HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
 func (m *CreateWebhookBody) SetUrl(value *string)() {
     m.url = value
@@ -141,8 +168,10 @@ type CreateWebhookBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetEvents()([]string)
     GetLabel()(*string)
+    GetLeagueId()(*string)
     GetUrl()(*string)
     SetEvents(value []string)()
     SetLabel(value *string)()
+    SetLeagueId(value *string)()
     SetUrl(value *string)()
 }

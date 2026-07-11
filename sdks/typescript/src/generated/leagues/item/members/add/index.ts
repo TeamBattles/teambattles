@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface AddRequestBuilder extends BaseRequestBuilder<AddRequestBuilder> {
     /**
-     * Adds or reactivates a league staff member. Requires a league-operator key bound to the league and the league members capability.
+     * Adds or reactivates a league staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Adds or reactivates a league staff member.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AddLeagueMemberResponse>}
@@ -24,7 +24,7 @@ export interface AddRequestBuilder extends BaseRequestBuilder<AddRequestBuilder>
      */
      post(body: AddLeagueMemberRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AddLeagueMemberResponse | undefined>;
     /**
-     * Adds or reactivates a league staff member. Requires a league-operator key bound to the league and the league members capability.
+     * Adds or reactivates a league staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Adds or reactivates a league staff member.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

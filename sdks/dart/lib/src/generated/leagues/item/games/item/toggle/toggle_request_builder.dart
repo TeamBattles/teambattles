@@ -20,7 +20,7 @@ class ToggleRequestBuilder extends BaseRequestBuilder<ToggleRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ToggleRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/games/{leagueGameId}/toggle", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires the league games capability.
+    /// Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Toggles a league game.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<ToggleLeagueGameResponse?> postAsync(ToggleLeagueGameRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class ToggleRequestBuilder extends BaseRequestBuilder<ToggleRequestBuilder> {
         };
         return await requestAdapter.send<ToggleLeagueGameResponse>(requestInfo, ToggleLeagueGameResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires the league games capability.
+    /// Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Toggles a league game.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(ToggleLeagueGameRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

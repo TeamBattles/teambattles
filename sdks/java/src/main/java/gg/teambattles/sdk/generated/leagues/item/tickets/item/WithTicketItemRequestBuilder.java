@@ -55,7 +55,7 @@ public class WithTicketItemRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/tickets/{ticketId}", rawUrl);
     }
     /**
-     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league ticket status, priority, or assignment.
      * @return a {@link UpdateLeagueTicketResponse}
      * @throws Error When receiving a 400 status code
@@ -70,7 +70,7 @@ public class WithTicketItemRequestBuilder extends BaseRequestBuilder {
         return patch(body, null);
     }
     /**
-     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league ticket status, priority, or assignment.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link UpdateLeagueTicketResponse}
@@ -95,7 +95,7 @@ public class WithTicketItemRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, UpdateLeagueTicketResponse::createFromDiscriminatorValue);
     }
     /**
-     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league ticket status, priority, or assignment.
      * @return a {@link RequestInformation}
      */
@@ -104,7 +104,7 @@ public class WithTicketItemRequestBuilder extends BaseRequestBuilder {
         return toPatchRequestInformation(body, null);
     }
     /**
-     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+     * Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league ticket status, priority, or assignment.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

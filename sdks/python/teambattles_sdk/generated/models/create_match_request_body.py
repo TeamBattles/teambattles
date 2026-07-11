@@ -66,7 +66,7 @@ class CreateMatchRequestBody(AdditionalDataHolder, Parsable):
     selected_maps: Optional[list[str]] = None
     # Selected objective IDs.
     selected_objectives: Optional[list[str]] = None
-    # Creator team ID. The owner must captain it.
+    # Creator team ID. The owner must be a captain, co-captain, or org owner of it.
     team_id: Optional[str] = None
     # Players per team.
     team_size: Optional[int] = None

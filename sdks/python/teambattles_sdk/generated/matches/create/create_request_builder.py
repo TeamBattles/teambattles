@@ -33,7 +33,7 @@ class CreateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CreateMatchRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CreateMatchResponse]:
         """
-        Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        Creates a new match as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         param body: Creates a new match as the API key owner.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CreateMatchResponse]
@@ -62,7 +62,7 @@ class CreateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CreateMatchRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        Creates a new match as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         param body: Creates a new match as the API key owner.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

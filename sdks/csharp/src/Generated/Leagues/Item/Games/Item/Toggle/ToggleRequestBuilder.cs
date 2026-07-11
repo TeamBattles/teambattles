@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Games.Item.Toggle
         {
         }
         /// <summary>
-        /// Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires the league games capability.
+        /// Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ToggleLeagueGameResponse"/></returns>
         /// <param name="body">Toggles a league game.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Games.Item.Toggle
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.ToggleLeagueGameResponse>(requestInfo, global::TeamBattles.Sdk.Models.ToggleLeagueGameResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires the league games capability.
+        /// Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Toggles a league game.</param>

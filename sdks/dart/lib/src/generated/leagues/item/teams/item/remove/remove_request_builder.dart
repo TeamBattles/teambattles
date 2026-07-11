@@ -20,7 +20,7 @@ class RemoveRequestBuilder extends BaseRequestBuilder<RemoveRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     RemoveRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/teams/{leagueTeamId}/remove", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a league-operator key bound to the league and the league teams capability.
+    /// Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Removes an approved team from a league.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<RemoveLeagueTeamResponse?> postAsync(RemoveLeagueTeamRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class RemoveRequestBuilder extends BaseRequestBuilder<RemoveRequestBuilder> {
         };
         return await requestAdapter.send<RemoveLeagueTeamResponse>(requestInfo, RemoveLeagueTeamResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a league-operator key bound to the league and the league teams capability.
+    /// Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Removes an approved team from a league.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(RemoveLeagueTeamRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

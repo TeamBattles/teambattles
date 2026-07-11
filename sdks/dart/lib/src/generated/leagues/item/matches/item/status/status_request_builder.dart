@@ -20,7 +20,7 @@ class StatusRequestBuilder extends BaseRequestBuilder<StatusRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     StatusRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/matches/{matchId}/status", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+    /// Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Request body for updating a league match's lifecycle status.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<GameStatusUpdateResponse?> patchAsync(LeagueStatusUpdateBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -35,7 +35,7 @@ class StatusRequestBuilder extends BaseRequestBuilder<StatusRequestBuilder> {
         };
         return await requestAdapter.send<GameStatusUpdateResponse>(requestInfo, GameStatusUpdateResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+    /// Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Request body for updating a league match's lifecycle status.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPatchRequestInformation(LeagueStatusUpdateBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

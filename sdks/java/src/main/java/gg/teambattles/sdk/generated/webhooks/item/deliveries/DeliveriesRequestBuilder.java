@@ -49,7 +49,7 @@ public class DeliveriesRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/webhooks/{id}/deliveries{?cursor*,limit*}", rawUrl);
     }
     /**
-     * Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
      * @return a {@link DeliveriesGetResponse}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -62,7 +62,7 @@ public class DeliveriesRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link DeliveriesGetResponse}
      * @throws Error When receiving a 400 status code
@@ -83,7 +83,7 @@ public class DeliveriesRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, DeliveriesGetResponse::createFromDiscriminatorValue);
     }
     /**
-     * Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -91,7 +91,7 @@ public class DeliveriesRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */
@@ -113,7 +113,7 @@ public class DeliveriesRequestBuilder extends BaseRequestBuilder {
         return new DeliveriesRequestBuilder(rawUrl, requestAdapter);
     }
     /**
-     * Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
      */
     @jakarta.annotation.Generated("com.microsoft.kiota")
     public class GetQueryParameters implements QueryParameters {

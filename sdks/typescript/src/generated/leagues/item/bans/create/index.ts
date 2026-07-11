@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface CreateRequestBuilder extends BaseRequestBuilder<CreateRequestBuilder> {
     /**
-     * Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.
+     * Bans a team from the league and removes it from active/pending league participation. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Creates a league team ban.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<CreateBanResponse>}
@@ -24,7 +24,7 @@ export interface CreateRequestBuilder extends BaseRequestBuilder<CreateRequestBu
      */
      post(body: CreateBanRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<CreateBanResponse | undefined>;
     /**
-     * Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.
+     * Bans a team from the league and removes it from active/pending league participation. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Creates a league team ban.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

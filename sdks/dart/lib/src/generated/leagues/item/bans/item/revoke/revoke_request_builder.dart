@@ -20,7 +20,7 @@ class RevokeRequestBuilder extends BaseRequestBuilder<RevokeRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     RevokeRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/bans/{banId}/revoke", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Revokes an active league team ban. Requires a league-operator key bound to the league and the league bans capability.
+    /// Revokes an active league team ban. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Optional reason for revoking a league ban.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<RevokeBanResponse?> postAsync(RevokeBanRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -35,7 +35,7 @@ class RevokeRequestBuilder extends BaseRequestBuilder<RevokeRequestBuilder> {
         };
         return await requestAdapter.send<RevokeBanResponse>(requestInfo, RevokeBanResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Revokes an active league team ban. Requires a league-operator key bound to the league and the league bans capability.
+    /// Revokes an active league team ban. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Optional reason for revoking a league ban.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(RevokeBanRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

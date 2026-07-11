@@ -32,7 +32,7 @@ class ActivityFeedRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns recent league activity entries. Requires a league-operator key bound to the league and leagues.league_admin:read.
+     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param LeagueActivityFeedRequestBody $body Cursor pagination options for a league activity feed.
      * @param ActivityFeedRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<LeagueActivityFeedResponse|null>
@@ -52,7 +52,7 @@ class ActivityFeedRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Returns recent league activity entries. Requires a league-operator key bound to the league and leagues.league_admin:read.
+     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param LeagueActivityFeedRequestBody $body Cursor pagination options for a league activity feed.
      * @param ActivityFeedRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

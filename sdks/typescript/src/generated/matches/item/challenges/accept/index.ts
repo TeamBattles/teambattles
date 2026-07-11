@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface AcceptRequestBuilder extends BaseRequestBuilder<AcceptRequestBuilder> {
     /**
-     * Accepts a pending challenge as the personal API key owner. The owner must captain the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Accepts a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Accepts a pending challenge as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AcceptChallengeResponse>}
@@ -25,7 +25,7 @@ export interface AcceptRequestBuilder extends BaseRequestBuilder<AcceptRequestBu
      */
      post(body: AcceptChallengeRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AcceptChallengeResponse | undefined>;
     /**
-     * Accepts a pending challenge as the personal API key owner. The owner must captain the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Accepts a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Accepts a pending challenge as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

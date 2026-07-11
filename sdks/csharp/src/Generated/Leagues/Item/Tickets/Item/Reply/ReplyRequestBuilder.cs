@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Tickets.Item.Reply
         {
         }
         /// <summary>
-        /// Adds a reply or internal note to a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+        /// Adds a reply or internal note to a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ReplyLeagueTicketResponse"/></returns>
         /// <param name="body">Adds a reply or internal note to a league support ticket.</param>
@@ -69,7 +69,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Tickets.Item.Reply
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.ReplyLeagueTicketResponse>(requestInfo, global::TeamBattles.Sdk.Models.ReplyLeagueTicketResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Adds a reply or internal note to a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+        /// Adds a reply or internal note to a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Adds a reply or internal note to a league support ticket.</param>

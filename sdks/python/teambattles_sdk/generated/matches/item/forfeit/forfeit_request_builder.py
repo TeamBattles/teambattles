@@ -33,7 +33,7 @@ class ForfeitRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ForfeitMatchRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ForfeitMatchResponse]:
         """
-        Forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        Forfeits a match as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         param body: Forfeits the match as the API key owner.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForfeitMatchResponse]
@@ -62,7 +62,7 @@ class ForfeitRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ForfeitMatchRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Forfeits a match as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        Forfeits a match as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         param body: Forfeits the match as the API key owner.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

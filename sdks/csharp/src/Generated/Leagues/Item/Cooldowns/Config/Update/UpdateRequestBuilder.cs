@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Cooldowns.Config.Update
         {
         }
         /// <summary>
-        /// Updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.
+        /// Updates the league member cooldown configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key (league-wide cooldown policy is a config-admin write, deliberately separated from the per-member cooldowns capability). League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.UpdateLeagueCooldownConfigResponse"/></returns>
         /// <param name="body">Updates league member cooldown configuration.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Cooldowns.Config.Update
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.UpdateLeagueCooldownConfigResponse>(requestInfo, global::TeamBattles.Sdk.Models.UpdateLeagueCooldownConfigResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.
+        /// Updates the league member cooldown configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key (league-wide cooldown policy is a config-admin write, deliberately separated from the per-member cooldowns capability). League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Updates league member cooldown configuration.</param>

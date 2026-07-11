@@ -20,7 +20,7 @@ class DeclineRequestBuilder extends BaseRequestBuilder<DeclineRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     DeclineRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/matches/{matchId}/acceptances/{acceptanceId}/decline", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Declines a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Declines a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Declines a pending match acceptance as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<DeclineAcceptanceResponse?> postAsync(DeclineAcceptanceRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class DeclineRequestBuilder extends BaseRequestBuilder<DeclineRequestBuilder> {
         };
         return await requestAdapter.send<DeclineAcceptanceResponse>(requestInfo, DeclineAcceptanceResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Declines a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Declines a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Declines a pending match acceptance as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(DeclineAcceptanceRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

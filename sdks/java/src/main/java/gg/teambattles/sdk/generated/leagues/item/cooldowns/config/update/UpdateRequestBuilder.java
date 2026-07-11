@@ -37,7 +37,7 @@ public class UpdateRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/cooldowns/config/update", rawUrl);
     }
     /**
-     * Updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.
+     * Updates the league member cooldown configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key (league-wide cooldown policy is a config-admin write, deliberately separated from the per-member cooldowns capability). League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league member cooldown configuration.
      * @return a {@link UpdateLeagueCooldownConfigResponse}
      * @throws Error When receiving a 400 status code
@@ -53,7 +53,7 @@ public class UpdateRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.
+     * Updates the league member cooldown configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key (league-wide cooldown policy is a config-admin write, deliberately separated from the per-member cooldowns capability). League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league member cooldown configuration.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link UpdateLeagueCooldownConfigResponse}
@@ -80,7 +80,7 @@ public class UpdateRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, UpdateLeagueCooldownConfigResponse::createFromDiscriminatorValue);
     }
     /**
-     * Updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.
+     * Updates the league member cooldown configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key (league-wide cooldown policy is a config-admin write, deliberately separated from the per-member cooldowns capability). League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league member cooldown configuration.
      * @return a {@link RequestInformation}
      */
@@ -89,7 +89,7 @@ public class UpdateRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.
+     * Updates the league member cooldown configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key (league-wide cooldown policy is a config-admin write, deliberately separated from the per-member cooldowns capability). League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league member cooldown configuration.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Rules.Update
         {
         }
         /// <summary>
-        /// Creates or updates enforced rules for a league game. Requires a league-operator key bound to the league and the league rules capability.
+        /// Creates or updates enforced rules for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.RuleWriteResponse"/></returns>
         /// <param name="body">Updates league game rules.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Rules.Update
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.RuleWriteResponse>(requestInfo, global::TeamBattles.Sdk.Models.RuleWriteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates or updates enforced rules for a league game. Requires a league-operator key bound to the league and the league rules capability.
+        /// Creates or updates enforced rules for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Updates league game rules.</param>

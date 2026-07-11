@@ -19,7 +19,7 @@ export interface ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBu
      */
      byMapIndex(mapIndex: string) : WithMapIndexItemRequestBuilder;
     /**
-     * Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+     * Submits scores for one or more maps in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Request body for submitting one or more map scores in a single call.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<GameBatchScoresResponse>}
@@ -32,7 +32,7 @@ export interface ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBu
      */
      post(body: GameBatchScoresBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<GameBatchScoresResponse | undefined>;
     /**
-     * Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+     * Submits scores for one or more maps in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Request body for submitting one or more map scores in a single call.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

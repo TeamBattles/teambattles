@@ -31,7 +31,7 @@ module TeamBattlesSdk
                             super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/settings")
                         end
                         ## 
-                        ## Returns full league settings for admin tooling. Requires a league-operator key bound to the league and leagues.settings_read:read.
+                        ## Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. League API access is gated at api_pro on the league owner's plan.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a Fiber of league_settings_response
                         ## 
@@ -48,7 +48,7 @@ module TeamBattlesSdk
                             return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::LeagueSettingsResponse.create_from_discriminator_value(pn) }, error_mapping)
                         end
                         ## 
-                        ## Returns full league settings for admin tooling. Requires a league-operator key bound to the league and leagues.settings_read:read.
+                        ## Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. League API access is gated at api_pro on the league owner's plan.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a request_information
                         ## 

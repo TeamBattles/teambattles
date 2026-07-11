@@ -20,7 +20,7 @@ class AnnouncementsRequestBuilder extends BaseRequestBuilder<AnnouncementsReques
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     AnnouncementsRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/announcements", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Sends an announcement to all members of the league. Requires a league-operator key bound to the league and the league announcements capability.
+    /// Sends an announcement to all members of the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league announcements capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Sends an announcement to all members of the league.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<AnnounceLeagueResponse?> postAsync(AnnounceLeagueRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -35,7 +35,7 @@ class AnnouncementsRequestBuilder extends BaseRequestBuilder<AnnouncementsReques
         };
         return await requestAdapter.send<AnnounceLeagueResponse>(requestInfo, AnnounceLeagueResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Sends an announcement to all members of the league. Requires a league-operator key bound to the league and the league announcements capability.
+    /// Sends an announcement to all members of the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league announcements capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Sends an announcement to all members of the league.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(AnnounceLeagueRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

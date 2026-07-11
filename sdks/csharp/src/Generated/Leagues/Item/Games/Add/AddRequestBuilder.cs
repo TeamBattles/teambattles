@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Games.Add
         {
         }
         /// <summary>
-        /// Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+        /// Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.LeagueGameWriteResponse"/></returns>
         /// <param name="body">Adds a league game.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Games.Add
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.LeagueGameWriteResponse>(requestInfo, global::TeamBattles.Sdk.Models.LeagueGameWriteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+        /// Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Adds a league game.</param>

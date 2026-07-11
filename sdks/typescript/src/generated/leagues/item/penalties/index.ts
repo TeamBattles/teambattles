@@ -17,7 +17,7 @@ export interface PenaltiesRequestBuilder extends BaseRequestBuilder<PenaltiesReq
      */
     get create(): CreateRequestBuilder;
     /**
-     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Type, team, game, and limit filters for league penalties and cooldowns.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeaguePenalties>}
@@ -28,7 +28,7 @@ export interface PenaltiesRequestBuilder extends BaseRequestBuilder<PenaltiesReq
      */
      post(body: PenaltiesRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeaguePenalties | undefined>;
     /**
-     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Type, team, game, and limit filters for league penalties and cooldowns.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

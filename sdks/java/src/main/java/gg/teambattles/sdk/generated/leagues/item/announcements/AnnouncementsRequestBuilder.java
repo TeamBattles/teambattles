@@ -37,7 +37,7 @@ public class AnnouncementsRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/announcements", rawUrl);
     }
     /**
-     * Sends an announcement to all members of the league. Requires a league-operator key bound to the league and the league announcements capability.
+     * Sends an announcement to all members of the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league announcements capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Sends an announcement to all members of the league.
      * @return a {@link AnnounceLeagueResponse}
      * @throws Error When receiving a 400 status code
@@ -52,7 +52,7 @@ public class AnnouncementsRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Sends an announcement to all members of the league. Requires a league-operator key bound to the league and the league announcements capability.
+     * Sends an announcement to all members of the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league announcements capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Sends an announcement to all members of the league.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link AnnounceLeagueResponse}
@@ -77,7 +77,7 @@ public class AnnouncementsRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, AnnounceLeagueResponse::createFromDiscriminatorValue);
     }
     /**
-     * Sends an announcement to all members of the league. Requires a league-operator key bound to the league and the league announcements capability.
+     * Sends an announcement to all members of the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league announcements capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Sends an announcement to all members of the league.
      * @return a {@link RequestInformation}
      */
@@ -86,7 +86,7 @@ public class AnnouncementsRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Sends an announcement to all members of the league. Requires a league-operator key bound to the league and the league announcements capability.
+     * Sends an announcement to all members of the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league announcements capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Sends an announcement to all members of the league.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

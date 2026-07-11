@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface RequestRequestBuilder extends BaseRequestBuilder<RequestRequestBuilder> {
     /**
-     * Requests TeamBattles staff review for league shutdown. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API.
+     * Requests TeamBattles staff review for league shutdown. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API. League API access is gated at api_pro on the league owner's plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<RequestLeagueShutdownResponse>}
      * @throws {ErrorEscaped} error when the service returns a 400 status code
@@ -23,7 +23,7 @@ export interface RequestRequestBuilder extends BaseRequestBuilder<RequestRequest
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<RequestLeagueShutdownResponse | undefined>;
     /**
-     * Requests TeamBattles staff review for league shutdown. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API.
+     * Requests TeamBattles staff review for league shutdown. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API. League API access is gated at api_pro on the league owner's plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

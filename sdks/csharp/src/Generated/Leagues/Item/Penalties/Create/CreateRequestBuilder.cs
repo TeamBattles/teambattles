@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Penalties.Create
         {
         }
         /// <summary>
-        /// Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a league-operator key bound to the league and the league penalties capability.
+        /// Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league penalties capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.CreatePenaltyResponse"/></returns>
         /// <param name="body">Creates a league team penalty.</param>
@@ -69,7 +69,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Penalties.Create
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.CreatePenaltyResponse>(requestInfo, global::TeamBattles.Sdk.Models.CreatePenaltyResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a league-operator key bound to the league and the league penalties capability.
+        /// Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league penalties capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Creates a league team penalty.</param>

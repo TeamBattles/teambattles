@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.DisplayRules.Item
         {
         }
         /// <summary>
-        /// Removes an informational display rule. Requires a league-operator key bound to the league and the league display_rules capability.
+        /// Removes an informational display rule. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league display_rules capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.RemoveDisplayRuleResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -67,7 +67,7 @@ namespace TeamBattles.Sdk.Leagues.Item.DisplayRules.Item
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.RemoveDisplayRuleResponse>(requestInfo, global::TeamBattles.Sdk.Models.RemoveDisplayRuleResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Removes an informational display rule. Requires a league-operator key bound to the league and the league display_rules capability.
+        /// Removes an informational display rule. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league display_rules capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

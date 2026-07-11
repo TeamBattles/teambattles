@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface CreateRequestBuilder extends BaseRequestBuilder<CreateRequestBuilder> {
     /**
-     * Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a new match as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a new match as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<CreateMatchResponse>}
@@ -25,7 +25,7 @@ export interface CreateRequestBuilder extends BaseRequestBuilder<CreateRequestBu
      */
      post(body: CreateMatchRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<CreateMatchResponse | undefined>;
     /**
-     * Creates a new match as the personal API key owner. The owner must captain the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a new match as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team and the active roster must be members of that team. League and challenge rules are enforced exactly as in the web app. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a new match as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

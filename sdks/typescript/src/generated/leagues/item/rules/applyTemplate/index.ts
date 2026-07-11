@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ApplyTemplateRequestBuilder extends BaseRequestBuilder<ApplyTemplateRequestBuilder> {
     /**
-     * Applies a rule template to a league game. Requires a league-operator key bound to the league and the league rules capability.
+     * Applies a rule template to a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Applies a rule template.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ApplyRuleTemplateResponse>}
@@ -25,7 +25,7 @@ export interface ApplyTemplateRequestBuilder extends BaseRequestBuilder<ApplyTem
      */
      post(body: ApplyRuleTemplateRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ApplyRuleTemplateResponse | undefined>;
     /**
-     * Applies a rule template to a league game. Requires a league-operator key bound to the league and the league rules capability.
+     * Applies a rule template to a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Applies a rule template.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

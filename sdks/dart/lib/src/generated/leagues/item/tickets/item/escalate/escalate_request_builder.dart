@@ -20,7 +20,7 @@ class EscalateRequestBuilder extends BaseRequestBuilder<EscalateRequestBuilder> 
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     EscalateRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/tickets/{ticketId}/escalate", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Escalates a league-scoped support ticket to TeamBattles staff. Requires a league-operator key bound to the league and the league tickets capability.
+    /// Escalates a league-scoped support ticket to TeamBattles staff. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Escalates a league support ticket to TeamBattles staff.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<EscalateLeagueTicketResponse?> postAsync(EscalateLeagueTicketRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class EscalateRequestBuilder extends BaseRequestBuilder<EscalateRequestBuilder> 
         };
         return await requestAdapter.send<EscalateLeagueTicketResponse>(requestInfo, EscalateLeagueTicketResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Escalates a league-scoped support ticket to TeamBattles staff. Requires a league-operator key bound to the league and the league tickets capability.
+    /// Escalates a league-scoped support ticket to TeamBattles staff. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Escalates a league support ticket to TeamBattles staff.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(EscalateLeagueTicketRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

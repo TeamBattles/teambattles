@@ -6,7 +6,7 @@ openapi: "POST /leagues/{identifier}/display-rules/upsert"
 
 ## Permission Required
 
-This endpoint requires a **league-operator API key bound to this league** with the `display_rules` league capability, plus the `leagueOperatorApi` plan feature (api_pro or higher). A free key receives `403 error_api_feature_required`.
+This endpoint requires a personal or developer API key whose owner is currently a league **ADMIN** of the league in the path, with the `display_rules` league capability set to `write` on the key. League API access is gated at api_pro on the **league owner's** plan; when the owner's plan lacks it, the request receives `403 error_api_feature_required`.
 
 ## Access / Membership Rules
 
@@ -25,7 +25,7 @@ Creates or updates an informational display rule for one of the league's games. 
 | `gameId`           | string  | Yes      | Game ID whose display rule should change.                                        |
 | `category`         | string  | Yes      | Display rule category (1-100 characters).                                        |
 | `categoryOrder`    | number  | Yes      | Sort position of the category among the game's display rules.                    |
-| `isCustomCategory` | boolean | Yes      | Whether this is a custom (operator-defined) category rather than a built-in one. |
+| `isCustomCategory` | boolean | Yes      | Whether this is a custom (admin-defined) category rather than a built-in one. |
 | `isOverride`       | boolean | Yes      | Whether this rule overrides a default category's content.                        |
 | `content`          | object  | Yes      | Rule content: `{ sections: [{ heading?, items: string[] }] }`.                   |
 | `scope`            | object  | No       | Optional scoping: `{ modes?: string[], playlists?: string[] }`.                  |

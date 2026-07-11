@@ -20,7 +20,7 @@ class LobbyCodeRequestBuilder extends BaseRequestBuilder<LobbyCodeRequestBuilder
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     LobbyCodeRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/matches/{matchId}/lobby-code", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Sets or updates the lobby code as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Sets or updates the match lobby code as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<UpdateLobbyCodeResponse?> postAsync(UpdateLobbyCodeRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class LobbyCodeRequestBuilder extends BaseRequestBuilder<LobbyCodeRequestBuilder
         };
         return await requestAdapter.send<UpdateLobbyCodeResponse>(requestInfo, UpdateLobbyCodeResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Sets or updates the lobby code as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Sets or updates the match lobby code as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(UpdateLobbyCodeRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

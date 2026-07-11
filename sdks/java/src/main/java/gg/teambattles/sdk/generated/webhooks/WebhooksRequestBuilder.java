@@ -51,7 +51,7 @@ public class WebhooksRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/webhooks", rawUrl);
     }
     /**
-     * Lists the API key&apos;s webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+     * Lists your webhook endpoints: those in the API key&apos;s derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
      * @return a {@link WebhookListResponse}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -63,7 +63,7 @@ public class WebhooksRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Lists the API key&apos;s webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+     * Lists your webhook endpoints: those in the API key&apos;s derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link WebhookListResponse}
      * @throws Error When receiving a 400 status code
@@ -82,12 +82,13 @@ public class WebhooksRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, WebhookListResponse::createFromDiscriminatorValue);
     }
     /**
-     * Creates a webhook endpoint in the API key&apos;s derived scope (personal -&gt; user, developer-app -&gt; game, league-operator -&gt; league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+     * Creates a webhook endpoint. By default it is bound to the API key&apos;s derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner&apos;s plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
      * @param body Create a webhook endpoint in the caller&apos;s scope.
      * @return a {@link WebhookSecret}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
+     * @throws Error When receiving a 404 status code
      * @throws Error When receiving a 409 status code
      * @throws Error When receiving a 429 status code
      */
@@ -96,13 +97,14 @@ public class WebhooksRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Creates a webhook endpoint in the API key&apos;s derived scope (personal -&gt; user, developer-app -&gt; game, league-operator -&gt; league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+     * Creates a webhook endpoint. By default it is bound to the API key&apos;s derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner&apos;s plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
      * @param body Create a webhook endpoint in the caller&apos;s scope.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link WebhookSecret}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
+     * @throws Error When receiving a 404 status code
      * @throws Error When receiving a 409 status code
      * @throws Error When receiving a 429 status code
      */
@@ -114,12 +116,13 @@ public class WebhooksRequestBuilder extends BaseRequestBuilder {
         errorMapping.put("400", Error::createFromDiscriminatorValue);
         errorMapping.put("401", Error::createFromDiscriminatorValue);
         errorMapping.put("403", Error::createFromDiscriminatorValue);
+        errorMapping.put("404", Error::createFromDiscriminatorValue);
         errorMapping.put("409", Error::createFromDiscriminatorValue);
         errorMapping.put("429", Error::createFromDiscriminatorValue);
         return this.requestAdapter.send(requestInfo, errorMapping, WebhookSecret::createFromDiscriminatorValue);
     }
     /**
-     * Lists the API key&apos;s webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+     * Lists your webhook endpoints: those in the API key&apos;s derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -127,7 +130,7 @@ public class WebhooksRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Lists the API key&apos;s webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+     * Lists your webhook endpoints: those in the API key&apos;s derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */
@@ -139,7 +142,7 @@ public class WebhooksRequestBuilder extends BaseRequestBuilder {
         return requestInfo;
     }
     /**
-     * Creates a webhook endpoint in the API key&apos;s derived scope (personal -&gt; user, developer-app -&gt; game, league-operator -&gt; league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+     * Creates a webhook endpoint. By default it is bound to the API key&apos;s derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner&apos;s plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
      * @param body Create a webhook endpoint in the caller&apos;s scope.
      * @return a {@link RequestInformation}
      */
@@ -148,7 +151,7 @@ public class WebhooksRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Creates a webhook endpoint in the API key&apos;s derived scope (personal -&gt; user, developer-app -&gt; game, league-operator -&gt; league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+     * Creates a webhook endpoint. By default it is bound to the API key&apos;s derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner&apos;s plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
      * @param body Create a webhook endpoint in the caller&apos;s scope.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

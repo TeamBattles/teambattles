@@ -33,7 +33,7 @@ class UpdateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: UpdateLeagueBrandingRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[UpdateLeagueBrandingResponse]:
         """
-        Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+        Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Updates league profile branding and public metadata.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdateLeagueBrandingResponse]
@@ -62,7 +62,7 @@ class UpdateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: UpdateLeagueBrandingRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+        Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Updates league profile branding and public metadata.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

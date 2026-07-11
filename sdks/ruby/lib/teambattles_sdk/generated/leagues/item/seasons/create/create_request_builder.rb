@@ -28,7 +28,7 @@ module TeamBattlesSdk
                                 super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/seasons/create")
                             end
                             ## 
-                            ## Creates an upcoming season for a league game. Requires the league seasons capability. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.
+                            ## Creates an upcoming season for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.
                             ## @param body League season creation payload.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a Fiber of create_season_response
@@ -49,7 +49,7 @@ module TeamBattlesSdk
                                 return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::CreateSeasonResponse.create_from_discriminator_value(pn) }, error_mapping)
                             end
                             ## 
-                            ## Creates an upcoming season for a league game. Requires the league seasons capability. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.
+                            ## Creates an upcoming season for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.
                             ## @param body League season creation payload.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a request_information

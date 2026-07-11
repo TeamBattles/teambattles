@@ -36,7 +36,7 @@ public class ActivateRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/seasons/{seasonId}/activate", rawUrl);
     }
     /**
-     * Activates an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
+     * Activates an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
      * @return a {@link ActivateLeagueSeasonResponse}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -50,7 +50,7 @@ public class ActivateRequestBuilder extends BaseRequestBuilder {
         return post(null);
     }
     /**
-     * Activates an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
+     * Activates an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link ActivateLeagueSeasonResponse}
      * @throws Error When receiving a 400 status code
@@ -73,7 +73,7 @@ public class ActivateRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, ActivateLeagueSeasonResponse::createFromDiscriminatorValue);
     }
     /**
-     * Activates an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
+     * Activates an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -81,7 +81,7 @@ public class ActivateRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(null);
     }
     /**
-     * Activates an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
+     * Activates an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Tickets.Create
         {
         }
         /// <summary>
-        /// Creates a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+        /// Creates a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.CreateLeagueTicketResponse"/></returns>
         /// <param name="body">Creates a league-scoped support ticket.</param>
@@ -69,7 +69,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Tickets.Create
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.CreateLeagueTicketResponse>(requestInfo, global::TeamBattles.Sdk.Models.CreateLeagueTicketResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+        /// Creates a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Creates a league-scoped support ticket.</param>

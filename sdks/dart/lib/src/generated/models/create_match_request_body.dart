@@ -59,7 +59,7 @@ class CreateMatchRequestBody implements AdditionalDataHolder, Parsable {
     Iterable<String>? selectedMaps;
     ///  Selected objective IDs.
     Iterable<String>? selectedObjectives;
-    ///  Creator team ID. The owner must captain it.
+    ///  Creator team ID. The owner must be a captain, co-captain, or org owner of it.
     String? teamId;
     ///  Players per team.
     int? teamSize;

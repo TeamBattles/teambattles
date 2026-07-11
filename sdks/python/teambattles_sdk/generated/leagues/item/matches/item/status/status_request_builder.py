@@ -33,7 +33,7 @@ class StatusRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: LeagueStatusUpdateBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[GameStatusUpdateResponse]:
         """
-        Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+        Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Request body for updating a league match's lifecycle status.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GameStatusUpdateResponse]
@@ -61,7 +61,7 @@ class StatusRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: LeagueStatusUpdateBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.
+        Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Request body for updating a league match's lifecycle status.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

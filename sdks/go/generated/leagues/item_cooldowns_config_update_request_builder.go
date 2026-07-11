@@ -33,7 +33,7 @@ func NewItemCooldownsConfigUpdateRequestBuilder(rawUrl string, requestAdapter i2
     urlParams["request-raw-url"] = rawUrl
     return NewItemCooldownsConfigUpdateRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.
+// Post updates the league member cooldown configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key (league-wide cooldown policy is a config-admin write, deliberately separated from the per-member cooldowns capability). League API access is gated at api_pro on the league owner's plan.
 // returns a UpdateLeagueCooldownConfigResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -65,7 +65,7 @@ func (m *ItemCooldownsConfigUpdateRequestBuilder) Post(ctx context.Context, body
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.UpdateLeagueCooldownConfigResponseable), nil
 }
-// ToPostRequestInformation updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.
+// ToPostRequestInformation updates the league member cooldown configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key (league-wide cooldown policy is a config-admin write, deliberately separated from the per-member cooldowns capability). League API access is gated at api_pro on the league owner's plan.
 // returns a *RequestInformation when successful
 func (m *ItemCooldownsConfigUpdateRequestBuilder) ToPostRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.UpdateLeagueCooldownConfigRequestBodyable, requestConfiguration *ItemCooldownsConfigUpdateRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

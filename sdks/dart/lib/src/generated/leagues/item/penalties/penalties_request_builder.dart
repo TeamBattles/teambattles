@@ -25,7 +25,7 @@ class PenaltiesRequestBuilder extends BaseRequestBuilder<PenaltiesRequestBuilder
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     PenaltiesRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/penalties", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+    /// Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Type, team, game, and limit filters for league penalties and cooldowns.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<LeaguePenalties?> postAsync(PenaltiesRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -38,7 +38,7 @@ class PenaltiesRequestBuilder extends BaseRequestBuilder<PenaltiesRequestBuilder
         };
         return await requestAdapter.send<LeaguePenalties>(requestInfo, LeaguePenalties.createFromDiscriminatorValue, errorMapping);
     }
-    /// Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.
+    /// Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Type, team, game, and limit filters for league penalties and cooldowns.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(PenaltiesRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

@@ -32,7 +32,7 @@ module TeamBattlesSdk
                                         super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/matches/{matchId}/scores/{mapIndex}")
                                     end
                                     ## 
-                                    ## Submits the score for one map in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+                                    ## Submits the score for one map in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                                     ## @param body Request body for submitting a single map's score (mapIndex comes from the path).
                                     ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                     ## @return a Fiber of game_single_map_score_response
@@ -52,7 +52,7 @@ module TeamBattlesSdk
                                         return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::GameSingleMapScoreResponse.create_from_discriminator_value(pn) }, error_mapping)
                                     end
                                     ## 
-                                    ## Submits the score for one map in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+                                    ## Submits the score for one map in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                                     ## @param body Request body for submitting a single map's score (mapIndex comes from the path).
                                     ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                     ## @return a request_information

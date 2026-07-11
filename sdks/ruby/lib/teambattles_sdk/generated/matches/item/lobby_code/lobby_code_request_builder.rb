@@ -26,7 +26,7 @@ module TeamBattlesSdk
                             super(path_parameters, request_adapter, "{+baseurl}/matches/{matchId}/lobby-code")
                         end
                         ## 
-                        ## Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+                        ## Sets or updates the lobby code as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
                         ## @param body Sets or updates the match lobby code as the API key owner.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a Fiber of update_lobby_code_response
@@ -47,7 +47,7 @@ module TeamBattlesSdk
                             return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::UpdateLobbyCodeResponse.create_from_discriminator_value(pn) }, error_mapping)
                         end
                         ## 
-                        ## Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+                        ## Sets or updates the lobby code as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
                         ## @param body Sets or updates the match lobby code as the API key owner.
                         ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                         ## @return a request_information

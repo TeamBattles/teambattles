@@ -31,7 +31,7 @@ class PublishRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain, co-captain, or org owner of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param PublishRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<PublishMatchResponse|null>
      * @throws Exception
@@ -50,7 +50,7 @@ class PublishRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain, co-captain, or org owner of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param PublishRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

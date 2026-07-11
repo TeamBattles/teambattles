@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Rules.ApplyTemplate
         {
         }
         /// <summary>
-        /// Applies a rule template to a league game. Requires a league-operator key bound to the league and the league rules capability.
+        /// Applies a rule template to a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApplyRuleTemplateResponse"/></returns>
         /// <param name="body">Applies a rule template.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Rules.ApplyTemplate
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.ApplyRuleTemplateResponse>(requestInfo, global::TeamBattles.Sdk.Models.ApplyRuleTemplateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Applies a rule template to a league game. Requires a league-operator key bound to the league and the league rules capability.
+        /// Applies a rule template to a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Applies a rule template.</param>

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ToggleRequestBuilder extends BaseRequestBuilder<ToggleRequestBuilder> {
     /**
-     * Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires the league games capability.
+     * Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Toggles a league game.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ToggleLeagueGameResponse>}
@@ -25,7 +25,7 @@ export interface ToggleRequestBuilder extends BaseRequestBuilder<ToggleRequestBu
      */
      post(body: ToggleLeagueGameRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ToggleLeagueGameResponse | undefined>;
     /**
-     * Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires the league games capability.
+     * Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Toggles a league game.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

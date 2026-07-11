@@ -20,7 +20,7 @@ class CancelRequestBuilder extends BaseRequestBuilder<CancelRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     CancelRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/matches/{matchId}/cancel", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Cancels a match as the personal API key owner. The owner must be able to manage the match (captain a participating team or be an admin). Past the league grace period an accepted league match is treated as a forfeit. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Cancels a match as the personal API key owner. For a regular match the owner must be able to manage it (be a captain, co-captain, or org owner of a participating team, or an admin); past the league grace period an accepted league match is treated as a forfeit. For a PENDING challenge the owner must lead the creator team (captain, co-captain, or org owner of the challenging team), and past the challenge grace window (default 24h, league-overridable) cancelling any pending challenge - league or not - is recorded as a forfeit with the creator team taking the loss. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Cancels the match as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<CancelMatchResponse?> postAsync(CancelMatchRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class CancelRequestBuilder extends BaseRequestBuilder<CancelRequestBuilder> {
         };
         return await requestAdapter.send<CancelMatchResponse>(requestInfo, CancelMatchResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Cancels a match as the personal API key owner. The owner must be able to manage the match (captain a participating team or be an admin). Past the league grace period an accepted league match is treated as a forfeit. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Cancels a match as the personal API key owner. For a regular match the owner must be able to manage it (be a captain, co-captain, or org owner of a participating team, or an admin); past the league grace period an accepted league match is treated as a forfeit. For a PENDING challenge the owner must lead the creator team (captain, co-captain, or org owner of the challenging team), and past the challenge grace window (default 24h, league-overridable) cancelling any pending challenge - league or not - is recorded as a forfeit with the creator team taking the loss. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [body] Cancels the match as the API key owner.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(CancelMatchRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

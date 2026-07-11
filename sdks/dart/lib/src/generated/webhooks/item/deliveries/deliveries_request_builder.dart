@@ -28,7 +28,7 @@ class DeliveriesRequestBuilder extends BaseRequestBuilder<DeliveriesRequestBuild
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     DeliveriesRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/webhooks/{id}/deliveries{?cursor*,limit*}", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+    /// Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<DeliveriesGetResponse?> getAsync([void Function(RequestConfiguration<DeliveriesRequestBuilderGetQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toGetRequestInformation(requestConfiguration);
@@ -41,7 +41,7 @@ class DeliveriesRequestBuilder extends BaseRequestBuilder<DeliveriesRequestBuild
         };
         return await requestAdapter.send<DeliveriesGetResponse>(requestInfo, DeliveriesGetResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+    /// Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toGetRequestInformation([void Function(RequestConfiguration<DeliveriesRequestBuilderGetQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.get, urlTemplate : urlTemplate, pathParameters :  pathParameters);

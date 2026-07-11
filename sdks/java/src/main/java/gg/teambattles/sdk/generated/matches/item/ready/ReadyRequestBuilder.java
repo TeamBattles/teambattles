@@ -37,7 +37,7 @@ public class ReadyRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/matches/{matchId}/ready", rawUrl);
     }
     /**
-     * Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Marks one participating team ready as the API key owner.
      * @return a {@link MarkMatchReadyResponse}
      * @throws Error When receiving a 400 status code
@@ -53,7 +53,7 @@ public class ReadyRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Marks one participating team ready as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link MarkMatchReadyResponse}
@@ -80,7 +80,7 @@ public class ReadyRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, MarkMatchReadyResponse::createFromDiscriminatorValue);
     }
     /**
-     * Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Marks one participating team ready as the API key owner.
      * @return a {@link RequestInformation}
      */
@@ -89,7 +89,7 @@ public class ReadyRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Marks one participating team ready as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

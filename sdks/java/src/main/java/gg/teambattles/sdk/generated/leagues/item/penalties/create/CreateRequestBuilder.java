@@ -37,7 +37,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/penalties/create", rawUrl);
     }
     /**
-     * Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a league-operator key bound to the league and the league penalties capability.
+     * Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league penalties capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Creates a league team penalty.
      * @return a {@link CreatePenaltyResponse}
      * @throws Error When receiving a 400 status code
@@ -52,7 +52,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a league-operator key bound to the league and the league penalties capability.
+     * Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league penalties capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Creates a league team penalty.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link CreatePenaltyResponse}
@@ -77,7 +77,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, CreatePenaltyResponse::createFromDiscriminatorValue);
     }
     /**
-     * Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a league-operator key bound to the league and the league penalties capability.
+     * Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league penalties capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Creates a league team penalty.
      * @return a {@link RequestInformation}
      */
@@ -86,7 +86,7 @@ public class CreateRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a league-operator key bound to the league and the league penalties capability.
+     * Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league penalties capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Creates a league team penalty.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

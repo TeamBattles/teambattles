@@ -10,7 +10,7 @@ This endpoint requires the `webhooks.manage` permission (the `{ kind: "webhook" 
 
 ## Access / Membership Rules
 
-Webhooks are owner-scoped. The new endpoint is created in your key's own derived scope: a personal key creates it in your `user` scope, a game-developer key in its bound `game`, and a league-operator key in its bound `league`. The scope is never a request field. The `url` must be an HTTPS endpoint - private, loopback, and cloud-metadata hosts are rejected.
+Webhooks are per-creator - only you see and manage the endpoints you create. By default the new endpoint is created in your key's own derived scope: a personal key creates it in your `user` scope and a game-developer key in its bound `game`. To create a **league**-scoped endpoint instead, pass an optional `leagueId` in the request body; your key's owner must currently be a league ADMIN of that league, and the league owner's plan must include the webhooks feature. The `url` must be an HTTPS endpoint - private, loopback, and cloud-metadata hosts are rejected.
 
 ## What's Returned
 
@@ -28,6 +28,7 @@ Returns `201` with `{ id, signingSecret, secretPrefix }`. `id` is the new endpoi
 | `url` | string | Yes | HTTPS delivery URL. Private, loopback, and metadata hosts are rejected. |
 | `events` | string[] | Yes | At least one event token: exact catalog names (e.g. `match.completed`) or family wildcards (e.g. `match.*`). |
 | `label` | string | No | Optional human-readable label for the endpoint. |
+| `leagueId` | string | No | Create a league-scoped endpoint. Your key's owner must currently be a league ADMIN of this league, and the league owner's plan must include the webhooks feature. |
 
 <Note>
 	Use the signing secret to verify the Standard Webhooks `webhook-id` / `webhook-timestamp` /

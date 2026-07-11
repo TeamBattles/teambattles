@@ -28,7 +28,7 @@ module TeamBattlesSdk
                                 super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/ownership/transfer")
                             end
                             ## 
-                            ## Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+                            ## Transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
                             ## @param body Transfers league ownership to an existing staff member.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a Fiber of transfer_league_ownership_response
@@ -49,7 +49,7 @@ module TeamBattlesSdk
                                 return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::TransferLeagueOwnershipResponse.create_from_discriminator_value(pn) }, error_mapping)
                             end
                             ## 
-                            ## Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+                            ## Transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
                             ## @param body Transfers league ownership to an existing staff member.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a request_information

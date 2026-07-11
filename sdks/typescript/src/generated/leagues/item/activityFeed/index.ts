@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ActivityFeedRequestBuilder extends BaseRequestBuilder<ActivityFeedRequestBuilder> {
     /**
-     * Returns recent league activity entries. Requires a league-operator key bound to the league and leagues.league_admin:read.
+     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Cursor pagination options for a league activity feed.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeagueActivityFeedResponse>}
@@ -24,7 +24,7 @@ export interface ActivityFeedRequestBuilder extends BaseRequestBuilder<ActivityF
      */
      post(body: LeagueActivityFeedRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeagueActivityFeedResponse | undefined>;
     /**
-     * Returns recent league activity entries. Requires a league-operator key bound to the league and leagues.league_admin:read.
+     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Cursor pagination options for a league activity feed.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

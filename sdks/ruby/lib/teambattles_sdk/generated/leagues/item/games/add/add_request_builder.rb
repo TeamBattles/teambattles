@@ -28,7 +28,7 @@ module TeamBattlesSdk
                                 super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/games/add")
                             end
                             ## 
-                            ## Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+                            ## Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                             ## @param body Adds a league game.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a Fiber of league_game_write_response
@@ -49,7 +49,7 @@ module TeamBattlesSdk
                                 return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::LeagueGameWriteResponse.create_from_discriminator_value(pn) }, error_mapping)
                             end
                             ## 
-                            ## Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.
+                            ## Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                             ## @param body Adds a league game.
                             ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                             ## @return a request_information

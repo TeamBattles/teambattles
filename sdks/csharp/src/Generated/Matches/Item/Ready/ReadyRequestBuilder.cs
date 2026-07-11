@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Matches.Item.Ready
         {
         }
         /// <summary>
-        /// Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.MarkMatchReadyResponse"/></returns>
         /// <param name="body">Marks one participating team ready as the API key owner.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Matches.Item.Ready
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.MarkMatchReadyResponse>(requestInfo, global::TeamBattles.Sdk.Models.MarkMatchReadyResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        /// Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Marks one participating team ready as the API key owner.</param>

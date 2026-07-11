@@ -424,7 +424,7 @@
 						]
 					},
 					{
-						"group": "League Operator API",
+						"group": "League Admin API",
 						"openapi": "api-reference/openapi.json",
 						"pages": [
 							"developers/league-operator-api",

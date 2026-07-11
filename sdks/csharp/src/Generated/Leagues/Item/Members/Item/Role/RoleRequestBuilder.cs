@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Members.Item.Role
         {
         }
         /// <summary>
-        /// Updates a league staff member role. Requires a league-operator key bound to the league and the league members capability.
+        /// Updates a league staff member role. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.UpdateLeagueMemberRoleResponse"/></returns>
         /// <param name="body">Updates a league staff member role.</param>
@@ -69,7 +69,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Members.Item.Role
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.UpdateLeagueMemberRoleResponse>(requestInfo, global::TeamBattles.Sdk.Models.UpdateLeagueMemberRoleResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates a league staff member role. Requires a league-operator key bound to the league and the league members capability.
+        /// Updates a league staff member role. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Updates a league staff member role.</param>

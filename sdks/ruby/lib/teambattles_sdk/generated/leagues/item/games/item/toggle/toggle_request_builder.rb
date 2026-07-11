@@ -30,7 +30,7 @@ module TeamBattlesSdk
                                     super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/games/{leagueGameId}/toggle")
                                 end
                                 ## 
-                                ## Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires the league games capability.
+                                ## Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                                 ## @param body Toggles a league game.
                                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                 ## @return a Fiber of toggle_league_game_response
@@ -51,7 +51,7 @@ module TeamBattlesSdk
                                     return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::ToggleLeagueGameResponse.create_from_discriminator_value(pn) }, error_mapping)
                                 end
                                 ## 
-                                ## Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires the league games capability.
+                                ## Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                                 ## @param body Toggles a league game.
                                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                 ## @return a request_information

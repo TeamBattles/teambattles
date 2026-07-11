@@ -53,7 +53,7 @@ type CreateMatchRequestBody struct {
     selectedMaps []string
     // Selected objective IDs.
     selectedObjectives []string
-    // Creator team ID. The owner must captain it.
+    // Creator team ID. The owner must be a captain, co-captain, or org owner of it.
     teamId *string
     // Players per team.
     teamSize *int32
@@ -452,7 +452,7 @@ func (m *CreateMatchRequestBody) GetSelectedMaps()([]string) {
 func (m *CreateMatchRequestBody) GetSelectedObjectives()([]string) {
     return m.selectedObjectives
 }
-// GetTeamId gets the teamId property value. Creator team ID. The owner must captain it.
+// GetTeamId gets the teamId property value. Creator team ID. The owner must be a captain, co-captain, or org owner of it.
 // returns a *string when successful
 func (m *CreateMatchRequestBody) GetTeamId()(*string) {
     return m.teamId
@@ -722,7 +722,7 @@ func (m *CreateMatchRequestBody) SetSelectedMaps(value []string)() {
 func (m *CreateMatchRequestBody) SetSelectedObjectives(value []string)() {
     m.selectedObjectives = value
 }
-// SetTeamId sets the teamId property value. Creator team ID. The owner must captain it.
+// SetTeamId sets the teamId property value. Creator team ID. The owner must be a captain, co-captain, or org owner of it.
 func (m *CreateMatchRequestBody) SetTeamId(value *string)() {
     m.teamId = value
 }

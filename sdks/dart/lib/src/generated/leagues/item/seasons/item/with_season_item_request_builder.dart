@@ -30,7 +30,7 @@ class WithSeasonItemRequestBuilder extends BaseRequestBuilder<WithSeasonItemRequ
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     WithSeasonItemRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/seasons/{seasonId}", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+    /// Deletes an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<DeleteLeagueSeasonResponse?> deleteAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toDeleteRequestInformation(requestConfiguration);
@@ -57,7 +57,7 @@ class WithSeasonItemRequestBuilder extends BaseRequestBuilder<WithSeasonItemRequ
         };
         return await requestAdapter.send<LeagueSeason>(requestInfo, LeagueSeason.createFromDiscriminatorValue, errorMapping);
     }
-    /// Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
+    /// Deletes an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toDeleteRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.delete, urlTemplate : urlTemplate, pathParameters :  pathParameters);

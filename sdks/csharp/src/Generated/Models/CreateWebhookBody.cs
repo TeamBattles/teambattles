@@ -31,6 +31,14 @@ namespace TeamBattles.Sdk.Models
 #else
         public string Label { get; set; }
 #endif
+        /// <summary>League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner&apos;s plan.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LeagueId { get; set; }
+#nullable restore
+#else
+        public string LeagueId { get; set; }
+#endif
         /// <summary>HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -66,6 +74,7 @@ namespace TeamBattles.Sdk.Models
             {
                 { "events", n => { Events = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
+                { "leagueId", n => { LeagueId = n.GetStringValue(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
             };
         }
@@ -78,6 +87,7 @@ namespace TeamBattles.Sdk.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("events", Events);
             writer.WriteStringValue("label", Label);
+            writer.WriteStringValue("leagueId", LeagueId);
             writer.WriteStringValue("url", Url);
             writer.WriteAdditionalData(AdditionalData);
         }

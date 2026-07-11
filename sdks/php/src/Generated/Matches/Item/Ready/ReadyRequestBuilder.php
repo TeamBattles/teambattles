@@ -32,7 +32,7 @@ class ReadyRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param MarkMatchReadyRequestBody $body Marks one participating team ready as the API key owner.
      * @param ReadyRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<MarkMatchReadyResponse|null>
@@ -53,7 +53,7 @@ class ReadyRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Marks a participating team ready as the personal API key owner. The owner must captain the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Marks a participating team ready as the personal API key owner. The owner must be a captain, co-captain, or org owner of the team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param MarkMatchReadyRequestBody $body Marks one participating team ready as the API key owner.
      * @param ReadyRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

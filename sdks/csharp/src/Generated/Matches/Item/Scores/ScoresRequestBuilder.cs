@@ -61,7 +61,7 @@ namespace TeamBattles.Sdk.Matches.Item.Scores
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.MapScores>(requestInfo, global::TeamBattles.Sdk.Models.MapScores.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Confirm a map score submitted by the opposing team. Only the opposing team&apos;s captain can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
+        /// Confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ScoreSubmissionResult"/></returns>
         /// <param name="body">Confirmation payload identifying the map score to confirm.</param>
@@ -92,7 +92,7 @@ namespace TeamBattles.Sdk.Matches.Item.Scores
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.ScoreSubmissionResult>(requestInfo, global::TeamBattles.Sdk.Models.ScoreSubmissionResult.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+        /// Submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ScoreSubmissionResult"/></returns>
         /// <param name="body">Map score submission payload for a single map.</param>
@@ -142,7 +142,7 @@ namespace TeamBattles.Sdk.Matches.Item.Scores
             return requestInfo;
         }
         /// <summary>
-        /// Confirm a map score submitted by the opposing team. Only the opposing team&apos;s captain can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
+        /// Confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Confirmation payload identifying the map score to confirm.</param>
@@ -164,7 +164,7 @@ namespace TeamBattles.Sdk.Matches.Item.Scores
             return requestInfo;
         }
         /// <summary>
-        /// Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+        /// Submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Map score submission payload for a single map.</param>

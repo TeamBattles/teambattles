@@ -19,7 +19,7 @@ class PublishRequestBuilder extends BaseRequestBuilder<PublishRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     PublishRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/matches/{matchId}/publish", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain, co-captain, or org owner of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<PublishMatchResponse?> postAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toPostRequestInformation(requestConfiguration);
@@ -33,7 +33,7 @@ class PublishRequestBuilder extends BaseRequestBuilder<PublishRequestBuilder> {
         };
         return await requestAdapter.send<PublishMatchResponse>(requestInfo, PublishMatchResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+    /// Publishes a draft match as the personal API key owner, making it visible for acceptance. The owner must be the match creator or a captain, co-captain, or org owner of the creating team, and the match must still be a draft. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.post, urlTemplate : urlTemplate, pathParameters :  pathParameters);

@@ -36,7 +36,7 @@ public class ClearRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/cooldowns/{cooldownId}/clear", rawUrl);
     }
     /**
-     * Clears an active league member cooldown early. Requires a league-operator key bound to the league and the league cooldowns capability.
+     * Clears an active league member cooldown early. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @return a {@link ClearCooldownResponse}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -50,7 +50,7 @@ public class ClearRequestBuilder extends BaseRequestBuilder {
         return post(null);
     }
     /**
-     * Clears an active league member cooldown early. Requires a league-operator key bound to the league and the league cooldowns capability.
+     * Clears an active league member cooldown early. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link ClearCooldownResponse}
      * @throws Error When receiving a 400 status code
@@ -73,7 +73,7 @@ public class ClearRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, ClearCooldownResponse::createFromDiscriminatorValue);
     }
     /**
-     * Clears an active league member cooldown early. Requires a league-operator key bound to the league and the league cooldowns capability.
+     * Clears an active league member cooldown early. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -81,7 +81,7 @@ public class ClearRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(null);
     }
     /**
-     * Clears an active league member cooldown early. Requires a league-operator key bound to the league and the league cooldowns capability.
+     * Clears an active league member cooldown early. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

@@ -6,7 +6,7 @@ openapi: "POST /leagues/{identifier}/activity-feed"
 
 ## Permission Required
 
-This endpoint is an **admin read**. It requires a **league-operator API key bound to this league** with the `leagues.league_admin:read` access permission, plus the `leagueOperatorApi` plan feature (api_pro or higher). A free key receives `403 error_api_feature_required`.
+This endpoint is an **admin read**. It requires a personal or developer API key whose owner is currently a league **ADMIN** of the league in the path, with the `leagues.league_admin:read` access on the key. League API access is gated at api_pro on the **league owner's** plan; when the owner's plan lacks it, the request receives `403 error_api_feature_required`.
 
 The `POST` method is used to deliver an authenticated, paginated read; this endpoint does not modify the league.
 
@@ -18,7 +18,7 @@ The `{identifier}` path parameter is the league **slug** - the URL-friendly leag
 
 ## What's Returned
 
-Returns recent league activity entries for the bound league as `{ "activities": [ ... ], "nextCursor": "<cursor>", "hasMore": <boolean>, "timestamp": "<ISO 8601>" }`. Page through the feed by passing `nextCursor` back as `cursor` while `hasMore` is `true`.
+Returns recent league activity entries for the league in the path as `{ "activities": [ ... ], "nextCursor": "<cursor>", "hasMore": <boolean>, "timestamp": "<ISO 8601>" }`. Page through the feed by passing `nextCursor` back as `cursor` while `hasMore` is `true`.
 
 ## Request Body
 

@@ -33,7 +33,7 @@ class ReplyRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ReplyLeagueTicketRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ReplyLeagueTicketResponse]:
         """
-        Adds a reply or internal note to a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+        Adds a reply or internal note to a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Adds a reply or internal note to a league support ticket.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReplyLeagueTicketResponse]
@@ -61,7 +61,7 @@ class ReplyRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ReplyLeagueTicketRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Adds a reply or internal note to a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.
+        Adds a reply or internal note to a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Adds a reply or internal note to a league support ticket.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

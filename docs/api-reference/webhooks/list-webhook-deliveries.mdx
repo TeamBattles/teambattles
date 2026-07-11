@@ -10,7 +10,7 @@ This endpoint requires the `webhooks.manage` permission (the `{ kind: "webhook" 
 
 ## Access / Membership Rules
 
-Webhooks are owner-scoped. The `{id}` must resolve to an endpoint in your key's own derived scope (`user`, `game`, or `league`, depending on your key type). An endpoint owned by another scope - or an unknown id - is reported as `404 error_webhook_not_found`.
+Webhook endpoints are per-creator - the `{id}` must resolve to an endpoint you created (a `user`- or `game`-scoped endpoint must additionally sit in your key's derived scope). An endpoint created by someone else - or an unknown id - is reported as `404 error_webhook_not_found`.
 
 ## Pagination
 

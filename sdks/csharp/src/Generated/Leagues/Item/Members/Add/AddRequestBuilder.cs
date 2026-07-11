@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Members.Add
         {
         }
         /// <summary>
-        /// Adds or reactivates a league staff member. Requires a league-operator key bound to the league and the league members capability.
+        /// Adds or reactivates a league staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.AddLeagueMemberResponse"/></returns>
         /// <param name="body">Adds or reactivates a league staff member.</param>
@@ -69,7 +69,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Members.Add
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.AddLeagueMemberResponse>(requestInfo, global::TeamBattles.Sdk.Models.AddLeagueMemberResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Adds or reactivates a league staff member. Requires a league-operator key bound to the league and the league members capability.
+        /// Adds or reactivates a league staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Adds or reactivates a league staff member.</param>

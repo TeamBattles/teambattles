@@ -19,7 +19,7 @@ class ActivateRequestBuilder extends BaseRequestBuilder<ActivateRequestBuilder> 
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ActivateRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/seasons/{seasonId}/activate", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Activates an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
+    /// Activates an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<ActivateLeagueSeasonResponse?> postAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toPostRequestInformation(requestConfiguration);
@@ -33,7 +33,7 @@ class ActivateRequestBuilder extends BaseRequestBuilder<ActivateRequestBuilder> 
         };
         return await requestAdapter.send<ActivateLeagueSeasonResponse>(requestInfo, ActivateLeagueSeasonResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Activates an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
+    /// Activates an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.post, urlTemplate : urlTemplate, pathParameters :  pathParameters);

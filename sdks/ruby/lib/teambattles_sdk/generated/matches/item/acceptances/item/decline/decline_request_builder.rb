@@ -30,7 +30,7 @@ module TeamBattlesSdk
                                     super(path_parameters, request_adapter, "{+baseurl}/matches/{matchId}/acceptances/{acceptanceId}/decline")
                                 end
                                 ## 
-                                ## Declines a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+                                ## Declines a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
                                 ## @param body Declines a pending match acceptance as the API key owner.
                                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                 ## @return a Fiber of decline_acceptance_response
@@ -51,7 +51,7 @@ module TeamBattlesSdk
                                     return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::DeclineAcceptanceResponse.create_from_discriminator_value(pn) }, error_mapping)
                                 end
                                 ## 
-                                ## Declines a pending match acceptance as the personal API key owner. The owner must captain the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+                                ## Declines a pending match acceptance as the personal API key owner. The owner must be a captain, co-captain, or org owner of the creator team, and the acceptance must still be pending. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
                                 ## @param body Declines a pending match acceptance as the API key owner.
                                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                 ## @return a request_information

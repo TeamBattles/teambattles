@@ -20,7 +20,7 @@ class ApplyTemplateRequestBuilder extends BaseRequestBuilder<ApplyTemplateReques
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     ApplyTemplateRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/rules/apply-template", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Applies a rule template to a league game. Requires a league-operator key bound to the league and the league rules capability.
+    /// Applies a rule template to a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Applies a rule template.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<ApplyRuleTemplateResponse?> postAsync(ApplyRuleTemplateRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class ApplyTemplateRequestBuilder extends BaseRequestBuilder<ApplyTemplateReques
         };
         return await requestAdapter.send<ApplyRuleTemplateResponse>(requestInfo, ApplyRuleTemplateResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Applies a rule template to a league game. Requires a league-operator key bound to the league and the league rules capability.
+    /// Applies a rule template to a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Applies a rule template.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(ApplyRuleTemplateRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

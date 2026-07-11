@@ -19,6 +19,9 @@ module TeamBattlesSdk
                 # Optional human label for the endpoint.
                 @label
                 ## 
+                # League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+                @league_id
+                ## 
                 # HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
                 @url
                 ## 
@@ -75,6 +78,7 @@ module TeamBattlesSdk
                     return {
                         "events" => lambda {|n| @events = n.get_collection_of_primitive_values(String) },
                         "label" => lambda {|n| @label = n.get_string_value() },
+                        "leagueId" => lambda {|n| @league_id = n.get_string_value() },
                         "url" => lambda {|n| @url = n.get_string_value() },
                     }
                 end
@@ -94,6 +98,21 @@ module TeamBattlesSdk
                     @label = value
                 end
                 ## 
+                ## Gets the leagueId property value. League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+                ## @return a string
+                ## 
+                def league_id
+                    return @league_id
+                end
+                ## 
+                ## Sets the leagueId property value. League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+                ## @param value Value to set for the leagueId property.
+                ## @return a void
+                ## 
+                def league_id=(value)
+                    @league_id = value
+                end
+                ## 
                 ## Serializes information the current object
                 ## @param writer Serialization writer to use to serialize this model
                 ## @return a void
@@ -102,6 +121,7 @@ module TeamBattlesSdk
                     raise StandardError, 'writer cannot be null' if writer.nil?
                     writer.write_collection_of_primitive_values("events", @events)
                     writer.write_string_value("label", @label)
+                    writer.write_string_value("leagueId", @league_id)
                     writer.write_string_value("url", @url)
                     writer.write_additional_data(@additional_data)
                 end

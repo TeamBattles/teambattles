@@ -29,7 +29,7 @@ class WebhooksRequestBuilder extends BaseRequestBuilder<WebhooksRequestBuilder> 
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     WebhooksRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/webhooks", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Lists the API key's webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+    /// Lists your webhook endpoints: those in the API key's derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<WebhookListResponse?> getAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toGetRequestInformation(requestConfiguration);
@@ -41,7 +41,7 @@ class WebhooksRequestBuilder extends BaseRequestBuilder<WebhooksRequestBuilder> 
         };
         return await requestAdapter.send<WebhookListResponse>(requestInfo, WebhookListResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Creates a webhook endpoint in the API key's derived scope (personal -> user, developer-app -> game, league-operator -> league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+    /// Creates a webhook endpoint. By default it is bound to the API key's derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner's plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
     ///  [body] Create a webhook endpoint in the caller's scope.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<WebhookSecret?> postAsync(CreateWebhookBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -50,12 +50,13 @@ class WebhooksRequestBuilder extends BaseRequestBuilder<WebhooksRequestBuilder> 
             '400' :  Error.createFromDiscriminatorValue,
             '401' :  Error.createFromDiscriminatorValue,
             '403' :  Error.createFromDiscriminatorValue,
+            '404' :  Error.createFromDiscriminatorValue,
             '409' :  Error.createFromDiscriminatorValue,
             '429' :  Error.createFromDiscriminatorValue,
         };
         return await requestAdapter.send<WebhookSecret>(requestInfo, WebhookSecret.createFromDiscriminatorValue, errorMapping);
     }
-    /// Lists the API key's webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+    /// Lists your webhook endpoints: those in the API key's derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toGetRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.get, urlTemplate : urlTemplate, pathParameters :  pathParameters);
@@ -63,7 +64,7 @@ class WebhooksRequestBuilder extends BaseRequestBuilder<WebhooksRequestBuilder> 
         requestInfo.headers.put('Accept', 'application/json');
         return requestInfo;
     }
-    /// Creates a webhook endpoint in the API key's derived scope (personal -> user, developer-app -> game, league-operator -> league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+    /// Creates a webhook endpoint. By default it is bound to the API key's derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner's plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
     ///  [body] Create a webhook endpoint in the caller's scope.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(CreateWebhookBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface DenyRequestBuilder extends BaseRequestBuilder<DenyRequestBuilder> {
     /**
-     * Denies a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.
+     * Denies a pending team application for the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Denies a pending league team application.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<DenyLeagueTeamResponse>}
@@ -24,7 +24,7 @@ export interface DenyRequestBuilder extends BaseRequestBuilder<DenyRequestBuilde
      */
      post(body: DenyLeagueTeamRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<DenyLeagueTeamResponse | undefined>;
     /**
-     * Denies a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.
+     * Denies a pending team application for the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Denies a pending league team application.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

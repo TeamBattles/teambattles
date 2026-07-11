@@ -76,7 +76,7 @@ module TeamBattlesSdk
                 # Selected objective IDs.
                 @selected_objectives
                 ## 
-                # Creator team ID. The owner must captain it.
+                # Creator team ID. The owner must be a captain, co-captain, or org owner of it.
                 @team_id
                 ## 
                 # Players per team.
@@ -496,14 +496,14 @@ module TeamBattlesSdk
                     writer.write_additional_data(@additional_data)
                 end
                 ## 
-                ## Gets the teamId property value. Creator team ID. The owner must captain it.
+                ## Gets the teamId property value. Creator team ID. The owner must be a captain, co-captain, or org owner of it.
                 ## @return a string
                 ## 
                 def team_id
                     return @team_id
                 end
                 ## 
-                ## Sets the teamId property value. Creator team ID. The owner must captain it.
+                ## Sets the teamId property value. Creator team ID. The owner must be a captain, co-captain, or org owner of it.
                 ## @param value Value to set for the teamId property.
                 ## @return a void
                 ## 

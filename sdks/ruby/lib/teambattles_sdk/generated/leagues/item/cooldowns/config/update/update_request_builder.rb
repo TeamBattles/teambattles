@@ -30,7 +30,7 @@ module TeamBattlesSdk
                                     super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/cooldowns/config/update")
                                 end
                                 ## 
-                                ## Updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.
+                                ## Updates the league member cooldown configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key (league-wide cooldown policy is a config-admin write, deliberately separated from the per-member cooldowns capability). League API access is gated at api_pro on the league owner's plan.
                                 ## @param body Updates league member cooldown configuration.
                                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                 ## @return a Fiber of update_league_cooldown_config_response
@@ -51,7 +51,7 @@ module TeamBattlesSdk
                                     return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::UpdateLeagueCooldownConfigResponse.create_from_discriminator_value(pn) }, error_mapping)
                                 end
                                 ## 
-                                ## Updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.
+                                ## Updates the league member cooldown configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key (league-wide cooldown policy is a config-admin write, deliberately separated from the per-member cooldowns capability). League API access is gated at api_pro on the league owner's plan.
                                 ## @param body Updates league member cooldown configuration.
                                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                 ## @return a request_information

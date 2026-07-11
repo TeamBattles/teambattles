@@ -67,7 +67,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, MapScores::createFromDiscriminatorValue);
     }
     /**
-     * Confirm a map score submitted by the opposing team. Only the opposing team&apos;s captain can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
+     * Confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
      * @param body Confirmation payload identifying the map score to confirm.
      * @return a {@link ScoreSubmissionResult}
      * @throws Error When receiving a 400 status code
@@ -80,7 +80,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return patch(body, null);
     }
     /**
-     * Confirm a map score submitted by the opposing team. Only the opposing team&apos;s captain can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
+     * Confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
      * @param body Confirmation payload identifying the map score to confirm.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link ScoreSubmissionResult}
@@ -101,7 +101,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, ScoreSubmissionResult::createFromDiscriminatorValue);
     }
     /**
-     * Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+     * Submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
      * @param body Map score submission payload for a single map.
      * @return a {@link ScoreSubmissionResult}
      * @throws Error When receiving a 400 status code
@@ -114,7 +114,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+     * Submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
      * @param body Map score submission payload for a single map.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link ScoreSubmissionResult}
@@ -155,7 +155,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return requestInfo;
     }
     /**
-     * Confirm a map score submitted by the opposing team. Only the opposing team&apos;s captain can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
+     * Confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
      * @param body Confirmation payload identifying the map score to confirm.
      * @return a {@link RequestInformation}
      */
@@ -164,7 +164,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return toPatchRequestInformation(body, null);
     }
     /**
-     * Confirm a map score submitted by the opposing team. Only the opposing team&apos;s captain can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
+     * Confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team&apos;s submission). Requires the matches.team_matches:read-write permission.
      * @param body Confirmation payload identifying the map score to confirm.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
@@ -179,7 +179,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return requestInfo;
     }
     /**
-     * Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+     * Submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
      * @param body Map score submission payload for a single map.
      * @return a {@link RequestInformation}
      */
@@ -188,7 +188,7 @@ public class ScoresRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+     * Submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
      * @param body Map score submission payload for a single map.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

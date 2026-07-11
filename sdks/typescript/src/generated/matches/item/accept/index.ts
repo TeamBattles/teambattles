@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface AcceptRequestBuilder extends BaseRequestBuilder<AcceptRequestBuilder> {
     /**
-     * Creates a match acceptance request as the personal API key owner. The owner must captain the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a match acceptance request as the personal API key owner. The owner must be a captain, co-captain, or org owner of the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a match acceptance request as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AcceptMatchResponse>}
@@ -25,7 +25,7 @@ export interface AcceptRequestBuilder extends BaseRequestBuilder<AcceptRequestBu
      */
      post(body: AcceptMatchRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AcceptMatchResponse | undefined>;
     /**
-     * Creates a match acceptance request as the personal API key owner. The owner must captain the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Creates a match acceptance request as the personal API key owner. The owner must be a captain, co-captain, or org owner of the accepting team and the proposed roster must satisfy existing match rules. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Creates a match acceptance request as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

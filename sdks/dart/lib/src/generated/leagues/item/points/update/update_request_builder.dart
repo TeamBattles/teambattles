@@ -20,7 +20,7 @@ class UpdateRequestBuilder extends BaseRequestBuilder<UpdateRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     UpdateRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/points/update", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Creates or updates the points configuration for a league game. Requires a league-operator key bound to the league and the league points capability.
+    /// Creates or updates the points configuration for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league points capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Updates league points configuration.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<UpdatePointsConfigResponse?> postAsync(UpdatePointsConfigRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class UpdateRequestBuilder extends BaseRequestBuilder<UpdateRequestBuilder> {
         };
         return await requestAdapter.send<UpdatePointsConfigResponse>(requestInfo, UpdatePointsConfigResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Creates or updates the points configuration for a league game. Requires a league-operator key bound to the league and the league points capability.
+    /// Creates or updates the points configuration for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league points capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Updates league points configuration.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(UpdatePointsConfigRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

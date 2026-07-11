@@ -36,7 +36,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder<WebhooksItemRequestB
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     WebhooksItemRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/webhooks/{id}", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+    /// Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<WebhookOk?> deleteAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toDeleteRequestInformation(requestConfiguration);
@@ -49,7 +49,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder<WebhooksItemRequestB
         };
         return await requestAdapter.send<WebhookOk>(requestInfo, WebhookOk.createFromDiscriminatorValue, errorMapping);
     }
-    /// Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+    /// Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<WebhookEndpoint?> getAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toGetRequestInformation(requestConfiguration);
@@ -62,7 +62,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder<WebhooksItemRequestB
         };
         return await requestAdapter.send<WebhookEndpoint>(requestInfo, WebhookEndpoint.createFromDiscriminatorValue, errorMapping);
     }
-    /// Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+    /// Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
     ///  [body] Partial update of a webhook endpoint.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<WebhookOk?> patchAsync(UpdateWebhookBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -76,7 +76,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder<WebhooksItemRequestB
         };
         return await requestAdapter.send<WebhookOk>(requestInfo, WebhookOk.createFromDiscriminatorValue, errorMapping);
     }
-    /// Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.
+    /// Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toDeleteRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.delete, urlTemplate : urlTemplate, pathParameters :  pathParameters);
@@ -84,7 +84,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder<WebhooksItemRequestB
         requestInfo.headers.put('Accept', 'application/json');
         return requestInfo;
     }
-    /// Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.
+    /// Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toGetRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.get, urlTemplate : urlTemplate, pathParameters :  pathParameters);
@@ -92,7 +92,7 @@ class WebhooksItemRequestBuilder extends BaseRequestBuilder<WebhooksItemRequestB
         requestInfo.headers.put('Accept', 'application/json');
         return requestInfo;
     }
-    /// Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.
+    /// Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.
     ///  [body] Partial update of a webhook endpoint.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPatchRequestInformation(UpdateWebhookBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

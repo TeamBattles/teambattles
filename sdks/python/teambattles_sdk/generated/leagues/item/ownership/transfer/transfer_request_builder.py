@@ -33,7 +33,7 @@ class TransferRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: TransferLeagueOwnershipRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TransferLeagueOwnershipResponse]:
         """
-        Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+        Transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
         param body: Transfers league ownership to an existing staff member.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TransferLeagueOwnershipResponse]
@@ -62,7 +62,7 @@ class TransferRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: TransferLeagueOwnershipRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+        Transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
         param body: Transfers league ownership to an existing staff member.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

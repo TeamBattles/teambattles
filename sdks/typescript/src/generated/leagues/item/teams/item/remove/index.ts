@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface RemoveRequestBuilder extends BaseRequestBuilder<RemoveRequestBuilder> {
     /**
-     * Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a league-operator key bound to the league and the league teams capability.
+     * Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Removes an approved team from a league.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<RemoveLeagueTeamResponse>}
@@ -25,7 +25,7 @@ export interface RemoveRequestBuilder extends BaseRequestBuilder<RemoveRequestBu
      */
      post(body: RemoveLeagueTeamRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<RemoveLeagueTeamResponse | undefined>;
     /**
-     * Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a league-operator key bound to the league and the league teams capability.
+     * Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Removes an approved team from a league.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

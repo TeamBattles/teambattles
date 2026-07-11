@@ -47,7 +47,7 @@ namespace TeamBattles.Sdk.Webhooks
         {
         }
         /// <summary>
-        /// Lists the API key&apos;s webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+        /// Lists your webhook endpoints: those in the API key&apos;s derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.WebhookListResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -76,7 +76,7 @@ namespace TeamBattles.Sdk.Webhooks
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.WebhookListResponse>(requestInfo, global::TeamBattles.Sdk.Models.WebhookListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a webhook endpoint in the API key&apos;s derived scope (personal -&gt; user, developer-app -&gt; game, league-operator -&gt; league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+        /// Creates a webhook endpoint. By default it is bound to the API key&apos;s derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner&apos;s plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.WebhookSecret"/></returns>
         /// <param name="body">Create a webhook endpoint in the caller&apos;s scope.</param>
@@ -85,6 +85,7 @@ namespace TeamBattles.Sdk.Webhooks
         /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 400 status code</exception>
         /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 401 status code</exception>
         /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 409 status code</exception>
         /// <exception cref="global::TeamBattles.Sdk.Models.Error">When receiving a 429 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -103,13 +104,14 @@ namespace TeamBattles.Sdk.Webhooks
                 { "400", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
                 { "401", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
                 { "403", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
                 { "409", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
                 { "429", global::TeamBattles.Sdk.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.WebhookSecret>(requestInfo, global::TeamBattles.Sdk.Models.WebhookSecret.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Lists the API key&apos;s webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.
+        /// Lists your webhook endpoints: those in the API key&apos;s derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -128,7 +130,7 @@ namespace TeamBattles.Sdk.Webhooks
             return requestInfo;
         }
         /// <summary>
-        /// Creates a webhook endpoint in the API key&apos;s derived scope (personal -&gt; user, developer-app -&gt; game, league-operator -&gt; league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+        /// Creates a webhook endpoint. By default it is bound to the API key&apos;s derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner&apos;s plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Create a webhook endpoint in the caller&apos;s scope.</param>

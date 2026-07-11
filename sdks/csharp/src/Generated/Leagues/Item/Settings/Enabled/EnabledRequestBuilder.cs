@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Settings.Enabled
         {
         }
         /// <summary>
-        /// Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+        /// Enables or disables a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.SetLeagueEnabledResponse"/></returns>
         /// <param name="body">League enabled-state update.</param>
@@ -69,7 +69,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Settings.Enabled
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.SetLeagueEnabledResponse>(requestInfo, global::TeamBattles.Sdk.Models.SetLeagueEnabledResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+        /// Enables or disables a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">League enabled-state update.</param>

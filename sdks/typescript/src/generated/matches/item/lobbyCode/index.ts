@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface LobbyCodeRequestBuilder extends BaseRequestBuilder<LobbyCodeRequestBuilder> {
     /**
-     * Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Sets or updates the lobby code as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Sets or updates the match lobby code as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UpdateLobbyCodeResponse>}
@@ -25,7 +25,7 @@ export interface LobbyCodeRequestBuilder extends BaseRequestBuilder<LobbyCodeReq
      */
      post(body: UpdateLobbyCodeRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UpdateLobbyCodeResponse | undefined>;
     /**
-     * Sets or updates the lobby code as the personal API key owner. The owner must captain one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+     * Sets or updates the lobby code as the personal API key owner. The owner must be a captain, co-captain, or org owner of one participating team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
      * @param body Sets or updates the match lobby code as the API key owner.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

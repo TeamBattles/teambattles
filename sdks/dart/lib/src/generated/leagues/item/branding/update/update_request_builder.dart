@@ -20,7 +20,7 @@ class UpdateRequestBuilder extends BaseRequestBuilder<UpdateRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     UpdateRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/branding/update", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+    /// Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Updates league profile branding and public metadata.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<UpdateLeagueBrandingResponse?> postAsync(UpdateLeagueBrandingRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class UpdateRequestBuilder extends BaseRequestBuilder<UpdateRequestBuilder> {
         };
         return await requestAdapter.send<UpdateLeagueBrandingResponse>(requestInfo, UpdateLeagueBrandingResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+    /// Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Updates league profile branding and public metadata.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(UpdateLeagueBrandingRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

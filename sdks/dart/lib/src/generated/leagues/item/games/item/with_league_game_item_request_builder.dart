@@ -24,7 +24,7 @@ class WithLeagueGameItemRequestBuilder extends BaseRequestBuilder<WithLeagueGame
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     WithLeagueGameItemRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/games/{leagueGameId}", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.
+    /// Removes a game from a league and deletes its non-active league configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<RemoveLeagueGameResponse?> deleteAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toDeleteRequestInformation(requestConfiguration);
@@ -39,7 +39,7 @@ class WithLeagueGameItemRequestBuilder extends BaseRequestBuilder<WithLeagueGame
         };
         return await requestAdapter.send<RemoveLeagueGameResponse>(requestInfo, RemoveLeagueGameResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.
+    /// Removes a game from a league and deletes its non-active league configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toDeleteRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.delete, urlTemplate : urlTemplate, pathParameters :  pathParameters);

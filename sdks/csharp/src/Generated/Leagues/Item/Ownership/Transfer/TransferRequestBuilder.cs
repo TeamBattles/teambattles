@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Ownership.Transfer
         {
         }
         /// <summary>
-        /// Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+        /// Transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.TransferLeagueOwnershipResponse"/></returns>
         /// <param name="body">Transfers league ownership to an existing staff member.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Ownership.Transfer
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.TransferLeagueOwnershipResponse>(requestInfo, global::TeamBattles.Sdk.Models.TransferLeagueOwnershipResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+        /// Transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Transfers league ownership to an existing staff member.</param>

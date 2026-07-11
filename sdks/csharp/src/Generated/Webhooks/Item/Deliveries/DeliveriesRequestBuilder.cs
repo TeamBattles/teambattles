@@ -47,7 +47,7 @@ namespace TeamBattles.Sdk.Webhooks.Item.Deliveries
         {
         }
         /// <summary>
-        /// Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+        /// Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Webhooks.Item.Deliveries.DeliveriesGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -78,7 +78,7 @@ namespace TeamBattles.Sdk.Webhooks.Item.Deliveries
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Webhooks.Item.Deliveries.DeliveriesGetResponse>(requestInfo, global::TeamBattles.Sdk.Webhooks.Item.Deliveries.DeliveriesGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+        /// Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Webhooks.Item.Deliveries.DeliveriesResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -110,7 +110,7 @@ namespace TeamBattles.Sdk.Webhooks.Item.Deliveries
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Webhooks.Item.Deliveries.DeliveriesResponse>(requestInfo, global::TeamBattles.Sdk.Webhooks.Item.Deliveries.DeliveriesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+        /// Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -138,7 +138,7 @@ namespace TeamBattles.Sdk.Webhooks.Item.Deliveries
             return new global::TeamBattles.Sdk.Webhooks.Item.Deliveries.DeliveriesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+        /// Returns the endpoint&apos;s delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DeliveriesRequestBuilderGetQueryParameters 

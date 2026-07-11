@@ -33,7 +33,7 @@ func NewItemCancelRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
     urlParams["request-raw-url"] = rawUrl
     return NewItemCancelRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post cancels a match as the personal API key owner. The owner must be able to manage the match (captain a participating team or be an admin). Past the league grace period an accepted league match is treated as a forfeit. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+// Post cancels a match as the personal API key owner. For a regular match the owner must be able to manage it (be a captain, co-captain, or org owner of a participating team, or an admin); past the league grace period an accepted league match is treated as a forfeit. For a PENDING challenge the owner must lead the creator team (captain, co-captain, or org owner of the challenging team), and past the challenge grace window (default 24h, league-overridable) cancelling any pending challenge - league or not - is recorded as a forfeit with the creator team taking the loss. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
 // returns a CancelMatchResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -65,7 +65,7 @@ func (m *ItemCancelRequestBuilder) Post(ctx context.Context, body i2d9c680fd9772
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CancelMatchResponseable), nil
 }
-// ToPostRequestInformation cancels a match as the personal API key owner. The owner must be able to manage the match (captain a participating team or be an admin). Past the league grace period an accepted league match is treated as a forfeit. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+// ToPostRequestInformation cancels a match as the personal API key owner. For a regular match the owner must be able to manage it (be a captain, co-captain, or org owner of a participating team, or an admin); past the league grace period an accepted league match is treated as a forfeit. For a PENDING challenge the owner must lead the creator team (captain, co-captain, or org owner of the challenging team), and past the challenge grace window (default 24h, league-overridable) cancelling any pending challenge - league or not - is recorded as a forfeit with the creator team taking the loss. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
 // returns a *RequestInformation when successful
 func (m *ItemCancelRequestBuilder) ToPostRequestInformation(ctx context.Context, body i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.CancelMatchRequestBodyable, requestConfiguration *ItemCancelRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

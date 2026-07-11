@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface PlayerStatsRequestBuilder extends BaseRequestBuilder<PlayerStatsRequestBuilder> {
     /**
-     * Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+     * Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<GamePlayerStatsResponse>}
@@ -23,7 +23,7 @@ export interface PlayerStatsRequestBuilder extends BaseRequestBuilder<PlayerStat
      */
      post(body: GamePlayerStatsBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<GamePlayerStatsResponse | undefined>;
     /**
-     * Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+     * Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param body Request body for submitting or updating player stats for an existing map score.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

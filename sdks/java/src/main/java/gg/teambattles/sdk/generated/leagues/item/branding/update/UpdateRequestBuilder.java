@@ -37,7 +37,7 @@ public class UpdateRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/branding/update", rawUrl);
     }
     /**
-     * Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+     * Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league profile branding and public metadata.
      * @return a {@link UpdateLeagueBrandingResponse}
      * @throws Error When receiving a 400 status code
@@ -53,7 +53,7 @@ public class UpdateRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+     * Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league profile branding and public metadata.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link UpdateLeagueBrandingResponse}
@@ -80,7 +80,7 @@ public class UpdateRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, UpdateLeagueBrandingResponse::createFromDiscriminatorValue);
     }
     /**
-     * Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+     * Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league profile branding and public metadata.
      * @return a {@link RequestInformation}
      */
@@ -89,7 +89,7 @@ public class UpdateRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.
+     * Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan.
      * @param body Updates league profile branding and public metadata.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

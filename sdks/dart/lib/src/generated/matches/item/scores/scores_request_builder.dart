@@ -33,7 +33,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBuilder> {
         };
         return await requestAdapter.send<MapScores>(requestInfo, MapScores.createFromDiscriminatorValue, errorMapping);
     }
-    /// Confirm a map score submitted by the opposing team. Only the opposing team's captain can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
+    /// Confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
     ///  [body] Confirmation payload identifying the map score to confirm.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<ScoreSubmissionResult?> patchAsync(ConfirmScoreBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -46,7 +46,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBuilder> {
         };
         return await requestAdapter.send<ScoreSubmissionResult>(requestInfo, ScoreSubmissionResult.createFromDiscriminatorValue, errorMapping);
     }
-    /// Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+    /// Submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
     ///  [body] Map score submission payload for a single map.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<ScoreSubmissionResult?> postAsync(SubmitScoreBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -67,7 +67,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBuilder> {
         requestInfo.headers.put('Accept', 'application/json');
         return requestInfo;
     }
-    /// Confirm a map score submitted by the opposing team. Only the opposing team's captain can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
+    /// Confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
     ///  [body] Confirmation payload identifying the map score to confirm.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPatchRequestInformation(ConfirmScoreBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
@@ -77,7 +77,7 @@ class ScoresRequestBuilder extends BaseRequestBuilder<ScoresRequestBuilder> {
         requestInfo.setContentFromParsable(requestAdapter, 'application/json', body);
         return requestInfo;
     }
-    /// Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+    /// Submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
     ///  [body] Map score submission payload for a single map.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(SubmitScoreBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

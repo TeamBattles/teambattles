@@ -16,6 +16,8 @@ class CreateWebhookBody(AdditionalDataHolder, Parsable):
     events: Optional[list[str]] = None
     # Optional human label for the endpoint.
     label: Optional[str] = None
+    # League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.
+    league_id: Optional[str] = None
     # HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
     url: Optional[str] = None
     
@@ -38,6 +40,7 @@ class CreateWebhookBody(AdditionalDataHolder, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "events": lambda n : setattr(self, 'events', n.get_collection_of_primitive_values(str)),
             "label": lambda n : setattr(self, 'label', n.get_str_value()),
+            "leagueId": lambda n : setattr(self, 'league_id', n.get_str_value()),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
         return fields
@@ -52,6 +55,7 @@ class CreateWebhookBody(AdditionalDataHolder, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("events", self.events)
         writer.write_str_value("label", self.label)
+        writer.write_str_value("leagueId", self.league_id)
         writer.write_str_value("url", self.url)
         writer.write_additional_data_value(self.additional_data)
     

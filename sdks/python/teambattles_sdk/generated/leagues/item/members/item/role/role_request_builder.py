@@ -33,7 +33,7 @@ class RoleRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: UpdateLeagueMemberRoleRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[UpdateLeagueMemberRoleResponse]:
         """
-        Updates a league staff member role. Requires a league-operator key bound to the league and the league members capability.
+        Updates a league staff member role. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Updates a league staff member role.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdateLeagueMemberRoleResponse]
@@ -61,7 +61,7 @@ class RoleRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: UpdateLeagueMemberRoleRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Updates a league staff member role. Requires a league-operator key bound to the league and the league members capability.
+        Updates a league staff member role. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Updates a league staff member role.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

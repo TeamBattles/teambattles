@@ -32,7 +32,7 @@ class IssueRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Issues or updates a manual cooldown for a league member. Requires a league-operator key bound to the league and the league cooldowns capability.
+     * Issues or updates a manual cooldown for a league member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param IssueCooldownRequestBody $body Issues or updates a manual league member cooldown.
      * @param IssueRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<IssueCooldownResponse|null>
@@ -52,7 +52,7 @@ class IssueRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * Issues or updates a manual cooldown for a league member. Requires a league-operator key bound to the league and the league cooldowns capability.
+     * Issues or updates a manual cooldown for a league member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
      * @param IssueCooldownRequestBody $body Issues or updates a manual league member cooldown.
      * @param IssueRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

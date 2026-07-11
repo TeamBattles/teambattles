@@ -33,7 +33,7 @@ func NewItemGamesWithLeagueGameItemRequestBuilder(rawUrl string, requestAdapter 
     urlParams["request-raw-url"] = rawUrl
     return NewItemGamesWithLeagueGameItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Delete removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.
+// Delete removes a game from a league and deletes its non-active league configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
 // returns a RemoveLeagueGameResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 // returns a ErrorEscaped error when the service returns a 401 status code
@@ -65,7 +65,7 @@ func (m *ItemGamesWithLeagueGameItemRequestBuilder) Delete(ctx context.Context, 
     }
     return res.(i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.RemoveLeagueGameResponseable), nil
 }
-// ToDeleteRequestInformation removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.
+// ToDeleteRequestInformation removes a game from a league and deletes its non-active league configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
 // returns a *RequestInformation when successful
 func (m *ItemGamesWithLeagueGameItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *ItemGamesWithLeagueGameItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

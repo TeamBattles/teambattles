@@ -20,7 +20,7 @@ class BatchScoresRequestBuilder extends BaseRequestBuilder<BatchScoresRequestBui
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     BatchScoresRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/matches/batch-scores", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Submits map scores for up to 50 league match items in one request. Each item is independently checked against the key's bound league and returns a per-item result. Requires the league scores capability.
+    /// Submits map scores for up to 50 league match items in one request. Each item is independently checked to belong to the league in the path and returns a per-item result. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Request body for submitting map scores across multiple matches in a single call (capped at 50 items).
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<GameBatchMatchScoresResponse?> postAsync(GameBatchMatchScoresBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -34,7 +34,7 @@ class BatchScoresRequestBuilder extends BaseRequestBuilder<BatchScoresRequestBui
         };
         return await requestAdapter.send<GameBatchMatchScoresResponse>(requestInfo, GameBatchMatchScoresResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Submits map scores for up to 50 league match items in one request. Each item is independently checked against the key's bound league and returns a per-item result. Requires the league scores capability.
+    /// Submits map scores for up to 50 league match items in one request. Each item is independently checked to belong to the league in the path and returns a per-item result. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Request body for submitting map scores across multiple matches in a single call (capped at 50 items).
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(GameBatchMatchScoresBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

@@ -20,7 +20,7 @@ class TransferRequestBuilder extends BaseRequestBuilder<TransferRequestBuilder> 
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     TransferRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/ownership/transfer", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+    /// Transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Transfers league ownership to an existing staff member.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<TransferLeagueOwnershipResponse?> postAsync(TransferLeagueOwnershipRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -36,7 +36,7 @@ class TransferRequestBuilder extends BaseRequestBuilder<TransferRequestBuilder> 
         };
         return await requestAdapter.send<TransferLeagueOwnershipResponse>(requestInfo, TransferLeagueOwnershipResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.
+    /// Transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Transfers league ownership to an existing staff member.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(TransferLeagueOwnershipRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

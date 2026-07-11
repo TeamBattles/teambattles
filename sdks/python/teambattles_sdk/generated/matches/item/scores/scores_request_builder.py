@@ -57,7 +57,7 @@ class ScoresRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: ConfirmScoreBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ScoreSubmissionResult]:
         """
-        Confirm a map score submitted by the opposing team. Only the opposing team's captain can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
+        Confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
         param body: Confirmation payload identifying the map score to confirm.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ScoreSubmissionResult]
@@ -83,7 +83,7 @@ class ScoresRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: SubmitScoreBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ScoreSubmissionResult]:
         """
-        Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+        Submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
         param body: Map score submission payload for a single map.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ScoreSubmissionResult]
@@ -120,7 +120,7 @@ class ScoresRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: ConfirmScoreBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Confirm a map score submitted by the opposing team. Only the opposing team's captain can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
+        Confirm a map score submitted by the opposing team. Only a captain, co-captain, or org owner of the opposing team can confirm (cannot confirm own team's submission). Requires the matches.team_matches:read-write permission.
         param body: Confirmation payload identifying the map score to confirm.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class ScoresRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: SubmitScoreBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Submit or overwrite a map score for a match. Only team captains can submit. Requires the matches.team_matches:read-write permission.
+        Submit or overwrite a map score for a match. Only a captain, co-captain, or org owner of a participating team can submit. Requires the matches.team_matches:read-write permission.
         param body: Map score submission payload for a single map.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

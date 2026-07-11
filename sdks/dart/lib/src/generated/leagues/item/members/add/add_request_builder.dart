@@ -20,7 +20,7 @@ class AddRequestBuilder extends BaseRequestBuilder<AddRequestBuilder> {
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     AddRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/members/add", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Adds or reactivates a league staff member. Requires a league-operator key bound to the league and the league members capability.
+    /// Adds or reactivates a league staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Adds or reactivates a league staff member.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<AddLeagueMemberResponse?> postAsync(AddLeagueMemberRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
@@ -35,7 +35,7 @@ class AddRequestBuilder extends BaseRequestBuilder<AddRequestBuilder> {
         };
         return await requestAdapter.send<AddLeagueMemberResponse>(requestInfo, AddLeagueMemberResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Adds or reactivates a league staff member. Requires a league-operator key bound to the league and the league members capability.
+    /// Adds or reactivates a league staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
     ///  [body] Adds or reactivates a league staff member.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation(AddLeagueMemberRequestBody body, [void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {

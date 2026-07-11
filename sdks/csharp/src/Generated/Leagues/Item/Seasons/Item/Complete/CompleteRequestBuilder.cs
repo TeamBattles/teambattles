@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Seasons.Item.Complete
         {
         }
         /// <summary>
-        /// Completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
+        /// Completes an active league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.CompleteLeagueSeasonResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -67,7 +67,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Seasons.Item.Complete
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.CompleteLeagueSeasonResponse>(requestInfo, global::TeamBattles.Sdk.Models.CompleteLeagueSeasonResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
+        /// Completes an active league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner&apos;s plan. Replays are not deduped; existing state guards return the current state error if the season is no longer active.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

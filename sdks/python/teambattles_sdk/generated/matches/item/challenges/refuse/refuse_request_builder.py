@@ -33,7 +33,7 @@ class RefuseRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: RefuseChallengeRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[RefuseChallengeResponse]:
         """
-        Refuses a pending challenge as the personal API key owner. The owner must captain the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        Refuses a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         param body: Refuses a pending challenge as the API key owner.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RefuseChallengeResponse]
@@ -62,7 +62,7 @@ class RefuseRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: RefuseChallengeRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Refuses a pending challenge as the personal API key owner. The owner must captain the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
+        Refuses a pending challenge as the personal API key owner. The owner must be a captain, co-captain, or org owner of the challenged team. Requires matches.user_matches:read-write and API writes access. Supports an optional `Idempotency-Key` header for safe retries.
         param body: Refuses a pending challenge as the API key owner.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

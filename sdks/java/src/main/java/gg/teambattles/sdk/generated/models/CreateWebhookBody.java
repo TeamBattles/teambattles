@@ -25,6 +25,10 @@ public class CreateWebhookBody implements AdditionalDataHolder, Parsable {
      */
     private String label;
     /**
+     * League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner&apos;s plan.
+     */
+    private String leagueId;
+    /**
      * HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
      */
     private String url;
@@ -66,9 +70,10 @@ public class CreateWebhookBody implements AdditionalDataHolder, Parsable {
      */
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
         deserializerMap.put("events", (n) -> { this.setEvents(n.getCollectionOfPrimitiveValues(String.class)); });
         deserializerMap.put("label", (n) -> { this.setLabel(n.getStringValue()); });
+        deserializerMap.put("leagueId", (n) -> { this.setLeagueId(n.getStringValue()); });
         deserializerMap.put("url", (n) -> { this.setUrl(n.getStringValue()); });
         return deserializerMap;
     }
@@ -79,6 +84,14 @@ public class CreateWebhookBody implements AdditionalDataHolder, Parsable {
     @jakarta.annotation.Nullable
     public String getLabel() {
         return this.label;
+    }
+    /**
+     * Gets the leagueId property value. League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner&apos;s plan.
+     * @return a {@link String}
+     */
+    @jakarta.annotation.Nullable
+    public String getLeagueId() {
+        return this.leagueId;
     }
     /**
      * Gets the url property value. HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.
@@ -96,6 +109,7 @@ public class CreateWebhookBody implements AdditionalDataHolder, Parsable {
         Objects.requireNonNull(writer);
         writer.writeCollectionOfPrimitiveValues("events", this.getEvents());
         writer.writeStringValue("label", this.getLabel());
+        writer.writeStringValue("leagueId", this.getLeagueId());
         writer.writeStringValue("url", this.getUrl());
         writer.writeAdditionalData(this.getAdditionalData());
     }
@@ -119,6 +133,13 @@ public class CreateWebhookBody implements AdditionalDataHolder, Parsable {
      */
     public void setLabel(@jakarta.annotation.Nullable final String value) {
         this.label = value;
+    }
+    /**
+     * Sets the leagueId property value. League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner&apos;s plan.
+     * @param value Value to set for the leagueId property.
+     */
+    public void setLeagueId(@jakarta.annotation.Nullable final String value) {
+        this.leagueId = value;
     }
     /**
      * Sets the url property value. HTTPS endpoint URL. Private/loopback/metadata hosts are rejected.

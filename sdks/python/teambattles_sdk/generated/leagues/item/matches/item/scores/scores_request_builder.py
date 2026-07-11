@@ -48,7 +48,7 @@ class ScoresRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: GameBatchScoresBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[GameBatchScoresResponse]:
         """
-        Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+        Submits scores for one or more maps in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Request body for submitting one or more map scores in a single call.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GameBatchScoresResponse]
@@ -76,7 +76,7 @@ class ScoresRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: GameBatchScoresBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.
+        Submits scores for one or more maps in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
         param body: Request body for submitting one or more map scores in a single call.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

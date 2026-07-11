@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "TeamBattles API",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Public developer API for TeamBattles. Authenticate with an API key: Authorization: Bearer tb_<key>."
   },
   "servers": [
@@ -90,42 +90,42 @@
     {
       "name": "League: Membership & Teams",
       "description": "League staff membership, team applications, and ownership transfer.",
-      "x-group": "League Operator API"
+      "x-group": "League Admin API"
     },
     {
       "name": "League: Announcements",
-      "description": "League-operator announcement posts to league members.",
-      "x-group": "League Operator API"
+      "description": "League admin announcement posts to league members.",
+      "x-group": "League Admin API"
     },
     {
       "name": "League: Seasons",
       "description": "League season lifecycle: create, activate, complete, delete.",
-      "x-group": "League Operator API"
+      "x-group": "League Admin API"
     },
     {
       "name": "League: Rules & Config",
       "description": "League rules, points, display rules, branding, settings, games, and shutdown.",
-      "x-group": "League Operator API"
+      "x-group": "League Admin API"
     },
     {
       "name": "League: Scores",
-      "description": "League-operator match score and player-stat submission and status.",
-      "x-group": "League Operator API"
+      "description": "League admin match score and player-stat submission and status.",
+      "x-group": "League Admin API"
     },
     {
       "name": "League: Moderation",
       "description": "League bans, penalties, and cooldowns.",
-      "x-group": "League Operator API"
+      "x-group": "League Admin API"
     },
     {
       "name": "League: Tickets",
       "description": "League support-ticket workflow.",
-      "x-group": "League Operator API"
+      "x-group": "League Admin API"
     },
     {
       "name": "League: Overview",
-      "description": "League operator dashboards and activity feed.",
-      "x-group": "League Operator API"
+      "description": "League admin dashboards and activity feed.",
+      "x-group": "League Admin API"
     },
     {
       "name": "Webhooks",
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "name": "League Operator API",
+      "name": "League Admin API",
       "tags": [
         "League: Membership & Teams",
         "League: Announcements",
@@ -2291,7 +2291,7 @@
           "League: Overview"
         ],
         "summary": "Get league activity feed",
-        "description": "Returns recent league activity entries. Requires a league-operator key bound to the league and leagues.league_admin:read.",
+        "description": "Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -2399,7 +2399,7 @@
           "League: Announcements"
         ],
         "summary": "Send a league announcement",
-        "description": "Sends an announcement to all members of the league. Requires a league-operator key bound to the league and the league announcements capability.",
+        "description": "Sends an announcement to all members of the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league announcements capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -2615,7 +2615,7 @@
           "League: Moderation"
         ],
         "summary": "Get league team bans",
-        "description": "Returns team bans for a league resolved by slug, with optional status filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.",
+        "description": "Returns team bans for a league resolved by slug, with optional status filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -2703,7 +2703,7 @@
           "League: Moderation"
         ],
         "summary": "Revoke a league team ban",
-        "description": "Revokes an active league team ban. Requires a league-operator key bound to the league and the league bans capability.",
+        "description": "Revokes an active league team ban. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -2821,7 +2821,7 @@
           "League: Moderation"
         ],
         "summary": "Create a league team ban",
-        "description": "Bans a team from the league and removes it from active/pending league participation. Requires a league-operator key bound to the league and the league bans capability.",
+        "description": "Bans a team from the league and removes it from active/pending league participation. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league bans capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -2929,7 +2929,7 @@
           "League: Rules & Config"
         ],
         "summary": "Update league branding",
-        "description": "Updates league public profile branding and metadata. Requires a league-operator key bound to the league and the league branding capability.",
+        "description": "Updates league public profile branding and metadata. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league branding capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -3047,7 +3047,7 @@
           "League: Moderation"
         ],
         "summary": "Clear a league cooldown",
-        "description": "Clears an active league member cooldown early. Requires a league-operator key bound to the league and the league cooldowns capability.",
+        "description": "Clears an active league member cooldown early. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -3156,7 +3156,7 @@
           "League: Rules & Config"
         ],
         "summary": "Update league cooldown config",
-        "description": "Updates the league member cooldown configuration. Requires a league-operator key bound to the league and the league cooldowns capability.",
+        "description": "Updates the league member cooldown configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key (league-wide cooldown policy is a config-admin write, deliberately separated from the per-member cooldowns capability). League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -3274,7 +3274,7 @@
           "League: Moderation"
         ],
         "summary": "Issue a league cooldown",
-        "description": "Issues or updates a manual cooldown for a league member. Requires a league-operator key bound to the league and the league cooldowns capability.",
+        "description": "Issues or updates a manual cooldown for a league member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league cooldowns capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -3382,7 +3382,7 @@
           "League: Overview"
         ],
         "summary": "Get league dashboard stats",
-        "description": "Returns aggregate league admin dashboard counts. Requires a league-operator key bound to the league and leagues.league_admin:read.",
+        "description": "Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -3579,7 +3579,7 @@
           "League: Rules & Config"
         ],
         "summary": "Remove a league display rule",
-        "description": "Removes an informational display rule. Requires a league-operator key bound to the league and the league display_rules capability.",
+        "description": "Removes an informational display rule. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league display_rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -3688,7 +3688,7 @@
           "League: Rules & Config"
         ],
         "summary": "Reorder league display rules",
-        "description": "Reorders display rules for a league game. Requires a league-operator key bound to the league and the league display_rules capability.",
+        "description": "Reorders display rules for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league display_rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -3796,7 +3796,7 @@
           "League: Rules & Config"
         ],
         "summary": "Upsert a league display rule",
-        "description": "Creates or updates an informational display rule for a league game. Requires a league-operator key bound to the league and the league display_rules capability.",
+        "description": "Creates or updates an informational display rule for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league display_rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -4003,7 +4003,7 @@
           "League: Rules & Config"
         ],
         "summary": "Remove a league game",
-        "description": "Removes a game from a league and deletes its non-active league configuration. Requires a league-operator key bound to the league and the league games capability.",
+        "description": "Removes a game from a league and deletes its non-active league configuration. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -4122,7 +4122,7 @@
           "League: Rules & Config"
         ],
         "summary": "Toggle a league game",
-        "description": "Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires the league games capability.",
+        "description": "Activates or deactivates a league game. Deactivation cancels pending, accepted, and ready matches for that league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -4250,7 +4250,7 @@
           "League: Rules & Config"
         ],
         "summary": "Add a league game",
-        "description": "Adds an active game to a league. Requires a league-operator key bound to the league and the league games capability.",
+        "description": "Adds an active game to a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league games capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -4368,7 +4368,7 @@
           "League: Scores"
         ],
         "summary": "Submit or update league player stats for a map",
-        "description": "Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.",
+        "description": "Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -4476,7 +4476,7 @@
           "League: Scores"
         ],
         "summary": "Submit league match scores in a batch",
-        "description": "Submits scores for one or more maps in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.",
+        "description": "Submits scores for one or more maps in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -4594,7 +4594,7 @@
           "League: Scores"
         ],
         "summary": "Submit one league match map score",
-        "description": "Submits the score for one map in a league match; league-operator scores are auto-confirmed. Requires the league scores capability.",
+        "description": "Submits the score for one map in a league match; league admin scores are auto-confirmed. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -4722,7 +4722,7 @@
           "League: Scores"
         ],
         "summary": "Update a league match's lifecycle status",
-        "description": "Transitions a league match between lifecycle states using a league-operator key bound to the league. Requires the league scores capability.",
+        "description": "Transitions a league match between lifecycle states. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -4840,7 +4840,7 @@
           "League: Scores"
         ],
         "summary": "Submit league map scores across multiple matches",
-        "description": "Submits map scores for up to 50 league match items in one request. Each item is independently checked against the key's bound league and returns a per-item result. Requires the league scores capability.",
+        "description": "Submits map scores for up to 50 league match items in one request. Each item is independently checked to belong to the league in the path and returns a per-item result. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -5007,7 +5007,7 @@
           "League: Membership & Teams"
         ],
         "summary": "Remove a league staff member",
-        "description": "Deactivates a league staff membership. Requires a league-operator key bound to the league and the league members capability.",
+        "description": "Deactivates a league staff membership. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -5117,7 +5117,7 @@
           "League: Membership & Teams"
         ],
         "summary": "Update a league staff member role",
-        "description": "Updates a league staff member role. Requires a league-operator key bound to the league and the league members capability.",
+        "description": "Updates a league staff member role. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -5236,7 +5236,7 @@
           "League: Membership & Teams"
         ],
         "summary": "Add a league staff member",
-        "description": "Adds or reactivates a league staff member. Requires a league-operator key bound to the league and the league members capability.",
+        "description": "Adds or reactivates a league staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league members capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -5344,7 +5344,7 @@
           "League: Membership & Teams"
         ],
         "summary": "Transfer league ownership",
-        "description": "Transfers league ownership to another staff member. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.",
+        "description": "Transfers league ownership to another staff member. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -5462,7 +5462,7 @@
           "League: Moderation"
         ],
         "summary": "Get league penalties and cooldowns",
-        "description": "Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. The API key owner must have a MANAGER+ league role or be TeamBattles staff. Requires the leagues.league_admin:read permission.",
+        "description": "Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -5550,7 +5550,7 @@
           "League: Moderation"
         ],
         "summary": "Create a league penalty",
-        "description": "Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a league-operator key bound to the league and the league penalties capability.",
+        "description": "Issues a warning, match-forfeit penalty, or point deduction to a league team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league penalties capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -5658,7 +5658,7 @@
           "League: Rules & Config"
         ],
         "summary": "Update league points config",
-        "description": "Creates or updates the points configuration for a league game. Requires a league-operator key bound to the league and the league points capability.",
+        "description": "Creates or updates the points configuration for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league points capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -5864,7 +5864,7 @@
           "League: Rules & Config"
         ],
         "summary": "Apply a league rule template",
-        "description": "Applies a rule template to a league game. Requires a league-operator key bound to the league and the league rules capability.",
+        "description": "Applies a rule template to a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -5982,7 +5982,7 @@
           "League: Rules & Config"
         ],
         "summary": "Update league game rules",
-        "description": "Creates or updates enforced rules for a league game. Requires a league-operator key bound to the league and the league rules capability.",
+        "description": "Creates or updates enforced rules for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league rules capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -6296,7 +6296,7 @@
           "League: Seasons"
         ],
         "summary": "Delete a league season",
-        "description": "Deletes an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.",
+        "description": "Deletes an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season no longer exists or is no longer upcoming.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -6502,7 +6502,7 @@
           "League: Seasons"
         ],
         "summary": "Activate a league season",
-        "description": "Activates an upcoming league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.",
+        "description": "Activates an upcoming league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer upcoming.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -6611,7 +6611,7 @@
           "League: Seasons"
         ],
         "summary": "Complete a league season",
-        "description": "Completes an active league season. Requires the league seasons capability. Replays are not deduped; existing state guards return the current state error if the season is no longer active.",
+        "description": "Completes an active league season. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Replays are not deduped; existing state guards return the current state error if the season is no longer active.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -6720,7 +6720,7 @@
           "League: Seasons"
         ],
         "summary": "Create a league season",
-        "description": "Creates an upcoming season for a league game. Requires the league seasons capability. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.",
+        "description": "Creates an upcoming season for a league game. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league seasons capability enabled on the key. League API access is gated at api_pro on the league owner's plan. Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original season id, while the same key with a different body returns 409 error_idempotency_key_conflict.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -6838,7 +6838,7 @@
           "League: Rules & Config"
         ],
         "summary": "Get league settings",
-        "description": "Returns full league settings for admin tooling. Requires a league-operator key bound to the league and leagues.settings_read:read.",
+        "description": "Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -6927,7 +6927,7 @@
           "League: Rules & Config"
         ],
         "summary": "Set league enabled state",
-        "description": "Enables or disables a league. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority.",
+        "description": "Enables or disables a league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -7035,7 +7035,7 @@
           "League: Rules & Config"
         ],
         "summary": "Request league shutdown",
-        "description": "Requests TeamBattles staff review for league shutdown. Requires a league-operator key bound to the league and leagues.league_admin:read-write; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API.",
+        "description": "Requests TeamBattles staff review for league shutdown. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read-write access on the key; Convex re-checks current OWNER authority. Staff-only shutdown execution is not exposed by the public API. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -7222,7 +7222,7 @@
           "League: Membership & Teams"
         ],
         "summary": "Approve a league team application",
-        "description": "Approves a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.",
+        "description": "Approves a pending team application for the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -7342,7 +7342,7 @@
           "League: Membership & Teams"
         ],
         "summary": "Deny a league team application",
-        "description": "Denies a pending team application for the league. Requires a league-operator key bound to the league and the league teams capability.",
+        "description": "Denies a pending team application for the league. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -7461,7 +7461,7 @@
           "League: Membership & Teams"
         ],
         "summary": "Remove a league team",
-        "description": "Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a league-operator key bound to the league and the league teams capability.",
+        "description": "Removes an approved team from the league. Pending matches are cancelled and ready or accepted matches are forfeited by the removed team. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league teams capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -7590,7 +7590,7 @@
           "League: Tickets"
         ],
         "summary": "Update a league support ticket",
-        "description": "Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.",
+        "description": "Updates ticket status, priority, or assignment for a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -7708,7 +7708,7 @@
           "League: Tickets"
         ],
         "summary": "Escalate a league support ticket",
-        "description": "Escalates a league-scoped support ticket to TeamBattles staff. Requires a league-operator key bound to the league and the league tickets capability.",
+        "description": "Escalates a league-scoped support ticket to TeamBattles staff. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -7836,7 +7836,7 @@
           "League: Tickets"
         ],
         "summary": "Reply to a league support ticket",
-        "description": "Adds a reply or internal note to a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.",
+        "description": "Adds a reply or internal note to a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -7954,7 +7954,7 @@
           "League: Tickets"
         ],
         "summary": "Create a league support ticket",
-        "description": "Creates a league-scoped support ticket. Requires a league-operator key bound to the league and the league tickets capability.",
+        "description": "Creates a league-scoped support ticket. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league tickets capability enabled on the key. League API access is gated at api_pro on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -14940,7 +14940,7 @@
           "Webhooks"
         ],
         "summary": "List webhook endpoints",
-        "description": "Lists the API key's webhook endpoints within its derived scope. Secret material is never returned. Requires the webhooks.manage permission and the webhooks feature.",
+        "description": "Lists your webhook endpoints: those in the API key's derived scope, plus any league-scoped endpoints you own. Secret material is never returned. Requires the webhooks.manage permission.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -15005,7 +15005,7 @@
           "Webhooks"
         ],
         "summary": "Create a webhook endpoint",
-        "description": "Creates a webhook endpoint in the API key's derived scope (personal -> user, developer-app -> game, league-operator -> league). Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.",
+        "description": "Creates a webhook endpoint. By default it is bound to the API key's derived scope (a personal key scopes to your user, a developer-app key to its game). Pass `leagueId` to create a league-scoped endpoint instead: you must be a current ADMIN of that league, and the league owner's plan must include the webhooks feature. Returns the signing secret ONCE. Requires the webhooks.manage permission and the webhooks feature.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -15061,6 +15061,16 @@
               }
             }
           },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "409": {
             "description": "Conflict.",
             "content": {
@@ -15091,7 +15101,7 @@
           "Webhooks"
         ],
         "summary": "Delete a webhook endpoint",
-        "description": "Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission and the webhooks feature.",
+        "description": "Deletes a webhook endpoint in the caller's scope, cascading its delivery logs and rate-limit bucket. Requires the webhooks.manage permission.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -15178,7 +15188,7 @@
           "Webhooks"
         ],
         "summary": "Get a webhook endpoint",
-        "description": "Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission and the webhooks feature.",
+        "description": "Returns one webhook endpoint in the caller's scope (no secret material). A scope/owner mismatch is reported as 404. Requires the webhooks.manage permission.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -15265,7 +15275,7 @@
           "Webhooks"
         ],
         "summary": "Update a webhook endpoint",
-        "description": "Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission and the webhooks feature.",
+        "description": "Partially updates a webhook endpoint in the caller's scope. Re-enabling or changing the URL resets the failure count. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -15363,7 +15373,7 @@
           "Webhooks"
         ],
         "summary": "List a webhook endpoint's deliveries",
-        "description": "Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.",
+        "description": "Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -15490,7 +15500,7 @@
           "Webhooks"
         ],
         "summary": "Replay a webhook delivery",
-        "description": "Re-queues a dead-lettered delivery for a fresh attempt. Delivered, in-flight, or still-retrying (failed) deliveries cannot be replayed (409). Requires the webhooks.manage permission and the webhooks feature.",
+        "description": "Re-queues a dead-lettered delivery for a fresh attempt. Delivered, in-flight, or still-retrying (failed) deliveries cannot be replayed (409). Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -15599,7 +15609,7 @@
           "Webhooks"
         ],
         "summary": "Rotate a webhook signing secret",
-        "description": "Rotates the endpoint's signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission and the webhooks feature.",
+        "description": "Rotates the endpoint's signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -15688,7 +15698,7 @@
           "Webhooks"
         ],
         "summary": "Send a test.ping to a webhook endpoint",
-        "description": "Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission and the webhooks feature.",
+        "description": "Sends a single signed test.ping delivery (no retries) and logs it. Use it to verify your endpoint and signature handling. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner's plan.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -22035,6 +22045,10 @@
           },
           "label": {
             "description": "Optional human label for the endpoint.",
+            "type": "string"
+          },
+          "leagueId": {
+            "description": "League id - creates a league-scoped endpoint; requires current league ADMIN membership; gated on the league owner's plan.",
             "type": "string"
           }
         },

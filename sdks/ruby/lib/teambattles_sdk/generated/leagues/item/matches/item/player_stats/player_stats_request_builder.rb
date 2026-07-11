@@ -30,7 +30,7 @@ module TeamBattlesSdk
                                     super(path_parameters, request_adapter, "{+baseurl}/leagues/{identifier}/matches/{matchId}/player-stats")
                                 end
                                 ## 
-                                ## Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+                                ## Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                                 ## @param body Request body for submitting or updating player stats for an existing map score.
                                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                 ## @return a Fiber of game_player_stats_response
@@ -49,7 +49,7 @@ module TeamBattlesSdk
                                     return @request_adapter.send_async(request_info, lambda {|pn| TeamBattlesSdk::Generated::Models::GamePlayerStatsResponse.create_from_discriminator_value(pn) }, error_mapping)
                                 end
                                 ## 
-                                ## Sets per-player stats on an existing league match map score. Requires a league-operator key bound to the league and the league scores capability.
+                                ## Sets per-player stats on an existing league match map score. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with the league scores capability enabled on the key. League API access is gated at api_pro on the league owner's plan.
                                 ## @param body Request body for submitting or updating player stats for an existing map score.
                                 ## @param request_configuration Configuration for the request such as headers, query parameters, and middleware options.
                                 ## @return a request_information

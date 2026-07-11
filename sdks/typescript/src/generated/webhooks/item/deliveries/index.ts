@@ -42,7 +42,7 @@ export interface DeliveriesRequestBuilder extends BaseRequestBuilder<DeliveriesR
      */
      byDeliveryId(deliveryId: string) : WithDeliveryItemRequestBuilder;
     /**
-     * Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<DeliveriesGetResponse>}
      * @throws {ErrorEscaped} error when the service returns a 400 status code
@@ -53,14 +53,14 @@ export interface DeliveriesRequestBuilder extends BaseRequestBuilder<DeliveriesR
      */
      get(requestConfiguration?: RequestConfiguration<DeliveriesRequestBuilderGetQueryParameters> | undefined) : Promise<DeliveriesGetResponse | undefined>;
     /**
-     * Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+     * Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<DeliveriesRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission and the webhooks feature.
+ * Returns the endpoint's delivery log, newest first, with native cursor pagination. Pass limit (1-100) and cursor query params. Requires the webhooks.manage permission.
  */
 export interface DeliveriesRequestBuilderGetQueryParameters {
     /**

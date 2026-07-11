@@ -36,7 +36,7 @@ public class RotateSecretRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/webhooks/{id}/rotate-secret", rawUrl);
     }
     /**
-     * Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+     * Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @return a {@link WebhookSecret}
      * @throws Error When receiving a 400 status code
      * @throws Error When receiving a 401 status code
@@ -49,7 +49,7 @@ public class RotateSecretRequestBuilder extends BaseRequestBuilder {
         return post(null);
     }
     /**
-     * Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+     * Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link WebhookSecret}
      * @throws Error When receiving a 400 status code
@@ -70,7 +70,7 @@ public class RotateSecretRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, WebhookSecret::createFromDiscriminatorValue);
     }
     /**
-     * Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+     * Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -78,7 +78,7 @@ public class RotateSecretRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(null);
     }
     /**
-     * Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission and the webhooks feature.
+     * Rotates the endpoint&apos;s signing secret. The previous secret keeps signing for a 24h grace window so consumers can update without missing deliveries. Returns the new secret ONCE. Requires the webhooks.manage permission; league-scoped endpoints additionally require current league ADMIN membership and the webhooks feature on the league owner&apos;s plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */
