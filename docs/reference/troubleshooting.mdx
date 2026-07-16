@@ -135,6 +135,52 @@ description: "Solutions to common problems"
 
 - This happens when the league owner's account is banned. Contact TB staff through the support system for assistance.
 
+## Tournament Issues
+
+**"I can't host a tournament" (`error_not_eligible_to_host`)**
+
+- Hosting needs any paid subscription tier, or a Free account at least 30 days old.
+- Competitively banned accounts cannot host.
+- You may have reached your tier's limit on how many tournaments you can run at once (`error_tournament_host_limit_reached`) - finish or cancel an existing one, or upgrade your tier.
+
+**"I can't set the participant count that high" (`error_tournament_size_limit_reached`)**
+
+- The maximum participant count is capped by your subscription tier and by the format ceiling (128 for elimination, 64 for Swiss, 32 for round robin). Lower the maximum or upgrade your tier.
+
+**"I can't add more sponsors" (`error_sponsor_tag_limit_reached`)**
+
+- The number of sponsor tags is capped by your subscription tier. Remove a sponsor tag or upgrade your tier.
+
+**"My team can't enter this tournament"**
+
+- Registration may be closed or the tournament may be full (`error_registration_closed`, `error_tournament_full`).
+- The tournament may use a different entry mode - an application- or invite-only tournament will not accept direct entry.
+- Your team may already be entered (`error_already_entered`).
+- Your selected roster must have at least the tournament's required team size (`error_roster_too_small`).
+
+**"I can't join the free-agent pool"**
+
+- The pool must be enabled by the host and open for joins.
+- Some games require a linked platform account; link it in Settings > Connections first (`error_free_agent_account_required`).
+- You cannot join a pool you are already in (`error_free_agent_already_in_pool`).
+
+**"I can't open registration" (`error_approval_required`)**
+
+- A tournament must be approved by staff before registration can open. If it is still awaiting review (`error_approval_pending`), wait for staff to approve it.
+
+**"I can't check in" (`error_check_in_closed`)**
+
+- Check-in is only possible during the check-in window, which opens a set number of minutes before the start.
+- Your team must be approved into the tournament to check in.
+
+**"I can't manage this tournament" (`error_not_tournament_staff`)**
+
+- Only the host, host managers, and tournament staff can manage a tournament. Staff at the Moderator level cannot access the Staff or Settings tabs.
+
+**"I can't save this bracket" (`error_sim_limit_reached`)**
+
+- The number of brackets you can save to your account is capped by your subscription tier. Delete an old saved bracket or upgrade your tier. You can still export a bracket to a local file for free.
+
 ## Tutorial Issues
 
 **"My tutorial is stuck or not advancing"**
@@ -215,6 +261,34 @@ These error codes may be returned by the public REST API or by the Battles Strat
 **Fix `error_strategy_board_limit_exceeded`:** delete unused boards from the Battles Strategy editor before creating new ones.
 
 **Fix `error_custom_map_limit_reached`:** open the Battles Strategy editor's custom maps panel and delete unused custom maps. Custom maps are a Premium feature with a 50-per-user cap.
+
+### Tournament and bracket error codes
+
+These codes surface in the tournament and Brackets tool flows. Most are explained above in [Tournament Issues](#tournament-issues); the full set is listed here for reference.
+
+| Error code | HTTP status | Meaning |
+| --- | :-: | --- |
+| `error_not_eligible_to_host` | 403 | You do not meet the hosting requirements (paid tier or 30-day account) or are competitively banned |
+| `error_tournament_not_found` | 404 | The tournament does not exist |
+| `error_tournament_full` | 409 | The tournament has reached its maximum participant count |
+| `error_registration_closed` | 400 | Registration is not currently open for this tournament |
+| `error_already_entered` | 409 | Your team is already entered in this tournament |
+| `error_roster_too_small` | 400 | The selected roster is smaller than the tournament's required team size |
+| `error_free_agent_account_required` | 403 | The game requires a linked platform account to join the free-agent pool |
+| `error_free_agent_already_in_pool` | 409 | You are already in this tournament's free-agent pool |
+| `error_approval_pending` | 409 | The tournament is already awaiting staff review |
+| `error_approval_required` | 403 | The tournament must be approved before this action (for example, opening registration) |
+| `error_node_already_completed` | 409 | The bracket match already has a result; reopen it before overriding |
+| `error_node_match_already_exists` | 409 | A match has already been generated for this bracket slot |
+| `error_invalid_seed_order` | 400 | The submitted seed order does not match the tournament's participants |
+| `error_check_in_closed` | 400 | The check-in window is not open |
+| `error_not_tournament_staff` | 403 | You are not a manager of this tournament (or lack the required admin level) |
+| `error_tournament_host_limit_reached` | 403 | You have reached your tier's limit on concurrent tournaments |
+| `error_tournament_size_limit_reached` | 403 | The chosen maximum participant count exceeds your tier's cap |
+| `error_sponsor_tag_limit_reached` | 403 | You have reached your tier's sponsor-tag limit |
+| `error_sim_limit_reached` | 403 | You have reached your tier's saved-bracket limit in the Brackets tool |
+
+**Fix the tier-limit codes** (`error_tournament_host_limit_reached`, `error_tournament_size_limit_reached`, `error_sponsor_tag_limit_reached`, `error_sim_limit_reached`): remove or finish an existing item, lower the requested count, or upgrade your subscription tier. See the [tier-based limits](/reference#tier-based-limits) table.
 
 ### 429 during concurrent bursts from one key or IP (`error_api_rate_limited`)
 

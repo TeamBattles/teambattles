@@ -1,0 +1,64 @@
+---
+title: "Brackets Tool"
+description: "A standalone bracket simulator for planning and sharing any bracket"
+---
+
+The Brackets tool at [`/brackets`](https://teambattles.gg/brackets) is a free-standing bracket simulator. It uses the same bracket engine that powers [tournaments](/tournaments), but it is not tied to any tournament, game, or real teams - you can plan, score, and share any bracket you like. You can use it signed out; saving to your account and sharing require an account.
+
+## Starting a New Bracket
+
+Pick a [format](/tournaments/formats) - single elimination, double elimination, round robin, or Swiss - and paste your entrants, one label per line. Each format has an entrant ceiling (128 for elimination, 64 for Swiss, 32 for round robin), and the list is clamped to that ceiling. You need at least two entrants to start.
+
+## Editing Entrants
+
+Each entrant slot is a plain text label by default. You can also:
+
+- **Rename** an entrant - renaming is display-only and never disturbs already-scored results.
+- **Attach a team snapshot** - search for a real team to borrow its name and avatar for display. This is cosmetic only; it does not involve or notify the team.
+- **Set a custom avatar** - upload an image for the entrant.
+- **Clear the snapshot** - return a slot to a plain text label.
+
+## Scoring the Bracket
+
+Click a node to report its series result, or record a walkover. Results flow through the bracket exactly as they do in a real tournament - winners advance, and in double elimination losers drop to the losers bracket. Swiss rounds are paired automatically once the current round is fully decided.
+
+You can also:
+
+- **Set per-round best-of** - choose Bo1, Bo3, Bo5, or Bo7 for each round from the best-of menu.
+- **Disqualify** an entrant - propagates a walkover to its opponent.
+- **Shuffle seeds** - reseed the field randomly.
+- **Undo** - step back one action at a time. The bracket is a replay of your action log, so undo is always exact.
+
+<Note>
+	Changing the structure - adding or removing entrants, or switching a format option like the
+	grand-final advantage, Swiss round count, or round-robin passes - resets the scored results, since
+	the bracket shape itself changed.
+</Note>
+
+## Saving and Sharing
+
+<Steps>
+	<Step title="Export a local file">
+		Download the current bracket as a `.json` file. You can re-open an exported file later. This works
+		signed out and never leaves your device.
+	</Step>
+	<Step title="Save to your account">
+		Signed-in users can save brackets to the cloud. The number of saved brackets is limited by your
+		subscription tier (see the table below).
+	</Step>
+	<Step title="Share a public link">
+		Turn on sharing for a saved bracket to get a public link (`/brackets/<code>`) that shows a
+		read-only view of your bracket. Turning sharing off makes the link private again.
+	</Step>
+</Steps>
+
+### Saved-Bracket Limits
+
+| Tier     | Saved brackets |
+| -------- | -------------- |
+| Free     | 3              |
+| Basic    | 10             |
+| Standard | 25             |
+| Premium  | 100            |
+
+If you reach your tier's limit, delete an old saved bracket or upgrade your subscription for more. See the [Quick Reference](/reference) for all tier limits.

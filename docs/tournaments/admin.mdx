@@ -1,0 +1,83 @@
+---
+title: "Administration"
+description: "Run your tournament from the host admin panel, and how staff review works"
+---
+
+Every tournament has a host admin panel at `/tournaments/[slug]/admin`. Hosts, host managers, and tournament staff use it to review entries, seed the bracket, run matches, and manage settings. Separately, TeamBattles staff review new tournaments from a platform-wide console.
+
+## Who Can Manage a Tournament
+
+| Role                        | Access                                                                                     |
+| --------------------------- | ------------------------------------------------------------------------------------------ |
+| **Host managers**           | Full admin access. The hosting user, an org OWNER or ADMIN (for org-hosted), or a league OWNER or ADMIN (for league-hosted). |
+| **Tournament staff - Admin** | Full admin access, including Staff and Settings.                                           |
+| **Tournament staff - Moderator** | Day-to-day management (participants, matches, free agents, activity), but not Staff, Settings, or cancelling. |
+| **TeamBattles staff**       | Platform staff who review and approve tournaments and can act everywhere.                   |
+| **Team captains**           | Not tournament managers. Captains, co-captains, and org owners act on their own team's entry, roster, and check-in. |
+
+## Admin Panel Surfaces
+
+The admin panel is organized into tabs.
+
+### Dashboard
+
+The landing surface shows the tournament's status and the lifecycle actions available now - submit for approval, open or close registration, start the tournament, or cancel it. When the tournament is awaiting review or has material changes pending, an **approval banner** explains the current state.
+
+### Participants
+
+Manage everyone entered:
+
+- **Participants** - the full table of entered teams and their status.
+- **Applications** - approve or deny pending applications (for application-mode tournaments).
+- **Seeding** - set the seed order (manual, random, or registration order) before the bracket is generated.
+- **Check-in** - the check-in board showing which approved teams have checked in.
+- **Disqualification and removal** - remove a team, or disqualify one. A disqualification propagates through a live bracket, awarding walkovers to the affected opponents.
+
+### Matches and Bracket
+
+View the generated rounds, nodes, and bracket, and step in when needed:
+
+- **Manual result** - override a node's result directly. This is allowed only while the node's linked match has not yet started; overriding cancels the linked match and replays the result through the bracket.
+- **Contested scores** - resolve a match whose result is in dispute by setting the series score.
+
+Generated tournament matches are experience-only and published, are born already accepted, and get their own match chat, so teams play them like any other match.
+
+### Free Agents
+
+Manage the [free-agent pool](/tournaments/free-agents) - review who is available and remove agents when needed.
+
+### Staff
+
+<Note>Admin-only. Moderator-level staff do not see this tab.</Note>
+
+Add or remove tournament staff and set each staff member's role (Admin or Moderator).
+
+### Settings and Re-approval
+
+<Note>Admin-only. Moderator-level staff do not see this tab.</Note>
+
+Edit branding, presentation, and tournament settings. Editing a **material** field after the tournament has been approved sends only those changed fields back to staff for re-approval; the tournament keeps running on its last-approved values until staff accept them. Material fields include:
+
+- Name, description, and rules
+- Game, playlist, and team size
+- Format and format configuration
+- Participant range (minimum and maximum)
+- Registration mode, registration window, check-in settings, start and end times
+- Prize pool, currency, breakdown, and description
+- Banner, logo, sponsor tags, social links, and visibility
+
+Non-material edits apply immediately without review.
+
+### Activity
+
+A chronological activity log of everything that happened - submissions, approvals, registration changes, participant actions, seeding, results, and staff changes.
+
+## Staff Approval Console
+
+TeamBattles staff review tournaments from a platform-wide console at `/admin/tournaments`:
+
+- **Review queue** - tournaments awaiting approval, newest first, each with the host and format at a glance.
+- **Approve or reject** - approve a tournament (or its pending material changes) or reject it with a reason. Rejecting a re-approval keeps the tournament running on its last-approved values and discards the pending changes.
+- **Change diff** - for a re-approval, a field-level view of what changed (old value to new value).
+- **Approval mode** - a platform toggle for how much review is required: review **all tournaments**, or only **publicly listed** tournaments (letting unlisted tournaments self-approve).
+- **Stats** - summary cards for the review workload.

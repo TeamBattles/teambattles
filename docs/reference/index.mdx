@@ -41,11 +41,15 @@ Limits vary by subscription tier. See [Subscriptions](/subscriptions) for full t
 | Org Members                      | 20       | 50       | 100      | 200      |
 | Org Teams                        | 2        | 4        | 8        | 10       |
 | Leagues per user                 | 1        | 2        | 3        | 5        |
+| Tournaments per user             | 1        | 2        | 5        | 10       |
+| Tournament participants (max)    | 16       | 32       | 64       | 128      |
+| Tournament sponsor tags          | 1        | 2        | 4        | 8        |
 | API Keys                         | 2        | 3        | 5        | 10       |
 | Open Tickets                     | 2        | 3        | 5        | 10       |
 | Saved strategies (Total)         | 3        | Infinity | Infinity | Infinity |
 | Saved strategies (Per map)       | Infinity | 3        | 5        | 10       |
 | Custom maps                      | 0        | 0        | 0        | 50       |
+| Saved brackets                   | 3        | 10       | 25       | 100      |
 | Strategy boards (per user)[^1]   | 200      | 200      | 200      | 200      |
 
 [^1]: Strategy boards are not tier-gated. The 200-board cap is a flat anti-abuse constant (`BOARD_CAP = 200` in `src/convex/functions/strategies/boards.ts`), not a per-tier limit.
@@ -66,6 +70,21 @@ Limits vary by subscription tier. See [Subscriptions](/subscriptions) for full t
 | Schedule minimum | 1 hour from now    |
 | Schedule maximum | 7 days from now    |
 | Minimum roster   | 1 active player    |
+
+## Tournament Constraints
+
+| Setting                           | Constraint                                                                      |
+| --------------------------------- | ------------------------------------------------------------------------------- |
+| Hosting eligibility               | Any paid tier, or a Free account at least 30 days old; not competitively banned  |
+| Formats                           | Single elimination, double elimination, round robin, Swiss                       |
+| Max entrants (single/double elim) | 128                                                                             |
+| Max entrants (Swiss)              | 64                                                                              |
+| Max entrants (round robin)        | 32                                                                             |
+| Series options                    | Bo1, Bo3, Bo5, Bo7 (set per round)                                              |
+| Registration modes                | Open, Application, Invite only                                                   |
+| Tournament name                   | 3-80 characters                                                                 |
+
+The per-tier maximum participant count, tournaments-per-user, sponsor-tag, and saved-bracket caps are in the [tier-based limits](#tier-based-limits) table above.
 
 ## Challenge Constraints
 

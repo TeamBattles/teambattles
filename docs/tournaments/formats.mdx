@@ -1,0 +1,60 @@
+---
+title: "Formats"
+description: "Single elimination, double elimination, round robin, and Swiss - and how each is scored"
+---
+
+Every tournament runs one of four formats. You choose the format on the Format step of the [creation wizard](/tournaments/create), and it cannot be changed to a different structure once the bracket is generated. Each format has a maximum entrant count:
+
+| Format               | Maximum entrants |
+| -------------------- | ---------------- |
+| Single elimination   | 128              |
+| Double elimination   | 128              |
+| Swiss                | 64               |
+| Round robin          | 32               |
+
+Your subscription tier caps the participant count too. The effective maximum is the lower of the format ceiling and your tier's participant cap.
+
+## Single Elimination
+
+Every match is decisive - the loser is out and the winner advances. A field that is not a power of two is filled with byes in the first round so seeds advance cleanly. The last team standing is the champion.
+
+## Double Elimination
+
+A team must lose twice to be eliminated. The first loss drops a team from the winners bracket into the losers bracket, where a second loss ends its run. The winners-bracket finalist meets the losers-bracket survivor in the grand final.
+
+Because the winners-bracket finalist reached the grand final without a loss, you can grant it an advantage:
+
+| Grand-final advantage | Effect                                                                                     |
+| --------------------- | ------------------------------------------------------------------------------------------ |
+| **None**              | The grand final is a normal series with no advantage.                                      |
+| **Win head start**    | The winners-bracket finalist starts the grand-final series ahead by a set number of wins (1-3). |
+| **Map selection**     | The winners-bracket finalist is given map-selection advantage for the grand final.         |
+| **Bracket reset**     | If the losers-bracket team wins the grand final, a second grand final is played to decide the champion, since the winners-bracket finalist had not yet lost. |
+
+<Note>
+	The advantaged party is always the winners-bracket finalist. With **Bracket reset**, both teams
+	enter the deciding grand final even, so the true champion is whoever wins the second grand final.
+</Note>
+
+## Round Robin
+
+Every team plays every other team. You choose whether the field plays **one pass** (each pairing once) or **two passes** (each pairing twice). Standings rank teams by wins, with head-to-head and map differential as tiebreakers.
+
+## Swiss
+
+Teams are paired each round against opponents with a similar record, and no team is eliminated mid-event - everyone plays the same number of rounds. If the field has an odd number of teams, one team receives a bye that round.
+
+- **Round count** - defaults to a value based on the field size (roughly the base-2 logarithm of the entrant count) and never exceeds one less than the entrant count. You can also set the round count explicitly.
+- **Byes** - awarded to the unpaired team on odd rounds and counted toward its record.
+- **Buchholz** - the standard Swiss tiebreaker (the sum of a team's opponents' scores) breaks ties between teams on equal records.
+
+## Per-Round Best-Of
+
+Series length is chosen from **Bo1, Bo3, Bo5, and Bo7**. You set a default best-of for the whole tournament and can override it for individual rounds.
+
+A common setup is a deeper series for the decider. For example, run every round as **Bo5** but override the **grand final to Bo7**:
+
+- Default best-of: `Bo5`
+- Grand-final override: `Bo7`
+
+Each round snapshots its best-of when the bracket is generated, so overrides apply to the rounds you set them on.

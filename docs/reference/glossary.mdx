@@ -17,7 +17,10 @@ description: "Terms and definitions"
 | **Benefit action**       | A tier-gated action whose cooldown frequency scales with your subscription tier (rename, reset stats, custom URL, remove D&B, feature org) |
 | **Best Of (BO)**         | Series format (e.g., BO3 = first to win 2 maps)                                             |
 | **Board**                | A folder (collection) of strategies in the Battles Strategy editor                          |
+| **Bracket Node**         | A single slot in a tournament bracket - one match between two entrants (or a bye), which advances a winner to the next node |
+| **Bracket Reset**        | A double-elimination grand-final option: if the losers-bracket team wins the first grand final, a second grand final is played to decide the champion |
 | **Browser Source**       | A URL loaded as a video source in streaming software (OBS, Streamlabs, XSplit) for overlays |
+| **Buchholz**             | The standard Swiss tiebreaker - the sum of a team's opponents' scores - used to rank teams on equal records |
 | **Captain**              | Team leader with full management permissions                                                |
 | **Challenge Match**      | A match where one team directly challenges a specific opponent                              |
 | **Challenger Badge**     | Planned profile badge for teams that challenge every other league team in a season (the data model is in place; the badge is not yet earnable while the writer is being implemented) |
@@ -26,9 +29,12 @@ description: "Terms and definitions"
 | **Competitive Pool**     | Curated tournament-standard maps                                                            |
 | **Custom Map**           | An uploaded map image used in the Battles Strategy editor (Premium feature; up to 50 per user) |
 | **Developer Account**    | An approved developer account (General or Game) that unlocks webhook and API access         |
+| **Disqualification (DQ)** | Host or staff action that removes a team from a live tournament; the team is eliminated and its opponents are awarded walkovers |
 | **Experience**           | Points earned from matches and objectives                                                   |
 | **Flex Pool**            | All available maps including casual                                                         |
 | **Forfeit**              | Voluntarily conceding a match, awarding the win to the opponent                             |
+| **Free Agent**           | A solo player in a tournament's free-agent pool who can be drafted onto a participating team's roster |
+| **Grand-final Advantage** | The edge granted to the undefeated winners-bracket finalist in a double-elimination grand final: none, a win head start, map selection, or bracket reset |
 | **Host**                 | Team that controls the match lobby for a map                                                |
 | **League**               | An organized competitive group with standings, rules, and seasons managed by league staff   |
 | **League Admin Panel**   | Dashboard for league owners and staff to manage competition settings, teams, and support    |
@@ -51,12 +57,16 @@ description: "Terms and definitions"
 | **Regular Team**         | Standard competitive teams; XP displayed as "XP"                                            |
 | **Scrimmage**            | A league challenge with no active season; awards 0 XP                                       |
 | **Season**               | Admin-controlled period that scopes league challenge tracking                               |
+| **Seed**                 | An entrant's ranking position that sets its starting slot in a bracket; assigned manually, randomly, or by registration order |
 | **Strategy**             | A single Konva-backed tactical board in the Battles Strategy editor                         |
+| **Swiss**                | A tournament format where teams are paired each round against opponents with a similar record and no one is eliminated mid-event |
 | **System Message**       | Automated chat notification for match events                                                |
 | **Tag**                  | Short identifier (2-6 chars for orgs, 2-5 for teams)                                        |
 | **Token rail**           | The right-side panel in the Battles Strategy editor that holds draggable tokens             |
 | **Tool**                 | Official TeamBattles utility or extension                                                   |
+| **Tournament**           | A hosted, bracketed competition (single elim, double elim, round robin, or Swiss) with automated match generation and result advancement |
 | **Veto Mode**            | Map selection where teams ban unwanted maps                                                 |
+| **Walkover**             | An automatic advancement awarded when a team cannot play its match - for example when its opponent is disqualified or a bye is present |
 | **Webhook**              | An HTTP callback that delivers real-time event notifications to external applications       |
 | **Webhook Event Catalog** | The set of event names a webhook can subscribe to - 83 events across families such as `match.*`, `score.*`, `team.*`, `organization.*`, and `league.*` (plus a `test.ping` test event). See the [Webhooks guide](/developers/webhooks) for the full catalog. |
 | **Welcome overlay**      | The in-canvas first-open screen in the Battles Strategy editor that shows recent boards and lets you start a new one |

@@ -86,6 +86,16 @@
 						]
 					},
 					{
+						"group": "Tournaments",
+						"pages": [
+							"tournaments/index",
+							"tournaments/create",
+							"tournaments/formats",
+							"tournaments/free-agents",
+							"tournaments/admin"
+						]
+					},
+					{
 						"group": "Discovery",
 						"pages": [
 							"discovery/index",
@@ -136,6 +146,7 @@
 						"pages": [
 							"tools/index",
 							"tools/battles-replay",
+							"tools/brackets",
 							{
 								"group": "Battles Record",
 								"pages": [
