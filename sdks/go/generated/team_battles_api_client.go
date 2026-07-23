@@ -16,6 +16,7 @@ import (
     i33444a63e9590513701eaab53d095742dca9629a59d4ebf0cdfb40c1338970c0 "github.com/teambattles/sdk-go/generated/twitch"
     i4d06a0c9b682f78e9a6184b44ddc779c5dd6e2e2ed551d064115ccc3c4eae7c6 "github.com/teambattles/sdk-go/generated/teams"
     i6351986394f2bdfc868e66329e602b98eb0051eae0032caca67c03ae5ee35670 "github.com/teambattles/sdk-go/generated/orgs"
+    i78521eb6b694b2243729eb95c5de3e9ca499f89220a132f453402a3dcf606e7c "github.com/teambattles/sdk-go/generated/tournaments"
     i812e850f1362bb2dc7f514439efc35ce75239853ed8855d6d45ae66cf3884337 "github.com/teambattles/sdk-go/generated/game"
     i98555757576cf1b7095f016bd021b4fba4d5206a91084743d082447b01b675d6 "github.com/teambattles/sdk-go/generated/strategies"
     i985ee11de583fc87279c94fc8159dfdb3d4626af31e96fc7fd9fb1026881e6bd "github.com/teambattles/sdk-go/generated/users"
@@ -104,6 +105,11 @@ func (m *TeamBattlesApiClient) Teams()(*i4d06a0c9b682f78e9a6184b44ddc779c5dd6e2e
 // returns a *TicketsRequestBuilder when successful
 func (m *TeamBattlesApiClient) Tickets()(*ie60b7994765ff34cdb62e2743a4cd86aeed413abf87233bc2fe8e83f104bbb3b.TicketsRequestBuilder) {
     return ie60b7994765ff34cdb62e2743a4cd86aeed413abf87233bc2fe8e83f104bbb3b.NewTicketsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Tournaments the tournaments property
+// returns a *TournamentsRequestBuilder when successful
+func (m *TeamBattlesApiClient) Tournaments()(*i78521eb6b694b2243729eb95c5de3e9ca499f89220a132f453402a3dcf606e7c.TournamentsRequestBuilder) {
+    return i78521eb6b694b2243729eb95c5de3e9ca499f89220a132f453402a3dcf606e7c.NewTournamentsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Twitch the twitch property
 // returns a *TwitchRequestBuilder when successful

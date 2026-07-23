@@ -1,0 +1,96 @@
+---
+title: "Discover Tournaments"
+description: "Browse publicly listed tournaments with filters and paging."
+openapi: "POST /tournaments/discover"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.tournament_public` set to `read`.
+
+## Permission Required
+
+This endpoint requires `tournaments.tournament_public: read`.
+
+<Note>
+	Discovery is a **POST** even though it is a read. The filter set is a request body rather than a
+	query string, matching `POST /leagues/discover`. It resolves no tournament, so it takes no
+	`{identifier}` and needs no tournament standing.
+</Note>
+
+## What's Returned
+
+A page of tournament summaries, **featured entries first**, plus `count`, `total`, and an echo of the `page` and `limit` actually applied.
+
+Unlisted and draft tournaments are **never** included, whoever asks. This endpoint is not a way to see a tournament you could not already read directly.
+
+## Filters
+
+| Field | Notes |
+| --- | --- |
+| `search` | Case-insensitive name substring. **Ignored below 2 characters** - a 1-character search returns the unfiltered page, not an empty one |
+| `gameId` | Convex game ID |
+| `format` | `SINGLE_ELIMINATION`, `DOUBLE_ELIMINATION`, `ROUND_ROBIN`, or `SWISS` |
+| `status` | Lifecycle status |
+| `page` | 1-based. Defaults to `1` |
+| `limit` | Page size, 1-50. Defaults to `12`. Out of range answers `400 error_invalid_limit` |
+
+Each summary carries the `slug`, which is what every other endpoint in the family resolves by.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/tournaments/discover \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"status": "REGISTRATION_OPEN", "format": "SINGLE_ELIMINATION", "page": 1, "limit": 25}'
+```
+
+```javascript JavaScript
+const response = await fetch("https://teambattles.gg/api/v1/tournaments/discover", {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify({
+		status: "REGISTRATION_OPEN",
+		format: "SINGLE_ELIMINATION",
+		page: 1,
+		limit: 25
+	})
+});
+
+const { tournaments, count, total, page, limit } = await response.json();
+
+console.log(`page ${page} of ${Math.ceil(total / limit)} (${count} here, ${total} total)`);
+for (const tournament of tournaments) {
+	// Store the slug - it is the handle every other endpoint takes.
+	console.log(tournament.slug, tournament.name, tournament.isFeatured);
+}
+```
+
+```python Python
+import math
+import requests
+
+response = requests.post(
+    'https://teambattles.gg/api/v1/tournaments/discover',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={
+        'status': 'REGISTRATION_OPEN',
+        'format': 'SINGLE_ELIMINATION',
+        'page': 1,
+        'limit': 25
+    }
+)
+
+data = response.json()
+
+print(f"page {data['page']} of {math.ceil(data['total'] / data['limit'])}")
+for tournament in data['tournaments']:
+    # Store the slug - it is the handle every other endpoint takes.
+    print(tournament['slug'], tournament['name'], tournament['isFeatured'])
+```
+
+</RequestExample>

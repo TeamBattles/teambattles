@@ -20,6 +20,9 @@ A browser extension for downloading Twitch and Kick VODs, recording live streams
 - **Multiple formats** - Export as MP4, MKV, TS, or MP3 (audio only)
 - **Quality selection** - Choose from Source, 1080p, 720p, 480p, 360p, or Audio Only
 - **Download queue** - Queue multiple downloads and track progress
+- **Per-download controls** - Pause, resume, cancel, retry a failed download, or prioritize one to jump the queue
+- **Bulk actions** - Pause All, Resume All, Cancel All, and Clear All, covering local and Battles Record remote downloads together
+- **Survives restarts** - Paused and queued downloads are restored after a browser or service worker restart, resuming from the last completed segment
 
 ### Live Stream Recording
 
@@ -56,6 +59,21 @@ A browser extension for downloading Twitch and Kick VODs, recording live streams
 - **Audio visualizer** - Visual feedback when playing audio-only streams
 - **Snap-to-edge** - Mini player snaps to the nearest screen edge when released
 
+### Audio Visualizer
+
+- **Six visualizer styles** - Frequency Bars, Smooth Wave, Mirrored Wave, Mountain, Circular, and Dot Matrix
+- **Visualizer picker** - A button in the top-right of the player while in audio mode opens a grid of styles, with live preview on hover
+- **Audio-only playback** - The visualizer replaces the video surface when playing an audio-only stream or quality
+
+### Keyboard Shortcuts <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded ml-2">New in v2.3.0</span>
+
+- **50+ shortcuts** - Player, navigation, and download actions across the modal, browse view, VOD player, live player, and mini player
+- **Familiar player controls** - YouTube/Twitch-style bindings: `Space`/`K` play-pause, `J`/`L` seek, `M` mute, `F` fullscreen
+- **Navigation** - Switch tabs with `1`/`2`/`3` and jump to search with `/`
+- **Help overlay** - Press `?` to see every shortcut available in the current context
+- **Fully rebindable** - Remap any action, add multiple bindings per action, or disable shortcuts entirely from Settings
+- **Playback speed** - Adjust VOD playback rate from 0.25x to 2x with `Shift+,` / `Shift+.`; persists across sessions
+
 ### Battles Record Integration <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded ml-2">New in v2.1.4</span>
 
 - **Remote downloads via yt-dlp** - Download from YouTube, Instagram, TikTok, and 1000+ sites through the Battles Record desktop app
@@ -78,6 +96,15 @@ A browser extension for downloading Twitch and Kick VODs, recording live streams
 - **Platform badges** - Download items display platform-specific badges (Twitch, Kick, YouTube, Instagram, TikTok, etc.)
 - **Download filter bar** - Filter downloads by type: All, Local, or Remote
 - **Remote download tracking** - Remote downloads appear in the Downloads tab alongside local downloads
+
+### Following & Discover <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded ml-2">New in v2.5.0</span>
+
+- **Star a channel** - Every channel card has a star button to add the channel to your Following list
+- **Discover feed** - A landing view in Browse showing your followed channels, who is live now, and recent VODs from all your favorites
+- **Live indicators** - Streaming channels show a red ring, pulsing dot, LIVE badge, and current game name, and sort to the top of the grid
+- **Follow from search** - Follow / Following button directly on the channel row returned by a search
+- **Follow sync** - Import your existing Twitch and Kick follows in one click from Settings
+- **Go-live notifications** - Optional browser notifications when a starred channel goes live (off by default)
 
 ## Installation
 
@@ -325,6 +352,8 @@ Configure the extension behavior in the Settings tab:
 | Kick connection      | Connect your Kick account for live chat    | Not connected |
 | Battles Record       | Connect to Battles Record desktop app      | Not connected |
 | Download filter      | Filter downloads by type (All, Local, Remote) | All           |
+| Keyboard shortcuts   | Rebind, add, or disable any shortcut       | Enabled       |
+| Live notifications   | Notify when a followed channel goes live   | Off           |
 
 ## Privacy
 
@@ -340,6 +369,75 @@ Configure the extension behavior in the Settings tab:
 - For large downloads: adequate available RAM (TS format uses minimal memory)
 
 ## Changelog
+
+<Accordion title="v2.5.2 - July 12, 2026">
+### Changed
+- **Store Listing** - Extension name updated to "Battles Replay: Twitch & Kick VOD Downloader"; store descriptions now mention clip downloads
+- **Chat Replay Memory** - VOD chat replay no longer keeps the entire stream's chat in memory during long sessions and renders more efficiently, reducing memory growth and jank
+- **Resume Memory** - Resuming a large or partially-downloaded VOD no longer loads every saved segment into memory at once, avoiding memory spikes that could crash the download
+- **Pipeline Overhead** - Lower memory and CPU use across the download and merge pipeline, live playback, background progress updates, and page-navigation detection
+
+### Fixed
+- **Live Ad Filtering** - Ad filtering stays active after switching between audio-only and video; previously the switch disabled it until the stream was reloaded
+</Accordion>
+
+<Accordion title="v2.5.1 - May 20, 2026">
+### Added
+- **Follow Button on Search Results** - The channel row returned by a streamer search now has a Follow / Following button to add or remove the channel from your Discover feed
+- **Live Indicator on Followed Channels** - Red ring, pulsing dot, LIVE badge, and current game name when a followed channel is streaming; live channels sort to the top of the grid
+
+### Changed
+- **Discover Tab** - The "All" platform option is now named Discover so its purpose is clearer
+- **Duration Format** - Live and VOD durations share one human-readable format (e.g. `4h 28m 15s`); the "Live for" prefix is gone since the LIVE badge already signals it
+- **Date Filters** - Range filters show "Start Date" / "End Date" hints instead of the browser-default `mm/dd/yyyy`
+- **Reduced Red** - Quieter active-tab highlight plus neutral game tags and platform dots, so the LIVE indicator stands out again
+- **Default Search Platform** - Searching a channel name from Discover defaults to Twitch instead of failing with an unknown-platform error; switch the dropdown to Kick for a Kick search
+- **Followed Channels Cards** - Larger cards with design-system colors, a platform dot on the avatar, a dedicated unfollow button, and follower count when known
+- **Live Now Cards** - Bigger 16:9 thumbnails, animated hover play indicator, viewer count and live duration pills, and a star marker on favorites
+- **Starred Channel Sorting** - Favorites float to the top of both Live Now and Followed Channels within their current status group
+
+### Fixed
+- **Non-Video Site Landing** - Opening the extension on a non-video site (google.com, etc.) lands on Discover instead of an empty "Other" URL extractor
+- **First-Click Open** - The toolbar icon opens the modal on the first click on non-Twitch/Kick sites; previously a race dispatched the modal-show event before the listener was registered
+- **Immediate Live Status** - Newly followed channels refresh their live status on follow instead of waiting up to 5 minutes for the next scheduled poll
+- **Follower Counts** - Starring from a search result stores follower count and partner / affiliate flags, so cards show the real number instead of "0 followers"
+- **Empty Following View** - Reads "No followed channels yet" and is properly centered in the modal
+- **Discover Scrollbar** - The empty state no longer produces a stray scrollbar
+- **Following Settings** - The Following section under Settings matches the look of every other settings card
+- **Search Bar Cleanup** - Removed the orphaned "Never refreshed" label and unlabeled refresh button
+- **Avatar Placeholder** - Channels with a missing or broken profile image show a letter avatar instead of an empty circle
+- **Live Twitch from Non-Twitch Pages** - Live streams now play when the extension is opened from any page; fixed loader selection keying off the stream platform instead of the host page, HLS.js `lowLatencyMode` silently replacing the background-proxy loader, unfetchable blob-URL playlists, the ad-filter secondary stream's direct fetch, and Chrome MV3 stripping binary data during service-worker messaging (fragments now transit as base64)
+</Accordion>
+
+<Accordion title="v2.5.0 - May 15, 2026">
+### Added
+- **Following Home** - A landing view in Browse showing your starred channels, who is live now, and recent VODs from all your favorites in one feed
+- **Star a Channel** - Every channel card has a star button to add the channel to your Following list
+- **Follow Sync** - Pull your existing Twitch and Kick follows in from Settings in one click
+- **Live Notifications** - Optional browser notifications when a starred channel goes live (off by default)
+</Accordion>
+
+<Accordion title="v2.4.0 - April 30, 2026">
+### Changed
+- **Resume on Reopen** - Closing the modal or mini player and reopening it resumes playback from where you left off
+
+### Fixed
+- **Player Switching** - Switching between the modal player and the mini player no longer reloads the stream
+- **Audio-Only Mode** - Shows the visualizer instead of a black screen, and player controls stay responsive when toggling
+- **Live Auto-Open** - Opening the extension on a live channel page goes straight to the live player again instead of the empty Browse tab
+</Accordion>
+
+<Accordion title="v2.3.0 - April 29, 2026">
+### Added
+- **Keyboard Shortcuts** - 50+ customizable shortcuts across the modal, browse view, VOD player, live player, and mini player, including YouTube/Twitch-style controls (`Space`/`K` play-pause, `J`/`L` seek, `M` mute, `F` fullscreen), tab switching (`1`/`2`/`3`), search focus (`/`), and bulk download actions
+- **Help Overlay** - Press `?` to view all shortcuts for the current context
+- **Rebinding** - A "Keyboard Shortcuts" section in Settings to rebind any action, add multiple bindings per action, or disable shortcuts entirely
+- **Playback Rate Control** - VOD playback speed via `Shift+,` / `Shift+.` in steps from 0.25x to 2x; persists across sessions
+
+### Fixed
+- **Help Overlay Gating** - The `?` shortcut only opens when the extension overlay or mini player is open; previously it opened from any host page and could show stale player keybinds
+- **Live Stream Mini Player** - Opening the mini player on a live stream no longer hangs on a loading spinner
+</Accordion>
 
 <Accordion title="v2.2.2 - March 31, 2026">
 ### Other
@@ -561,7 +659,7 @@ Configure the extension behavior in the Settings tab:
 - Modal close pauses playback
 </Accordion>
 
-<Accordion title="v1.0.0 - January 20, 2025">
+<Accordion title="v1.0.0 - January 20, 2026">
 Initial release of Battles Replay.
 
 ### Core Features

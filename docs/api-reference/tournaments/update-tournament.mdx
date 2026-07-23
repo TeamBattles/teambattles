@@ -1,0 +1,111 @@
+---
+title: "Update A Tournament"
+description: "Apply a partial edit to a tournament. The result is tri-state - branch on `applied`."
+openapi: "POST /tournaments/{identifier}/update"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.capabilities.lifecycle` set to `write`.
+- The key owner must be a tournament **ADMIN** of the tournament in the path.
+- The tournament **slug** in `{identifier}`. This endpoint resolves by slug only - a Convex tournament ID answers `404 error_tournament_not_found`.
+
+## Permission Required
+
+This endpoint requires an API key holding the `tournaments` `lifecycle` capability at `write`, whose owner is a tournament **ADMIN**. A tournament `MODERATOR` holds the capability but not the floor and receives `403 error_not_tournament_staff`.
+
+Tournament API access is gated at api_pro on the tournament HOST OWNER's personal developer plan. An organization holding a consumer subscription does not satisfy this - the developer plan ladder has no organization arm.
+
+## The result is tri-state
+
+<Warning>
+	A `200` does **not** mean your edit is live. Branch on `applied` before you tell a user anything.
+</Warning>
+
+| `applied` | What happened | What to do |
+| --- | --- | --- |
+| `direct` | The tournament has never been approved, so the patch was applied immediately | Nothing. The change is live |
+| `pending` | The tournament was approved before, so your material changes were **staged** into a pending set and the tournament flipped to `AWAITING_APPROVAL` | Tell the user the edit is queued behind staff review, and that the tournament has dropped off the public listing until re-approval |
+| `noop` | The tournament was approved before and every value you sent already matched the stored one | Nothing was staged and the approval status was left alone |
+
+On the `pending` arm only, the response also carries:
+
+- `changedFields` - the material fields staged for re-approval. This is the **merge** of this request with anything already pending, not just what you sent in this call.
+- `approvalStatus` - always `AWAITING_APPROVAL`.
+
+Both are omitted on the `direct` and `noop` arms, because those arms leave the approval status untouched and echoing a pre-request snapshot would be a guess.
+
+## Unrecognised keys are silently dropped
+
+Fields this endpoint does not accept are **ignored, not rejected**. A misspelled key produces no error and no change.
+
+That matters most on an already-approved tournament: a body made entirely of misspelled keys is indistinguishable from an empty one and would answer a misleading `noop`. The endpoint therefore refuses a body with **no recognised fields** with `400 error_invalid_input` ("Supply at least one updatable field") rather than issuing a meaningless patch. A body with one good key and three misspelled ones still succeeds, and reports only the one - always check `changedFields`.
+
+## Fields that are not editable here
+
+`freeAgentsEnabled` and `seedingMethod` are fixed at creation and cannot be changed. League points have their own endpoint: `POST /tournaments/{identifier}/league-points`.
+
+`formatConfig` is sent **whole** - it replaces the stored object rather than merging into it.
+
+A `COMPLETED` or `CANCELLED` tournament rejects every edit with `400`.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/tournaments/spring-invitational/update \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Spring Invitational 2026", "prizePool": 5000, "prizeCurrency": "USD"}'
+```
+
+```javascript JavaScript
+const slug = "spring-invitational";
+
+const response = await fetch(`https://teambattles.gg/api/v1/tournaments/${slug}/update`, {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify({
+		name: "Spring Invitational 2026",
+		prizePool: 5000,
+		prizeCurrency: "USD"
+	})
+});
+
+const result = await response.json();
+
+if (result.applied === "pending") {
+	// NOT live: staged for staff re-approval, and the tournament is now unlisted.
+	console.log("queued for review:", result.changedFields);
+} else if (result.applied === "noop") {
+	console.log("nothing changed");
+} else {
+	console.log("applied live");
+}
+```
+
+```python Python
+import requests
+
+slug = 'spring-invitational'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/tournaments/{slug}/update',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'name': 'Spring Invitational 2026', 'prizePool': 5000, 'prizeCurrency': 'USD'}
+)
+
+result = response.json()
+
+if result['applied'] == 'pending':
+    # NOT live: staged for staff re-approval, and the tournament is now unlisted.
+    print('queued for review:', result['changedFields'])
+elif result['applied'] == 'noop':
+    print('nothing changed')
+else:
+    print('applied live')
+```
+
+</RequestExample>

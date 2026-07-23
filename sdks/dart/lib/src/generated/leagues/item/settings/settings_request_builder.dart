@@ -24,7 +24,7 @@ class SettingsRequestBuilder extends BaseRequestBuilder<SettingsRequestBuilder> 
     ///  [rawUrl] The raw URL to use for the request builder.
     ///  [requestAdapter] The request adapter to use to execute the requests.
     SettingsRequestBuilder.withUrl(String rawUrl, RequestAdapter requestAdapter) : super(requestAdapter, "{+baseurl}/leagues/{identifier}/settings", {RequestInformation.rawUrlKey : rawUrl}) ;
-    /// Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. League API access is gated at api_pro on the league owner's plan.
+    /// Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner's plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     Future<LeagueSettingsResponse?> postAsync([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) async {
         var requestInfo = toPostRequestInformation(requestConfiguration);
@@ -37,7 +37,7 @@ class SettingsRequestBuilder extends BaseRequestBuilder<SettingsRequestBuilder> 
         };
         return await requestAdapter.send<LeagueSettingsResponse>(requestInfo, LeagueSettingsResponse.createFromDiscriminatorValue, errorMapping);
     }
-    /// Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. League API access is gated at api_pro on the league owner's plan.
+    /// Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner's plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner's plan.
     ///  [requestConfiguration] Configuration for the request such as headers, query parameters, and middleware options.
     RequestInformation toPostRequestInformation([void Function(RequestConfiguration<DefaultQueryParameters>)? requestConfiguration]) {
         var requestInfo = RequestInformation(httpMethod : HttpMethod.post, urlTemplate : urlTemplate, pathParameters :  pathParameters);

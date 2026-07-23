@@ -68,6 +68,7 @@ Each API key carries granular permission scopes, and each scope uses one of four
 | **Stream**      | `read`                                     | none, read             | Read overlay and streaming config      |
 | **Webhooks**    | `manage`                                   | none, enabled          | Create and manage webhook endpoints    |
 | **Uploads**     | `upload`                                   | none, read, read-write | Mint short-lived upload URLs for images (requires read-write) |
+| **Platform**    | `platform.staff`                           | none, enabled          | Consent to act as Platform Staff on write endpoints (staff accounts only - see [Platform staff elevation](#platform-staff-elevation)) |
 
 #### League capabilities
 
@@ -78,7 +79,7 @@ Any personal or developer key can also carry a `leagues` block with three access
 <Note>
 	Game API permissions (scores, lifecycle, ranks) are only available to approved Game Developers.
 	League capabilities are honored only when your key's owner is currently a league ADMIN of the
-	league in the path, and league API access is gated on the league owner's plan. Webhook management
+	league in the path, and league API WRITE access is gated on the league owner's plan (admin reads are free, authority-gated, and rate-limited by the owner's plan). Webhook management
 	requires General Developer access. League capabilities are write-only - they are ignored unless
 	set to `write`.
 </Note>
@@ -91,6 +92,31 @@ A few intentional asymmetries apply to the public write surfaces. Branch on thes
 - **Match-lifecycle endpoints reject unresolved auth conflicts.** The six match-lifecycle write endpoints (`publish`, `challenges/accept`, `challenges/refuse`, `acceptances/{id}/approve`, `acceptances/{id}/decline`, `start`) use a conflict-aware identity gate. If the key's principal has an unresolved account auth conflict, these endpoints return `401` (`error_unauthorized`). The earlier match-write endpoints use a no-conflict gate and do not reject in this case. Resolve the account conflict in-app before calling the lifecycle endpoints.
 - **Captaincy transfer emits two events; ownership transfer emits one.** `POST /teams/{identifier}/captaincy/transfer` does not emit a dedicated transfer event - it emits **two** `team.member_role_changed` webhook events (one for the outgoing captain, one for the incoming captain). `POST /orgs/{identifier}/ownership/transfer` emits a single `organization.ownership_transferred` event. Subscribe accordingly when reacting to leadership changes.
 - **Not every match-lifecycle write emits a webhook.** Only three of the six match-lifecycle endpoints emit an event: `publish` emits `match.published`, `acceptances/{id}/approve` emits `match.accepted` (plus `roster.updated`), and `start` emits `match.started`. The other three - `challenges/accept`, `challenges/refuse`, and `acceptances/{id}/decline` - transition the match but emit **no** webhook event; they notify the affected users in-app only. Do not assume a webhook fires on every transition. Team, organization, and league-announcement writes do emit their documented events (`team.*` / `organization.*` / `league.announcement`).
+
+### Platform staff elevation
+
+TeamBattles staff can act on the public API through an explicit, fully audited **three-factor elevation**. It applies to **write** endpoints only - admin and organizer reads never elevate.
+
+Elevation is granted for a single request only when **all three** factors are present:
+
+1. **Scope** - the key carries the `platform.staff` scope set to `enabled`. This scope is offered in the key wizard only to accounts whose own role is `staff` or higher.
+2. **Header** - the request sends the `X-TB-Elevate: platform-staff` header (per-call opt-in; any other value, or its absence, means no elevation).
+3. **Owner role** - the key owner holds the `management` developer role, re-derived server-side from the owner's account at authorize time.
+
+```bash
+curl -X PATCH \
+  -H "Authorization: Bearer tb_your_staff_key" \
+  -H "X-TB-Elevate: platform-staff" \
+  -H "Content-Type: application/json" \
+  -d '{"status":"CANCELLED"}' \
+  https://teambattles.gg/api/v1/leagues/{identifier}/matches/{matchId}/status
+```
+
+<Note>
+	The elevation verdict is computed server-side and is never read from the request body. Elevation grants **authority**, not billing - the owner-plan feature gate (`leagueOperatorApi` / `tournamentOrganizerApi`) still applies, so an elevated write to an entity whose owner lacks the write feature still returns `error_api_feature_required`. A `platform.staff` key that sends the header on a **read** is still denied by the resource's authority floor (for example `error_league_admin_required`).
+</Note>
+
+Every elevated write is audited: the activity or moderation log row is stamped as staff-acted and rendered as a distinct **"Platform Staff"** actor (the actor's username is suppressed, the actor id retained), and a forensic `apiKeyAuditLog` row records `elevated: true`. In the web console, staff perform the same elevated writes through a per-action **"Act as Platform Staff"** confirmation prompt rather than the header.
 
 ### Key presets
 
@@ -145,7 +171,7 @@ plans are billed separately from any consumer subscription.
 | Developer-app keys       | 1 (read-only) | 10 (read+write)  | 50 (read+write)  |
 | Webhook endpoints        | 0             | 20               | 100              |
 | Write access             | -             | Yes              | Yes              |
-| League Admin API         | -             | Yes              | Yes              |
+| League Admin API writes  | -             | Yes              | Yes              |
 | Rate limit (refill/burst)| 1/sec, 60     | 10/sec, 300      | 30/sec, 1000     |
 
 Three capabilities are gated behind a paid (**Pro** or higher) plan:
@@ -154,15 +180,16 @@ Three capabilities are gated behind a paid (**Pro** or higher) plan:
 | -------------------- | --------- | ------------------------------------------------ |
 | `writes`             | Pro       | Any write/mutating endpoint (Free is read-only). |
 | `webhooks`           | Pro       | Creating and managing webhook endpoints.         |
-| `leagueOperatorApi`  | Pro       | The League Admin API.                            |
+| `leagueOperatorApi`  | Pro       | League Admin API **writes** (admin reads are free).  |
 
 If your plan is too low you receive `403 error_api_plan_required`; if the specific feature
 is not on your plan you receive `403 error_api_feature_required`.
 
 <Note>
-	The **League Admin API** is gated on the **league owner's** plan, not the calling key
-	owner's - one owner purchase covers all of that owner's leagues. On league routes the
-	rate-limit ceiling is also the league owner's plan.
+	**League Admin API writes** are gated on the **league owner's** plan, not the calling key
+	owner's - one owner purchase covers all of that owner's leagues. The six admin **read**
+	routes are free (authority-gated to a current league ADMIN). On every league route the
+	rate-limit ceiling is the league owner's plan.
 </Note>
 
 #### Personal keys vs developer capability
@@ -174,7 +201,7 @@ These are two independent axes:
   developer plan.
 - **Developer capability scales with your developer plan.** The developer-app key limit,
   webhook endpoint limit, write access, and rate-limit ceiling above all come from your
-  developer plan (Free / Pro / Studio). League Admin API access is the exception - it is
+  developer plan (Free / Pro / Studio). League Admin API write access is the exception - it is
   gated on the **league owner's** plan, as noted above.
 
 A user can hold a consumer subscription and a developer plan at the same time; each axis

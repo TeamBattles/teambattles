@@ -11,7 +11,7 @@ Every tournament has a host admin panel at `/tournaments/[slug]/admin`. Hosts, h
 | --------------------------- | ------------------------------------------------------------------------------------------ |
 | **Host managers**           | Full admin access. The hosting user, an org OWNER or ADMIN (for org-hosted), or a league OWNER or ADMIN (for league-hosted). |
 | **Tournament staff - Admin** | Full admin access, including Staff and Settings.                                           |
-| **Tournament staff - Moderator** | Day-to-day management (participants, matches, free agents, activity), but not Staff, Settings, or cancelling. |
+| **Tournament staff - Moderator** | Day-to-day management (participants, matches, free agents, activity), but not Staff, Settings, submitting for review, or cancelling. |
 | **TeamBattles staff**       | Platform staff who review and approve tournaments and can act everywhere.                   |
 | **Team captains**           | Not tournament managers. Captains, co-captains, and org owners act on their own team's entry, roster, and check-in. |
 
@@ -21,7 +21,9 @@ The admin panel is organized into tabs.
 
 ### Dashboard
 
-The landing surface shows the tournament's status and the lifecycle actions available now - submit for approval, open or close registration, start the tournament, or cancel it. When the tournament is awaiting review or has material changes pending, an **approval banner** explains the current state.
+The landing surface shows the tournament's approval state and the lifecycle actions available now - **Submit for review**, **Open registration**, and **Start tournament**. Cancelling is not on the Dashboard; it lives in [Settings](#settings-and-re-approval). An **approval banner** explains the current state whenever the tournament is a draft that has not been submitted yet or that staff rejected, or whenever it is awaiting review or has material changes pending.
+
+While the tournament is a draft that has not been submitted or that staff rejected, the banner carries a **Submit for review** action, available to tournament admins. A rejected draft shows the reviewer's own rejection reason in the banner, so you know what to fix before resubmitting. Submitting normally sends the tournament to the staff review queue; under [relaxed review mode](/tournaments/create#what-approval-means) an **Unlisted** tournament is approved immediately and skips the queue.
 
 ### Participants
 
@@ -67,6 +69,8 @@ Edit branding, presentation, and tournament settings. Editing a **material** fie
 - Banner, logo, sponsor tags, social links, and visibility
 
 Non-material edits apply immediately without review.
+
+This tab also holds the danger zone with **Cancel tournament**, available until the tournament has completed or has already been cancelled.
 
 ### Activity
 

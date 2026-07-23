@@ -37,7 +37,7 @@ public class ActivityFeedRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/activity-feed", rawUrl);
     }
     /**
-     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @param body Cursor pagination options for a league activity feed.
      * @return a {@link LeagueActivityFeedResponse}
      * @throws Error When receiving a 400 status code
@@ -52,7 +52,7 @@ public class ActivityFeedRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @param body Cursor pagination options for a league activity feed.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link LeagueActivityFeedResponse}
@@ -77,7 +77,7 @@ public class ActivityFeedRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, LeagueActivityFeedResponse::createFromDiscriminatorValue);
     }
     /**
-     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @param body Cursor pagination options for a league activity feed.
      * @return a {@link RequestInformation}
      */
@@ -86,7 +86,7 @@ public class ActivityFeedRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @param body Cursor pagination options for a league activity feed.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

@@ -15,6 +15,7 @@ import './strategies/strategies_request_builder.dart';
 import './streams/streams_request_builder.dart';
 import './teams/teams_request_builder.dart';
 import './tickets/tickets_request_builder.dart';
+import './tournaments/tournaments_request_builder.dart';
 import './twitch/twitch_request_builder.dart';
 import './uploads/uploads_request_builder.dart';
 import './user/user_request_builder.dart';
@@ -67,6 +68,10 @@ class TeamBattlesApiClient extends BaseRequestBuilder<TeamBattlesApiClient> {
     ///  The tickets property
     TicketsRequestBuilder get tickets {
         return TicketsRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The tournaments property
+    TournamentsRequestBuilder get tournaments {
+        return TournamentsRequestBuilder(pathParameters, requestAdapter);
     }
     ///  The twitch property
     TwitchRequestBuilder get twitch {

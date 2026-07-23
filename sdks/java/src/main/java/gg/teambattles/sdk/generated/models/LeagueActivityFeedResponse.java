@@ -13,7 +13,7 @@ import java.util.Objects;
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class LeagueActivityFeedResponse implements Parsable {
     /**
-     * The activities property
+     * Activity entries, newest first. Each carries id, action, actorId, targetType, targetId, metadata and createdAt. Normal actions include actorName; actions taken by TeamBattles Platform Staff under audited elevation suppress actorName and set isPlatformStaff: true, keeping only actorId.
      */
     private UntypedNode activities;
     /**
@@ -39,7 +39,7 @@ public class LeagueActivityFeedResponse implements Parsable {
         return new LeagueActivityFeedResponse();
     }
     /**
-     * Gets the activities property value. The activities property
+     * Gets the activities property value. Activity entries, newest first. Each carries id, action, actorId, targetType, targetId, metadata and createdAt. Normal actions include actorName; actions taken by TeamBattles Platform Staff under audited elevation suppress actorName and set isPlatformStaff: true, keeping only actorId.
      * @return a {@link UntypedNode}
      */
     @jakarta.annotation.Nullable
@@ -95,7 +95,7 @@ public class LeagueActivityFeedResponse implements Parsable {
         writer.writeStringValue("timestamp", this.getTimestamp());
     }
     /**
-     * Sets the activities property value. The activities property
+     * Sets the activities property value. Activity entries, newest first. Each carries id, action, actorId, targetType, targetId, metadata and createdAt. Normal actions include actorName; actions taken by TeamBattles Platform Staff under audited elevation suppress actorName and set isPlatformStaff: true, keeping only actorId.
      * @param value Value to set for the activities property.
      */
     public void setActivities(@jakarta.annotation.Nullable final UntypedNode value) {

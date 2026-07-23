@@ -4,6 +4,7 @@ import './connections/connections_request_builder.dart';
 import './gameRanks/game_ranks_request_builder.dart';
 import './matches/matches_request_builder.dart';
 import './ongoingMatches/ongoing_matches_request_builder.dart';
+import './tournaments/tournaments_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \user
@@ -23,6 +24,10 @@ class UserRequestBuilder extends BaseRequestBuilder<UserRequestBuilder> {
     ///  The ongoingMatches property
     OngoingMatchesRequestBuilder get ongoingMatches {
         return OngoingMatchesRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The tournaments property
+    TournamentsRequestBuilder get tournaments {
+        return TournamentsRequestBuilder(pathParameters, requestAdapter);
     }
     /// Clones the requestbuilder.
     @override

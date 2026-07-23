@@ -40,7 +40,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Penalties
         {
         }
         /// <summary>
-        /// Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+        /// Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.LeaguePenalties"/></returns>
         /// <param name="body">Type, team, game, and limit filters for league penalties and cooldowns.</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Penalties
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.LeaguePenalties>(requestInfo, global::TeamBattles.Sdk.Models.LeaguePenalties.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+        /// Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Type, team, game, and limit filters for league penalties and cooldowns.</param>

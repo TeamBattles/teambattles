@@ -1,0 +1,95 @@
+---
+title: "Regenerate Tournament Matches"
+description: "Re-attempt match generation for an in-progress tournament after a partial failure."
+openapi: "POST /tournaments/{identifier}/regenerate-matches"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.capabilities.regenerate` set to `write`. This is a **separate capability** - `lifecycle` does not cover it.
+- The key owner must be a tournament **ADMIN**.
+- The tournament must be `IN_PROGRESS`. Any other status answers `400`.
+
+## Permission Required
+
+This endpoint requires an API key holding the `tournaments` `regenerate` capability at `write`, whose owner is a tournament **ADMIN**. A tournament `MODERATOR` receives `403 error_not_tournament_staff`.
+
+`regenerate` is deliberately not folded into `lifecycle`: it is a repair lever that reaches into generated matches, and granting it should be a separate decision.
+
+Tournament API access is gated at api_pro on the tournament HOST OWNER's personal developer plan. An organization holding a consumer subscription does not satisfy this - the developer plan ladder has no organization arm.
+
+## When to call this
+
+`POST /tournaments/{identifier}/start` hands match generation to a background chain that gives each bracket node one attempt before moving on. When some matches never appear in the bracket, this endpoint starts a **fresh** generation pass with an empty skip list, so every currently-eligible node is re-attempted.
+
+It is safe to call repeatedly. Generation is exactly-once per node: a node that already has a match is never regenerated, and **existing matches are never destroyed**.
+
+## `queued` is an upper bound, not a work count
+
+<Warning>
+	`queued` counts every node that is **currently eligible** for initial generation at the moment of
+	the call, **including nodes a previous sweep already gave up on**. It is an upper bound on what
+	will be re-attempted, not a live count of outstanding work and not a number of matches that will
+	exist. Some of those attempts may fail again.
+</Warning>
+
+**`queued: 0` is a legitimate, successful answer.** It means there was nothing eligible to re-attempt and nothing was scheduled - usually because every node already has its match. It is not an error and not a signal to retry.
+
+The work is asynchronous. Poll `GET /tournaments/{identifier}/bracket` for the real state.
+
+## Request body
+
+`confirm` must be exactly `true`. It is required so this repair lever cannot be fired by an empty or accidental POST.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/tournaments/spring-invitational/regenerate-matches \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"confirm": true}'
+```
+
+```javascript JavaScript
+const slug = "spring-invitational";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/tournaments/${slug}/regenerate-matches`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ confirm: true })
+	}
+);
+
+const { queued } = await response.json();
+
+// queued is an UPPER BOUND, and 0 is a normal answer meaning "nothing eligible".
+console.log(
+	queued === 0 ? "nothing to re-attempt" : `re-attempting at most ${queued} node(s)`
+);
+// Poll GET /tournaments/{slug}/bracket for the actual outcome.
+```
+
+```python Python
+import requests
+
+slug = 'spring-invitational'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/tournaments/{slug}/regenerate-matches',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={'confirm': True}
+)
+
+queued = response.json()['queued']
+
+# queued is an UPPER BOUND, and 0 is a normal answer meaning 'nothing eligible'.
+print('nothing to re-attempt' if queued == 0 else f're-attempting at most {queued} node(s)')
+# Poll GET /tournaments/{slug}/bracket for the actual outcome.
+```
+
+</RequestExample>

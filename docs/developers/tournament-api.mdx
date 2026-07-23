@@ -1,0 +1,163 @@
+---
+title: "Tournament API"
+description: "Host, run, and compete in TeamBattles tournaments over the public REST API."
+---
+
+The Tournament API covers the whole tournament surface: public discovery, organizer administration, and competitor entry. It is three separate products sharing one URL family, and they are billed, scoped, and authorized differently. Read this page before you write against any of them.
+
+## Prerequisites
+
+1. A TeamBattles API key (Settings > Developer). See [Authentication](/developers/authentication).
+2. The `tournaments` permission block on that key, with the specific scopes each endpoint needs (below).
+3. For organizer endpoints, an `api_pro` developer plan on the **tournament host owner's** account.
+4. A tournament **slug**. Every `{identifier}` in this family is a slug - see [Identifiers are slugs, never IDs](#identifiers-are-slugs-never-ids).
+
+## The three authority classes
+
+| Class | Who it is for | What the key needs | Who pays |
+| --- | --- | --- | --- |
+| **Public reads** | Anyone building a bracket viewer, a listing page, or a stats site | `tournaments.tournament_public: read` | You, the key owner |
+| **Organizer** | The people running a tournament: the host, and the staff they appoint | `tournaments.tournament_admin: read` for reads, or `tournaments.capabilities.<capability>: write` for writes - plus the endpoint's authority floor on that tournament | The tournament **host owner** |
+| **Competitor** | Team captains and solo players entering a tournament | `tournaments.actor.<scope>` | You, the key owner |
+
+The classes do not substitute for each other. A key with every organizer capability set cannot enter a tournament as a competitor, and a key with every competitor scope set cannot administer one. They are two independent consent decisions in the key wizard, on purpose.
+
+### Platform staff standing does not grant API authority
+
+Being a TeamBattles staff member does **not** give your personal API key organizer authority over tournaments you do not administer. The tournament host-authority check honors no staff bypass on any of its three arms (user, organization, or league host). Staff who need to act on a tournament they do not run must use the web console.
+
+## Scope catalog
+
+The `tournaments` block on an API key has four parts.
+
+**Reads**
+
+| Scope | Levels | Grants |
+| --- | --- | --- |
+| `tournaments.tournament_public` | none, read | Public discovery, tournament detail, bracket, participants, free-agent list, and your own tournament calendar |
+| `tournaments.tournament_admin` | none, read, read-write | The organizer **reads** - applications, staff list, invite list, activity feed - and the list of tournaments you manage |
+
+Organizer reads are gated on `tournament_admin: read` and **not** on a capability. The capabilities below gate organizer **writes** only, so granting `invites: write` does not by itself let a key list invites, and granting `tournament_admin: read` does not let it create one.
+
+**Organizer capabilities** (`tournaments.capabilities.*`) - each grants its action only when set to `write`.
+
+| Capability | Endpoints it gates |
+| --- | --- |
+| `lifecycle` | Create, update, submit for approval, open/close registration, round schedule, start, cancel, league points |
+| `registration` | Approve and deny applications, remove and disqualify participants, organizer roster add and roster-entry delete |
+| `bracket` | Override and revert bracket node results |
+| `free_agents` | Organizer removal of a free agent from the pool |
+| `staff` | Add, update, and remove tournament staff |
+| `invites` | Create and revoke team invites |
+| `regenerate` | Match regeneration **only**. Deliberately not folded into `lifecycle` - it is a destructive repair lever |
+
+**Competitor scopes** (`tournaments.actor.*`)
+
+| Scope | Levels | Grants |
+| --- | --- | --- |
+| `actor.entry` | none, read, read-write | `read` grants `GET /tournaments/{identifier}/me`; `read-write` additionally grants enter, apply, withdraw, and invite responses |
+| `actor.roster` | none, write | Adding and removing members on your own team's tournament roster |
+| `actor.check_in` | none, write | Checking your team in |
+| `actor.free_agency` | none, write | Joining and leaving the free-agent pool, sending, revoking, and answering pickup offers |
+
+<Note>
+	The `tournaments` block is optional in the API key schema, so keys minted before it existed do not
+	carry it. Every scope check fails closed on an absent block - edit the key in Settings > Developer
+	to grant the scopes you need.
+</Note>
+
+## Organizer authority floors
+
+Organizer endpoints check two things independently: the **capability** on the key, and the key owner's **authority floor** on the tournament in the URL. Holding the capability is not enough.
+
+There are two floors:
+
+- **MANAGER** - satisfied by the host, a tournament `ADMIN`, or a tournament `MODERATOR`.
+- **ADMIN** - satisfied by the host and a tournament `ADMIN` only. **A `MODERATOR` is refused with `403 error_not_tournament_staff`.**
+
+| Floor | Endpoints |
+| --- | --- |
+| **ADMIN** | update, submit for approval, registration open, registration close, round schedule, league points, cancel, start, regenerate matches, organizer roster add, roster entry delete, override result, revert result, add staff, remove staff, create invite, revoke invite |
+| **MANAGER** | list applications, approve application, deny application, remove participant, disqualify participant, list staff, list invites, activity feed, remove free agent |
+
+If you appoint integration staff, appoint them `ADMIN` unless you specifically want them limited to the MANAGER set. A `MODERATOR` key will pass every capability check and then fail the endpoint.
+
+## Billing: the host pays, and creation is what binds them
+
+Tournament API access is gated at `api_pro` on the tournament **HOST OWNER's** personal developer plan. An organization holding a consumer subscription does not satisfy this - the developer plan ladder has no organization arm.
+
+Concretely:
+
+| Request | Billed to |
+| --- | --- |
+| `POST /tournaments` (creation) | **You**, the key owner. There is no tournament yet to resolve a host from |
+| Every other organizer request | The **host owner** - the user for a `user` host, the organization owner for an `org` host, the league owner for a `league` host |
+| Every public read | You, the key owner |
+| Every competitor request | You, the key owner |
+
+The rationale matters more than the rule. Creation is the moment you bind somebody else's developer plan: from that point on, every organizer request against the tournament - including requests made by staff you appoint later - is charged against the host owner's plan and metered against their rate limit. That is precisely why `hostType` and `hostId` are checked strictly at create time, and why the check honors no staff bypass. Do not weaken it.
+
+A competitor's integration never depends on the organizer's billing: the competitor surface is gated on the caller's own `writes` feature, not the host's plan.
+
+## Identifiers are slugs, never IDs
+
+Every `{identifier}` path segment in this family is resolved **by slug only**. The resolver does not accept a Convex tournament ID. Passing the `tournamentId` you got back from `POST /tournaments` produces `404 error_tournament_not_found`, which looks like a bug and is not - store the `slug` from the create response and use that.
+
+Sub-resource IDs in the path (`participantId`, `inviteId`, `offerId`, `rosterEntryId`, `freeAgentId`, `nodeId`, `roundId`) *are* opaque IDs, and they are proven to belong to the resolved tournament before anything reads them. An ID from a different tournament answers `404`, identically to one that does not exist.
+
+## 404 is not always "missing"
+
+`error_tournament_not_found` is the only 404 the family emits for the tournament in the URL, and it covers both "no such slug" and "you may not view this tournament". A `DRAFT` tournament answers 404 to a stranger rather than 403. This collapse is deliberate: it stops the read endpoints from being an existence oracle over the slug space.
+
+The team path collapses the same way. On `/tournaments/{identifier}/teams/{teamIdentifier}/...`, a team you do not lead and a team slug that does not resolve both answer `403 error_not_team_leader`.
+
+## Asynchronous work: start and regenerate
+
+Two endpoints in this family return before their work is finished, and neither response can tell you whether it succeeded.
+
+- **`POST /tournaments/{identifier}/start`** answers **`202`** and returns **before any match exists**. Bracket structure is persisted synchronously; match generation is handed to a background scheduler afterwards, and that chain gives each node one attempt before moving on, so it can partially fail. The completion contract is: **poll `GET /tournaments/{identifier}/bracket`**.
+- **`POST /tournaments/{identifier}/regenerate-matches`** is the repair lever for that partial failure. Its `queued` value is an **upper bound**, not a live work count, and `queued: 0` is a legitimate answer meaning nothing was eligible to re-attempt.
+
+Do not treat `nodeCount` or `queued` as completion targets. Neither counts matches.
+
+## The lifecycle, in order
+
+```text
+POST   /tournaments                                    -> DRAFT, NOT_SUBMITTED
+POST   /tournaments/{slug}/submit-for-approval         -> AWAITING_APPROVAL (or APPROVED)
+POST   /tournaments/{slug}/registration/open           -> REGISTRATION_OPEN
+       ... teams enter or apply ...
+POST   /tournaments/{slug}/registration/close          -> REGISTRATION_CLOSED
+POST   /tournaments/{slug}/start                       -> 202, IN_PROGRESS
+GET    /tournaments/{slug}/bracket                     -> poll until matches appear
+```
+
+A newly created tournament is a `DRAFT` with approval status `NOT_SUBMITTED`. It is invisible to public discovery until staff approve it.
+
+## Editing after approval is not a plain write
+
+`POST /tournaments/{identifier}/update` is **tri-state**. Branch on the `applied` field; do not treat a `200` as "the edit is live".
+
+| `applied` | Meaning |
+| --- | --- |
+| `direct` | The tournament has never been approved, so the edit applied immediately |
+| `pending` | The tournament was previously approved, so material changes were **staged** into a pending set and the tournament flipped to `AWAITING_APPROVAL`. The edit is **not live**, and the tournament has dropped off the public listing until staff re-approve |
+| `noop` | Previously approved, and every supplied value already matched. Nothing was staged |
+
+Unrecognised keys are **silently dropped**, not rejected, so a misspelled field name does nothing and reports nothing. Check `changedFields` on the `pending` arm to confirm the edit you meant is the edit that was staged.
+
+## Start with `/me` on the competitor side
+
+`GET /tournaments/{identifier}/me` is the discovery endpoint for competitors. Most competitor write endpoints are keyed by an opaque resource ID - `participantId`, `inviteId`, `offerId`, `rosterEntryId` - that this endpoint returns and nothing else does. Call it first, and re-read it after any write rather than patching a cached list.
+
+Every collection it returns is an array and is returned whole, including terminal rows: withdrawn and disqualified entries, answered invites, expired offers. A caller who leads several teams in one tournament gets several entries. Do not assume at most one of anything.
+
+## Rate limits and idempotency
+
+Organizer requests are metered against the **host owner's** plan ceiling, not yours. See [Rate limits](/developers/rate-limits).
+
+`POST /tournaments` accepts an optional `Idempotency-Key` header. Without it, a retried create makes a **second tournament** - a tournament has no natural key to collapse on. See [Idempotency](/developers/idempotency).
+
+## Not in v1
+
+There are no tournament results, rounds, or match read endpoints in v1. Read generated matches through the bracket endpoint and the existing [match endpoints](/developers/public-read-api).

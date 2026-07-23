@@ -4,6 +4,7 @@ require_relative './connections/connections_request_builder'
 require_relative './game_ranks/game_ranks_request_builder'
 require_relative './matches/matches_request_builder'
 require_relative './ongoing_matches/ongoing_matches_request_builder'
+require_relative './tournaments/tournaments_request_builder'
 require_relative './user'
 
 module TeamBattlesSdk
@@ -32,6 +33,11 @@ module TeamBattlesSdk
                 # The ongoingMatches property
                 def ongoing_matches()
                     return TeamBattlesSdk::Generated::User::OngoingMatches::OngoingMatchesRequestBuilder.new(@path_parameters, @request_adapter)
+                end
+                ## 
+                # The tournaments property
+                def tournaments()
+                    return TeamBattlesSdk::Generated::User::Tournaments::TournamentsRequestBuilder.new(@path_parameters, @request_adapter)
                 end
                 ## 
                 ## Instantiates a new UserRequestBuilder and sets the default values.

@@ -10,6 +10,7 @@ using TeamBattles.Sdk.User.Connections;
 using TeamBattles.Sdk.User.GameRanks;
 using TeamBattles.Sdk.User.Matches;
 using TeamBattles.Sdk.User.OngoingMatches;
+using TeamBattles.Sdk.User.Tournaments;
 namespace TeamBattles.Sdk.User
 {
     /// <summary>
@@ -37,6 +38,11 @@ namespace TeamBattles.Sdk.User
         public global::TeamBattles.Sdk.User.OngoingMatches.OngoingMatchesRequestBuilder OngoingMatches
         {
             get => new global::TeamBattles.Sdk.User.OngoingMatches.OngoingMatchesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The tournaments property</summary>
+        public global::TeamBattles.Sdk.User.Tournaments.TournamentsRequestBuilder Tournaments
+        {
+            get => new global::TeamBattles.Sdk.User.Tournaments.TournamentsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.User.UserRequestBuilder"/> and sets the default values.

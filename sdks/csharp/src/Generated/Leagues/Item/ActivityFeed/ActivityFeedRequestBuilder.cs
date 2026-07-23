@@ -34,7 +34,7 @@ namespace TeamBattles.Sdk.Leagues.Item.ActivityFeed
         {
         }
         /// <summary>
-        /// Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+        /// Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.LeagueActivityFeedResponse"/></returns>
         /// <param name="body">Cursor pagination options for a league activity feed.</param>
@@ -69,7 +69,7 @@ namespace TeamBattles.Sdk.Leagues.Item.ActivityFeed
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.LeagueActivityFeedResponse>(requestInfo, global::TeamBattles.Sdk.Models.LeagueActivityFeedResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+        /// Returns recent league activity entries. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Cursor pagination options for a league activity feed.</param>

@@ -1,0 +1,202 @@
+---
+title: "Create A Tournament"
+description: "Create a tournament as a draft, choosing the user, organization, or league that hosts it."
+openapi: "POST /tournaments"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.capabilities.lifecycle` set to `write`.
+- The `tournamentOrganizerApi` feature (`api_pro`) on **your own** developer plan - creation is the one endpoint in the family billed to the caller.
+- Authority over the host you name. See [Host authority](#host-authority) below.
+
+## Permission Required
+
+This endpoint requires a personal or developer API key holding the `tournaments` `lifecycle` capability at `write`.
+
+Unlike every other endpoint in the family this one takes no `{identifier}`, so there is no tournament to resolve a host from and no authority floor to check. The key's capability and your own plan are all the wrapper verifies - the host check happens inside the transaction that writes the tournament.
+
+## Host authority
+
+`hostType` and `hostId` are yours to choose but not to invent. You must actually hold the authority you name:
+
+| `hostType` | Requirement | Refusal |
+| --- | --- | --- |
+| `user` | `hostId` must be your own user ID | `403 error_forbidden` |
+| `org` | An **active** `OWNER` or `ADMIN` membership of that organization | `403 error_not_org_admin` |
+| `league` | An **active** league `ADMIN` or `OWNER` membership | `403 error_league_admin_required` |
+
+None of the three arms honors a platform-staff bypass. Being TeamBattles staff does not let your personal key host as an organization or league you do not administer.
+
+You must also be eligible to host at all - a paid plan, or an account at least 30 days old, and not competitively banned - or the request answers `403 error_not_eligible_to_host`.
+
+<Warning>
+	Choosing a host is the act that binds that person's developer plan. Creation is billed to you, but
+	from this point on **every** organizer request against the tournament is billed to the host owner -
+	including requests made by tournament staff you appoint later. Tournament API access is gated at
+	api_pro on the tournament HOST OWNER's personal developer plan. An organization holding a consumer
+	subscription does not satisfy this - the developer plan ladder has no organization arm.
+</Warning>
+
+## What's Returned
+
+`200` with the new tournament. `status` is always `DRAFT` and `approvalStatus` is always `NOT_SUBMITTED` - these are hard-coded post-conditions, not echoes of what you sent. Nothing is public yet.
+
+<Warning>
+	**Store the `slug`.** It is derived from the name and de-duplicated server-side, so it is not
+	predictable from the name you sent. Every other tournament endpoint resolves by slug and **not** by
+	`tournamentId` - passing the ID answers `404 error_tournament_not_found`.
+</Warning>
+
+Call `POST /tournaments/{identifier}/submit-for-approval` next.
+
+## Idempotency
+
+Supply an optional `Idempotency-Key` request header to make retries safe: an identical key and body replays the original `tournamentId` and `slug` without creating a second tournament, while the same key with a different body returns `409 error_idempotency_key_conflict`.
+
+The record is scoped to your API key **and** to this route, so the same key value used on a different endpoint is a different record and never collides. "Same body" is judged on the **raw request bytes** as you sent them, before unrecognised keys are stripped, and the bytes are not canonicalised first - so a retry that reformats the JSON, reorders keys, or changes whitespace counts as a *different* body and answers `409`. Replay the exact bytes.
+
+Records are retained for **24 hours**. A retry after that window is a fresh create, not a replay.
+
+<Warning>
+	Without the header, a retried request creates a **second tournament**. A tournament has no natural
+	key to collapse on, so nothing else can detect the duplicate. Always send the header on create.
+</Warning>
+
+## `defaultMatchConfig` is required and is sent whole
+
+`defaultMatchConfig` is the match-settings snapshot stamped onto every match this tournament generates. It is required, has no per-field default, and is validated strictly at the edge.
+
+Two failure modes are worth knowing about:
+
+- **Unrecognised keys are silently dropped**, here and throughout the body. A misspelled `gameModeID` does not error - it produces a tournament whose matches can never generate.
+- `gameModeId` is checked against the game's allowed modes **when a match is generated, not here**. A mode ID that does not belong to `gameId` is accepted at create time and surfaces later, asynchronously, as a `match_generation_failed` entry in the activity feed.
+
+Check the value you send against the game's modes before you create.
+
+## Limits
+
+`maxParticipants` is bounded by the format ceiling (`SINGLE_ELIMINATION` and `DOUBLE_ELIMINATION` 128, `SWISS` 64, `ROUND_ROBIN` 32) **and** by the host plan's participant limit, both checked server-side. `sponsorTags` is bounded by the host plan's sponsor-tag limit. Concurrent tournaments are capped per tier - see [Quick Reference](/reference/index).
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/tournaments \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: 7c1f0a4e-2b3d-4f5a-9c8e-0a1b2c3d4e5f" \
+  -d '{
+    "hostType": "org",
+    "hostId": "j57abcdefghijklmnopqrstuvwxyz",
+    "name": "Spring Invitational",
+    "gameId": "j97abcdefghijklmnopqrstuvwxyz",
+    "teamSize": 4,
+    "format": "SINGLE_ELIMINATION",
+    "formatConfig": {
+      "bestOfLadder": { "default": 3, "overrides": { "GF": 5 } },
+      "grandFinalAdvantage": { "type": "NONE" }
+    },
+    "defaultMatchConfig": {
+      "gameModeId": "hardpoint",
+      "mapSelectionType": "COMPETITIVE",
+      "mapPreferenceMode": "VETO",
+      "platform": "CROSSPLAY",
+      "inputDevice": "ALL",
+      "region": "NA_EAST",
+      "selectedMaps": ["skyline", "vault", "rewind"]
+    },
+    "minParticipants": 4,
+    "maxParticipants": 16,
+    "registrationMode": "OPEN",
+    "checkInRequired": true,
+    "freeAgentsEnabled": false,
+    "visibility": "PUBLIC"
+  }'
+```
+
+```javascript JavaScript
+const response = await fetch("https://teambattles.gg/api/v1/tournaments", {
+	method: "POST",
+	headers: {
+		Authorization: "Bearer tb_your_api_key",
+		"Content-Type": "application/json",
+		"Idempotency-Key": crypto.randomUUID()
+	},
+	body: JSON.stringify({
+		hostType: "org",
+		hostId: "j57abcdefghijklmnopqrstuvwxyz",
+		name: "Spring Invitational",
+		gameId: "j97abcdefghijklmnopqrstuvwxyz",
+		teamSize: 4,
+		format: "SINGLE_ELIMINATION",
+		formatConfig: {
+			bestOfLadder: { default: 3, overrides: { GF: 5 } },
+			grandFinalAdvantage: { type: "NONE" }
+		},
+		defaultMatchConfig: {
+			gameModeId: "hardpoint",
+			mapSelectionType: "COMPETITIVE",
+			mapPreferenceMode: "VETO",
+			platform: "CROSSPLAY",
+			inputDevice: "ALL",
+			region: "NA_EAST",
+			selectedMaps: ["skyline", "vault", "rewind"]
+		},
+		minParticipants: 4,
+		maxParticipants: 16,
+		registrationMode: "OPEN",
+		checkInRequired: true,
+		freeAgentsEnabled: false,
+		visibility: "PUBLIC"
+	})
+});
+
+const { tournamentId, slug, status, approvalStatus } = await response.json();
+// Store `slug` - every other endpoint resolves by slug, never by tournamentId.
+console.log(slug, status, approvalStatus);
+```
+
+```python Python
+import requests
+import uuid
+
+response = requests.post(
+    'https://teambattles.gg/api/v1/tournaments',
+    headers={
+        'Authorization': 'Bearer tb_your_api_key',
+        'Idempotency-Key': str(uuid.uuid4())
+    },
+    json={
+        'hostType': 'org',
+        'hostId': 'j57abcdefghijklmnopqrstuvwxyz',
+        'name': 'Spring Invitational',
+        'gameId': 'j97abcdefghijklmnopqrstuvwxyz',
+        'teamSize': 4,
+        'format': 'SINGLE_ELIMINATION',
+        'formatConfig': {
+            'bestOfLadder': {'default': 3, 'overrides': {'GF': 5}},
+            'grandFinalAdvantage': {'type': 'NONE'}
+        },
+        'defaultMatchConfig': {
+            'gameModeId': 'hardpoint',
+            'mapSelectionType': 'COMPETITIVE',
+            'mapPreferenceMode': 'VETO',
+            'platform': 'CROSSPLAY',
+            'inputDevice': 'ALL',
+            'region': 'NA_EAST',
+            'selectedMaps': ['skyline', 'vault', 'rewind']
+        },
+        'minParticipants': 4,
+        'maxParticipants': 16,
+        'registrationMode': 'OPEN',
+        'checkInRequired': True,
+        'freeAgentsEnabled': False,
+        'visibility': 'PUBLIC'
+    }
+)
+
+data = response.json()
+print(data['slug'], data['status'], data['approvalStatus'])
+```
+
+</RequestExample>

@@ -1,0 +1,92 @@
+---
+title: "Submit A Tournament For Approval"
+description: "Send a draft tournament to platform staff for review."
+openapi: "POST /tournaments/{identifier}/submit-for-approval"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.capabilities.lifecycle` set to `write`.
+- The key owner must be a tournament **ADMIN**.
+- The tournament must be a `DRAFT`. Anything else answers `400`.
+
+## Permission Required
+
+This endpoint requires an API key holding the `tournaments` `lifecycle` capability at `write`, whose owner is a tournament **ADMIN**. A tournament `MODERATOR` receives `403 error_not_tournament_staff`.
+
+Tournament API access is gated at api_pro on the tournament HOST OWNER's personal developer plan. An organization holding a consumer subscription does not satisfy this - the developer plan ladder has no organization arm.
+
+## What's Returned
+
+The call takes **no request body**. On success you get `approvalStatus` and `autoApproved`.
+
+| `autoApproved` | `approvalStatus` | Meaning |
+| --- | --- | --- |
+| `false` | `AWAITING_APPROVAL` | Queued for staff review. The tournament stays off public discovery until a reviewer approves it |
+| `true` | `APPROVED` | Review was skipped and the tournament is approved on the spot |
+
+Auto-approval is not something you can request. It happens only for an **`UNLISTED`** tournament while the platform approval mode is `public_listing_only`. Branch on `approvalStatus` rather than assuming one or the other.
+
+## Hosting eligibility is re-checked here
+
+Eligibility to host is checked again at submit time, not only at creation. A host whose plan lapsed, whose account was competitively banned, or who otherwise no longer qualifies after creating the draft receives `403 error_not_eligible_to_host` at this step rather than at create.
+
+## Other refusals
+
+| Condition | Response |
+| --- | --- |
+| Already `AWAITING_APPROVAL` | `409 error_approval_pending` |
+| Not a `DRAFT` | `400` |
+| Key owner no longer eligible to host | `403 error_not_eligible_to_host` |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST \
+  https://teambattles.gg/api/v1/tournaments/spring-invitational/submit-for-approval \
+  -H "Authorization: Bearer tb_your_api_key"
+```
+
+```javascript JavaScript
+const slug = "spring-invitational";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/tournaments/${slug}/submit-for-approval`,
+	{
+		method: "POST",
+		headers: { Authorization: "Bearer tb_your_api_key" }
+	}
+);
+
+const { autoApproved, approvalStatus } = await response.json();
+
+// Only an UNLISTED tournament can be auto-approved, and only under one platform
+// approval mode. Branch on the status rather than assuming.
+console.log(
+	approvalStatus === "APPROVED"
+		? "approved - you can open registration now"
+		: "queued for staff review"
+);
+```
+
+```python Python
+import requests
+
+slug = 'spring-invitational'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/tournaments/{slug}/submit-for-approval',
+    headers={'Authorization': 'Bearer tb_your_api_key'}
+)
+
+result = response.json()
+
+# Only an UNLISTED tournament can be auto-approved, and only under one platform
+# approval mode. Branch on the status rather than assuming.
+if result['approvalStatus'] == 'APPROVED':
+    print('approved - you can open registration now')
+else:
+    print('queued for staff review')
+```
+
+</RequestExample>

@@ -1,0 +1,115 @@
+---
+title: "Remove A Free Agent From The Pool"
+description: "Withdraw a free agent from a tournament pool as the organizer. A picked-up agent must leave the roster first."
+openapi: "POST /tournaments/{identifier}/free-agents/{freeAgentId}/remove"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.capabilities.free_agents` set to `write`.
+- The key owner must hold at least **MANAGER** authority on the tournament. A tournament `MODERATOR` qualifies.
+- A `freeAgentId`. `GET /tournaments/{identifier}/free-agents` lists the pool entries that are currently **`AVAILABLE`**, so an agent who has since been picked up will no longer appear there.
+
+## Permission Required
+
+This endpoint requires an API key holding the `tournaments` `free_agents` capability at `write`, whose owner meets the tournament **MANAGER** floor.
+
+Tournament API access is gated at api_pro on the tournament HOST OWNER's personal developer plan. An organization holding a consumer subscription does not satisfy this - the developer plan ladder has no organization arm.
+
+## Ordering: roster first, pool second
+
+<Warning>
+	An agent whose status is `PICKED_UP` is **refused** with `400 error_invalid_input` and the message
+	"Remove the player from the team roster first". **Nothing is written.**
+</Warning>
+
+This is not a validation quirk to work around - it prevents stranding the player. Withdrawing a picked-up agent while their `FREE_AGENT` roster entry survives leaves them in a state with no exit: no re-entry path accepts a pool row that is not `AVAILABLE`, and the surviving roster entry keeps the re-pickup guards rejecting.
+
+The correct sequence for a picked-up agent is:
+
+1. `DELETE /tournaments/{identifier}/roster-entries/{rosterEntryId}` - removes the roster entry and releases the agent back to `AVAILABLE`.
+2. `POST /tournaments/{identifier}/free-agents/{freeAgentId}/remove` - withdraws them from the pool.
+
+An `AVAILABLE` agent can be removed directly, in one call.
+
+<Note>
+	The v1 read endpoints do not project tournament roster **entry** IDs to organizers -
+	`GET /tournaments/{identifier}/participants` returns roster members by user, without the
+	`rosterEntryId` step 1 needs. If you hit the `PICKED_UP` refusal and do not already hold that ID
+	from another source, remove the roster entry from the tournament management page in the web app,
+	then retry this call.
+</Note>
+
+## What removal does
+
+The agent is withdrawn from the pool and their **pending offers are expired**. Teams holding an outstanding offer will see it as no longer actionable.
+
+<RequestExample>
+
+```bash cURL
+# List the AVAILABLE pool entries to find the freeAgentId.
+curl https://teambattles.gg/api/v1/tournaments/spring-invitational/free-agents \
+  -H "Authorization: Bearer tb_your_api_key"
+
+# Withdraw one of them from the pool.
+curl -X POST \
+  https://teambattles.gg/api/v1/tournaments/spring-invitational/free-agents/k27abcdefghijklmnopqrstuvwxyz/remove \
+  -H "Authorization: Bearer tb_your_api_key"
+
+# If the agent was picked up since you read the list, this answers 400 with
+# "Remove the player from the team roster first" and writes nothing. Delete the
+# player's FREE_AGENT roster entry first, then repeat the call above.
+curl -X DELETE \
+  https://teambattles.gg/api/v1/tournaments/spring-invitational/roster-entries/k17abcdefghijklmnopqrstuvwxyz \
+  -H "Authorization: Bearer tb_your_api_key"
+```
+
+```javascript JavaScript
+const slug = "spring-invitational";
+const headers = { Authorization: "Bearer tb_your_api_key" };
+const base = `https://teambattles.gg/api/v1/tournaments/${slug}`;
+
+// The pool listing returns AVAILABLE entries only.
+const { freeAgents } = await fetch(`${base}/free-agents`, { headers }).then((r) => r.json());
+
+for (const agent of freeAgents) {
+	const response = await fetch(`${base}/free-agents/${agent.id}/remove`, {
+		method: "POST",
+		headers
+	});
+
+	if (response.status === 400) {
+		// The agent was picked up between the listing and this call. Nothing was
+		// written. Their FREE_AGENT roster entry has to go first.
+		const { details } = await response.json();
+		console.warn(`${agent.username} is on a roster: ${details}`);
+		continue;
+	}
+
+	console.log(`removed ${agent.username}`, await response.json());
+}
+```
+
+```python Python
+import requests
+
+slug = 'spring-invitational'
+headers = {'Authorization': 'Bearer tb_your_api_key'}
+base = f'https://teambattles.gg/api/v1/tournaments/{slug}'
+
+# The pool listing returns AVAILABLE entries only.
+free_agents = requests.get(f'{base}/free-agents', headers=headers).json()['freeAgents']
+
+for agent in free_agents:
+    response = requests.post(f"{base}/free-agents/{agent['id']}/remove", headers=headers)
+
+    if response.status_code == 400:
+        # The agent was picked up between the listing and this call. Nothing was
+        # written. Their FREE_AGENT roster entry has to go first.
+        print(f"{agent.get('username')} is on a roster: {response.json()['details']}")
+        continue
+
+    print(f"removed {agent.get('username')}", response.json())
+```
+
+</RequestExample>

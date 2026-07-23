@@ -17,10 +17,12 @@ currently a league **ADMIN** of the league named in the request path.
   settings read) access on the key. **Write** routes additionally need the relevant
   [league capability](/developers/authentication#league-capabilities) set to `write` on the
   key (for example, `scores`, `seasons`, or `bans`).
-- The **league owner's** developer plan must include the `leagueOperatorApi` feature
-  (**api_pro** or higher). This is billed to the league owner, not to the calling key's
-  owner, so one owner purchase covers every league that owner runs. On the League Admin API,
-  the rate-limit ceiling is also the league owner's plan.
+- **Write** routes require the **league owner's** developer plan to include the
+  `leagueOperatorApi` feature (**api_pro** or higher), billed to the league owner rather than
+  the calling key's owner, so one owner purchase covers every league that owner runs. The six
+  admin **read** routes (membership, bans, penalties, dashboard stats, activity feed, settings)
+  do **not** require a paid plan - they are authority-gated (current league ADMIN) and, like
+  every league route, rate-limited by the league owner's plan.
 
 See [Plans and feature gates](/developers/authentication#plans-and-feature-gates) and
 [Principal types](/developers/authentication#principal-types).
@@ -31,5 +33,5 @@ See [Plans and feature gates](/developers/authentication#plans-and-feature-gates
 | ----------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | `error_league_not_found`      | 404  | The league slug in the path does not exist. Returned before any token is consumed.         |
 | `error_league_admin_required` | 403  | Your key's owner is not currently a league ADMIN of that league.                           |
-| `error_api_feature_required`  | 403  | The league owner's plan does not include the League Admin API feature.                     |
+| `error_api_feature_required`  | 403  | On a **write** route: the league owner's plan does not include the League Admin API feature. Admin reads are not gated on this feature. |
 | `error_league_scope_mismatch` | 403  | On the match write routes: the `matchId` does not belong to the league in the path.        |

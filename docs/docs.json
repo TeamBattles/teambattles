@@ -527,6 +527,105 @@
 						]
 					},
 					{
+						"group": "Tournament API",
+						"openapi": "api-reference/openapi.json",
+						"pages": [
+							"developers/tournament-api",
+							{
+								"group": "Tournament: Discovery",
+								"pages": [
+									"api-reference/tournaments/discover-tournaments",
+									"api-reference/tournaments/get-tournament",
+									"api-reference/tournaments/get-tournament-bracket",
+									"GET /tournaments/{identifier}/participants",
+									"GET /tournaments/{identifier}/free-agents"
+								]
+							},
+							{
+								"group": "Tournament: My Tournaments",
+								"pages": [
+									"GET /user/tournaments",
+									"GET /user/tournaments/calendar"
+								]
+							},
+							{
+								"group": "Tournament: Lifecycle",
+								"pages": [
+									"api-reference/tournaments/create-tournament",
+									"api-reference/tournaments/submit-tournament-for-approval",
+									"api-reference/tournaments/update-tournament",
+									"POST /tournaments/{identifier}/registration/open",
+									"POST /tournaments/{identifier}/registration/close",
+									"POST /tournaments/{identifier}/rounds/{roundId}/schedule",
+									"api-reference/tournaments/start-tournament",
+									"api-reference/tournaments/regenerate-tournament-matches",
+									"POST /tournaments/{identifier}/cancel",
+									"POST /tournaments/{identifier}/league-points",
+									"GET /tournaments/{identifier}/activity-feed"
+								]
+							},
+							{
+								"group": "Tournament: Registration",
+								"pages": [
+									"GET /tournaments/{identifier}/applications",
+									"POST /tournaments/{identifier}/applications/{participantId}/approve",
+									"POST /tournaments/{identifier}/applications/{participantId}/deny",
+									"POST /tournaments/{identifier}/participants/{participantId}/remove",
+									"POST /tournaments/{identifier}/participants/{participantId}/disqualify",
+									"POST /tournaments/{identifier}/participants/{participantId}/roster",
+									"DELETE /tournaments/{identifier}/roster-entries/{rosterEntryId}"
+								]
+							},
+							{
+								"group": "Tournament: Bracket & Results",
+								"pages": [
+									"POST /tournaments/{identifier}/nodes/{nodeId}/override-result",
+									"POST /tournaments/{identifier}/nodes/{nodeId}/revert-result"
+								]
+							},
+							{
+								"group": "Tournament: Staff & Invites",
+								"pages": [
+									"GET /tournaments/{identifier}/staff",
+									"POST /tournaments/{identifier}/staff",
+									"DELETE /tournaments/{identifier}/staff/{userId}",
+									"GET /tournaments/{identifier}/invites",
+									"POST /tournaments/{identifier}/invites",
+									"POST /tournaments/{identifier}/invites/{inviteId}/revoke"
+								]
+							},
+							{
+								"group": "Tournament: Free Agents",
+								"pages": [
+									"api-reference/tournaments/remove-tournament-free-agent"
+								]
+							},
+							{
+								"group": "Tournament: Entry",
+								"pages": [
+									"api-reference/tournaments/get-my-tournament-entry",
+									"api-reference/tournaments/enter-tournament",
+									"POST /tournaments/{identifier}/teams/{teamIdentifier}/apply",
+									"POST /tournaments/{identifier}/teams/{teamIdentifier}/roster",
+									"DELETE /tournaments/{identifier}/teams/{teamIdentifier}/roster/{rosterEntryId}",
+									"POST /tournaments/{identifier}/participants/{participantId}/check-in",
+									"POST /tournaments/{identifier}/participants/{participantId}/withdraw",
+									"POST /tournaments/{identifier}/invites/{inviteId}/respond"
+								]
+							},
+							{
+								"group": "Tournament: Free Agency",
+								"pages": [
+									"POST /tournaments/{identifier}/free-agency/me",
+									"DELETE /tournaments/{identifier}/free-agency/me",
+									"POST /tournaments/{identifier}/free-agents/{freeAgentId}/offers",
+									"api-reference/tournaments/respond-to-free-agent-offer",
+									"POST /tournaments/{identifier}/free-agency/offers/{offerId}/revoke"
+								]
+							}
+						]
+					},
+					{
 						"group": "Webhooks",
 						"pages": [
 							"developers/webhooks-api",

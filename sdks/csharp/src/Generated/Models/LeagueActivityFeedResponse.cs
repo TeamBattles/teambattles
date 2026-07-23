@@ -13,7 +13,7 @@ namespace TeamBattles.Sdk.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class LeagueActivityFeedResponse : IParsable
     {
-        /// <summary>The activities property</summary>
+        /// <summary>Activity entries, newest first. Each carries id, action, actorId, targetType, targetId, metadata and createdAt. Normal actions include actorName; actions taken by TeamBattles Platform Staff under audited elevation suppress actorName and set isPlatformStaff: true, keeping only actorId.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public UntypedNode? Activities { get; set; }

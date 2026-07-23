@@ -8,6 +8,7 @@ use TeamBattles\Sdk\Generated\User\Connections\ConnectionsRequestBuilder;
 use TeamBattles\Sdk\Generated\User\GameRanks\GameRanksRequestBuilder;
 use TeamBattles\Sdk\Generated\User\Matches\MatchesRequestBuilder;
 use TeamBattles\Sdk\Generated\User\OngoingMatches\OngoingMatchesRequestBuilder;
+use TeamBattles\Sdk\Generated\User\Tournaments\TournamentsRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /user
@@ -40,6 +41,13 @@ class UserRequestBuilder extends BaseRequestBuilder
     */
     public function ongoingMatches(): OngoingMatchesRequestBuilder {
         return new OngoingMatchesRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The tournaments property
+    */
+    public function tournaments(): TournamentsRequestBuilder {
+        return new TournamentsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

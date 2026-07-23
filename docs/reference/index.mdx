@@ -133,7 +133,23 @@ The per-tier maximum participant count, tournaments-per-user, sponsor-tag, and s
 | Key format               | `tb_` prefix + 64 hex characters     |
 | Matches per API response | 100 max                              |
 
-API keys carry granular permission scopes (matches, connections, game, users, teams, orgs, billing, tickets, strategies, chat, stream, webhooks) plus an optional league capability allowlist, honored when the key's owner is a current league admin. Responses include `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` headers (plus `Retry-After` on a `429`). See [Authentication](/developers/authentication) for the full scope vocabulary, error codes, and rate-limit details.
+API keys carry granular permission scopes (matches, connections, game, users, teams, orgs, billing, tickets, strategies, chat, stream, webhooks) plus optional league and tournament capability allowlists, honored when the key's owner holds the matching standing on the league or tournament in the URL. Responses include `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` headers (plus `Retry-After` on a `429`). See [Authentication](/developers/authentication) for the full scope vocabulary, error codes, and rate-limit details.
+
+## Tournament API Constraints
+
+| Setting | Constraint |
+| --- | --- |
+| Path identifier | Tournament **slug** only. A tournament ID answers `404 error_tournament_not_found` |
+| Organizer authority floors | ADMIN (17 endpoints) and MANAGER (9). A tournament `MODERATOR` meets MANAGER but not ADMIN |
+| Organizer plan gate | `api_pro` on the **tournament host owner's** personal developer plan (`tournamentOrganizerApi`) |
+| Platform staff standing | Grants **no** Tournament API authority. Staff act through the web console |
+| Discovery page size | 1-50, default 12. `search` is ignored below 2 characters |
+| Entry roster array | Max 64 user IDs, and at least the tournament's `teamSize` |
+| Idempotency (`POST /tournaments`) | Optional `Idempotency-Key` header, retained 24 hours, matched on raw request bytes |
+| Async endpoints | `start` answers `202` before matches exist; `regenerate-matches` reports an upper bound. Poll the bracket |
+| Not in v1 | No tournament results, rounds, or match read endpoints |
+
+See the [Tournament API guide](/developers/tournament-api) for the full authority table and billing split.
 
 ## OG Image Specifications
 

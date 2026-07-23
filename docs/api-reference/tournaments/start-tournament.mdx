@@ -1,0 +1,130 @@
+---
+title: "Start A Tournament"
+description: "Seed participants and generate the bracket. Answers 202 before any match exists - poll the bracket."
+openapi: "POST /tournaments/{identifier}/start"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.capabilities.lifecycle` set to `write`.
+- The key owner must be a tournament **ADMIN**.
+- The tournament must be `APPROVED` and in `REGISTRATION_OPEN` or `REGISTRATION_CLOSED`.
+- The tournament **slug** in `{identifier}`.
+
+## Permission Required
+
+This endpoint requires an API key holding the `tournaments` `lifecycle` capability at `write`, whose owner is a tournament **ADMIN**. A tournament `MODERATOR` receives `403 error_not_tournament_staff`.
+
+Tournament API access is gated at api_pro on the tournament HOST OWNER's personal developer plan. An organization holding a consumer subscription does not satisfy this - the developer plan ladder has no organization arm.
+
+## This endpoint answers 202, and matches do not exist yet
+
+<Warning>
+	**A `202` is not "the tournament is ready to play".** Rounds and bracket nodes are persisted
+	synchronously, and then match generation is handed to a background scheduler that runs **after**
+	this response. The endpoint returns before a single match row exists.
+</Warning>
+
+That background chain gives each bracket node **one attempt** and then moves on, carrying failures forward so it terminates rather than spinning. Generation can therefore **partially fail**, and nothing in the 202 body could tell you - which is exactly why the response is a 202 and not a `200 { "success": true }`.
+
+### The completion contract is to poll the bracket
+
+Poll `GET /tournaments/{identifier}/bracket` until the matches you expect appear. If some never do, call `POST /tournaments/{identifier}/regenerate-matches` to re-attempt them.
+
+### `nodeCount` is not a match count
+
+`nodeCount` is the size of the generated **bracket structure**. It is not a count of playable matches, not a count of matches that will be generated, and not a completion target to poll against. `matchGeneration` is always the literal `"pending"` - there is no success value it could report.
+
+## Seeding
+
+| `seedMethod` | Behavior |
+| --- | --- |
+| `manual` | Requires `manualOrder`, a list of participant IDs in seed order with seed 1 first |
+| `random` | Deterministic for a given tournament. It is not re-rollable |
+| `registration` | Seeds by registration order |
+
+Every ID in `manualOrder` must belong to this tournament - a foreign ID answers `404` - and duplicates are rejected. The list must also match the participant set **after** the check-in drop below, so build it from the participants that are actually checked in.
+
+## Check-in removes participants at start time
+
+<Warning>
+	When the tournament requires check-in, starting **removes every approved participant who has not
+	checked in**. If fewer than `minParticipants` remain, the run is rejected with `400` and the
+	removals are rolled back with it.
+</Warning>
+
+## Other refusals
+
+| Condition | Response |
+| --- | --- |
+| Tournament not yet approved | `403 error_approval_required` |
+| Wrong lifecycle status, bad seed order, or too few participants after check-in | `400` |
+| Key owner is a `MODERATOR`, not an `ADMIN` | `403 error_not_tournament_staff` |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/tournaments/spring-invitational/start \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"seedMethod": "registration"}'
+```
+
+```javascript JavaScript
+const slug = "spring-invitational";
+const auth = { Authorization: "Bearer tb_your_api_key" };
+
+const start = await fetch(`https://teambattles.gg/api/v1/tournaments/${slug}/start`, {
+	method: "POST",
+	headers: { ...auth, "Content-Type": "application/json" },
+	body: JSON.stringify({ seedMethod: "registration" })
+});
+
+// 202. The bracket structure exists; matches do not, yet.
+const { nodeCount } = await start.json();
+
+// Poll the bracket for the real state. nodeCount is structure size, not a target.
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+for (let attempt = 0; attempt < 10; attempt++) {
+	await sleep(2000);
+	const { bracket } = await fetch(`https://teambattles.gg/api/v1/tournaments/${slug}/bracket`, {
+		headers: auth
+	}).then((r) => r.json());
+
+	const generated = bracket.nodes.filter((node) => node.matchId).length;
+	console.log(`${generated} of ${nodeCount} nodes have a match`);
+	if (generated > 0) break;
+}
+```
+
+```python Python
+import requests
+import time
+
+slug = 'spring-invitational'
+auth = {'Authorization': 'Bearer tb_your_api_key'}
+
+start = requests.post(
+    f'https://teambattles.gg/api/v1/tournaments/{slug}/start',
+    headers=auth,
+    json={'seedMethod': 'registration'}
+)
+
+# 202. The bracket structure exists; matches do not, yet.
+node_count = start.json()['nodeCount']
+
+# Poll the bracket for the real state.
+for _ in range(10):
+    time.sleep(2)
+    bracket = requests.get(
+        f'https://teambattles.gg/api/v1/tournaments/{slug}/bracket',
+        headers=auth
+    ).json()['bracket']
+
+    generated = len([n for n in bracket['nodes'] if n.get('matchId')])
+    print(f'{generated} of {node_count} nodes have a match')
+    if generated > 0:
+        break
+```
+
+</RequestExample>

@@ -4,7 +4,7 @@ import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 /// auto generated
 /// A paginated league activity feed.
 class LeagueActivityFeedResponse implements Parsable {
-    ///  The activities property
+    ///  Activity entries, newest first. Each carries id, action, actorId, targetType, targetId, metadata and createdAt. Normal actions include actorName; actions taken by TeamBattles Platform Staff under audited elevation suppress actorName and set isPlatformStaff: true, keeping only actorId.
     UntypedNode? activities;
     ///  The hasMore property
     bool? hasMore;

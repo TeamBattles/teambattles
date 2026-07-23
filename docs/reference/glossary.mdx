@@ -65,10 +65,15 @@ description: "Terms and definitions"
 | **Token rail**           | The right-side panel in the Battles Strategy editor that holds draggable tokens             |
 | **Tool**                 | Official TeamBattles utility or extension                                                   |
 | **Tournament**           | A hosted, bracketed competition (single elim, double elim, round robin, or Swiss) with automated match generation and result advancement |
+| **Tournament Actor Scope** | A competitor-side API permission under `tournaments.actor` (`entry`, `roster`, `check_in`, `free_agency`) that lets a key act on behalf of teams its owner leads. A separate consent decision from the organizer capabilities - neither grants the other |
+| **Tournament Authority Floor** | The standing an API key's owner must hold on the tournament in the URL, checked independently of the key's scopes. MANAGER admits a tournament `MODERATOR`; ADMIN does not |
+| **Tournament Capability** | An organizer-side write-only API permission under `tournaments.capabilities` (`lifecycle`, `registration`, `bracket`, `free_agents`, `staff`, `invites`, `regenerate`) that grants its action only when set to `write`. `regenerate` is deliberately separate from `lifecycle` |
+| **Tournament Host Owner** | The user whose developer plan pays for and rate-limits every organizer API request on a tournament: the hosting user, the organization's owner, or the league's owner. Bound at creation time and not changeable afterwards |
+| **Tournament Pending Changes** | Material edits made to an already-approved tournament. They are staged rather than applied, flipping the tournament to `AWAITING_APPROVAL` and off the public listing until staff re-approve. Reported by the API as `applied: "pending"` |
 | **Veto Mode**            | Map selection where teams ban unwanted maps                                                 |
 | **Walkover**             | An automatic advancement awarded when a team cannot play its match - for example when its opponent is disqualified or a bye is present |
 | **Webhook**              | An HTTP callback that delivers real-time event notifications to external applications       |
-| **Webhook Event Catalog** | The set of event names a webhook can subscribe to - 83 events across families such as `match.*`, `score.*`, `team.*`, `organization.*`, and `league.*` (plus a `test.ping` test event). See the [Webhooks guide](/developers/webhooks) for the full catalog. |
+| **Webhook Event Catalog** | The set of event names a webhook can subscribe to - 93 events across families such as `match.*`, `score.*`, `team.*`, `organization.*`, `league.*`, and `tournament.*` (plus a `test.ping` test event). See the [Webhooks guide](/developers/webhooks) for the full catalog. |
 | **Welcome overlay**      | The in-canvas first-open screen in the Battles Strategy editor that shows recent boards and lets you start a new one |
 | **Widget**               | An individual data display component within a stream overlay                                |
 | **XP**                   | Experience points; can be decimal                                                           |

@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from .streams.streams_request_builder import StreamsRequestBuilder
     from .teams.teams_request_builder import TeamsRequestBuilder
     from .tickets.tickets_request_builder import TicketsRequestBuilder
+    from .tournaments.tournaments_request_builder import TournamentsRequestBuilder
     from .twitch.twitch_request_builder import TwitchRequestBuilder
     from .uploads.uploads_request_builder import UploadsRequestBuilder
     from .user.user_request_builder import UserRequestBuilder
@@ -154,6 +155,15 @@ class TeamBattlesApiClient(BaseRequestBuilder):
         from .tickets.tickets_request_builder import TicketsRequestBuilder
 
         return TicketsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tournaments(self) -> TournamentsRequestBuilder:
+        """
+        The tournaments property
+        """
+        from .tournaments.tournaments_request_builder import TournamentsRequestBuilder
+
+        return TournamentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def twitch(self) -> TwitchRequestBuilder:

@@ -1,0 +1,82 @@
+---
+title: "Get A Tournament"
+description: "Read a single tournament profile by slug."
+openapi: "GET /tournaments/{identifier}"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.tournament_public` set to `read`.
+- The tournament **slug**.
+
+## Permission Required
+
+This endpoint requires `tournaments.tournament_public: read`. No tournament standing is needed - any key with the scope may read any tournament it is allowed to view.
+
+## `{identifier}` is a slug, never an ID
+
+<Warning>
+	This endpoint - and every other `/tournaments/{identifier}/...` endpoint - resolves **by slug
+	only**. The resolver does not accept a Convex tournament ID. Passing the `tournamentId` returned by
+	`POST /tournaments` answers `404 error_tournament_not_found`, which reads like a bug and is not.
+</Warning>
+
+The slug is returned as `slug` by `POST /tournaments`, by `POST /tournaments/discover`, and by `GET /user/tournaments`. It is derived from the tournament name and de-duplicated server-side, so it is **not** predictable from the name.
+
+## 404 means "not found or not visible to you"
+
+`error_tournament_not_found` is the only 404 this family emits for the tournament in the URL, and it covers two different situations:
+
+- there is no tournament with that slug, and
+- there is one, but you may not view it - a `DRAFT`, or an `UNLISTED` tournament you have no relationship with.
+
+The two are deliberately indistinguishable so that the read endpoints cannot be used to enumerate the slug space. Do not write a client that treats a 404 as proof the tournament does not exist.
+
+## Manager-private fields
+
+Review fields (for example, staff review notes on a pending tournament) are included **only** when the calling key's owner manages the tournament. A public reader receives the same object without them, not a 403.
+
+<RequestExample>
+
+```bash cURL
+curl https://teambattles.gg/api/v1/tournaments/spring-invitational \
+  -H "Authorization: Bearer tb_your_api_key"
+```
+
+```javascript JavaScript
+const slug = "spring-invitational";
+
+const response = await fetch(`https://teambattles.gg/api/v1/tournaments/${slug}`, {
+	headers: { Authorization: "Bearer tb_your_api_key" }
+});
+
+if (response.status === 404) {
+	// Either no such slug, or a tournament you may not view. You cannot tell
+	// which, and that is deliberate.
+	throw new Error("tournament not found or not visible");
+}
+
+const { tournament } = await response.json();
+console.log(tournament.name, tournament.status, tournament.format);
+```
+
+```python Python
+import requests
+
+slug = 'spring-invitational'
+
+response = requests.get(
+    f'https://teambattles.gg/api/v1/tournaments/{slug}',
+    headers={'Authorization': 'Bearer tb_your_api_key'}
+)
+
+if response.status_code == 404:
+    # Either no such slug, or a tournament you may not view. You cannot tell
+    # which, and that is deliberate.
+    raise SystemExit('tournament not found or not visible')
+
+tournament = response.json()['tournament']
+print(tournament['name'], tournament['status'], tournament['format'])
+```
+
+</RequestExample>

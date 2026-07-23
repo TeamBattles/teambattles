@@ -4,15 +4,15 @@ import './team_avatar_url_member1.dart';
 
 /// auto generated
 /// Composed type wrapper for classes [String?], [TeamAvatarUrlMember1]
-class TeamAvatarUrl implements Parsable {
+class Team_avatarUrl implements Parsable {
     ///  Composed type representation for type [String?]
     String? string_;
     ///  Composed type representation for type [TeamAvatarUrlMember1]
     TeamAvatarUrlMember1? teamAvatarUrlMember1;
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object
-    static TeamAvatarUrl createFromDiscriminatorValue(ParseNode parseNode) {
-        var result = TeamAvatarUrl();
+    static Team_avatarUrl createFromDiscriminatorValue(ParseNode parseNode) {
+        var result = Team_avatarUrl();
         if(parseNode.getStringValue() != null) {
             result.string_ = parseNode.getStringValue();
         }

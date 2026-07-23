@@ -9,12 +9,16 @@ The Brackets tool at [`/brackets`](https://teambattles.gg/brackets) is a free-st
 
 Pick a [format](/tournaments/formats) - single elimination, double elimination, round robin, or Swiss - and paste your entrants, one label per line. Each format has an entrant ceiling (128 for elimination, 64 for Swiss, 32 for round robin), and the list is clamped to that ceiling. You need at least two entrants to start.
 
+You can also set the best-of ladder (Bo1, Bo3, Bo5, or Bo7; Bo3 by default) before building: pick a default for all rounds, then pin individual rounds in the list below it - it shows the real rounds of the bracket you are about to build, so you can give the final a longer series than the opening rounds. The live preview reflects every choice, and rounds can still be changed later from the editor's best-of menu. Two caveats: per-round pins reset when the bracket's round structure changes (switching format, or adding/removing enough entrants to change the number of rounds), since a pin belongs to a specific round of a specific structure; and Swiss lists only the rounds that exist up front - later Swiss rounds are paired as results come in and follow the default until you change them in the editor.
+
+As you type, the live preview shows the bracket your list would build. Drag a team onto another team's slot in the preview to trade their bracket positions before building - including taking over a free pass (an automatic advance a top seed receives when the entrant count is not a power of two). **Reset arrangement** in the preview header returns to list order.
+
 ## Editing Entrants
 
 Each entrant slot is a plain text label by default. You can also:
 
 - **Rename** an entrant - renaming is display-only and never disturbs already-scored results.
-- **Attach a team snapshot** - search for a real team to borrow its name and avatar for display. This is cosmetic only; it does not involve or notify the team.
+- **Attach a team snapshot** - search for a real team to borrow its name and avatar for display. Pick a game in the **Team lookup** box above the entrant list first; each entrant's link-team button stays disabled until you do. This is cosmetic only; it does not involve or notify the team.
 - **Set a custom avatar** - upload an image for the entrant.
 - **Clear the snapshot** - return a slot to a plain text label.
 

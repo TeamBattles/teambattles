@@ -36,7 +36,7 @@ public class StatsRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/dashboard/stats", rawUrl);
     }
     /**
-     * Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @return a {@link LeagueDashboardStatsResponse}
      * @throws Error When receiving a 401 status code
      * @throws Error When receiving a 403 status code
@@ -49,7 +49,7 @@ public class StatsRequestBuilder extends BaseRequestBuilder {
         return post(null);
     }
     /**
-     * Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link LeagueDashboardStatsResponse}
      * @throws Error When receiving a 401 status code
@@ -70,7 +70,7 @@ public class StatsRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, LeagueDashboardStatsResponse::createFromDiscriminatorValue);
     }
     /**
-     * Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -78,7 +78,7 @@ public class StatsRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(null);
     }
     /**
-     * Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns aggregate league admin dashboard counts. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

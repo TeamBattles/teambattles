@@ -46,7 +46,7 @@ public class PenaltiesRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/leagues/{identifier}/penalties", rawUrl);
     }
     /**
-     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @param body Type, team, game, and limit filters for league penalties and cooldowns.
      * @return a {@link LeaguePenalties}
      * @throws Error When receiving a 400 status code
@@ -59,7 +59,7 @@ public class PenaltiesRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @param body Type, team, game, and limit filters for league penalties and cooldowns.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link LeaguePenalties}
@@ -80,7 +80,7 @@ public class PenaltiesRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, errorMapping, LeaguePenalties::createFromDiscriminatorValue);
     }
     /**
-     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @param body Type, team, game, and limit filters for league penalties and cooldowns.
      * @return a {@link RequestInformation}
      */
@@ -89,7 +89,7 @@ public class PenaltiesRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+     * Returns penalties and/or member cooldowns for a league resolved by slug, with optional filtering. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path (or TeamBattles staff), with leagues.league_admin:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
      * @param body Type, team, game, and limit filters for league penalties and cooldowns.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}

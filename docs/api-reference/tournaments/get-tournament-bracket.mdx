@@ -1,0 +1,101 @@
+---
+title: "Get A Tournament Bracket"
+description: "Read the rounds, bracket nodes, and participant display map for a tournament."
+openapi: "GET /tournaments/{identifier}/bracket"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.tournament_public` set to `read`.
+- The tournament **slug**.
+
+## Permission Required
+
+This endpoint requires `tournaments.tournament_public: read`. A tournament you may not view answers `404 error_tournament_not_found`, identically to an unknown slug.
+
+## This is the polling target after `start`
+
+`POST /tournaments/{identifier}/start` answers `202` and returns **before any match exists** - match generation runs asynchronously afterwards and can partially fail. This endpoint is the documented completion contract: poll it until the matches you expect appear.
+
+The bracket is **empty until the tournament starts** and matches are generated. An empty `nodes` array on a tournament that has not started is normal, not an error.
+
+A node has a match once its `matchId` is present. If some nodes never acquire one, call `POST /tournaments/{identifier}/regenerate-matches`.
+
+## What's Returned
+
+`bracket` contains:
+
+| Field | Contents |
+| --- | --- |
+| `rounds` | Round documents, ordered by round number ascending |
+| `nodes` | Bracket node documents - slots, results, and advancement links |
+| `display` | A map of participant ID to `{ name, avatarUrl, seed }` |
+| `disqualified` | Participant IDs currently disqualified |
+| `grandFinalAdvantage` | The tournament's grand-final advantage rule, copied verbatim from its `formatConfig`. Absent only when the tournament carries no `formatConfig` at all |
+
+<Warning>
+	`grandFinalAdvantage` is **not display data**. A `WIN_HEADSTART` rule pre-credits grand-final slot 1
+	at generation time, so any client that re-derives a walkover score pair must apply this rule or it
+	will zero the credit out and show the wrong series score. It is an object -
+	`{ "type": "...", "winHeadstart": 1 }` - not a string.
+</Warning>
+
+Do not assume a fixed walkover score. Walkover and bye results depend on the node's `bestOf` and on the grand-final rule above.
+
+<RequestExample>
+
+```bash cURL
+curl https://teambattles.gg/api/v1/tournaments/spring-invitational/bracket \
+  -H "Authorization: Bearer tb_your_api_key"
+```
+
+```javascript JavaScript
+const slug = "spring-invitational";
+
+const { bracket } = await fetch(
+	`https://teambattles.gg/api/v1/tournaments/${slug}/bracket`,
+	{ headers: { Authorization: "Bearer tb_your_api_key" } }
+).then((r) => r.json());
+
+// Empty until the tournament starts and matches generate. Not an error.
+const withMatches = bracket.nodes.filter((node) => node.matchId);
+console.log(`${withMatches.length} of ${bracket.nodes.length} nodes have a match`);
+
+for (const node of bracket.nodes) {
+	const one = bracket.display[node.participant1Id]?.name ?? "TBD";
+	const two = bracket.display[node.participant2Id]?.name ?? "TBD";
+	console.log(`${one} ${node.score1} - ${node.score2} ${two}`);
+}
+
+// grandFinalAdvantage is an OBJECT, and it is load-bearing for score derivation.
+if (bracket.grandFinalAdvantage?.type === "WIN_HEADSTART") {
+	console.log("GF headstart:", bracket.grandFinalAdvantage.winHeadstart);
+}
+```
+
+```python Python
+import requests
+
+slug = 'spring-invitational'
+
+bracket = requests.get(
+    f'https://teambattles.gg/api/v1/tournaments/{slug}/bracket',
+    headers={'Authorization': 'Bearer tb_your_api_key'}
+).json()['bracket']
+
+# Empty until the tournament starts and matches generate. Not an error.
+with_matches = [n for n in bracket['nodes'] if n.get('matchId')]
+print(f"{len(with_matches)} of {len(bracket['nodes'])} nodes have a match")
+
+for node in bracket['nodes']:
+    one = bracket['display'].get(node.get('participant1Id'), {}).get('name', 'TBD')
+    two = bracket['display'].get(node.get('participant2Id'), {}).get('name', 'TBD')
+    print(f"{one} {node['score1']} - {node['score2']} {two}")
+
+# grandFinalAdvantage is an OBJECT, and it is load-bearing for score derivation.
+advantage = bracket.get('grandFinalAdvantage')
+if advantage and advantage['type'] == 'WIN_HEADSTART':
+    print('GF headstart:', advantage.get('winHeadstart'))
+```
+
+</RequestExample>

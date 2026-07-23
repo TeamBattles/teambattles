@@ -175,6 +175,28 @@ names in the same `events` list.
 | `league.unfeatured`              | A league was unfeatured                 |
 | `league.unsuspended`             | A league was unsuspended                |
 | `league.verified`                | A league was verified                   |
+| `league.announcement`            | A league announcement was published     |
+
+### Tournament
+
+| Event                             | Description                                                                            |
+| --------------------------------- | -------------------------------------------------------------------------------------- |
+| `tournament.approved`             | A tournament was approved by platform staff                                            |
+| `tournament.registration_opened`  | Tournament registration opened                                                         |
+| `tournament.participant_approved` | A tournament participant was approved                                                  |
+| `tournament.started`              | A tournament started. Matches are generated asynchronously **after** this event         |
+| `tournament.round_completed`      | A tournament round completed. Carries `roundKey`                                       |
+| `tournament.completed`            | A tournament completed. Carries `championParticipantId`, `championName`, `placements`  |
+| `tournament.cancelled`            | A tournament was cancelled. Carries an optional `reason`                               |
+| `tournament.featured`             | A tournament was featured. Carries `featuredUntil` and `actorId`                       |
+| `tournament.unfeatured`           | A tournament was unfeatured                                                            |
+
+<Note>
+	`tournament.started` fires when the bracket structure is created, which is **before** any match
+	exists - the same asynchronous contract as `POST /tournaments/{identifier}/start`. Do not treat it
+	as a signal that matches are ready; read `GET /tournaments/{identifier}/bracket` instead. See the
+	[Tournament API guide](/developers/tournament-api).
+</Note>
 
 ### Rank / Stream
 

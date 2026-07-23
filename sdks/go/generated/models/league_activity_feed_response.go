@@ -9,7 +9,7 @@ import (
 
 // LeagueActivityFeedResponse a paginated league activity feed.
 type LeagueActivityFeedResponse struct {
-    // The activities property
+    // Activity entries, newest first. Each carries id, action, actorId, targetType, targetId, metadata and createdAt. Normal actions include actorName; actions taken by TeamBattles Platform Staff under audited elevation suppress actorName and set isPlatformStaff: true, keeping only actorId.
     activities i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
     // The hasMore property
     hasMore *bool
@@ -29,7 +29,7 @@ func NewLeagueActivityFeedResponse()(*LeagueActivityFeedResponse) {
 func CreateLeagueActivityFeedResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewLeagueActivityFeedResponse(), nil
 }
-// GetActivities gets the activities property value. The activities property
+// GetActivities gets the activities property value. Activity entries, newest first. Each carries id, action, actorId, targetType, targetId, metadata and createdAt. Normal actions include actorName; actions taken by TeamBattles Platform Staff under audited elevation suppress actorName and set isPlatformStaff: true, keeping only actorId.
 // returns a UntypedNodeable when successful
 func (m *LeagueActivityFeedResponse) GetActivities()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
     return m.activities
@@ -123,7 +123,7 @@ func (m *LeagueActivityFeedResponse) Serialize(writer i878a80d2330e89d26896388a3
     }
     return nil
 }
-// SetActivities sets the activities property value. The activities property
+// SetActivities sets the activities property value. Activity entries, newest first. Each carries id, action, actorId, targetType, targetId, metadata and createdAt. Normal actions include actorName; actions taken by TeamBattles Platform Staff under audited elevation suppress actorName and set isPlatformStaff: true, keeping only actorId.
 func (m *LeagueActivityFeedResponse) SetActivities(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
     m.activities = value
 }

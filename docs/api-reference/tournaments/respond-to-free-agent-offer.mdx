@@ -1,0 +1,116 @@
+---
+title: "Respond To A Free-Agent Offer"
+description: "Accept or decline a pickup offer addressed to you as a free agent."
+openapi: "POST /tournaments/{identifier}/free-agency/offers/{offerId}/respond"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.actor.free_agency` set to `write`.
+- An `offerId` from `GET /tournaments/{identifier}/me` - the `offers` array. This is the only place on the public API that returns one.
+- You must be the offer's **recipient**. An `offerId` addressed to anyone else answers `403`.
+
+## Permission Required
+
+This endpoint requires `tournaments.actor.free_agency` at `write`. Billing is to you, the key owner.
+
+## Accepting joins the team
+
+Accepting is not a bookkeeping flip. On success:
+
+- your pool row becomes `PICKED_UP`;
+- you are added to the offering team's tournament roster as a `FREE_AGENT` entry;
+- **every other `PENDING` offer addressed to you in this tournament is expired** - you are off the market.
+
+Re-read `GET /tournaments/{identifier}/me` afterwards rather than patching a cached offer list.
+
+Leaving that roster is also the only way back to `AVAILABLE`. The leave-pool endpoint refuses while you are rostered.
+
+## An offer can lapse between being sent and answered
+
+<Warning>
+	The offer must still be `PENDING`, or the request answers
+	`409 error_free_agent_offer_not_pending`.
+</Warning>
+
+That same 409 also covers an offer that was `PENDING` a moment ago and is no longer actionable - the tournament started, you were picked up elsewhere, or the offering team left. When accepting finds any of those, the offer is **durably marked `EXPIRED`** by that request and the call answers 409. A retry answers identically rather than flapping.
+
+It never answers `200` with `accepted: false`. A `2xx` from this endpoint means the pickup really happened, so a client can rely on it.
+
+## Declining is always available
+
+Declining works whatever your standing, and it notifies the captain who made the offer. The competitive-ban gate applies only to **acceptance**: a banned agent can clear an offer but receives `403 error_competitive_banned` if they try to accept it.
+
+## Refusals
+
+| Condition | Response |
+| --- | --- |
+| The offer is not addressed to you | `403` |
+| You are serving a competitive ban and sent `accept: true` | `403 error_competitive_banned` |
+| The offer is already answered, or lapsed | `409 error_free_agent_offer_not_pending` |
+| The offer ID does not belong to this tournament | `404` |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST \
+  https://teambattles.gg/api/v1/tournaments/spring-invitational/free-agency/offers/k37abcdefghijklmnopqrstuvwxyz/respond \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"accept": true}'
+```
+
+```javascript JavaScript
+const slug = "spring-invitational";
+const headers = { Authorization: "Bearer tb_your_api_key" };
+const base = `https://teambattles.gg/api/v1/tournaments/${slug}`;
+
+// Offer IDs come from /me and nowhere else. Filter to the answerable ones.
+const { entry } = await fetch(`${base}/me`, { headers }).then((r) => r.json());
+const offer = entry.offers.find((o) => o.status === "PENDING");
+
+const response = await fetch(`${base}/free-agency/offers/${offer.offerId}/respond`, {
+	method: "POST",
+	headers: { ...headers, "Content-Type": "application/json" },
+	body: JSON.stringify({ accept: true })
+});
+
+if (response.status === 409) {
+	// The offer lapsed between the read and this call. It is now durably EXPIRED;
+	// retrying answers the same. Re-read /me for what is still open.
+	console.warn("offer is no longer actionable");
+} else {
+	// A 2xx means the pickup really happened - you are on the roster and every
+	// other pending offer to you has been expired. Re-read /me.
+	console.log(await response.json());
+}
+```
+
+```python Python
+import requests
+
+slug = 'spring-invitational'
+headers = {'Authorization': 'Bearer tb_your_api_key'}
+base = f'https://teambattles.gg/api/v1/tournaments/{slug}'
+
+# Offer IDs come from /me and nowhere else. Filter to the answerable ones.
+entry = requests.get(f'{base}/me', headers=headers).json()['entry']
+offer = next(o for o in entry['offers'] if o['status'] == 'PENDING')
+
+response = requests.post(
+    f"{base}/free-agency/offers/{offer['offerId']}/respond",
+    headers=headers,
+    json={'accept': True}
+)
+
+if response.status_code == 409:
+    # The offer lapsed between the read and this call. It is now durably EXPIRED;
+    # retrying answers the same. Re-read /me for what is still open.
+    print('offer is no longer actionable')
+else:
+    # A 2xx means the pickup really happened - you are on the roster and every
+    # other pending offer to you has been expired. Re-read /me.
+    print(response.json())
+```
+
+</RequestExample>

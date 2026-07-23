@@ -24,6 +24,8 @@ import { TeamsRequestBuilderNavigationMetadata, TeamsRequestBuilderRequestsMetad
 // @ts-ignore
 import { TicketsRequestBuilderNavigationMetadata, TicketsRequestBuilderRequestsMetadata, type TicketsRequestBuilder } from './tickets/index.js';
 // @ts-ignore
+import { TournamentsRequestBuilderNavigationMetadata, TournamentsRequestBuilderRequestsMetadata, type TournamentsRequestBuilder } from './tournaments/index.js';
+// @ts-ignore
 import { TwitchRequestBuilderNavigationMetadata, type TwitchRequestBuilder } from './twitch/index.js';
 // @ts-ignore
 import { type UploadsRequestBuilder, UploadsRequestBuilderNavigationMetadata } from './uploads/index.js';
@@ -127,6 +129,10 @@ export interface TeamBattlesApiClient extends BaseRequestBuilder<TeamBattlesApiC
      */
     get tickets(): TicketsRequestBuilder;
     /**
+     * The tournaments property
+     */
+    get tournaments(): TournamentsRequestBuilder;
+    /**
      * The twitch property
      */
     get twitch(): TwitchRequestBuilder;
@@ -192,6 +198,10 @@ export const TeamBattlesApiClientNavigationMetadata: Record<Exclude<keyof TeamBa
     tickets: {
         requestsMetadata: TicketsRequestBuilderRequestsMetadata,
         navigationMetadata: TicketsRequestBuilderNavigationMetadata,
+    },
+    tournaments: {
+        requestsMetadata: TournamentsRequestBuilderRequestsMetadata,
+        navigationMetadata: TournamentsRequestBuilderNavigationMetadata,
     },
     twitch: {
         navigationMetadata: TwitchRequestBuilderNavigationMetadata,

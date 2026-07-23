@@ -6,6 +6,7 @@ import gg.teambattles.sdk.generated.user.connections.ConnectionsRequestBuilder;
 import gg.teambattles.sdk.generated.user.gameranks.GameRanksRequestBuilder;
 import gg.teambattles.sdk.generated.user.matches.MatchesRequestBuilder;
 import gg.teambattles.sdk.generated.user.ongoingmatches.OngoingMatchesRequestBuilder;
+import gg.teambattles.sdk.generated.user.tournaments.TournamentsRequestBuilder;
 import java.util.HashMap;
 import java.util.Objects;
 /**
@@ -44,6 +45,14 @@ public class UserRequestBuilder extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public OngoingMatchesRequestBuilder ongoingMatches() {
         return new OngoingMatchesRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The tournaments property
+     * @return a {@link TournamentsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public TournamentsRequestBuilder tournaments() {
+        return new TournamentsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * Instantiates a new {@link UserRequestBuilder} and sets the default values.

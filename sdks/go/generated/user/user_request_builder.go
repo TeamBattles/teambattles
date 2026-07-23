@@ -44,3 +44,8 @@ func (m *UserRequestBuilder) Matches()(*MatchesRequestBuilder) {
 func (m *UserRequestBuilder) OngoingMatches()(*OngoingMatchesRequestBuilder) {
     return NewOngoingMatchesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Tournaments the tournaments property
+// returns a *TournamentsRequestBuilder when successful
+func (m *UserRequestBuilder) Tournaments()(*TournamentsRequestBuilder) {
+    return NewTournamentsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}

@@ -21,6 +21,7 @@ using TeamBattles.Sdk.Strategies;
 using TeamBattles.Sdk.Streams;
 using TeamBattles.Sdk.Teams;
 using TeamBattles.Sdk.Tickets;
+using TeamBattles.Sdk.Tournaments;
 using TeamBattles.Sdk.Twitch;
 using TeamBattles.Sdk.Uploads;
 using TeamBattles.Sdk.User;
@@ -88,6 +89,11 @@ namespace TeamBattles.Sdk
         public global::TeamBattles.Sdk.Tickets.TicketsRequestBuilder Tickets
         {
             get => new global::TeamBattles.Sdk.Tickets.TicketsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The tournaments property</summary>
+        public global::TeamBattles.Sdk.Tournaments.TournamentsRequestBuilder Tournaments
+        {
+            get => new global::TeamBattles.Sdk.Tournaments.TournamentsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The twitch property</summary>
         public global::TeamBattles.Sdk.Twitch.TwitchRequestBuilder Twitch

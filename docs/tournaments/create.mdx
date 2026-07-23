@@ -22,6 +22,13 @@ Open the creation wizard from the Tournaments area. The wizard has five steps, a
 		tier's participant cap, whichever is lower. Set the default best-of and any per-round overrides,
 		the seeding method (manual, random, or registration order), and format-specific options such as
 		the grand-final advantage, Swiss round count, or round-robin passes.
+
+		The round list covers your whole participant range, since the bracket is only sized from the
+		actual entrant count when the tournament starts. Rounds that exist only in a larger field are
+		marked **Conditional**, and an override on a round that never happens is ignored. In single
+		elimination the grand final is highlighted only when your minimum and maximum fall in the same
+		power-of-two band (for example 9-16); otherwise whichever round ends up last is the grand final.
+		In double elimination `GF` is always the grand final, whatever the field size.
 	</Step>
 	<Step title="Registration">
 		Choose how teams enter - **Open**, **Application**, or **Invite only** - and the visibility
@@ -47,6 +54,8 @@ When you finish the wizard you have two choices:
 - **Submit for approval** - creates the tournament and sends it to TeamBattles staff for review in one step.
 
 Either way, the tournament is created first and you are taken to its host admin panel. If a submit fails after creation, the tournament still exists as a draft and the admin dashboard's approval banner lets you submit it again - no work is lost.
+
+A draft is never publicly listed, so it will not turn up in tournament discovery. It is listed in [your tournaments](https://teambattles.gg/tournaments/mine) alongside everything else you manage - open it from there to keep editing, or to submit it for review from its host admin panel.
 
 <Note>
 	The wizard also auto-saves your in-progress form to your browser, so a partially filled wizard is

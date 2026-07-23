@@ -1,0 +1,129 @@
+---
+title: "Enter A Tournament"
+description: "Register a team you lead directly into an open-registration tournament."
+openapi: "POST /tournaments/{identifier}/teams/{teamIdentifier}/enter"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.actor.entry` set to `read-write`.
+- You must be the **captain, co-captain, or owner of the organization that owns** the team in `{teamIdentifier}`.
+- The tournament must be in `OPEN` registration mode, inside its registration window, and below capacity.
+
+## Permission Required
+
+This endpoint requires `tournaments.actor.entry` at `read-write`. This is a **competitor** scope, not an organizer capability - organizer capabilities do not grant it and it does not grant them.
+
+Billing is to you, the key owner, not to the tournament host.
+
+## The acting team is the path segment
+
+`{teamIdentifier}` is the team **slug**, and it is the only channel that designates the acting team. There is deliberately **no `teamId` body field**: the leadership check runs against the path segment before the handler is entered, so a body field would be a second, unproven designation channel.
+
+<Warning>
+	A team you do not lead and a team slug that does not resolve **both** answer
+	`403 error_not_team_leader`. They are indistinguishable on purpose, so this path is not a team-slug
+	enumeration oracle. If you get this 403, check the slug for a typo before you go hunting for a
+	permissions problem.
+</Warning>
+
+## `enter` vs `apply`
+
+| Registration mode | Endpoint |
+| --- | --- |
+| `OPEN` | `POST /tournaments/{identifier}/teams/{teamIdentifier}/enter` - the entry is immediately `APPROVED` and consumes a participant slot |
+| `APPLICATION` | `POST /tournaments/{identifier}/teams/{teamIdentifier}/apply` - creates a `PENDING` application for an organizer to approve |
+
+Calling the wrong one for the tournament's mode answers `400 error_invalid_input` rather than silently doing the other thing.
+
+## Roster
+
+`roster` is a list of user IDs. Every entry must be an **ACTIVE** member of the team named in the path, and the array must hold at least the tournament's `teamSize` members - a shorter roster answers `400 error_roster_too_small`. Users already rostered in this tournament are skipped rather than rejected. The maximum is 64.
+
+## What's Returned
+
+`participantId` - the handle the check-in and withdraw endpoints are keyed by. **Store it.** It is otherwise only rediscoverable through `GET /tournaments/{identifier}/me`.
+
+## Refusals
+
+| Condition | Response |
+| --- | --- |
+| Not a leader of that team, or the team slug does not resolve | `403 error_not_team_leader` |
+| Outside the registration window | `400 error_registration_closed` |
+| Roster smaller than `teamSize` | `400 error_roster_too_small` |
+| Tournament is in `APPLICATION` or `INVITE_ONLY` mode | `400 error_invalid_input` |
+| Tournament is at capacity | `409 error_tournament_full` |
+| The team already holds a non-terminal entry | `409 error_already_entered` |
+| You are serving a competitive ban | `403 error_competitive_banned` |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST \
+  https://teambattles.gg/api/v1/tournaments/spring-invitational/teams/night-owls/enter \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"roster": ["j17abcdefghijklmnopqrstuvwxyz", "j27abcdefghijklmnopqrstuvwxyz", "j37abcdefghijklmnopqrstuvwxyz", "j47abcdefghijklmnopqrstuvwxyz"]}'
+```
+
+```javascript JavaScript
+const slug = "spring-invitational";
+const teamSlug = "night-owls";
+
+const response = await fetch(
+	`https://teambattles.gg/api/v1/tournaments/${slug}/teams/${teamSlug}/enter`,
+	{
+		method: "POST",
+		headers: {
+			Authorization: "Bearer tb_your_api_key",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			roster: [
+				"j17abcdefghijklmnopqrstuvwxyz",
+				"j27abcdefghijklmnopqrstuvwxyz",
+				"j37abcdefghijklmnopqrstuvwxyz",
+				"j47abcdefghijklmnopqrstuvwxyz"
+			]
+		})
+	}
+);
+
+if (response.status === 403) {
+	// Covers BOTH "you do not lead that team" and "no such team slug".
+	throw new Error("not a leader of that team, or the team slug is wrong");
+}
+
+const { participantId } = await response.json();
+// Store it - check-in and withdraw are keyed by this.
+console.log(participantId);
+```
+
+```python Python
+import requests
+
+slug = 'spring-invitational'
+team_slug = 'night-owls'
+
+response = requests.post(
+    f'https://teambattles.gg/api/v1/tournaments/{slug}/teams/{team_slug}/enter',
+    headers={'Authorization': 'Bearer tb_your_api_key'},
+    json={
+        'roster': [
+            'j17abcdefghijklmnopqrstuvwxyz',
+            'j27abcdefghijklmnopqrstuvwxyz',
+            'j37abcdefghijklmnopqrstuvwxyz',
+            'j47abcdefghijklmnopqrstuvwxyz'
+        ]
+    }
+)
+
+if response.status_code == 403:
+    # Covers BOTH 'you do not lead that team' and 'no such team slug'.
+    raise SystemExit('not a leader of that team, or the team slug is wrong')
+
+# Store it - check-in and withdraw are keyed by this.
+print(response.json()['participantId'])
+```
+
+</RequestExample>

@@ -10,6 +10,8 @@ import { MatchesRequestBuilderRequestsMetadata, type MatchesRequestBuilder } fro
 // @ts-ignore
 import { OngoingMatchesRequestBuilderRequestsMetadata, type OngoingMatchesRequestBuilder } from './ongoingMatches/index.js';
 // @ts-ignore
+import { TournamentsRequestBuilderNavigationMetadata, TournamentsRequestBuilderRequestsMetadata, type TournamentsRequestBuilder } from './tournaments/index.js';
+// @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata } from '@microsoft/kiota-abstractions';
 
 /**
@@ -32,6 +34,10 @@ export interface UserRequestBuilder extends BaseRequestBuilder<UserRequestBuilde
      * The ongoingMatches property
      */
     get ongoingMatches(): OngoingMatchesRequestBuilder;
+    /**
+     * The tournaments property
+     */
+    get tournaments(): TournamentsRequestBuilder;
 }
 /**
  * Uri template for the request builder.
@@ -53,6 +59,10 @@ export const UserRequestBuilderNavigationMetadata: Record<Exclude<keyof UserRequ
     },
     ongoingMatches: {
         requestsMetadata: OngoingMatchesRequestBuilderRequestsMetadata,
+    },
+    tournaments: {
+        requestsMetadata: TournamentsRequestBuilderRequestsMetadata,
+        navigationMetadata: TournamentsRequestBuilderNavigationMetadata,
     },
 };
 /* tslint:enable */

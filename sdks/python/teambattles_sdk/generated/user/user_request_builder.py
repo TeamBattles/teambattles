@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .game_ranks.game_ranks_request_builder import GameRanksRequestBuilder
     from .matches.matches_request_builder import MatchesRequestBuilder
     from .ongoing_matches.ongoing_matches_request_builder import OngoingMatchesRequestBuilder
+    from .tournaments.tournaments_request_builder import TournamentsRequestBuilder
 
 class UserRequestBuilder(BaseRequestBuilder):
     """
@@ -59,5 +60,14 @@ class UserRequestBuilder(BaseRequestBuilder):
         from .ongoing_matches.ongoing_matches_request_builder import OngoingMatchesRequestBuilder
 
         return OngoingMatchesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tournaments(self) -> TournamentsRequestBuilder:
+        """
+        The tournaments property
+        """
+        from .tournaments.tournaments_request_builder import TournamentsRequestBuilder
+
+        return TournamentsRequestBuilder(self.request_adapter, self.path_parameters)
     
 

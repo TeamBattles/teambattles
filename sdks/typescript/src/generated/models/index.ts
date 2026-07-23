@@ -6229,6 +6229,96 @@ export interface CreateMatchResponse extends Parsable {
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MyTournamentActableTeam}
+ */
+// @ts-ignore
+export function createMyTournamentActableTeamFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMyTournamentActableTeam;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MyTournamentEntry}
+ */
+// @ts-ignore
+export function createMyTournamentEntryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMyTournamentEntry;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MyTournamentEntryResponse}
+ */
+// @ts-ignore
+export function createMyTournamentEntryResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMyTournamentEntryResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MyTournamentFreeAgent}
+ */
+// @ts-ignore
+export function createMyTournamentFreeAgentFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMyTournamentFreeAgent;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MyTournamentInvite}
+ */
+// @ts-ignore
+export function createMyTournamentInviteFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMyTournamentInvite;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MyTournamentOffer}
+ */
+// @ts-ignore
+export function createMyTournamentOfferFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMyTournamentOffer;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MyTournamentParticipant}
+ */
+// @ts-ignore
+export function createMyTournamentParticipantFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMyTournamentParticipant;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MyTournamentRosterEntry}
+ */
+// @ts-ignore
+export function createMyTournamentRosterEntryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMyTournamentRosterEntry;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MyTournamentsResponse}
+ */
+// @ts-ignore
+export function createMyTournamentsResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMyTournamentsResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MyTournamentSummary}
+ */
+// @ts-ignore
+export function createMyTournamentSummaryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMyTournamentSummary;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {OngoingMatchesResponse}
  */
 // @ts-ignore
@@ -7154,6 +7244,951 @@ export function createToggleLeagueGameRequestBodyFromDiscriminatorValue(parseNod
 // @ts-ignore
 export function createToggleLeagueGameResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoToggleLeagueGameResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentActivityActor}
+ */
+// @ts-ignore
+export function createTournamentActivityActorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentActivityActor;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentActivityEntry_metadata}
+ */
+// @ts-ignore
+export function createTournamentActivityEntry_metadataFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentActivityEntry_metadata;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentActivityEntry}
+ */
+// @ts-ignore
+export function createTournamentActivityEntryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentActivityEntry;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentActivityFeedResponse}
+ */
+// @ts-ignore
+export function createTournamentActivityFeedResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentActivityFeedResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentAddStaffBody}
+ */
+// @ts-ignore
+export function createTournamentAddStaffBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentAddStaffBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TournamentApplication_teamAvatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentApplication_teamAvatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentApplication_teamAvatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentApplication_teamAvatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentApplication_teamAvatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentApplication_teamAvatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentApplication}
+ */
+// @ts-ignore
+export function createTournamentApplicationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentApplication;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentApplicationsResponse}
+ */
+// @ts-ignore
+export function createTournamentApplicationsResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentApplicationsResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentBracket_display}
+ */
+// @ts-ignore
+export function createTournamentBracket_displayFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentBracket_display;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentBracket_nodes}
+ */
+// @ts-ignore
+export function createTournamentBracket_nodesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentBracket_nodes;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentBracket_rounds}
+ */
+// @ts-ignore
+export function createTournamentBracket_roundsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentBracket_rounds;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentBracket}
+ */
+// @ts-ignore
+export function createTournamentBracketFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentBracket;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentBracketResponse}
+ */
+// @ts-ignore
+export function createTournamentBracketResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentBracketResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentCalendarEvent}
+ */
+// @ts-ignore
+export function createTournamentCalendarEventFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentCalendarEvent;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentCalendarResponse}
+ */
+// @ts-ignore
+export function createTournamentCalendarResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentCalendarResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentCancelRequestBody}
+ */
+// @ts-ignore
+export function createTournamentCancelRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentCancelRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentCancelResponse}
+ */
+// @ts-ignore
+export function createTournamentCancelResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentCancelResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentCloseRegistrationResponse}
+ */
+// @ts-ignore
+export function createTournamentCloseRegistrationResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentCloseRegistrationResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentCreateRequestBody}
+ */
+// @ts-ignore
+export function createTournamentCreateRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentCreateRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentCreateResponse}
+ */
+// @ts-ignore
+export function createTournamentCreateResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentCreateResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentDefaultMatchConfig_gameSpecificOptions}
+ */
+// @ts-ignore
+export function createTournamentDefaultMatchConfig_gameSpecificOptionsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentDefaultMatchConfig_gameSpecificOptions;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentDefaultMatchConfig_lockedRules}
+ */
+// @ts-ignore
+export function createTournamentDefaultMatchConfig_lockedRulesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentDefaultMatchConfig_lockedRules;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentDefaultMatchConfig}
+ */
+// @ts-ignore
+export function createTournamentDefaultMatchConfigFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentDefaultMatchConfig;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentDenyApplicationBody}
+ */
+// @ts-ignore
+export function createTournamentDenyApplicationBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentDenyApplicationBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentDiscoverBody}
+ */
+// @ts-ignore
+export function createTournamentDiscoverBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentDiscoverBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentDiscoverPage}
+ */
+// @ts-ignore
+export function createTournamentDiscoverPageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentDiscoverPage;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentDisqualifyParticipantBody}
+ */
+// @ts-ignore
+export function createTournamentDisqualifyParticipantBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentDisqualifyParticipantBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentFormatConfig_bestOfLadder_overrides}
+ */
+// @ts-ignore
+export function createTournamentFormatConfig_bestOfLadder_overridesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentFormatConfig_bestOfLadder_overrides;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentFormatConfig_bestOfLadder}
+ */
+// @ts-ignore
+export function createTournamentFormatConfig_bestOfLadderFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentFormatConfig_bestOfLadder;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentFormatConfig_grandFinalAdvantage}
+ */
+// @ts-ignore
+export function createTournamentFormatConfig_grandFinalAdvantageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentFormatConfig_grandFinalAdvantage;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {number}
+ */
+// @ts-ignore
+export function createTournamentFormatConfig_roundRobinPassesFromDiscriminatorValue(parseNode: ParseNode | undefined) : number | undefined {
+    return parseNode?.getNumberValue();
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentFormatConfig}
+ */
+// @ts-ignore
+export function createTournamentFormatConfigFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentFormatConfig;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentFreeAgencyJoinBody}
+ */
+// @ts-ignore
+export function createTournamentFreeAgencyJoinBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentFreeAgencyJoinBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TournamentFreeAgent_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentFreeAgent_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentFreeAgent_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentFreeAgent_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentFreeAgent_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentFreeAgent_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TournamentFreeAgent_viewerOfferStatusMember1}
+ */
+// @ts-ignore
+export function createTournamentFreeAgent_viewerOfferStatusFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentFreeAgent_viewerOfferStatus;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentFreeAgent_viewerOfferStatusMember1}
+ */
+// @ts-ignore
+export function createTournamentFreeAgent_viewerOfferStatusMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentFreeAgent_viewerOfferStatusMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentFreeAgent}
+ */
+// @ts-ignore
+export function createTournamentFreeAgentFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentFreeAgent;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentFreeAgentsResponse}
+ */
+// @ts-ignore
+export function createTournamentFreeAgentsResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentFreeAgentsResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentGrandFinalAdvantage}
+ */
+// @ts-ignore
+export function createTournamentGrandFinalAdvantageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentGrandFinalAdvantage;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TournamentInvite_teamAvatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentInvite_teamAvatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentInvite_teamAvatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentInvite_teamAvatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentInvite_teamAvatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentInvite_teamAvatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentInvite}
+ */
+// @ts-ignore
+export function createTournamentInviteFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentInvite;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentInviteRespondBody}
+ */
+// @ts-ignore
+export function createTournamentInviteRespondBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentInviteRespondBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentInviteRespondResponse}
+ */
+// @ts-ignore
+export function createTournamentInviteRespondResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentInviteRespondResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentInvitesResponse}
+ */
+// @ts-ignore
+export function createTournamentInvitesResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentInvitesResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentInviteTeamBody}
+ */
+// @ts-ignore
+export function createTournamentInviteTeamBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentInviteTeamBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentLeaguePointsRejected}
+ */
+// @ts-ignore
+export function createTournamentLeaguePointsRejectedFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentLeaguePointsRejected;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentLeaguePointsRequestBody}
+ */
+// @ts-ignore
+export function createTournamentLeaguePointsRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentLeaguePointsRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {number | TournamentLeaguePointsResponse_placementCountMember1}
+ */
+// @ts-ignore
+export function createTournamentLeaguePointsResponse_placementCountFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentLeaguePointsResponse_placementCount;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentLeaguePointsResponse_placementCountMember1}
+ */
+// @ts-ignore
+export function createTournamentLeaguePointsResponse_placementCountMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentLeaguePointsResponse_placementCountMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentLeaguePointsResponse}
+ */
+// @ts-ignore
+export function createTournamentLeaguePointsResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentLeaguePointsResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentOfferRespondBody}
+ */
+// @ts-ignore
+export function createTournamentOfferRespondBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentOfferRespondBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentOfferRespondResponse}
+ */
+// @ts-ignore
+export function createTournamentOfferRespondResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentOfferRespondResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentOpenRegistrationResponse}
+ */
+// @ts-ignore
+export function createTournamentOpenRegistrationResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentOpenRegistrationResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentOrganizerRosterAddBody}
+ */
+// @ts-ignore
+export function createTournamentOrganizerRosterAddBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentOrganizerRosterAddBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentOverrideNodeResultBody}
+ */
+// @ts-ignore
+export function createTournamentOverrideNodeResultBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentOverrideNodeResultBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TournamentParticipant_teamAvatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentParticipant_teamAvatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentParticipant_teamAvatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentParticipant_teamAvatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentParticipant_teamAvatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentParticipant_teamAvatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentParticipant}
+ */
+// @ts-ignore
+export function createTournamentParticipantFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentParticipant;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentParticipantsResponse}
+ */
+// @ts-ignore
+export function createTournamentParticipantsResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentParticipantsResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentPlacementPointsEntry}
+ */
+// @ts-ignore
+export function createTournamentPlacementPointsEntryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentPlacementPointsEntry;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentPrizeBreakdownEntry}
+ */
+// @ts-ignore
+export function createTournamentPrizeBreakdownEntryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentPrizeBreakdownEntry;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TournamentProfile_bannerUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentProfile_bannerUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentProfile_bannerUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentProfile_bannerUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentProfile_bannerUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentProfile_bannerUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TournamentProfile_logoUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentProfile_logoUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentProfile_logoUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentProfile_logoUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentProfile_logoUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentProfile_logoUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentProfile_viewerManagement}
+ */
+// @ts-ignore
+export function createTournamentProfile_viewerManagementFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentProfile_viewerManagement;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentProfile}
+ */
+// @ts-ignore
+export function createTournamentProfileFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentProfile;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentProfileResponse}
+ */
+// @ts-ignore
+export function createTournamentProfileResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentProfileResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentRegenerateMatchesRequestBody}
+ */
+// @ts-ignore
+export function createTournamentRegenerateMatchesRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRegenerateMatchesRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentRegenerateMatchesResponse}
+ */
+// @ts-ignore
+export function createTournamentRegenerateMatchesResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRegenerateMatchesResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentRemoveParticipantBody}
+ */
+// @ts-ignore
+export function createTournamentRemoveParticipantBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRemoveParticipantBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentRevertNodeResultBody}
+ */
+// @ts-ignore
+export function createTournamentRevertNodeResultBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRevertNodeResultBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TournamentRosterMember_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentRosterMember_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRosterMember_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentRosterMember_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentRosterMember_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRosterMember_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentRosterMember}
+ */
+// @ts-ignore
+export function createTournamentRosterMemberFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRosterMember;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {number | TournamentRoundScheduleRequestBody_startsAtMember1}
+ */
+// @ts-ignore
+export function createTournamentRoundScheduleRequestBody_startsAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRoundScheduleRequestBody_startsAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentRoundScheduleRequestBody_startsAtMember1}
+ */
+// @ts-ignore
+export function createTournamentRoundScheduleRequestBody_startsAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRoundScheduleRequestBody_startsAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentRoundScheduleRequestBody}
+ */
+// @ts-ignore
+export function createTournamentRoundScheduleRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRoundScheduleRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {number | TournamentRoundScheduleResponse_startsAtMember1}
+ */
+// @ts-ignore
+export function createTournamentRoundScheduleResponse_startsAtFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRoundScheduleResponse_startsAt;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentRoundScheduleResponse_startsAtMember1}
+ */
+// @ts-ignore
+export function createTournamentRoundScheduleResponse_startsAtMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRoundScheduleResponse_startsAtMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentRoundScheduleResponse}
+ */
+// @ts-ignore
+export function createTournamentRoundScheduleResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentRoundScheduleResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentSendOfferBody}
+ */
+// @ts-ignore
+export function createTournamentSendOfferBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentSendOfferBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentSocialLinks}
+ */
+// @ts-ignore
+export function createTournamentSocialLinksFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentSocialLinks;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentSponsorTag}
+ */
+// @ts-ignore
+export function createTournamentSponsorTagFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentSponsorTag;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TournamentStaffMember_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentStaffMember_avatarUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentStaffMember_avatarUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentStaffMember_avatarUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentStaffMember_avatarUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentStaffMember_avatarUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentStaffMember}
+ */
+// @ts-ignore
+export function createTournamentStaffMemberFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentStaffMember;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentStaffResponse}
+ */
+// @ts-ignore
+export function createTournamentStaffResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentStaffResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentStartRequestBody}
+ */
+// @ts-ignore
+export function createTournamentStartRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentStartRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentStartResponse}
+ */
+// @ts-ignore
+export function createTournamentStartResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentStartResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentSubmitForApprovalResponse}
+ */
+// @ts-ignore
+export function createTournamentSubmitForApprovalResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentSubmitForApprovalResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TournamentSummary_bannerUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentSummary_bannerUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentSummary_bannerUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentSummary_bannerUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentSummary_bannerUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentSummary_bannerUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TournamentSummary_logoUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentSummary_logoUrlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentSummary_logoUrl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentSummary_logoUrlMember1}
+ */
+// @ts-ignore
+export function createTournamentSummary_logoUrlMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentSummary_logoUrlMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentSummary}
+ */
+// @ts-ignore
+export function createTournamentSummaryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentSummary;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentTeamEntryBody}
+ */
+// @ts-ignore
+export function createTournamentTeamEntryBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentTeamEntryBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentTeamEntryResponse}
+ */
+// @ts-ignore
+export function createTournamentTeamEntryResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentTeamEntryResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentTeamRosterAddBody}
+ */
+// @ts-ignore
+export function createTournamentTeamRosterAddBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentTeamRosterAddBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentUpdateRequestBody}
+ */
+// @ts-ignore
+export function createTournamentUpdateRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentUpdateRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentUpdateResponse}
+ */
+// @ts-ignore
+export function createTournamentUpdateResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentUpdateResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TournamentWriteAck}
+ */
+// @ts-ignore
+export function createTournamentWriteAckFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTournamentWriteAck;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -13437,6 +14472,170 @@ export function deserializeIntoMatchesRequestBody_cursorMember1(matchesRequestBo
 }
 /**
  * The deserialization information for the current model
+ * @param MyTournamentActableTeam The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMyTournamentActableTeam(myTournamentActableTeam: Partial<MyTournamentActableTeam> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { myTournamentActableTeam.avatarUrl = n.getStringValue(); },
+        "name": n => { myTournamentActableTeam.name = n.getStringValue(); },
+        "teamId": n => { myTournamentActableTeam.teamId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MyTournamentEntry The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMyTournamentEntry(myTournamentEntry: Partial<MyTournamentEntry> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "actableTeams": n => { myTournamentEntry.actableTeams = n.getCollectionOfObjectValues<MyTournamentActableTeam>(createMyTournamentActableTeamFromDiscriminatorValue); },
+        "freeAgent": n => { myTournamentEntry.freeAgent = n.getObjectValue<MyTournamentFreeAgent>(createMyTournamentFreeAgentFromDiscriminatorValue); },
+        "invites": n => { myTournamentEntry.invites = n.getCollectionOfObjectValues<MyTournamentInvite>(createMyTournamentInviteFromDiscriminatorValue); },
+        "offers": n => { myTournamentEntry.offers = n.getCollectionOfObjectValues<MyTournamentOffer>(createMyTournamentOfferFromDiscriminatorValue); },
+        "participants": n => { myTournamentEntry.participants = n.getCollectionOfObjectValues<MyTournamentParticipant>(createMyTournamentParticipantFromDiscriminatorValue); },
+        "requiredConnectionMissing": n => { myTournamentEntry.requiredConnectionMissing = n.getBooleanValue(); },
+        "rosterEntries": n => { myTournamentEntry.rosterEntries = n.getCollectionOfObjectValues<MyTournamentRosterEntry>(createMyTournamentRosterEntryFromDiscriminatorValue); },
+        "slug": n => { myTournamentEntry.slug = n.getStringValue(); },
+        "tournamentId": n => { myTournamentEntry.tournamentId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MyTournamentEntryResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMyTournamentEntryResponse(myTournamentEntryResponse: Partial<MyTournamentEntryResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "entry": n => { myTournamentEntryResponse.entry = n.getObjectValue<MyTournamentEntry>(createMyTournamentEntryFromDiscriminatorValue); },
+        "timestamp": n => { myTournamentEntryResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MyTournamentFreeAgent The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMyTournamentFreeAgent(myTournamentFreeAgent: Partial<MyTournamentFreeAgent> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "createdAt": n => { myTournamentFreeAgent.createdAt = n.getNumberValue(); },
+        "freeAgentId": n => { myTournamentFreeAgent.freeAgentId = n.getStringValue(); },
+        "note": n => { myTournamentFreeAgent.note = n.getStringValue(); },
+        "pickedUpByParticipantId": n => { myTournamentFreeAgent.pickedUpByParticipantId = n.getStringValue(); },
+        "status": n => { myTournamentFreeAgent.status = n.getEnumValue<TournamentFreeAgentStatus>(TournamentFreeAgentStatusObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MyTournamentInvite The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMyTournamentInvite(myTournamentInvite: Partial<MyTournamentInvite> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "createdAt": n => { myTournamentInvite.createdAt = n.getNumberValue(); },
+        "invitedByUserId": n => { myTournamentInvite.invitedByUserId = n.getStringValue(); },
+        "inviteId": n => { myTournamentInvite.inviteId = n.getStringValue(); },
+        "respondedAt": n => { myTournamentInvite.respondedAt = n.getNumberValue(); },
+        "status": n => { myTournamentInvite.status = n.getEnumValue<TournamentInviteStatus>(TournamentInviteStatusObject); },
+        "teamId": n => { myTournamentInvite.teamId = n.getStringValue(); },
+        "teamName": n => { myTournamentInvite.teamName = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MyTournamentOffer The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMyTournamentOffer(myTournamentOffer: Partial<MyTournamentOffer> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "createdAt": n => { myTournamentOffer.createdAt = n.getNumberValue(); },
+        "message": n => { myTournamentOffer.message = n.getStringValue(); },
+        "offerId": n => { myTournamentOffer.offerId = n.getStringValue(); },
+        "offeringParticipantStatus": n => { myTournamentOffer.offeringParticipantStatus = n.getEnumValue<TournamentParticipantStatus>(TournamentParticipantStatusObject); },
+        "participantId": n => { myTournamentOffer.participantId = n.getStringValue(); },
+        "status": n => { myTournamentOffer.status = n.getEnumValue<TournamentFreeAgentOfferStatus>(TournamentFreeAgentOfferStatusObject); },
+        "teamAvatarUrl": n => { myTournamentOffer.teamAvatarUrl = n.getStringValue(); },
+        "teamId": n => { myTournamentOffer.teamId = n.getStringValue(); },
+        "teamName": n => { myTournamentOffer.teamName = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MyTournamentParticipant The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMyTournamentParticipant(myTournamentParticipant: Partial<MyTournamentParticipant> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "canManage": n => { myTournamentParticipant.canManage = n.getBooleanValue(); },
+        "checkedInAt": n => { myTournamentParticipant.checkedInAt = n.getNumberValue(); },
+        "finalPlacement": n => { myTournamentParticipant.finalPlacement = n.getNumberValue(); },
+        "participantId": n => { myTournamentParticipant.participantId = n.getStringValue(); },
+        "registeredAt": n => { myTournamentParticipant.registeredAt = n.getNumberValue(); },
+        "seed": n => { myTournamentParticipant.seed = n.getNumberValue(); },
+        "status": n => { myTournamentParticipant.status = n.getEnumValue<TournamentParticipantStatus>(TournamentParticipantStatusObject); },
+        "teamAvatarUrl": n => { myTournamentParticipant.teamAvatarUrl = n.getStringValue(); },
+        "teamId": n => { myTournamentParticipant.teamId = n.getStringValue(); },
+        "teamName": n => { myTournamentParticipant.teamName = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MyTournamentRosterEntry The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMyTournamentRosterEntry(myTournamentRosterEntry: Partial<MyTournamentRosterEntry> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "addedAt": n => { myTournamentRosterEntry.addedAt = n.getNumberValue(); },
+        "participantId": n => { myTournamentRosterEntry.participantId = n.getStringValue(); },
+        "rosterEntryId": n => { myTournamentRosterEntry.rosterEntryId = n.getStringValue(); },
+        "source": n => { myTournamentRosterEntry.source = n.getEnumValue<TournamentRosterSource>(TournamentRosterSourceObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MyTournamentsResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMyTournamentsResponse(myTournamentsResponse: Partial<MyTournamentsResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { myTournamentsResponse.count = n.getNumberValue(); },
+        "timestamp": n => { myTournamentsResponse.timestamp = n.getStringValue(); },
+        "tournaments": n => { myTournamentsResponse.tournaments = n.getCollectionOfObjectValues<MyTournamentSummary>(createMyTournamentSummaryFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MyTournamentSummary The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMyTournamentSummary(myTournamentSummary: Partial<MyTournamentSummary> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "approvalStatus": n => { myTournamentSummary.approvalStatus = n.getStringValue(); },
+        "hostType": n => { myTournamentSummary.hostType = n.getStringValue(); },
+        "id": n => { myTournamentSummary.id = n.getStringValue(); },
+        "isAdmin": n => { myTournamentSummary.isAdmin = n.getBooleanValue(); },
+        "maxParticipants": n => { myTournamentSummary.maxParticipants = n.getNumberValue(); },
+        "name": n => { myTournamentSummary.name = n.getStringValue(); },
+        "needsAttention": n => { myTournamentSummary.needsAttention = n.getBooleanValue(); },
+        "participantCount": n => { myTournamentSummary.participantCount = n.getNumberValue(); },
+        "slug": n => { myTournamentSummary.slug = n.getStringValue(); },
+        "startsAt": n => { myTournamentSummary.startsAt = n.getNumberValue(); },
+        "status": n => { myTournamentSummary.status = n.getEnumValue<TournamentStatus>(TournamentStatusObject); },
+        "updatedAt": n => { myTournamentSummary.updatedAt = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param OngoingMatchesResponse The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -14409,6 +15608,1380 @@ export function deserializeIntoToggleLeagueGameResponse(toggleLeagueGameResponse
     return {
         "success": n => { toggleLeagueGameResponse.success = n.getBooleanValue(); },
         "timestamp": n => { toggleLeagueGameResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentActivityActor The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentActivityActor(tournamentActivityActor: Partial<TournamentActivityActor> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { tournamentActivityActor.id = n.getStringValue(); },
+        "isPlatformStaff": n => { tournamentActivityActor.isPlatformStaff = n.getBooleanValue(); },
+        "name": n => { tournamentActivityActor.name = n.getStringValue(); },
+        "username": n => { tournamentActivityActor.username = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentActivityEntry The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentActivityEntry(tournamentActivityEntry: Partial<TournamentActivityEntry> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "action": n => { tournamentActivityEntry.action = n.getStringValue(); },
+        "actor": n => { tournamentActivityEntry.actor = n.getObjectValue<TournamentActivityActor>(createTournamentActivityActorFromDiscriminatorValue); },
+        "createdAt": n => { tournamentActivityEntry.createdAt = n.getNumberValue(); },
+        "id": n => { tournamentActivityEntry.id = n.getStringValue(); },
+        "metadata": n => { tournamentActivityEntry.metadata = n.getObjectValue<TournamentActivityEntry_metadata>(createTournamentActivityEntry_metadataFromDiscriminatorValue); },
+        "targetId": n => { tournamentActivityEntry.targetId = n.getStringValue(); },
+        "targetType": n => { tournamentActivityEntry.targetType = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentActivityEntry_metadata The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentActivityEntry_metadata(tournamentActivityEntry_metadata: Partial<TournamentActivityEntry_metadata> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentActivityFeedResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentActivityFeedResponse(tournamentActivityFeedResponse: Partial<TournamentActivityFeedResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "activities": n => { tournamentActivityFeedResponse.activities = n.getCollectionOfObjectValues<TournamentActivityEntry>(createTournamentActivityEntryFromDiscriminatorValue); },
+        "count": n => { tournamentActivityFeedResponse.count = n.getNumberValue(); },
+        "timestamp": n => { tournamentActivityFeedResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentAddStaffBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentAddStaffBody(tournamentAddStaffBody: Partial<TournamentAddStaffBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "role": n => { tournamentAddStaffBody.role = n.getEnumValue<TournamentStaffRole>(TournamentStaffRoleObject); },
+        "userId": n => { tournamentAddStaffBody.userId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentApplication The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentApplication(tournamentApplication: Partial<TournamentApplication> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "appliedByUserId": n => { tournamentApplication.appliedByUserId = n.getStringValue(); },
+        "id": n => { tournamentApplication.id = n.getStringValue(); },
+        "registeredAt": n => { tournamentApplication.registeredAt = n.getNumberValue(); },
+        "teamAvatarUrl": n => { tournamentApplication.teamAvatarUrl = n.getStringValue() ?? n.getObjectValue<TournamentApplication_teamAvatarUrlMember1>(createTournamentApplication_teamAvatarUrlMember1FromDiscriminatorValue); },
+        "teamId": n => { tournamentApplication.teamId = n.getStringValue(); },
+        "teamName": n => { tournamentApplication.teamName = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentApplication_teamAvatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentApplication_teamAvatarUrl(tournamentApplication_teamAvatarUrl: Partial<Parsable | string | TournamentApplication_teamAvatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentApplication_teamAvatarUrl = n.getStringValue()},
+        ...deserializeIntoTournamentApplication_teamAvatarUrlMember1(tournamentApplication_teamAvatarUrl as TournamentApplication_teamAvatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentApplication_teamAvatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentApplication_teamAvatarUrlMember1(tournamentApplication_teamAvatarUrlMember1: Partial<TournamentApplication_teamAvatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentApplicationsResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentApplicationsResponse(tournamentApplicationsResponse: Partial<TournamentApplicationsResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "applications": n => { tournamentApplicationsResponse.applications = n.getCollectionOfObjectValues<TournamentApplication>(createTournamentApplicationFromDiscriminatorValue); },
+        "count": n => { tournamentApplicationsResponse.count = n.getNumberValue(); },
+        "timestamp": n => { tournamentApplicationsResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentBracket The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentBracket(tournamentBracket: Partial<TournamentBracket> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "display": n => { tournamentBracket.display = n.getObjectValue<TournamentBracket_display>(createTournamentBracket_displayFromDiscriminatorValue); },
+        "disqualified": n => { tournamentBracket.disqualified = n.getCollectionOfPrimitiveValues<string>(); },
+        "grandFinalAdvantage": n => { tournamentBracket.grandFinalAdvantage = n.getObjectValue<TournamentGrandFinalAdvantage>(createTournamentGrandFinalAdvantageFromDiscriminatorValue); },
+        "nodes": n => { tournamentBracket.nodes = n.getCollectionOfObjectValues<TournamentBracket_nodes>(createTournamentBracket_nodesFromDiscriminatorValue); },
+        "rounds": n => { tournamentBracket.rounds = n.getCollectionOfObjectValues<TournamentBracket_rounds>(createTournamentBracket_roundsFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentBracket_display The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentBracket_display(tournamentBracket_display: Partial<TournamentBracket_display> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentBracket_nodes The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentBracket_nodes(tournamentBracket_nodes: Partial<TournamentBracket_nodes> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentBracket_rounds The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentBracket_rounds(tournamentBracket_rounds: Partial<TournamentBracket_rounds> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentBracketResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentBracketResponse(tournamentBracketResponse: Partial<TournamentBracketResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "bracket": n => { tournamentBracketResponse.bracket = n.getObjectValue<TournamentBracket>(createTournamentBracketFromDiscriminatorValue); },
+        "timestamp": n => { tournamentBracketResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentCalendarEvent The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentCalendarEvent(tournamentCalendarEvent: Partial<TournamentCalendarEvent> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "at": n => { tournamentCalendarEvent.at = n.getNumberValue(); },
+        "kind": n => { tournamentCalendarEvent.kind = n.getEnumValue<TournamentCalendarEvent_kind>(TournamentCalendarEvent_kindObject); },
+        "name": n => { tournamentCalendarEvent.name = n.getStringValue(); },
+        "slug": n => { tournamentCalendarEvent.slug = n.getStringValue(); },
+        "tournamentId": n => { tournamentCalendarEvent.tournamentId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentCalendarResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentCalendarResponse(tournamentCalendarResponse: Partial<TournamentCalendarResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { tournamentCalendarResponse.count = n.getNumberValue(); },
+        "events": n => { tournamentCalendarResponse.events = n.getCollectionOfObjectValues<TournamentCalendarEvent>(createTournamentCalendarEventFromDiscriminatorValue); },
+        "rangeEnd": n => { tournamentCalendarResponse.rangeEnd = n.getStringValue(); },
+        "rangeStart": n => { tournamentCalendarResponse.rangeStart = n.getStringValue(); },
+        "timestamp": n => { tournamentCalendarResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentCancelRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentCancelRequestBody(tournamentCancelRequestBody: Partial<TournamentCancelRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "reason": n => { tournamentCancelRequestBody.reason = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentCancelResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentCancelResponse(tournamentCancelResponse: Partial<TournamentCancelResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "approvalStatus": n => { tournamentCancelResponse.approvalStatus = n.getEnumValue<TournamentCancelResponse_approvalStatus>(TournamentCancelResponse_approvalStatusObject); },
+        "status": n => { tournamentCancelResponse.status = n.getStringValue(); },
+        "success": n => { tournamentCancelResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { tournamentCancelResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentCloseRegistrationResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentCloseRegistrationResponse(tournamentCloseRegistrationResponse: Partial<TournamentCloseRegistrationResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "status": n => { tournamentCloseRegistrationResponse.status = n.getStringValue(); },
+        "success": n => { tournamentCloseRegistrationResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { tournamentCloseRegistrationResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentCreateRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentCreateRequestBody(tournamentCreateRequestBody: Partial<TournamentCreateRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "bannerStorageId": n => { tournamentCreateRequestBody.bannerStorageId = n.getStringValue(); },
+        "checkInOpensMinutesBefore": n => { tournamentCreateRequestBody.checkInOpensMinutesBefore = n.getNumberValue(); },
+        "checkInRequired": n => { tournamentCreateRequestBody.checkInRequired = n.getBooleanValue(); },
+        "defaultMatchConfig": n => { tournamentCreateRequestBody.defaultMatchConfig = n.getObjectValue<TournamentDefaultMatchConfig>(createTournamentDefaultMatchConfigFromDiscriminatorValue); },
+        "description": n => { tournamentCreateRequestBody.description = n.getStringValue(); },
+        "endsAt": n => { tournamentCreateRequestBody.endsAt = n.getNumberValue(); },
+        "format": n => { tournamentCreateRequestBody.format = n.getEnumValue<TournamentFormat>(TournamentFormatObject); },
+        "formatConfig": n => { tournamentCreateRequestBody.formatConfig = n.getObjectValue<TournamentFormatConfig>(createTournamentFormatConfigFromDiscriminatorValue); },
+        "freeAgentsEnabled": n => { tournamentCreateRequestBody.freeAgentsEnabled = n.getBooleanValue(); },
+        "gameId": n => { tournamentCreateRequestBody.gameId = n.getStringValue(); },
+        "hostId": n => { tournamentCreateRequestBody.hostId = n.getStringValue(); },
+        "hostType": n => { tournamentCreateRequestBody.hostType = n.getEnumValue<TournamentCreateRequestBody_hostType>(TournamentCreateRequestBody_hostTypeObject); },
+        "leaguePointsByPlacement": n => { tournamentCreateRequestBody.leaguePointsByPlacement = n.getCollectionOfObjectValues<TournamentPlacementPointsEntry>(createTournamentPlacementPointsEntryFromDiscriminatorValue); },
+        "leaguePointsEnabled": n => { tournamentCreateRequestBody.leaguePointsEnabled = n.getBooleanValue(); },
+        "logoStorageId": n => { tournamentCreateRequestBody.logoStorageId = n.getStringValue(); },
+        "maxParticipants": n => { tournamentCreateRequestBody.maxParticipants = n.getNumberValue(); },
+        "minParticipants": n => { tournamentCreateRequestBody.minParticipants = n.getNumberValue(); },
+        "name": n => { tournamentCreateRequestBody.name = n.getStringValue(); },
+        "playlistId": n => { tournamentCreateRequestBody.playlistId = n.getStringValue(); },
+        "prizeBreakdown": n => { tournamentCreateRequestBody.prizeBreakdown = n.getCollectionOfObjectValues<TournamentPrizeBreakdownEntry>(createTournamentPrizeBreakdownEntryFromDiscriminatorValue); },
+        "prizeCurrency": n => { tournamentCreateRequestBody.prizeCurrency = n.getStringValue(); },
+        "prizeDescription": n => { tournamentCreateRequestBody.prizeDescription = n.getStringValue(); },
+        "prizePool": n => { tournamentCreateRequestBody.prizePool = n.getNumberValue(); },
+        "registrationEndsAt": n => { tournamentCreateRequestBody.registrationEndsAt = n.getNumberValue(); },
+        "registrationMode": n => { tournamentCreateRequestBody.registrationMode = n.getEnumValue<TournamentCreateRequestBody_registrationMode>(TournamentCreateRequestBody_registrationModeObject); },
+        "registrationStartsAt": n => { tournamentCreateRequestBody.registrationStartsAt = n.getNumberValue(); },
+        "rules": n => { tournamentCreateRequestBody.rules = n.getStringValue(); },
+        "seedingMethod": n => { tournamentCreateRequestBody.seedingMethod = n.getEnumValue<TournamentCreateRequestBody_seedingMethod>(TournamentCreateRequestBody_seedingMethodObject); },
+        "socialLinks": n => { tournamentCreateRequestBody.socialLinks = n.getObjectValue<TournamentSocialLinks>(createTournamentSocialLinksFromDiscriminatorValue); },
+        "sponsorTags": n => { tournamentCreateRequestBody.sponsorTags = n.getCollectionOfObjectValues<TournamentSponsorTag>(createTournamentSponsorTagFromDiscriminatorValue); },
+        "startsAt": n => { tournamentCreateRequestBody.startsAt = n.getNumberValue(); },
+        "teamSize": n => { tournamentCreateRequestBody.teamSize = n.getNumberValue(); },
+        "visibility": n => { tournamentCreateRequestBody.visibility = n.getEnumValue<TournamentCreateRequestBody_visibility>(TournamentCreateRequestBody_visibilityObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentCreateResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentCreateResponse(tournamentCreateResponse: Partial<TournamentCreateResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "approvalStatus": n => { tournamentCreateResponse.approvalStatus = n.getStringValue(); },
+        "slug": n => { tournamentCreateResponse.slug = n.getStringValue(); },
+        "status": n => { tournamentCreateResponse.status = n.getStringValue(); },
+        "success": n => { tournamentCreateResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { tournamentCreateResponse.timestamp = n.getStringValue(); },
+        "tournamentId": n => { tournamentCreateResponse.tournamentId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentDefaultMatchConfig The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentDefaultMatchConfig(tournamentDefaultMatchConfig: Partial<TournamentDefaultMatchConfig> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "gameModeId": n => { tournamentDefaultMatchConfig.gameModeId = n.getStringValue(); },
+        "gameSpecificOptions": n => { tournamentDefaultMatchConfig.gameSpecificOptions = n.getObjectValue<TournamentDefaultMatchConfig_gameSpecificOptions>(createTournamentDefaultMatchConfig_gameSpecificOptionsFromDiscriminatorValue); },
+        "inputDevice": n => { tournamentDefaultMatchConfig.inputDevice = n.getEnumValue<TournamentDefaultMatchConfig_inputDevice>(TournamentDefaultMatchConfig_inputDeviceObject); },
+        "lockedRules": n => { tournamentDefaultMatchConfig.lockedRules = n.getObjectValue<TournamentDefaultMatchConfig_lockedRules>(createTournamentDefaultMatchConfig_lockedRulesFromDiscriminatorValue); },
+        "mapPreferenceMode": n => { tournamentDefaultMatchConfig.mapPreferenceMode = n.getEnumValue<TournamentDefaultMatchConfig_mapPreferenceMode>(TournamentDefaultMatchConfig_mapPreferenceModeObject); },
+        "mapSelectionType": n => { tournamentDefaultMatchConfig.mapSelectionType = n.getEnumValue<TournamentDefaultMatchConfig_mapSelectionType>(TournamentDefaultMatchConfig_mapSelectionTypeObject); },
+        "platform": n => { tournamentDefaultMatchConfig.platform = n.getEnumValue<TournamentDefaultMatchConfig_platform>(TournamentDefaultMatchConfig_platformObject); },
+        "region": n => { tournamentDefaultMatchConfig.region = n.getEnumValue<TournamentDefaultMatchConfig_region>(TournamentDefaultMatchConfig_regionObject); },
+        "selectedMaps": n => { tournamentDefaultMatchConfig.selectedMaps = n.getCollectionOfPrimitiveValues<string>(); },
+        "selectedObjectives": n => { tournamentDefaultMatchConfig.selectedObjectives = n.getCollectionOfPrimitiveValues<string>(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentDefaultMatchConfig_gameSpecificOptions The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentDefaultMatchConfig_gameSpecificOptions(tournamentDefaultMatchConfig_gameSpecificOptions: Partial<TournamentDefaultMatchConfig_gameSpecificOptions> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentDefaultMatchConfig_lockedRules The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentDefaultMatchConfig_lockedRules(tournamentDefaultMatchConfig_lockedRules: Partial<TournamentDefaultMatchConfig_lockedRules> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentDenyApplicationBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentDenyApplicationBody(tournamentDenyApplicationBody: Partial<TournamentDenyApplicationBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "reason": n => { tournamentDenyApplicationBody.reason = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentDiscoverBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentDiscoverBody(tournamentDiscoverBody: Partial<TournamentDiscoverBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "format": n => { tournamentDiscoverBody.format = n.getEnumValue<TournamentFormat>(TournamentFormatObject); },
+        "gameId": n => { tournamentDiscoverBody.gameId = n.getStringValue(); },
+        "limit": n => { tournamentDiscoverBody.limit = n.getNumberValue() ?? 12; },
+        "page": n => { tournamentDiscoverBody.page = n.getNumberValue() ?? 1; },
+        "search": n => { tournamentDiscoverBody.search = n.getStringValue(); },
+        "status": n => { tournamentDiscoverBody.status = n.getEnumValue<TournamentStatus>(TournamentStatusObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentDiscoverPage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentDiscoverPage(tournamentDiscoverPage: Partial<TournamentDiscoverPage> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { tournamentDiscoverPage.count = n.getNumberValue(); },
+        "limit": n => { tournamentDiscoverPage.limit = n.getNumberValue(); },
+        "page": n => { tournamentDiscoverPage.page = n.getNumberValue(); },
+        "timestamp": n => { tournamentDiscoverPage.timestamp = n.getStringValue(); },
+        "total": n => { tournamentDiscoverPage.total = n.getNumberValue(); },
+        "tournaments": n => { tournamentDiscoverPage.tournaments = n.getCollectionOfObjectValues<TournamentSummary>(createTournamentSummaryFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentDisqualifyParticipantBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentDisqualifyParticipantBody(tournamentDisqualifyParticipantBody: Partial<TournamentDisqualifyParticipantBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "reason": n => { tournamentDisqualifyParticipantBody.reason = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentFormatConfig The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentFormatConfig(tournamentFormatConfig: Partial<TournamentFormatConfig> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "bestOfLadder": n => { tournamentFormatConfig.bestOfLadder = n.getObjectValue<TournamentFormatConfig_bestOfLadder>(createTournamentFormatConfig_bestOfLadderFromDiscriminatorValue); },
+        "grandFinalAdvantage": n => { tournamentFormatConfig.grandFinalAdvantage = n.getObjectValue<TournamentFormatConfig_grandFinalAdvantage>(createTournamentFormatConfig_grandFinalAdvantageFromDiscriminatorValue); },
+        "roundRobinPasses": n => { tournamentFormatConfig.roundRobinPasses = n.getNumberValue(); },
+        "swissRoundCount": n => { tournamentFormatConfig.swissRoundCount = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentFormatConfig_bestOfLadder The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentFormatConfig_bestOfLadder(tournamentFormatConfig_bestOfLadder: Partial<TournamentFormatConfig_bestOfLadder> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "default": n => { tournamentFormatConfig_bestOfLadder.defaultEscaped = n.getNumberValue(); },
+        "overrides": n => { tournamentFormatConfig_bestOfLadder.overrides = n.getObjectValue<TournamentFormatConfig_bestOfLadder_overrides>(createTournamentFormatConfig_bestOfLadder_overridesFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentFormatConfig_bestOfLadder_overrides The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentFormatConfig_bestOfLadder_overrides(tournamentFormatConfig_bestOfLadder_overrides: Partial<TournamentFormatConfig_bestOfLadder_overrides> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentFormatConfig_grandFinalAdvantage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentFormatConfig_grandFinalAdvantage(tournamentFormatConfig_grandFinalAdvantage: Partial<TournamentFormatConfig_grandFinalAdvantage> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "type": n => { tournamentFormatConfig_grandFinalAdvantage.type = n.getEnumValue<TournamentFormatConfig_grandFinalAdvantage_type>(TournamentFormatConfig_grandFinalAdvantage_typeObject); },
+        "winHeadstart": n => { tournamentFormatConfig_grandFinalAdvantage.winHeadstart = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentFreeAgencyJoinBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentFreeAgencyJoinBody(tournamentFreeAgencyJoinBody: Partial<TournamentFreeAgencyJoinBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "note": n => { tournamentFreeAgencyJoinBody.note = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentFreeAgent The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentFreeAgent(tournamentFreeAgent: Partial<TournamentFreeAgent> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { tournamentFreeAgent.avatarUrl = n.getStringValue() ?? n.getObjectValue<TournamentFreeAgent_avatarUrlMember1>(createTournamentFreeAgent_avatarUrlMember1FromDiscriminatorValue); },
+        "createdAt": n => { tournamentFreeAgent.createdAt = n.getNumberValue(); },
+        "id": n => { tournamentFreeAgent.id = n.getStringValue(); },
+        "name": n => { tournamentFreeAgent.name = n.getStringValue(); },
+        "note": n => { tournamentFreeAgent.note = n.getStringValue(); },
+        "userId": n => { tournamentFreeAgent.userId = n.getStringValue(); },
+        "username": n => { tournamentFreeAgent.username = n.getStringValue(); },
+        "viewerOfferStatus": n => { tournamentFreeAgent.viewerOfferStatus = n.getStringValue() ?? n.getObjectValue<TournamentFreeAgent_viewerOfferStatusMember1>(createTournamentFreeAgent_viewerOfferStatusMember1FromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentFreeAgent_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentFreeAgent_avatarUrl(tournamentFreeAgent_avatarUrl: Partial<Parsable | string | TournamentFreeAgent_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentFreeAgent_avatarUrl = n.getStringValue()},
+        ...deserializeIntoTournamentFreeAgent_avatarUrlMember1(tournamentFreeAgent_avatarUrl as TournamentFreeAgent_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentFreeAgent_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentFreeAgent_avatarUrlMember1(tournamentFreeAgent_avatarUrlMember1: Partial<TournamentFreeAgent_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentFreeAgent_viewerOfferStatus The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentFreeAgent_viewerOfferStatus(tournamentFreeAgent_viewerOfferStatus: Partial<Parsable | string | TournamentFreeAgent_viewerOfferStatusMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentFreeAgent_viewerOfferStatus = n.getStringValue()},
+        ...deserializeIntoTournamentFreeAgent_viewerOfferStatusMember1(tournamentFreeAgent_viewerOfferStatus as TournamentFreeAgent_viewerOfferStatusMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentFreeAgent_viewerOfferStatusMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentFreeAgent_viewerOfferStatusMember1(tournamentFreeAgent_viewerOfferStatusMember1: Partial<TournamentFreeAgent_viewerOfferStatusMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentFreeAgentsResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentFreeAgentsResponse(tournamentFreeAgentsResponse: Partial<TournamentFreeAgentsResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { tournamentFreeAgentsResponse.count = n.getNumberValue(); },
+        "freeAgents": n => { tournamentFreeAgentsResponse.freeAgents = n.getCollectionOfObjectValues<TournamentFreeAgent>(createTournamentFreeAgentFromDiscriminatorValue); },
+        "timestamp": n => { tournamentFreeAgentsResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentGrandFinalAdvantage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentGrandFinalAdvantage(tournamentGrandFinalAdvantage: Partial<TournamentGrandFinalAdvantage> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "type": n => { tournamentGrandFinalAdvantage.type = n.getEnumValue<TournamentGrandFinalAdvantage_type>(TournamentGrandFinalAdvantage_typeObject); },
+        "winHeadstart": n => { tournamentGrandFinalAdvantage.winHeadstart = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentInvite The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentInvite(tournamentInvite: Partial<TournamentInvite> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "createdAt": n => { tournamentInvite.createdAt = n.getNumberValue(); },
+        "id": n => { tournamentInvite.id = n.getStringValue(); },
+        "invitedByUserId": n => { tournamentInvite.invitedByUserId = n.getStringValue(); },
+        "respondedAt": n => { tournamentInvite.respondedAt = n.getNumberValue(); },
+        "status": n => { tournamentInvite.status = n.getEnumValue<TournamentInviteStatus>(TournamentInviteStatusObject); },
+        "teamAvatarUrl": n => { tournamentInvite.teamAvatarUrl = n.getStringValue() ?? n.getObjectValue<TournamentInvite_teamAvatarUrlMember1>(createTournamentInvite_teamAvatarUrlMember1FromDiscriminatorValue); },
+        "teamId": n => { tournamentInvite.teamId = n.getStringValue(); },
+        "teamName": n => { tournamentInvite.teamName = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentInvite_teamAvatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentInvite_teamAvatarUrl(tournamentInvite_teamAvatarUrl: Partial<Parsable | string | TournamentInvite_teamAvatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentInvite_teamAvatarUrl = n.getStringValue()},
+        ...deserializeIntoTournamentInvite_teamAvatarUrlMember1(tournamentInvite_teamAvatarUrl as TournamentInvite_teamAvatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentInvite_teamAvatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentInvite_teamAvatarUrlMember1(tournamentInvite_teamAvatarUrlMember1: Partial<TournamentInvite_teamAvatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentInviteRespondBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentInviteRespondBody(tournamentInviteRespondBody: Partial<TournamentInviteRespondBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "accept": n => { tournamentInviteRespondBody.accept = n.getBooleanValue(); },
+        "roster": n => { tournamentInviteRespondBody.roster = n.getCollectionOfPrimitiveValues<string>(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentInviteRespondResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentInviteRespondResponse(tournamentInviteRespondResponse: Partial<TournamentInviteRespondResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "accepted": n => { tournamentInviteRespondResponse.accepted = n.getBooleanValue(); },
+        "participantId": n => { tournamentInviteRespondResponse.participantId = n.getStringValue(); },
+        "timestamp": n => { tournamentInviteRespondResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentInvitesResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentInvitesResponse(tournamentInvitesResponse: Partial<TournamentInvitesResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { tournamentInvitesResponse.count = n.getNumberValue(); },
+        "invites": n => { tournamentInvitesResponse.invites = n.getCollectionOfObjectValues<TournamentInvite>(createTournamentInviteFromDiscriminatorValue); },
+        "timestamp": n => { tournamentInvitesResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentInviteTeamBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentInviteTeamBody(tournamentInviteTeamBody: Partial<TournamentInviteTeamBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "teamId": n => { tournamentInviteTeamBody.teamId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentLeaguePointsRejected The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentLeaguePointsRejected(tournamentLeaguePointsRejected: Partial<TournamentLeaguePointsRejected> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "details": n => { tournamentLeaguePointsRejected.details = n.getStringValue(); },
+        "error": n => { tournamentLeaguePointsRejected.errorEscaped = n.getStringValue(); },
+        "reason": n => { tournamentLeaguePointsRejected.reason = n.getEnumValue<TournamentPlacementPointsError>(TournamentPlacementPointsErrorObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentLeaguePointsRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentLeaguePointsRequestBody(tournamentLeaguePointsRequestBody: Partial<TournamentLeaguePointsRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "leaguePointsByPlacement": n => { tournamentLeaguePointsRequestBody.leaguePointsByPlacement = n.getCollectionOfObjectValues<TournamentPlacementPointsEntry>(createTournamentPlacementPointsEntryFromDiscriminatorValue); },
+        "leaguePointsEnabled": n => { tournamentLeaguePointsRequestBody.leaguePointsEnabled = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentLeaguePointsResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentLeaguePointsResponse(tournamentLeaguePointsResponse: Partial<TournamentLeaguePointsResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "leaguePointsEnabled": n => { tournamentLeaguePointsResponse.leaguePointsEnabled = n.getBooleanValue(); },
+        "placementCount": n => { tournamentLeaguePointsResponse.placementCount = n.getNumberValue() ?? n.getObjectValue<TournamentLeaguePointsResponse_placementCountMember1>(createTournamentLeaguePointsResponse_placementCountMember1FromDiscriminatorValue); },
+        "success": n => { tournamentLeaguePointsResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { tournamentLeaguePointsResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentLeaguePointsResponse_placementCount The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentLeaguePointsResponse_placementCount(tournamentLeaguePointsResponse_placementCount: Partial<Parsable | number | TournamentLeaguePointsResponse_placementCountMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentLeaguePointsResponse_placementCount = n.getNumberValue()},
+        ...deserializeIntoTournamentLeaguePointsResponse_placementCountMember1(tournamentLeaguePointsResponse_placementCount as TournamentLeaguePointsResponse_placementCountMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentLeaguePointsResponse_placementCountMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentLeaguePointsResponse_placementCountMember1(tournamentLeaguePointsResponse_placementCountMember1: Partial<TournamentLeaguePointsResponse_placementCountMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentOfferRespondBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentOfferRespondBody(tournamentOfferRespondBody: Partial<TournamentOfferRespondBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "accept": n => { tournamentOfferRespondBody.accept = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentOfferRespondResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentOfferRespondResponse(tournamentOfferRespondResponse: Partial<TournamentOfferRespondResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "accepted": n => { tournamentOfferRespondResponse.accepted = n.getBooleanValue(); },
+        "timestamp": n => { tournamentOfferRespondResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentOpenRegistrationResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentOpenRegistrationResponse(tournamentOpenRegistrationResponse: Partial<TournamentOpenRegistrationResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "status": n => { tournamentOpenRegistrationResponse.status = n.getStringValue(); },
+        "success": n => { tournamentOpenRegistrationResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { tournamentOpenRegistrationResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentOrganizerRosterAddBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentOrganizerRosterAddBody(tournamentOrganizerRosterAddBody: Partial<TournamentOrganizerRosterAddBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "userId": n => { tournamentOrganizerRosterAddBody.userId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentOverrideNodeResultBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentOverrideNodeResultBody(tournamentOverrideNodeResultBody: Partial<TournamentOverrideNodeResultBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "score1": n => { tournamentOverrideNodeResultBody.score1 = n.getNumberValue(); },
+        "score2": n => { tournamentOverrideNodeResultBody.score2 = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentParticipant The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentParticipant(tournamentParticipant: Partial<TournamentParticipant> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "checkedInAt": n => { tournamentParticipant.checkedInAt = n.getNumberValue(); },
+        "finalPlacement": n => { tournamentParticipant.finalPlacement = n.getNumberValue(); },
+        "id": n => { tournamentParticipant.id = n.getStringValue(); },
+        "roster": n => { tournamentParticipant.roster = n.getCollectionOfObjectValues<TournamentRosterMember>(createTournamentRosterMemberFromDiscriminatorValue); },
+        "seed": n => { tournamentParticipant.seed = n.getNumberValue(); },
+        "status": n => { tournamentParticipant.status = n.getStringValue(); },
+        "teamAvatarUrl": n => { tournamentParticipant.teamAvatarUrl = n.getStringValue() ?? n.getObjectValue<TournamentParticipant_teamAvatarUrlMember1>(createTournamentParticipant_teamAvatarUrlMember1FromDiscriminatorValue); },
+        "teamId": n => { tournamentParticipant.teamId = n.getStringValue(); },
+        "teamName": n => { tournamentParticipant.teamName = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentParticipant_teamAvatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentParticipant_teamAvatarUrl(tournamentParticipant_teamAvatarUrl: Partial<Parsable | string | TournamentParticipant_teamAvatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentParticipant_teamAvatarUrl = n.getStringValue()},
+        ...deserializeIntoTournamentParticipant_teamAvatarUrlMember1(tournamentParticipant_teamAvatarUrl as TournamentParticipant_teamAvatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentParticipant_teamAvatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentParticipant_teamAvatarUrlMember1(tournamentParticipant_teamAvatarUrlMember1: Partial<TournamentParticipant_teamAvatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentParticipantsResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentParticipantsResponse(tournamentParticipantsResponse: Partial<TournamentParticipantsResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { tournamentParticipantsResponse.count = n.getNumberValue(); },
+        "participants": n => { tournamentParticipantsResponse.participants = n.getCollectionOfObjectValues<TournamentParticipant>(createTournamentParticipantFromDiscriminatorValue); },
+        "timestamp": n => { tournamentParticipantsResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentPlacementPointsEntry The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentPlacementPointsEntry(tournamentPlacementPointsEntry: Partial<TournamentPlacementPointsEntry> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "placement": n => { tournamentPlacementPointsEntry.placement = n.getNumberValue(); },
+        "points": n => { tournamentPlacementPointsEntry.points = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentPrizeBreakdownEntry The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentPrizeBreakdownEntry(tournamentPrizeBreakdownEntry: Partial<TournamentPrizeBreakdownEntry> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "amount": n => { tournamentPrizeBreakdownEntry.amount = n.getNumberValue(); },
+        "description": n => { tournamentPrizeBreakdownEntry.description = n.getStringValue(); },
+        "placement": n => { tournamentPrizeBreakdownEntry.placement = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentProfile The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentProfile(tournamentProfile: Partial<TournamentProfile> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "approvalStatus": n => { tournamentProfile.approvalStatus = n.getStringValue(); },
+        "bannerUrl": n => { tournamentProfile.bannerUrl = n.getStringValue() ?? n.getObjectValue<TournamentProfile_bannerUrlMember1>(createTournamentProfile_bannerUrlMember1FromDiscriminatorValue); },
+        "format": n => { tournamentProfile.format = n.getEnumValue<TournamentFormat>(TournamentFormatObject); },
+        "game": n => { tournamentProfile.game = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "host": n => { tournamentProfile.host = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "_id": n => { tournamentProfile.id = n.getStringValue(); },
+        "isPubliclyListed": n => { tournamentProfile.isPubliclyListed = n.getBooleanValue(); },
+        "logoUrl": n => { tournamentProfile.logoUrl = n.getStringValue() ?? n.getObjectValue<TournamentProfile_logoUrlMember1>(createTournamentProfile_logoUrlMember1FromDiscriminatorValue); },
+        "maxParticipants": n => { tournamentProfile.maxParticipants = n.getNumberValue(); },
+        "name": n => { tournamentProfile.name = n.getStringValue(); },
+        "needsAttention": n => { tournamentProfile.needsAttention = n.getBooleanValue(); },
+        "participantCount": n => { tournamentProfile.participantCount = n.getNumberValue(); },
+        "slug": n => { tournamentProfile.slug = n.getStringValue(); },
+        "status": n => { tournamentProfile.status = n.getEnumValue<TournamentStatus>(TournamentStatusObject); },
+        "teamSize": n => { tournamentProfile.teamSize = n.getNumberValue(); },
+        "viewerManagement": n => { tournamentProfile.viewerManagement = n.getObjectValue<TournamentProfile_viewerManagement>(createTournamentProfile_viewerManagementFromDiscriminatorValue); },
+        "visibility": n => { tournamentProfile.visibility = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentProfile_bannerUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentProfile_bannerUrl(tournamentProfile_bannerUrl: Partial<Parsable | string | TournamentProfile_bannerUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentProfile_bannerUrl = n.getStringValue()},
+        ...deserializeIntoTournamentProfile_bannerUrlMember1(tournamentProfile_bannerUrl as TournamentProfile_bannerUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentProfile_bannerUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentProfile_bannerUrlMember1(tournamentProfile_bannerUrlMember1: Partial<TournamentProfile_bannerUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentProfile_logoUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentProfile_logoUrl(tournamentProfile_logoUrl: Partial<Parsable | string | TournamentProfile_logoUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentProfile_logoUrl = n.getStringValue()},
+        ...deserializeIntoTournamentProfile_logoUrlMember1(tournamentProfile_logoUrl as TournamentProfile_logoUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentProfile_logoUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentProfile_logoUrlMember1(tournamentProfile_logoUrlMember1: Partial<TournamentProfile_logoUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentProfile_viewerManagement The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentProfile_viewerManagement(tournamentProfile_viewerManagement: Partial<TournamentProfile_viewerManagement> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentProfileResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentProfileResponse(tournamentProfileResponse: Partial<TournamentProfileResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "timestamp": n => { tournamentProfileResponse.timestamp = n.getStringValue(); },
+        "tournament": n => { tournamentProfileResponse.tournament = n.getObjectValue<TournamentProfile>(createTournamentProfileFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRegenerateMatchesRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRegenerateMatchesRequestBody(tournamentRegenerateMatchesRequestBody: Partial<TournamentRegenerateMatchesRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "confirm": n => { tournamentRegenerateMatchesRequestBody.confirm = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRegenerateMatchesResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRegenerateMatchesResponse(tournamentRegenerateMatchesResponse: Partial<TournamentRegenerateMatchesResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "queued": n => { tournamentRegenerateMatchesResponse.queued = n.getNumberValue(); },
+        "timestamp": n => { tournamentRegenerateMatchesResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRemoveParticipantBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRemoveParticipantBody(tournamentRemoveParticipantBody: Partial<TournamentRemoveParticipantBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "reason": n => { tournamentRemoveParticipantBody.reason = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRevertNodeResultBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRevertNodeResultBody(tournamentRevertNodeResultBody: Partial<TournamentRevertNodeResultBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "regenerateMatch": n => { tournamentRevertNodeResultBody.regenerateMatch = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRosterMember The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRosterMember(tournamentRosterMember: Partial<TournamentRosterMember> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { tournamentRosterMember.avatarUrl = n.getStringValue() ?? n.getObjectValue<TournamentRosterMember_avatarUrlMember1>(createTournamentRosterMember_avatarUrlMember1FromDiscriminatorValue); },
+        "id": n => { tournamentRosterMember.id = n.getStringValue(); },
+        "name": n => { tournamentRosterMember.name = n.getStringValue(); },
+        "source": n => { tournamentRosterMember.source = n.getStringValue(); },
+        "username": n => { tournamentRosterMember.username = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRosterMember_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRosterMember_avatarUrl(tournamentRosterMember_avatarUrl: Partial<Parsable | string | TournamentRosterMember_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentRosterMember_avatarUrl = n.getStringValue()},
+        ...deserializeIntoTournamentRosterMember_avatarUrlMember1(tournamentRosterMember_avatarUrl as TournamentRosterMember_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRosterMember_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRosterMember_avatarUrlMember1(tournamentRosterMember_avatarUrlMember1: Partial<TournamentRosterMember_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRoundScheduleRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRoundScheduleRequestBody(tournamentRoundScheduleRequestBody: Partial<TournamentRoundScheduleRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "startsAt": n => { tournamentRoundScheduleRequestBody.startsAt = n.getNumberValue() ?? n.getObjectValue<TournamentRoundScheduleRequestBody_startsAtMember1>(createTournamentRoundScheduleRequestBody_startsAtMember1FromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRoundScheduleRequestBody_startsAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRoundScheduleRequestBody_startsAt(tournamentRoundScheduleRequestBody_startsAt: Partial<Parsable | number | TournamentRoundScheduleRequestBody_startsAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentRoundScheduleRequestBody_startsAt = n.getNumberValue()},
+        ...deserializeIntoTournamentRoundScheduleRequestBody_startsAtMember1(tournamentRoundScheduleRequestBody_startsAt as TournamentRoundScheduleRequestBody_startsAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRoundScheduleRequestBody_startsAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRoundScheduleRequestBody_startsAtMember1(tournamentRoundScheduleRequestBody_startsAtMember1: Partial<TournamentRoundScheduleRequestBody_startsAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRoundScheduleResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRoundScheduleResponse(tournamentRoundScheduleResponse: Partial<TournamentRoundScheduleResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "roundId": n => { tournamentRoundScheduleResponse.roundId = n.getStringValue(); },
+        "startsAt": n => { tournamentRoundScheduleResponse.startsAt = n.getNumberValue() ?? n.getObjectValue<TournamentRoundScheduleResponse_startsAtMember1>(createTournamentRoundScheduleResponse_startsAtMember1FromDiscriminatorValue); },
+        "success": n => { tournamentRoundScheduleResponse.success = n.getBooleanValue(); },
+        "timestamp": n => { tournamentRoundScheduleResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRoundScheduleResponse_startsAt The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRoundScheduleResponse_startsAt(tournamentRoundScheduleResponse_startsAt: Partial<Parsable | number | TournamentRoundScheduleResponse_startsAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentRoundScheduleResponse_startsAt = n.getNumberValue()},
+        ...deserializeIntoTournamentRoundScheduleResponse_startsAtMember1(tournamentRoundScheduleResponse_startsAt as TournamentRoundScheduleResponse_startsAtMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentRoundScheduleResponse_startsAtMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentRoundScheduleResponse_startsAtMember1(tournamentRoundScheduleResponse_startsAtMember1: Partial<TournamentRoundScheduleResponse_startsAtMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentSendOfferBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentSendOfferBody(tournamentSendOfferBody: Partial<TournamentSendOfferBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "message": n => { tournamentSendOfferBody.message = n.getStringValue(); },
+        "participantId": n => { tournamentSendOfferBody.participantId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentSocialLinks The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentSocialLinks(tournamentSocialLinks: Partial<TournamentSocialLinks> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "discord": n => { tournamentSocialLinks.discord = n.getStringValue(); },
+        "instagram": n => { tournamentSocialLinks.instagram = n.getStringValue(); },
+        "tiktok": n => { tournamentSocialLinks.tiktok = n.getStringValue(); },
+        "twitch": n => { tournamentSocialLinks.twitch = n.getStringValue(); },
+        "website": n => { tournamentSocialLinks.website = n.getStringValue(); },
+        "x": n => { tournamentSocialLinks.x = n.getStringValue(); },
+        "youtube": n => { tournamentSocialLinks.youtube = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentSponsorTag The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentSponsorTag(tournamentSponsorTag: Partial<TournamentSponsorTag> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "customPrefix": n => { tournamentSponsorTag.customPrefix = n.getStringValue(); },
+        "logoStorageId": n => { tournamentSponsorTag.logoStorageId = n.getStringValue(); },
+        "name": n => { tournamentSponsorTag.name = n.getStringValue(); },
+        "prefix": n => { tournamentSponsorTag.prefix = n.getEnumValue<TournamentSponsorTag_prefix>(TournamentSponsorTag_prefixObject); },
+        "url": n => { tournamentSponsorTag.url = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentStaffMember The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentStaffMember(tournamentStaffMember: Partial<TournamentStaffMember> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "avatarUrl": n => { tournamentStaffMember.avatarUrl = n.getStringValue() ?? n.getObjectValue<TournamentStaffMember_avatarUrlMember1>(createTournamentStaffMember_avatarUrlMember1FromDiscriminatorValue); },
+        "createdAt": n => { tournamentStaffMember.createdAt = n.getNumberValue(); },
+        "id": n => { tournamentStaffMember.id = n.getStringValue(); },
+        "name": n => { tournamentStaffMember.name = n.getStringValue(); },
+        "role": n => { tournamentStaffMember.role = n.getEnumValue<TournamentStaffRole>(TournamentStaffRoleObject); },
+        "userId": n => { tournamentStaffMember.userId = n.getStringValue(); },
+        "username": n => { tournamentStaffMember.username = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentStaffMember_avatarUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentStaffMember_avatarUrl(tournamentStaffMember_avatarUrl: Partial<Parsable | string | TournamentStaffMember_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentStaffMember_avatarUrl = n.getStringValue()},
+        ...deserializeIntoTournamentStaffMember_avatarUrlMember1(tournamentStaffMember_avatarUrl as TournamentStaffMember_avatarUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentStaffMember_avatarUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentStaffMember_avatarUrlMember1(tournamentStaffMember_avatarUrlMember1: Partial<TournamentStaffMember_avatarUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentStaffResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentStaffResponse(tournamentStaffResponse: Partial<TournamentStaffResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "count": n => { tournamentStaffResponse.count = n.getNumberValue(); },
+        "staff": n => { tournamentStaffResponse.staff = n.getCollectionOfObjectValues<TournamentStaffMember>(createTournamentStaffMemberFromDiscriminatorValue); },
+        "timestamp": n => { tournamentStaffResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentStartRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentStartRequestBody(tournamentStartRequestBody: Partial<TournamentStartRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "manualOrder": n => { tournamentStartRequestBody.manualOrder = n.getCollectionOfPrimitiveValues<string>(); },
+        "seedMethod": n => { tournamentStartRequestBody.seedMethod = n.getEnumValue<TournamentStartRequestBody_seedMethod>(TournamentStartRequestBody_seedMethodObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentStartResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentStartResponse(tournamentStartResponse: Partial<TournamentStartResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "accepted": n => { tournamentStartResponse.accepted = n.getBooleanValue(); },
+        "matchGeneration": n => { tournamentStartResponse.matchGeneration = n.getStringValue(); },
+        "nodeCount": n => { tournamentStartResponse.nodeCount = n.getNumberValue(); },
+        "status": n => { tournamentStartResponse.status = n.getStringValue(); },
+        "timestamp": n => { tournamentStartResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentSubmitForApprovalResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentSubmitForApprovalResponse(tournamentSubmitForApprovalResponse: Partial<TournamentSubmitForApprovalResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "approvalStatus": n => { tournamentSubmitForApprovalResponse.approvalStatus = n.getEnumValue<TournamentSubmitForApprovalResponse_approvalStatus>(TournamentSubmitForApprovalResponse_approvalStatusObject); },
+        "autoApproved": n => { tournamentSubmitForApprovalResponse.autoApproved = n.getBooleanValue(); },
+        "timestamp": n => { tournamentSubmitForApprovalResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentSummary The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentSummary(tournamentSummary: Partial<TournamentSummary> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "bannerUrl": n => { tournamentSummary.bannerUrl = n.getStringValue() ?? n.getObjectValue<TournamentSummary_bannerUrlMember1>(createTournamentSummary_bannerUrlMember1FromDiscriminatorValue); },
+        "description": n => { tournamentSummary.description = n.getStringValue(); },
+        "format": n => { tournamentSummary.format = n.getEnumValue<TournamentFormat>(TournamentFormatObject); },
+        "game": n => { tournamentSummary.game = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "id": n => { tournamentSummary.id = n.getStringValue(); },
+        "isFeatured": n => { tournamentSummary.isFeatured = n.getBooleanValue(); },
+        "logoUrl": n => { tournamentSummary.logoUrl = n.getStringValue() ?? n.getObjectValue<TournamentSummary_logoUrlMember1>(createTournamentSummary_logoUrlMember1FromDiscriminatorValue); },
+        "maxParticipants": n => { tournamentSummary.maxParticipants = n.getNumberValue(); },
+        "name": n => { tournamentSummary.name = n.getStringValue(); },
+        "participantCount": n => { tournamentSummary.participantCount = n.getNumberValue(); },
+        "prizeCurrency": n => { tournamentSummary.prizeCurrency = n.getStringValue(); },
+        "prizePool": n => { tournamentSummary.prizePool = n.getNumberValue(); },
+        "slug": n => { tournamentSummary.slug = n.getStringValue(); },
+        "startsAt": n => { tournamentSummary.startsAt = n.getNumberValue(); },
+        "status": n => { tournamentSummary.status = n.getEnumValue<TournamentStatus>(TournamentStatusObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentSummary_bannerUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentSummary_bannerUrl(tournamentSummary_bannerUrl: Partial<Parsable | string | TournamentSummary_bannerUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentSummary_bannerUrl = n.getStringValue()},
+        ...deserializeIntoTournamentSummary_bannerUrlMember1(tournamentSummary_bannerUrl as TournamentSummary_bannerUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentSummary_bannerUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentSummary_bannerUrlMember1(tournamentSummary_bannerUrlMember1: Partial<TournamentSummary_bannerUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentSummary_logoUrl The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentSummary_logoUrl(tournamentSummary_logoUrl: Partial<Parsable | string | TournamentSummary_logoUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { tournamentSummary_logoUrl = n.getStringValue()},
+        ...deserializeIntoTournamentSummary_logoUrlMember1(tournamentSummary_logoUrl as TournamentSummary_logoUrlMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentSummary_logoUrlMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentSummary_logoUrlMember1(tournamentSummary_logoUrlMember1: Partial<TournamentSummary_logoUrlMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentTeamEntryBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentTeamEntryBody(tournamentTeamEntryBody: Partial<TournamentTeamEntryBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "roster": n => { tournamentTeamEntryBody.roster = n.getCollectionOfPrimitiveValues<string>(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentTeamEntryResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentTeamEntryResponse(tournamentTeamEntryResponse: Partial<TournamentTeamEntryResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "participantId": n => { tournamentTeamEntryResponse.participantId = n.getStringValue(); },
+        "timestamp": n => { tournamentTeamEntryResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentTeamRosterAddBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentTeamRosterAddBody(tournamentTeamRosterAddBody: Partial<TournamentTeamRosterAddBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "userId": n => { tournamentTeamRosterAddBody.userId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentUpdateRequestBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentUpdateRequestBody(tournamentUpdateRequestBody: Partial<TournamentUpdateRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "bannerStorageId": n => { tournamentUpdateRequestBody.bannerStorageId = n.getStringValue(); },
+        "checkInOpensMinutesBefore": n => { tournamentUpdateRequestBody.checkInOpensMinutesBefore = n.getNumberValue(); },
+        "checkInRequired": n => { tournamentUpdateRequestBody.checkInRequired = n.getBooleanValue(); },
+        "description": n => { tournamentUpdateRequestBody.description = n.getStringValue(); },
+        "endsAt": n => { tournamentUpdateRequestBody.endsAt = n.getNumberValue(); },
+        "format": n => { tournamentUpdateRequestBody.format = n.getEnumValue<TournamentUpdateRequestBody_format>(TournamentUpdateRequestBody_formatObject); },
+        "formatConfig": n => { tournamentUpdateRequestBody.formatConfig = n.getObjectValue<TournamentFormatConfig>(createTournamentFormatConfigFromDiscriminatorValue); },
+        "gameId": n => { tournamentUpdateRequestBody.gameId = n.getStringValue(); },
+        "logoStorageId": n => { tournamentUpdateRequestBody.logoStorageId = n.getStringValue(); },
+        "maxParticipants": n => { tournamentUpdateRequestBody.maxParticipants = n.getNumberValue(); },
+        "minParticipants": n => { tournamentUpdateRequestBody.minParticipants = n.getNumberValue(); },
+        "name": n => { tournamentUpdateRequestBody.name = n.getStringValue(); },
+        "playlistId": n => { tournamentUpdateRequestBody.playlistId = n.getStringValue(); },
+        "prizeBreakdown": n => { tournamentUpdateRequestBody.prizeBreakdown = n.getCollectionOfObjectValues<TournamentPrizeBreakdownEntry>(createTournamentPrizeBreakdownEntryFromDiscriminatorValue); },
+        "prizeCurrency": n => { tournamentUpdateRequestBody.prizeCurrency = n.getStringValue(); },
+        "prizeDescription": n => { tournamentUpdateRequestBody.prizeDescription = n.getStringValue(); },
+        "prizePool": n => { tournamentUpdateRequestBody.prizePool = n.getNumberValue(); },
+        "registrationEndsAt": n => { tournamentUpdateRequestBody.registrationEndsAt = n.getNumberValue(); },
+        "registrationMode": n => { tournamentUpdateRequestBody.registrationMode = n.getEnumValue<TournamentUpdateRequestBody_registrationMode>(TournamentUpdateRequestBody_registrationModeObject); },
+        "registrationStartsAt": n => { tournamentUpdateRequestBody.registrationStartsAt = n.getNumberValue(); },
+        "rules": n => { tournamentUpdateRequestBody.rules = n.getStringValue(); },
+        "socialLinks": n => { tournamentUpdateRequestBody.socialLinks = n.getObjectValue<TournamentSocialLinks>(createTournamentSocialLinksFromDiscriminatorValue); },
+        "sponsorTags": n => { tournamentUpdateRequestBody.sponsorTags = n.getCollectionOfObjectValues<TournamentSponsorTag>(createTournamentSponsorTagFromDiscriminatorValue); },
+        "startsAt": n => { tournamentUpdateRequestBody.startsAt = n.getNumberValue(); },
+        "teamSize": n => { tournamentUpdateRequestBody.teamSize = n.getNumberValue(); },
+        "visibility": n => { tournamentUpdateRequestBody.visibility = n.getEnumValue<TournamentUpdateRequestBody_visibility>(TournamentUpdateRequestBody_visibilityObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentUpdateResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentUpdateResponse(tournamentUpdateResponse: Partial<TournamentUpdateResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "applied": n => { tournamentUpdateResponse.applied = n.getEnumValue<TournamentUpdateResponse_applied>(TournamentUpdateResponse_appliedObject); },
+        "approvalStatus": n => { tournamentUpdateResponse.approvalStatus = n.getEnumValue<TournamentUpdateResponse_approvalStatus>(TournamentUpdateResponse_approvalStatusObject); },
+        "changedFields": n => { tournamentUpdateResponse.changedFields = n.getCollectionOfEnumValues<TournamentMaterialField>(TournamentMaterialFieldObject); },
+        "timestamp": n => { tournamentUpdateResponse.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TournamentWriteAck The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTournamentWriteAck(tournamentWriteAck: Partial<TournamentWriteAck> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "success": n => { tournamentWriteAck.success = n.getBooleanValue(); },
+        "timestamp": n => { tournamentWriteAck.timestamp = n.getStringValue(); },
     }
 }
 /**
@@ -16385,7 +18958,7 @@ export interface LeagueActivityFeedRequestBody_cursorMember1 extends AdditionalD
  */
 export interface LeagueActivityFeedResponse extends Parsable {
     /**
-     * The activities property
+     * Activity entries, newest first. Each carries id, action, actorId, targetType, targetId, metadata and createdAt. Normal actions include actorName; actions taken by TeamBattles Platform Staff under audited elevation suppress actorName and set isPlatformStaff: true, keeping only actorId.
      */
     activities?: UntypedNode | null;
     /**
@@ -17178,6 +19751,312 @@ export type MatchesRequestBody_cursor = MatchesRequestBody_cursorMember1 | strin
 export interface MatchesRequestBody_cursorMember1 extends AdditionalDataHolder, Parsable {
 }
 export type MatchStatus = (typeof MatchStatusObject)[keyof typeof MatchStatusObject];
+/**
+ * A team the caller may act for in this tournament.
+ */
+export interface MyTournamentActableTeam extends Parsable {
+    /**
+     * Team avatar URL.
+     */
+    avatarUrl?: string | null;
+    /**
+     * Team display name.
+     */
+    name?: string | null;
+    /**
+     * Team ID.
+     */
+    teamId?: string | null;
+}
+/**
+ * The API key owner's own state in one tournament.
+ */
+export interface MyTournamentEntry extends Parsable {
+    /**
+     * Every team of the tournament's game that the caller may act for - captain, co-captain, or owner of the team's organization. Includes teams NOT yet entered, which is what makes it the enter/apply candidate list.
+     */
+    actableTeams?: MyTournamentActableTeam[] | null;
+    /**
+     * The caller's free-agent row, or null if they have never joined this tournament's pool. A WITHDRAWN row is returned rather than nulled, because the row is reused if they rejoin.
+     */
+    freeAgent?: MyTournamentFreeAgent | null;
+    /**
+     * Every invite addressed to an actable team, in all four states.
+     */
+    invites?: MyTournamentInvite[] | null;
+    /**
+     * Every free-agent offer addressed to the caller, in all five states. Filter on `status` for the ones still answerable.
+     */
+    offers?: MyTournamentOffer[] | null;
+    /**
+     * Every entry belonging to one of the caller's teams, in ALL states including terminal ones. An array, never collapsed to a single row: a caller running several teams in one tournament has several entries and needs every participantId.
+     */
+    participants?: MyTournamentParticipant[] | null;
+    /**
+     * True when the game requires a linked external account the caller has not connected. Surfaced so a client can explain a pre-emptive failure instead of discovering it when the free-agency join is rejected.
+     */
+    requiredConnectionMissing?: boolean | null;
+    /**
+     * Every tournament roster the caller is personally on. More than one is normal - a player can be rostered for several of their own teams.
+     */
+    rosterEntries?: MyTournamentRosterEntry[] | null;
+    /**
+     * The tournament's canonical slug. Echoed because the request may have used a stale one that still resolves.
+     */
+    slug?: string | null;
+    /**
+     * Tournament ID.
+     */
+    tournamentId?: string | null;
+}
+/**
+ * The caller's tournament entry state.
+ */
+export interface MyTournamentEntryResponse extends Parsable {
+    /**
+     * The API key owner's own state in one tournament.
+     */
+    entry?: MyTournamentEntry | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * The caller's own free-agent pool row.
+ */
+export interface MyTournamentFreeAgent extends Parsable {
+    /**
+     * Pool join time (epoch milliseconds).
+     */
+    createdAt?: number | null;
+    /**
+     * Free-agent row ID.
+     */
+    freeAgentId?: string | null;
+    /**
+     * Free-text note the caller supplied.
+     */
+    note?: string | null;
+    /**
+     * Participant who picked the caller up. Present only when PICKED_UP.
+     */
+    pickedUpByParticipantId?: string | null;
+    /**
+     * State of the caller's free-agent pool row.
+     */
+    status?: TournamentFreeAgentStatus | null;
+}
+/**
+ * An organizer invite addressed to a team the caller may act for. Only invites for ACTABLE teams appear - an invite to a team the caller merely belongs to is the captain's to answer.
+ */
+export interface MyTournamentInvite extends Parsable {
+    /**
+     * Invite time (epoch milliseconds).
+     */
+    createdAt?: number | null;
+    /**
+     * Organizer who sent the invite.
+     */
+    invitedByUserId?: string | null;
+    /**
+     * Invite ID. Required by the invite-response endpoint.
+     */
+    inviteId?: string | null;
+    /**
+     * Response time (epoch milliseconds). Absent while PENDING.
+     */
+    respondedAt?: number | null;
+    /**
+     * State of a tournament team invite.
+     */
+    status?: TournamentInviteStatus | null;
+    /**
+     * Invited team's ID.
+     */
+    teamId?: string | null;
+    /**
+     * Invited team's display name.
+     */
+    teamName?: string | null;
+}
+/**
+ * A free-agent offer addressed to the caller, in every state.
+ */
+export interface MyTournamentOffer extends Parsable {
+    /**
+     * Offer time (epoch milliseconds).
+     */
+    createdAt?: number | null;
+    /**
+     * Optional note from the offering team.
+     */
+    message?: string | null;
+    /**
+     * Offer ID. Required by the offer-respond and offer-revoke endpoints.
+     */
+    offerId?: string | null;
+    /**
+     * The offering team's current entry status, or null if the participant row no longer resolves. Surfaced rather than filtered: the web drops offers whose participant is no longer APPROVED, so they simply vanish. Here a client can tell a dead offer from a live one - accepting a dead one only expires it.
+     */
+    offeringParticipantStatus?: TournamentParticipantStatus | null;
+    /**
+     * Offering team's participant ID.
+     */
+    participantId?: string | null;
+    /**
+     * State of a free-agent offer. EXPIRED is applied lazily, when the offer is next read or responded to, not by a scheduled sweep.
+     */
+    status?: TournamentFreeAgentOfferStatus | null;
+    /**
+     * Offering team's avatar URL.
+     */
+    teamAvatarUrl?: string | null;
+    /**
+     * Offering team's ID.
+     */
+    teamId?: string | null;
+    /**
+     * Offering team's display name.
+     */
+    teamName?: string | null;
+}
+/**
+ * One of the caller's teams entered in this tournament.
+ */
+export interface MyTournamentParticipant extends Parsable {
+    /**
+     * Whether the caller may act on this entry - withdraw, check in, or edit its roster. False for a team the caller is an ordinary member of, which still appears here so a client can show it without offering actions that would 403.
+     */
+    canManage?: boolean | null;
+    /**
+     * Check-in time (epoch milliseconds). Absent until the team checks in.
+     */
+    checkedInAt?: number | null;
+    /**
+     * Placement persisted at finalization. Present only once the tournament ends.
+     */
+    finalPlacement?: number | null;
+    /**
+     * Participant ID. Required by the withdraw and check-in endpoints, and by the organizer roster endpoints.
+     */
+    participantId?: string | null;
+    /**
+     * Entry time (epoch milliseconds).
+     */
+    registeredAt?: number | null;
+    /**
+     * Assigned seed, once seeding has run.
+     */
+    seed?: number | null;
+    /**
+     * State of a team's entry. PENDING is an unreviewed application; REMOVED and DISQUALIFIED are organizer actions, WITHDRAWN is the team's own.
+     */
+    status?: TournamentParticipantStatus | null;
+    /**
+     * Team avatar URL.
+     */
+    teamAvatarUrl?: string | null;
+    /**
+     * Team ID.
+     */
+    teamId?: string | null;
+    /**
+     * Team display name.
+     */
+    teamName?: string | null;
+}
+/**
+ * A tournament roster the caller is personally on.
+ */
+export interface MyTournamentRosterEntry extends Parsable {
+    /**
+     * Time the caller was rostered (epoch milliseconds).
+     */
+    addedAt?: number | null;
+    /**
+     * Participant whose roster the caller is on.
+     */
+    participantId?: string | null;
+    /**
+     * Roster entry ID. Required by the roster-removal endpoints. This is the caller's OWN roster row - a captain removing a different player reads that id from the participants endpoint instead.
+     */
+    rosterEntryId?: string | null;
+    /**
+     * How a player reached a participant's tournament roster.
+     */
+    source?: TournamentRosterSource | null;
+}
+/**
+ * The key owner's manageable tournaments.
+ */
+export interface MyTournamentsResponse extends Parsable {
+    /**
+     * Number of tournaments returned.
+     */
+    count?: number | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+    /**
+     * Tournaments the caller manages, including drafts and unapproved ones. Capped at 100.
+     */
+    tournaments?: MyTournamentSummary[] | null;
+}
+/**
+ * A tournament the API key owner can manage.
+ */
+export interface MyTournamentSummary extends Parsable {
+    /**
+     * Platform review state, independent of `status`.
+     */
+    approvalStatus?: string | null;
+    /**
+     * user, org, or league.
+     */
+    hostType?: string | null;
+    /**
+     * Tournament ID.
+     */
+    id?: string | null;
+    /**
+     * Whether the caller holds tournament ADMIN authority. False for a tournament moderator, who is a manager but not an admin.
+     */
+    isAdmin?: boolean | null;
+    /**
+     * Participant cap.
+     */
+    maxParticipants?: number | null;
+    /**
+     * Tournament display name.
+     */
+    name?: string | null;
+    /**
+     * Non-terminal AND awaiting organizer action on approval. Tournaments sort attention-first, then by most recently updated.
+     */
+    needsAttention?: boolean | null;
+    /**
+     * Current number of participants.
+     */
+    participantCount?: number | null;
+    /**
+     * URL-friendly tournament identifier.
+     */
+    slug?: string | null;
+    /**
+     * Scheduled start (epoch milliseconds).
+     */
+    startsAt?: number | null;
+    /**
+     * Lifecycle status of a tournament.
+     */
+    status?: TournamentStatus | null;
+    /**
+     * Last update (epoch milliseconds).
+     */
+    updatedAt?: number | null;
+}
 /**
  * Ongoing matches for the API key owner's active teams.
  */
@@ -23802,6 +26681,170 @@ export function serializeMatchesRequestBody_cursorMember1(writer: SerializationW
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MyTournamentActableTeam The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMyTournamentActableTeam(writer: SerializationWriter, myTournamentActableTeam: Partial<MyTournamentActableTeam> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!myTournamentActableTeam || isSerializingDerivedType) { return; }
+    writer.writeStringValue("avatarUrl", myTournamentActableTeam.avatarUrl);
+    writer.writeStringValue("name", myTournamentActableTeam.name);
+    writer.writeStringValue("teamId", myTournamentActableTeam.teamId);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MyTournamentEntry The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMyTournamentEntry(writer: SerializationWriter, myTournamentEntry: Partial<MyTournamentEntry> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!myTournamentEntry || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<MyTournamentActableTeam>("actableTeams", myTournamentEntry.actableTeams, serializeMyTournamentActableTeam);
+    writer.writeObjectValue<MyTournamentFreeAgent>("freeAgent", myTournamentEntry.freeAgent, serializeMyTournamentFreeAgent);
+    writer.writeCollectionOfObjectValues<MyTournamentInvite>("invites", myTournamentEntry.invites, serializeMyTournamentInvite);
+    writer.writeCollectionOfObjectValues<MyTournamentOffer>("offers", myTournamentEntry.offers, serializeMyTournamentOffer);
+    writer.writeCollectionOfObjectValues<MyTournamentParticipant>("participants", myTournamentEntry.participants, serializeMyTournamentParticipant);
+    writer.writeBooleanValue("requiredConnectionMissing", myTournamentEntry.requiredConnectionMissing);
+    writer.writeCollectionOfObjectValues<MyTournamentRosterEntry>("rosterEntries", myTournamentEntry.rosterEntries, serializeMyTournamentRosterEntry);
+    writer.writeStringValue("slug", myTournamentEntry.slug);
+    writer.writeStringValue("tournamentId", myTournamentEntry.tournamentId);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MyTournamentEntryResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMyTournamentEntryResponse(writer: SerializationWriter, myTournamentEntryResponse: Partial<MyTournamentEntryResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!myTournamentEntryResponse || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<MyTournamentEntry>("entry", myTournamentEntryResponse.entry, serializeMyTournamentEntry);
+    writer.writeStringValue("timestamp", myTournamentEntryResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MyTournamentFreeAgent The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMyTournamentFreeAgent(writer: SerializationWriter, myTournamentFreeAgent: Partial<MyTournamentFreeAgent> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!myTournamentFreeAgent || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("createdAt", myTournamentFreeAgent.createdAt);
+    writer.writeStringValue("freeAgentId", myTournamentFreeAgent.freeAgentId);
+    writer.writeStringValue("note", myTournamentFreeAgent.note);
+    writer.writeStringValue("pickedUpByParticipantId", myTournamentFreeAgent.pickedUpByParticipantId);
+    writer.writeEnumValue<TournamentFreeAgentStatus>("status", myTournamentFreeAgent.status);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MyTournamentInvite The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMyTournamentInvite(writer: SerializationWriter, myTournamentInvite: Partial<MyTournamentInvite> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!myTournamentInvite || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("createdAt", myTournamentInvite.createdAt);
+    writer.writeStringValue("invitedByUserId", myTournamentInvite.invitedByUserId);
+    writer.writeStringValue("inviteId", myTournamentInvite.inviteId);
+    writer.writeNumberValue("respondedAt", myTournamentInvite.respondedAt);
+    writer.writeEnumValue<TournamentInviteStatus>("status", myTournamentInvite.status);
+    writer.writeStringValue("teamId", myTournamentInvite.teamId);
+    writer.writeStringValue("teamName", myTournamentInvite.teamName);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MyTournamentOffer The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMyTournamentOffer(writer: SerializationWriter, myTournamentOffer: Partial<MyTournamentOffer> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!myTournamentOffer || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("createdAt", myTournamentOffer.createdAt);
+    writer.writeStringValue("message", myTournamentOffer.message);
+    writer.writeStringValue("offerId", myTournamentOffer.offerId);
+    writer.writeEnumValue<TournamentParticipantStatus>("offeringParticipantStatus", myTournamentOffer.offeringParticipantStatus);
+    writer.writeStringValue("participantId", myTournamentOffer.participantId);
+    writer.writeEnumValue<TournamentFreeAgentOfferStatus>("status", myTournamentOffer.status);
+    writer.writeStringValue("teamAvatarUrl", myTournamentOffer.teamAvatarUrl);
+    writer.writeStringValue("teamId", myTournamentOffer.teamId);
+    writer.writeStringValue("teamName", myTournamentOffer.teamName);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MyTournamentParticipant The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMyTournamentParticipant(writer: SerializationWriter, myTournamentParticipant: Partial<MyTournamentParticipant> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!myTournamentParticipant || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("canManage", myTournamentParticipant.canManage);
+    writer.writeNumberValue("checkedInAt", myTournamentParticipant.checkedInAt);
+    writer.writeNumberValue("finalPlacement", myTournamentParticipant.finalPlacement);
+    writer.writeStringValue("participantId", myTournamentParticipant.participantId);
+    writer.writeNumberValue("registeredAt", myTournamentParticipant.registeredAt);
+    writer.writeNumberValue("seed", myTournamentParticipant.seed);
+    writer.writeEnumValue<TournamentParticipantStatus>("status", myTournamentParticipant.status);
+    writer.writeStringValue("teamAvatarUrl", myTournamentParticipant.teamAvatarUrl);
+    writer.writeStringValue("teamId", myTournamentParticipant.teamId);
+    writer.writeStringValue("teamName", myTournamentParticipant.teamName);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MyTournamentRosterEntry The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMyTournamentRosterEntry(writer: SerializationWriter, myTournamentRosterEntry: Partial<MyTournamentRosterEntry> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!myTournamentRosterEntry || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("addedAt", myTournamentRosterEntry.addedAt);
+    writer.writeStringValue("participantId", myTournamentRosterEntry.participantId);
+    writer.writeStringValue("rosterEntryId", myTournamentRosterEntry.rosterEntryId);
+    writer.writeEnumValue<TournamentRosterSource>("source", myTournamentRosterEntry.source);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MyTournamentsResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMyTournamentsResponse(writer: SerializationWriter, myTournamentsResponse: Partial<MyTournamentsResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!myTournamentsResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", myTournamentsResponse.count);
+    writer.writeStringValue("timestamp", myTournamentsResponse.timestamp);
+    writer.writeCollectionOfObjectValues<MyTournamentSummary>("tournaments", myTournamentsResponse.tournaments, serializeMyTournamentSummary);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MyTournamentSummary The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMyTournamentSummary(writer: SerializationWriter, myTournamentSummary: Partial<MyTournamentSummary> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!myTournamentSummary || isSerializingDerivedType) { return; }
+    writer.writeStringValue("approvalStatus", myTournamentSummary.approvalStatus);
+    writer.writeStringValue("hostType", myTournamentSummary.hostType);
+    writer.writeStringValue("id", myTournamentSummary.id);
+    writer.writeBooleanValue("isAdmin", myTournamentSummary.isAdmin);
+    writer.writeNumberValue("maxParticipants", myTournamentSummary.maxParticipants);
+    writer.writeStringValue("name", myTournamentSummary.name);
+    writer.writeBooleanValue("needsAttention", myTournamentSummary.needsAttention);
+    writer.writeNumberValue("participantCount", myTournamentSummary.participantCount);
+    writer.writeStringValue("slug", myTournamentSummary.slug);
+    writer.writeNumberValue("startsAt", myTournamentSummary.startsAt);
+    writer.writeEnumValue<TournamentStatus>("status", myTournamentSummary.status);
+    writer.writeNumberValue("updatedAt", myTournamentSummary.updatedAt);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param OngoingMatchesResponse The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -24847,6 +27890,1492 @@ export function serializeToggleLeagueGameResponse(writer: SerializationWriter, t
     if (!toggleLeagueGameResponse || isSerializingDerivedType) { return; }
     writer.writeBooleanValue("success", toggleLeagueGameResponse.success);
     writer.writeStringValue("timestamp", toggleLeagueGameResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentActivityActor The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentActivityActor(writer: SerializationWriter, tournamentActivityActor: Partial<TournamentActivityActor> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentActivityActor || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", tournamentActivityActor.id);
+    writer.writeBooleanValue("isPlatformStaff", tournamentActivityActor.isPlatformStaff);
+    writer.writeStringValue("name", tournamentActivityActor.name);
+    writer.writeStringValue("username", tournamentActivityActor.username);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentActivityEntry The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentActivityEntry(writer: SerializationWriter, tournamentActivityEntry: Partial<TournamentActivityEntry> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentActivityEntry || isSerializingDerivedType) { return; }
+    writer.writeStringValue("action", tournamentActivityEntry.action);
+    writer.writeObjectValue<TournamentActivityActor>("actor", tournamentActivityEntry.actor, serializeTournamentActivityActor);
+    writer.writeNumberValue("createdAt", tournamentActivityEntry.createdAt);
+    writer.writeStringValue("id", tournamentActivityEntry.id);
+    writer.writeObjectValue<TournamentActivityEntry_metadata>("metadata", tournamentActivityEntry.metadata, serializeTournamentActivityEntry_metadata);
+    writer.writeStringValue("targetId", tournamentActivityEntry.targetId);
+    writer.writeStringValue("targetType", tournamentActivityEntry.targetType);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentActivityEntry_metadata The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentActivityEntry_metadata(writer: SerializationWriter, tournamentActivityEntry_metadata: Partial<TournamentActivityEntry_metadata> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentActivityEntry_metadata || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentActivityEntry_metadata.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentActivityFeedResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentActivityFeedResponse(writer: SerializationWriter, tournamentActivityFeedResponse: Partial<TournamentActivityFeedResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentActivityFeedResponse || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<TournamentActivityEntry>("activities", tournamentActivityFeedResponse.activities, serializeTournamentActivityEntry);
+    writer.writeNumberValue("count", tournamentActivityFeedResponse.count);
+    writer.writeStringValue("timestamp", tournamentActivityFeedResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentAddStaffBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentAddStaffBody(writer: SerializationWriter, tournamentAddStaffBody: Partial<TournamentAddStaffBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentAddStaffBody || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<TournamentStaffRole>("role", tournamentAddStaffBody.role);
+    writer.writeStringValue("userId", tournamentAddStaffBody.userId);
+    writer.writeAdditionalData(tournamentAddStaffBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentApplication The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentApplication(writer: SerializationWriter, tournamentApplication: Partial<TournamentApplication> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentApplication || isSerializingDerivedType) { return; }
+    writer.writeStringValue("appliedByUserId", tournamentApplication.appliedByUserId);
+    writer.writeStringValue("id", tournamentApplication.id);
+    writer.writeNumberValue("registeredAt", tournamentApplication.registeredAt);
+    if ( typeof tournamentApplication.teamAvatarUrl === "string") {
+        writer.writeStringValue("teamAvatarUrl", tournamentApplication.teamAvatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<TournamentApplication_teamAvatarUrlMember1>("teamAvatarUrl", tournamentApplication.teamAvatarUrl as TournamentApplication_teamAvatarUrlMember1 | undefined | null, serializeTournamentApplication_teamAvatarUrl);
+    }
+    writer.writeStringValue("teamId", tournamentApplication.teamId);
+    writer.writeStringValue("teamName", tournamentApplication.teamName);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentApplication_teamAvatarUrl The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentApplication_teamAvatarUrl(writer: SerializationWriter, tournamentApplication_teamAvatarUrl: Partial<Parsable | TournamentApplication_teamAvatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentApplication_teamAvatarUrlMember1(writer, tournamentApplication_teamAvatarUrl as TournamentApplication_teamAvatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentApplication_teamAvatarUrlMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentApplication_teamAvatarUrlMember1(writer: SerializationWriter, tournamentApplication_teamAvatarUrlMember1: Partial<TournamentApplication_teamAvatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentApplication_teamAvatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentApplication_teamAvatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentApplicationsResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentApplicationsResponse(writer: SerializationWriter, tournamentApplicationsResponse: Partial<TournamentApplicationsResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentApplicationsResponse || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<TournamentApplication>("applications", tournamentApplicationsResponse.applications, serializeTournamentApplication);
+    writer.writeNumberValue("count", tournamentApplicationsResponse.count);
+    writer.writeStringValue("timestamp", tournamentApplicationsResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentBracket The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentBracket(writer: SerializationWriter, tournamentBracket: Partial<TournamentBracket> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentBracket || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<TournamentBracket_display>("display", tournamentBracket.display, serializeTournamentBracket_display);
+    writer.writeCollectionOfPrimitiveValues<string>("disqualified", tournamentBracket.disqualified);
+    writer.writeObjectValue<TournamentGrandFinalAdvantage>("grandFinalAdvantage", tournamentBracket.grandFinalAdvantage, serializeTournamentGrandFinalAdvantage);
+    writer.writeCollectionOfObjectValues<TournamentBracket_nodes>("nodes", tournamentBracket.nodes, serializeTournamentBracket_nodes);
+    writer.writeCollectionOfObjectValues<TournamentBracket_rounds>("rounds", tournamentBracket.rounds, serializeTournamentBracket_rounds);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentBracket_display The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentBracket_display(writer: SerializationWriter, tournamentBracket_display: Partial<TournamentBracket_display> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentBracket_display || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentBracket_display.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentBracket_nodes The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentBracket_nodes(writer: SerializationWriter, tournamentBracket_nodes: Partial<TournamentBracket_nodes> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentBracket_nodes || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentBracket_nodes.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentBracket_rounds The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentBracket_rounds(writer: SerializationWriter, tournamentBracket_rounds: Partial<TournamentBracket_rounds> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentBracket_rounds || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentBracket_rounds.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentBracketResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentBracketResponse(writer: SerializationWriter, tournamentBracketResponse: Partial<TournamentBracketResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentBracketResponse || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<TournamentBracket>("bracket", tournamentBracketResponse.bracket, serializeTournamentBracket);
+    writer.writeStringValue("timestamp", tournamentBracketResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentCalendarEvent The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentCalendarEvent(writer: SerializationWriter, tournamentCalendarEvent: Partial<TournamentCalendarEvent> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentCalendarEvent || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("at", tournamentCalendarEvent.at);
+    writer.writeEnumValue<TournamentCalendarEvent_kind>("kind", tournamentCalendarEvent.kind);
+    writer.writeStringValue("name", tournamentCalendarEvent.name);
+    writer.writeStringValue("slug", tournamentCalendarEvent.slug);
+    writer.writeStringValue("tournamentId", tournamentCalendarEvent.tournamentId);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentCalendarResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentCalendarResponse(writer: SerializationWriter, tournamentCalendarResponse: Partial<TournamentCalendarResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentCalendarResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", tournamentCalendarResponse.count);
+    writer.writeCollectionOfObjectValues<TournamentCalendarEvent>("events", tournamentCalendarResponse.events, serializeTournamentCalendarEvent);
+    writer.writeStringValue("rangeEnd", tournamentCalendarResponse.rangeEnd);
+    writer.writeStringValue("rangeStart", tournamentCalendarResponse.rangeStart);
+    writer.writeStringValue("timestamp", tournamentCalendarResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentCancelRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentCancelRequestBody(writer: SerializationWriter, tournamentCancelRequestBody: Partial<TournamentCancelRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentCancelRequestBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("reason", tournamentCancelRequestBody.reason);
+    writer.writeAdditionalData(tournamentCancelRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentCancelResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentCancelResponse(writer: SerializationWriter, tournamentCancelResponse: Partial<TournamentCancelResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentCancelResponse || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<TournamentCancelResponse_approvalStatus>("approvalStatus", tournamentCancelResponse.approvalStatus);
+    writer.writeStringValue("status", tournamentCancelResponse.status);
+    writer.writeBooleanValue("success", tournamentCancelResponse.success);
+    writer.writeStringValue("timestamp", tournamentCancelResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentCloseRegistrationResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentCloseRegistrationResponse(writer: SerializationWriter, tournamentCloseRegistrationResponse: Partial<TournamentCloseRegistrationResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentCloseRegistrationResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("status", tournamentCloseRegistrationResponse.status);
+    writer.writeBooleanValue("success", tournamentCloseRegistrationResponse.success);
+    writer.writeStringValue("timestamp", tournamentCloseRegistrationResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentCreateRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentCreateRequestBody(writer: SerializationWriter, tournamentCreateRequestBody: Partial<TournamentCreateRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentCreateRequestBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("bannerStorageId", tournamentCreateRequestBody.bannerStorageId);
+    writer.writeNumberValue("checkInOpensMinutesBefore", tournamentCreateRequestBody.checkInOpensMinutesBefore);
+    writer.writeBooleanValue("checkInRequired", tournamentCreateRequestBody.checkInRequired);
+    writer.writeObjectValue<TournamentDefaultMatchConfig>("defaultMatchConfig", tournamentCreateRequestBody.defaultMatchConfig, serializeTournamentDefaultMatchConfig);
+    writer.writeStringValue("description", tournamentCreateRequestBody.description);
+    writer.writeNumberValue("endsAt", tournamentCreateRequestBody.endsAt);
+    writer.writeEnumValue<TournamentFormat>("format", tournamentCreateRequestBody.format);
+    writer.writeObjectValue<TournamentFormatConfig>("formatConfig", tournamentCreateRequestBody.formatConfig, serializeTournamentFormatConfig);
+    writer.writeBooleanValue("freeAgentsEnabled", tournamentCreateRequestBody.freeAgentsEnabled);
+    writer.writeStringValue("gameId", tournamentCreateRequestBody.gameId);
+    writer.writeStringValue("hostId", tournamentCreateRequestBody.hostId);
+    writer.writeEnumValue<TournamentCreateRequestBody_hostType>("hostType", tournamentCreateRequestBody.hostType);
+    writer.writeCollectionOfObjectValues<TournamentPlacementPointsEntry>("leaguePointsByPlacement", tournamentCreateRequestBody.leaguePointsByPlacement, serializeTournamentPlacementPointsEntry);
+    writer.writeBooleanValue("leaguePointsEnabled", tournamentCreateRequestBody.leaguePointsEnabled);
+    writer.writeStringValue("logoStorageId", tournamentCreateRequestBody.logoStorageId);
+    writer.writeNumberValue("maxParticipants", tournamentCreateRequestBody.maxParticipants);
+    writer.writeNumberValue("minParticipants", tournamentCreateRequestBody.minParticipants);
+    writer.writeStringValue("name", tournamentCreateRequestBody.name);
+    writer.writeStringValue("playlistId", tournamentCreateRequestBody.playlistId);
+    writer.writeCollectionOfObjectValues<TournamentPrizeBreakdownEntry>("prizeBreakdown", tournamentCreateRequestBody.prizeBreakdown, serializeTournamentPrizeBreakdownEntry);
+    writer.writeStringValue("prizeCurrency", tournamentCreateRequestBody.prizeCurrency);
+    writer.writeStringValue("prizeDescription", tournamentCreateRequestBody.prizeDescription);
+    writer.writeNumberValue("prizePool", tournamentCreateRequestBody.prizePool);
+    writer.writeNumberValue("registrationEndsAt", tournamentCreateRequestBody.registrationEndsAt);
+    writer.writeEnumValue<TournamentCreateRequestBody_registrationMode>("registrationMode", tournamentCreateRequestBody.registrationMode);
+    writer.writeNumberValue("registrationStartsAt", tournamentCreateRequestBody.registrationStartsAt);
+    writer.writeStringValue("rules", tournamentCreateRequestBody.rules);
+    writer.writeEnumValue<TournamentCreateRequestBody_seedingMethod>("seedingMethod", tournamentCreateRequestBody.seedingMethod);
+    writer.writeObjectValue<TournamentSocialLinks>("socialLinks", tournamentCreateRequestBody.socialLinks, serializeTournamentSocialLinks);
+    writer.writeCollectionOfObjectValues<TournamentSponsorTag>("sponsorTags", tournamentCreateRequestBody.sponsorTags, serializeTournamentSponsorTag);
+    writer.writeNumberValue("startsAt", tournamentCreateRequestBody.startsAt);
+    writer.writeNumberValue("teamSize", tournamentCreateRequestBody.teamSize);
+    writer.writeEnumValue<TournamentCreateRequestBody_visibility>("visibility", tournamentCreateRequestBody.visibility);
+    writer.writeAdditionalData(tournamentCreateRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentCreateResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentCreateResponse(writer: SerializationWriter, tournamentCreateResponse: Partial<TournamentCreateResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentCreateResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("approvalStatus", tournamentCreateResponse.approvalStatus);
+    writer.writeStringValue("slug", tournamentCreateResponse.slug);
+    writer.writeStringValue("status", tournamentCreateResponse.status);
+    writer.writeBooleanValue("success", tournamentCreateResponse.success);
+    writer.writeStringValue("timestamp", tournamentCreateResponse.timestamp);
+    writer.writeStringValue("tournamentId", tournamentCreateResponse.tournamentId);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentDefaultMatchConfig The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentDefaultMatchConfig(writer: SerializationWriter, tournamentDefaultMatchConfig: Partial<TournamentDefaultMatchConfig> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentDefaultMatchConfig || isSerializingDerivedType) { return; }
+    writer.writeStringValue("gameModeId", tournamentDefaultMatchConfig.gameModeId);
+    writer.writeObjectValue<TournamentDefaultMatchConfig_gameSpecificOptions>("gameSpecificOptions", tournamentDefaultMatchConfig.gameSpecificOptions, serializeTournamentDefaultMatchConfig_gameSpecificOptions);
+    writer.writeEnumValue<TournamentDefaultMatchConfig_inputDevice>("inputDevice", tournamentDefaultMatchConfig.inputDevice);
+    writer.writeObjectValue<TournamentDefaultMatchConfig_lockedRules>("lockedRules", tournamentDefaultMatchConfig.lockedRules, serializeTournamentDefaultMatchConfig_lockedRules);
+    writer.writeEnumValue<TournamentDefaultMatchConfig_mapPreferenceMode>("mapPreferenceMode", tournamentDefaultMatchConfig.mapPreferenceMode);
+    writer.writeEnumValue<TournamentDefaultMatchConfig_mapSelectionType>("mapSelectionType", tournamentDefaultMatchConfig.mapSelectionType);
+    writer.writeEnumValue<TournamentDefaultMatchConfig_platform>("platform", tournamentDefaultMatchConfig.platform);
+    writer.writeEnumValue<TournamentDefaultMatchConfig_region>("region", tournamentDefaultMatchConfig.region);
+    writer.writeCollectionOfPrimitiveValues<string>("selectedMaps", tournamentDefaultMatchConfig.selectedMaps);
+    writer.writeCollectionOfPrimitiveValues<string>("selectedObjectives", tournamentDefaultMatchConfig.selectedObjectives);
+    writer.writeAdditionalData(tournamentDefaultMatchConfig.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentDefaultMatchConfig_gameSpecificOptions The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentDefaultMatchConfig_gameSpecificOptions(writer: SerializationWriter, tournamentDefaultMatchConfig_gameSpecificOptions: Partial<TournamentDefaultMatchConfig_gameSpecificOptions> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentDefaultMatchConfig_gameSpecificOptions || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentDefaultMatchConfig_gameSpecificOptions.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentDefaultMatchConfig_lockedRules The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentDefaultMatchConfig_lockedRules(writer: SerializationWriter, tournamentDefaultMatchConfig_lockedRules: Partial<TournamentDefaultMatchConfig_lockedRules> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentDefaultMatchConfig_lockedRules || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentDefaultMatchConfig_lockedRules.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentDenyApplicationBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentDenyApplicationBody(writer: SerializationWriter, tournamentDenyApplicationBody: Partial<TournamentDenyApplicationBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentDenyApplicationBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("reason", tournamentDenyApplicationBody.reason);
+    writer.writeAdditionalData(tournamentDenyApplicationBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentDiscoverBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentDiscoverBody(writer: SerializationWriter, tournamentDiscoverBody: Partial<TournamentDiscoverBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentDiscoverBody || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<TournamentFormat>("format", tournamentDiscoverBody.format);
+    writer.writeStringValue("gameId", tournamentDiscoverBody.gameId);
+    writer.writeNumberValue("limit", tournamentDiscoverBody.limit ?? 12);
+    writer.writeNumberValue("page", tournamentDiscoverBody.page ?? 1);
+    writer.writeStringValue("search", tournamentDiscoverBody.search);
+    writer.writeEnumValue<TournamentStatus>("status", tournamentDiscoverBody.status);
+    writer.writeAdditionalData(tournamentDiscoverBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentDiscoverPage The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentDiscoverPage(writer: SerializationWriter, tournamentDiscoverPage: Partial<TournamentDiscoverPage> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentDiscoverPage || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", tournamentDiscoverPage.count);
+    writer.writeNumberValue("limit", tournamentDiscoverPage.limit);
+    writer.writeNumberValue("page", tournamentDiscoverPage.page);
+    writer.writeStringValue("timestamp", tournamentDiscoverPage.timestamp);
+    writer.writeNumberValue("total", tournamentDiscoverPage.total);
+    writer.writeCollectionOfObjectValues<TournamentSummary>("tournaments", tournamentDiscoverPage.tournaments, serializeTournamentSummary);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentDisqualifyParticipantBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentDisqualifyParticipantBody(writer: SerializationWriter, tournamentDisqualifyParticipantBody: Partial<TournamentDisqualifyParticipantBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentDisqualifyParticipantBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("reason", tournamentDisqualifyParticipantBody.reason);
+    writer.writeAdditionalData(tournamentDisqualifyParticipantBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentFormatConfig The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFormatConfig(writer: SerializationWriter, tournamentFormatConfig: Partial<TournamentFormatConfig> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentFormatConfig || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<TournamentFormatConfig_bestOfLadder>("bestOfLadder", tournamentFormatConfig.bestOfLadder, serializeTournamentFormatConfig_bestOfLadder);
+    writer.writeObjectValue<TournamentFormatConfig_grandFinalAdvantage>("grandFinalAdvantage", tournamentFormatConfig.grandFinalAdvantage, serializeTournamentFormatConfig_grandFinalAdvantage);
+    if ( typeof tournamentFormatConfig.roundRobinPasses === "number") {
+        writer.writeNumberValue("roundRobinPasses", tournamentFormatConfig.roundRobinPasses as number);
+    }
+    writer.writeNumberValue("swissRoundCount", tournamentFormatConfig.swissRoundCount);
+    writer.writeAdditionalData(tournamentFormatConfig.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentFormatConfig_bestOfLadder The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFormatConfig_bestOfLadder(writer: SerializationWriter, tournamentFormatConfig_bestOfLadder: Partial<TournamentFormatConfig_bestOfLadder> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentFormatConfig_bestOfLadder || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("default", tournamentFormatConfig_bestOfLadder.defaultEscaped);
+    writer.writeObjectValue<TournamentFormatConfig_bestOfLadder_overrides>("overrides", tournamentFormatConfig_bestOfLadder.overrides, serializeTournamentFormatConfig_bestOfLadder_overrides);
+    writer.writeAdditionalData(tournamentFormatConfig_bestOfLadder.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentFormatConfig_bestOfLadder_overrides The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFormatConfig_bestOfLadder_overrides(writer: SerializationWriter, tournamentFormatConfig_bestOfLadder_overrides: Partial<TournamentFormatConfig_bestOfLadder_overrides> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentFormatConfig_bestOfLadder_overrides || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentFormatConfig_bestOfLadder_overrides.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentFormatConfig_grandFinalAdvantage The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFormatConfig_grandFinalAdvantage(writer: SerializationWriter, tournamentFormatConfig_grandFinalAdvantage: Partial<TournamentFormatConfig_grandFinalAdvantage> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentFormatConfig_grandFinalAdvantage || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<TournamentFormatConfig_grandFinalAdvantage_type>("type", tournamentFormatConfig_grandFinalAdvantage.type);
+    writer.writeNumberValue("winHeadstart", tournamentFormatConfig_grandFinalAdvantage.winHeadstart);
+    writer.writeAdditionalData(tournamentFormatConfig_grandFinalAdvantage.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param key The name of the property to write in the serialization.
+ * @param TournamentFormatConfig_roundRobinPasses The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFormatConfig_roundRobinPasses(writer: SerializationWriter, key: string, tournamentFormatConfig_roundRobinPasses: Parsable | TournamentFormatConfig_roundRobinPasses | undefined, isSerializingDerivedType: boolean = false) : void {
+    if (tournamentFormatConfig_roundRobinPasses === undefined || tournamentFormatConfig_roundRobinPasses === null) return;
+    if (typeof tournamentFormatConfig_roundRobinPasses === "number" ) {
+        writer.writeNumberValue(undefined, tournamentFormatConfig_roundRobinPasses as number);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentFreeAgencyJoinBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFreeAgencyJoinBody(writer: SerializationWriter, tournamentFreeAgencyJoinBody: Partial<TournamentFreeAgencyJoinBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentFreeAgencyJoinBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("note", tournamentFreeAgencyJoinBody.note);
+    writer.writeAdditionalData(tournamentFreeAgencyJoinBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentFreeAgent The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFreeAgent(writer: SerializationWriter, tournamentFreeAgent: Partial<TournamentFreeAgent> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentFreeAgent || isSerializingDerivedType) { return; }
+    if ( typeof tournamentFreeAgent.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", tournamentFreeAgent.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<TournamentFreeAgent_avatarUrlMember1>("avatarUrl", tournamentFreeAgent.avatarUrl as TournamentFreeAgent_avatarUrlMember1 | undefined | null, serializeTournamentFreeAgent_avatarUrl);
+    }
+    writer.writeNumberValue("createdAt", tournamentFreeAgent.createdAt);
+    writer.writeStringValue("id", tournamentFreeAgent.id);
+    writer.writeStringValue("name", tournamentFreeAgent.name);
+    writer.writeStringValue("note", tournamentFreeAgent.note);
+    writer.writeStringValue("userId", tournamentFreeAgent.userId);
+    writer.writeStringValue("username", tournamentFreeAgent.username);
+    if ( typeof tournamentFreeAgent.viewerOfferStatus === "string") {
+        writer.writeStringValue("viewerOfferStatus", tournamentFreeAgent.viewerOfferStatus as string);
+    }
+    else {
+        writer.writeObjectValue<TournamentFreeAgent_viewerOfferStatusMember1>("viewerOfferStatus", tournamentFreeAgent.viewerOfferStatus as TournamentFreeAgent_viewerOfferStatusMember1 | undefined | null, serializeTournamentFreeAgent_viewerOfferStatus);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentFreeAgent_avatarUrl The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFreeAgent_avatarUrl(writer: SerializationWriter, tournamentFreeAgent_avatarUrl: Partial<Parsable | TournamentFreeAgent_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentFreeAgent_avatarUrlMember1(writer, tournamentFreeAgent_avatarUrl as TournamentFreeAgent_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentFreeAgent_avatarUrlMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFreeAgent_avatarUrlMember1(writer: SerializationWriter, tournamentFreeAgent_avatarUrlMember1: Partial<TournamentFreeAgent_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentFreeAgent_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentFreeAgent_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentFreeAgent_viewerOfferStatus The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFreeAgent_viewerOfferStatus(writer: SerializationWriter, tournamentFreeAgent_viewerOfferStatus: Partial<Parsable | TournamentFreeAgent_viewerOfferStatusMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentFreeAgent_viewerOfferStatusMember1(writer, tournamentFreeAgent_viewerOfferStatus as TournamentFreeAgent_viewerOfferStatusMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentFreeAgent_viewerOfferStatusMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFreeAgent_viewerOfferStatusMember1(writer: SerializationWriter, tournamentFreeAgent_viewerOfferStatusMember1: Partial<TournamentFreeAgent_viewerOfferStatusMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentFreeAgent_viewerOfferStatusMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentFreeAgent_viewerOfferStatusMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentFreeAgentsResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentFreeAgentsResponse(writer: SerializationWriter, tournamentFreeAgentsResponse: Partial<TournamentFreeAgentsResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentFreeAgentsResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", tournamentFreeAgentsResponse.count);
+    writer.writeCollectionOfObjectValues<TournamentFreeAgent>("freeAgents", tournamentFreeAgentsResponse.freeAgents, serializeTournamentFreeAgent);
+    writer.writeStringValue("timestamp", tournamentFreeAgentsResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentGrandFinalAdvantage The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentGrandFinalAdvantage(writer: SerializationWriter, tournamentGrandFinalAdvantage: Partial<TournamentGrandFinalAdvantage> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentGrandFinalAdvantage || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<TournamentGrandFinalAdvantage_type>("type", tournamentGrandFinalAdvantage.type);
+    writer.writeNumberValue("winHeadstart", tournamentGrandFinalAdvantage.winHeadstart);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentInvite The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentInvite(writer: SerializationWriter, tournamentInvite: Partial<TournamentInvite> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentInvite || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("createdAt", tournamentInvite.createdAt);
+    writer.writeStringValue("id", tournamentInvite.id);
+    writer.writeStringValue("invitedByUserId", tournamentInvite.invitedByUserId);
+    writer.writeNumberValue("respondedAt", tournamentInvite.respondedAt);
+    writer.writeEnumValue<TournamentInviteStatus>("status", tournamentInvite.status);
+    if ( typeof tournamentInvite.teamAvatarUrl === "string") {
+        writer.writeStringValue("teamAvatarUrl", tournamentInvite.teamAvatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<TournamentInvite_teamAvatarUrlMember1>("teamAvatarUrl", tournamentInvite.teamAvatarUrl as TournamentInvite_teamAvatarUrlMember1 | undefined | null, serializeTournamentInvite_teamAvatarUrl);
+    }
+    writer.writeStringValue("teamId", tournamentInvite.teamId);
+    writer.writeStringValue("teamName", tournamentInvite.teamName);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentInvite_teamAvatarUrl The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentInvite_teamAvatarUrl(writer: SerializationWriter, tournamentInvite_teamAvatarUrl: Partial<Parsable | TournamentInvite_teamAvatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentInvite_teamAvatarUrlMember1(writer, tournamentInvite_teamAvatarUrl as TournamentInvite_teamAvatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentInvite_teamAvatarUrlMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentInvite_teamAvatarUrlMember1(writer: SerializationWriter, tournamentInvite_teamAvatarUrlMember1: Partial<TournamentInvite_teamAvatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentInvite_teamAvatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentInvite_teamAvatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentInviteRespondBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentInviteRespondBody(writer: SerializationWriter, tournamentInviteRespondBody: Partial<TournamentInviteRespondBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentInviteRespondBody || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("accept", tournamentInviteRespondBody.accept);
+    writer.writeCollectionOfPrimitiveValues<string>("roster", tournamentInviteRespondBody.roster);
+    writer.writeAdditionalData(tournamentInviteRespondBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentInviteRespondResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentInviteRespondResponse(writer: SerializationWriter, tournamentInviteRespondResponse: Partial<TournamentInviteRespondResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentInviteRespondResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("accepted", tournamentInviteRespondResponse.accepted);
+    writer.writeStringValue("participantId", tournamentInviteRespondResponse.participantId);
+    writer.writeStringValue("timestamp", tournamentInviteRespondResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentInvitesResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentInvitesResponse(writer: SerializationWriter, tournamentInvitesResponse: Partial<TournamentInvitesResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentInvitesResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", tournamentInvitesResponse.count);
+    writer.writeCollectionOfObjectValues<TournamentInvite>("invites", tournamentInvitesResponse.invites, serializeTournamentInvite);
+    writer.writeStringValue("timestamp", tournamentInvitesResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentInviteTeamBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentInviteTeamBody(writer: SerializationWriter, tournamentInviteTeamBody: Partial<TournamentInviteTeamBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentInviteTeamBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("teamId", tournamentInviteTeamBody.teamId);
+    writer.writeAdditionalData(tournamentInviteTeamBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentLeaguePointsRejected The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentLeaguePointsRejected(writer: SerializationWriter, tournamentLeaguePointsRejected: Partial<TournamentLeaguePointsRejected> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentLeaguePointsRejected || isSerializingDerivedType) { return; }
+    writer.writeStringValue("details", tournamentLeaguePointsRejected.details);
+    writer.writeStringValue("error", tournamentLeaguePointsRejected.errorEscaped);
+    writer.writeEnumValue<TournamentPlacementPointsError>("reason", tournamentLeaguePointsRejected.reason);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentLeaguePointsRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentLeaguePointsRequestBody(writer: SerializationWriter, tournamentLeaguePointsRequestBody: Partial<TournamentLeaguePointsRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentLeaguePointsRequestBody || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<TournamentPlacementPointsEntry>("leaguePointsByPlacement", tournamentLeaguePointsRequestBody.leaguePointsByPlacement, serializeTournamentPlacementPointsEntry);
+    writer.writeBooleanValue("leaguePointsEnabled", tournamentLeaguePointsRequestBody.leaguePointsEnabled);
+    writer.writeAdditionalData(tournamentLeaguePointsRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentLeaguePointsResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentLeaguePointsResponse(writer: SerializationWriter, tournamentLeaguePointsResponse: Partial<TournamentLeaguePointsResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentLeaguePointsResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("leaguePointsEnabled", tournamentLeaguePointsResponse.leaguePointsEnabled);
+    if ( typeof tournamentLeaguePointsResponse.placementCount === "number") {
+        writer.writeNumberValue("placementCount", tournamentLeaguePointsResponse.placementCount as number);
+    }
+    else {
+        writer.writeObjectValue<TournamentLeaguePointsResponse_placementCountMember1>("placementCount", tournamentLeaguePointsResponse.placementCount as TournamentLeaguePointsResponse_placementCountMember1 | undefined | null, serializeTournamentLeaguePointsResponse_placementCount);
+    }
+    writer.writeBooleanValue("success", tournamentLeaguePointsResponse.success);
+    writer.writeStringValue("timestamp", tournamentLeaguePointsResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentLeaguePointsResponse_placementCount The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentLeaguePointsResponse_placementCount(writer: SerializationWriter, tournamentLeaguePointsResponse_placementCount: Partial<Parsable | TournamentLeaguePointsResponse_placementCountMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentLeaguePointsResponse_placementCountMember1(writer, tournamentLeaguePointsResponse_placementCount as TournamentLeaguePointsResponse_placementCountMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentLeaguePointsResponse_placementCountMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentLeaguePointsResponse_placementCountMember1(writer: SerializationWriter, tournamentLeaguePointsResponse_placementCountMember1: Partial<TournamentLeaguePointsResponse_placementCountMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentLeaguePointsResponse_placementCountMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentLeaguePointsResponse_placementCountMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentOfferRespondBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentOfferRespondBody(writer: SerializationWriter, tournamentOfferRespondBody: Partial<TournamentOfferRespondBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentOfferRespondBody || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("accept", tournamentOfferRespondBody.accept);
+    writer.writeAdditionalData(tournamentOfferRespondBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentOfferRespondResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentOfferRespondResponse(writer: SerializationWriter, tournamentOfferRespondResponse: Partial<TournamentOfferRespondResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentOfferRespondResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("accepted", tournamentOfferRespondResponse.accepted);
+    writer.writeStringValue("timestamp", tournamentOfferRespondResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentOpenRegistrationResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentOpenRegistrationResponse(writer: SerializationWriter, tournamentOpenRegistrationResponse: Partial<TournamentOpenRegistrationResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentOpenRegistrationResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("status", tournamentOpenRegistrationResponse.status);
+    writer.writeBooleanValue("success", tournamentOpenRegistrationResponse.success);
+    writer.writeStringValue("timestamp", tournamentOpenRegistrationResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentOrganizerRosterAddBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentOrganizerRosterAddBody(writer: SerializationWriter, tournamentOrganizerRosterAddBody: Partial<TournamentOrganizerRosterAddBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentOrganizerRosterAddBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("userId", tournamentOrganizerRosterAddBody.userId);
+    writer.writeAdditionalData(tournamentOrganizerRosterAddBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentOverrideNodeResultBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentOverrideNodeResultBody(writer: SerializationWriter, tournamentOverrideNodeResultBody: Partial<TournamentOverrideNodeResultBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentOverrideNodeResultBody || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("score1", tournamentOverrideNodeResultBody.score1);
+    writer.writeNumberValue("score2", tournamentOverrideNodeResultBody.score2);
+    writer.writeAdditionalData(tournamentOverrideNodeResultBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentParticipant The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentParticipant(writer: SerializationWriter, tournamentParticipant: Partial<TournamentParticipant> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentParticipant || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("checkedInAt", tournamentParticipant.checkedInAt);
+    writer.writeNumberValue("finalPlacement", tournamentParticipant.finalPlacement);
+    writer.writeStringValue("id", tournamentParticipant.id);
+    writer.writeCollectionOfObjectValues<TournamentRosterMember>("roster", tournamentParticipant.roster, serializeTournamentRosterMember);
+    writer.writeNumberValue("seed", tournamentParticipant.seed);
+    writer.writeStringValue("status", tournamentParticipant.status);
+    if ( typeof tournamentParticipant.teamAvatarUrl === "string") {
+        writer.writeStringValue("teamAvatarUrl", tournamentParticipant.teamAvatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<TournamentParticipant_teamAvatarUrlMember1>("teamAvatarUrl", tournamentParticipant.teamAvatarUrl as TournamentParticipant_teamAvatarUrlMember1 | undefined | null, serializeTournamentParticipant_teamAvatarUrl);
+    }
+    writer.writeStringValue("teamId", tournamentParticipant.teamId);
+    writer.writeStringValue("teamName", tournamentParticipant.teamName);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentParticipant_teamAvatarUrl The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentParticipant_teamAvatarUrl(writer: SerializationWriter, tournamentParticipant_teamAvatarUrl: Partial<Parsable | TournamentParticipant_teamAvatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentParticipant_teamAvatarUrlMember1(writer, tournamentParticipant_teamAvatarUrl as TournamentParticipant_teamAvatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentParticipant_teamAvatarUrlMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentParticipant_teamAvatarUrlMember1(writer: SerializationWriter, tournamentParticipant_teamAvatarUrlMember1: Partial<TournamentParticipant_teamAvatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentParticipant_teamAvatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentParticipant_teamAvatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentParticipantsResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentParticipantsResponse(writer: SerializationWriter, tournamentParticipantsResponse: Partial<TournamentParticipantsResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentParticipantsResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", tournamentParticipantsResponse.count);
+    writer.writeCollectionOfObjectValues<TournamentParticipant>("participants", tournamentParticipantsResponse.participants, serializeTournamentParticipant);
+    writer.writeStringValue("timestamp", tournamentParticipantsResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentPlacementPointsEntry The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentPlacementPointsEntry(writer: SerializationWriter, tournamentPlacementPointsEntry: Partial<TournamentPlacementPointsEntry> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentPlacementPointsEntry || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("placement", tournamentPlacementPointsEntry.placement);
+    writer.writeNumberValue("points", tournamentPlacementPointsEntry.points);
+    writer.writeAdditionalData(tournamentPlacementPointsEntry.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentPrizeBreakdownEntry The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentPrizeBreakdownEntry(writer: SerializationWriter, tournamentPrizeBreakdownEntry: Partial<TournamentPrizeBreakdownEntry> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentPrizeBreakdownEntry || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("amount", tournamentPrizeBreakdownEntry.amount);
+    writer.writeStringValue("description", tournamentPrizeBreakdownEntry.description);
+    writer.writeNumberValue("placement", tournamentPrizeBreakdownEntry.placement);
+    writer.writeAdditionalData(tournamentPrizeBreakdownEntry.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentProfile The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentProfile(writer: SerializationWriter, tournamentProfile: Partial<TournamentProfile> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentProfile || isSerializingDerivedType) { return; }
+    writer.writeStringValue("approvalStatus", tournamentProfile.approvalStatus);
+    if ( typeof tournamentProfile.bannerUrl === "string") {
+        writer.writeStringValue("bannerUrl", tournamentProfile.bannerUrl as string);
+    }
+    else {
+        writer.writeObjectValue<TournamentProfile_bannerUrlMember1>("bannerUrl", tournamentProfile.bannerUrl as TournamentProfile_bannerUrlMember1 | undefined | null, serializeTournamentProfile_bannerUrl);
+    }
+    writer.writeEnumValue<TournamentFormat>("format", tournamentProfile.format);
+    writer.writeObjectValue("game", tournamentProfile.game);
+    writer.writeObjectValue("host", tournamentProfile.host);
+    writer.writeStringValue("_id", tournamentProfile.id);
+    writer.writeBooleanValue("isPubliclyListed", tournamentProfile.isPubliclyListed);
+    if ( typeof tournamentProfile.logoUrl === "string") {
+        writer.writeStringValue("logoUrl", tournamentProfile.logoUrl as string);
+    }
+    else {
+        writer.writeObjectValue<TournamentProfile_logoUrlMember1>("logoUrl", tournamentProfile.logoUrl as TournamentProfile_logoUrlMember1 | undefined | null, serializeTournamentProfile_logoUrl);
+    }
+    writer.writeNumberValue("maxParticipants", tournamentProfile.maxParticipants);
+    writer.writeStringValue("name", tournamentProfile.name);
+    writer.writeBooleanValue("needsAttention", tournamentProfile.needsAttention);
+    writer.writeNumberValue("participantCount", tournamentProfile.participantCount);
+    writer.writeStringValue("slug", tournamentProfile.slug);
+    writer.writeEnumValue<TournamentStatus>("status", tournamentProfile.status);
+    writer.writeNumberValue("teamSize", tournamentProfile.teamSize);
+    writer.writeObjectValue<TournamentProfile_viewerManagement>("viewerManagement", tournamentProfile.viewerManagement, serializeTournamentProfile_viewerManagement);
+    writer.writeStringValue("visibility", tournamentProfile.visibility);
+    writer.writeAdditionalData(tournamentProfile.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentProfile_bannerUrl The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentProfile_bannerUrl(writer: SerializationWriter, tournamentProfile_bannerUrl: Partial<Parsable | TournamentProfile_bannerUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentProfile_bannerUrlMember1(writer, tournamentProfile_bannerUrl as TournamentProfile_bannerUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentProfile_bannerUrlMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentProfile_bannerUrlMember1(writer: SerializationWriter, tournamentProfile_bannerUrlMember1: Partial<TournamentProfile_bannerUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentProfile_bannerUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentProfile_bannerUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentProfile_logoUrl The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentProfile_logoUrl(writer: SerializationWriter, tournamentProfile_logoUrl: Partial<Parsable | TournamentProfile_logoUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentProfile_logoUrlMember1(writer, tournamentProfile_logoUrl as TournamentProfile_logoUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentProfile_logoUrlMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentProfile_logoUrlMember1(writer: SerializationWriter, tournamentProfile_logoUrlMember1: Partial<TournamentProfile_logoUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentProfile_logoUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentProfile_logoUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentProfile_viewerManagement The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentProfile_viewerManagement(writer: SerializationWriter, tournamentProfile_viewerManagement: Partial<TournamentProfile_viewerManagement> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentProfile_viewerManagement || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentProfile_viewerManagement.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentProfileResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentProfileResponse(writer: SerializationWriter, tournamentProfileResponse: Partial<TournamentProfileResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentProfileResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("timestamp", tournamentProfileResponse.timestamp);
+    writer.writeObjectValue<TournamentProfile>("tournament", tournamentProfileResponse.tournament, serializeTournamentProfile);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRegenerateMatchesRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRegenerateMatchesRequestBody(writer: SerializationWriter, tournamentRegenerateMatchesRequestBody: Partial<TournamentRegenerateMatchesRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentRegenerateMatchesRequestBody || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("confirm", tournamentRegenerateMatchesRequestBody.confirm);
+    writer.writeAdditionalData(tournamentRegenerateMatchesRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRegenerateMatchesResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRegenerateMatchesResponse(writer: SerializationWriter, tournamentRegenerateMatchesResponse: Partial<TournamentRegenerateMatchesResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentRegenerateMatchesResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("queued", tournamentRegenerateMatchesResponse.queued);
+    writer.writeStringValue("timestamp", tournamentRegenerateMatchesResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRemoveParticipantBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRemoveParticipantBody(writer: SerializationWriter, tournamentRemoveParticipantBody: Partial<TournamentRemoveParticipantBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentRemoveParticipantBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("reason", tournamentRemoveParticipantBody.reason);
+    writer.writeAdditionalData(tournamentRemoveParticipantBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRevertNodeResultBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRevertNodeResultBody(writer: SerializationWriter, tournamentRevertNodeResultBody: Partial<TournamentRevertNodeResultBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentRevertNodeResultBody || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("regenerateMatch", tournamentRevertNodeResultBody.regenerateMatch);
+    writer.writeAdditionalData(tournamentRevertNodeResultBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRosterMember The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRosterMember(writer: SerializationWriter, tournamentRosterMember: Partial<TournamentRosterMember> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentRosterMember || isSerializingDerivedType) { return; }
+    if ( typeof tournamentRosterMember.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", tournamentRosterMember.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<TournamentRosterMember_avatarUrlMember1>("avatarUrl", tournamentRosterMember.avatarUrl as TournamentRosterMember_avatarUrlMember1 | undefined | null, serializeTournamentRosterMember_avatarUrl);
+    }
+    writer.writeStringValue("id", tournamentRosterMember.id);
+    writer.writeStringValue("name", tournamentRosterMember.name);
+    writer.writeStringValue("source", tournamentRosterMember.source);
+    writer.writeStringValue("username", tournamentRosterMember.username);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRosterMember_avatarUrl The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRosterMember_avatarUrl(writer: SerializationWriter, tournamentRosterMember_avatarUrl: Partial<Parsable | TournamentRosterMember_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentRosterMember_avatarUrlMember1(writer, tournamentRosterMember_avatarUrl as TournamentRosterMember_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRosterMember_avatarUrlMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRosterMember_avatarUrlMember1(writer: SerializationWriter, tournamentRosterMember_avatarUrlMember1: Partial<TournamentRosterMember_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentRosterMember_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentRosterMember_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRoundScheduleRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRoundScheduleRequestBody(writer: SerializationWriter, tournamentRoundScheduleRequestBody: Partial<TournamentRoundScheduleRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentRoundScheduleRequestBody || isSerializingDerivedType) { return; }
+    if ( typeof tournamentRoundScheduleRequestBody.startsAt === "number") {
+        writer.writeNumberValue("startsAt", tournamentRoundScheduleRequestBody.startsAt as number);
+    }
+    else {
+        writer.writeObjectValue<TournamentRoundScheduleRequestBody_startsAtMember1>("startsAt", tournamentRoundScheduleRequestBody.startsAt as TournamentRoundScheduleRequestBody_startsAtMember1 | undefined | null, serializeTournamentRoundScheduleRequestBody_startsAt);
+    }
+    writer.writeAdditionalData(tournamentRoundScheduleRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRoundScheduleRequestBody_startsAt The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRoundScheduleRequestBody_startsAt(writer: SerializationWriter, tournamentRoundScheduleRequestBody_startsAt: Partial<Parsable | TournamentRoundScheduleRequestBody_startsAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentRoundScheduleRequestBody_startsAtMember1(writer, tournamentRoundScheduleRequestBody_startsAt as TournamentRoundScheduleRequestBody_startsAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRoundScheduleRequestBody_startsAtMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRoundScheduleRequestBody_startsAtMember1(writer: SerializationWriter, tournamentRoundScheduleRequestBody_startsAtMember1: Partial<TournamentRoundScheduleRequestBody_startsAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentRoundScheduleRequestBody_startsAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentRoundScheduleRequestBody_startsAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRoundScheduleResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRoundScheduleResponse(writer: SerializationWriter, tournamentRoundScheduleResponse: Partial<TournamentRoundScheduleResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentRoundScheduleResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("roundId", tournamentRoundScheduleResponse.roundId);
+    if ( typeof tournamentRoundScheduleResponse.startsAt === "number") {
+        writer.writeNumberValue("startsAt", tournamentRoundScheduleResponse.startsAt as number);
+    }
+    else {
+        writer.writeObjectValue<TournamentRoundScheduleResponse_startsAtMember1>("startsAt", tournamentRoundScheduleResponse.startsAt as TournamentRoundScheduleResponse_startsAtMember1 | undefined | null, serializeTournamentRoundScheduleResponse_startsAt);
+    }
+    writer.writeBooleanValue("success", tournamentRoundScheduleResponse.success);
+    writer.writeStringValue("timestamp", tournamentRoundScheduleResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRoundScheduleResponse_startsAt The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRoundScheduleResponse_startsAt(writer: SerializationWriter, tournamentRoundScheduleResponse_startsAt: Partial<Parsable | TournamentRoundScheduleResponse_startsAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentRoundScheduleResponse_startsAtMember1(writer, tournamentRoundScheduleResponse_startsAt as TournamentRoundScheduleResponse_startsAtMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentRoundScheduleResponse_startsAtMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentRoundScheduleResponse_startsAtMember1(writer: SerializationWriter, tournamentRoundScheduleResponse_startsAtMember1: Partial<TournamentRoundScheduleResponse_startsAtMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentRoundScheduleResponse_startsAtMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentRoundScheduleResponse_startsAtMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentSendOfferBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentSendOfferBody(writer: SerializationWriter, tournamentSendOfferBody: Partial<TournamentSendOfferBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentSendOfferBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("message", tournamentSendOfferBody.message);
+    writer.writeStringValue("participantId", tournamentSendOfferBody.participantId);
+    writer.writeAdditionalData(tournamentSendOfferBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentSocialLinks The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentSocialLinks(writer: SerializationWriter, tournamentSocialLinks: Partial<TournamentSocialLinks> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentSocialLinks || isSerializingDerivedType) { return; }
+    writer.writeStringValue("discord", tournamentSocialLinks.discord);
+    writer.writeStringValue("instagram", tournamentSocialLinks.instagram);
+    writer.writeStringValue("tiktok", tournamentSocialLinks.tiktok);
+    writer.writeStringValue("twitch", tournamentSocialLinks.twitch);
+    writer.writeStringValue("website", tournamentSocialLinks.website);
+    writer.writeStringValue("x", tournamentSocialLinks.x);
+    writer.writeStringValue("youtube", tournamentSocialLinks.youtube);
+    writer.writeAdditionalData(tournamentSocialLinks.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentSponsorTag The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentSponsorTag(writer: SerializationWriter, tournamentSponsorTag: Partial<TournamentSponsorTag> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentSponsorTag || isSerializingDerivedType) { return; }
+    writer.writeStringValue("customPrefix", tournamentSponsorTag.customPrefix);
+    writer.writeStringValue("logoStorageId", tournamentSponsorTag.logoStorageId);
+    writer.writeStringValue("name", tournamentSponsorTag.name);
+    writer.writeEnumValue<TournamentSponsorTag_prefix>("prefix", tournamentSponsorTag.prefix);
+    writer.writeStringValue("url", tournamentSponsorTag.url);
+    writer.writeAdditionalData(tournamentSponsorTag.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentStaffMember The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentStaffMember(writer: SerializationWriter, tournamentStaffMember: Partial<TournamentStaffMember> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentStaffMember || isSerializingDerivedType) { return; }
+    if ( typeof tournamentStaffMember.avatarUrl === "string") {
+        writer.writeStringValue("avatarUrl", tournamentStaffMember.avatarUrl as string);
+    }
+    else {
+        writer.writeObjectValue<TournamentStaffMember_avatarUrlMember1>("avatarUrl", tournamentStaffMember.avatarUrl as TournamentStaffMember_avatarUrlMember1 | undefined | null, serializeTournamentStaffMember_avatarUrl);
+    }
+    writer.writeNumberValue("createdAt", tournamentStaffMember.createdAt);
+    writer.writeStringValue("id", tournamentStaffMember.id);
+    writer.writeStringValue("name", tournamentStaffMember.name);
+    writer.writeEnumValue<TournamentStaffRole>("role", tournamentStaffMember.role);
+    writer.writeStringValue("userId", tournamentStaffMember.userId);
+    writer.writeStringValue("username", tournamentStaffMember.username);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentStaffMember_avatarUrl The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentStaffMember_avatarUrl(writer: SerializationWriter, tournamentStaffMember_avatarUrl: Partial<Parsable | TournamentStaffMember_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentStaffMember_avatarUrlMember1(writer, tournamentStaffMember_avatarUrl as TournamentStaffMember_avatarUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentStaffMember_avatarUrlMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentStaffMember_avatarUrlMember1(writer: SerializationWriter, tournamentStaffMember_avatarUrlMember1: Partial<TournamentStaffMember_avatarUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentStaffMember_avatarUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentStaffMember_avatarUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentStaffResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentStaffResponse(writer: SerializationWriter, tournamentStaffResponse: Partial<TournamentStaffResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentStaffResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("count", tournamentStaffResponse.count);
+    writer.writeCollectionOfObjectValues<TournamentStaffMember>("staff", tournamentStaffResponse.staff, serializeTournamentStaffMember);
+    writer.writeStringValue("timestamp", tournamentStaffResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentStartRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentStartRequestBody(writer: SerializationWriter, tournamentStartRequestBody: Partial<TournamentStartRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentStartRequestBody || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfPrimitiveValues<string>("manualOrder", tournamentStartRequestBody.manualOrder);
+    writer.writeEnumValue<TournamentStartRequestBody_seedMethod>("seedMethod", tournamentStartRequestBody.seedMethod);
+    writer.writeAdditionalData(tournamentStartRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentStartResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentStartResponse(writer: SerializationWriter, tournamentStartResponse: Partial<TournamentStartResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentStartResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("accepted", tournamentStartResponse.accepted);
+    writer.writeStringValue("matchGeneration", tournamentStartResponse.matchGeneration);
+    writer.writeNumberValue("nodeCount", tournamentStartResponse.nodeCount);
+    writer.writeStringValue("status", tournamentStartResponse.status);
+    writer.writeStringValue("timestamp", tournamentStartResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentSubmitForApprovalResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentSubmitForApprovalResponse(writer: SerializationWriter, tournamentSubmitForApprovalResponse: Partial<TournamentSubmitForApprovalResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentSubmitForApprovalResponse || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<TournamentSubmitForApprovalResponse_approvalStatus>("approvalStatus", tournamentSubmitForApprovalResponse.approvalStatus);
+    writer.writeBooleanValue("autoApproved", tournamentSubmitForApprovalResponse.autoApproved);
+    writer.writeStringValue("timestamp", tournamentSubmitForApprovalResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentSummary The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentSummary(writer: SerializationWriter, tournamentSummary: Partial<TournamentSummary> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentSummary || isSerializingDerivedType) { return; }
+    if ( typeof tournamentSummary.bannerUrl === "string") {
+        writer.writeStringValue("bannerUrl", tournamentSummary.bannerUrl as string);
+    }
+    else {
+        writer.writeObjectValue<TournamentSummary_bannerUrlMember1>("bannerUrl", tournamentSummary.bannerUrl as TournamentSummary_bannerUrlMember1 | undefined | null, serializeTournamentSummary_bannerUrl);
+    }
+    writer.writeStringValue("description", tournamentSummary.description);
+    writer.writeEnumValue<TournamentFormat>("format", tournamentSummary.format);
+    writer.writeObjectValue("game", tournamentSummary.game);
+    writer.writeStringValue("id", tournamentSummary.id);
+    writer.writeBooleanValue("isFeatured", tournamentSummary.isFeatured);
+    if ( typeof tournamentSummary.logoUrl === "string") {
+        writer.writeStringValue("logoUrl", tournamentSummary.logoUrl as string);
+    }
+    else {
+        writer.writeObjectValue<TournamentSummary_logoUrlMember1>("logoUrl", tournamentSummary.logoUrl as TournamentSummary_logoUrlMember1 | undefined | null, serializeTournamentSummary_logoUrl);
+    }
+    writer.writeNumberValue("maxParticipants", tournamentSummary.maxParticipants);
+    writer.writeStringValue("name", tournamentSummary.name);
+    writer.writeNumberValue("participantCount", tournamentSummary.participantCount);
+    writer.writeStringValue("prizeCurrency", tournamentSummary.prizeCurrency);
+    writer.writeNumberValue("prizePool", tournamentSummary.prizePool);
+    writer.writeStringValue("slug", tournamentSummary.slug);
+    writer.writeNumberValue("startsAt", tournamentSummary.startsAt);
+    writer.writeEnumValue<TournamentStatus>("status", tournamentSummary.status);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentSummary_bannerUrl The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentSummary_bannerUrl(writer: SerializationWriter, tournamentSummary_bannerUrl: Partial<Parsable | TournamentSummary_bannerUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentSummary_bannerUrlMember1(writer, tournamentSummary_bannerUrl as TournamentSummary_bannerUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentSummary_bannerUrlMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentSummary_bannerUrlMember1(writer: SerializationWriter, tournamentSummary_bannerUrlMember1: Partial<TournamentSummary_bannerUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentSummary_bannerUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentSummary_bannerUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentSummary_logoUrl The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentSummary_logoUrl(writer: SerializationWriter, tournamentSummary_logoUrl: Partial<Parsable | TournamentSummary_logoUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTournamentSummary_logoUrlMember1(writer, tournamentSummary_logoUrl as TournamentSummary_logoUrlMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentSummary_logoUrlMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentSummary_logoUrlMember1(writer: SerializationWriter, tournamentSummary_logoUrlMember1: Partial<TournamentSummary_logoUrlMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentSummary_logoUrlMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(tournamentSummary_logoUrlMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentTeamEntryBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentTeamEntryBody(writer: SerializationWriter, tournamentTeamEntryBody: Partial<TournamentTeamEntryBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentTeamEntryBody || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfPrimitiveValues<string>("roster", tournamentTeamEntryBody.roster);
+    writer.writeAdditionalData(tournamentTeamEntryBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentTeamEntryResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentTeamEntryResponse(writer: SerializationWriter, tournamentTeamEntryResponse: Partial<TournamentTeamEntryResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentTeamEntryResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("participantId", tournamentTeamEntryResponse.participantId);
+    writer.writeStringValue("timestamp", tournamentTeamEntryResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentTeamRosterAddBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentTeamRosterAddBody(writer: SerializationWriter, tournamentTeamRosterAddBody: Partial<TournamentTeamRosterAddBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentTeamRosterAddBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("userId", tournamentTeamRosterAddBody.userId);
+    writer.writeAdditionalData(tournamentTeamRosterAddBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentUpdateRequestBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentUpdateRequestBody(writer: SerializationWriter, tournamentUpdateRequestBody: Partial<TournamentUpdateRequestBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentUpdateRequestBody || isSerializingDerivedType) { return; }
+    writer.writeStringValue("bannerStorageId", tournamentUpdateRequestBody.bannerStorageId);
+    writer.writeNumberValue("checkInOpensMinutesBefore", tournamentUpdateRequestBody.checkInOpensMinutesBefore);
+    writer.writeBooleanValue("checkInRequired", tournamentUpdateRequestBody.checkInRequired);
+    writer.writeStringValue("description", tournamentUpdateRequestBody.description);
+    writer.writeNumberValue("endsAt", tournamentUpdateRequestBody.endsAt);
+    writer.writeEnumValue<TournamentUpdateRequestBody_format>("format", tournamentUpdateRequestBody.format);
+    writer.writeObjectValue<TournamentFormatConfig>("formatConfig", tournamentUpdateRequestBody.formatConfig, serializeTournamentFormatConfig);
+    writer.writeStringValue("gameId", tournamentUpdateRequestBody.gameId);
+    writer.writeStringValue("logoStorageId", tournamentUpdateRequestBody.logoStorageId);
+    writer.writeNumberValue("maxParticipants", tournamentUpdateRequestBody.maxParticipants);
+    writer.writeNumberValue("minParticipants", tournamentUpdateRequestBody.minParticipants);
+    writer.writeStringValue("name", tournamentUpdateRequestBody.name);
+    writer.writeStringValue("playlistId", tournamentUpdateRequestBody.playlistId);
+    writer.writeCollectionOfObjectValues<TournamentPrizeBreakdownEntry>("prizeBreakdown", tournamentUpdateRequestBody.prizeBreakdown, serializeTournamentPrizeBreakdownEntry);
+    writer.writeStringValue("prizeCurrency", tournamentUpdateRequestBody.prizeCurrency);
+    writer.writeStringValue("prizeDescription", tournamentUpdateRequestBody.prizeDescription);
+    writer.writeNumberValue("prizePool", tournamentUpdateRequestBody.prizePool);
+    writer.writeNumberValue("registrationEndsAt", tournamentUpdateRequestBody.registrationEndsAt);
+    writer.writeEnumValue<TournamentUpdateRequestBody_registrationMode>("registrationMode", tournamentUpdateRequestBody.registrationMode);
+    writer.writeNumberValue("registrationStartsAt", tournamentUpdateRequestBody.registrationStartsAt);
+    writer.writeStringValue("rules", tournamentUpdateRequestBody.rules);
+    writer.writeObjectValue<TournamentSocialLinks>("socialLinks", tournamentUpdateRequestBody.socialLinks, serializeTournamentSocialLinks);
+    writer.writeCollectionOfObjectValues<TournamentSponsorTag>("sponsorTags", tournamentUpdateRequestBody.sponsorTags, serializeTournamentSponsorTag);
+    writer.writeNumberValue("startsAt", tournamentUpdateRequestBody.startsAt);
+    writer.writeNumberValue("teamSize", tournamentUpdateRequestBody.teamSize);
+    writer.writeEnumValue<TournamentUpdateRequestBody_visibility>("visibility", tournamentUpdateRequestBody.visibility);
+    writer.writeAdditionalData(tournamentUpdateRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentUpdateResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentUpdateResponse(writer: SerializationWriter, tournamentUpdateResponse: Partial<TournamentUpdateResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentUpdateResponse || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<TournamentUpdateResponse_applied>("applied", tournamentUpdateResponse.applied);
+    writer.writeEnumValue<TournamentUpdateResponse_approvalStatus>("approvalStatus", tournamentUpdateResponse.approvalStatus);
+    if(tournamentUpdateResponse.changedFields)
+    writer.writeCollectionOfEnumValues<TournamentMaterialField>("changedFields", tournamentUpdateResponse.changedFields);
+    writer.writeStringValue("timestamp", tournamentUpdateResponse.timestamp);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TournamentWriteAck The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTournamentWriteAck(writer: SerializationWriter, tournamentWriteAck: Partial<TournamentWriteAck> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tournamentWriteAck || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("success", tournamentWriteAck.success);
+    writer.writeStringValue("timestamp", tournamentWriteAck.timestamp);
 }
 /**
  * Serializes information the current object
@@ -26215,6 +30744,1672 @@ export interface ToggleLeagueGameResponse extends Parsable {
     timestamp?: string | null;
 }
 /**
+ * The user who performed a logged tournament action. Platform Staff actions suppress username/name and set isPlatformStaff: true, keeping only the id.
+ */
+export interface TournamentActivityActor extends Parsable {
+    /**
+     * Actor's user ID.
+     */
+    id?: string | null;
+    /**
+     * Present and true when a TeamBattles Platform Staff member took the action under audited elevation. username and name are suppressed in that case - only id is retained.
+     */
+    isPlatformStaff?: boolean | null;
+    /**
+     * Display name. Omitted when the action was taken by Platform Staff.
+     */
+    name?: string | null;
+    /**
+     * Username. Omitted when the action was taken by Platform Staff.
+     */
+    username?: string | null;
+}
+/**
+ * One tournament activity log entry.
+ */
+export interface TournamentActivityEntry extends Parsable {
+    /**
+     * Action identifier, e.g. registration_opened, participant_approved, invite_revoked. Open-ended: treat unrecognised values as informational rather than an error.
+     */
+    action?: string | null;
+    /**
+     * The acting user, or null when the user row no longer resolves.
+     */
+    actor?: TournamentActivityActor | null;
+    /**
+     * Log time (epoch milliseconds).
+     */
+    createdAt?: number | null;
+    /**
+     * Activity log row ID.
+     */
+    id?: string | null;
+    /**
+     * Action-specific detail. Shape varies by `action`.
+     */
+    metadata?: TournamentActivityEntry_metadata | null;
+    /**
+     * ID of the targeted row.
+     */
+    targetId?: string | null;
+    /**
+     * Kind of row the action targeted, when the action names one.
+     */
+    targetType?: string | null;
+}
+/**
+ * Action-specific detail. Shape varies by `action`.
+ */
+export interface TournamentActivityEntry_metadata extends AdditionalDataHolder, Parsable {
+}
+/**
+ * The tournament organizer activity feed.
+ */
+export interface TournamentActivityFeedResponse extends Parsable {
+    /**
+     * Activity entries newest first. Not cursor-paginated: this is a single `limit`-capped window over the most recent rows, so there is no way to page past the newest 100.
+     */
+    activities?: TournamentActivityEntry[] | null;
+    /**
+     * Number of entries returned.
+     */
+    count?: number | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * Tournament staff addition payload.
+ */
+export interface TournamentAddStaffBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Tournament staff role.
+     */
+    role?: TournamentStaffRole | null;
+    /**
+     * User ID of the staff member to add.
+     */
+    userId?: string | null;
+}
+/**
+ * A team application awaiting organizer review.
+ */
+export interface TournamentApplication extends Parsable {
+    /**
+     * User who submitted the application, when recorded.
+     */
+    appliedByUserId?: string | null;
+    /**
+     * Participant ID of the pending application.
+     */
+    id?: string | null;
+    /**
+     * Application time (epoch milliseconds).
+     */
+    registeredAt?: number | null;
+    /**
+     * Applying team's avatar URL.
+     */
+    teamAvatarUrl?: string | TournamentApplication_teamAvatarUrlMember1 | null;
+    /**
+     * Applying team's ID.
+     */
+    teamId?: string | null;
+    /**
+     * Applying team's display name.
+     */
+    teamName?: string | null;
+}
+export type TournamentApplication_teamAvatarUrl = string | TournamentApplication_teamAvatarUrlMember1;
+export interface TournamentApplication_teamAvatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Pending tournament applications.
+ */
+export interface TournamentApplicationsResponse extends Parsable {
+    /**
+     * Participant rows in PENDING status only. Approved, denied, withdrawn, and disqualified entries are not applications and appear on the participants endpoint instead.
+     */
+    applications?: TournamentApplication[] | null;
+    /**
+     * Number of applications returned.
+     */
+    count?: number | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * Rounds, nodes, and participant display data.
+ */
+export interface TournamentBracket extends Parsable {
+    /**
+     * Participant ID -> { name, avatarUrl, seed } display map.
+     */
+    display?: TournamentBracket_display | null;
+    /**
+     * Participant IDs currently disqualified.
+     */
+    disqualified?: string[] | null;
+    /**
+     * Grand-final advantage rule, copied verbatim from the tournament's `formatConfig`. Absent only when the tournament carries no `formatConfig` at all. NOT display data: WIN_HEADSTART pre-credits grand-final slot 1 at generation time, so any client re-deriving a walkover score pair must apply this rule or it zeroes the credit out.
+     */
+    grandFinalAdvantage?: TournamentGrandFinalAdvantage | null;
+    /**
+     * Bracket node documents (slots, results, and links).
+     */
+    nodes?: TournamentBracket_nodes[] | null;
+    /**
+     * Round documents, ordered by round number ascending.
+     */
+    rounds?: TournamentBracket_rounds[] | null;
+}
+/**
+ * Participant ID -> { name, avatarUrl, seed } display map.
+ */
+export interface TournamentBracket_display extends AdditionalDataHolder, Parsable {
+}
+export interface TournamentBracket_nodes extends AdditionalDataHolder, Parsable {
+}
+export interface TournamentBracket_rounds extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Tournament bracket response envelope.
+ */
+export interface TournamentBracketResponse extends Parsable {
+    /**
+     * Rounds, nodes, and participant display data.
+     */
+    bracket?: TournamentBracket | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * One dated tournament milestone for the key owner.
+ */
+export interface TournamentCalendarEvent extends Parsable {
+    /**
+     * Milestone time (epoch milliseconds).
+     */
+    at?: number | null;
+    /**
+     * registration = registration deadline, checkin = check-in opens, start = tournament start.
+     */
+    kind?: TournamentCalendarEvent_kind | null;
+    /**
+     * Tournament display name.
+     */
+    name?: string | null;
+    /**
+     * URL-friendly tournament identifier.
+     */
+    slug?: string | null;
+    /**
+     * Tournament ID.
+     */
+    tournamentId?: string | null;
+}
+export type TournamentCalendarEvent_kind = (typeof TournamentCalendarEvent_kindObject)[keyof typeof TournamentCalendarEvent_kindObject];
+/**
+ * Tournament milestones for the key owner's teams.
+ */
+export interface TournamentCalendarResponse extends Parsable {
+    /**
+     * Number of milestones returned.
+     */
+    count?: number | null;
+    /**
+     * Milestones in the requested window, ascending by time.
+     */
+    events?: TournamentCalendarEvent[] | null;
+    /**
+     * Applied window end (ISO 8601).
+     */
+    rangeEnd?: string | null;
+    /**
+     * Applied window start (ISO 8601).
+     */
+    rangeStart?: string | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * Tournament cancellation payload.
+ */
+export interface TournamentCancelRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional human-readable cancellation reason. It is echoed to participants in the cancellation notification and in the `tournament.cancelled` webhook payload, so treat it as PUBLIC.
+     */
+    reason?: string | null;
+}
+/**
+ * Result of cancelling a tournament.
+ */
+export interface TournamentCancelResponse extends Parsable {
+    /**
+     * The tournament's approval status as of this request's authorization snapshot. Cancelling does NOT touch it, so it is reported as an INDEPENDENT field: `CANCELLED` alongside `NOT_SUBMITTED` is a real, reachable pair, and any status projection you build must handle it rather than deriving one field from the other.
+     */
+    approvalStatus?: TournamentCancelResponse_approvalStatus | null;
+    /**
+     * The lifecycle status this call set.
+     */
+    status?: string | null;
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export type TournamentCancelResponse_approvalStatus = (typeof TournamentCancelResponse_approvalStatusObject)[keyof typeof TournamentCancelResponse_approvalStatusObject];
+/**
+ * Result of closing tournament registration.
+ */
+export interface TournamentCloseRegistrationResponse extends Parsable {
+    /**
+     * The lifecycle status this call set.
+     */
+    status?: string | null;
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+/**
+ * A new tournament. Fields this schema does not list are IGNORED rather than rejected, so a misspelled key silently does nothing - this matters most inside `defaultMatchConfig`, where a dropped key would produce a tournament whose matches cannot be generated.
+ */
+export interface TournamentCreateRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Convex storage id.
+     */
+    bannerStorageId?: string | null;
+    /**
+     * The checkInOpensMinutesBefore property
+     */
+    checkInOpensMinutesBefore?: number | null;
+    /**
+     * The checkInRequired property
+     */
+    checkInRequired?: boolean | null;
+    /**
+     * Match settings stamped onto every match this tournament generates. Required, and sent whole - there is no per-field default.
+     */
+    defaultMatchConfig?: TournamentDefaultMatchConfig | null;
+    /**
+     * The description property
+     */
+    description?: string | null;
+    /**
+     * Unix ms.
+     */
+    endsAt?: number | null;
+    /**
+     * Bracket format of a tournament.
+     */
+    format?: TournamentFormat | null;
+    /**
+     * Format-specific configuration. Sent whole - it replaces the stored object rather than merging into it.
+     */
+    formatConfig?: TournamentFormatConfig | null;
+    /**
+     * Whether unaffiliated players may join a free-agent pool. NOT editable afterwards through the update endpoint.
+     */
+    freeAgentsEnabled?: boolean | null;
+    /**
+     * Convex game id.
+     */
+    gameId?: string | null;
+    /**
+     * Your own user id when hostType is `user`; the organization id when `org`; the league id when `league`. You must genuinely hold that authority - see the endpoint description.
+     */
+    hostId?: string | null;
+    /**
+     * Who hosts the tournament. This choice, together with `hostId`, decides which plan is billed for every later organizer request on the tournament - see the endpoint description.
+     */
+    hostType?: TournamentCreateRequestBody_hostType | null;
+    /**
+     * LEAGUE HOSTS ONLY. Omit to use the platform default curve; an empty array is rejected.
+     */
+    leaguePointsByPlacement?: TournamentPlacementPointsEntry[] | null;
+    /**
+     * LEAGUE HOSTS ONLY. Sending it with a user or org host is a 400.
+     */
+    leaguePointsEnabled?: boolean | null;
+    /**
+     * Convex storage id.
+     */
+    logoStorageId?: string | null;
+    /**
+     * Entrant cap. Also bounded by the format ceiling (SINGLE_ELIMINATION and DOUBLE_ELIMINATION 128, SWISS 64, ROUND_ROBIN 32) and by the host plan's participant limit, both checked server-side.
+     */
+    maxParticipants?: number | null;
+    /**
+     * The minParticipants property
+     */
+    minParticipants?: number | null;
+    /**
+     * Tournament name, 3-80 characters after trimming.
+     */
+    name?: string | null;
+    /**
+     * Convex game playlist id.
+     */
+    playlistId?: string | null;
+    /**
+     * The prizeBreakdown property
+     */
+    prizeBreakdown?: TournamentPrizeBreakdownEntry[] | null;
+    /**
+     * The prizeCurrency property
+     */
+    prizeCurrency?: string | null;
+    /**
+     * The prizeDescription property
+     */
+    prizeDescription?: string | null;
+    /**
+     * The prizePool property
+     */
+    prizePool?: number | null;
+    /**
+     * Unix ms.
+     */
+    registrationEndsAt?: number | null;
+    /**
+     * The registrationMode property
+     */
+    registrationMode?: TournamentCreateRequestBody_registrationMode | null;
+    /**
+     * Unix ms.
+     */
+    registrationStartsAt?: number | null;
+    /**
+     * The rules property
+     */
+    rules?: string | null;
+    /**
+     * Defaults to the platform default when omitted. NOT editable afterwards.
+     */
+    seedingMethod?: TournamentCreateRequestBody_seedingMethod | null;
+    /**
+     * Organizer social links.
+     */
+    socialLinks?: TournamentSocialLinks | null;
+    /**
+     * Bounded by the host plan's sponsor-tag limit.
+     */
+    sponsorTags?: TournamentSponsorTag[] | null;
+    /**
+     * Unix ms.
+     */
+    startsAt?: number | null;
+    /**
+     * Players per side.
+     */
+    teamSize?: number | null;
+    /**
+     * The visibility property
+     */
+    visibility?: TournamentCreateRequestBody_visibility | null;
+}
+export type TournamentCreateRequestBody_hostType = (typeof TournamentCreateRequestBody_hostTypeObject)[keyof typeof TournamentCreateRequestBody_hostTypeObject];
+export type TournamentCreateRequestBody_registrationMode = (typeof TournamentCreateRequestBody_registrationModeObject)[keyof typeof TournamentCreateRequestBody_registrationModeObject];
+export type TournamentCreateRequestBody_seedingMethod = (typeof TournamentCreateRequestBody_seedingMethodObject)[keyof typeof TournamentCreateRequestBody_seedingMethodObject];
+export type TournamentCreateRequestBody_visibility = (typeof TournamentCreateRequestBody_visibilityObject)[keyof typeof TournamentCreateRequestBody_visibilityObject];
+/**
+ * The newly created draft tournament.
+ */
+export interface TournamentCreateResponse extends Parsable {
+    /**
+     * Always NOT_SUBMITTED. Call submit-for-approval next; the tournament is invisible to the public discovery surface until staff approve it.
+     */
+    approvalStatus?: string | null;
+    /**
+     * Derived from the name and de-duplicated server-side, so it is NOT predictable from the name you sent. Every other tournament endpoint resolves by this slug, never by `tournamentId`, so store it.
+     */
+    slug?: string | null;
+    /**
+     * Always DRAFT. A guaranteed post-condition, not an echo - createCore hard-codes it.
+     */
+    status?: string | null;
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+    /**
+     * The tournamentId property
+     */
+    tournamentId?: string | null;
+}
+/**
+ * Match settings stamped onto every match this tournament generates. Required, and sent whole - there is no per-field default.
+ */
+export interface TournamentDefaultMatchConfig extends AdditionalDataHolder, Parsable {
+    /**
+     * Game mode every generated match is played in. Validated against the game's allowed modes when a match is generated, NOT here - a mode id that does not belong to `gameId` is accepted at create time and surfaces at start time as a match_generation_failed activity entry.
+     */
+    gameModeId?: string | null;
+    /**
+     * The gameSpecificOptions property
+     */
+    gameSpecificOptions?: TournamentDefaultMatchConfig_gameSpecificOptions | null;
+    /**
+     * The inputDevice property
+     */
+    inputDevice?: TournamentDefaultMatchConfig_inputDevice | null;
+    /**
+     * Rule keys neither team may renegotiate on a generated match.
+     */
+    lockedRules?: TournamentDefaultMatchConfig_lockedRules | null;
+    /**
+     * Overridden to MANUAL for the grand final when formatConfig.grandFinalAdvantage.type is MAP_SELECTION.
+     */
+    mapPreferenceMode?: TournamentDefaultMatchConfig_mapPreferenceMode | null;
+    /**
+     * The mapSelectionType property
+     */
+    mapSelectionType?: TournamentDefaultMatchConfig_mapSelectionType | null;
+    /**
+     * The platform property
+     */
+    platform?: TournamentDefaultMatchConfig_platform | null;
+    /**
+     * The region property
+     */
+    region?: TournamentDefaultMatchConfig_region | null;
+    /**
+     * Map pool for every generated match. A per-round `mapPoolOverride` REPLACES this array for that round rather than merging into it.
+     */
+    selectedMaps?: string[] | null;
+    /**
+     * The selectedObjectives property
+     */
+    selectedObjectives?: string[] | null;
+}
+export interface TournamentDefaultMatchConfig_gameSpecificOptions extends AdditionalDataHolder, Parsable {
+}
+export type TournamentDefaultMatchConfig_inputDevice = (typeof TournamentDefaultMatchConfig_inputDeviceObject)[keyof typeof TournamentDefaultMatchConfig_inputDeviceObject];
+/**
+ * Rule keys neither team may renegotiate on a generated match.
+ */
+export interface TournamentDefaultMatchConfig_lockedRules extends AdditionalDataHolder, Parsable {
+}
+export type TournamentDefaultMatchConfig_mapPreferenceMode = (typeof TournamentDefaultMatchConfig_mapPreferenceModeObject)[keyof typeof TournamentDefaultMatchConfig_mapPreferenceModeObject];
+export type TournamentDefaultMatchConfig_mapSelectionType = (typeof TournamentDefaultMatchConfig_mapSelectionTypeObject)[keyof typeof TournamentDefaultMatchConfig_mapSelectionTypeObject];
+export type TournamentDefaultMatchConfig_platform = (typeof TournamentDefaultMatchConfig_platformObject)[keyof typeof TournamentDefaultMatchConfig_platformObject];
+export type TournamentDefaultMatchConfig_region = (typeof TournamentDefaultMatchConfig_regionObject)[keyof typeof TournamentDefaultMatchConfig_regionObject];
+/**
+ * Application denial payload.
+ */
+export interface TournamentDenyApplicationBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional reason shown to the applying captain.
+     */
+    reason?: string | null;
+}
+/**
+ * Filters for public tournament discovery.
+ */
+export interface TournamentDiscoverBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Filter by bracket format.
+     */
+    format?: TournamentFormat | null;
+    /**
+     * Filter to a single game by Convex ID.
+     */
+    gameId?: string | null;
+    /**
+     * Page size, 1-50.
+     */
+    limit?: number | null;
+    /**
+     * 1-based page number.
+     */
+    page?: number | null;
+    /**
+     * Case-insensitive name substring. Ignored below 2 characters.
+     */
+    search?: string | null;
+    /**
+     * Filter by lifecycle status.
+     */
+    status?: TournamentStatus | null;
+}
+/**
+ * A page of publicly listed tournaments, featured entries first.
+ */
+export interface TournamentDiscoverPage extends Parsable {
+    /**
+     * Number of tournaments in this page.
+     */
+    count?: number | null;
+    /**
+     * Echo of the applied page size.
+     */
+    limit?: number | null;
+    /**
+     * Echo of the requested 1-based page.
+     */
+    page?: number | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+    /**
+     * Total tournaments matching the filters.
+     */
+    total?: number | null;
+    /**
+     * Tournaments on this page.
+     */
+    tournaments?: TournamentSummary[] | null;
+}
+/**
+ * Participant disqualification payload.
+ */
+export interface TournamentDisqualifyParticipantBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Required reason for the disqualification.
+     */
+    reason?: string | null;
+}
+export type TournamentFormat = (typeof TournamentFormatObject)[keyof typeof TournamentFormatObject];
+/**
+ * Format-specific configuration. Sent whole - it replaces the stored object rather than merging into it.
+ */
+export interface TournamentFormatConfig extends AdditionalDataHolder, Parsable {
+    /**
+     * Best-of ladder. Both fields are required when formatConfig is sent.
+     */
+    bestOfLadder?: TournamentFormatConfig_bestOfLadder | null;
+    /**
+     * The grandFinalAdvantage property
+     */
+    grandFinalAdvantage?: TournamentFormatConfig_grandFinalAdvantage | null;
+    /**
+     * Round-robin only. 1 = single pass, 2 = double pass.
+     */
+    roundRobinPasses?: number | null;
+    /**
+     * Swiss only. Number of rounds to play.
+     */
+    swissRoundCount?: number | null;
+}
+/**
+ * Best-of ladder. Both fields are required when formatConfig is sent.
+ */
+export interface TournamentFormatConfig_bestOfLadder extends AdditionalDataHolder, Parsable {
+    /**
+     * Default best-of for every round.
+     */
+    defaultEscaped?: number | null;
+    /**
+     * Per-round best-of overrides, keyed by round key (e.g. `GF`, `R1`).
+     */
+    overrides?: TournamentFormatConfig_bestOfLadder_overrides | null;
+}
+/**
+ * Per-round best-of overrides, keyed by round key (e.g. `GF`, `R1`).
+ */
+export interface TournamentFormatConfig_bestOfLadder_overrides extends AdditionalDataHolder, Parsable {
+}
+export interface TournamentFormatConfig_grandFinalAdvantage extends AdditionalDataHolder, Parsable {
+    /**
+     * The type property
+     */
+    type?: TournamentFormatConfig_grandFinalAdvantage_type | null;
+    /**
+     * Maps the upper-bracket finalist starts ahead by. WIN_HEADSTART only.
+     */
+    winHeadstart?: number | null;
+}
+export type TournamentFormatConfig_grandFinalAdvantage_type = (typeof TournamentFormatConfig_grandFinalAdvantage_typeObject)[keyof typeof TournamentFormatConfig_grandFinalAdvantage_typeObject];
+export type TournamentFormatConfig_roundRobinPasses = number;
+/**
+ * Free-agent pool listing payload for the API key owner.
+ */
+export interface TournamentFreeAgencyJoinBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional public note shown to captains browsing the pool - roles played, availability, and so on.
+     */
+    note?: string | null;
+}
+/**
+ * An available free agent.
+ */
+export interface TournamentFreeAgent extends Parsable {
+    /**
+     * Avatar image URL.
+     */
+    avatarUrl?: string | TournamentFreeAgent_avatarUrlMember1 | null;
+    /**
+     * Pool join time (epoch milliseconds).
+     */
+    createdAt?: number | null;
+    /**
+     * Free-agent row ID.
+     */
+    id?: string | null;
+    /**
+     * Display name.
+     */
+    name?: string | null;
+    /**
+     * Free-text note the agent supplied.
+     */
+    note?: string | null;
+    /**
+     * User ID of the free agent.
+     */
+    userId?: string | null;
+    /**
+     * Username.
+     */
+    username?: string | null;
+    /**
+     * PENDING when `viewerParticipantId` was supplied AND authorized AND that participant has an open offer to this agent; null otherwise. An unauthorized or stale `viewerParticipantId` fails soft to null rather than erroring.
+     */
+    viewerOfferStatus?: string | TournamentFreeAgent_viewerOfferStatusMember1 | null;
+}
+export type TournamentFreeAgent_avatarUrl = string | TournamentFreeAgent_avatarUrlMember1;
+export interface TournamentFreeAgent_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type TournamentFreeAgent_viewerOfferStatus = string | TournamentFreeAgent_viewerOfferStatusMember1;
+export interface TournamentFreeAgent_viewerOfferStatusMember1 extends AdditionalDataHolder, Parsable {
+}
+export type TournamentFreeAgentOfferStatus = (typeof TournamentFreeAgentOfferStatusObject)[keyof typeof TournamentFreeAgentOfferStatusObject];
+/**
+ * The tournament free-agent pool.
+ */
+export interface TournamentFreeAgentsResponse extends Parsable {
+    /**
+     * Number of free agents returned.
+     */
+    count?: number | null;
+    /**
+     * Free agents currently AVAILABLE in the pool.
+     */
+    freeAgents?: TournamentFreeAgent[] | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+export type TournamentFreeAgentStatus = (typeof TournamentFreeAgentStatusObject)[keyof typeof TournamentFreeAgentStatusObject];
+/**
+ * Grand-final advantage rule, copied verbatim from the tournament's `formatConfig`. Absent only when the tournament carries no `formatConfig` at all. NOT display data: WIN_HEADSTART pre-credits grand-final slot 1 at generation time, so any client re-deriving a walkover score pair must apply this rule or it zeroes the credit out.
+ */
+export interface TournamentGrandFinalAdvantage extends Parsable {
+    /**
+     * Which advantage the winners-bracket champion carries into the grand final.
+     */
+    type?: TournamentGrandFinalAdvantage_type | null;
+    /**
+     * Map/game wins pre-credited to grand-final slot 1. Only meaningful when `type` is WIN_HEADSTART; a WIN_HEADSTART carrying no value pre-credits nothing.
+     */
+    winHeadstart?: number | null;
+}
+export type TournamentGrandFinalAdvantage_type = (typeof TournamentGrandFinalAdvantage_typeObject)[keyof typeof TournamentGrandFinalAdvantage_typeObject];
+/**
+ * A team invite issued by the organizer.
+ */
+export interface TournamentInvite extends Parsable {
+    /**
+     * Invite time (epoch milliseconds).
+     */
+    createdAt?: number | null;
+    /**
+     * Invite ID.
+     */
+    id?: string | null;
+    /**
+     * Organizer who sent the invite.
+     */
+    invitedByUserId?: string | null;
+    /**
+     * Response time (epoch milliseconds). Absent while PENDING.
+     */
+    respondedAt?: number | null;
+    /**
+     * State of a tournament team invite.
+     */
+    status?: TournamentInviteStatus | null;
+    /**
+     * Invited team's avatar URL.
+     */
+    teamAvatarUrl?: string | TournamentInvite_teamAvatarUrlMember1 | null;
+    /**
+     * Invited team's ID.
+     */
+    teamId?: string | null;
+    /**
+     * Invited team's display name.
+     */
+    teamName?: string | null;
+}
+export type TournamentInvite_teamAvatarUrl = string | TournamentInvite_teamAvatarUrlMember1;
+export interface TournamentInvite_teamAvatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Captain response to a tournament invite.
+ */
+export interface TournamentInviteRespondBody extends AdditionalDataHolder, Parsable {
+    /**
+     * true to accept the invite and enter the tournament, false to decline it. A competitive ban blocks accepting but never declining.
+     */
+    accept?: boolean | null;
+    /**
+     * User IDs to register as the team's tournament roster. REQUIRED when accept is true and ignored when it is false. Every entry must be an ACTIVE member of the invited team, and the array must hold at least the tournament's teamSize members - a shorter roster answers 400 error_roster_too_small.
+     */
+    roster?: string[] | null;
+}
+/**
+ * Outcome of accepting or declining a tournament invite.
+ */
+export interface TournamentInviteRespondResponse extends Parsable {
+    /**
+     * Echoes the request's accept flag once the response has been recorded.
+     */
+    accepted?: boolean | null;
+    /**
+     * The participant row the acceptance created or reused. Present only when accepted is true; store it, because check-in and withdraw are keyed by it.
+     */
+    participantId?: string | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * Tournament team invites.
+ */
+export interface TournamentInvitesResponse extends Parsable {
+    /**
+     * Number of invites returned.
+     */
+    count?: number | null;
+    /**
+     * Every invite row on the tournament in creation order, in all four states. Filter on `status` for the outstanding ones.
+     */
+    invites?: TournamentInvite[] | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+export type TournamentInviteStatus = (typeof TournamentInviteStatusObject)[keyof typeof TournamentInviteStatusObject];
+/**
+ * Tournament team invitation payload.
+ */
+export interface TournamentInviteTeamBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Team ID to invite.
+     */
+    teamId?: string | null;
+}
+/**
+ * A 400 from this endpoint. A superset of the standard Error body: `reason` adds a machine-readable placement-table reject code when that is what failed.
+ */
+export interface TournamentLeaguePointsRejected extends ApiError, Parsable {
+    /**
+     * The details property
+     */
+    details?: string | null;
+    /**
+     * The error property
+     */
+    errorEscaped?: string | null;
+    /**
+     * Present only when the placement table itself was rejected. Absent for the other 400 causes on this endpoint (a non-league host, or a finalized tournament).
+     */
+    reason?: TournamentPlacementPointsError | null;
+}
+/**
+ * League placement-points configuration.
+ */
+export interface TournamentLeaguePointsRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * The placement curve. OMIT the field entirely to fall back to the platform default curve - an empty array is NOT the way to award nothing and is rejected as EMPTY (use `leaguePointsEnabled: false` for that). The table is validated even when `leaguePointsEnabled` is false.
+     */
+    leaguePointsByPlacement?: TournamentPlacementPointsEntry[] | null;
+    /**
+     * Whether finishing this tournament awards league points to the league season.
+     */
+    leaguePointsEnabled?: boolean | null;
+}
+/**
+ * The league placement-points configuration now in effect.
+ */
+export interface TournamentLeaguePointsResponse extends Parsable {
+    /**
+     * The leaguePointsEnabled property
+     */
+    leaguePointsEnabled?: boolean | null;
+    /**
+     * Number of rows in the stored curve, or null when no explicit curve is stored and the platform default applies.
+     */
+    placementCount?: number | TournamentLeaguePointsResponse_placementCountMember1 | null;
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export type TournamentLeaguePointsResponse_placementCount = number | TournamentLeaguePointsResponse_placementCountMember1;
+export interface TournamentLeaguePointsResponse_placementCountMember1 extends AdditionalDataHolder, Parsable {
+}
+export type TournamentMaterialField = (typeof TournamentMaterialFieldObject)[keyof typeof TournamentMaterialFieldObject];
+/**
+ * Free agent's response to a pickup offer.
+ */
+export interface TournamentOfferRespondBody extends AdditionalDataHolder, Parsable {
+    /**
+     * true to accept the offer and join the offering team's roster, false to decline it. A competitive ban blocks accepting but never declining.
+     */
+    accept?: boolean | null;
+}
+/**
+ * Outcome of accepting or declining a free-agent pickup offer.
+ */
+export interface TournamentOfferRespondResponse extends Parsable {
+    /**
+     * Echoes the request's accept flag once the response has been recorded. An offer that turned out to be no longer actionable is a 409 rather than a false here - see the endpoint description.
+     */
+    accepted?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * Result of opening tournament registration.
+ */
+export interface TournamentOpenRegistrationResponse extends Parsable {
+    /**
+     * The lifecycle status this call set.
+     */
+    status?: string | null;
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+/**
+ * Organizer roster addition payload.
+ */
+export interface TournamentOrganizerRosterAddBody extends AdditionalDataHolder, Parsable {
+    /**
+     * User ID of the member to add to the participant's roster.
+     */
+    userId?: string | null;
+}
+/**
+ * Bracket node result override payload.
+ */
+export interface TournamentOverrideNodeResultBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Score for the node's first entrant.
+     */
+    score1?: number | null;
+    /**
+     * Score for the node's second entrant.
+     */
+    score2?: number | null;
+}
+/**
+ * A team entered in a tournament.
+ */
+export interface TournamentParticipant extends Parsable {
+    /**
+     * Check-in timestamp (epoch milliseconds).
+     */
+    checkedInAt?: number | null;
+    /**
+     * Placement persisted at finalization. Present only once the tournament ends.
+     */
+    finalPlacement?: number | null;
+    /**
+     * Participant ID.
+     */
+    id?: string | null;
+    /**
+     * Tournament roster.
+     */
+    roster?: TournamentRosterMember[] | null;
+    /**
+     * Assigned seed, if seeding has run.
+     */
+    seed?: number | null;
+    /**
+     * PENDING, APPROVED, DENIED, WITHDRAWN, or DISQUALIFIED.
+     */
+    status?: string | null;
+    /**
+     * Team avatar URL.
+     */
+    teamAvatarUrl?: string | TournamentParticipant_teamAvatarUrlMember1 | null;
+    /**
+     * Team ID.
+     */
+    teamId?: string | null;
+    /**
+     * Team display name.
+     */
+    teamName?: string | null;
+}
+export type TournamentParticipant_teamAvatarUrl = string | TournamentParticipant_teamAvatarUrlMember1;
+export interface TournamentParticipant_teamAvatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Tournament participants.
+ */
+export interface TournamentParticipantsResponse extends Parsable {
+    /**
+     * Number of participants returned.
+     */
+    count?: number | null;
+    /**
+     * Every participant row for the tournament, in creation order.
+     */
+    participants?: TournamentParticipant[] | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+export type TournamentParticipantStatus = (typeof TournamentParticipantStatusObject)[keyof typeof TournamentParticipantStatusObject];
+/**
+ * One placement -> points row.
+ */
+export interface TournamentPlacementPointsEntry extends AdditionalDataHolder, Parsable {
+    /**
+     * Final placement, 1 = champion.
+     */
+    placement?: number | null;
+    /**
+     * League points awarded, 0-1000.
+     */
+    points?: number | null;
+}
+export type TournamentPlacementPointsError = (typeof TournamentPlacementPointsErrorObject)[keyof typeof TournamentPlacementPointsErrorObject];
+/**
+ * One prize-pool placement row.
+ */
+export interface TournamentPrizeBreakdownEntry extends AdditionalDataHolder, Parsable {
+    /**
+     * The amount property
+     */
+    amount?: number | null;
+    /**
+     * The description property
+     */
+    description?: string | null;
+    /**
+     * The placement property
+     */
+    placement?: number | null;
+}
+/**
+ * Public profile for a single tournament. Manager-private review fields are present only for a caller who manages it.
+ */
+export interface TournamentProfile extends AdditionalDataHolder, Parsable {
+    /**
+     * Platform review state, independent of `status`.
+     */
+    approvalStatus?: string | null;
+    /**
+     * Banner image URL.
+     */
+    bannerUrl?: string | TournamentProfile_bannerUrlMember1 | null;
+    /**
+     * Bracket format of a tournament.
+     */
+    format?: TournamentFormat | null;
+    /**
+     * Game summary, or null if the game row is missing.
+     */
+    game?: UntypedNode | null;
+    /**
+     * Host identity (user, org, or league), or null if unresolvable.
+     */
+    host?: UntypedNode | null;
+    /**
+     * Tournament ID.
+     */
+    id?: string | null;
+    /**
+     * Whether the tournament appears in discovery.
+     */
+    isPubliclyListed?: boolean | null;
+    /**
+     * Logo image URL.
+     */
+    logoUrl?: string | TournamentProfile_logoUrlMember1 | null;
+    /**
+     * Participant cap.
+     */
+    maxParticipants?: number | null;
+    /**
+     * Tournament display name.
+     */
+    name?: string | null;
+    /**
+     * Whether the tournament is non-terminal AND awaiting organizer action on approval.
+     */
+    needsAttention?: boolean | null;
+    /**
+     * Current number of participants.
+     */
+    participantCount?: number | null;
+    /**
+     * URL-friendly tournament identifier.
+     */
+    slug?: string | null;
+    /**
+     * Lifecycle status of a tournament.
+     */
+    status?: TournamentStatus | null;
+    /**
+     * Players per participating team.
+     */
+    teamSize?: number | null;
+    /**
+     * The caller's standing on this tournament. `isManager` includes tournament moderators; `isAdmin` does not.
+     */
+    viewerManagement?: TournamentProfile_viewerManagement | null;
+    /**
+     * PUBLIC or UNLISTED.
+     */
+    visibility?: string | null;
+}
+export type TournamentProfile_bannerUrl = string | TournamentProfile_bannerUrlMember1;
+export interface TournamentProfile_bannerUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type TournamentProfile_logoUrl = string | TournamentProfile_logoUrlMember1;
+export interface TournamentProfile_logoUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * The caller's standing on this tournament. `isManager` includes tournament moderators; `isAdmin` does not.
+ */
+export interface TournamentProfile_viewerManagement extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Tournament profile response envelope.
+ */
+export interface TournamentProfileResponse extends Parsable {
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+    /**
+     * Public profile for a single tournament. Manager-private review fields are present only for a caller who manages it.
+     */
+    tournament?: TournamentProfile | null;
+}
+/**
+ * Confirmation payload for the match-regeneration repair lever.
+ */
+export interface TournamentRegenerateMatchesRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Must be exactly `true`. Required so this repair lever cannot be fired by an empty or accidental POST.
+     */
+    confirm?: boolean | null;
+}
+/**
+ * Acknowledgement that match regeneration was scheduled.
+ */
+export interface TournamentRegenerateMatchesResponse extends Parsable {
+    /**
+     * An UPPER BOUND on the nodes this call will re-attempt, NOT a live count of outstanding work. It counts every node that is currently eligible for initial generation at the moment of the call, including nodes a previous sweep already gave up on. Actual generation happens asynchronously afterwards and some of those attempts may fail again, so do not treat `queued` as a number of matches that will exist. `0` means there was nothing eligible to re-attempt and nothing was scheduled.
+     */
+    queued?: number | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+/**
+ * Participant removal payload.
+ */
+export interface TournamentRemoveParticipantBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional reason recorded on the activity log entry.
+     */
+    reason?: string | null;
+}
+/**
+ * Bracket node result revert payload.
+ */
+export interface TournamentRevertNodeResultBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Whether to generate a fresh match for the reverted node. Defaults to true when omitted.
+     */
+    regenerateMatch?: boolean | null;
+}
+/**
+ * One member of a participant's roster.
+ */
+export interface TournamentRosterMember extends Parsable {
+    /**
+     * Avatar image URL.
+     */
+    avatarUrl?: string | TournamentRosterMember_avatarUrlMember1 | null;
+    /**
+     * User ID.
+     */
+    id?: string | null;
+    /**
+     * Display name.
+     */
+    name?: string | null;
+    /**
+     * How the member joined the tournament roster.
+     */
+    source?: string | null;
+    /**
+     * Username.
+     */
+    username?: string | null;
+}
+export type TournamentRosterMember_avatarUrl = string | TournamentRosterMember_avatarUrlMember1;
+export interface TournamentRosterMember_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type TournamentRosterSource = (typeof TournamentRosterSourceObject)[keyof typeof TournamentRosterSourceObject];
+/**
+ * Round schedule payload.
+ */
+export interface TournamentRoundScheduleRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Unix ms the round is scheduled to start, or null to clear the round's scheduled time. REQUIRED - there is no 'leave unchanged' value, because omitting it in the underlying mutation clears the field, and a silent clear is not something an integrator should be able to trigger by forgetting a key.
+     */
+    startsAt?: number | TournamentRoundScheduleRequestBody_startsAtMember1 | null;
+}
+export type TournamentRoundScheduleRequestBody_startsAt = number | TournamentRoundScheduleRequestBody_startsAtMember1;
+export interface TournamentRoundScheduleRequestBody_startsAtMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Result of scheduling a tournament round.
+ */
+export interface TournamentRoundScheduleResponse extends Parsable {
+    /**
+     * The roundId property
+     */
+    roundId?: string | null;
+    /**
+     * The value now stored on the round.
+     */
+    startsAt?: number | TournamentRoundScheduleResponse_startsAtMember1 | null;
+    /**
+     * The success property
+     */
+    success?: boolean | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export type TournamentRoundScheduleResponse_startsAt = number | TournamentRoundScheduleResponse_startsAtMember1;
+export interface TournamentRoundScheduleResponse_startsAtMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Free-agent pickup offer payload.
+ */
+export interface TournamentSendOfferBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional message delivered to the free agent alongside the offer.
+     */
+    message?: string | null;
+    /**
+     * Participant ID of YOUR team making the offer. You must be its captain, co-captain, or the owner of the organization that owns it, and it must be APPROVED in this tournament. Discover it via GET /tournaments/{identifier}/me.
+     */
+    participantId?: string | null;
+}
+/**
+ * Organizer social links.
+ */
+export interface TournamentSocialLinks extends AdditionalDataHolder, Parsable {
+    /**
+     * The discord property
+     */
+    discord?: string | null;
+    /**
+     * The instagram property
+     */
+    instagram?: string | null;
+    /**
+     * The tiktok property
+     */
+    tiktok?: string | null;
+    /**
+     * The twitch property
+     */
+    twitch?: string | null;
+    /**
+     * The website property
+     */
+    website?: string | null;
+    /**
+     * The x property
+     */
+    x?: string | null;
+    /**
+     * The youtube property
+     */
+    youtube?: string | null;
+}
+/**
+ * One sponsor credit line.
+ */
+export interface TournamentSponsorTag extends AdditionalDataHolder, Parsable {
+    /**
+     * Used only when prefix is CUSTOM.
+     */
+    customPrefix?: string | null;
+    /**
+     * Convex storage id for the sponsor logo.
+     */
+    logoStorageId?: string | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+    /**
+     * The prefix property
+     */
+    prefix?: TournamentSponsorTag_prefix | null;
+    /**
+     * The url property
+     */
+    url?: string | null;
+}
+export type TournamentSponsorTag_prefix = (typeof TournamentSponsorTag_prefixObject)[keyof typeof TournamentSponsorTag_prefixObject];
+/**
+ * One tournament staff assignment.
+ */
+export interface TournamentStaffMember extends Parsable {
+    /**
+     * Avatar image URL.
+     */
+    avatarUrl?: string | TournamentStaffMember_avatarUrlMember1 | null;
+    /**
+     * Time the row was added (epoch milliseconds).
+     */
+    createdAt?: number | null;
+    /**
+     * Staff row ID.
+     */
+    id?: string | null;
+    /**
+     * Display name.
+     */
+    name?: string | null;
+    /**
+     * Tournament staff role.
+     */
+    role?: TournamentStaffRole | null;
+    /**
+     * Staff member's user ID.
+     */
+    userId?: string | null;
+    /**
+     * Username.
+     */
+    username?: string | null;
+}
+export type TournamentStaffMember_avatarUrl = string | TournamentStaffMember_avatarUrlMember1;
+export interface TournamentStaffMember_avatarUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * The tournament staff roster.
+ */
+export interface TournamentStaffResponse extends Parsable {
+    /**
+     * Number of staff rows returned.
+     */
+    count?: number | null;
+    /**
+     * Every tournamentStaff row on the tournament. The host is NOT listed here - host authority comes from the host record, not a staff row.
+     */
+    staff?: TournamentStaffMember[] | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+export type TournamentStaffRole = (typeof TournamentStaffRoleObject)[keyof typeof TournamentStaffRoleObject];
+/**
+ * Tournament start payload.
+ */
+export interface TournamentStartRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Participant ids in seed order, seed 1 first. REQUIRED when `seedMethod` is `manual`. Every id must belong to this tournament (a foreign id answers 404) and duplicates are rejected. The list must still match the participant set AFTER the check-in drop below, so build it from the participants that are actually checked in.
+     */
+    manualOrder?: string[] | null;
+    /**
+     * How to order participants into seeds. `manual` requires `manualOrder`. `random` is deterministic for a given tournament, not re-rollable. `registration` seeds by registration order.
+     */
+    seedMethod?: TournamentStartRequestBody_seedMethod | null;
+}
+export type TournamentStartRequestBody_seedMethod = (typeof TournamentStartRequestBody_seedMethodObject)[keyof typeof TournamentStartRequestBody_seedMethodObject];
+/**
+ * Acknowledgement that a tournament was started. Matches follow asynchronously.
+ */
+export interface TournamentStartResponse extends Parsable {
+    /**
+     * The tournament was started and the bracket structure persisted. It does NOT mean matches exist yet.
+     */
+    accepted?: boolean | null;
+    /**
+     * Always `pending`. Match generation runs asynchronously after this response and can partially fail, so there is no success value to report here.
+     */
+    matchGeneration?: string | null;
+    /**
+     * Size of the generated BRACKET STRUCTURE (nodes), not a count of playable matches and not a count of matches that will be generated. Do not use it as a completion target.
+     */
+    nodeCount?: number | null;
+    /**
+     * The lifecycle status this call set.
+     */
+    status?: string | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export type TournamentStatus = (typeof TournamentStatusObject)[keyof typeof TournamentStatusObject];
+/**
+ * Result of submitting a draft tournament for staff review.
+ */
+export interface TournamentSubmitForApprovalResponse extends Parsable {
+    /**
+     * The approval status this call set. APPROVED when `autoApproved` is true, AWAITING_APPROVAL otherwise.
+     */
+    approvalStatus?: TournamentSubmitForApprovalResponse_approvalStatus | null;
+    /**
+     * True when the platform's approval mode skipped review for this tournament. That happens only for an UNLISTED tournament while the mode is `public_listing_only`; the tournament is APPROVED on the spot and no staff review is queued.
+     */
+    autoApproved?: boolean | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export type TournamentSubmitForApprovalResponse_approvalStatus = (typeof TournamentSubmitForApprovalResponse_approvalStatusObject)[keyof typeof TournamentSubmitForApprovalResponse_approvalStatusObject];
+/**
+ * Summary view of a tournament for discovery.
+ */
+export interface TournamentSummary extends Parsable {
+    /**
+     * Banner image URL.
+     */
+    bannerUrl?: string | TournamentSummary_bannerUrlMember1 | null;
+    /**
+     * Short tournament description.
+     */
+    description?: string | null;
+    /**
+     * Bracket format of a tournament.
+     */
+    format?: TournamentFormat | null;
+    /**
+     * Game summary, or null if the game row is missing.
+     */
+    game?: UntypedNode | null;
+    /**
+     * Tournament ID.
+     */
+    id?: string | null;
+    /**
+     * Whether the featured placement is live at request time.
+     */
+    isFeatured?: boolean | null;
+    /**
+     * Logo image URL.
+     */
+    logoUrl?: string | TournamentSummary_logoUrlMember1 | null;
+    /**
+     * Participant cap.
+     */
+    maxParticipants?: number | null;
+    /**
+     * Tournament display name.
+     */
+    name?: string | null;
+    /**
+     * Current number of participants.
+     */
+    participantCount?: number | null;
+    /**
+     * ISO currency code of the pool.
+     */
+    prizeCurrency?: string | null;
+    /**
+     * Total prize pool.
+     */
+    prizePool?: number | null;
+    /**
+     * URL-friendly tournament identifier.
+     */
+    slug?: string | null;
+    /**
+     * Scheduled start (epoch milliseconds).
+     */
+    startsAt?: number | null;
+    /**
+     * Lifecycle status of a tournament.
+     */
+    status?: TournamentStatus | null;
+}
+export type TournamentSummary_bannerUrl = string | TournamentSummary_bannerUrlMember1;
+export interface TournamentSummary_bannerUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+export type TournamentSummary_logoUrl = string | TournamentSummary_logoUrlMember1;
+export interface TournamentSummary_logoUrlMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Tournament entry payload for a team the caller leads.
+ */
+export interface TournamentTeamEntryBody extends AdditionalDataHolder, Parsable {
+    /**
+     * User IDs to register as the team's tournament roster. Every entry must be an ACTIVE member of the team named in the path, and the array must hold at least the tournament's teamSize members - a shorter roster answers 400 error_roster_too_small. Users already rostered in this tournament are skipped rather than rejected.
+     */
+    roster?: string[] | null;
+}
+/**
+ * The participant row created (or reused) by an entry or application.
+ */
+export interface TournamentTeamEntryResponse extends Parsable {
+    /**
+     * The team's participant ID. This is the handle the check-in and withdraw endpoints are keyed by, so store it - it is otherwise only rediscoverable through GET /tournaments/{identifier}/me.
+     */
+    participantId?: string | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
+ * Competitor roster addition payload.
+ */
+export interface TournamentTeamRosterAddBody extends AdditionalDataHolder, Parsable {
+    /**
+     * User ID of the member to add to YOUR team's tournament roster. The participant is resolved from the team in the path and is never supplied in the body.
+     */
+    userId?: string | null;
+}
+/**
+ * Partial tournament edit. Send only the fields you are changing; at least one recognised field is required. Fields this schema does not list are IGNORED rather than rejected, so a misspelled key silently does nothing - check the response `applied` value and `changedFields`. `freeAgentsEnabled`, `seedingMethod` and the league-points settings are NOT editable here (league points has its own endpoint).
+ */
+export interface TournamentUpdateRequestBody extends AdditionalDataHolder, Parsable {
+    /**
+     * Convex storage id.
+     */
+    bannerStorageId?: string | null;
+    /**
+     * The checkInOpensMinutesBefore property
+     */
+    checkInOpensMinutesBefore?: number | null;
+    /**
+     * The checkInRequired property
+     */
+    checkInRequired?: boolean | null;
+    /**
+     * The description property
+     */
+    description?: string | null;
+    /**
+     * Unix ms.
+     */
+    endsAt?: number | null;
+    /**
+     * The format property
+     */
+    format?: TournamentUpdateRequestBody_format | null;
+    /**
+     * Format-specific configuration. Sent whole - it replaces the stored object rather than merging into it.
+     */
+    formatConfig?: TournamentFormatConfig | null;
+    /**
+     * Convex game id.
+     */
+    gameId?: string | null;
+    /**
+     * Convex storage id.
+     */
+    logoStorageId?: string | null;
+    /**
+     * Re-checked against the format entrant ceiling AND the host plan's participant limit whenever it or `format` changes.
+     */
+    maxParticipants?: number | null;
+    /**
+     * The minParticipants property
+     */
+    minParticipants?: number | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+    /**
+     * Convex game playlist id.
+     */
+    playlistId?: string | null;
+    /**
+     * The prizeBreakdown property
+     */
+    prizeBreakdown?: TournamentPrizeBreakdownEntry[] | null;
+    /**
+     * The prizeCurrency property
+     */
+    prizeCurrency?: string | null;
+    /**
+     * The prizeDescription property
+     */
+    prizeDescription?: string | null;
+    /**
+     * The prizePool property
+     */
+    prizePool?: number | null;
+    /**
+     * Unix ms.
+     */
+    registrationEndsAt?: number | null;
+    /**
+     * The registrationMode property
+     */
+    registrationMode?: TournamentUpdateRequestBody_registrationMode | null;
+    /**
+     * Unix ms.
+     */
+    registrationStartsAt?: number | null;
+    /**
+     * The rules property
+     */
+    rules?: string | null;
+    /**
+     * Organizer social links.
+     */
+    socialLinks?: TournamentSocialLinks | null;
+    /**
+     * The sponsorTags property
+     */
+    sponsorTags?: TournamentSponsorTag[] | null;
+    /**
+     * Unix ms.
+     */
+    startsAt?: number | null;
+    /**
+     * The teamSize property
+     */
+    teamSize?: number | null;
+    /**
+     * The visibility property
+     */
+    visibility?: TournamentUpdateRequestBody_visibility | null;
+}
+export type TournamentUpdateRequestBody_format = (typeof TournamentUpdateRequestBody_formatObject)[keyof typeof TournamentUpdateRequestBody_formatObject];
+export type TournamentUpdateRequestBody_registrationMode = (typeof TournamentUpdateRequestBody_registrationModeObject)[keyof typeof TournamentUpdateRequestBody_registrationModeObject];
+export type TournamentUpdateRequestBody_visibility = (typeof TournamentUpdateRequestBody_visibilityObject)[keyof typeof TournamentUpdateRequestBody_visibilityObject];
+/**
+ * Tri-state result of a tournament edit.
+ */
+export interface TournamentUpdateResponse extends Parsable {
+    /**
+     * `direct` - the tournament has never been approved, so the edit is live immediately. `pending` - the tournament has been approved before, so the edit was staged in `pendingChanges` and the approval status flipped to AWAITING_APPROVAL; it is NOT live and the tournament is off the public listing until staff re-approve. `noop` - the tournament has been approved before and every supplied value already matched the stored one, so nothing was staged and the approval status was left alone.
+     */
+    applied?: TournamentUpdateResponse_applied | null;
+    /**
+     * Present only when `applied` is `pending`, where it is always AWAITING_APPROVAL. Omitted otherwise, because the `direct` and `noop` arms leave the approval status untouched and echoing a pre-request snapshot would be a guess.
+     */
+    approvalStatus?: TournamentUpdateResponse_approvalStatus | null;
+    /**
+     * Present only when `applied` is `pending`. The material fields staged for re-approval, which is the merge of this request with any changes already pending.
+     */
+    changedFields?: TournamentMaterialField[] | null;
+    /**
+     * The timestamp property
+     */
+    timestamp?: string | null;
+}
+export type TournamentUpdateResponse_applied = (typeof TournamentUpdateResponse_appliedObject)[keyof typeof TournamentUpdateResponse_appliedObject];
+export type TournamentUpdateResponse_approvalStatus = (typeof TournamentUpdateResponse_approvalStatusObject)[keyof typeof TournamentUpdateResponse_approvalStatusObject];
+/**
+ * Acknowledgement returned by the tournament write endpoints whose backing operation has nothing to return - the organizer writes (endpoints 22-34), the team roster writes (40, 41), and the competitor self actions that neither mint nor resolve a row (38, 39, 44, 45, 47). Endpoints that mint a row answer with that row's id instead, and the two respond endpoints (42, 46) answer with the decision they recorded.
+ */
+export interface TournamentWriteAck extends Parsable {
+    /**
+     * Always true; failures are error responses.
+     */
+    success?: boolean | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+}
+/**
  * Transfers league ownership to an existing staff member.
  */
 export interface TransferLeagueOwnershipRequestBody extends AdditionalDataHolder, Parsable {
@@ -27536,6 +33731,266 @@ export const TicketSummary_statusObject = {
     Awaiting_response: "awaiting_response",
     Resolved: "resolved",
     Closed: "closed",
+} as const;
+/**
+ * registration = registration deadline, checkin = check-in opens, start = tournament start.
+ */
+export const TournamentCalendarEvent_kindObject = {
+    Registration: "registration",
+    Checkin: "checkin",
+    Start: "start",
+} as const;
+/**
+ * The tournament's approval status as of this request's authorization snapshot. Cancelling does NOT touch it, so it is reported as an INDEPENDENT field: `CANCELLED` alongside `NOT_SUBMITTED` is a real, reachable pair, and any status projection you build must handle it rather than deriving one field from the other.
+ */
+export const TournamentCancelResponse_approvalStatusObject = {
+    NOT_SUBMITTED: "NOT_SUBMITTED",
+    AWAITING_APPROVAL: "AWAITING_APPROVAL",
+    APPROVED: "APPROVED",
+    REJECTED: "REJECTED",
+} as const;
+/**
+ * Who hosts the tournament. This choice, together with `hostId`, decides which plan is billed for every later organizer request on the tournament - see the endpoint description.
+ */
+export const TournamentCreateRequestBody_hostTypeObject = {
+    User: "user",
+    Org: "org",
+    League: "league",
+} as const;
+export const TournamentCreateRequestBody_registrationModeObject = {
+    OPEN: "OPEN",
+    APPLICATION: "APPLICATION",
+    INVITE_ONLY: "INVITE_ONLY",
+} as const;
+/**
+ * Defaults to the platform default when omitted. NOT editable afterwards.
+ */
+export const TournamentCreateRequestBody_seedingMethodObject = {
+    MANUAL: "MANUAL",
+    RANDOM: "RANDOM",
+    REGISTRATION: "REGISTRATION",
+} as const;
+export const TournamentCreateRequestBody_visibilityObject = {
+    PUBLIC: "PUBLIC",
+    UNLISTED: "UNLISTED",
+} as const;
+export const TournamentDefaultMatchConfig_inputDeviceObject = {
+    ALL: "ALL",
+    CONTROLLER: "CONTROLLER",
+    KB_M: "KB_M",
+} as const;
+/**
+ * Overridden to MANUAL for the grand final when formatConfig.grandFinalAdvantage.type is MAP_SELECTION.
+ */
+export const TournamentDefaultMatchConfig_mapPreferenceModeObject = {
+    PREFERRED: "PREFERRED",
+    VETO: "VETO",
+    MANUAL: "MANUAL",
+} as const;
+export const TournamentDefaultMatchConfig_mapSelectionTypeObject = {
+    COMPETITIVE: "COMPETITIVE",
+    FLEX: "FLEX",
+} as const;
+export const TournamentDefaultMatchConfig_platformObject = {
+    PC: "PC",
+    XBOX: "XBOX",
+    PLAYSTATION: "PLAYSTATION",
+    CONSOLE_ONLY: "CONSOLE_ONLY",
+    CROSSPLAY: "CROSSPLAY",
+} as const;
+export const TournamentDefaultMatchConfig_regionObject = {
+    NONE: "NONE",
+    NA_EAST: "NA_EAST",
+    NA_WEST: "NA_WEST",
+    EU: "EU",
+    ASIA: "ASIA",
+    OCEANIA: "OCEANIA",
+    SOUTH_AMERICA: "SOUTH_AMERICA",
+    MIDDLE_EAST: "MIDDLE_EAST",
+    AFRICA: "AFRICA",
+} as const;
+export const TournamentFormatConfig_grandFinalAdvantage_typeObject = {
+    NONE: "NONE",
+    WIN_HEADSTART: "WIN_HEADSTART",
+    MAP_SELECTION: "MAP_SELECTION",
+    BRACKET_RESET: "BRACKET_RESET",
+} as const;
+/**
+ * Bracket format of a tournament.
+ */
+export const TournamentFormatObject = {
+    SINGLE_ELIMINATION: "SINGLE_ELIMINATION",
+    DOUBLE_ELIMINATION: "DOUBLE_ELIMINATION",
+    ROUND_ROBIN: "ROUND_ROBIN",
+    SWISS: "SWISS",
+} as const;
+/**
+ * State of a free-agent offer. EXPIRED is applied lazily, when the offer is next read or responded to, not by a scheduled sweep.
+ */
+export const TournamentFreeAgentOfferStatusObject = {
+    PENDING: "PENDING",
+    ACCEPTED: "ACCEPTED",
+    DECLINED: "DECLINED",
+    EXPIRED: "EXPIRED",
+    REVOKED: "REVOKED",
+} as const;
+/**
+ * State of the caller's free-agent pool row.
+ */
+export const TournamentFreeAgentStatusObject = {
+    AVAILABLE: "AVAILABLE",
+    PICKED_UP: "PICKED_UP",
+    WITHDRAWN: "WITHDRAWN",
+} as const;
+/**
+ * Which advantage the winners-bracket champion carries into the grand final.
+ */
+export const TournamentGrandFinalAdvantage_typeObject = {
+    NONE: "NONE",
+    WIN_HEADSTART: "WIN_HEADSTART",
+    MAP_SELECTION: "MAP_SELECTION",
+    BRACKET_RESET: "BRACKET_RESET",
+} as const;
+/**
+ * State of a tournament team invite.
+ */
+export const TournamentInviteStatusObject = {
+    PENDING: "PENDING",
+    ACCEPTED: "ACCEPTED",
+    DECLINED: "DECLINED",
+    REVOKED: "REVOKED",
+} as const;
+/**
+ * A tournament field whose edit requires staff re-approval once approved.
+ */
+export const TournamentMaterialFieldObject = {
+    Name: "name",
+    Description: "description",
+    Rules: "rules",
+    GameId: "gameId",
+    PlaylistId: "playlistId",
+    TeamSize: "teamSize",
+    Format: "format",
+    FormatConfig: "formatConfig",
+    MinParticipants: "minParticipants",
+    MaxParticipants: "maxParticipants",
+    RegistrationMode: "registrationMode",
+    RegistrationStartsAt: "registrationStartsAt",
+    RegistrationEndsAt: "registrationEndsAt",
+    CheckInRequired: "checkInRequired",
+    CheckInOpensMinutesBefore: "checkInOpensMinutesBefore",
+    StartsAt: "startsAt",
+    EndsAt: "endsAt",
+    PrizePool: "prizePool",
+    PrizeCurrency: "prizeCurrency",
+    PrizeBreakdown: "prizeBreakdown",
+    PrizeDescription: "prizeDescription",
+    BannerStorageId: "bannerStorageId",
+    LogoStorageId: "logoStorageId",
+    SponsorTags: "sponsorTags",
+    SocialLinks: "socialLinks",
+    Visibility: "visibility",
+} as const;
+/**
+ * State of a team's entry. PENDING is an unreviewed application; REMOVED and DISQUALIFIED are organizer actions, WITHDRAWN is the team's own.
+ */
+export const TournamentParticipantStatusObject = {
+    PENDING: "PENDING",
+    APPROVED: "APPROVED",
+    DENIED: "DENIED",
+    WITHDRAWN: "WITHDRAWN",
+    REMOVED: "REMOVED",
+    DISQUALIFIED: "DISQUALIFIED",
+} as const;
+/**
+ * Present only when the placement table itself was rejected. Absent for the other 400 causes on this endpoint (a non-league host, or a finalized tournament).
+ */
+export const TournamentPlacementPointsErrorObject = {
+    EMPTY: "EMPTY",
+    ALL_ZERO: "ALL_ZERO",
+    TOO_MANY_ROWS: "TOO_MANY_ROWS",
+    BAD_PLACEMENT: "BAD_PLACEMENT",
+    BAD_POINTS: "BAD_POINTS",
+    DUPLICATE: "DUPLICATE",
+    NOT_ASCENDING: "NOT_ASCENDING",
+} as const;
+/**
+ * How a player reached a participant's tournament roster.
+ */
+export const TournamentRosterSourceObject = {
+    TEAM_MEMBER: "TEAM_MEMBER",
+    FREE_AGENT: "FREE_AGENT",
+} as const;
+export const TournamentSponsorTag_prefixObject = {
+    POWERED_BY: "POWERED_BY",
+    SPONSORED_BY: "SPONSORED_BY",
+    PRESENTED_BY: "PRESENTED_BY",
+    CUSTOM: "CUSTOM",
+} as const;
+/**
+ * Tournament staff role.
+ */
+export const TournamentStaffRoleObject = {
+    ADMIN: "ADMIN",
+    MODERATOR: "MODERATOR",
+} as const;
+/**
+ * How to order participants into seeds. `manual` requires `manualOrder`. `random` is deterministic for a given tournament, not re-rollable. `registration` seeds by registration order.
+ */
+export const TournamentStartRequestBody_seedMethodObject = {
+    Manual: "manual",
+    Random: "random",
+    Registration: "registration",
+} as const;
+/**
+ * Lifecycle status of a tournament.
+ */
+export const TournamentStatusObject = {
+    DRAFT: "DRAFT",
+    REGISTRATION_OPEN: "REGISTRATION_OPEN",
+    REGISTRATION_CLOSED: "REGISTRATION_CLOSED",
+    IN_PROGRESS: "IN_PROGRESS",
+    COMPLETED: "COMPLETED",
+    CANCELLED: "CANCELLED",
+} as const;
+/**
+ * The approval status this call set. APPROVED when `autoApproved` is true, AWAITING_APPROVAL otherwise.
+ */
+export const TournamentSubmitForApprovalResponse_approvalStatusObject = {
+    APPROVED: "APPROVED",
+    AWAITING_APPROVAL: "AWAITING_APPROVAL",
+} as const;
+export const TournamentUpdateRequestBody_formatObject = {
+    SINGLE_ELIMINATION: "SINGLE_ELIMINATION",
+    DOUBLE_ELIMINATION: "DOUBLE_ELIMINATION",
+    ROUND_ROBIN: "ROUND_ROBIN",
+    SWISS: "SWISS",
+} as const;
+export const TournamentUpdateRequestBody_registrationModeObject = {
+    OPEN: "OPEN",
+    APPLICATION: "APPLICATION",
+    INVITE_ONLY: "INVITE_ONLY",
+} as const;
+export const TournamentUpdateRequestBody_visibilityObject = {
+    PUBLIC: "PUBLIC",
+    UNLISTED: "UNLISTED",
+} as const;
+/**
+ * `direct` - the tournament has never been approved, so the edit is live immediately. `pending` - the tournament has been approved before, so the edit was staged in `pendingChanges` and the approval status flipped to AWAITING_APPROVAL; it is NOT live and the tournament is off the public listing until staff re-approve. `noop` - the tournament has been approved before and every supplied value already matched the stored one, so nothing was staged and the approval status was left alone.
+ */
+export const TournamentUpdateResponse_appliedObject = {
+    Direct: "direct",
+    Pending: "pending",
+    Noop: "noop",
+} as const;
+/**
+ * Present only when `applied` is `pending`, where it is always AWAITING_APPROVAL. Omitted otherwise, because the `direct` and `noop` arms leave the approval status untouched and echoing a pre-request snapshot would be a guess.
+ */
+export const TournamentUpdateResponse_approvalStatusObject = {
+    NOT_SUBMITTED: "NOT_SUBMITTED",
+    AWAITING_APPROVAL: "AWAITING_APPROVAL",
+    APPROVED: "APPROVED",
+    REJECTED: "REJECTED",
 } as const;
 /**
  * The API key owner's attendance status for this match.

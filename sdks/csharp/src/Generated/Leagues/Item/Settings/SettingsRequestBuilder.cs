@@ -40,7 +40,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Settings
         {
         }
         /// <summary>
-        /// Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+        /// Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="global::TeamBattles.Sdk.Models.LeagueSettingsResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -71,7 +71,7 @@ namespace TeamBattles.Sdk.Leagues.Item.Settings
             return await RequestAdapter.SendAsync<global::TeamBattles.Sdk.Models.LeagueSettingsResponse>(requestInfo, global::TeamBattles.Sdk.Models.LeagueSettingsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. League API access is gated at api_pro on the league owner&apos;s plan.
+        /// Returns full league settings for admin tooling. Requires a personal or developer API key whose owner is currently a league ADMIN of the league in the path, with leagues.settings_read:read access on the key. These admin reads no longer require a paid developer plan; they stay authority-gated (current league ADMIN) and rate-limited by the league owner&apos;s plan. League API WRITE routes still require the leagueOperatorApi feature (api_pro or higher) on the league owner&apos;s plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

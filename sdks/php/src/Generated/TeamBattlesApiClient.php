@@ -23,6 +23,7 @@ use TeamBattles\Sdk\Generated\Strategies\StrategiesRequestBuilder;
 use TeamBattles\Sdk\Generated\Streams\StreamsRequestBuilder;
 use TeamBattles\Sdk\Generated\Teams\TeamsRequestBuilder;
 use TeamBattles\Sdk\Generated\Tickets\TicketsRequestBuilder;
+use TeamBattles\Sdk\Generated\Tournaments\TournamentsRequestBuilder;
 use TeamBattles\Sdk\Generated\Twitch\TwitchRequestBuilder;
 use TeamBattles\Sdk\Generated\Uploads\UploadsRequestBuilder;
 use TeamBattles\Sdk\Generated\User\UserRequestBuilder;
@@ -109,6 +110,13 @@ class TeamBattlesApiClient extends BaseRequestBuilder
     */
     public function tickets(): TicketsRequestBuilder {
         return new TicketsRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The tournaments property
+    */
+    public function tournaments(): TournamentsRequestBuilder {
+        return new TournamentsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

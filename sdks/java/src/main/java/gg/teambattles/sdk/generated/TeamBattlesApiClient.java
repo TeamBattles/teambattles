@@ -23,6 +23,7 @@ import gg.teambattles.sdk.generated.strategies.StrategiesRequestBuilder;
 import gg.teambattles.sdk.generated.streams.StreamsRequestBuilder;
 import gg.teambattles.sdk.generated.teams.TeamsRequestBuilder;
 import gg.teambattles.sdk.generated.tickets.TicketsRequestBuilder;
+import gg.teambattles.sdk.generated.tournaments.TournamentsRequestBuilder;
 import gg.teambattles.sdk.generated.twitch.TwitchRequestBuilder;
 import gg.teambattles.sdk.generated.uploads.UploadsRequestBuilder;
 import gg.teambattles.sdk.generated.user.UserRequestBuilder;
@@ -122,6 +123,14 @@ public class TeamBattlesApiClient extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public TicketsRequestBuilder tickets() {
         return new TicketsRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The tournaments property
+     * @return a {@link TournamentsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public TournamentsRequestBuilder tournaments() {
+        return new TournamentsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * The twitch property

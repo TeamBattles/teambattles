@@ -1,0 +1,108 @@
+---
+title: "Get Your Tournament Entry"
+description: "Read your own state in a tournament: actable teams, entries, invites, offers, rosters, and free-agent row."
+openapi: "GET /tournaments/{identifier}/me"
+---
+
+## Prerequisites
+
+- An API key with `tournaments.actor.entry` set to `read` or `read-write`. A read-only grant is enough - this endpoint performs no writes.
+- The tournament **slug**.
+
+## Permission Required
+
+This endpoint requires `tournaments.actor.entry` at `read` or higher.
+
+Unlike the organizer endpoints, this call is billed to the **key owner** rather than to the tournament host, and it is gated on your own `writes` API feature (`api_pro`) rather than on the host's plan. A competitor's integration never depends on the organizer's billing.
+
+## Call this first
+
+<Note>
+	This is the discovery endpoint for the competitor surface. Most competitor write endpoints are
+	keyed by an opaque resource ID - `participantId`, `inviteId`, `offerId`, `rosterEntryId` - that
+	this endpoint returns and **nothing else on the public API does**. An integrator holding only a
+	tournament slug has no other way to obtain one.
+</Note>
+
+Re-read this endpoint after any competitor write rather than patching a cached list.
+
+## What's Returned
+
+Everything is scoped to the caller. `entry` contains:
+
+| Field | Contents |
+| --- | --- |
+| `actableTeams` | Every team of this tournament's game you may act for - captain, co-captain, or owner of the team's organization. **Includes teams not yet entered**, which is what makes it the enter/apply candidate list |
+| `participants` | Every entry belonging to one of your teams. Source of `participantId` for check-in and withdraw |
+| `invites` | Every invite addressed to an actable team. Source of `inviteId` |
+| `offers` | Every free-agent pickup offer addressed to you. Source of `offerId` |
+| `rosterEntries` | Every tournament roster you are personally on. Source of `rosterEntryId` |
+| `freeAgent` | Your free-agent pool row, or `null` if you have never joined this tournament's pool |
+| `requiredConnectionMissing` | `true` when the game requires a linked external account you have not connected - check this before attempting a free-agency join, rather than discovering it from the rejection |
+| `slug` | The tournament's canonical slug, echoed because your request may have used a stale one that still resolves |
+
+## Every collection is an array, and includes terminal rows
+
+<Warning>
+	Do not assume at most one of anything, and do not assume everything returned is actionable.
+</Warning>
+
+- A caller who leads several teams in one tournament has **several** entries and gets all of them.
+- Collections are returned **whole**, including terminal rows: withdrawn, denied, removed and disqualified entries, answered invites, and expired, declined or revoked offers. Filter on `status` for the rows that are still answerable.
+- `freeAgent` returns a `WITHDRAWN` row rather than `null`, because that row is reused if you rejoin.
+
+## No visibility filter is applied
+
+Because every field is already keyed to you, this endpoint applies no viewability filter. A tournament still in `DRAFT` that you have been **invited** to therefore answers `200` - which is what makes the invite answerable before the tournament is published. A slug that does not resolve at all still answers `404`.
+
+<RequestExample>
+
+```bash cURL
+curl https://teambattles.gg/api/v1/tournaments/spring-invitational/me \
+  -H "Authorization: Bearer tb_your_api_key"
+```
+
+```javascript JavaScript
+const slug = "spring-invitational";
+
+const { entry } = await fetch(`https://teambattles.gg/api/v1/tournaments/${slug}/me`, {
+	headers: { Authorization: "Bearer tb_your_api_key" }
+}).then((r) => r.json());
+
+// Collections come back WHOLE, terminal rows included. Filter before acting.
+const answerableInvites = entry.invites.filter((i) => i.status === "PENDING");
+const answerableOffers = entry.offers.filter((o) => o.status === "PENDING");
+
+// A caller leading several teams has several entries - never assume one.
+for (const participant of entry.participants) {
+	console.log(participant.participantId, participant.status);
+}
+
+if (entry.requiredConnectionMissing) {
+	console.warn("link your game account before joining the free-agent pool");
+}
+```
+
+```python Python
+import requests
+
+slug = 'spring-invitational'
+
+entry = requests.get(
+    f'https://teambattles.gg/api/v1/tournaments/{slug}/me',
+    headers={'Authorization': 'Bearer tb_your_api_key'}
+).json()['entry']
+
+# Collections come back WHOLE, terminal rows included. Filter before acting.
+answerable_invites = [i for i in entry['invites'] if i['status'] == 'PENDING']
+answerable_offers = [o for o in entry['offers'] if o['status'] == 'PENDING']
+
+# A caller leading several teams has several entries - never assume one.
+for participant in entry['participants']:
+    print(participant['participantId'], participant['status'])
+
+if entry['requiredConnectionMissing']:
+    print('link your game account before joining the free-agent pool')
+```
+
+</RequestExample>

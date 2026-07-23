@@ -12,6 +12,7 @@ require_relative './streams/streams_request_builder'
 require_relative './teams/teams_request_builder'
 require_relative './team_battles_sdk::_generated'
 require_relative './tickets/tickets_request_builder'
+require_relative './tournaments/tournaments_request_builder'
 require_relative './twitch/twitch_request_builder'
 require_relative './uploads/uploads_request_builder'
 require_relative './user/user_request_builder'
@@ -78,6 +79,11 @@ module TeamBattlesSdk
             # The tickets property
             def tickets()
                 return TeamBattlesSdk::Generated::Tickets::TicketsRequestBuilder.new(@path_parameters, @request_adapter)
+            end
+            ## 
+            # The tournaments property
+            def tournaments()
+                return TeamBattlesSdk::Generated::Tournaments::TournamentsRequestBuilder.new(@path_parameters, @request_adapter)
             end
             ## 
             # The twitch property
