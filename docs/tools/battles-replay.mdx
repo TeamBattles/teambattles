@@ -29,7 +29,7 @@ A browser extension for downloading Twitch and Kick VODs, recording live streams
 - **Rolling buffer** - Continuously buffers the last 10 minutes to 5 hours of a live stream
 - **Create clips** - Save specific moments from the buffer (up to 30 minutes)
 - **Save full buffer** - Download the entire buffer when the stream ends
-- **Ad-free playback** - CDN bypass module for ad-free live stream playback with automatic commercial skipping
+- **Recorded source** - Optionally play a live stream from Twitch's own in-progress recording of the broadcast, which may avoid ads on some channels. It runs behind the live broadcast, and falls back to the normal live stream when it cannot be played _(Twitch only)_
 - **Auto quality with adaptive bitrate** - Streams default to Auto quality; HLS.js selects optimal quality based on bandwidth with dynamic indicator (e.g. "Auto (720p60)")
 - **In-player quality selector** - Gear icon in player controls opens a popover with all available qualities plus Auto option
 - **Low-memory buffer** - Buffer stores URL metadata instead of binary data, reducing RAM usage by ~1.8 GB at Source quality
@@ -347,6 +347,7 @@ Configure the extension behavior in the Settings tab:
 | Chunk size           | Part size for large MP4/MKV downloads      | 1000 MB       |
 | Buffer duration      | Rolling buffer for live streams (discrete steps) | 30 min        |
 | Auto-download buffer | Save buffer when stream ends               | Off           |
+| Use recorded source  | Play Twitch live streams from the recorded source | On            |
 | Player button        | Inject chat button into native player      | On            |
 | Twitch connection    | Connect your Twitch account for live chat  | Not connected |
 | Kick connection      | Connect your Kick account for live chat    | Not connected |
@@ -369,6 +370,32 @@ Configure the extension behavior in the Settings tab:
 - For large downloads: adequate available RAM (TS format uses minimal memory)
 
 ## Changelog
+
+<Accordion title="v2.6.0 - July 26, 2026">
+### Added
+- **Recorded Source for Live** - Twitch live streams can play from a recorded source (Twitch's own in-progress recording of the broadcast) that may avoid ads on some channels. A "Use recorded source" toggle in Settings controls it, on by default. The recorded source runs behind the live broadcast, so the player tag reads DELAYED and live chat runs ahead of the picture; turn the setting off to watch the channel's live stream instead
+
+### Changed
+- **Source Chosen When the Stream Opens** - The live source now follows your setting, either the recorded source or the normal live stream, instead of being resolved automatically. The player only changes source mid-stream if the one you chose turns out to be unplayable, in which case it falls back to the normal live stream
+- **Steadier Live Buffer** - Latency and buffering targets scale with the stream's own segment length instead of a fixed number of seconds, and the forward buffer is deeper so one slow segment no longer drains it
+- **Live Tag** - Reads DELAYED in amber with a static dot while a live stream plays from the recorded source, and LIVE in red otherwise; hover it for a short explanation. The tag appears in both the main player and the mini player, and the duplicate LIVE pill next to the stream title has been removed
+- **Quality Menu Without HEVC** - On browsers without HEVC support, the recorded source's Source quality is left out of the live quality menu when other qualities are available, so playback picks one that decodes
+
+### Removed
+- **Live Ad Filtering** - Earlier versions tried to strip ad segments out of the live playlist, but Twitch inserts live ads into the stream itself and the filter could not reliably remove them. Live streams playing from the normal live source now show ads as Twitch delivers them; the recorded source, on by default, may avoid ads on some channels
+
+### Fixed
+- **Recordings Found on More Channels** - The recorded source and unpublished stream discovery now check every Twitch content server. Channels served by the ones that were being missed reported no recorded source and turned up no unpublished streams even when a recording existed; in a sample of 330 live channels, a little over half were on a server the extension was not checking
+- **Unknown Content Servers Recovered** - When every known server comes up empty, the extension works out where the channel records to from its own most recent past broadcast and remembers it, so later streams and searches find it directly. This runs in the background and never delays playback
+- **Live Autoplay and Resume** - Opening a live stream from a channel page starts playing instead of sitting paused, and reopening the extension on a loaded live stream picks it back up at the live edge. VODs still reopen paused where you left off
+- **Channel Switching** - Switching to a different channel and reopening the extension discards the previous stream and loads the new channel's
+- **Play Returns to the Live Edge** - Pressing play on a paused live stream jumps to the live edge instead of resuming minutes behind it; a deliberate rewind into the buffered part still keeps your position
+- **Jump to Live in Audio-Only** - The "Jump to live" button now works in audio-only mode
+- **No Catch-Up Speed-Up** - Live playback no longer speeds up to 1.1x to chase the stream, which shifted audio pitch and made motion look uneven
+- **Recorded Source Stutter** - Live playback from the recorded source no longer freezes for a moment every few seconds
+- **Large Segments and Source Lookup** - Large live segments no longer time out on slower connections, and looking up a live source can no longer hang
+- **Black Screen at Startup** - The player keeps the loading spinner up until video is actually rendering, and falls back to the normal live stream if the recorded source cannot be decoded
+</Accordion>
 
 <Accordion title="v2.5.2 - July 12, 2026">
 ### Changed
