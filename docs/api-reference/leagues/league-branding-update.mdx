@@ -20,4 +20,6 @@ The `{identifier}` path parameter accepts a league slug or Convex league ID.
 
 Branding updates can change the league name, description, social links, profile theme, avatar storage ID, and banner storage ID. The league name remains globally unique after normalization, and name and description lengths are validated before any write is saved.
 
-When avatar or banner storage IDs are replaced, the previous stored asset is removed from Convex storage.
+`avatarStorageId` and `bannerStorageId` must come from [`POST /uploads/image`](../uploads/upload-bound-image), which records the API key owner as the uploader. A storage ID from `POST /uploads/image-url` - or one belonging to another tenant - is rejected with `400 error_image_blob_unbound` and nothing is written. Avatars are capped at 1 MB and banners at 2 MB.
+
+When avatar or banner storage IDs are replaced, the previous stored asset is queued for removal and deleted by a daily reclaim job rather than immediately.

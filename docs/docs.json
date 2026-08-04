@@ -669,6 +669,7 @@
 							{
 								"group": "Uploads",
 								"pages": [
+									"api-reference/uploads/upload-bound-image",
 									"api-reference/uploads/create-image-upload-url"
 								]
 							},

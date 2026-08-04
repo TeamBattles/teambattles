@@ -5,6 +5,16 @@ description: "A standalone bracket simulator for planning and sharing any bracke
 
 The Brackets tool at [`/brackets`](https://teambattles.gg/brackets) is a free-standing bracket simulator. It uses the same bracket engine that powers [tournaments](/tournaments), but it is not tied to any tournament, game, or real teams - you can plan, score, and share any bracket you like. You can use it signed out; saving to your account and sharing require an account.
 
+The tool is split across three screens, each with its own address:
+
+| Screen | Address | What it is |
+| ------ | ------- | ---------- |
+| Start screen | `/brackets` | Set up a new bracket, or open one from your library |
+| Editor | `/brackets/editor?local=<id>` (browser-stored) or `/brackets/editor/<id>` (account-stored) | Score, edit, save, and share a bracket |
+| Share view | `/brackets/view/<code>` | The read-only public view of a shared bracket |
+
+Because each screen has its own address, your browser's Back button steps between them and you can bookmark an editor or a share link directly.
+
 ## Starting a New Bracket
 
 Pick a [format](/tournaments/formats) - single elimination, double elimination, round robin, or Swiss - and paste your entrants, one label per line. Each format has an entrant ceiling (128 for elimination, 64 for Swiss, 32 for round robin), and the list is clamped to that ceiling. You need at least two entrants to start.
@@ -13,14 +23,31 @@ You can also set the best-of ladder (Bo1, Bo3, Bo5, or Bo7; Bo3 by default) befo
 
 As you type, the live preview shows the bracket your list would build. Drag a team onto another team's slot in the preview to trade their bracket positions before building - including taking over a free pass (an automatic advance a top seed receives when the entrant count is not a power of two). **Reset arrangement** in the preview header returns to list order.
 
+**Build** stores the new bracket in this browser and opens it in the editor. Nothing is sent to your account until you save it, so building works signed out. If the bracket cannot be stored - for example because your browser blocks site storage - the build fails with an error instead of opening the editor; see [Troubleshooting](/reference/troubleshooting).
+
+The first time you build or import, the tool also asks your browser for persistent storage, so brackets kept only on this device are less likely to be evicted when space runs low. Browsers may decline that request, sometimes silently; a declined request is not an error and nothing else changes.
+
+## Your Bracket Library
+
+The start screen shows one library, newest first, with **one card per bracket** - a bracket you built here and later saved to your account is a single card, not two. Each card says where that bracket lives:
+
+- **On this device** - built or imported in this browser and never saved to your account. It lives only here, costs nothing against your tier's limit, and works signed out. Clearing this browser's site data deletes it.
+- **Synced** - saved to your account, and this browser's copy matches it.
+- **Unsynced edits** - this browser has changes that were never saved to your account. Opening the bracket loads this browser's copy; save it to bring your account up to date. A rename on its own does not count as an edit, and for a bracket already on your account this state usually clears itself within a minute (see background saving below).
+- **Not in your account** - this browser has a copy linked to an account bracket that is no longer there. It may have been deleted, or it may belong to a different account, so check which account you are signed into first. Your copy on this device is untouched either way. **Keep on this device** unlinks it and keeps it as a device bracket; **Remove from this device** deletes this browser's copy.
+
+An account bracket's address is private: opening it asks you to sign in, and it only opens for the account that owns it. Someone else's id sends you back to the start screen.
+
+The library header shows how many brackets your plan keeps in your account, next to a small meter. **Save to account** is never disabled when you are at the limit: it opens a panel offering to keep the bracket on this device, to move one of your saved brackets back to this device (which frees a slot), or to upgrade.
+
 ## Editing Entrants
 
 Each entrant slot is a plain text label by default. You can also:
 
 - **Rename** an entrant - renaming is display-only and never disturbs already-scored results.
 - **Attach a team snapshot** - search for a real team to borrow its name and avatar for display. Pick a game in the **Team lookup** box above the entrant list first; each entrant's link-team button stays disabled until you do. This is cosmetic only; it does not involve or notify the team.
-- **Set a custom avatar** - upload an image for the entrant.
-- **Clear the snapshot** - return a slot to a plain text label.
+- **Set a custom avatar** - upload an image for the entrant. It has to be an image and under 1 MB, and you are told straight away if it is not. Logos display square, cropped from the centre, the same way team profile pictures do - so a wide image loses its edges rather than shrinking to fit. The image stays on this device until you save the bracket to your account; saving uploads the images your entrants use, and a bracket with many custom avatars shows progress while they upload. If an upload fails, nothing is saved and your bracket and its images are untouched.
+- **Clear the logo** - return a slot to a plain text label. The upload button becomes **Clear logo** once an entrant has a logo or a team snapshot, and goes back to **Upload logo** once it is cleared.
 
 ## Scoring the Bracket
 
@@ -30,7 +57,7 @@ You can also:
 
 - **Set per-round best-of** - choose Bo1, Bo3, Bo5, or Bo7 for each round from the best-of menu.
 - **Disqualify** an entrant - propagates a walkover to its opponent.
-- **Shuffle seeds** - reseed the field randomly.
+- **Shuffle seeds** - reseed the field randomly. An uninterrupted run of shuffles counts as one step, so **Undo** after shuffling five times in a row returns you to the arrangement you started from rather than to the fourth shuffle. Anything else you do - reporting a result, dragging an entrant - ends the run, and shuffles after that are each their own step.
 - **Undo** - step back one action at a time. The bracket is a replay of your action log, so undo is always exact.
 
 <Note>
@@ -42,29 +69,108 @@ You can also:
 ## Saving and Sharing
 
 <Steps>
-	<Step title="Export a local file">
-		Download the current bracket as a `.json` file. You can re-open an exported file later. This works
-		signed out and never leaves your device.
+	<Step title="Download a file">
+		The editor's **Download** menu has three items. **Export image** opens a dialog where you pick
+		the part of the bracket to export and the file you want out of it (see [Exporting an
+		image](#exporting-an-image)). **Export project** writes a `.tbbrac` file: the whole bracket plus
+		the entrant logos that live only in this browser, so a bracket moves between browsers complete.
+		**Export animation** is listed as coming soon and does nothing yet. Downloads work signed out and
+		never leave your device.
 	</Step>
 	<Step title="Save to your account">
-		Signed-in users can save brackets to the cloud. The number of saved brackets is limited by your
-		subscription tier (see the table below). The bracket title above the editor accepts up to 120
-		characters.
+		Signed-in users can save brackets to the cloud. **Save** opens a dialog with three fields: the
+		bracket's **name** (up to 120 characters), an optional **description** for anyone you share it
+		with (up to 2,000 characters), and its **visibility** - **Private**, or **Anyone with the link**.
+		The number of saved brackets is limited by your subscription tier (see the table below).
+
+		Once a bracket is on your account, the editor keeps it up to date on its own: about once a
+		minute, any unsaved changes to the bracket are pushed to your account in the background. It only
+		ever updates a bracket you already saved - it never creates one, so nothing is added to your
+		account, and no slot is used against your tier limit, until you press **Save** yourself. Renaming
+		a bracket does not trigger a background save on its own; the name goes up with your next Save.
 	</Step>
 	<Step title="Share a public link">
-		Turn on sharing for a saved bracket to get a public link (`/brackets/<code>`) that shows a
-		read-only view of your bracket. Turning sharing off makes the link private again.
+		Every saved bracket has a link of the form `/brackets/view/<code>`, and the **Share link** button
+		copies it. Whether that link opens for anyone else is the **visibility** setting in the save
+		dialog: on **Anyone with the link** it shows a read-only view of your bracket, and on **Private**
+		it only opens for you while everyone else gets a "not found" page. Copying the link of a private
+		bracket says so and offers a shortcut back to the setting. If the bracket has never been saved,
+		**Share link** opens the save dialog instead, because a bracket needs to be on your account
+		before it can have a link at all. Links in the older `/brackets/<code>` form still work: they
+		redirect to the new address.
 	</Step>
 </Steps>
 
-### Managing Saved Brackets
+### Exporting an Image
 
-Your saved brackets are listed under **Load a bracket** on the tool's start screen. Click a card to load that bracket into the editor, or use the card's actions menu for:
+**Download > Export image** renders the bracket exactly as it appears on screen and downloads it as a
+file. The dialog gives you:
 
-- **Rename** - give the bracket a new name (up to 120 characters). This changes the label only and never touches the bracket itself or its results.
-- **Delete** - permanently remove the bracket from your account, after a confirmation. This frees a slot against your tier's limit and cannot be undone. Files you exported are unaffected.
+- **A region.** Drag on the preview to select part of the bracket, or press **Whole bracket** to take
+  all of it. The readout underneath shows the pixel size and megapixel count of the file you will get.
+- **A format** - PNG, JPEG, or WebP. PNG also offers a **transparent background**; JPEG and WebP
+  always render on a solid background, so the option is only shown for PNG.
+- **A scale** from 0.5x to 3x, applied on top of the region.
 
-Deleting the bracket you currently have open leaves it open in the editor as an unsaved bracket, so your next save creates a new saved bracket rather than writing back to the deleted one.
+Very large selections are refused rather than silently shrunk: if the region and scale together go
+past what your browser can draw, the dialog says so and **Export** stays disabled until you select a
+smaller area or lower the scale. Entrant names in scripts the bracket's fonts do not cover -
+Cyrillic and Vietnamese, in particular - may be drawn in a different font in the exported file than
+on screen.
+
+Image export is available on every plan, signed in or not, and nothing is uploaded: the file is
+produced in your browser.
+
+### Managing Your Brackets
+
+Click a card to open that bracket in the editor, or use the card's actions menu. Which actions appear depends on where the bracket lives, and each destructive action names its own scope so you never have to work it out from which panel it sits in:
+
+- **Open** - opens the bracket in the editor.
+- **Save to account** - signed-in only, and only for a device bracket. It opens the bracket in the editor and starts the save; press **Save** there to keep it on your account.
+- **Rename** - gives the bracket a new name (up to 120 characters), changing the label only and never touching the bracket or its results. Offered on account brackets and on brackets kept only on this device; a device bracket's new name stays in this browser. It is not offered while the account list is unavailable, because the tool cannot yet tell which of the two a bracket is.
+- **Delete from account** - permanently removes the bracket from your account, after a confirmation, **and removes this browser's copy of it**. This frees a slot against your tier's limit and cannot be undone. Files you exported and copies on your other devices are not deleted.
+- **Remove from this device** - removes only this browser's copy. If the bracket is also in your account it stays there and you can open it again from the library. If it is a device bracket, this browser holds the only copy and it is gone for good, so export it first if you want to keep it.
+- **Move to device** - account brackets only. Copies the bracket and its entrant images to this device, then removes it from your account, which frees a slot against your tier's limit. It stops opening on your other devices, and its share link stops working (saving it back to your account later gives you a new link). If anything fails, the bracket is left in your account exactly as it was.
+
+Deleting from your account removes the browser's copy of a bracket you opened from your account, but a bracket you originally built in this browser and later saved stays on the device as a device bracket - it just loses its link to the deleted account copy, so you can keep editing it and save it again as a new bracket. If you have the same bracket open in another tab, that tab picks the change up on its own: a rename updates its title, and a delete or a **Move to device** tells it the bracket is no longer in your account and offers to send you back to your brackets list. Another device still needs a reload.
+
+**Import from file** reads a bracket you exported earlier, stores it in this browser, and opens it in the editor. It takes both file types the tool writes: a `.tbbrac` project file, and a `.json` bracket exported by an older version. Importing works signed out. A file that cannot be imported says why - it is not JSON, it is not a bracket export, it is not a project file, it came from a different version of the tool, it has too many entrants for its format, the file itself is too large to open, the bracket inside it is too large to sync to an account, or your browser refused to store it.
+
+What comes back depends on which file you picked:
+
+- **A `.tbbrac` project file** brings back the entrant logos that were still browser-only when you exported it. Logos that have already been uploaded to your account are not in the file, so a bracket you have saved to your account exports with none of them and its entrants come back as plain labels. Each embedded logo is put through the same checks as an image you upload by hand - it has to be an image, under 1 MB, and it is scanned before it is kept - and any logo that fails is dropped, its entrant imports as a plain label, and the import tells you how many were left out. Because there is real work in that, the Import button counts the logos as it checks them.
+- **A `.json` bracket** has its logos and team links removed, so its entrants come back as plain labels.
+
+Neither file type carries anything that identifies you, and neither restores a link to your account: an imported bracket always lands as a device bracket, whichever file it came from.
+
+### When a Bracket Changed in Two Places
+
+If this browser holds edits that never reached your account **and** the account copy has changed
+since - usually because you edited the same bracket on another device - opening it asks you which one
+to keep instead of picking for you. **Keep this device's edits** uploads what is in front of you and
+overwrites the account copy; **Open the account copy** throws this browser's unsaved edits away and
+loads what is on your account. The copy you do not keep cannot be recovered, and the bracket stays
+closed until you answer.
+
+Only one of the two sides having moved is not a conflict and is never raised: unsaved edits on this
+device alone are just saved, and a newer account copy with nothing unsaved here is just opened.
+
+### When Saving to Your Account Pauses
+
+The editor shows a banner when the background save has stopped getting through:
+
+- **The bracket is too large.** A bracket's stored size is capped, and a bracket that grows past the
+  cap stops syncing. The banner shows the size and the limit. **Undo** is the way back under it; your
+  edits stay in this browser in the meantime.
+- **Saving keeps failing.** After a run of failures the background save pauses instead of retrying
+  every minute. Your next change starts it trying again.
+- **Logos have not uploaded.** The bracket itself is up to date on your account, but one or more
+  entrant logos are still only in this browser. They keep trying, and they will not appear on your
+  share link until one of the attempts succeeds.
+
+### When This Browser Runs Out of Storage
+
+If the editor shows **This browser is out of storage**, your edits have stopped being saved on this device. Brackets already in your account are unaffected and still open normally. Free up space in your browser, or export the bracket to a file so you do not lose it - and consider **Remove from this device** on brackets that are already synced, which reclaims space without touching your account. See [Troubleshooting](/reference/troubleshooting) for more.
 
 ### Saved-Bracket Limits
 
@@ -75,4 +181,4 @@ Deleting the bracket you currently have open leaves it open in the editor as an 
 | Standard | 25             |
 | Premium  | 100            |
 
-If you reach your tier's limit, delete an old saved bracket or upgrade your subscription for more. See the [Quick Reference](/reference) for all tier limits.
+If you reach your tier's limit you have three ways forward: keep the new bracket on this device, **Move to device** on a bracket you no longer need in your account, or upgrade your subscription. **Delete from account** also frees a slot. See the [Quick Reference](/reference) for all tier limits.

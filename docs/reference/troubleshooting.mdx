@@ -18,10 +18,16 @@ description: "Solutions to common problems"
 
 **"My profile picture won't upload"**
 
-- Check file is under 1 MB
-- Ensure it's an image (JPG, PNG, GIF, WebP)
+- Check file is under 1 MB (banners are 2 MB). This limit is enforced on the stored file, so a browser that lets a larger file through will still be refused
+- Ensure it's an image (JPG, PNG, GIF, WebP). SVG is not accepted
 - The image may have been flagged as inappropriate by our automatic content filter
 - Try a different browser
+
+**"That image could not be verified"** (`error_image_blob_unbound`)
+
+- An avatar, banner or logo was named on a save that the server has no upload record for, or that belongs to a different profile, team, organization, league or tournament. The usual cause is a tab that has been open since before an update, so the page still holds an image reference the server no longer recognises. An image already in use on the item you are editing is always accepted, including one a co-admin uploaded.
+- The same applies to a league, organization or tournament image supplied through the public API: branding writes only accept a storage id from `POST /uploads/image`, not one minted by `POST /uploads/image-url`.
+- Fix: reload the page, pick the image again, and save.
 
 ## Organization Issues
 
@@ -179,7 +185,101 @@ description: "Solutions to common problems"
 
 **"I can't save this bracket" (`error_sim_limit_reached`)**
 
-- The number of brackets you can save to your account is capped by your subscription tier. Free your slot by deleting an old bracket from its card's actions menu under **Load a bracket** in the [Brackets tool](/tools/brackets), or upgrade your tier. You can still export a bracket to a local file for free.
+- The number of brackets you can save to your account is capped by your subscription tier. At the limit, **Save to account** opens a panel with three ways forward: keep the bracket on this device, **Move to device** on a bracket you no longer need in your account, or upgrade your tier. **Delete from account** in a card's actions menu also frees a slot. You can still export a bracket to a local file for free.
+
+## Brackets Tool Issues
+
+**"A bracket share link shows 'not found'"**
+
+- Share links live at `/brackets/view/<code>`. A link only resolves while the bracket's visibility is **Anyone with the link** - if the owner set it back to **Private**, or deleted the bracket, the link returns a 404 page. This is deliberate: a private bracket and one that never existed look identical, so no one can probe for codes.
+- Ask the owner to set the visibility back. It lives in the bracket's **Save** dialog, not on the toolbar: the **Share link** button only copies the link. The code is kept while a bracket is private, so the same link starts working again.
+- If you are the owner and still see 404, make sure you are signed in to the account that owns the bracket. Your own link opens for you even while the bracket is private.
+- Check the code was copied whole. A share code is exactly 12 letters and digits, so a link cut short by a chat client or email wrapper resolves to nothing.
+- Older links of the form `/brackets/<code>` are not broken - they redirect to `/brackets/view/<code>`. An older link whose code is not 12 characters sends you to the [Brackets tool](/tools/brackets) start screen instead.
+
+**"Build does nothing and shows 'Could not save the bracket'"**
+
+- The Brackets tool stores each bracket in your browser before opening the editor, so it needs site storage (IndexedDB). Build fails with this error when the browser refuses that write.
+- Common causes: Firefox Private Browsing, a browser setting or extension that blocks site data for `teambattles.gg`, or a device that is completely out of disk space.
+- Fix: open the tool in a normal (non-private) window, allow site data for `teambattles.gg`, or free up disk space. There is no in-memory fallback - the bracket has to be stored to be opened.
+- The tool also asks the browser for persistent storage at this point. Some browsers decline that request; a declined request is not an error and is not the cause of this failure.
+
+**"My bracket says 'Not in your account'"**
+
+- This browser holds a copy of a bracket that is linked to an account bracket the tool can no longer find. Either it was deleted from the account, or it belongs to a different account.
+- The tool cannot tell those two apart, so check which account you are signed into first - signing into the right one makes the card go back to normal on its own.
+- **Keep on this device** is safe: it unlinks the bracket and keeps it as a device bracket, changing nothing about its contents.
+- **Remove from this device** deletes this browser's copy, which is the only copy you can still reach. Export it first if you want to keep it.
+
+**"This browser is out of storage"**
+
+- Your bracket edits have stopped being saved on this device. The editor keeps accepting changes, but they are no longer being written to browser storage.
+- Brackets already saved to your account are unaffected and still open normally on any device.
+- Export anything that is device-only to a file right away, then free up browser storage. **Remove from this device** on brackets that are already synced reclaims space without touching your account.
+
+**"My import was rejected"**
+
+- Imports are validated at the door and the message says which check failed: the file is not JSON at all, it is not a bracket export, it is not a `.tbbrac` project file, the project file was made by a different version of the tool, the project file could not be read, it names a bracket format the tool does not recognise, it has fewer than 2 entrants, its entrants exceed the format's ceiling (128 for elimination, 64 for Swiss, 32 for round robin), its entrant ids are missing or duplicated, its seeding does not match its entrants, or its result history could not be read.
+- A file that was accepted by an older build can be refused now. That is deliberate: a bracket that fails a check would otherwise be stored and then fail every save with a generic error.
+- **A `.tbbrac` project file keeps the entrant logos that were still browser-only when it was exported**; logos already uploaded to your account are not in the file, so a bracket exported after it was saved to an account comes back with plain labels, the same as a plain `.json` bracket, which has its logos and team links removed outright. An imported logo still has to pass the same checks as one you upload by hand, and any that fails is dropped with a note saying how many were left out.
+
+**"That file is too large" on import**
+
+- Refused on the file's size before it is read at all. A `.tbbrac` project file stores every entrant logo inside it, so a bracket with many large logos can produce a file bigger than the tool can open.
+- The message names the file's size and the limit. Nothing is wrong with the file itself and nothing on this device is changed.
+- Fix: open the bracket where it was made, remove a few entrant logos, and export it again.
+
+**"That bracket is too large" on import**
+
+- The file is a valid bracket. It is refused because the bracket inside it is bigger than a bracket is allowed to be on your account, so importing it would leave you with something that could never be saved.
+- The message names the file's size and the limit. Nothing is wrong with the file itself and nothing on this device is changed.
+- Fix: open the bracket where it was made, **Undo** a few times to shorten its history, and export it again. See "Saving to your account has paused" below for what makes a bracket grow.
+
+**"Saving my bracket says an entrant image could not be verified"** (`error_bracket_avatar_unbound`)
+
+- An entrant's custom image was not recognised as one this account uploaded. That happens if the bracket came from a file, from another account, or from a tab that has been open since before an update.
+- Fix: re-upload that entrant's image and save again. Reloading the page first is the quickest way to be sure the tab is current.
+
+**"Some entrant logos could not be verified and were removed"**
+
+- The bracket **was** saved, without those logos. When a save is refused over an entrant image, the editor drops the ones whose image is no longer on this device, re-uploads the ones it still holds, and tries once more; you see this message when that second attempt succeeded. Everything else about the bracket - entrants, results, seeding - is untouched.
+- You can see this after a manual **Save** or after a background save, so it can appear without you pressing anything.
+- Fix: set the affected entrants' images again and save. They upload normally from here.
+
+**"Move to device failed"**
+
+- Moving a bracket downloads its entrant images to this device, and every one has to succeed. If any download fails the move stops and your account bracket is left exactly as it was, so nothing is lost.
+- Fix: check your connection and try again. If it keeps failing, export the bracket to a file so you have a copy either way.
+
+**"Saving a large or heavily edited bracket says 'Invalid input provided'"** (`error_invalid_input`)
+
+- Every save is checked against a set of stored limits, and all of them are refused with this one generic message - which limit was hit is not shown. The ones a normal editing session can reach: the bracket's stored size, its entrant count for the format (128 for elimination, 64 for Swiss, 32 for round robin), the length of its recorded result history, and its name length.
+- Size is the one you reach by accident. See "Saving to your account has paused" below - the editor now explains a size refusal in a banner rather than leaving you with this message alone.
+- Fix: **Undo** a few times to shorten the history, then save. Removing entrants is the other lever. Downloading the bracket to a file always works whatever its size.
+
+**"Saving to your account has paused"**
+
+- A banner appears in the editor when the background save stops getting through, and it says which of three things happened. Your edits are still being written to this browser in every case.
+- **The bracket is too large.** The banner names the bracket's size and the limit. Shuffling is what makes a bracket grow: every shuffle is recorded so it can be undone, and each recorded shuffle stores the whole seeding, which is far larger than a reported result. A run of shuffles with nothing in between counts as one entry, so shuffling on a fresh bracket is free - but **once the bracket has a result in it, every shuffle is recorded separately**, and a few hundred of them on a 128-entrant bracket reach the limit. Fix: **Undo** back under the limit and the bracket starts syncing again.
+- **Saving keeps failing.** After a run of failed attempts the editor stops retrying every minute. Making any change starts it trying again. If it keeps failing, download the bracket so you have a copy that does not depend on the account.
+- **Logos have not uploaded.** The bracket itself is up to date on your account; one or more entrant logos are still only in this browser and are still being retried. Until one succeeds, those entrants show without a logo to anyone opening your share link.
+
+**"This bracket changed in two places"**
+
+- This browser has edits that never reached your account, and the account copy has changed since - normally because the same bracket was edited on another device. Rather than pick a winner, the tool asks.
+- **Keep this device's edits** uploads what is in front of you and overwrites the account copy. **Open the account copy** discards this browser's unsaved edits and loads the account's version. The copy you do not keep cannot be recovered.
+- The bracket does not open until you answer, so nothing is written under you while you decide.
+- If the answer itself cannot be recorded - the browser is out of storage, or the write failed - the question is asked again and nothing has changed. Free up browser storage and answer again.
+
+**"This selection is too large to export" (image export)**
+
+- Images are drawn in your browser, and browsers cap how large a single image can be. The selected region multiplied by the scale is past that cap, so **Export** is disabled rather than handing you a blank file.
+- Fix: select a smaller part of the bracket, or lower the scale. The size readout under the preview updates as you do, so you can see when it fits.
+
+**"The image could not be created"**
+
+- The export was attempted and failed part-way through, usually because the selection was near the limit of what the browser can draw or the tab ran out of memory. Nothing is downloaded, and your selection is left in place so you can shrink it and try again.
+- Fix: lower the scale first - it is the cheapest lever - then reduce the region. Closing other heavy tabs helps on a device that is short on memory.
 
 ## Tutorial Issues
 

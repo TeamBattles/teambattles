@@ -119,6 +119,10 @@ On the editor's welcome screen, choose **Import from file** and pick a `.tbstrat
 	Importing an offline copy that uses a custom map requires a **Premium** plan, because custom-map uploads are a premium feature. The embedded map is also re-scanned for inappropriate content before the strategy is created, the same way a [custom map upload](/strategy/custom-maps) is scanned.
 </Note>
 
+<Warning>
+	Project files do not carry image shapes. If a file names any, they are left out of the import and you are told how many were skipped. Everything else in the file, including the custom map, imports normally.
+</Warning>
+
 ## My Boards library
 
 Click the **My boards** button (grid icon) at the left of the editor header to open the library panel. The panel is a two-level sheet: the top level lists your **boards** (folders of strategies) plus an **Ungrouped** bucket for strategies that aren't filed into a board. Tap a row to drill into that board (or the Ungrouped bucket) and see the strategies inside.
@@ -179,6 +183,37 @@ The prompt shows when the local copy was edited and when your saved copy was las
 
 <Note>
 	The reconcile prompt appears whether you open the strategy from its own link or from the **My Boards** library. Only strategies saved to your account can fall out of sync - device-only strategies are never reconciled, because they have no account copy.
+</Note>
+
+### When both copies have changed
+
+If your account copy also changed since this device last saw it - because you edited the strategy on another device, or a live session moved the board - the prompt changes to **Two different versions of this board** and you have to choose before you can keep working. You cannot dismiss it, and auto-save is paused while it is open.
+
+<Steps>
+	<Step title="Keep this device's version">
+		Uploads what is on this device and overwrites the account copy.
+	</Step>
+	<Step title="Keep the account version">
+		Keeps what is already on your account and drops this device's changes.
+	</Step>
+</Steps>
+
+<Warning>
+	Whichever version you do not keep cannot be recovered. There is no merge: the two boards are kept whole so you never end up with a half-merged mix of both.
+</Warning>
+
+<Note>
+	If the two copies turn out to be identical, this prompt never appears, no matter how many times either side was saved.
+</Note>
+
+## When saving to your account keeps failing
+
+Auto-save pushes to your account every 60 seconds while a strategy has unsaved changes. If the server refuses a save, the editor retries on a widening schedule and then stops, rather than failing over and over in the background.
+
+When it stops, a banner appears above the canvas explaining why. The most common cause is a board with more shapes than a single save allows, in which case the banner names both your shape count and the limit. Deleting shapes to get back under the limit, or any other edit, immediately triggers a fresh attempt.
+
+<Note>
+	Your work is never lost when this happens - it stays saved on this device, and the banner clears as soon as a save succeeds. Being offline does not count against the retries.
 </Note>
 
 ## Editor header at a glance

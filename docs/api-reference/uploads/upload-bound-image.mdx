@@ -1,0 +1,93 @@
+---
+title: "Upload An Avatar Or Banner"
+description: "Upload image bytes in one call and receive a storageId already bound to your API key owner, ready for a branding write."
+openapi: "POST /uploads/image"
+---
+
+## Permission Required
+
+This endpoint requires `uploads.upload:read-write` on your API key, plus the `writes` feature. The owner is always the API key owner, derived from the key itself - it is never accepted as a body field. A free (`api_free`) key receives `403 error_api_feature_required`; this requires an `api_pro`+ plan.
+
+## When To Use This Instead Of `/uploads/image-url`
+
+Use this endpoint for **avatars, banners and logos**. Branding writes - notably `PATCH /leagues/{leagueId}/branding` - only accept a `storageId` that carries an ownership record, and that record is written here. A `storageId` obtained from `/uploads/image-url` is rejected on those writes with `400 error_image_blob_unbound`.
+
+Keep using `/uploads/image-url` for score screenshots and support-ticket images.
+
+## Request
+
+Send `multipart/form-data`:
+
+| Field | Required | Description |
+| --- | --- | --- |
+| `file` | Yes | The image bytes. |
+| `slot` | Yes | `avatar` or `banner`. Selects the size cap and prevents an avatar-sized image landing in a banner field. |
+| `targetKind` | No | `team`, `organization`, `league` or `tournament`. Supply it with `targetId` when the entity already exists so the permission check runs before the bytes are uploaded. |
+| `targetId` | No | The id of that entity. Required whenever `targetKind` is present. |
+
+Omit `targetKind` / `targetId` when the entity does not exist yet (for example, an image you intend to attach on a create).
+
+## What's Returned
+
+Returns `{ storageId, url }`. The `storageId` is already bound to you and can be supplied directly on a branding write; `url` is the public CDN URL of the stored image.
+
+## Size And Content-Type Limits
+
+Unlike `/uploads/image-url`, the bytes exist by the time this endpoint returns, so every check runs here:
+
+| Limit | Value |
+| --- | --- |
+| Max size (`slot: avatar`) | 1 MB |
+| Max size (`slot: banner`) | 2 MB |
+| Allowed types | `image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif` |
+
+`image/svg+xml` is intentionally not allowed (SVG can carry script). The stored image is also NSFW-scanned; a flagged image is deleted and the call answers `400 error_nsfw_image_detected`.
+
+<Note>
+	The `storageId` is bound to you, the uploader. A branding write rejects a `storageId` bound to
+	another tenant, so you cannot attach someone else's image.
+</Note>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://teambattles.gg/api/v1/uploads/image \
+  -H "Authorization: Bearer tb_your_api_key" \
+  -F "file=@logo.png" \
+  -F "slot=avatar" \
+  -F "targetKind=league" \
+  -F "targetId=your_league_id"
+# -> { "storageId": "...", "url": "https://..." }
+```
+
+```javascript JavaScript
+const form = new FormData();
+form.append("file", imageBlob, "logo.png");
+form.append("slot", "avatar");
+form.append("targetKind", "league");
+form.append("targetId", "your_league_id");
+
+const res = await fetch("https://teambattles.gg/api/v1/uploads/image", {
+	method: "POST",
+	headers: { Authorization: "Bearer tb_your_api_key" },
+	body: form
+});
+const { storageId, url } = await res.json();
+console.log(storageId, url);
+```
+
+```python Python
+import requests
+
+with open("logo.png", "rb") as f:
+    res = requests.post(
+        "https://teambattles.gg/api/v1/uploads/image",
+        headers={"Authorization": "Bearer tb_your_api_key"},
+        files={"file": ("logo.png", f, "image/png")},
+        data={"slot": "avatar", "targetKind": "league", "targetId": "your_league_id"},
+    )
+
+print(res.json()["storageId"], res.json()["url"])
+```
+
+</RequestExample>

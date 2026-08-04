@@ -18636,6 +18636,83 @@
         }
       }
     },
+    "/uploads/image": {
+      "post": {
+        "operationId": "uploadBoundImage",
+        "tags": [
+          "Uploads"
+        ],
+        "summary": "Upload an avatar or banner image",
+        "description": "Uploads image BYTES (multipart/form-data: `file`, `slot` = avatar|banner, optional `targetKind` + `targetId`) and returns a storageId already bound to the API key owner, plus its public URL. Branding writes such as PATCH /leagues/{leagueId}/branding only accept storage ids minted here - a raw id from /uploads/image-url is refused with error_image_blob_unbound. Avatars are capped at 1 MB and banners at 2 MB; SVG is rejected and the stored image is NSFW-scanned. Requires uploads.upload:read-write and the writes feature (api_pro).",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The stored, bound image.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BoundImageUploadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "API key lacks the required permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/user/connections": {
       "get": {
         "operationId": "listUserOwnConnections",
@@ -27650,11 +27727,11 @@
             "maxLength": 2000
           },
           "bannerStorageId": {
-            "description": "Convex storage id.",
+            "description": "Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.",
             "type": "string"
           },
           "logoStorageId": {
-            "description": "Convex storage id.",
+            "description": "Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.",
             "type": "string"
           },
           "socialLinks": {
@@ -27979,7 +28056,7 @@
             "type": "string"
           },
           "logoStorageId": {
-            "description": "Convex storage id for the sponsor logo.",
+            "description": "Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.",
             "type": "string"
           }
         },
@@ -28435,11 +28512,11 @@
             "maxLength": 2000
           },
           "bannerStorageId": {
-            "description": "Convex storage id.",
+            "description": "Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.",
             "type": "string"
           },
           "logoStorageId": {
-            "description": "Convex storage id.",
+            "description": "Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.",
             "type": "string"
           },
           "socialLinks": {
@@ -38708,6 +38785,25 @@
         "additionalProperties": false,
         "description": "A freshly minted Convex storage upload URL. POST the image to it to receive a storageId for use on a downstream write."
       },
+      "BoundImageUploadResponse": {
+        "type": "object",
+        "properties": {
+          "storageId": {
+            "type": "string",
+            "description": "Convex storage id, already bound to the API key owner. Use it on a write."
+          },
+          "url": {
+            "type": "string",
+            "description": "Public CDN URL for the stored image."
+          }
+        },
+        "required": [
+          "storageId",
+          "url"
+        ],
+        "additionalProperties": false,
+        "description": "A stored, NSFW-scanned image bound to the API key owner."
+      },
       "ApiOwnConnection": {
         "type": "object",
         "properties": {
@@ -39988,6 +40084,7 @@
           "error_free_agent_offer_exists",
           "error_free_agent_offer_not_pending",
           "error_not_org_admin",
+          "error_image_blob_unbound",
           "error_internal",
           "error_webhook_not_found",
           "error_webhook_url_invalid",
