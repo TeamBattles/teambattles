@@ -1,187 +1,76 @@
 ---
-title: "Scheduler"
-description: "Mark who can play each match time and get balanced lineups back, exportable as name lists or images"
+title: "Battles Scheduler"
+description: "Turn player availability into balanced lineups for every match time"
 ---
 
-Scheduler builds a lineup for each of your match times. You add your roster, mark who can play each time slot, run the simulation, and export the lineups as name lists, images, or a `.tbsched` file. Everyone gets a fair share of games.
+Battles Scheduler helps you answer a familiar team-management question: who should play each match when everyone has different availability?
 
-The tool is free and public. You do not need an account, and there is no subscription-tier gate.
+Add your roster and match times, mark who can attend, and let Battles Scheduler build lineups that spread opportunities fairly. You can adjust the result, copy name lists, or download share-ready images.
 
-## Before you start
+<Note>
+	Battles Scheduler is free, works without an account, and keeps every schedule in your browser.
+</Note>
 
-- Open [Scheduler](https://teambattles.gg/scheduler).
-- Use a screen at least 1024 pixels wide if you want to edit. Smaller screens intentionally show a read-only lineup view.
-- Have your roster, time slot dates, and start times ready.
+![The Battles Scheduler Board with a player pool and several match-time containers](../images/scheduler/scheduler-board.png)
 
-## Understand local storage
+## Quick start
 
-Your schedules are saved to IndexedDB on the device and browser profile you are using. They are not saved to your TeamBattles account or any cloud service, and the tool has no sharing link or live synchronization.
+<Steps>
+	<Step title="Open Battles Scheduler">
+		Go to [teambattles.gg/scheduler](https://teambattles.gg/scheduler). Use a screen at least
+		1024 pixels wide to edit; smaller screens show a read-only lineup view.
+	</Step>
+	<Step title="Choose how to begin">
+		Start blank, copy a schedule already on this device, import a `.tbsched` file, or load
+		the editable example schedule.
+	</Step>
+	<Step title="Add availability">
+		Create your match times, add players, and mark who can play each time slot. You can work
+		from the visual **Board** or the spreadsheet-like **Grid**.
+	</Step>
+	<Step title="Create the lineups">
+		Choose your seat count and fairness preference, then select **Simulate**. Review the
+		lineups, notes, blockers, and fairness summary.
+	</Step>
+	<Step title="Share or save the result">
+		Copy the lineup names, download lineup-card images, or export a `.tbsched` backup.
+	</Step>
+</Steps>
 
-The editor autosaves locally. It also keeps one best-effort recovery stash in `localStorage` for edits that have not reached IndexedDB yet. That stash is skipped when a serialized schedule document exceeds 2 MB, and the single stash slot is shared by all schedules open in that browser. A crash or tab close can therefore still lose the most recent edit.
+## What Battles Scheduler considers
+
+The simulation balances the information you provide:
+
+- Who can, might, must, or cannot play each time slot.
+- How many starters each time slot needs.
+- Whether time slots overlap or are too close together.
+- Whether players should be kept together or apart.
+- Who can host or act as IGL.
+- Whether you want an even number of starts or an even share of each player's opportunities.
+
+You stay in control. You can move players manually, run another variation, reset the computed lineups, or undo the entire simulation.
+
+## Choose your next step
+
+<CardGroup cols={2}>
+	<Card title="Build your schedule" icon="calendar-plus" href="./scheduler/build">
+		Add match times, availability, duties, and pairing preferences.
+	</Card>
+	<Card title="Create balanced lineups" icon="users" href="./scheduler/lineups">
+		Configure fairness, run the simulation, and resolve blockers.
+	</Card>
+	<Card title="Export and protect your work" icon="download" href="./scheduler/exports">
+		Share lineups and keep a portable backup of your schedule.
+	</Card>
+	<Card title="Open Battles Scheduler" icon="arrow-up-right-from-square" href="https://teambattles.gg/scheduler">
+		Start a new schedule in your browser.
+	</Card>
+</CardGroup>
 
 <Warning>
-	Clearing site data deletes the schedules stored in that browser. Export a `.tbsched` file when you
-	need a durable copy or want to move a schedule to another browser.
+	Schedules are not saved to your TeamBattles account or a cloud service. Clearing this site's
+	browser data deletes them. Export a `.tbsched` file for anything you need to keep.
 </Warning>
-
-## Create or open a schedule
-
-The start screen gives you four ways to begin:
-
-- **Start blank** creates an empty schedule.
-- **Start from an existing schedule** creates a separate copy of a schedule already on this device. You can choose which parts to bring over.
-- **Import .tbsched** reads an exported schedule file and lets you choose which parts to import.
-- **Load the example schedule** creates an ordinary editable schedule that you can rename, export, duplicate, or delete.
-
-The **On this device** library lists schedules with their player and time slot counts. Open a card directly, or use its menu for **Open**, **Rename**, **Duplicate**, **Export .tbsched**, and **Delete**.
-
-## Build the schedule
-
-The wide editor has two views over the same schedule:
-
-- **Board** is a pan-and-zoom canvas with a Pool and one container per time slot. Add players to the Pool, add time slots, and use the whole pool card as a mouse drag surface except for its options button. While the pointer stays over the Pool, the full row moves through the list and the other rows animate into their new positions. Leaving the Pool switches to the compact drag label used for dropping the player on a time slot. A selected group moves as one block. On touch, swipe the card area to scroll the Pool and use a card's grip to drag it. The options menu also moves pool cards up or down with a keyboard. The Pool's add and multi-select buttons use the solid accent color while their modes are active. The add form starts with one name field; press Enter from a filled field or paste multiple lines to add more. You can also move or copy cards through their menu, promote a player manually, move them back to subs, and arrange the containers. The Pool's header has a **pin** button that parks it in the canvas's top-left corner, clear of the edges: a pinned Pool keeps its size and its place while you pan and zoom, so it is always there to drag from. Pinning hides its move handle, and unpinning returns it to the spot on the canvas you last left it in. The pin is saved with the schedule and travels in an export.
-- **Grid** is an availability matrix with players in rows and time slots in columns. Arrow keys move between cells, Space cycles the selected mark, and Shift plus an arrow key paints a block. Each player row carries buttons that set or clear the whole row, and each time slot column has an options menu that does the same for the column and opens that time slot's **Pairing rules**.
-
-Both views use the same availability data, so a change in one appears in the other. Use the Board when you need to create or change player relationships.
-
-Each time slot has a start time, an optional label, and either its own seat count or the schedule default. Use the calendar button to change the date, the time and the **time zone**; its tooltip shows the complete scheduled start.
-
-A container's header names the time slot and says when it starts. Label one `A*BC` and set it to 10:00 PM Eastern and the header reads `A*BC - Aug 19, 10:00 PM ET`, so a labelled time slot still shows its start rather than hiding it behind the name. An unlabelled time slot is named by its time alone and keeps the weekday - `Wed, Aug 19, 10:00 PM` - because that is how you read a board of nights at a glance; a label makes the weekday redundant next to the date, so it drops. The zone is named only when that time slot departs from the schedule's own, and a very long label truncates to keep the header's controls reachable.
-
-The time zone starts on your browser's own, so you can ignore it entirely for a single-region clan. Set it per time slot when a game is called in someone else's zone: picking a zone means "8:30 PM **there**", so the schedule keeps the time you were given rather than the one you had to convert. Search the list by city ("Los Angeles"), by zone name ("America/Los_Angeles") or by abbreviation ("PT"). A time slot on a zone other than the schedule's own shows that zone everywhere it shows a time, so two time slots an ocean apart never read as the same hour. The **Slot actions** menu contains a **Seats** submenu with the schedule default and overrides from 1 through 10, plus **Duplicate**, **Copy players from...**, **Duties...**, **Clear players**, and **Delete**. **Clear players** empties that one time slot - every card in it, the Excluded group included, along with that slot's links and duty pins - and leaves the time slot itself, its time and its seat override in place. It undoes in one step.
-
-### Mark availability per time slot
-
-Availability is never global. Set each player's mark separately for each time slot:
-
-| Mark | What it means |
-| --- | --- |
-| Not in this time slot | The player is not a candidate for this time slot. |
-| Can play | The player is available. |
-| Maybe | The player is available if needed, but the solver minimizes Maybe starts before it tries to fill every seat. |
-| Must play | The player is locked into the lineup unless the inputs contradict each other. If a lock must be relaxed, the run reports a warning. |
-| Cannot play | The player is explicitly excluded from this time slot. |
-
-You can also mark whether a player **Can host** or **Can call**; those flags guide automatic duty assignment. Open **Duties...** on a time slot to leave Host and IGL on **Auto** or explicitly pin any player included in that time slot. An explicit pin overrides the capability flag if that player starts, but it does not force them into the lineup. The run warns you if the chosen player cannot be used.
-
-### Add relationships
-
-Use a player's **Link with** menu, or connect two cards on the Board, to create a together relationship inside that time slot. Use the control on the relationship line to change it to apart.
-
-In **Grid**, open **Pairing rules** from a time slot column header's options menu. The dialog lists every relationship in that time slot, lets you switch one between together and apart or remove it, and adds a new one from two player pickers. Both players must already be in that time slot.
-
-Relationships are per time slot and are preferences, not hard rules. Together asks for both players to start or both to sit; apart asks that the selected pair not start together. Apart is pairwise, so linking A apart from B and B apart from C does not automatically link A apart from C.
-
-The solver considers relationships only after its higher priorities. The **Fairness** panel reports relationships it could not honour.
-
-## Configure and run the simulation
-
-The **Settings** panel controls:
-
-- **Default seats per time slot**.
-- **Minimum separation (minutes)**. Time slots with the same start time always conflict. Other time slots conflict when their starts are less than this many minutes apart, and one player cannot start both.
-- **When a player is caught in two time slots**, with these exact choices:
-  - **Keep them as a substitute** keeps the card in the time slot they lost, with a conflict marker.
-  - **Remove them completely** deletes that placement when the simulation runs. Moving the time slots apart later does not restore it, but undo does.
-- **Fairness**, either **Even number of time slots** or **Even share of time slots**. The second one measures each player against the time slots they could actually make, so someone available two nights a week is not compared against the whole week.
-
-Use the simulation controls in the bottom-left corner of the Board or Grid when you have at least one player and one time slot. Choose **Animated** to watch each lineup decision or **Instant** to apply the result immediately, then select **Simulate**. **Reset** appears next to it once a lineup exists and clears the computed lineups along with the run behind them: the schedule goes back to un-simulated, while your players, availability, links, duty pins and seat overrides all stay as you left them. It is a single undo entry, and it is unavailable while a simulation is computing or playing out. The adjacent buttons open the decision list when one is available, the fairness summary, and a two-tab **Notes** / **Blockers** popover. The solver compares candidate lineups in this strict order:
-
-1. Minimize available players who never start.
-2. Minimize starts marked Maybe.
-3. Maximize filled seats.
-4. Improve the selected fairness measure.
-5. Minimize unhonoured relationships.
-
-Later priorities never override earlier ones. For example, a Maybe player can remain out of an open seat because minimizing Maybe starts ranks above filling that seat.
-
-The solver uses a fixed work budget and several seeded attempts. The same schedule inputs and seed produce the same result, but this is a bounded heuristic, not proof that the result is the global optimum across every possible lineup. Running the simulation again advances the seed for a different tie-break. It leaves the board alone when the new result is strictly worse; an equal-scoring alternative can replace it.
-
-**There is no confirmation step.** The run reveals its decision log and applies the result as soon as the reveal reaches the end - the whole run is a single undo entry, so press <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>Z</kbd> to go back to the previous lineup. Undo is also the only way to recover a placement that **Remove them completely** deleted: **Reset** clears the computed lineup but does not put those players back. Press <kbd>Esc</kbd> during the reveal to skip straight to the finished board; the result still applies. Player cards do not add **Flex** or **Manual** text tags; their existing icons carry those states. Routine **Locked** and **Balance** tags disappear when the reveal finishes. **Notes** covers underfilled time slots and run warnings, while **Blockers** covers contradictions and one-click fixes. The **Fairness** popover explains participation in plain language.
-
-## Recognize a stale lineup
-
-After a run, changing its inputs leaves the computed lineup on screen and marks it stale. A floating reminder in the canvas is the single persistent stale notice and does not count individual edits. It yields while a simulation is playing out. Select **Re-run** when you want a lineup computed from the current inputs.
-
-Stale exports stay available deliberately. Exported images carry a stale marker. Copied name lists continue to reflect the lineup on the board.
-
-## Use a small screen or a second tab
-
-Below 1024 pixels wide, the editor is read-only. You can see the computed lineups and open **Fairness**, **Blockers**, and **Copy and export**, but you cannot use Board or Grid, rename the schedule, change settings, run the simulation, use blocker fixes, or undo and redo.
-
-Modern browsers use Web Locks to keep one writer for a given schedule. `BroadcastChannel` carries the graceful handoff messages: another tab shows the schedule read-only and keeps the safe Fairness, Blockers, Copy, and export tools. Select **Take over** to have the current editor finish its pending local write, reload the latest saved record in this tab, and make the former editor read-only. This is an editing handoff, not live synchronization.
-
-If `BroadcastChannel` is unavailable but Web Locks are available, the second tab remains read-only but cannot ask the open editor to release its lock. Close the editing tab, then select **Take over** again. Browsers without Web Locks fall back to best-effort `BroadcastChannel` coordination and cannot provide the same exclusive-writer guarantee.
-
-## Export the schedule
-
-All exports are generated in your browser. Nothing is uploaded.
-
-| Export | Availability and result |
-| --- | --- |
-| Export .tbsched | Always available. Downloads the current schedule so you can keep it or import it in another browser. |
-| Board overview image | Available when the schedule has at least one time slot, including before the first run. |
-| Export time slot | Lets you choose a solved time slot, then copy its lineup and subs as a list of names or download its lineup-card image. |
-| Copy all name lists | Copies the lineup and all eligible subs for every solved time slot in chronological order. |
-| All lineup cards (one file) | Combines every time slot with a lineup into one image and skips unsolved time slots. |
-
-Name-list copy and lineup-card images need at least one computed or manually created lineup, and are disabled while a simulation is still playing out. **Export .tbsched** is not subject to either restriction.
-
-Every exported image carries the TeamBattles look: the hex-mesh honeycomb ground, one accent rail along the top edge, the crossed-swords wordmark, and the schedule's own name. It is skinned from your own **Appearance** settings, so an image exported on the Light theme or the cyan accent matches the app you are looking at. Championship gold and the host / IGL status colors stay fixed in every theme.
-
-Images support PNG, JPEG, and WebP at 1x, 2x, or 3x, with 2x selected by default. The renderer can automatically step down to a smaller scale to stay inside the browser's canvas limit and tells you which scale it used. A very large combined lineup-card sheet can still be refused; export lineup cards for individual time slots instead.
-
-### Copy a list of names
-
-The copied text uses each player's scheduler display name. It places every starter under **Lineup** and every eligible substitute under **Subs**:
-
-```text
-Lineup:
-- Player A
-- Player B
-
-Subs:
-- Player C
-```
-
-**Copy all name lists** adds the time slot name above each block and copies all solved time slots in one clipboard payload.
-
-## Limits
-
-| Limit | Value |
-| --- | --- |
-| Players per schedule | 64 |
-| Time slots per schedule | 64 |
-| Availability marks per schedule | 4,096 |
-| Relationships per schedule | 512 |
-| Seats per time slot | 1 to 32 (default 6) |
-| Minimum separation | 0 to 720 minutes (default 30) |
-| Schedule name | 120 characters |
-| Player name | 80 characters |
-| Time slot label | 120 characters |
-| `.tbsched` import file | 8 MB |
-| Recovery stash | 2 MB serialized schedule document; one shared slot per browser profile |
-| Undo history | Up to 50 steps; very large schedules can trim earlier but retain at least 5 |
-| Board zoom | 0.3x to 2x |
-| Time slot start | 2000-01-01T00:00:00Z through 2100-01-01T00:00:00Z |
-
-## Troubleshooting
-
-| Symptom | What to do |
-| --- | --- |
-| Your library is empty after clearing browser data | Schedules exist only in this browser profile. Restore one by importing a `.tbsched` copy. |
-| **This browser is out of storage** appears | Free browser storage, then export a `.tbsched` copy. New edits are not reaching IndexedDB while this warning is active. |
-| **Crash recovery is off for this schedule** appears | The serialized document is over the 2 MB recovery-stash cap. IndexedDB autosave continues, but you should export a `.tbsched` copy before closing. |
-| **Editing is paused in this tab** appears | Another tab owns the same schedule. Select **Take over** to reload the latest saved record here. If the browser cannot contact that tab, close the editing tab and select **Take over** again. |
-| The editor is read-only with no Board or Grid | The screen is under 1024 pixels wide, or this tab does not own the editing lock. Use a wider screen or take over the schedule. |
-| Copy and lineup-card images are disabled | Wait for the simulation to finish playing out, or run the simulation or create a manual lineup first. |
-| A time slot is unavailable in **Export time slot** | That time slot has no lineup yet. Run the simulation again; whole-schedule exports skip it. |
-| The schedule is marked stale | Inputs changed after the last run. Exports still work, but select **Re-run** for a current lineup. |
-| **All lineup cards (one file)** is too large | Export lineup cards one time slot at a time. |
-| The browser cannot produce an image file | Try a smaller scale. If JPEG or WebP is refused, export PNG instead. |
-| A `.tbsched` file will not import | Confirm it came from Scheduler, is 8 MB or smaller, and was exported by a compatible version. |
-
-For browser-wide storage and account troubleshooting, see [Troubleshooting](../reference/troubleshooting).
 
 ## Related
 

@@ -147,7 +147,15 @@
 							"tools/index",
 							"tools/battles-replay",
 							"tools/brackets",
-							"tools/scheduler",
+							{
+								"group": "Battles Scheduler",
+								"pages": [
+									"tools/scheduler",
+									"tools/scheduler/build",
+									"tools/scheduler/lineups",
+									"tools/scheduler/exports"
+								]
+							},
 							{
 								"group": "Battles Record",
 								"pages": [
