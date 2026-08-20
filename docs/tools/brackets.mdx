@@ -111,10 +111,18 @@ file. The dialog gives you:
 - **A format** - PNG, JPEG, or WebP. PNG also offers a **transparent background**; JPEG and WebP
   always render on a solid background, so the option is only shown for PNG.
 - **A scale** from 0.5x to 3x, applied on top of the region.
+- **A branded frame**, on by default. It surrounds the bracket with the TeamBattles look - the
+  hex-mesh honeycomb ground, one accent rail along the top edge, the crossed-swords wordmark and
+  your bracket's own name - so the image says what it is once it has been posted somewhere and the
+  filename is gone. It is skinned from your own **Appearance** settings, so a bracket exported on
+  the Light theme or the cyan accent matches the app you are looking at. Turn it off for a bare
+  bracket to drop into a graphic of your own. The frame paints a solid background, so switching it
+  on turns **transparent background** off and vice versa.
 
 Very large selections are refused rather than silently shrunk: if the region and scale together go
 past what your browser can draw, the dialog says so and **Export** stays disabled until you select a
-smaller area or lower the scale. Entrant names in scripts the bracket's fonts do not cover -
+smaller area or lower the scale. The branded frame counts toward that limit, since it makes the
+file bigger than the region you selected. Entrant names in scripts the bracket's fonts do not cover -
 Cyrillic and Vietnamese, in particular - may be drawn in a different font in the exported file than
 on screen.
 

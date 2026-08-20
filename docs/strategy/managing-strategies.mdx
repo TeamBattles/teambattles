@@ -92,6 +92,31 @@ If you are at your plan's saved-strategy limit, the **Save** button shows a smal
 
 ## Exporting and importing a project
 
+### Branded frame on image exports
+
+The Export Frame dialog has a **Branded frame** switch. Turn it on and the exported image is mounted
+in the TeamBattles look - the hex-mesh honeycomb ground, one accent rail along the top edge, the
+crossed-swords wordmark, your board's name and the frame you picked - so a board posted into a
+channel says what it is without its filename. The frame is skinned from your own **Appearance**
+settings, so a board exported on the Light theme or the cyan accent matches the app you are looking
+at.
+
+It is off by default, because a strategy frame is most often dropped straight into a callout or a
+stream overlay where a header band is in the way. The frame paints a solid background, so turning it
+on disables **Transparent background** for that export.
+
+New boards also start on your theme's own background color instead of a fixed near-black. A board
+you have already saved keeps whatever background it was given, and you can change it any time from
+the canvas settings.
+
+### Watermark on image and animation exports
+
+Frame and animation exports (PNG, JPEG, WebP, MP4, WebM, GIF) carry a small `teambattles.gg` wordmark in the bottom-right corner on Free and Basic accounts, and on exports made while signed out. Standard and Premium export without it.
+
+The mark never covers your drawing area edge-on: it sits in the corner at a fixed inset and scales with the export resolution, so a 3x export gets a proportionally sized mark rather than a tiny one. Project files (`.tbstrat`) are never watermarked, at any tier, because they are editable source rather than a finished image.
+
+### Project files
+
 Alongside exporting a single frame or an animation, you can export a whole strategy as a re-importable project file with the `.tbstrat` extension. Open the **Export** menu in the editor header and choose **Export Project**, then pick one of two modes:
 
 <Steps>
@@ -259,15 +284,16 @@ The **Tokens** panel on the right of the editor is a single scrollable list of t
 
 ### Catalog
 
-- **Call of Duty (Black Ops 6, Black Ops 7)** - 2 player variants (alive, dead) + 16 equipment icons (frag, semtex, flash, concussion, decoy, gas, thermite, molotov, C4, claymore, mine, RC-XD, snapshot, tactical-cover, trophy system, artillery strike) + 5 generic markers (bomb, explosion, objective-point, overload-bomb, pin). Per-game extras layer on top.
-- **Counter-Strike 2** - 2 player variants (alive, dead) + 4 equipment icons (frag, flash, gas, molotov) + 3 generic markers (bomb, explosion, pin).
-- **League of Legends** - 2 player variants (alive, dead) plus the full roster of ~170 champion tokens (drag a champion portrait onto the map). League of Legends and Valorant now share the **Riot Games** category.
+- **Black Ops 6** - 2 player variants, 24 equipment tokens, and 5 generic markers: 31 tokens total.
+- **Black Ops 7** - 2 player variants, 24 equipment tokens, and 5 generic markers: 31 tokens total.
+- **Counter-Strike 2** - 2 player variants, 6 equipment tokens, and 5 generic markers: 13 tokens total.
+- **League of Legends** - 2 player SVGs, 16 tactical default SVGs for objectives, vision, structures, and jungle, plus 172 champion WebPs: 190 tokens total. Tactical defaults appear before the champion portraits.
 
 Switching the active game swaps the catalog automatically.
 
 ### Placing tokens
 
-Drag a token from the panel onto the canvas, or click a token to arm it and then click on the canvas to place it. On mobile, tap a token then tap the canvas (no drag required). Player tokens are placed with a default color of red; recolor to blue or neutral from the **Properties** panel. You can also give a player token a jersey number from the same panel.
+Drag a token from the panel onto the canvas, or click a token to arm it and then click on the canvas to place it. On mobile, tap a token then tap the canvas (no drag required). Player tokens are placed with a default color of red; recolor to blue or neutral from the **Properties** panel. You can also give a player token a jersey number from the same panel. Select any SVG token to expose its fill and outline slots in **Properties**. Champion portraits retain their authored image colors and cannot be recolored.
 
 ### FOV (vision) cones
 

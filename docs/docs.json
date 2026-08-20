@@ -147,6 +147,7 @@
 							"tools/index",
 							"tools/battles-replay",
 							"tools/brackets",
+							"tools/scheduler",
 							{
 								"group": "Battles Record",
 								"pages": [
