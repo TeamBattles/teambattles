@@ -1,33 +1,75 @@
 ---
 title: "Call of Duty: Black Ops 6"
-description: "Strategy editor support shipped; matchmaking coming soon"
+description: "Match creation, competitive map pools, and strategy editor support"
 ---
 
-Call of Duty: Black Ops 6 is available in the [Strategy Editor](https://teambattles.gg/strategy/editor) so you can build tactics on every minimap today. Match creation, leagues, and rank tracking for BO6 are still being authored. For a guided walkthrough of the editor, see [Managing strategies](/strategy/managing-strategies).
+Call of Duty: Black Ops 6 supports match creation, challenges, leagues, and tournaments, alongside full [Strategy Editor](https://teambattles.gg/strategy/editor) support on every released minimap.
 
-## Status
+## Requirements
 
-| Feature                          | Status                       |
-| -------------------------------- | ---------------------------- |
-| Strategy editor support          | Available                    |
-| Match creation                   | Coming soon                  |
-| Leagues                          | Coming soon                  |
-| Rank tracking and overlays       | Coming soon                  |
+All players on both rosters must have an **Activision** account linked before the match starts. Link yours under Settings, then Connections.
 
-<Note>
-	BO6 stays flagged as "Coming Soon" in the match wizard until game modes and playlists are
-	authored. You can still draft tactical setups on every released minimap from the strategy editor.
-</Note>
+## Team Sizes
+
+| Setting              | Players per side |
+| --------------------- | ---------------- |
+| Casual (default)     | 6                 |
+| Competitive          | 4                 |
+| Selectable range     | 1 to 12           |
+
+The match wizard opens on the default and lets you pick any size in the range. The strategy editor always plans at the competitive size, so a new Black Ops 6 board opens with 4 tokens per side.
+
+## Game Modes
+
+Eleven modes are available. The three competitive modes carry curated map pools; the rest draw from the full 40-map roster.
+
+| Mode              | Short | Map pool     |
+| ----------------- | ----- | ------------ |
+| Hardpoint         | HP    | Competitive  |
+| Search & Destroy  | S&D   | Competitive  |
+| Control           | CTRL  | Competitive  |
+| Domination        | DOM   | Full roster  |
+| Team Deathmatch   | TDM   | Full roster  |
+| Free-for-All      | FFA   | Full roster  |
+| Kill Confirmed    | KC    | Full roster  |
+| Kill Order        | KO    | Full roster  |
+| Headquarters      | HQ    | Full roster  |
+| Gunfight          | GF    | Small maps   |
+| Face Off          | FO    | Small maps   |
+
+## Competitive Map Pools
+
+Choosing **Competitive** map selection restricts the pool to the current ranked rotation for the selected mode.
+
+| Mode              | Maps                                                |
+| ----------------- | --------------------------------------------------- |
+| Search & Destroy  | Dealership, Hacienda, Protocol, Red Card, Rewind    |
+| Hardpoint         | Hacienda, Red Card, Rewind, Skyline, Vault          |
+| Control           | Hacienda, Protocol, Vault                            |
+
+Choosing **Flex** opens the pool to every released map.
+
+### Small map rotation
+
+Gunfight and Face Off share a 15-map rotation: Babylon, Blitz, Bullet, Eclipse, Exchange, Gala, Heirloom, Jackpot, Lifeline, Nomad, Pit, Racket, Signal, Stakeout, Warhead.
+
+## Playlists
+
+**Core** uses standard health and HUD. **Hardcore** reduces health, limits the HUD, and enables friendly fire. See the [Black Ops 6 rules](https://teambattles.gg/rules/call_of_duty_black_ops_6) for the private match settings each mode requires.
+
+## Rank Tracking
+
+Black Ops 6 has no rank tracking on TeamBattles yet. Match results count toward your team record and experience, but no skill rating is stored or displayed.
 
 ## Strategy Editor
 
-The BO6 map roster includes **40 maps**, all available in the strategy editor:
+All 40 Black Ops 6 maps are drawable, each with a minimap and derived spawn positions.
 
 Babylon, Barrage, Blitz, Bounty, Bullet, Dealership, Derelict, Eclipse, Exchange, Extraction, Firing Range, Fringe, Fugitive, Gala, Grind, Hacienda, Haven, Heirloom, Hideout, Jackpot, Lifeline, Lowtown, Nomad, Payback, Pit, Protocol, Racket, Red Card, Rewind, Runway, Scud, Shutdown, Signal, Skyline, Stakeout, Subsonic, Vault, Vorkuta, Warhead, World Motor Dynasty (WMD).
 
 ### Overlay Layers
 
-BO6 ships image-overlay layers for every mode the strategy editor exposes:
+Black Ops 6 ships six image-overlay layers, toggled independently of the selected mode. Four correspond to a specific objective mode (Domination, Hardpoint, Search and Destroy, Headquarters); the other two (Spawn, Areas) are general-purpose and available regardless of mode:
 
 - Domination zones
 - Hardpoint zones
@@ -36,24 +78,9 @@ BO6 ships image-overlay layers for every mode the strategy editor exposes:
 - Areas
 - Headquarters
 
-Marker-based toggles (spawns, POI labels) are not available for BO6 because the upstream guide data does not ship per-map marker coordinates.
+Marker-based toggles (spawns, POI labels) are not available for Black Ops 6 because the upstream guide data does not ship per-map marker coordinates.
 
 <Tip>
-	Open the [strategy editor](https://teambattles.gg/strategy/editor), pick **Call of Duty:
-	Black Ops 6**, and choose a map to start placing tokens and motion paths.
+	Open the [strategy editor](https://teambattles.gg/strategy/editor), pick **Call of Duty: Black
+	Ops 6**, and choose a map to start placing tokens and motion paths.
 </Tip>
-
-## What's Coming
-
-The match wizard requires non-empty game modes and playlists, so BO6 stays in coming-soon mode until those are defined:
-
-- Game modes (Hardpoint, Search and Destroy, Control, Domination, Team Deathmatch, and so on)
-- Playlists (Core, Hardcore)
-- Map pools per mode
-- Competitive rules and league configuration
-- Activision rank sync
-
-<Warning>
-	When BO6 graduates to fully supported, the match wizard will surface modes and playlists
-	automatically. Until then, only the strategy editor is wired up.
-</Warning>
