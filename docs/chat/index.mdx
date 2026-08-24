@@ -45,6 +45,7 @@ Each active match has one chat room where both teams communicate.
 - Shows all your active match chats
 - Displays game cover, team names, unread badge
 - Sorted by most recent message
+- Tracks unread messages and tactical sound alerts across every listed room, even when chat is closed
 
 **Room Header:**
 
@@ -90,5 +91,17 @@ When a match completes:
 
 - Messages cached locally for faster loading
 - Recent messages appear instantly
-- New messages sync when online
+- Messages that arrived while disconnected sync when online without replaying historical sounds for newly discovered rooms
 - Unread counts persist across sessions
+- Multiple tabs coordinate notification delivery so the same message is not counted or sounded twice
+
+## Notification Focus
+
+The chat room currently on screen stays quiet only while the TeamBattles tab is
+visible and focused. Messages in other rooms still update their unread counts
+and can play the teammate or opponent cue. If you switch tabs while leaving a
+room open, incoming messages notify normally; returning focus marks that visible
+room read.
+
+Browser notifications require a separate opt-in and browser permission. See
+[Chat Settings](./settings) for sound tests and permission controls.

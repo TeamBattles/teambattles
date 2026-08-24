@@ -14,6 +14,13 @@ The editor is split into two sections:
 - **Canvas** - A live preview of your overlay at 1920x1080 resolution. It stays visible and updates instantly as you change widgets and styles in any step, renders per-widget style overrides, and shows the watermark exactly as it will appear in OBS.
 - **Wizard** - Four steps: **Widgets**, **Style**, **Arrange**, and **Go Live**.
 
+<img
+	src="/tools/battles-overlay/preview-1.png"
+	alt="The Widgets step beside a live canvas with five enabled widgets"
+	width="2400"
+	height="1350"
+/>
+
 ### Step navigation
 
 - **New configs** unlock steps as they become valid. If a step is blocked, the reason is shown under the step list (for example, when no widgets are enabled yet or a required team selection is missing).
@@ -77,6 +84,14 @@ Expand **Customize Colors** to set an accent color plus optional overrides for t
 
 The **Widget styles** list shows every enabled widget with its current layout - **Global - Rounded** when the widget follows the global layout, or **Custom - Minimal** (for example) when it has its own. Pick Rounded, Angular, or Minimal per widget to mix layouts across your overlay; picking the same value as the global layout returns that widget to **Global**.
 
+<img
+	src="/tools/battles-overlay/preview-2.png"
+	alt="The Style step using an Angular layout, a custom amber accent, and a per-widget override"
+	width="2400"
+	height="1350"
+	loading="lazy"
+/>
+
 ## Step 3: Arrange
 
 Position your widgets by dragging them directly on the canvas. A chip shows which widget is currently selected.
@@ -98,6 +113,20 @@ The **Grid** and **Snap** toggles live in the canvas toolbar.
 
 - **Grid** shows alignment grid lines on the canvas. The grid uses 120px spacing (at 1920px reference width) and scales with the canvas size. When the grid is hidden, a subtle dot-grid pattern is displayed instead.
 - **Snap** enables smart snapping while you drag: widgets align to grid intersections, to the edges of other widgets, and to the horizontal and vertical center of the canvas. Colored snap guide lines appear during the drag and disappear when you release the widget.
+
+<picture>
+	<source
+		media="(prefers-reduced-motion: reduce)"
+		srcSet="/tools/battles-overlay/preview-3.png"
+	/>
+	<img
+		src="/tools/battles-overlay/grid-snapping.gif"
+		alt="Grid and Snap aligning the User Stats widget on the overlay canvas"
+		width="960"
+		height="540"
+		loading="lazy"
+	/>
+</picture>
 
 ### Watermark
 

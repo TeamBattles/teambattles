@@ -18,28 +18,36 @@ Click the **gear icon** in the chat header to open settings.
 
 ## Sound Notifications
 
-Enable audio alerts for new messages:
+Tactical audio alerts are enabled by default on a new device. Your choice is
+stored in this browser and remains off if you disable it.
 
 - Different sounds for teammate vs opponent messages
-- Disabled by default
+- Alerts cover every active match chat in your room list, even while chat is closed
+- The room you are actively viewing stays quiet while this tab is visible and focused
+- Returning to a focused room clears notifications you received while the tab was in the background
 
-**To enable:**
+Use **Teammate** and **Opponent** under **Test tactical sounds** to preview both
+cues. Testing also gives browsers that restrict automatic audio a direct click
+gesture to allow playback.
 
-1. Open Chat Settings
-2. Toggle **Sound Notifications** on
-3. Choose sound preferences
+<Note>
+	TeamBattles establishes a silent baseline when a room is first discovered. It
+	does not replay historical sounds when the page first loads.
+</Note>
 
 ## Browser Notifications
 
-Receive notifications even when not on the page:
+Browser notifications are separate from tactical sounds and remain opt-in:
 
 - Requires browser permission
 - Disabled by default
+- Can appear for other rooms or while this tab is hidden or unfocused
+- Do not appear for the room currently visible in a focused tab
 
 **To enable:**
 
 1. Open Chat Settings
-2. Toggle **Browser Notifications** on
+2. Select **Enable browser notifications**
 3. Grant permission when prompted
 
 <Note>
@@ -56,9 +64,9 @@ If blocked, instructions appear in Chat Settings explaining how to:
 
 ## Unread Badge
 
-- Shows count of unread messages across all rooms
+- Shows the exact count of unread messages across all discovered rooms
 - Appears on the chat button
-- Resets when you open a room
+- Resets when you open a room or return focus to the room already on screen
 
 ## Position & Size (Desktop)
 
@@ -67,7 +75,7 @@ Your floating chat window preferences:
 - Position on screen
 - Window size
 
-These are saved in your browser's local storage.
+These are saved in your browser's site storage.
 
 <Warning>
 	Clearing browser data will reset chat preferences. Settings are device-specific and not synced.
@@ -78,12 +86,13 @@ These are saved in your browser's local storage.
 **"I'm not receiving notifications"**
 
 - Check if sounds and browser notifications are enabled in Chat Settings
+- Use both tactical sound test buttons; if playback is blocked, allow sound for TeamBattles in your browser's site settings and test again
 - For browser notifications, grant permission when prompted
 - If blocked, check browser settings
 
 **"My chat position/size isn't saved"**
 
-- Settings are stored in local storage
+- Settings are stored in browser site storage
 - Clearing browser data resets them
 - Settings are device-specific, not synced
 
