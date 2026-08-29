@@ -1,16 +1,9 @@
 ---
 title: "Call of Duty: Black Ops 7"
-description: "Game modes, maps, and requirements"
+description: "Match creation, competitive map pools, rank tracking, and strategy editor support"
 ---
 
-{/_
-IMAGE NEEDED: Game mode selection
-Type: screenshot
-Shows: Game mode picker in match creation
-Notes: Show all available modes
-_/}
-
-Call of Duty: Black Ops 7 is fully supported with multiple game modes and map pools.
+Call of Duty: Black Ops 7 supports match creation, challenges, leagues, and tournaments across 16 game modes and a 43-map roster, alongside SR rank tracking and full [Strategy Editor](https://teambattles.gg/strategy/editor) support.
 
 ## Requirements
 
@@ -26,12 +19,12 @@ Link your Activision account:
 
 ## Team Size
 
-| Setting             | Value      |
-| ------------------- | ---------- |
-| Minimum             | 1 player   |
-| Maximum             | 12 players |
-| Default (casual)    | 6 players  |
-| Competitive         | 4 players  |
+| Setting          | Value      |
+| ---------------- | ---------- |
+| Minimum          | 1 player   |
+| Maximum          | 12 players |
+| Default (casual) | 6 players  |
+| Competitive      | 4 players  |
 
 Pick the exact size when you create or edit the match: the wizard opens on the casual
 default and lets you choose any size between the minimum and maximum. Your choice also
@@ -39,7 +32,40 @@ caps the active roster, so the lineup and the team size always agree. The Map Po
 control (Competitive or Flex) only decides which maps are available; it never changes
 the team size.
 
+The strategy editor always plans at the competitive size, so a new Black Ops 7 board
+opens with 4 tokens per side.
+
 ## Game Modes
+
+{/_
+IMAGE NEEDED: Game mode selection
+Type: screenshot
+Shows: Game mode picker in match creation
+Notes: Show all available modes
+_/}
+
+Sixteen modes are available. The four competitive modes carry curated map pools; the standard modes draw from the full 43-map roster, and Gunfight and the Face Off variants run on a small-map rotation.
+
+| Mode                      | Short   | Map pool         |
+| ------------------------- | ------- | ---------------- |
+| Hardpoint                 | HP      | Competitive (10) |
+| Search & Destroy          | S&D     | Competitive (11) |
+| Overload                  | OL      | Competitive (6)  |
+| Control                   | CTRL    | Competitive (6)  |
+| Domination                | DOM     | Full roster (43) |
+| Team Deathmatch           | TDM     | Full roster (43) |
+| Free-for-All              | FFA     | Full roster (43) |
+| Kill Confirmed            | KC      | Full roster (43) |
+| Kill Order                | KO      | Full roster (43) |
+| Skirmish                  | SKIRM   | Full roster (43) |
+| Gunfight                  | GF      | Small maps (3)   |
+| Face Off: Domination      | FO: DOM | Small maps (4)   |
+| Face Off: Kill Confirmed  | FO: KC  | Small maps (4)   |
+| Face Off: Kill Order      | FO: KO  | Small maps (4)   |
+| Face Off: Moshpit         | FO: MP  | Small maps (4)   |
+| Face Off: Team Deathmatch | FO: TDM | Small maps (4)   |
+
+## Competitive Map Pools
 
 {/_
 IMAGE NEEDED: Map pool display
@@ -48,45 +74,70 @@ Shows: Map selection interface
 Notes: Show competitive pool
 _/}
 
-| Mode             | Competitive Maps | Notes     |
-| ---------------- | ---------------- | --------- |
-| Hardpoint        | 10               | -         |
-| Search & Destroy | 11               | -         |
-| Control          | 6                | -         |
-| Overload         | 6                | -         |
-| Domination       | 43               | Full pool |
-| Team Deathmatch  | 43               | Full pool |
+Choosing **Competitive** map selection restricts the pool to the current ranked rotation for the selected mode.
 
-## Map Pools
+| Mode             | Maps                                                                                  |
+| ---------------- | ------------------------------------------------------------------------------------- |
+| Hardpoint        | Blackheart, Colossus, Den, Exposure, Frequency, Gridlock, Hacienda, Sake, Scar, Vertigo |
+| Search & Destroy | Colossus, Den, Exposure, Frequency, Fringe, Gridlock, Hacienda, Raid, Sake, Scar, Vertigo |
+| Overload         | Den, Exposure, Frequency, Gridlock, Scar, Vertigo                                      |
+| Control          | Colossus, Den, Exposure, Gridlock, Hacienda, Scar                                      |
 
-Maps are organized into two pools:
+Choosing **Flex** opens the pool to every released map.
 
-| Pool            | Description                                         |
-| --------------- | --------------------------------------------------- |
-| **Competitive** | Tournament-standard maps, curated for balanced play |
-| **Flex**        | All available maps including casual/pub maps        |
+### Small map rotation
 
-<Note>Some maps may be marked "Coming Soon" if not yet released.</Note>
+Gunfight runs on Nuketown, Hijacked, and Toshin. The five Face Off modes share those three plus Standoff.
+
+## Maps
+
+All 43 maps are released and available in the Flex pool:
+
+Abyss, Beacon, Blackheart, Colossus, Cortex, Den, Dig, Exposure, Express, Fate, Flagship, Frequency, Fringe, Gridlock, Hacienda, Hijacked, Homestead, Imprint, Jubilee, Launch, Liminal, Meltdown, Nexus, Nuketown, Odysseus, Onsen, Paranoia, Plaza, Primetime, Raid, Retrieval, Sake, Scar, Slums, Standoff, Summit, The Forge, Torment, Toshin, Utopia, Vertigo, Yakei, Zenith.
+
+## Playlists
+
+**Core** uses standard health and HUD. **Hardcore** reduces health, limits the HUD, and enables friendly fire. See the [Black Ops 7 rules](https://teambattles.gg/rules/call_of_duty_black_ops_7) for the private match settings each mode requires.
 
 ## Map Selection
 
 During match creation, choose:
 
-- **Selection Type** - Competitive or Flex pool
-- **Preference Mode** - Veto (ban maps) or Preferred (pick maps)
+- **Selection Type** - Competitive or Flex pool. Black Ops 7 opens on Competitive.
+- **Preference Mode** - Veto, Preferred, or Manual. Black Ops 7 opens on Veto.
+
+| Mode          | What you pick                                                |
+| ------------- | ------------------------------------------------------------ |
+| **Veto**      | One map to ban from the pool                                 |
+| **Preferred** | Your favoured maps, up to half the released maps in the pool |
+| **Manual**    | The exact maps to play, picked directly                      |
 
 ### How Map Selection Works
 
 1. Both teams submit their preferences
-2. System analyzes both teams' selections
-3. Weighted random selection determines final pool
+2. The system analyses both teams' selections
+3. Weighted random selection determines the final pool
 4. Maps preferred by both teams are more likely
-5. Final pool fairly represents both preferences
+5. The final pool fairly represents both preferences
 
-## Interactive Maps
+## Rank Tracking
 
-TeamBattles includes interactive minimaps for supported maps, showing:
+Black Ops 7 is the only Call of Duty title on TeamBattles with a rank ladder. Ranks are **manually entered** rather than synced, across two modes (Ranked Play and Warzone Ranked), on an SR scale running Bronze through Iridescent.
 
-- Objective locations
-- Key positions
-- Callout areas
+See [Settings > Game Stats](/settings/game-stats) for the entry steps and the full tier table.
+
+## Strategy Editor
+
+42 of the 43 maps are drawable in the [Strategy Editor](https://teambattles.gg/strategy/editor), each with a minimap and derived spawn positions. Fringe ships cover art only and does not appear in the map picker.
+
+### Overlay Layers
+
+Black Ops 7 ships both marker toggles and zone overlays, toggled independently of the selected mode:
+
+- **Markers** - spawn points, POI labels, and objective markers for Domination, Hardpoint, and Search and Destroy
+- **Zone overlays** - Domination zones and Hardpoint zones
+
+<Tip>
+	Open the [strategy editor](https://teambattles.gg/strategy/editor), pick **Call of Duty: Black
+	Ops 7**, and choose a map to start placing tokens and motion paths.
+</Tip>
