@@ -1,54 +1,59 @@
 ---
-title: "Drawing tool styles"
-description: "Configure stroke, fill, endcaps, and per-tool sticky defaults for every drawing tool in the strategy editor."
+title: "Drawing styles"
+description: "Set the color, thickness, fill, and line ends for every drawing tool"
 ---
 
-The strategy editor's Properties panel exposes a unified set of style controls for every drawing tool: pen, line, arrow, rectangle, ellipse, and polygon. Selecting any drawing shape brings up Stroke, Endcaps (where applicable), and Fill (where applicable) sections.
+Every drawing tool in the strategy editor - pen, line, arrow, rectangle, ellipse, and polygon -
+shares the same style controls. Select any shape you have drawn and the **Properties** panel shows
+the options that apply to it.
 
-## Stroke
+## Line
 
-Every drawing tool has a stroke. The Stroke section exposes:
+Every shape has a line around it. You can set:
 
-- **Color**: pick from the color picker or paste a hex value
-- **Opacity**: 0 (invisible) to 1 (opaque)
-- **Width**: 1 to 12 px
-- **Style**: Solid, Dashed, or Dotted
-- **On/off toggle**: when off, no stroke is painted
+- **Color** - pick one, or paste in a hex code such as `#22D3EE`
+- **Opacity** - from invisible to solid
+- **Thickness** - from 1 (hairline) to 12 (heavy)
+- **Style** - solid, dashed, or dotted
+- **On or off** - turn the line off entirely
 
-Dashed and dotted patterns scale with stroke width so they look proportional at any line weight.
+Dashes and dots scale with the thickness, so they look right at any weight.
 
-## Fill (rectangle, ellipse, polygon)
+## Fill
 
-Closed shapes can carry a fill independent of their stroke:
-
-- **Color** and **Opacity** (same controls as stroke; fill opacity defaults to 25%)
-- **On/off toggle**
+Rectangles, ellipses, and polygons can be filled in as well as outlined. The fill has its own color,
+its own opacity (25% to begin with), and its own on/off switch.
 
 <Note>
-A shape must keep at least one visible layer. If you toggle off the only remaining visible layer (e.g. you turn off stroke when fill is already off), the other layer auto-re-enables with a brief notification.
+	A shape has to stay visible somehow. Turn off the last thing that was showing - the line when the
+	fill is already off, say - and the other one comes back on, with a note telling you.
 </Note>
 
-## Endcaps (pen, line, arrow)
+## Line ends
 
-The pen, line, and arrow tools support start and end caps with eight options:
+The pen, line, and arrow tools can have a marker at each end. Both ends are set separately, so you
+can have an arrowhead at one end and a dot at the other.
 
-| Cap | Description |
-|---|---|
-| None | No marker at the endpoint |
-| Arrow (filled) | Filled triangular arrowhead |
-| Arrow (open) | Hollow V-shaped arrowhead |
-| Circle | Filled disc |
-| Ring | Hollow ring |
-| Square | Filled square |
-| Diamond | Filled diamond |
-| Bar | Perpendicular tick |
+| End            | What it looks like              |
+| -------------- | ------------------------------- |
+| None           | Nothing                         |
+| Arrow (filled) | A solid arrowhead               |
+| Arrow (open)   | A hollow V                      |
+| Circle         | A solid dot                     |
+| Ring           | A hollow circle                 |
+| Square         | A solid square                  |
+| Diamond        | A solid diamond                 |
+| Bar            | A short line across the end     |
 
-Caps scale with the stroke width and orient along the line's tangent at each endpoint. The arrow tool defaults to a filled arrow at the end on creation; the pen and line tools default to no caps. You can change either end's cap to any option independently.
+Markers scale with the line thickness and turn to follow the direction of the line. Arrows start out
+with a filled arrowhead at the finishing end; the pen and line start with nothing on either end.
 
-## Sticky tool defaults
+## Each tool remembers what you used last
 
-Each drawing tool remembers its last-used style for the editor session. After you set a rectangle's stroke to red, dashed, width 2, your next rectangle inherits those settings without you having to repeat the configuration.
+Set a rectangle to a red dashed line and the next rectangle you draw comes out the same way, so you
+are not setting it up again every time.
 
 <Note>
-Sticky defaults are per-tool: changing your rectangle's stroke does NOT change your ellipse defaults. They reset to the original amber-and-dashed-off configuration when you reload the page or open a different strategy.
+	Each tool remembers separately - changing your rectangle does not change your ellipse. Everything
+	goes back to the starting settings when you reload the page or open a different strategy.
 </Note>

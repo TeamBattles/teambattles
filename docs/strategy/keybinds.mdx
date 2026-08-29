@@ -1,61 +1,59 @@
 ---
-title: "Keybinds"
-description: "Default keyboard shortcuts and how to customize them."
+title: "Keyboard shortcuts"
+description: "The shortcuts built into the strategy editor, and how to change them"
 ---
 
-The strategy editor has keyboard shortcuts for all tools and edit actions. Signed-in users can remap any chord via the Keybinds dialog (gear icon in the editor header).
+Every tool and edit action in the strategy editor has a keyboard shortcut. If you are signed in, you
+can change any of them.
 
-## Defaults
+## The defaults
 
-| Action             | Default chord           |
-| ------------------ | ----------------------- |
-| Select tool        | `V`                     |
-| Pen                | `P`                     |
-| Line               | `L`                     |
-| Arrow              | `A`                     |
-| Rectangle          | `R`                     |
-| Ellipse            | `O`                     |
-| Polygon            | `G`                     |
-| Text               | `T`                     |
-| Token              | `K`                     |
-| Undo               | `Mod + Z`               |
-| Redo               | `Mod + Shift + Z`       |
-| Copy               | `Mod + C`               |
-| Paste              | `Mod + V`               |
-| Duplicate          | `Mod + D`               |
-| Delete             | `Delete`                |
-| Add stage          | `Mod + Enter`           |
-| Next stage         | `Mod + Right Arrow`     |
-| Previous stage     | `Mod + Left Arrow`      |
-| Toggle playback    | `Space`                 |
-| Zoom in            | `Mod + =`               |
-| Zoom out           | `Mod + -`               |
-| Reset zoom         | `Mod + 0`               |
+| Action          | Shortcut            |
+| --------------- | ------------------- |
+| Select tool     | `V`                 |
+| Pen             | `P`                 |
+| Line            | `L`                 |
+| Arrow           | `A`                 |
+| Rectangle       | `R`                 |
+| Ellipse         | `O`                 |
+| Polygon         | `G`                 |
+| Text            | `T`                 |
+| Token           | `K`                 |
+| Undo            | `Mod + Z`           |
+| Redo            | `Mod + Shift + Z`   |
+| Copy            | `Mod + C`           |
+| Paste           | `Mod + V`           |
+| Duplicate       | `Mod + D`           |
+| Delete          | `Delete`            |
+| Add stage       | `Mod + Enter`       |
+| Next stage      | `Mod + Right Arrow` |
+| Previous stage  | `Mod + Left Arrow`  |
+| Play and pause  | `Space`             |
+| Zoom in         | `Mod + =`           |
+| Zoom out        | `Mod + -`           |
+| Reset zoom      | `Mod + 0`           |
 
-`Mod` = `Cmd` on macOS, `Ctrl` on Windows / Linux.
+`Mod` means `Cmd` on a Mac and `Ctrl` on Windows and Linux.
 
-## Customizing (signed-in only)
+## Change them
+
+You need to be signed in.
 
 <Steps>
-	<Step title="Open the Keybinds dialog">
-		Click the gear icon in the editor header.
-	</Step>
-	<Step title="Enter capture mode">
-		Click any chord row to enter capture mode.
-	</Step>
-	<Step title="Press the new chord">
-		Press the new chord. Press `Esc` to cancel.
-	</Step>
-	<Step title="Resolve conflicts">
-		If the chord is already bound to another action, you'll be prompted to override.
+	<Step title="Open the shortcuts dialog">Select the gear icon in the editor header.</Step>
+	<Step title="Choose what to change">Select the row for the action you want.</Step>
+	<Step title="Press your new shortcut">Or press `Esc` to leave it as it was.</Step>
+	<Step title="Deal with clashes">
+		If something else already uses that combination, you are asked whether to take it over.
 	</Step>
 	<Step title="Save">
-		Click **Save** when you're done. Customizations sync across devices.
+		Select **Save**. Your changes follow you to any device you sign in on.
 	</Step>
 </Steps>
 
-The **Reset to default** icon next to each row reverts that action. **Reset all to defaults** clears every customization.
+Each row has a reset icon that puts that one shortcut back to the default, and
+**Reset all to defaults** clears everything you have changed.
 
-## System chords (not rebindable)
-
-`Esc` (contextual cancel) and `Enter` (finalize polygon authoring) are reserved as system chords and do not appear in the dialog.
+<Note>
+	`Esc` (cancel what you are doing) and `Enter` (finish a polygon) are fixed and cannot be changed.
+</Note>

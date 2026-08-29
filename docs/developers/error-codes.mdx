@@ -1,0 +1,160 @@
+---
+title: API Error Codes
+description: Stable error codes returned by the TeamBattles REST API, what each one means, and how to resolve it.
+---
+
+Every failed API response carries a stable `error_*` code in its `error` field. Branch on that code,
+not on the human-readable `details` message, which may change.
+
+
+| Error code | HTTP status | Meaning |
+| --- | :-: | --- |
+| `error_invalid_num_items` | 400 | The `numItems` parameter was out of the valid range (typically 1-100 for paginated matches endpoints) |
+| `error_invalid_limit` | 400 | The `limit` parameter was out of the valid range |
+| `error_strategy_save_quota_exceeded` | 429 | The per-map or total strategy save cap for your subscription tier has been reached |
+| `error_strategy_board_limit_exceeded` | 429 | The 200-board per-user anti-abuse cap has been reached |
+| `error_custom_map_limit_reached` | 429 | The Premium custom-map per-user cap (50) has been reached |
+
+**Fix `error_invalid_num_items` / `error_invalid_limit`:** clamp the pagination parameter to the documented range and retry.
+
+**Fix `error_strategy_save_quota_exceeded`:** delete unused strategies, move strategies between boards, or upgrade your subscription tier for higher caps.
+
+**Fix `error_strategy_board_limit_exceeded`:** delete unused boards from the Battles Strategy editor before creating new ones.
+
+**Fix `error_custom_map_limit_reached`:** open the Battles Strategy editor's custom maps panel and delete unused custom maps. Custom maps are a Premium feature with a 50-per-user cap.
+
+## Tournament and bracket error codes
+
+These codes surface in the tournament and Battles Brackets flows. Most are explained above in [Tournament Issues](#tournament-issues); the full set is listed here for reference.
+
+| Error code | HTTP status | Meaning |
+| --- | :-: | --- |
+| `error_not_eligible_to_host` | 403 | You do not meet the hosting requirements (paid tier or 30-day account) or are competitively banned |
+| `error_tournament_not_found` | 404 | The tournament does not exist, **or** you may not view it. On the API the two are deliberately indistinguishable - see [404 on a tournament that exists](#404-on-a-tournament-that-exists) |
+| `error_tournament_full` | 409 | The tournament has reached its maximum participant count |
+| `error_registration_closed` | 400 | Registration is not currently open for this tournament |
+| `error_already_entered` | 409 | Your team is already entered in this tournament |
+| `error_roster_too_small` | 400 | The selected roster is smaller than the tournament's required team size |
+| `error_free_agent_account_required` | 403 | The game requires a linked platform account to join the free-agent pool |
+| `error_free_agent_already_in_pool` | 409 | You are already in this tournament's free-agent pool |
+| `error_approval_pending` | 409 | The tournament is already awaiting staff review |
+| `error_approval_required` | 403 | The tournament must be approved before this action (for example, opening registration) |
+| `error_node_already_completed` | 409 | The bracket match already has a result; reopen it before overriding |
+| `error_node_match_already_exists` | 409 | A match has already been generated for this bracket slot |
+| `error_invalid_seed_order` | 400 | The submitted seed order does not match the tournament's participants |
+| `error_check_in_closed` | 400 | The check-in window is not open |
+| `error_not_tournament_staff` | 403 | You are not a manager of this tournament (or lack the required admin level). On the API this is what a tournament `MODERATOR` receives on every ADMIN-floor endpoint - see [403 on a tournament you do staff](#403-on-a-tournament-you-do-staff) |
+| `error_not_org_admin` | 403 | `POST /tournaments` named `hostType: "org"` for an organization you do not administer |
+| `error_revert_blocked_downstream` | 409 | A downstream bracket result has already been played, or a downstream match has started. Revert those first |
+| `error_free_agent_offer_not_pending` | 409 | The pickup offer was already answered, or it lapsed and was marked expired by this request |
+| `error_tournament_host_limit_reached` | 403 | You have reached your tier's limit on concurrent tournaments |
+| `error_tournament_size_limit_reached` | 403 | The chosen maximum participant count exceeds your tier's cap |
+| `error_sponsor_tag_limit_reached` | 403 | You have reached your tier's sponsor-tag limit |
+| `error_sim_limit_reached` | 403 | You have reached your tier's saved-bracket limit in Battles Brackets |
+
+**Fix the tier-limit codes** (`error_tournament_host_limit_reached`, `error_tournament_size_limit_reached`, `error_sponsor_tag_limit_reached`, `error_sim_limit_reached`): remove or finish an existing item, lower the requested count, or upgrade your subscription tier. See the [tier-based limits](/reference#tier-based-limits) table.
+
+## League points table rejected (`error_invalid_input`)
+
+`POST /tournaments/{identifier}/league-points` validates the placement curve before saving it. When the table itself is what failed, the 400 body carries a `reason` field alongside the usual `details` sentence, so you can branch on a stable code instead of parsing English. The table is validated even when `leaguePointsEnabled` is `false`.
+
+| `reason` | Meaning |
+| --- | --- |
+| `EMPTY` | The array has no rows. Omit `leaguePointsByPlacement` entirely to fall back to the platform default curve, or send `leaguePointsEnabled: false` to award nothing. An empty array is not the way to express either |
+| `ALL_ZERO` | The table is well formed, but no row awards more than 0 points, so it could never score anything. Award at least one positive value, or disable league points |
+| `TOO_MANY_ROWS` | More than 32 rows |
+| `BAD_PLACEMENT` | A placement that is not an integer of 1 or greater |
+| `BAD_POINTS` | A points value outside the 0-1000 range |
+| `DUPLICATE` | The same placement appears twice |
+| `NOT_ASCENDING` | Placements are not in ascending order |
+
+`reason` is absent for the other 400 causes on this endpoint - a tournament that is not league-hosted, or one that has already finalized.
+
+## 404 on a tournament that exists (`error_tournament_not_found`)
+
+Three different situations produce this 404 on the Tournament API, and the response body cannot tell them apart. That collapse is deliberate: it stops the read endpoints from being used to enumerate the slug space.
+
+1. **You passed an ID instead of a slug.** Every `{identifier}` in `/api/v1/tournaments/**` is resolved **by slug only** - the resolver does not accept a Convex tournament ID. Sending the `tournamentId` from the create response is the single most common cause. Store and send the `slug` instead.
+2. **The tournament is not visible to you.** A `DRAFT`, or an `UNLISTED` tournament you have no relationship with, answers 404 rather than 403.
+3. **There genuinely is no such slug.**
+
+A sub-resource ID (`participantId`, `inviteId`, `offerId`, `rosterEntryId`, `nodeId`) that belongs to a *different* tournament also answers 404, for the same reason.
+
+**Fix:** confirm you are sending a slug, then confirm the tournament is approved and visible to the key's owner.
+
+## 403 on a tournament you do staff (`error_not_tournament_staff`)
+
+The Tournament API checks two things independently: the capability on the key, and the key owner's **authority floor** on the tournament. Holding the capability is not enough, and a key can pass every scope check and still be refused here.
+
+Seventeen organizer endpoints - update, submit for approval, registration open and close, round schedule, league points, cancel, start, regenerate matches, organizer roster add, roster entry delete, override result, revert result, add and remove staff, create and revoke invite - require the **ADMIN** floor. A tournament **`MODERATOR` does not meet it** and receives this 403 even though a `MODERATOR` can perform those actions in the web console's participant and match views.
+
+**Fix:** promote the key owner to tournament staff `ADMIN`, or restrict the integration to the nine MANAGER-floor endpoints (applications list/approve/deny, participant remove and disqualify, staff list, invite list, activity feed, free-agent remove).
+
+A TeamBattles staff member's key does **not** pass this floor by staff standing alone. Platform staff gain authority on a public API **write** only through explicit, audited elevation: the key must carry the `platform.staff` scope, the request must send `X-TB-Elevate: platform-staff`, and the key owner must hold the `management` developer role - all re-verified server-side. Organizer **reads** never elevate, and elevation never bypasses the owner-plan `tournamentOrganizerApi` feature gate. Without all three factors, or on any read, staff act through the web console (which offers a per-action "Act as Platform Staff" confirm). See [Authentication - Platform staff elevation](/developers/authentication#platform-staff-elevation).
+
+## 403 `error_api_feature_required` on a tournament you host
+
+Tournament organizer access is gated at `api_pro` on the **tournament host owner's personal developer plan** - the organization's owner for an `org`-hosted tournament, the league's owner for a `league`-hosted one, not the key owner and not the organization's own subscription.
+
+An organization holding a consumer subscription does not satisfy this. The developer plan ladder has no organization arm.
+
+**Fix:** the host owner needs the developer plan, not you and not the org. Their plan also sets the rate-limit ceiling for every organizer request on that tournament.
+
+## The tournament started but there are no matches
+
+`POST /tournaments/{identifier}/start` answers **`202`**, not `200`, and returns **before any match exists**. Rounds and bracket nodes are written synchronously; the matches themselves are generated by a background pass afterwards, which gives each node one attempt and then moves on. That pass can partially fail, and nothing in the 202 body reports it.
+
+`nodeCount` in the response is the size of the bracket **structure**. It is not a match count and not a completion target.
+
+**Fix:** poll `GET /tournaments/{identifier}/bracket` and look for nodes that have a `matchId`. If some never acquire one, call `POST /tournaments/{identifier}/regenerate-matches` (a separate `regenerate` capability, not `lifecycle`). Its `queued` value is an **upper bound** on what will be re-attempted, including nodes an earlier pass abandoned - `queued: 0` is a legitimate answer meaning nothing was eligible, not a failure. Regeneration is exactly-once per node, so it never destroys an existing match and is safe to repeat.
+
+## An update returned 200 but the change is not live
+
+`POST /tournaments/{identifier}/update` is **tri-state**. Branch on `applied` rather than on the status code:
+
+| `applied` | What happened |
+| --- | --- |
+| `direct` | Never-approved tournament. The edit is live |
+| `pending` | Previously approved. Material changes were **staged**, the tournament flipped to `AWAITING_APPROVAL`, and it has dropped off the public listing until staff re-approve. The edit is **not** live |
+| `noop` | Previously approved, and every value sent already matched. Nothing was staged |
+
+If an edit disappeared entirely, check for a misspelled key: fields the endpoint does not recognise are **silently dropped**, not rejected. A body with one valid key and three misspelled ones succeeds and applies only the one. Compare `changedFields` on the `pending` arm against what you meant to send. A body with *no* recognised fields is refused with `400` ("Supply at least one updatable field") rather than answering a misleading `noop`.
+
+## Cannot remove a free agent (`error_invalid_input`, "Remove the player from the team roster first")
+
+An organizer cannot withdraw a free agent whose status is `PICKED_UP`. The request is refused with `400` and **nothing is written**.
+
+This is a guard, not a bug. Withdrawing them while their `FREE_AGENT` roster entry survives would strand the player: no re-entry path accepts a pool row that is not `AVAILABLE`, and the surviving roster entry keeps the re-pickup guards rejecting.
+
+**Fix:** delete the roster entry first with `DELETE /tournaments/{identifier}/roster-entries/{rosterEntryId}`, which releases the agent back to `AVAILABLE`, then remove them from the pool. An `AVAILABLE` agent can be removed in one call. Note that `GET /tournaments/{identifier}/free-agents` lists `AVAILABLE` entries only, and the v1 reads do not project roster **entry** IDs to organizers - if you do not already hold that ID, remove the roster entry from the tournament management page in the web app.
+
+## 429 during concurrent bursts from one key or IP (`error_api_rate_limited`)
+
+If you fire many requests for the same API key (or from the same IP) at the same instant,
+some may return `429 error_api_rate_limited` even when you are not obviously over your
+sustained rate. Under a tight concurrent burst, the API sheds momentary write contention
+on its rate-limit state by returning `429` rather than failing the request. Enforcement is
+also shard-approximate at the margin, so the cutoff can land slightly before the exact
+aggregate limit.
+
+**Fix:** honor the `Retry-After` header (a conservative upper bound - a retry usually
+succeeds sooner), add jittered backoff, and avoid firing a large batch of requests
+simultaneously on one key. Treat `X-RateLimit-Remaining` as an estimate, not an exact
+budget.
+
+## Invalid cursor error (`error_invalid_cursor`)
+
+If you receive a `400 error_invalid_cursor` response from `/api/v1/user/matches`,
+`/api/v1/teams/[identifier]/matches`, or `/api/v1/orgs/[identifier]/matches`, the
+cursor you passed was not produced by a recent response from the same endpoint.
+
+**Common causes:**
+- The cursor format changed between versions. If you stored a cursor from the
+  legacy response envelope (`{ matches, pagination: { cursor, hasMore } }`),
+  it will not work against the new native envelope (`{ page, isDone, continueCursor }`).
+  Re-issue a fresh `numItems` request with no cursor to start a new pagination run.
+- The cursor was truncated in storage or transit (e.g., URL length limits).
+- A deploy invalidated server-side pagination state.
+
+**Fix:** drop the stored cursor, call the endpoint again without `cursor`, and
+use the `continueCursor` from the new response for subsequent pages.

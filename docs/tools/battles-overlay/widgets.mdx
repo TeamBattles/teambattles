@@ -1,177 +1,121 @@
 ---
-title: "Widget Reference"
-description: "Detailed reference for all overlay widgets"
+title: "Widgets"
+description: "What each Battles Overlay widget shows on stream"
 ---
 
-The Battles Overlay includes 7 core widgets plus game-specific rank widgets you can toggle on and arrange on your stream. Each widget displays different competitive data.
+Battles Overlay has seven widgets, plus a rank widget for each game you play. Turn on the ones you
+want in the editor and arrange them however you like.
 
-Overlay URLs are public - no API key required. User-scoped widgets require your profile visibility be `public` or `limited` (not `private`). Team and organization widgets require the selected entity to be public. See [Visibility & Privacy](/tools/battles-overlay/api-permissions) for details.
+Every widget fills in from your public profile, so nothing here needs a password or a key. If one
+appears empty on stream, check [Visibility and Privacy](/tools/battles-overlay/visibility).
 
-## Widget Overview
+## At a glance
 
-| Widget             | Default Size | Description                        |
-| ------------------ | ------------ | ---------------------------------- |
-| User Stats         | ~300x120px   | Your personal competitive stats    |
-| Team Stats         | ~300x120px   | Your selected team's stats         |
-| Organization Stats | ~280x100px   | Your selected organization's stats |
-| Active Match       | ~400x150px   | Live match scores and status       |
-| Leaderboard Rank   | ~200x80px    | Your position on the leaderboard   |
-| Top 3 Players      | ~250x180px   | Top 3 players on the leaderboard   |
-| Referral Code      | ~200x80px    | Your referral code and count       |
+| Widget             | Shows                            | Size on screen |
+| ------------------ | -------------------------------- | -------------- |
+| User Stats         | Your own record                  | 300 x 120      |
+| Team Stats         | A team you are on                | 300 x 120      |
+| Organization Stats | An organization you belong to    | 280 x 100      |
+| Active Match       | Your live match and its score    | 400 x 150      |
+| Leaderboard Rank   | Where you sit on the leaderboard | 200 x 80       |
+| Top 3 Players      | The current top three            | 250 x 180      |
+| Referral Code      | Your referral code and total     | 200 x 80       |
+| Game Rank          | Your rank in a specific game     | 320 x 100      |
+
+Sizes are approximate, and the **Size** slider in the editor scales all of them together. You only
+need them if you add each widget to your stream as its own source rather than using the full
+overlay link.
 
 ## User Stats
 
-Displays your personal competitive statistics.
-
-**Data shown:**
+Your own competitive record.
 
 - Wins and losses
-- Win rate percentage
-- Current win/loss streak
-- Experience points (XP)
-
-**Default size:** ~300x120px
-
-**Requirement:** Your profile visibility must be `public` or `limited`.
+- Win rate
+- Current win or loss streak
+- XP
 
 ## Team Stats
 
-Displays stats for your selected team. You must select a team in the editor for this widget to populate.
-
-**Data shown:**
+Stats for one of your teams. Pick which team in the editor.
 
 - Team name, tag, and logo
-- Game the team competes in
+- The game the team plays
 - Wins and losses
-- Win rate percentage
+- Win rate
 - Current streak
 
-**Default size:** ~300x120px
-
-**Requirement:** The selected team's `profileVisibility` must be `public`.
+The team's profile has to be public for this to fill in.
 
 ## Organization Stats
 
-Displays stats for your selected organization. You must select an organization in the editor for this widget to populate.
-
-**Data shown:**
+Stats for one of your organizations. Pick which one in the editor.
 
 - Organization name and logo
-- Member count
+- Number of members
 - Wins and losses
-- Win rate percentage
+- Win rate
 
-**Default size:** ~280x100px
-
-**Requirement:** The selected organization must be marked public.
+The organization has to be public for this to fill in.
 
 ## Active Match
 
-Displays your current live match in a VS layout. This widget automatically shows and hides based on whether you have an active match.
+Your current match, laid out as two teams facing off. It appears when a match starts and disappears
+when you have none, so you can leave it on permanently.
 
-**Data shown:**
-
-- Team logos and names (VS layout)
-- Current scores
-- Match type and best-of series (e.g., "Best of 3")
-- Current map name (when applicable)
-- Match status label: **LIVE**, **READY**, or **UPCOMING**
-- Pulsing live indicator dot when the match is in progress
-
-**Default size:** ~400x150px
-
-**Requirement:** Your profile visibility must be `public` or `limited`.
+- Both teams' logos and names
+- The live score
+- Match type and series length, such as "Best of 3"
+- The current map, where the game has one
+- A status label: **UPCOMING**, **READY**, or **LIVE**, with a pulsing dot once play begins
 
 <Note>
-	This widget auto-hides when you have no active match. It reappears automatically when a match
-	starts or is scheduled. The status label changes as the match progresses - from UPCOMING to READY
-	to LIVE.
+	An empty screen where this widget sits is normal - it means you have no match on. It comes back on
+	its own when one is scheduled or starts.
 </Note>
 
 ## Leaderboard Rank
 
-Displays your current rank on the global leaderboard.
+Where you place on the global leaderboard.
 
-**Data shown:**
-
-- Your rank position (e.g., "#12")
-- Total players on the leaderboard
+- Your position, such as "#12"
+- How many players are ranked
 - Win rate
 - XP
 
-**Default size:** ~200x80px
-
-**Requirement:** Your profile visibility must be `public` or `limited`.
-
 ## Top 3 Players
 
-Displays the top 3 players from the global leaderboard.
-
-**Data shown (per player):**
-
-- Rank position
-- Player name
-- Avatar
-- Win rate
-
-**Default size:** ~250x180px
-
-**Requirement:** None - always available. The underlying leaderboard query already filters out users whose profile visibility is `private`.
+The three players at the top of the global leaderboard, each with their placing, name, avatar, and
+win rate. This one always works, whatever your own settings are.
 
 ## Referral Code
 
-Displays your referral code and total referral count. Useful for streamers who want viewers to sign up using their code.
-
-**Data shown:**
-
-- Your unique referral code (monospace, accent-colored)
-- Total number of referrals
-
-**Default size:** ~200x80px
-
-**Requirement:** Your profile visibility must be `public` or `limited`, and you must have generated a referral code.
+Your referral code and how many people have used it - handy if you want viewers to sign up with it.
 
 <Note>
-	You must have a referral code generated for this widget to display data. Visit the
-	[Referrals](/referrals) page to get your code.
+	You need a referral code before this shows anything. Get yours on the [Referrals](/referrals)
+	page.
 </Note>
 
-## Game Rank Widgets
+## Game Rank
 
-Game-specific rank widgets display your competitive rank for supported games. These are found in the **Game ranks** group of the editor's Widgets step.
+A rank badge for a specific game, found under **Game ranks** in the editor.
 
-**Data shown:**
+- The game's rank badge
+- Your tier or division
+- Your SR
+- Progress towards the next rank, where the game has it
 
-- Rank badge/icon for the game
-- Tier or division name
-- Skill Rating (SR) value
-- Progress bar toward next rank (when applicable)
-
-**Default size:** ~320x100px
-
-**Requirement:** Your profile visibility must be `public` or `limited`.
-
-Each supported game can have multiple rank modes (e.g., Ranked Play, Warzone Ranked). You can enable each mode independently and they appear as separate widgets.
+A game can have more than one ranked mode, such as Ranked Play and Warzone Ranked. Turn each on
+separately and they appear as separate widgets.
 
 <Note>
-	For manual games (BO7), you must enter your SR in [Settings > Game Stats](https://teambattles.gg/settings/game-stats).
-	For API games (Valorant, LoL), connect your Riot Games account in Settings > Connections, then sync your rank in Game Stats.
+	For Black Ops 7, enter your SR in
+	[Settings > Game Stats](https://teambattles.gg/settings/game-stats). For Valorant and League of
+	Legends, link your Riot account in Settings > Connections, then sync your rank from Game Stats.
 </Note>
 
-Game rank widgets also support:
+Game rank widgets have two extras in the editor's Style step:
 
-- **Animation** - Toggle video effects like winstreak flames on or off in the editor's Style step
-- **Orientation** - Display the widget horizontally (default) or vertically via the Style step's Vertical Orientation switch
-
-## Visibility Summary
-
-| Widget             | Gate                                                       |
-| ------------------ | ---------------------------------------------------------- |
-| User Stats         | `user.profileVisibility !== "private"`                     |
-| Team Stats         | `team.profileVisibility === "public"` + team selected      |
-| Organization Stats | `org.isPublic === true` + org selected                     |
-| Active Match       | `user.profileVisibility !== "private"`                     |
-| Leaderboard Rank   | `user.profileVisibility !== "private"`                     |
-| Top 3 Players      | None (query filters private users internally)              |
-| Referral Code      | `user.profileVisibility !== "private"` + code generated    |
-| Game Rank          | `user.profileVisibility !== "private"` + SR/connection set |
+- **Animation** - effects such as the winstreak flame, which you can switch off
+- **Orientation** - stand the widget upright instead of laying it out sideways

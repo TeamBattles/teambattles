@@ -1,47 +1,19 @@
 ---
 title: "Troubleshooting"
-description: "Common issues and solutions for the Battles Overlay"
+description: "Fixes for the problems that come up most with Battles Overlay"
 ---
 
-Solutions to common problems with the Battles Overlay.
+## The overlay is blank
 
-## Blank Overlay in OBS
+Your stream shows nothing where the overlay should be.
 
-The Browser Source shows a blank or white screen.
-
-1. **Verify the URL** - Confirm you copied the full overlay URL from the editor. It should look like `https://teambattles.gg/overlay/render/<configId>`. No `?key=` is needed.
-2. **Check profile visibility** - User-scoped widgets (stats, rank, active match, referral, game rank) only load when your `profileVisibility` is `public` or `limited`. Set it in [Settings](https://teambattles.gg/settings) if your overlay is blank.
-3. **Set custom CSS** - In the OBS Browser Source properties, add the following custom CSS:
-
-```css
-body {
-	background: transparent;
-}
-```
-
-4. **Check OBS version** - Browser Source requires a Chromium-based renderer. Make sure OBS Studio is up to date.
-
-## Widgets Not Showing
-
-Specific widgets are missing from the overlay.
-
-1. **Check widget is enabled** - Open the [editor](https://teambattles.gg/overlay/editor) and verify the widget is toggled on in the Widgets step.
-2. **Check entity visibility** - Team Stats requires the selected team to be public (`profileVisibility: "public"`). Organization Stats requires the org's `isPublic` flag. User-scoped widgets require your profile visibility be non-private. The editor's Widgets step warns inline when the selected team or org will appear empty in OBS. See [Visibility & Privacy](/tools/battles-overlay/api-permissions).
-3. **Check context selection** - Team Stats and Organization Stats require a team or organization to be selected in the picker under the widget's toggle in the Widgets step.
-
-## Stale or Outdated Data
-
-Stats on the overlay are not updating.
-
-1. **Check refresh interval** - The default is 60 seconds. You can lower it (down to 30 seconds) in the editor's Go Live step for faster updates.
-2. **Verify internet connection** - The overlay requires an active connection to fetch data from the API.
-3. **Refresh the Browser Source** - Right-click the Browser Source in OBS and select **Refresh cache of current page**.
-
-## Overlay Not Transparent
-
-The overlay has a solid background instead of being see-through.
-
-In the OBS Browser Source properties, add this custom CSS:
+1. **Check the link.** Copy it again from the editor's Go Live step. It should look like
+   `https://teambattles.gg/overlay/render/your-overlay-id`.
+2. **Check your profile visibility.** Widgets showing your own data stay empty while your profile is
+   set to Private. Change it in [Settings](https://teambattles.gg/settings), or see
+   [Visibility and Privacy](/tools/battles-overlay/visibility).
+3. **Add the transparency setting.** In your browser source properties, put this in the
+   **Custom CSS** box:
 
 ```css
 body {
@@ -49,72 +21,100 @@ body {
 }
 ```
 
-Also make sure the **Background opacity** setting in the editor's Style step is not set to 100%. An opacity of 70-85% typically works well for stream overlays.
+4. **Update your streaming software.** Older versions of OBS Studio can struggle with newer web
+   pages.
 
-## Overlay Too Small or Too Large
+## One widget is missing
 
-Widgets appear at the wrong size on stream.
+The rest of the overlay works, but one widget is not there.
 
-1. **Adjust scale in the editor** - Use the scale slider in the editor's Style step to resize all widgets proportionally.
-2. **Check OBS dimensions** - Set the Browser Source width to `1920` and height to `1080` (the recommended full-canvas size) for the intended layout. Other resolutions may cause scaling issues.
-3. **Use OBS transform** - Right-click the source in OBS and use **Transform > Edit Transform** to fine-tune size and position.
+1. **Check it is turned on** in the editor's Widgets step.
+2. **Check whose data it shows.** Team Stats needs that team to be public, Org Stats needs that
+   organization to be public, and anything showing your own data needs your profile to not be
+   Private. The editor warns you about this on the Widgets step. See
+   [Visibility and Privacy](/tools/battles-overlay/visibility).
+3. **Check you picked a team or organization.** Team Stats and Org Stats need one selected in the
+   picker beneath their switch.
 
-## Active Match Widget Not Showing
+## The numbers are out of date
 
-The Active Match widget is enabled but nothing appears.
+1. **Check the refresh setting.** Sixty seconds is the default; you can go as low as 30 in the Go
+   Live step.
+2. **Check your internet connection.** The overlay needs one to pull in new stats.
+3. **Reload the source.** In OBS, right-click the browser source and choose
+   **Refresh cache of current page**.
+
+## The overlay has a solid background
+
+Add this to the **Custom CSS** box in your browser source properties:
+
+```css
+body {
+	background: transparent;
+}
+```
+
+Also check **Background opacity** in the editor's Style step. Somewhere between 70% and 85% usually
+reads well over gameplay.
+
+## The overlay is too big or too small
+
+1. **Use the Size slider** in the editor's Style step to scale every widget at once.
+2. **Check the source size.** Set the browser source to `1920` wide by `1080` high. Other sizes can
+   make things look stretched.
+3. **Resize it in OBS.** Right-click the source and use **Transform > Edit Transform** for finer
+   control.
+
+## The Active Match widget never appears
 
 <Note>
-	The Active Match widget auto-hides when you have no active match. This is expected behavior - it
-	will reappear automatically when a match starts.
+	This widget hides itself when you have no match on. That is normal - it comes back when one
+	starts.
 </Note>
 
-If you have an active match and it still does not show:
+If you do have a match on:
 
-1. **Check profile visibility** - Your profile must be `public` or `limited` (not `private`).
-2. **Wait for refresh** - The widget updates on the configured refresh interval. Wait up to 60 seconds (or your configured interval) for it to detect the match.
-3. **Verify match status** - The match must be in an active state (not completed or cancelled).
+1. **Check your profile visibility.** It must not be set to Private.
+2. **Give it a minute.** The widget picks the match up on the next refresh, so wait out your refresh
+   interval.
+3. **Check the match itself.** It has to be scheduled or in progress, not finished or cancelled.
 
-## Cannot Connect to OBS WebSocket
+## The OBS Dock will not connect to OBS
 
-The dock cannot connect to OBS via WebSocket.
+### The connection is switched off
 
-### WebSocket Server Not Enabled
+OBS does not enable it by default.
 
-OBS does not enable the WebSocket server by default.
+1. In OBS Studio, open **Tools > WebSocket Server Settings**
+2. Tick **Enable WebSocket Server**
+3. Select **Apply**
+4. Try connecting from the dock again
 
-1. In OBS Studio, go to **Tools > WebSocket Server Settings**
-2. Check **Enable WebSocket Server**
-3. Click **Apply**
-4. Try connecting again in the dock
+### The port is different
 
-### Wrong Port
+The usual port is `4455`, but it can be changed.
 
-The default WebSocket port is `4455`, but it can be changed in OBS.
+1. In OBS, open **Tools > WebSocket Server Settings**
+2. Select **Show Connect Info** to see the port in use
+3. Enter that port in the dock before connecting
 
-1. In OBS, go to **Tools > WebSocket Server Settings**
-2. Click **Show Connect Info** to see the current port
-3. Enter the correct port in the dock's port field before connecting
+### It is asking for a password
 
-### Password Required
+1. In OBS, open **Tools > WebSocket Server Settings**
+2. Select **Show Connect Info** to reveal the password
+3. Enter it when the dock asks
 
-If OBS WebSocket has authentication enabled, you need the password.
+### Your firewall is in the way
 
-1. In OBS, go to **Tools > WebSocket Server Settings**
-2. Click **Show Connect Info** to reveal the password
-3. The dock will prompt you for the password when it detects authentication is required
+This is rare, but antivirus or firewall software can block the connection between the dock and OBS
+on your own machine.
 
-### Firewall Blocking the Connection
+1. Allow connections to `127.0.0.1` on the port OBS is using
+2. Turn the firewall off briefly to confirm that is the cause
+3. If it is, add an exception for OBS Studio rather than leaving it off
 
-In rare cases, a firewall may block the local WebSocket connection.
+## Still stuck?
 
-1. Ensure no firewall or antivirus software is blocking connections to `127.0.0.1` on the configured port (default `4455`)
-2. Try temporarily disabling your firewall to test if that resolves the issue
-3. If it does, add an exception for OBS Studio or the specific port
-
-## Getting Help
-
-If you cannot resolve your issue:
-
-1. Check the [general troubleshooting guide](/reference/troubleshooting)
+1. Try the [general troubleshooting guide](/reference/troubleshooting)
 2. Ask in the [TeamBattles Discord](https://teambattles.gg/discord)
-3. [Submit a support ticket](https://teambattles.gg/support)
+3. [Open a support ticket](https://teambattles.gg/support)

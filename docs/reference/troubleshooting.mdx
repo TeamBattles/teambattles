@@ -201,99 +201,151 @@ description: "Solutions to common problems"
 
 - The number of brackets you can save to your account is capped by your subscription tier. At the limit, **Save to account** opens a panel with three ways forward: keep the bracket on this device, **Move to device** on a bracket you no longer need in your account, or upgrade your tier. **Delete from account** in a card's actions menu also frees a slot. You can still export a bracket to a local file for free.
 
-## Brackets Tool Issues
+## Battles Brackets Issues
 
-**"A bracket share link shows 'not found'"**
+**"A share link shows 'not found'"**
 
-- Share links live at `/brackets/view/<code>`. A link only resolves while the bracket's visibility is **Anyone with the link** - if the owner set it back to **Private**, or deleted the bracket, the link returns a 404 page. This is deliberate: a private bracket and one that never existed look identical, so no one can probe for codes.
-- Ask the owner to set the visibility back. It lives in the bracket's **Save** dialog, not on the toolbar: the **Share link** button only copies the link. The code is kept while a bracket is private, so the same link starts working again.
-- If you are the owner and still see 404, make sure you are signed in to the account that owns the bracket. Your own link opens for you even while the bracket is private.
-- Check the code was copied whole. A share code is exactly 12 letters and digits, so a link cut short by a chat client or email wrapper resolves to nothing.
-- Older links of the form `/brackets/<code>` are not broken - they redirect to `/brackets/view/<code>`. An older link whose code is not 12 characters sends you to the [Brackets tool](/tools/brackets) start screen instead.
+- A share link only works while the bracket's visibility is **Anyone with the link**. If the owner set
+  it back to **Private**, or deleted it, the link shows a "not found" page. That is deliberate - a
+  private bracket and one that never existed look identical, so nobody can go fishing for links.
+- Ask the owner to change the visibility back. It is in the bracket's **Save** dialog, not on the
+  toolbar - **Share link** only copies the link. The link is kept while a bracket is private, so the
+  same one starts working again.
+- If it is your own bracket, make sure you are signed in to the account that owns it. Your own link
+  always opens for you, even while it is private.
+- Check the link was copied whole. Chat apps and email programs sometimes cut long links short.
+- Older-style links still work - they take you to the new address automatically.
 
-**"Build does nothing and shows 'Could not save the bracket'"**
+**"Build does nothing and says 'Could not save the bracket'"**
 
-- The Brackets tool stores each bracket in your browser before opening the editor, so it needs site storage (IndexedDB). Build fails with this error when the browser refuses that write.
-- Common causes: Firefox Private Browsing, a browser setting or extension that blocks site data for `teambattles.gg`, or a device that is completely out of disk space.
-- Fix: open the tool in a normal (non-private) window, allow site data for `teambattles.gg`, or free up disk space. There is no in-memory fallback - the bracket has to be stored to be opened.
-- The tool also asks the browser for persistent storage at this point. Some browsers decline that request; a declined request is not an error and is not the cause of this failure.
+- Battles Brackets puts each bracket in your browser before it opens, so it needs permission to store
+  things. This message means the browser refused.
+- The usual causes: a private browsing window, a setting or extension blocking site data for
+  `teambattles.gg`, or a computer that has completely run out of disk space.
+- Open the tool in a normal window, allow site data for `teambattles.gg`, or free up disk space. There
+  is no way around it - a bracket has to be stored somewhere to be opened.
 
 **"My bracket says 'Not in your account'"**
 
-- This browser holds a copy of a bracket that is linked to an account bracket the tool can no longer find. Either it was deleted from the account, or it belongs to a different account.
-- The tool cannot tell those two apart, so check which account you are signed into first - signing into the right one makes the card go back to normal on its own.
-- **Keep on this device** is safe: it unlinks the bracket and keeps it as a device bracket, changing nothing about its contents.
-- **Remove from this device** deletes this browser's copy, which is the only copy you can still reach. Export it first if you want to keep it.
+- This browser has a copy of a bracket that is no longer on your account. Either it was deleted, or
+  it belongs to a different account.
+- There is no way to tell those apart, so check which account you are signed in to first. Signing into
+  the right one puts the card back to normal by itself.
+- **Keep on this device** is safe - it keeps the bracket here and changes nothing about it.
+- **Remove from this device** deletes the only copy you can still reach. Download it first if you
+  want to keep it.
 
 **"This browser is out of storage"**
 
-- Your bracket edits have stopped being saved on this device. The editor keeps accepting changes, but they are no longer being written to browser storage.
-- Brackets already saved to your account are unaffected and still open normally on any device.
-- Export anything that is device-only to a file right away, then free up browser storage. **Remove from this device** on brackets that are already synced reclaims space without touching your account.
+- Your changes have stopped being saved on this computer. The editor still accepts them, but they are
+  not being kept.
+- Brackets already saved to your account are fine and still open normally anywhere.
+- Download anything that only exists here, then free up space. **Remove from this device** on brackets
+  already saved to your account reclaims space without touching your account.
 
-**"My import was rejected"**
+**"My file would not open"**
 
-- Imports are validated at the door and the message says which check failed: the file is not JSON at all, it is not a bracket export, it is not a `.tbbrac` project file, the project file was made by a different version of the tool, the project file could not be read, it names a bracket format the tool does not recognise, it has fewer than 2 entrants, its entrants exceed the format's ceiling (128 for elimination, 64 for Swiss, 32 for round robin), its entrant ids are missing or duplicated, its seeding does not match its entrants, or its result history could not be read.
-- A file that was accepted by an older build can be refused now. That is deliberate: a bracket that fails a check would otherwise be stored and then fail every save with a generic error.
-- **A `.tbbrac` project file keeps the entrant logos that were still browser-only when it was exported**; logos already uploaded to your account are not in the file, so a bracket exported after it was saved to an account comes back with plain labels, the same as a plain `.json` bracket, which has its logos and team links removed outright. An imported logo still has to pass the same checks as one you upload by hand, and any that fails is dropped with a note saying how many were left out.
+- Files are checked before they are opened and the message says what went wrong - the file is not a
+  bracket at all, it was made by a different version, it has fewer than two entrants, it has more
+  entrants than its format allows (128 for elimination, 64 for Swiss, 32 for round robin), or the
+  bracket inside it is damaged.
+- A file an older version accepted can be refused now. That is deliberate: opening a bracket that
+  fails a check would leave you with something that could never be saved.
+- A project file keeps the logos that were still only in your browser when you saved it. Logos already
+  uploaded to your account are not in the file, so a bracket downloaded after it was saved comes back
+  with plain names. Every logo is checked the same way as one you upload by hand, and any that fails
+  is left out with a note telling you how many.
 
-**"That file is too large" on import**
+**"That file is too large"**
 
-- Refused on the file's size before it is read at all. A `.tbbrac` project file stores every entrant logo inside it, so a bracket with many large logos can produce a file bigger than the tool can open.
-- The message names the file's size and the limit. Nothing is wrong with the file itself and nothing on this device is changed.
-- Fix: open the bracket where it was made, remove a few entrant logos, and export it again.
+- Refused on size before it is even opened. A project file holds every logo inside it, so a bracket
+  with a lot of large logos makes a file too big to open.
+- The message tells you the size and the limit. Nothing is wrong with the file, and nothing here is
+  changed.
+- Open the bracket where you made it, remove a few logos, and download it again.
 
-**"That bracket is too large" on import**
+**"That bracket is too large"**
 
-- The file is a valid bracket. It is refused because the bracket inside it is bigger than a bracket is allowed to be on your account, so importing it would leave you with something that could never be saved.
-- The message names the file's size and the limit. Nothing is wrong with the file itself and nothing on this device is changed.
-- Fix: open the bracket where it was made, **Undo** a few times to shorten its history, and export it again. See "Saving to your account has paused" below for what makes a bracket grow.
+- The file is fine. It is refused because the bracket inside it is bigger than one you could ever
+  save to your account, so opening it would leave you stuck.
+- Open the bracket where you made it, **Undo** a few times to shorten its history, and download it
+  again. See "Saving to your account has paused" below for what makes a bracket grow.
 
-**"Saving my bracket says an entrant image could not be verified"** (`error_bracket_avatar_unbound`)
+**"An entrant image could not be verified"**
 
-- An entrant's custom image was not recognised as one this account uploaded. That happens if the bracket came from a file, from another account, or from a tab that has been open since before an update.
-- Fix: re-upload that entrant's image and save again. Reloading the page first is the quickest way to be sure the tab is current.
+- One of your logos was not recognised as something this account uploaded. That happens when the
+  bracket came from a file, from another account, or from a tab that has been open since before an
+  update.
+- Upload that entrant's logo again and save. Reloading the page first is the quickest way to be sure.
 
 **"Some entrant logos could not be verified and were removed"**
 
-- The bracket **was** saved, without those logos. When a save is refused over an entrant image, the editor drops the ones whose image is no longer on this device, re-uploads the ones it still holds, and tries once more; you see this message when that second attempt succeeded. Everything else about the bracket - entrants, results, seeding - is untouched.
-- You can see this after a manual **Save** or after a background save, so it can appear without you pressing anything.
-- Fix: set the affected entrants' images again and save. They upload normally from here.
+- The bracket **did** save, just without those logos. When a save is refused over a logo, the editor
+  drops the ones whose image is no longer on this computer, re-uploads the ones it still has, and
+  tries again - this message means the second attempt worked. Your entrants, results, and seeding are
+  untouched.
+- It can appear without you pressing anything, since brackets save themselves in the background.
+- Set those logos again and save. They upload normally from here.
 
 **"Move to device failed"**
 
-- Moving a bracket downloads its entrant images to this device, and every one has to succeed. If any download fails the move stops and your account bracket is left exactly as it was, so nothing is lost.
-- Fix: check your connection and try again. If it keeps failing, export the bracket to a file so you have a copy either way.
-
-**"Saving a large or heavily edited bracket says 'Invalid input provided'"** (`error_invalid_input`)
-
-- Every save is checked against a set of stored limits, and all of them are refused with this one generic message - which limit was hit is not shown. The ones a normal editing session can reach: the bracket's stored size, its entrant count for the format (128 for elimination, 64 for Swiss, 32 for round robin), the length of its recorded result history, and its name length.
-- Size is the one you reach by accident. See "Saving to your account has paused" below - the editor now explains a size refusal in a banner rather than leaving you with this message alone.
-- Fix: **Undo** a few times to shorten the history, then save. Removing entrants is the other lever. Downloading the bracket to a file always works whatever its size.
+- Moving a bracket downloads its logos to this computer, and every one has to arrive. If any fails the
+  move stops and your account bracket is left exactly as it was, so nothing is lost.
+- Check your connection and try again. If it keeps failing, download the bracket so you have a copy
+  either way.
 
 **"Saving to your account has paused"**
 
-- A banner appears in the editor when the background save stops getting through, and it says which of three things happened. Your edits are still being written to this browser in every case.
-- **The bracket is too large.** The banner names the bracket's size and the limit. Shuffling is what makes a bracket grow: every shuffle is recorded so it can be undone, and each recorded shuffle stores the whole seeding, which is far larger than a reported result. A run of shuffles with nothing in between counts as one entry, so shuffling on a fresh bracket is free - but **once the bracket has a result in it, every shuffle is recorded separately**, and a few hundred of them on a 128-entrant bracket reach the limit. Fix: **Undo** back under the limit and the bracket starts syncing again.
-- **Saving keeps failing.** After a run of failed attempts the editor stops retrying every minute. Making any change starts it trying again. If it keeps failing, download the bracket so you have a copy that does not depend on the account.
-- **Logos have not uploaded.** The bracket itself is up to date on your account; one or more entrant logos are still only in this browser and are still being retried. Until one succeeds, those entrants show without a logo to anyone opening your share link.
+- A banner appears when saving stops getting through, and it says which of three things happened.
+  Your work is still being kept in this browser in all three cases.
+- **The bracket is too large.** The banner names its size and the limit. Shuffling is what makes a
+  bracket grow, because every shuffle is recorded so it can be undone, and each one stores the whole
+  draw. A run of shuffles with nothing in between counts as one, so shuffling a fresh bracket is
+  free - but **once the bracket has a result in it, every shuffle counts separately**, and a few
+  hundred on a large bracket reach the limit. **Undo** back under it and saving resumes.
+- **Saving keeps failing.** After several failed attempts it stops retrying every minute. Making any
+  change starts it again. If it keeps failing, download the bracket so you have a copy that does not
+  depend on your account.
+- **Logos have not uploaded.** The bracket is up to date; one or more logos are still only in this
+  browser and are still being retried. Until one gets through, those entrants appear without a logo
+  to anyone opening your share link.
 
 **"This bracket changed in two places"**
 
-- This browser has edits that never reached your account, and the account copy has changed since - normally because the same bracket was edited on another device. Rather than pick a winner, the tool asks.
-- **Keep this device's edits** uploads what is in front of you and overwrites the account copy. **Open the account copy** discards this browser's unsaved edits and loads the account's version. The copy you do not keep cannot be recovered.
-- The bracket does not open until you answer, so nothing is written under you while you decide.
-- If the answer itself cannot be recorded - the browser is out of storage, or the write failed - the question is asked again and nothing has changed. Free up browser storage and answer again.
+- This browser has changes that never reached your account, and the account copy has changed too -
+  normally because the same bracket was edited on another computer. Rather than pick for you, the
+  tool asks.
+- **Keep this device's edits** uploads what is in front of you and overwrites the account copy.
+  **Open the account copy** throws away this browser's changes. Whichever you do not keep is gone.
+- The bracket stays closed until you answer, so nothing changes underneath you while you decide.
+- If your answer cannot be saved because the browser is out of space, you are asked again and nothing
+  has changed. Free up space and answer again.
 
-**"This selection is too large to export" (image export)**
+**"This selection is too large to export"**
 
-- Images are drawn in your browser, and browsers cap how large a single image can be. The selected region multiplied by the scale is past that cap, so **Export** is disabled rather than handing you a blank file.
-- Fix: select a smaller part of the bracket, or lower the scale. The size readout under the preview updates as you do, so you can see when it fits.
+- Images are drawn in your browser, and browsers cap how big a single image can be. What you picked,
+  at the size you picked, is over that cap, so **Export** is greyed out rather than handing you a
+  blank file.
+- Choose a smaller part of the bracket, or a smaller size. The readout under the preview updates as
+  you go, so you can see when it fits.
 
 **"The image could not be created"**
 
-- The export was attempted and failed part-way through, usually because the selection was near the limit of what the browser can draw or the tab ran out of memory. Nothing is downloaded, and your selection is left in place so you can shrink it and try again.
-- Fix: lower the scale first - it is the cheapest lever - then reduce the region. Closing other heavy tabs helps on a device that is short on memory.
+- The export started and failed part-way, usually because it was close to what your browser can draw
+  or the tab ran out of memory. Nothing is downloaded and your selection is left as it was.
+- Lower the size first - that helps most - then pick a smaller area. Closing other heavy tabs helps
+  on a computer that is short on memory.
+
+**"Saving a large bracket says 'Invalid input provided'"**
+
+- Every save is checked against several limits, and all of them give this one message, so it does not
+  say which. The ones you can reach while editing normally: the bracket's size, how many entrants its
+  format allows (128 for elimination, 64 for Swiss, 32 for round robin), how long its result history
+  is, and the length of its name.
+- Size is the one you hit by accident, and the editor now explains that in a banner instead - see
+  "Saving to your account has paused" above.
+- **Undo** a few times to shorten the history, then save. Removing entrants is the other option.
+  Downloading the bracket to a file always works, whatever its size.
 
 ## Tutorial Issues
 
@@ -314,186 +366,48 @@ description: "Solutions to common problems"
 
 ## API Key Issues
 
+Keys are only needed if you are connecting something to TeamBattles yourself. The
+[developer documentation](/developers/authentication) covers them in full.
+
 **"I can't create more keys"**
 
-- Maximum 5 API keys per account
-- Delete unused keys to free up slots
+- You can have five at once. Delete one you no longer use to free up a slot.
 
-**"My API key isn't working"**
+**"My key isn't working"**
 
-- Verify key is copied correctly (starts with `tb_`)
-- Check the key has required permissions
-- Use correct header format: `Bearer tb_...`
+- Check you copied the whole thing. It starts with `tb_`.
+- Check the key has the permissions the thing you are connecting needs.
 
-**"Permission denied errors"**
+**"I keep getting permission errors"**
 
-- Edit the key to add required permissions
-- Connection permissions need platform linked first
+- Edit the key and add the permission it is asking for.
+- Permissions for a connected platform need that platform linked in
+  Settings > Connections first.
 
-**"Can't enable a connection permission"**
+**"I lost my key"**
 
-- Link that platform in Settings > Connections first
+- Keys are only shown once, when you create them. Make a new one and update whatever was using the
+  old one.
 
-**"I lost my API key"**
+## Battles Strategy Issues
 
-- Keys are only shown once at creation
-- Create a new key and update your applications
+**"I can't save any more strategies"**
 
-### Invalid cursor error (`error_invalid_cursor`)
+- Your plan sets how many strategies you can save to your account. Delete ones you no longer need, or
+  upgrade for a higher limit. See [Subscriptions](/subscriptions).
+- You can always keep a strategy on this device instead - device strategies are unlimited.
 
-If you receive a `400 error_invalid_cursor` response from `/api/v1/user/matches`,
-`/api/v1/teams/[identifier]/matches`, or `/api/v1/orgs/[identifier]/matches`, the
-cursor you passed was not produced by a recent response from the same endpoint.
+**"I can't create any more boards"**
 
-**Common causes:**
-- The cursor format changed between versions. If you stored a cursor from the
-  legacy response envelope (`{ matches, pagination: { cursor, hasMore } }`),
-  it will not work against the new native envelope (`{ page, isDone, continueCursor }`).
-  Re-issue a fresh `numItems` request with no cursor to start a new pagination run.
-- The cursor was truncated in storage or transit (e.g., URL length limits).
-- A deploy invalidated server-side pagination state.
+- There is a cap of 200 boards per account. Delete a board you no longer use before making a new one.
+  Choose **Keep contents** when you delete it if you want the strategies inside to survive.
 
-**Fix:** drop the stored cursor, call the endpoint again without `cursor`, and
-use the `continueCursor` from the new response for subsequent pages.
+**"I can't upload any more custom maps"**
 
-## API errors
+- Custom maps are a Premium feature, capped at 50 per person. Open the custom maps panel in the
+  editor and delete ones you no longer use. You will need to move or delete any strategy still using
+  a map before you can remove it.
 
-These error codes may be returned by the public REST API or by the Battles Strategy editor.
-
-| Error code | HTTP status | Meaning |
-| --- | :-: | --- |
-| `error_invalid_num_items` | 400 | The `numItems` parameter was out of the valid range (typically 1-100 for paginated matches endpoints) |
-| `error_invalid_limit` | 400 | The `limit` parameter was out of the valid range |
-| `error_strategy_save_quota_exceeded` | 429 | The per-map or total strategy save cap for your subscription tier has been reached |
-| `error_strategy_board_limit_exceeded` | 429 | The 200-board per-user anti-abuse cap has been reached |
-| `error_custom_map_limit_reached` | 429 | The Premium custom-map per-user cap (50) has been reached |
-
-**Fix `error_invalid_num_items` / `error_invalid_limit`:** clamp the pagination parameter to the documented range and retry.
-
-**Fix `error_strategy_save_quota_exceeded`:** delete unused strategies, move strategies between boards, or upgrade your subscription tier for higher caps.
-
-**Fix `error_strategy_board_limit_exceeded`:** delete unused boards from the Battles Strategy editor before creating new ones.
-
-**Fix `error_custom_map_limit_reached`:** open the Battles Strategy editor's custom maps panel and delete unused custom maps. Custom maps are a Premium feature with a 50-per-user cap.
-
-### Tournament and bracket error codes
-
-These codes surface in the tournament and Brackets tool flows. Most are explained above in [Tournament Issues](#tournament-issues); the full set is listed here for reference.
-
-| Error code | HTTP status | Meaning |
-| --- | :-: | --- |
-| `error_not_eligible_to_host` | 403 | You do not meet the hosting requirements (paid tier or 30-day account) or are competitively banned |
-| `error_tournament_not_found` | 404 | The tournament does not exist, **or** you may not view it. On the API the two are deliberately indistinguishable - see [404 on a tournament that exists](#404-on-a-tournament-that-exists) |
-| `error_tournament_full` | 409 | The tournament has reached its maximum participant count |
-| `error_registration_closed` | 400 | Registration is not currently open for this tournament |
-| `error_already_entered` | 409 | Your team is already entered in this tournament |
-| `error_roster_too_small` | 400 | The selected roster is smaller than the tournament's required team size |
-| `error_free_agent_account_required` | 403 | The game requires a linked platform account to join the free-agent pool |
-| `error_free_agent_already_in_pool` | 409 | You are already in this tournament's free-agent pool |
-| `error_approval_pending` | 409 | The tournament is already awaiting staff review |
-| `error_approval_required` | 403 | The tournament must be approved before this action (for example, opening registration) |
-| `error_node_already_completed` | 409 | The bracket match already has a result; reopen it before overriding |
-| `error_node_match_already_exists` | 409 | A match has already been generated for this bracket slot |
-| `error_invalid_seed_order` | 400 | The submitted seed order does not match the tournament's participants |
-| `error_check_in_closed` | 400 | The check-in window is not open |
-| `error_not_tournament_staff` | 403 | You are not a manager of this tournament (or lack the required admin level). On the API this is what a tournament `MODERATOR` receives on every ADMIN-floor endpoint - see [403 on a tournament you do staff](#403-on-a-tournament-you-do-staff) |
-| `error_not_org_admin` | 403 | `POST /tournaments` named `hostType: "org"` for an organization you do not administer |
-| `error_revert_blocked_downstream` | 409 | A downstream bracket result has already been played, or a downstream match has started. Revert those first |
-| `error_free_agent_offer_not_pending` | 409 | The pickup offer was already answered, or it lapsed and was marked expired by this request |
-| `error_tournament_host_limit_reached` | 403 | You have reached your tier's limit on concurrent tournaments |
-| `error_tournament_size_limit_reached` | 403 | The chosen maximum participant count exceeds your tier's cap |
-| `error_sponsor_tag_limit_reached` | 403 | You have reached your tier's sponsor-tag limit |
-| `error_sim_limit_reached` | 403 | You have reached your tier's saved-bracket limit in the Brackets tool |
-
-**Fix the tier-limit codes** (`error_tournament_host_limit_reached`, `error_tournament_size_limit_reached`, `error_sponsor_tag_limit_reached`, `error_sim_limit_reached`): remove or finish an existing item, lower the requested count, or upgrade your subscription tier. See the [tier-based limits](/reference#tier-based-limits) table.
-
-### League points table rejected (`error_invalid_input`)
-
-`POST /tournaments/{identifier}/league-points` validates the placement curve before saving it. When the table itself is what failed, the 400 body carries a `reason` field alongside the usual `details` sentence, so you can branch on a stable code instead of parsing English. The table is validated even when `leaguePointsEnabled` is `false`.
-
-| `reason` | Meaning |
-| --- | --- |
-| `EMPTY` | The array has no rows. Omit `leaguePointsByPlacement` entirely to fall back to the platform default curve, or send `leaguePointsEnabled: false` to award nothing. An empty array is not the way to express either |
-| `ALL_ZERO` | The table is well formed, but no row awards more than 0 points, so it could never score anything. Award at least one positive value, or disable league points |
-| `TOO_MANY_ROWS` | More than 32 rows |
-| `BAD_PLACEMENT` | A placement that is not an integer of 1 or greater |
-| `BAD_POINTS` | A points value outside the 0-1000 range |
-| `DUPLICATE` | The same placement appears twice |
-| `NOT_ASCENDING` | Placements are not in ascending order |
-
-`reason` is absent for the other 400 causes on this endpoint - a tournament that is not league-hosted, or one that has already finalized.
-
-### 404 on a tournament that exists (`error_tournament_not_found`)
-
-Three different situations produce this 404 on the Tournament API, and the response body cannot tell them apart. That collapse is deliberate: it stops the read endpoints from being used to enumerate the slug space.
-
-1. **You passed an ID instead of a slug.** Every `{identifier}` in `/api/v1/tournaments/**` is resolved **by slug only** - the resolver does not accept a Convex tournament ID. Sending the `tournamentId` from the create response is the single most common cause. Store and send the `slug` instead.
-2. **The tournament is not visible to you.** A `DRAFT`, or an `UNLISTED` tournament you have no relationship with, answers 404 rather than 403.
-3. **There genuinely is no such slug.**
-
-A sub-resource ID (`participantId`, `inviteId`, `offerId`, `rosterEntryId`, `nodeId`) that belongs to a *different* tournament also answers 404, for the same reason.
-
-**Fix:** confirm you are sending a slug, then confirm the tournament is approved and visible to the key's owner.
-
-### 403 on a tournament you do staff (`error_not_tournament_staff`)
-
-The Tournament API checks two things independently: the capability on the key, and the key owner's **authority floor** on the tournament. Holding the capability is not enough, and a key can pass every scope check and still be refused here.
-
-Seventeen organizer endpoints - update, submit for approval, registration open and close, round schedule, league points, cancel, start, regenerate matches, organizer roster add, roster entry delete, override result, revert result, add and remove staff, create and revoke invite - require the **ADMIN** floor. A tournament **`MODERATOR` does not meet it** and receives this 403 even though a `MODERATOR` can perform those actions in the web console's participant and match views.
-
-**Fix:** promote the key owner to tournament staff `ADMIN`, or restrict the integration to the nine MANAGER-floor endpoints (applications list/approve/deny, participant remove and disqualify, staff list, invite list, activity feed, free-agent remove).
-
-A TeamBattles staff member's key does **not** pass this floor by staff standing alone. Platform staff gain authority on a public API **write** only through explicit, audited elevation: the key must carry the `platform.staff` scope, the request must send `X-TB-Elevate: platform-staff`, and the key owner must hold the `management` developer role - all re-verified server-side. Organizer **reads** never elevate, and elevation never bypasses the owner-plan `tournamentOrganizerApi` feature gate. Without all three factors, or on any read, staff act through the web console (which offers a per-action "Act as Platform Staff" confirm). See [Authentication - Platform staff elevation](/developers/authentication#platform-staff-elevation).
-
-### 403 `error_api_feature_required` on a tournament you host
-
-Tournament organizer access is gated at `api_pro` on the **tournament host owner's personal developer plan** - the organization's owner for an `org`-hosted tournament, the league's owner for a `league`-hosted one, not the key owner and not the organization's own subscription.
-
-An organization holding a consumer subscription does not satisfy this. The developer plan ladder has no organization arm.
-
-**Fix:** the host owner needs the developer plan, not you and not the org. Their plan also sets the rate-limit ceiling for every organizer request on that tournament.
-
-### The tournament started but there are no matches
-
-`POST /tournaments/{identifier}/start` answers **`202`**, not `200`, and returns **before any match exists**. Rounds and bracket nodes are written synchronously; the matches themselves are generated by a background pass afterwards, which gives each node one attempt and then moves on. That pass can partially fail, and nothing in the 202 body reports it.
-
-`nodeCount` in the response is the size of the bracket **structure**. It is not a match count and not a completion target.
-
-**Fix:** poll `GET /tournaments/{identifier}/bracket` and look for nodes that have a `matchId`. If some never acquire one, call `POST /tournaments/{identifier}/regenerate-matches` (a separate `regenerate` capability, not `lifecycle`). Its `queued` value is an **upper bound** on what will be re-attempted, including nodes an earlier pass abandoned - `queued: 0` is a legitimate answer meaning nothing was eligible, not a failure. Regeneration is exactly-once per node, so it never destroys an existing match and is safe to repeat.
-
-### An update returned 200 but the change is not live
-
-`POST /tournaments/{identifier}/update` is **tri-state**. Branch on `applied` rather than on the status code:
-
-| `applied` | What happened |
-| --- | --- |
-| `direct` | Never-approved tournament. The edit is live |
-| `pending` | Previously approved. Material changes were **staged**, the tournament flipped to `AWAITING_APPROVAL`, and it has dropped off the public listing until staff re-approve. The edit is **not** live |
-| `noop` | Previously approved, and every value sent already matched. Nothing was staged |
-
-If an edit disappeared entirely, check for a misspelled key: fields the endpoint does not recognise are **silently dropped**, not rejected. A body with one valid key and three misspelled ones succeeds and applies only the one. Compare `changedFields` on the `pending` arm against what you meant to send. A body with *no* recognised fields is refused with `400` ("Supply at least one updatable field") rather than answering a misleading `noop`.
-
-### Cannot remove a free agent (`error_invalid_input`, "Remove the player from the team roster first")
-
-An organizer cannot withdraw a free agent whose status is `PICKED_UP`. The request is refused with `400` and **nothing is written**.
-
-This is a guard, not a bug. Withdrawing them while their `FREE_AGENT` roster entry survives would strand the player: no re-entry path accepts a pool row that is not `AVAILABLE`, and the surviving roster entry keeps the re-pickup guards rejecting.
-
-**Fix:** delete the roster entry first with `DELETE /tournaments/{identifier}/roster-entries/{rosterEntryId}`, which releases the agent back to `AVAILABLE`, then remove them from the pool. An `AVAILABLE` agent can be removed in one call. Note that `GET /tournaments/{identifier}/free-agents` lists `AVAILABLE` entries only, and the v1 reads do not project roster **entry** IDs to organizers - if you do not already hold that ID, remove the roster entry from the tournament management page in the web app.
-
-### 429 during concurrent bursts from one key or IP (`error_api_rate_limited`)
-
-If you fire many requests for the same API key (or from the same IP) at the same instant,
-some may return `429 error_api_rate_limited` even when you are not obviously over your
-sustained rate. Under a tight concurrent burst, the API sheds momentary write contention
-on its rate-limit state by returning `429` rather than failing the request. Enforcement is
-also shard-approximate at the margin, so the cutoff can land slightly before the exact
-aggregate limit.
-
-**Fix:** honor the `Retry-After` header (a conservative upper bound - a retry usually
-succeeds sooner), add jittered backoff, and avoid firing a large batch of requests
-simultaneously on one key. Treat `X-RateLimit-Remaining` as an estimate, not an exact
-budget.
 
 ## Link preview shows no image or a stale image
 

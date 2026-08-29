@@ -183,7 +183,7 @@
 									"tools/battles-overlay/setup",
 									"tools/battles-overlay/widgets",
 									"tools/battles-overlay/editor",
-									"tools/battles-overlay/api-permissions",
+									"tools/battles-overlay/visibility",
 									"tools/battles-overlay/troubleshooting"
 								]
 							},
@@ -261,6 +261,13 @@
 							"developers/rate-limits",
 							"developers/metrics",
 							"developers/idempotency"
+						]
+					},
+					{
+						"group": "Tool Integrations",
+						"pages": [
+							"developers/overlay-integration",
+							"developers/strategy-embeds"
 						]
 					},
 					{
@@ -711,7 +718,8 @@
 					{
 						"group": "Reference",
 						"pages": [
-							"developers/api-reference"
+							"developers/api-reference",
+							"developers/error-codes"
 						]
 					}
 				]

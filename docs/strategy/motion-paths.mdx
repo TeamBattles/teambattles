@@ -1,65 +1,69 @@
 ---
 title: "Motion paths"
-description: "Author smooth motion between stages with drag-recorded, manual, or automatic paths."
+description: "Shape exactly how a token travels from one stage to the next"
 ---
 
-When a token moves between stages, you can shape exactly how it gets from A to B. Motion paths render in the editor as curves on the ghost layer and play through smoothly during playback or GIF export.
+When a token moves between stages, you decide how it gets there. Motion paths show up in the editor
+as curves and play out smoothly when you press play or export an animation.
 
 <Frame>
 	<img
-		src="/tools/battles-strategy/preview-2.webp"
+		src="../images/tools/battles-strategy/preview-2.webp"
 		alt="Curved player motion path being edited across three strategy stages"
 	/>
 </Frame>
 
-## Three modes
+## Three ways to make one
 
-### Drag-recorded (default)
+### Drag it (the default)
 
-Drag a token on a new stage and the cursor trace becomes its motion path automatically. The path follows your hand as you drag.
+Drag a token on a new stage and the route your cursor takes becomes the path. Whatever you trace is
+what the token follows.
 
-### Manual
+### Draw it by hand
 
-Switch to **Manual** in the property panel's **Motion path** section. The path becomes editable on canvas:
+Switch to **Manual** in the **Motion path** section of the Properties panel and the path becomes
+editable on the board:
 
-- **Double-click the path** to insert a new control point at that location.
-- **Drag a control point** to bend the curve.
-- **Right-click a control point** to remove it.
+- **Double-click the path** to add a point where you clicked.
+- **Drag a point** to bend the curve.
+- **Right-click a point** to remove it.
 
-You can have up to 32 control points per path.
+You can have up to 32 points on one path.
 
-### Automatic
+### Let it curve for you
 
-Switch to **Automatic** to render a perpendicular-offset curve. The **Curvature** slider (0 to 1) controls how far the path bows from a straight line.
+Switch to **Automatic** and the path bows out into a curve on its own. The **Curvature** slider
+controls how far it bows - all the way down is a straight line.
 
-## How paths follow the endpoints
+## Moving a token afterwards
 
-Paths are stored relative to the token's stage-K-1 and stage-K positions. If you later reposition either endpoint, the path's shape stretches with it, so you don't have to re-author when you move the token.
+A path is tied to where the token starts and where it ends. Move either end later and the path
+stretches to match, so you do not have to draw it again.
 
-## Resetting
+## Starting over
 
-Choose **Linear** in the property panel to clear the path and revert to a straight A to B move.
+Choose **Linear** in the Properties panel to clear the path and go back to a straight line.
 
-## How the path affects token facing
+## Which way the token faces
 
-When you author or edit a motion path on a **player token**, the editor sets the token's rotation on the source stage (where the path starts) to match the path's **initial heading**, and on the destination stage (where the path ends) to match the path's **terminal heading**. This keeps the token's silhouette pointing along the direction it is actually moving, instead of staying frozen in whatever rotation it had before you authored the path.
+Draw a path on a **player token** and the editor turns the token to face the way it is going - along
+the path at the start, and along the path at the end. Your player is looking where they are running
+rather than staying frozen facing the wrong way.
 
-This applies whether you draw the path by dragging (the default), by editing control points manually, or by toggling the Automatic curvature - any motion-path edit triggers the rewrite.
+This happens however you made the path: by dragging, by editing points, or by using the curvature
+slider.
 
 <Note>
-	The rotation is computed from the path geometry with a 90-degree silhouette
-	correction (player silhouettes are drawn nose-up, so the geometric tangent angle
-	needs +90 to align the player's nose with the direction of motion).
+	Only player tokens turn to follow their path. Equipment, objectives, and other markers keep
+	whatever rotation you gave them.
 </Note>
 
-<Note>
-	This auto-rotation applies to live-player tokens only. Equipment, objectives,
-	and other non-player tokens keep whatever rotation you authored on them, even
-	after you draw a motion path between stages.
-</Note>
+### One thing to watch
 
-### Trade-off in this version
+Drawing a new path on a player token **replaces** any rotation you set by hand at either end. If you
+want a particular facing, set it after you draw the path - it will stay that way until you redraw
+the path.
 
-For player tokens, authoring a new path **overwrites** any rotation you had previously set by hand on the source or destination row. If you want to keep a manual rotation on a player token, set it AFTER you author the path - the path won't re-author it on its own, and your manual rotation will stick until the next time you re-drag (or otherwise edit) the same path.
-
-A future version may add an "auto-rotate from path" toggle so manual rotations can coexist with path-driven rotations. For now, manual-then-path is the supported workflow for player tokens.
+A future version will let you turn off the automatic turning so hand-set rotations survive. For now,
+draw the path first and set the facing second.

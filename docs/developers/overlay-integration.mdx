@@ -1,0 +1,103 @@
+---
+title: Overlay Integration
+description: Endpoints behind Battles Overlay render URLs, the Simple Overlay query parameters, and the OBS Dock device-authorization flow.
+---
+
+This page documents the HTTP surface behind [Battles Overlay](/tools/battles-overlay). Streamers do
+not need any of it - the editor produces a URL you paste into OBS. It is here for anyone building
+against the overlay directly.
+
+## Public endpoints (no API key)
+
+These power what a browser source actually loads. They are entity-keyed and gated only by the
+visibility flags on the underlying record: user-scoped endpoints require the owner's
+`profileVisibility` to be `public` or `limited`, team endpoints require
+`profileVisibility === "public"`, and organization endpoints require `isPublic === true`.
+
+| Endpoint                                              | Used by                                    |
+| ----------------------------------------------------- | ------------------------------------------ |
+| `GET /api/v1/overlay/config/[configId]`               | Render URL fetches the overlay config      |
+| `GET /api/v1/overlay/user/[userId]/stats`             | User Stats widget                          |
+| `GET /api/v1/overlay/user/[userId]/active-match`      | Active Match widget                        |
+| `GET /api/v1/overlay/user/[userId]/rank`              | Leaderboard Rank widget                    |
+| `GET /api/v1/overlay/user/[userId]/game-rank/[gameId]`| Game Rank widgets                          |
+| `GET /api/v1/overlay/user/[userId]/referral`          | Referral Code widget                       |
+| `GET /api/v1/overlay/team/[id]/stats`                 | Team Stats widget                          |
+| `GET /api/v1/overlay/org/[id]/stats`                  | Organization Stats widget                  |
+| `GET /api/v1/overlay/leaderboard/top-players`         | Top 3 Players widget                       |
+| `GET /api/v1/overlay/simple/[gameId]`                 | Simple Overlay (no-account flow)           |
+| `POST /api/v1/overlay/dock/auth`                      | OBS Dock device-flow request               |
+| `GET /api/v1/overlay/dock/auth`                       | OBS Dock device-flow poll                  |
+
+A render URL is `https://teambattles.gg/overlay/render/{configId}`, optionally with
+`?widget=<widgetKey>` to render a single widget. It carries the config id and nothing else - there
+is no key parameter and no secret in the URL.
+
+## API-key endpoints (owner management)
+
+These manage a caller's own overlay configurations and require an
+`Authorization: Bearer tb_...` header. The visual editor uses the signed-in session rather than a
+pasted key; the OBS Dock mints its own key during authorization.
+
+| Endpoint                                    | Purpose                                     |
+| ------------------------------------------- | ------------------------------------------- |
+| `GET /api/v1/overlay/configs`               | List your saved overlay configurations      |
+| `PATCH /api/v1/overlay/config/[configId]`   | Update one of your overlay configurations   |
+| `GET /api/v1/overlay/user/teams`            | Team selector data for the editor and dock  |
+| `GET /api/v1/overlay/user/orgs`             | Organization selector data                  |
+
+<Note>
+	`config/[configId]` appears in both tables. The public `GET` is what a render URL uses to load a
+	config by id; the API-key-required `PATCH` saves changes to it. The two methods are intentionally
+	on the same path.
+</Note>
+
+## Simple Overlay parameters
+
+The [Simple Overlay](/tools/battles-overlay/simple) render URL is fully described by its query
+string, so it can be constructed without calling anything first.
+
+| Parameter     | Required | Description                            | Example                   |
+| ------------- | -------- | -------------------------------------- | ------------------------- |
+| `game`        | Yes      | Game short id                          | `val`, `lol`, `bo7`       |
+| `mode`        | Yes      | Game mode id                           | `competitive`, `solo_duo` |
+| `username`    | Yes      | In-game name (URL-encoded)             | `Player%23NA1`            |
+| `layout`      | No       | Widget style                           | `rounded`                 |
+| `orientation` | No       | Widget orientation                     | `horizontal`              |
+| `theme`       | No       | Color theme                            | `dark`                    |
+| `animated`    | No       | Enable animation effects               | `true`                    |
+| `scale`       | No       | Size multiplier                        | `1`                       |
+| `sr`          | No       | Skill Rating (manual games only)       | `2500`                    |
+| `winstreak`   | No       | Current winstreak (manual games only)  | `5`                       |
+| `region`      | No       | Player region (API-backed games)       | `NA`                      |
+| `platform`    | No       | Player platform (API-backed games)     | `pc`                      |
+
+Manual games (currently Black Ops 7) read `sr` and `winstreak` straight from the URL and never
+refresh. API-backed games (Valorant, League of Legends) resolve rank from the Riot Games API and
+poll every 300 seconds.
+
+## OBS Dock device authorization
+
+The [OBS Dock](/tools/battles-overlay/dock) pairs with an account using a two-code,
+RFC 8628-style split, so anyone who sees the short user-facing code cannot claim the resulting API
+key.
+
+| Field        | Format                                | Notes                                                                                                       |
+| ------------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| User code    | 6 characters from `A-Z2-9`            | Shown in OBS, typed in the browser. The alphabet excludes `I`, `O`, `0`, and `1` to avoid look-alikes.       |
+| Device code  | 64 hex characters (32 random bytes)   | Stays inside the dock, never displayed. Used to poll for the issued API key.                                 |
+| Lifetime     | 10 minutes (`CODE_TTL_MS`)            | Both codes expire together; the dock generates a new pair automatically.                                     |
+| Poll cadence | Every 3 seconds                       | The dock polls `checkDockAuthStatus` directly against Convex while the panel is open.                         |
+| Cleanup      | Every 5 minutes                       | A server cron deletes expired codes from the dock-auth table.                                                 |
+
+### Permissions on the dock key
+
+Authorizing creates (or refreshes) an API key labeled **OBS Dock** on the account. It is
+deliberately narrow: only `matches.user_matches: read` is enabled, with every other scope set to
+`none`. The dock-only endpoints (`configs`, `config/[configId]` PATCH, `user/teams`, `user/orgs`)
+do not gate on scopes at all - they check only that the key belongs to the caller.
+
+The key is owner-scoped and minted per device. Revoking it from
+[Developer Settings](https://teambattles.gg/settings/developer) logs the dock out immediately;
+re-authorizing writes a fresh key onto the same `OBS Dock` row rather than accumulating stale
+entries.

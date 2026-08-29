@@ -1,0 +1,50 @@
+---
+title: "Visibility and Privacy"
+description: "What your overlay shows on stream, and the profile settings that control it"
+---
+
+Your overlay link is public and safe to paste into your streaming software. It contains no password
+and no key - anyone who has it sees the same widgets your viewers see, and nothing more.
+
+There is nothing to set up for access. A widget fills in as long as the profile, team, or
+organization it is showing is visible to the public.
+
+## What each widget needs
+
+| Widget             | Shows                | Needs                                                             |
+| ------------------ | -------------------- | ----------------------------------------------------------------- |
+| User Stats         | Your own stats       | Your profile is not set to Private                                |
+| Leaderboard Rank   | Your own rank        | Your profile is not set to Private                                |
+| Active Match       | Your current match   | Your profile is not set to Private                                |
+| Referral Code      | Your referral code   | Your profile is not set to Private, and you have a referral code  |
+| Game Rank          | Your rank in a game  | Your profile is not set to Private, and a rank set in Game Stats  |
+| Team Stats         | A team you are on    | A team chosen in the editor, with its profile set to Public       |
+| Organization Stats | An organization      | An organization chosen in the editor, set to Public               |
+| Top 3 Players      | The public top three | Nothing - it always works                                         |
+
+If a widget appears empty on stream, the profile behind it is almost always the reason.
+
+## Change your profile visibility
+
+Open [Settings](https://teambattles.gg/settings) and set your profile to **Public** or **Limited**.
+Both work for overlays. **Private** hides your data everywhere, including on stream.
+
+Team and organization widgets follow the team or organization's own visibility setting, not yours,
+so a private team stays empty on your overlay even when your own profile is public. A team leader or
+organization owner can change it from the team or organization settings page.
+
+<Note>
+	The Top 3 Players widget never shows anyone who has set their profile to Private, whoever is
+	watching.
+</Note>
+
+## What your viewers can see
+
+Only what is already public on your profile: the wins, losses, streaks, ranks, and match scores that
+anyone visiting your profile page would see. Your email address, settings, and private matches never
+appear on an overlay.
+
+## Building your own integration
+
+If you want to call the overlay data directly instead of using a browser source, see
+[Overlay Integration](/developers/overlay-integration) in the developer docs.

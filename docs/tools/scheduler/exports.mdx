@@ -1,95 +1,119 @@
 ---
-title: "Export and protect your work"
-description: "Share lineup names and images, or move a schedule between browsers"
+title: "Share and back up"
+description: "Copy lineup names, download lineup images, and keep a copy of your schedule"
 ---
 
-Battles Scheduler creates every export in your browser. Your roster and schedule are not uploaded.
+Everything here is made on your own computer. Your roster and schedule are never uploaded.
 
 ## Share the lineups
 
-| Export | What you get |
-| --- | --- |
-| **Copy list of names** | The starters and every eligible substitute for one solved time slot. |
-| **Copy all name lists** | One text block containing every solved time slot in chronological order. |
-| **Download lineup card image** | A share-ready image for one solved time slot. |
-| **All lineup cards (one file)** | One image containing every solved time slot. Unsolved time slots are skipped. |
-| **Board overview image** | A visual summary of the whole schedule, available even before your first simulation. |
+| Option                          | What you get                                                          |
+| ------------------------------- | --------------------------------------------------------------------- |
+| **Copy list of names**          | The starters and every substitute for one match.                      |
+| **Copy all name lists**         | Every match in one block of text, in order.                           |
+| **Download lineup card image**  | A ready-to-post image for one match.                                  |
+| **All lineup cards (one file)** | One image with every match on it. Matches without a lineup are left out. |
+| **Board overview image**        | A picture of your whole schedule, available even before your first run. |
 
-Lineup-card and name-list actions become available after at least one time slot has a computed or manually created lineup. They pause while an animated simulation is still playing.
+Copying names and downloading cards become available once at least one match has a lineup, whether
+built for you or made by hand. They wait while an animated run is still playing.
 
-### Single lineup card
+### One match
 
-Use a single lineup card when you only need to share one match time. The card includes the starters, substitutes, seat count, start time, and assigned Host and IGL.
+Use a single lineup card when you only need to post one match. It shows the starters, the
+substitutes, how many are starting, the start time, and who is on Host and IGL.
 
 ![An exported Battles Scheduler lineup card for one match time with six starters, five substitutes, and assigned Host and IGL duties](../../images/scheduler/scheduler-lineup-card.png)
 
-Images can be PNG, JPEG, or WebP at 1x, 2x, or 3x. Battles Scheduler can lower the selected scale when the requested image is larger than the browser can safely draw. If a combined sheet is still too large, export each time slot separately.
+You can save images as PNG, JPEG, or WebP, at normal, double, or triple size. If the size you asked
+for is more than your browser can draw, Battles Scheduler drops it down a step. If a combined image
+is still too big, save each match on its own instead.
 
 <Note>
-	A stale lineup can still be exported. Images include a stale marker, while copied names match
-	the lineup currently shown on the board.
+	An out-of-date lineup can still be shared. Images get a marker saying so, and copied names match
+	what is on the board right now.
 </Note>
 
-### Combined lineup cards
+### Every match in one image
 
-Choose **All lineup cards (one file)** to share every solved time slot in one image. The combined sheet keeps each lineup in its own card and orders the cards chronologically.
+**All lineup cards (one file)** puts every match into a single image, each in its own card, in
+order.
 
 ![A combined Battles Scheduler export showing lineup cards for six match times](../../images/scheduler/scheduler-lineup-cards.png)
 
-### Board overview
+### The whole board
 
-The board overview collects every time slot into one image so your whole schedule can travel as a single visual.
+The board overview turns your entire schedule into one picture, so it can travel as a single image.
 
-![A Battles Scheduler board overview with four match times, starters, and substitutes](../../images/scheduler/scheduler-board-overview.png)
+![A Battles Scheduler board overview with six match times, starters, and substitutes](../../images/scheduler/scheduler-board-overview.png)
 
-## Keep a portable backup
+### How the images look
 
-Schedules are saved only in the current browser profile. Export a `.tbsched` file when you want to:
+Every image carries the TeamBattles look - the honeycomb background and the TeamBattles logo.
+Whole-schedule images also get a colored bar across the top and your schedule's name.
 
-- Protect a schedule before clearing browser data.
-- Move it to another browser or device.
-- Keep a durable copy outside TeamBattles.
-- Use an existing schedule as the starting point for a new one.
+Colors follow whatever TeamBattles looks like to you, so an image matches the site you are looking
+at. Signed in, the theme and accent color from [Appearance settings](../../settings/appearance)
+carry into everything you save.
 
-**Export .tbsched** is always available from the schedule library and editor. Importing a file creates a normal local schedule and lets you choose which parts to bring over.
+<Note>
+	Times in an image always name their time zone, even when the app itself does not show one because
+	the whole schedule is in a single zone. It keeps a card unambiguous for whoever you send it to.
+</Note>
+
+## Keep a backup
+
+Schedules live in this browser only. Download a schedule file when you want to:
+
+- Keep a schedule safe before clearing your browser data
+- Move it to another browser or another computer
+- Hold on to a copy outside TeamBattles
+- Use one schedule as the starting point for the next
+
+**Export .tbsched** is available from both the schedule list and the editor. Opening a file back up
+creates a normal schedule, and lets you choose which parts to bring across.
 
 <Warning>
-	Autosave protects ordinary edits, but it is not a cloud backup. Clearing TeamBattles site data
-	deletes every schedule stored in that browser.
+	Your work is saved as you go, but that is not a backup. Clearing this site's data deletes every
+	schedule in this browser.
 </Warning>
 
-## Useful limits
+## Limits
 
-| Item | Limit |
-| --- | --- |
-| Players | 64 per schedule |
-| Time slots | 64 per schedule |
-| Relationships | 512 per schedule |
-| Seats | 1 to 32 per time slot; 6 by default |
-| Minimum separation | 0 to 720 minutes; 30 by default |
-| `.tbsched` import | 8 MB |
-| Undo history | Up to 50 steps; very large schedules retain at least 5 |
+| Item                    | Limit                                                     |
+| ----------------------- | --------------------------------------------------------- |
+| Players                 | 64 per schedule                                           |
+| Match times             | 64 per schedule                                           |
+| Together/apart pairings | 512 per schedule                                          |
+| Players per match       | 1 to 32; 6 to begin with                                  |
+| Minimum gap             | 0 to 720 minutes; 30 to begin with                        |
+| Schedule file size      | 8 MB                                                      |
+| Undo steps              | Up to 50, or at least 5 on very large schedules           |
 
 ## Troubleshooting
 
-### My schedule disappeared
+### My schedule is gone
 
-Schedules exist only in the browser profile where you created or imported them. If site data was cleared, restore the schedule from a `.tbsched` backup.
+Schedules only exist in the browser you made them in. If that browser's data was cleared, open your
+backup file to get the schedule back.
 
-### The editor is read-only
+### I cannot edit anything
 
-Use a screen at least 1024 pixels wide. If another tab owns the schedule, select **Take over**. When the tabs cannot communicate, close the editing tab and try **Take over** again.
+You need a laptop or desktop screen. If another tab has the schedule open, select **Take over**. If
+that does nothing, close the other tab and try again.
 
-### Copy or lineup-card export is disabled
+### Copying names or saving a card is greyed out
 
-Wait for the simulation animation to finish. If you have not created a lineup yet, run the simulation or promote players manually.
+Wait for the animated run to finish. If you have not built any lineups yet, run it or place players
+by hand first.
 
-### The combined image is too large
+### The combined image will not save
 
-Export individual lineup cards, or choose a smaller image scale. If JPEG or WebP fails, try PNG.
+Save the matches individually, or pick a smaller image size. If JPEG or WebP fails, try PNG.
 
-### A `.tbsched` file will not import
+### A schedule file will not open
 
-Confirm that the file was exported by Battles Scheduler, is no larger than 8 MB, and comes from a compatible version.
+Check that it came from Battles Scheduler, is under 8 MB, and was made by a compatible version.
 
-For browser-wide storage and account help, see [Troubleshooting](../../reference/troubleshooting).
+For anything to do with your browser or your account, see
+[Troubleshooting](../../reference/troubleshooting).

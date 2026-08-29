@@ -1,66 +1,87 @@
 ---
 title: "Build a schedule"
-description: "Add match times, players, availability, duties, and pairing preferences"
+description: "Add your match times, players, availability, duties, and pairings"
 ---
 
-Start with the editable example if you want to explore before building a real schedule. When you are ready, add your roster and create one time slot for each match or scrim.
+If you want a feel for the tool first, load the example schedule and change things freely. When you
+are ready for the real thing, add your roster and make one slot for each match or scrim.
 
-## Choose Board or Grid
+## Board or Grid?
 
-Both views edit the same schedule, so you can switch between them at any time.
+Both edit the same schedule, so switch whenever you like.
 
-| View | Best for |
-| --- | --- |
-| **Board** | Arranging match times visually, dragging players, making manual lineups, and linking players together or apart. |
-| **Grid** | Entering availability quickly across a large roster with mouse or keyboard. |
+| View      | Best for                                                                                      |
+| --------- | --------------------------------------------------------------------------------------------- |
+| **Board** | Laying matches out visually, dragging players around, building lineups by hand, and pairing players. |
+| **Grid**  | Filling in availability fast across a big roster, with the mouse or the keyboard.              |
 
-### Work from the Board
+### Working on the Board
 
-The Board contains a player **Pool** and one container for each time slot. Drag players from the Pool to a time slot, or use a player's menu to move or copy them. You can pan and zoom the canvas, arrange containers, and pin the Pool so it stays in the corner while the rest of the board moves.
+The Board has a player **Pool** and one box for each match time. Drag players from the Pool into a
+match, or use a player's menu to move or copy them. You can move the board around, zoom in and out,
+rearrange the boxes, and pin the Pool to a corner so it stays put while everything else moves.
+
+Double-click an empty spot to add a match time there. The buttons in the bottom-right corner zoom
+out, zoom in, reset the zoom, and fit the whole schedule on screen.
+
+<Tip>
+	**Board help** in the header lists every way to move, select, and place players with a mouse,
+	keyboard, or touchscreen. It also shows up once the first time you open a board.
+</Tip>
 
 ![The Battles Scheduler Board before simulation, showing a player pool and ten match-time containers](../../images/scheduler/scheduler-board.png)
 
-### Enter availability in the Grid
+### Filling in the Grid
 
-The Grid shows players in rows and time slots in columns. Select or drag across cells to change marks. Arrow keys move between cells, Space changes the current mark, and Shift plus an arrow key paints across multiple cells.
+The Grid puts players down the side and match times across the top. Click or drag across the cells
+to set availability. Arrow keys move around, Space changes the cell you are on, and Shift with an
+arrow key paints several cells at once.
 
-Use a player row's actions to set, clear, or invert that row. Use a time slot column's menu to do the same for the column or open its pairing rules.
+Each player row has actions to set, clear, or flip that whole row, and each match column has the
+same for the column, plus its pairing rules.
 
 ![The Battles Scheduler Grid showing availability for 26 players across ten match times](../../images/scheduler/scheduler-grid.png)
 
-## Set up each time slot
+## Set up each match time
 
-Each time slot needs a start date and time. You can also add a label, such as an opponent or round, and override the schedule's default number of seats.
+Every match needs a date and a start time. You can also give it a label, such as the opponent or the
+round, and change how many players it needs.
 
-The schedule begins in your browser's time zone. If a match was announced in another region, set that time slot to the other region's zone and enter the time exactly as it was given. Battles Scheduler shows the different zone anywhere that time appears.
+Times start out in your own time zone. If a match was announced in another region, set that match to
+the other region's zone and type the time exactly as it was given to you. Battles Scheduler shows
+which zone it is in wherever that time appears.
 
-The **Slot actions** menu also lets you duplicate a time slot, copy players from another slot, assign duties, clear its players, or delete it.
+The **Slot actions** menu also duplicates a match, copies players in from another match, assigns
+duties, clears its players, or deletes it.
 
-## Mark player availability
+## Mark who can play
 
-Availability belongs to a specific time slot. A player can be available on Saturday and unavailable on Sunday.
+Availability is per match, so a player can be free on Saturday and busy on Sunday.
 
-| Mark | Use it when |
-| --- | --- |
-| **Not in this time slot** | The player should not be considered for this time. |
-| **Can play** | The player is available normally. |
-| **Maybe** | The player can fill in if needed. Battles Scheduler avoids using Maybe players before it tries to fill every seat. |
-| **Must play** | The player should start unless your other requirements make that impossible. |
-| **Cannot play** | The player is explicitly excluded from this time slot. |
+| Mark             | Use it when                                                                                     |
+| ---------------- | ----------------------------------------------------------------------------------------------- |
+| **Not in this time slot** | The player is not in the running for this match at all.                                 |
+| **Can play**     | The player is free.                                                                             |
+| **Maybe**        | The player could step in if needed. These are held back until the alternative is an empty seat.  |
+| **Must play**    | The player should start, unless your other rules make that impossible.                          |
+| **Cannot play**  | The player is ruled out of this match.                                                          |
 
-Mark **Can host** or **Can call** on players who can take those duties. Battles Scheduler uses those flags when assigning Host and IGL automatically.
+Tick **Can host** or **Can call** on the players who can take those jobs, and Battles Scheduler will
+use them when it assigns Host and IGL.
 
-## Add duties and pairing preferences
+## Duties and pairings
 
-Open **Duties...** on a time slot to leave Host and IGL on **Auto** or choose a player. Choosing someone does not force them into the lineup; Battles Scheduler warns you if that duty cannot be filled.
+Open **Duties...** on a match to leave Host and IGL on **Auto** or name someone yourself. Naming
+someone does not force them into the lineup - if the duty cannot be filled, you get a warning.
 
-Pairing preferences are also set per time slot:
+Pairings are set per match too:
 
-- **Together** asks Battles Scheduler to start or sit both players as a pair.
-- **Apart** asks it not to start that pair together.
+- **Together** asks for both players to start, or both to sit.
+- **Apart** asks for those two not to start the same match.
 
-These are preferences, not hard requirements. Participation, Maybe status, filled seats, and fairness take priority. Any pairing that could not be honored appears in the fairness summary.
+These are preferences, not rules. Availability, holding back Maybe players, filling seats, and
+fairness all come first. Anything that could not be honored shows up in the fairness summary.
 
-## Continue
+## Next
 
-When your roster and availability are ready, [create balanced lineups](./lineups).
+With your roster and availability in, [build the lineups](./lineups).

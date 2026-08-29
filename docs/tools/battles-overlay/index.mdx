@@ -1,108 +1,111 @@
 ---
 title: "Battles Overlay"
-description: "Display your competitive stats live on your stream with customizable OBS overlays"
+description: "Show your competitive stats live on stream with customizable overlays"
 ---
 
-Show your TeamBattles stats on stream with real-time overlays. Display wins, losses, streaks, active match scores, leaderboard rankings, and more - all updated automatically as you play.
+Put your TeamBattles stats on stream. Wins, losses, streaks, live match scores, leaderboard
+placings, and game ranks appear on your broadcast and keep themselves up to date while you play.
 
 <img
-	src="/tools/battles-overlay/preview-4.webp"
+	src="../../images/tools/battles-overlay/preview-4.webp"
 	alt="Battles Overlay widgets arranged over a tactical broadcast arena"
 	width="2400"
 	height="1350"
 />
 
-## Features
+## What you get
 
 <CardGroup cols={2}>
-	<Card title="7+ Widgets" icon="grid-2">
-		User stats, team stats, org stats, active match, leaderboard rank, top players, referral code,
-		and game-specific rank widgets
+	<Card title="Seven widgets, plus game ranks" icon="grid-2">
+		Your stats, team stats, organization stats, live match, leaderboard placing, top players,
+		referral code, and a rank widget for each game you play.
 	</Card>
-	<Card title="Visual Editor" icon="paintbrush">
-		Drag-and-drop canvas editor to position and style your widgets
+	<Card title="Drag-and-drop editor" icon="paintbrush">
+		Move widgets around a preview of your stream until they sit where you want them.
 	</Card>
-	<Card title="3 Style Types" icon="palette">
-		Rounded, Angular/HUD, and Minimal styles - mix and match per widget
+	<Card title="Three looks" icon="palette">
+		Rounded, Angular, or Minimal - pick one for the whole overlay, or a different one per widget.
 	</Card>
-	<Card title="Real-Time Updates" icon="rotate">
-		Stats refresh automatically so your overlay always shows current data
+	<Card title="Updates itself" icon="rotate">
+		Stats refresh on their own, so your overlay is never showing last week's numbers.
 	</Card>
-	<Card title="Transparent Background" icon="eye">
-		Designed for OBS Browser Sources with full transparency support
+	<Card title="See-through background" icon="eye">
+		Built to sit on top of your gameplay without a box around it.
 	</Card>
-	<Card title="No API Key" icon="lock-open">
-		Overlay URLs are public - paste into OBS and go. User widgets require your profile be non-private.
+	<Card title="Nothing to set up" icon="lock-open">
+		Copy one link, paste it into your streaming software, and you are live.
 	</Card>
 </CardGroup>
 
-## Quick Start
+## Quick start
 
 <Steps>
 	<Step title="Open the editor">
-		Navigate to [/overlay/editor](https://teambattles.gg/overlay/editor) and sign in
+		Go to [teambattles.gg/overlay/editor](https://teambattles.gg/overlay/editor) and sign in.
 	</Step>
-	<Step title="Configure your overlay">
-		Toggle on widgets, drag them into position, and customize the style
+	<Step title="Build your overlay">
+		Turn on the widgets you want, drag them into place, and pick a look.
 	</Step>
-	<Step title="Add to OBS">
-		Copy the overlay URL and add it as a Browser Source in OBS - no API key required
+	<Step title="Add it to your stream">
+		Copy your overlay link and add it as a browser source in your streaming software.
 	</Step>
 </Steps>
 
-For detailed instructions, see the [Setup Guide](/tools/battles-overlay/setup).
+For the full walkthrough, see the [Setup Guide](/tools/battles-overlay/setup).
 
-## Supported Streaming Software
+## Works with your streaming software
 
-The overlay works as a browser source in any streaming software that supports web URLs:
+Your overlay is a web page, so it works anywhere you can add a web page as a source:
 
-- **OBS Studio** - The most popular open-source option
-- **Streamlabs Desktop** - OBS-based with built-in alerts and themes
-- **XSplit Broadcaster** - Professional streaming and recording
-- **Meld Studio** - Modern OBS alternative built by streamers
-- **Prism Live Studio** - Desktop and mobile streaming
-- **TikTok LIVE Studio** - Uses a "Link" source type instead of "Browser Source"
+- **OBS Studio** - the most widely used free option
+- **Streamlabs Desktop** - OBS-based, with built-in alerts and themes
+- **XSplit Broadcaster**
+- **Meld Studio**
+- **Prism Live Studio**
+- **TikTok LIVE Studio** - uses a source called **Link** rather than **Browser**
 
-See the [Setup Guide](/tools/battles-overlay/setup) for step-by-step instructions for each platform.
+The [Setup Guide](/tools/battles-overlay/setup) has steps for each one.
 
-## Simple Overlay
+## No account? Use the Simple Overlay
 
-Want to get started without creating an account? The **Simple Overlay** lets you display a game rank widget on stream with no login required. Just select your game, enter your details, and copy the URL.
+The **Simple Overlay** puts a single game rank on your stream without signing in. Pick your game,
+type in your details, copy the link.
 
 [Try the Simple Overlay](/tools/battles-overlay/simple)
 
-## OBS Dock
+## Run it from inside OBS
 
-**OBS Studio users** can manage their overlay directly from within OBS using the Battles Overlay Dock. Configure widgets, connect via WebSocket, and add or remove overlay sources without leaving OBS.
+OBS Studio users can add a Battles Overlay panel to OBS itself, and turn widgets on and off without
+switching to a browser.
 
-[Learn more about the OBS Dock](/tools/battles-overlay/dock)
+[Learn about the OBS dock](/tools/battles-overlay/dock)
 
-## Learn More
+## Learn more
 
 <CardGroup cols={2}>
 	<Card title="Setup Guide" icon="rocket" href="/tools/battles-overlay/setup">
-		Step-by-step instructions for getting your overlay into OBS
+		Get your overlay onto your stream, step by step.
 	</Card>
 	<Card title="Simple Overlay" icon="bolt" href="/tools/battles-overlay/simple">
-		No-account overlay for quick game rank display
+		A game rank on stream, no account needed.
 	</Card>
 	<Card title="OBS Dock" icon="window" href="/tools/battles-overlay/dock">
-		Manage your overlay directly from inside OBS Studio
+		Manage your overlay from inside OBS Studio.
 	</Card>
-	<Card title="Widget Reference" icon="grid-2" href="/tools/battles-overlay/widgets">
-		Detailed info on all 7 overlay widgets
+	<Card title="Widgets" icon="grid-2" href="/tools/battles-overlay/widgets">
+		What each widget shows and how big it is.
 	</Card>
 	<Card title="Editor Guide" icon="paintbrush" href="/tools/battles-overlay/editor">
-		How to use the visual editor to customize your overlay
+		Every option in the overlay editor.
 	</Card>
-	<Card title="Visibility & Privacy" icon="lock-open" href="/tools/battles-overlay/api-permissions">
-		Public URLs explained and how profile visibility affects widgets
+	<Card title="Visibility and Privacy" icon="lock-open" href="/tools/battles-overlay/visibility">
+		Why a widget might be empty, and what your viewers can see.
 	</Card>
 	<Card
 		title="Troubleshooting"
 		icon="circle-question"
 		href="/tools/battles-overlay/troubleshooting"
 	>
-		Common issues and solutions
+		Fixes for the problems that come up most.
 	</Card>
 </CardGroup>

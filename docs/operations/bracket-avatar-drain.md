@@ -1,6 +1,6 @@
 # Bracket Avatar Drain - Operator Runbook
 
-The Brackets tool keeps a custom entrant image on the user's device until the
+Battles Brackets keeps a custom entrant image on the user's device until the
 bracket is saved to their account. Promotion uploads those bytes to Convex
 storage and records a **binding row** in `bracketAvatarBlobs` naming the owner
 and, once attached, the bracket. Reclaiming a blob is therefore authorizable:

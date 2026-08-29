@@ -5,7 +5,7 @@ description: "Terms and definitions"
 
 | Term                     | Definition                                                                                  |
 | ------------------------ | ------------------------------------------------------------------------------------------- |
-| **Account Bracket**      | A bracket saved to your TeamBattles account: counted against your tier's saved-bracket limit, openable from any device, shareable via a public link, and movable back to a single device to free a slot |
+| **Account Bracket**      | A bracket saved to your TeamBattles account: it counts towards your plan's limit, opens on any device, can be shared with a link, and can be moved back to one device to free a slot |
 | **Achievement**          | Milestone unlocked by completing specific actions                                           |
 | **Achievement Tier**     | Level within a tiered achievement (Bronze, Silver, Gold, Platinum)                          |
 | **Active Roster**        | Players selected to participate in a specific match                                         |
@@ -20,7 +20,7 @@ description: "Terms and definitions"
 | **Board**                | A folder (collection) of strategies in the Battles Strategy editor                          |
 | **Bracket Node**         | A single slot in a tournament bracket - one match between two entrants (or a bye), which advances a winner to the next node |
 | **Bracket Reset**        | A double-elimination grand-final option: if the losers-bracket team wins the first grand final, a second grand final is played to decide the champion |
-| **Bracket Visibility**   | Whether a saved bracket's share link opens for anyone else: **Private** (only you) or **Anyone with the link** (a read-only public view). Set in the Brackets tool's Save dialog; the link itself exists either way |
+| **Bracket Visibility**   | Whether a saved bracket's share link opens for anyone else: **Private** (only you) or **Anyone with the link** (a read-only public view). Set in the Battles Brackets Save dialog; the link itself exists either way |
 | **Browser Source**       | A URL loaded as a video source in streaming software (OBS, Streamlabs, XSplit) for overlays |
 | **Buchholz**             | The standard Swiss tiebreaker - the sum of a team's opponents' scores - used to rank teams on equal records |
 | **Captain**              | Team leader with full management permissions                                                |
@@ -31,7 +31,7 @@ description: "Terms and definitions"
 | **Competitive Pool**     | Curated tournament-standard maps                                                            |
 | **Custom Map**           | An uploaded map image used in the Battles Strategy editor (Premium feature; up to 50 per user) |
 | **Developer Account**    | An approved developer account (General or Game) that unlocks webhook and API access         |
-| **Device Bracket**       | A bracket stored only on the device you built it on, including its entrant images: it costs nothing against your saved-bracket limit and works signed out, but it is lost if you clear that browser's site data |
+| **Device Bracket**       | A bracket kept only on the computer you built it on, logos and all: it does not count towards your plan's limit and works signed out, but clearing that browser's data deletes it |
 | **Disqualification (DQ)** | Host or staff action that removes a team from a live tournament; the team is eliminated and its opponents are awarded walkovers |
 | **Experience**           | Points earned from matches and objectives                                                   |
 | **Flex Pool**            | All available maps including casual                                                         |
@@ -47,15 +47,15 @@ description: "Terms and definitions"
 | **League Staff**         | Users with Owner, Admin, or Manager roles who manage a league                               |
 | **League Team**          | Teams for organized league play; XP displayed as "points"                                   |
 | **Manual Map Selection** | Map preference mode where teams directly pick the exact maps to play                        |
-| **Motion Path**          | A recorded path that an animated token follows during playback in the Battles Strategy editor |
-| **Move to device**       | Turning an account bracket back into a device bracket: its document and entrant images are copied to this device and the account copy is deleted, which frees a saved-bracket slot and invalidates its share link |
+| **Motion Path**          | The route a token takes between stages when a strategy plays through                        |
+| **Move to device**       | Turning an account bracket back into a device bracket: it and its logos are copied to this computer and the account copy is deleted, which frees a slot and stops its share link working |
 | **Onboarding Tasks**     | Checklist to help new users learn the platform                                              |
 | **Orphaned League**      | A league whose owner has been banned, with no active owner until TB staff reassigns         |
 | **Overlay**              | A transparent web page displaying live stats on a stream via browser source                 |
 | **Pinned Chat**          | Floating chat window that stays on top (desktop)                                            |
 | **Preseason**            | The period before or between active seasons where stats are tracked separately              |
 | **Preferred Mode**       | Map selection where teams pick wanted maps                                                  |
-| **Project File (`.tbbrac`)** | The Brackets tool's own download format: the whole bracket plus the entrant logos that live only in your browser, so a bracket moves between browsers complete. Importing one restores those logos (each re-checked as if you had uploaded it); importing a plain `.json` bracket does not |
+| **Project File (`.tbbrac`)** | The Battles Brackets download format: the whole bracket plus any logos still only in your browser, so it travels complete between computers. Opening one brings those logos back, each checked the same way as an upload. The older bracket download format does not carry logos |
 | **Rarity**               | Percentage of users who have an achievement                                                 |
 | **Refuse Penalty**       | XP deduction applied to a league team that refuses a challenge                              |
 | **Referral trial**       | 7 Premium trial days granted to a referrer when a referred user plays 5 matches; stacks to 90 days, frozen while the referrer is subscribed |
@@ -63,11 +63,11 @@ description: "Terms and definitions"
 | **Scrimmage**            | A league challenge with no active season; awards 0 XP                                       |
 | **Season**               | Admin-controlled period that scopes league challenge tracking                               |
 | **Seed**                 | An entrant's ranking position that sets its starting slot in a bracket; assigned manually, randomly, or by registration order |
-| **Strategy**             | A single Konva-backed tactical board in the Battles Strategy editor                         |
+| **Strategy**             | A single play drawn out in the Battles Strategy editor                                      |
 | **Swiss**                | A tournament format where teams are paired each round against opponents with a similar record and no one is eliminated mid-event |
 | **System Message**       | Automated chat notification for match events                                                |
 | **Tag**                  | Short identifier (2-6 chars for orgs, 2-5 for teams)                                        |
-| **Token rail**           | The right-side panel in the Battles Strategy editor that holds draggable tokens             |
+| **Token rail**           | The panel on the right of the Battles Strategy editor holding the tokens you can place      |
 | **Tool**                 | Official TeamBattles utility or extension                                                   |
 | **Tournament**           | A hosted, bracketed competition (single elim, double elim, round robin, or Swiss) with automated match generation and result advancement |
 | **Tournament Actor Scope** | A competitor-side API permission under `tournaments.actor` (`entry`, `roster`, `check_in`, `free_agency`) that lets a key act on behalf of teams its owner leads. A separate consent decision from the organizer capabilities - neither grants the other |
@@ -79,6 +79,6 @@ description: "Terms and definitions"
 | **Walkover**             | An automatic advancement awarded when a team cannot play its match - for example when its opponent is disqualified or a bye is present |
 | **Webhook**              | An HTTP callback that delivers real-time event notifications to external applications       |
 | **Webhook Event Catalog** | The set of event names a webhook can subscribe to - 93 events across families such as `match.*`, `score.*`, `team.*`, `organization.*`, `league.*`, and `tournament.*` (plus a `test.ping` test event). See the [Webhooks guide](/developers/webhooks) for the full catalog. |
-| **Welcome overlay**      | The in-canvas first-open screen in the Battles Strategy editor that shows recent boards and lets you start a new one |
-| **Widget**               | An individual data display component within a stream overlay                                |
+| **Welcome overlay**      | The screen the Battles Strategy editor opens on, showing your recent boards and a way to start a new one |
+| **Widget**               | One of the stat panels you can place on a stream overlay                                    |
 | **XP**                   | Experience points; can be decimal                                                           |

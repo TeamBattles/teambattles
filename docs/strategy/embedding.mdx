@@ -1,59 +1,70 @@
 ---
-title: "Embedding strategies"
-description: "Embed a strategy as an iframe with configurable controls and a postMessage API."
+title: "Sharing and embedding"
+description: "Share a strategy with a link, or put it on a web page so it plays there"
 ---
 
-Any shared strategy can be embedded as an iframe. The embed URL accepts URL parameters and a `playback:*` postMessage protocol for runtime control.
+Once a strategy is saved to your account, it gets a link. Anyone you send that link to sees your play
+on a read-only page and can watch it run through its stages.
 
-## Quick start
+You can also drop that same play into a web page of your own, where it plays in place - useful for a
+team site, a wiki, a blog post, or a coaching write-up.
 
-```html
-<iframe
-	src="https://teambattles.gg/strategy/embed/<shareSlug>?autoplay=1&loop=1"
-	width="600"
-	height="600"
-	frameborder="0"
-></iframe>
-```
+## Get the link
 
-## URL parameters
+Open the actions menu on a strategy card and choose **Copy link**. Who can open it depends on the
+strategy's visibility:
 
-| Parameter  | Default     | Description                                                |
-| ---------- | ----------- | ---------------------------------------------------------- |
-| `autoplay` | `1`         | Start playback on mount (`0` or `1`).                      |
-| `loop`     | `1`         | Loop back to the first stage at the end (`0` or `1`).      |
-| `controls` | `0`         | Show the Play/Stop button (`0` or `1`).                    |
-| `chips`    | `0`         | Show stage chips (`0` or `1`).                             |
-| `start`    | first stage | Stage id or 1-based index to start on.                     |
-| `speed`    | `1`         | Playback multiplier, clamped to `[0.25, 4.0]`.             |
-| `branding` | `1`         | Show the "Powered by TeamBattles" link (`0` or `1`).       |
+| Visibility   | Who can open the link                      |
+| ------------ | ------------------------------------------ |
+| **Private**  | Only you                                   |
+| **Unlisted** | Anyone you send the link to                |
+| **Public**   | Anyone, and it can be found by other people |
 
-## postMessage API
+Change the visibility any time from the same menu. See
+[Managing your strategies](/strategy/managing-strategies) for the rest of the actions.
 
-Send messages to the iframe with `iframe.contentWindow.postMessage({ type, ... }, "*")`:
+<Note>
+	A strategy kept on this device has no link. Save it to your account first.
+</Note>
 
-| Type               | Payload                          | Effect                                       |
-| ------------------ | -------------------------------- | -------------------------------------------- |
-| `playback:play`    | -                                | Start playback if paused.                    |
-| `playback:pause`   | -                                | Stop the in-flight tween.                    |
-| `playback:toggle`  | -                                | Flip play/pause.                             |
-| `playback:goto`    | `{ stageId? }` or `{ index? }`   | Switch to a stage.                           |
-| `playback:setSpeed`| `{ value: number }`              | Update speed multiplier (next transition).   |
-| `playback:setLoop` | `{ value: boolean }`             | Update loop setting.                         |
+## Put it on a web page
 
-The iframe broadcasts back:
+<Steps>
+	<Step title="Save it and make it shareable">
+		Set the strategy's visibility to **Unlisted** or **Public** in the Save dialog. A private
+		strategy will not show for anyone else.
+	</Step>
+	<Step title="Take the address">
+		Your embed address is `https://teambattles.gg/strategy/embed/` followed by the same code that
+		is at the end of your share link.
+	</Step>
+	<Step title="Paste it into your page">
+		Add it to your page with a snippet like this one:
 
-```json
-{ "type": "playback:state", "isPlaying": true, "currentStageId": "stg_1", "currentStageIndex": 0 }
-```
+		```html
+		<iframe
+			src="https://teambattles.gg/strategy/embed/your-strategy-code"
+			width="600"
+			height="600"
+			frameborder="0"
+		></iframe>
+		```
+	</Step>
+</Steps>
 
-on every transition and on play/pause.
+You can also set how it behaves by adding options to the end of the address - whether it starts
+playing on its own, whether it loops, whether visitors get play and stop buttons, which stage it
+starts on, and how fast it runs. The full list is on the
+[Strategy Embeds](/developers/strategy-embeds) page.
 
-## Example: external Play button
+<Note>
+	A strategy built on a [custom map](/strategy/custom-maps) only shows that map for you, so an
+	embedded copy appears without its background to everyone else. Share it as a downloaded offline
+	copy instead.
+</Note>
 
-```html
-<button onclick="document.getElementById('strategy').contentWindow.postMessage({ type: 'playback:toggle' }, '*')">
-	Play / Pause
-</button>
-<iframe id="strategy" src="https://teambattles.gg/strategy/embed/abc?controls=0"></iframe>
-```
+## Controlling it from your own page
+
+If you are building the page yourself and want your own play button, or want the strategy to jump to
+a particular stage when a visitor selects something, that is covered in
+[Strategy Embeds](/developers/strategy-embeds).

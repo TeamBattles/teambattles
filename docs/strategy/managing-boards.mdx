@@ -1,104 +1,119 @@
 ---
 title: "Managing your boards"
-description: "Group related strategies into a board (folder), file strategies by drag-and-drop, share a board's public page, and choose whether to keep or delete the contents when removing a board."
+description: "Group strategies into a board, file them by dragging, share a board, and choose what happens when you delete one"
 ---
 
-A **board** is a folder of strategies. Use boards to group related plays together - a map pool for an upcoming tournament, scouting notes for a rival team, or a scratchpad of ideas you'll come back to. Each board has its own name, description, visibility, and shareable view page; the strategies inside the board still keep their own per-strategy visibility on top of the board's.
+A **board** is a folder for your strategies. Use one to keep related plays together - a map pool for
+an upcoming tournament, scouting notes on a rival, or a scratchpad of ideas.
 
-For managing individual strategies (saving, renaming, sharing, syncing), see [Managing your strategies](/strategy/managing-strategies).
+Each board has its own name, description, visibility, and shareable page. The strategies inside keep
+their own visibility settings on top of the board's.
 
-## Creating a board
+For working with individual strategies, see
+[Managing your strategies](/strategy/managing-strategies).
 
-Open the **My boards** sheet from the editor header and choose **New board**. A board needs:
+## Create a board
+
+Open **My boards** from the editor header and choose **New board**.
 
 <Steps>
-	<Step title="A name">
-		Shown in the My Boards sheet and on the board's public page (up to 120 characters).
+	<Step title="Give it a name">
+		Shown in My Boards and on the board's shared page. Up to 120 characters.
 	</Step>
-	<Step title="An optional description">
-		A short blurb that appears on the public page below the board name.
+	<Step title="Add a description (optional)">
+		A short line that appears under the name on the shared page.
 	</Step>
-	<Step title="A visibility">
-		**Private** (only you), **Unlisted** (anyone with the link), or **Public** (discoverable by anyone). You can change this later from the board's actions menu.
+	<Step title="Choose who can see it">
+		**Private** (only you), **Unlisted** (anyone with the link), or **Public** (anyone can find it).
+		You can change this later.
 	</Step>
 </Steps>
 
-A new board starts empty. You can file existing strategies into it (see below) or create a strategy directly into the board: with the board's drill-in view open in the My Boards sheet, use **New strategy** to launch the welcome overlay's **Start a new strategy** flow with the current board pre-selected.
+A new board starts empty. Move existing strategies into it, or open the board and choose
+**New strategy** to create one straight into it.
 
-## Filing strategies into a board
+## Put strategies in a board
 
-Strategies that aren't yet filed into a board live in the **Ungrouped** bucket at the top level of the My Boards sheet. There are two ways to file them:
+Strategies not in any board sit in **Ungrouped** at the top of My Boards. Two ways to file them:
 
 <Steps>
-	<Step title="Drag-to-file">
-		Drag a strategy card from **Ungrouped** (or from another board's drill-in view) onto a board row in the top-level list to file it into that board. Drag a strategy card from inside a board back to the **Ungrouped** row to un-file it.
+	<Step title="Drag them">
+		Drag a strategy card from **Ungrouped**, or from another board, onto a board in the list. Drag
+		one back onto **Ungrouped** to take it out again.
 	</Step>
-	<Step title="From the strategy's actions menu">
-		Open the `...` menu on any saved strategy and choose **Move to board** to pick a board (or **Ungrouped**) from a list.
+	<Step title="Use the menu">
+		Open the `...` menu on any saved strategy and choose **Move to board**.
 	</Step>
 </Steps>
 
 <Note>
-	Drag-to-file is owner-only. Anyone visiting one of your public or unlisted boards sees the strategies inside but never the drag handles - they cannot rearrange or remove anything from your boards.
+	Only you can rearrange your own boards. Someone visiting your shared board sees the strategies but
+	cannot move or remove anything.
 </Note>
 
-### Saved vs local strategies inside a board
+### Boards only hold saved strategies
 
-Filing into a board only applies to **account-saved strategies**. Local-only strategies (the ones with the **Local** badge) live outside boards in the welcome overlay's **Continue working** grid; they aren't shown inside any board's drill-in view.
+Filing works for strategies saved to your account. Strategies kept on this device - the ones with a
+**Local** badge - stay in the **Continue working** grid on the welcome screen and are not shown
+inside a board.
 
-If you're inside a board's drill-in view and save a local strategy to your account from the editor's Save dialog, it's filed into that board automatically.
+If you are inside a board and save a device strategy to your account, it goes into that board
+automatically.
 
-## Sharing a board
+## Share a board
 
-Each board has its own public page at:
-
-```
-https://teambattles.gg/strategy/view/board/<shareSlug>
-```
-
-What visitors see depends on the board's visibility:
+Every board has its own page. What visitors see depends on the board's visibility:
 
 <Steps>
 	<Step title="Private">
-		The board's public page **404s for anyone but the owner**. The share-slug existence is not leaked - a non-owner can't tell whether the URL is private or just doesn't exist. Use this for work-in-progress boards that aren't ready to share.
+		Nobody but you can open it. Anyone else gets a "not found" page - they cannot even tell whether
+		the board exists. Use this for work you are not ready to show.
 	</Step>
 	<Step title="Public">
-		Anyone with the link can open the page. The board's gallery lists only its **public** strategies - unlisted and private strategies inside the board are hidden from non-owners.
+		Anyone with the link can open it, and they see the board's **public** strategies. Unlisted and
+		private ones stay hidden.
 	</Step>
 	<Step title="Unlisted">
-		Anyone with the link can open the page. The board's gallery lists both its **unlisted** and **public** strategies - private strategies are still hidden from non-owners.
+		Anyone with the link can open it, and they see both the **unlisted** and **public** strategies.
+		Private ones stay hidden.
 	</Step>
 </Steps>
 
 <Note>
-	You always see every strategy in your own board on its public page, regardless of strategy visibility. The filtering only applies to other visitors.
+	You always see everything in your own board, whatever each strategy's visibility is. The hiding
+	only applies to other people.
 </Note>
 
-To get a board's link, open its actions menu in the My Boards sheet and choose **Copy link**.
+To get the link, open the board's actions menu in My Boards and choose **Copy link**.
 
 ### Embedding a board
 
-Boards aren't embeddable on their own yet. To embed playback in a page, embed an individual strategy from the board - see [Sharing and embedding strategies](/strategy/embedding).
+Boards cannot be embedded yet. To put a play on a web page, embed one of the strategies inside it -
+see [Sharing and embedding](/strategy/embedding).
 
-## Deleting a board
+## Delete a board
 
-Deleting a board lets you choose what happens to the strategies inside it:
+When you delete a board you choose what happens to what is inside:
 
 <Steps>
 	<Step title="Keep contents">
-		Removes the board (the folder) but leaves every strategy inside it on your account. The strategies move back to the **Ungrouped** bucket so you can re-file them into another board or share them on their own. Pick this if you're just reorganizing.
+		Removes the folder but keeps every strategy in it. They go back to **Ungrouped**, where you can
+		file them somewhere else. Choose this if you are just reorganising.
 	</Step>
 	<Step title="Delete contents">
-		Cascade-deletes every strategy in the board (their shapes, frames, sessions, presence rows, laser strokes, ratings, and preview images) along with the board itself. Pick this if you want to throw the whole thing away.
+		Deletes the board and everything in it. Choose this if you want the whole lot gone.
 	</Step>
 </Steps>
 
 <Warning>
-	**Delete contents is permanent.** There is no undo, and deleted strategies cannot be recovered. Large boards may take a few seconds to finish deleting because the cascade runs in batches; you can navigate away while it completes.
+	**Delete contents cannot be undone.** Deleted strategies cannot be brought back. A large board
+	takes a few seconds to finish clearing out, and you can go and do something else while it does.
 </Warning>
 
-If you delete a board while one of its strategies is open in the editor, the editor returns you to a fresh canvas after the delete finishes.
+If you delete a board while one of its strategies is open, you are returned to a fresh canvas once
+it finishes.
 
-## Ratings (upcoming)
+## Ratings, coming soon
 
-We're laying groundwork for community ratings on both individual strategies and boards - so you'll eventually be able to upvote a great play, sort by what the community likes, and see which boards stand out. The data model is already in place; the rating buttons and totals on cards aren't shipped yet but will arrive in a follow-up release.
+Community ratings on strategies and boards are on the way, so you will be able to upvote a good play,
+sort by what people like, and see which boards stand out. The buttons are not there yet.

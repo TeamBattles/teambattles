@@ -1,14 +1,17 @@
 ---
 title: "Battles Scheduler"
-description: "Turn player availability into balanced lineups for every match time"
+description: "Turn player availability into fair lineups for every match time"
 ---
 
-Battles Scheduler helps you answer a familiar team-management question: who should play each match when everyone has different availability?
+Battles Scheduler answers the question every team manager knows: who plays which match, when
+everybody is free at different times?
 
-Add your roster and match times, mark who can attend, and let Battles Scheduler build lineups that spread opportunities fairly. You can adjust the result, copy name lists, or download share-ready images.
+Add your roster and your match times, mark who can make each one, and Battles Scheduler works out
+lineups that share the game time fairly. Change anything you disagree with, then copy the names out
+or download a lineup image to post.
 
 <Note>
-	Battles Scheduler is free, works without an account, and keeps every schedule in your browser.
+	Battles Scheduler is free, needs no account, and keeps your schedules in your browser.
 </Note>
 
 ![The Battles Scheduler Board before simulation, showing a player pool, ten match-time containers, and lineup settings](../images/scheduler/scheduler-board.png)
@@ -17,62 +20,62 @@ Add your roster and match times, mark who can attend, and let Battles Scheduler 
 
 <Steps>
 	<Step title="Open Battles Scheduler">
-		Go to [teambattles.gg/scheduler](https://teambattles.gg/scheduler). Use a screen at least
-		1024 pixels wide to edit; smaller screens show a read-only lineup view.
+		Go to [teambattles.gg/scheduler](https://teambattles.gg/scheduler). You need a laptop or
+		desktop to edit a schedule - phones and small tablets get a read-only view.
 	</Step>
 	<Step title="Choose how to begin">
-		Start blank, copy a schedule already on this device, import a `.tbsched` file, or load
-		the editable example schedule.
+		Start from scratch, copy a schedule you already made, open a saved schedule file, or load the
+		example schedule and play with it.
 	</Step>
-	<Step title="Add availability">
-		Create your match times, add players, and mark who can play each time slot. You can work
-		from the visual **Board** or the spreadsheet-like **Grid**.
+	<Step title="Add your match times and players">
+		Create a slot for each match, add your roster, and mark who can play when. Do it on the visual
+		**Board** or in the spreadsheet-style **Grid** - whichever you prefer.
 	</Step>
-	<Step title="Create the lineups">
-		Choose your seat count and fairness preference, then select **Simulate**. Review the
-		lineups, notes, blockers, and fairness summary.
+	<Step title="Build the lineups">
+		Set how many players start each match and how you want the time shared out, then select
+		**Simulate**. Review the lineups, the notes, and the fairness summary.
 	</Step>
-	<Step title="Share or save the result">
-		Copy the lineup names, download lineup-card images, or export a `.tbsched` backup.
+	<Step title="Share it">
+		Copy the names, download a lineup image, or save a schedule file as a backup.
 	</Step>
 </Steps>
 
-## What Battles Scheduler considers
+## What it takes into account
 
-The simulation balances the information you provide:
+- Whether each player can, might, must, or cannot play each match
+- How many players each match needs
+- Matches that overlap or start too close together
+- Players you want kept together, or kept apart
+- Who can host and who can call
+- Whether you want everyone to get a similar number of games, or a similar share of the games they
+  were actually free for
 
-- Who can, might, must, or cannot play each time slot.
-- How many starters each time slot needs.
-- Whether time slots overlap or are too close together.
-- Whether players should be kept together or apart.
-- Who can host or act as IGL.
-- Whether you want an even number of starts or an even share of each player's opportunities.
+You always have the last word. Move players yourself, ask for a different set of lineups, clear the
+lineups and start over, or undo the whole thing.
 
-You stay in control. You can move players manually, run another variation, reset the computed lineups, or undo the entire simulation.
-
-## Choose your next step
+## Where to next
 
 <CardGroup cols={2}>
 	<Card title="Build your schedule" icon="calendar-plus" href="./scheduler/build">
-		Add match times, availability, duties, and pairing preferences.
+		Add match times, availability, duties, and who plays with whom.
 	</Card>
-	<Card title="Create balanced lineups" icon="users" href="./scheduler/lineups">
-		Configure fairness, run the simulation, and resolve blockers.
+	<Card title="Build the lineups" icon="users" href="./scheduler/lineups">
+		Set your rules, run it, and fix anything it flags.
 	</Card>
-	<Card title="Export and protect your work" icon="download" href="./scheduler/exports">
-		Share lineups and keep a portable backup of your schedule.
+	<Card title="Share and back up" icon="download" href="./scheduler/exports">
+		Copy names, download images, and keep a copy of your schedule.
 	</Card>
 	<Card title="Open Battles Scheduler" icon="arrow-up-right-from-square" href="https://teambattles.gg/scheduler">
-		Start a new schedule in your browser.
+		Start a new schedule.
 	</Card>
 </CardGroup>
 
 <Warning>
-	Schedules are not saved to your TeamBattles account or a cloud service. Clearing this site's
-	browser data deletes them. Export a `.tbsched` file for anything you need to keep.
+	Your schedules live in this browser, not in your TeamBattles account. Clearing this site's data
+	deletes them. Download a schedule file for anything you want to keep.
 </Warning>
 
 ## Related
 
-- [Brackets Tool](./brackets)
+- [Battles Brackets](./brackets)
 - [Tools overview](./index)

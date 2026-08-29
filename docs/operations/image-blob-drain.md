@@ -100,5 +100,5 @@ problem in the cron.
   `tournaments/adminReview.reject` marks what a discarded set abandoned.
 - Upload routes: `src/routes/api/upload/image/+server.ts` (session) and
   `src/routes/api/v1/uploads/image/+server.ts` (API key).
-- Sibling runbook for the Brackets tool's own table:
+- Sibling runbook for the Battles Brackets table:
   `docs/operations/bracket-avatar-drain.md`.
