@@ -23,7 +23,7 @@ class TournamentSponsorTag implements AdditionalDataHolder, Parsable
     private ?string $customPrefix = null;
     
     /**
-     * @var string|null $logoStorageId Convex storage id for the sponsor logo.
+     * @var string|null $logoStorageId Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
     */
     private ?string $logoStorageId = null;
     
@@ -90,7 +90,7 @@ class TournamentSponsorTag implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the logoStorageId property value. Convex storage id for the sponsor logo.
+     * Gets the logoStorageId property value. Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
      * @return string|null
     */
     public function getLogoStorageId(): ?string {
@@ -151,7 +151,7 @@ class TournamentSponsorTag implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the logoStorageId property value. Convex storage id for the sponsor logo.
+     * Sets the logoStorageId property value. Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
      * @param string|null $value Value to set for the logoStorageId property.
     */
     public function setLogoStorageId(?string $value): void {

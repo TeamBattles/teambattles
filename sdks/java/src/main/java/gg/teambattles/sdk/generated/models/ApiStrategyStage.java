@@ -26,6 +26,10 @@ public class ApiStrategyStage implements Parsable {
      */
     private ApiStrategyStageLabel label;
     /**
+     * Registered map level for this stage. Omitted values use the map default.
+     */
+    private String levelId;
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param parseNode The parse node to use to read the discriminator value and create the object
      * @return a {@link ApiStrategyStage}
@@ -49,10 +53,11 @@ public class ApiStrategyStage implements Parsable {
      */
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
         deserializerMap.put("durationMs", (n) -> { this.setDurationMs(n.getIntegerValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
         deserializerMap.put("label", (n) -> { this.setLabel(n.getObjectValue(ApiStrategyStageLabel::createFromDiscriminatorValue)); });
+        deserializerMap.put("levelId", (n) -> { this.setLevelId(n.getStringValue()); });
         return deserializerMap;
     }
     /**
@@ -72,6 +77,14 @@ public class ApiStrategyStage implements Parsable {
         return this.label;
     }
     /**
+     * Gets the levelId property value. Registered map level for this stage. Omitted values use the map default.
+     * @return a {@link String}
+     */
+    @jakarta.annotation.Nullable
+    public String getLevelId() {
+        return this.levelId;
+    }
+    /**
      * Serializes information the current object
      * @param writer Serialization writer to use to serialize this model
      */
@@ -80,6 +93,7 @@ public class ApiStrategyStage implements Parsable {
         writer.writeIntegerValue("durationMs", this.getDurationMs());
         writer.writeStringValue("id", this.getId());
         writer.writeObjectValue("label", this.getLabel());
+        writer.writeStringValue("levelId", this.getLevelId());
     }
     /**
      * Sets the durationMs property value. Stage playback duration in milliseconds.
@@ -101,6 +115,13 @@ public class ApiStrategyStage implements Parsable {
      */
     public void setLabel(@jakarta.annotation.Nullable final ApiStrategyStageLabel value) {
         this.label = value;
+    }
+    /**
+     * Sets the levelId property value. Registered map level for this stage. Omitted values use the map default.
+     * @param value Value to set for the levelId property.
+     */
+    public void setLevelId(@jakarta.annotation.Nullable final String value) {
+        this.levelId = value;
     }
     /**
      * Composed type wrapper for classes {@link ApiStrategyStageLabelMember1}, {@link String}

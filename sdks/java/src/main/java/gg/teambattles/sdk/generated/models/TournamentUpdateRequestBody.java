@@ -17,7 +17,7 @@ public class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsab
      */
     private Map<String, Object> additionalData;
     /**
-     * Convex storage id.
+     * Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      */
     private String bannerStorageId;
     /**
@@ -49,7 +49,7 @@ public class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsab
      */
     private String gameId;
     /**
-     * Convex storage id.
+     * Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      */
     private String logoStorageId;
     /**
@@ -145,7 +145,7 @@ public class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsab
         return this.additionalData;
     }
     /**
-     * Gets the bannerStorageId property value. Convex storage id.
+     * Gets the bannerStorageId property value. Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -244,7 +244,7 @@ public class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsab
         return this.gameId;
     }
     /**
-     * Gets the logoStorageId property value. Convex storage id.
+     * Gets the logoStorageId property value. Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -429,7 +429,7 @@ public class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsab
         this.additionalData = value;
     }
     /**
-     * Sets the bannerStorageId property value. Convex storage id.
+     * Sets the bannerStorageId property value. Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      * @param value Value to set for the bannerStorageId property.
      */
     public void setBannerStorageId(@jakarta.annotation.Nullable final String value) {
@@ -485,7 +485,7 @@ public class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsab
         this.gameId = value;
     }
     /**
-     * Sets the logoStorageId property value. Convex storage id.
+     * Sets the logoStorageId property value. Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      * @param value Value to set for the logoStorageId property.
      */
     public void setLogoStorageId(@jakarta.annotation.Nullable final String value) {

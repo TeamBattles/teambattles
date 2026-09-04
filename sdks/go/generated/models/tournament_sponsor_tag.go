@@ -13,7 +13,7 @@ type TournamentSponsorTag struct {
     additionalData map[string]any
     // Used only when prefix is CUSTOM.
     customPrefix *string
-    // Convex storage id for the sponsor logo.
+    // Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
     logoStorageId *string
     // The name property
     name *string
@@ -100,7 +100,7 @@ func (m *TournamentSponsorTag) GetFieldDeserializers()(map[string]func(i878a80d2
     }
     return res
 }
-// GetLogoStorageId gets the logoStorageId property value. Convex storage id for the sponsor logo.
+// GetLogoStorageId gets the logoStorageId property value. Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
 // returns a *string when successful
 func (m *TournamentSponsorTag) GetLogoStorageId()(*string) {
     return m.logoStorageId
@@ -169,7 +169,7 @@ func (m *TournamentSponsorTag) SetAdditionalData(value map[string]any)() {
 func (m *TournamentSponsorTag) SetCustomPrefix(value *string)() {
     m.customPrefix = value
 }
-// SetLogoStorageId sets the logoStorageId property value. Convex storage id for the sponsor logo.
+// SetLogoStorageId sets the logoStorageId property value. Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
 func (m *TournamentSponsorTag) SetLogoStorageId(value *string)() {
     m.logoStorageId = value
 }

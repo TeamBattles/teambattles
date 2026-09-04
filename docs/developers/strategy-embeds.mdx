@@ -33,6 +33,10 @@ share dialog hands you a ready-made snippet.
 | `speed`    | `1`         | Playback multiplier, clamped to `[0.25, 4.0]`.        |
 | `branding` | `1`         | Show the "Powered by TeamBattles" link (`0` or `1`).  |
 
+Stage selection remains authoritative for map levels. If a selected stage has no `levelId`, the
+embed uses the built-in map's default level. There is no level URL parameter or level-specific
+postMessage command; use `playback:goto` to select a stage.
+
 ## postMessage API
 
 Send messages to the iframe with `iframe.contentWindow.postMessage({ type, ... }, "*")`:

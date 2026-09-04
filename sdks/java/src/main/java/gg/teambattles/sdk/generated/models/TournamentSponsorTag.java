@@ -21,7 +21,7 @@ public class TournamentSponsorTag implements AdditionalDataHolder, Parsable {
      */
     private String customPrefix;
     /**
-     * Convex storage id for the sponsor logo.
+     * Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
      */
     private String logoStorageId;
     /**
@@ -83,7 +83,7 @@ public class TournamentSponsorTag implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the logoStorageId property value. Convex storage id for the sponsor logo.
+     * Gets the logoStorageId property value. Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -142,7 +142,7 @@ public class TournamentSponsorTag implements AdditionalDataHolder, Parsable {
         this.customPrefix = value;
     }
     /**
-     * Sets the logoStorageId property value. Convex storage id for the sponsor logo.
+     * Sets the logoStorageId property value. Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
      * @param value Value to set for the logoStorageId property.
      */
     public void setLogoStorageId(@jakarta.annotation.Nullable final String value) {

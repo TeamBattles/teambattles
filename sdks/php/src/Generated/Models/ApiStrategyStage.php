@@ -27,6 +27,11 @@ class ApiStrategyStage implements Parsable
     private ?ApiStrategyStage_label $label = null;
     
     /**
+     * @var string|null $levelId Registered map level for this stage. Omitted values use the map default.
+    */
+    private ?string $levelId = null;
+    
+    /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
      * @return ApiStrategyStage
@@ -53,6 +58,7 @@ class ApiStrategyStage implements Parsable
             'durationMs' => fn(ParseNode $n) => $o->setDurationMs($n->getIntegerValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'label' => fn(ParseNode $n) => $o->setLabel($n->getObjectValue([ApiStrategyStage_label::class, 'createFromDiscriminatorValue'])),
+            'levelId' => fn(ParseNode $n) => $o->setLevelId($n->getStringValue()),
         ];
     }
 
@@ -73,6 +79,14 @@ class ApiStrategyStage implements Parsable
     }
 
     /**
+     * Gets the levelId property value. Registered map level for this stage. Omitted values use the map default.
+     * @return string|null
+    */
+    public function getLevelId(): ?string {
+        return $this->levelId;
+    }
+
+    /**
      * Serializes information the current object
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
@@ -80,6 +94,7 @@ class ApiStrategyStage implements Parsable
         $writer->writeIntegerValue('durationMs', $this->getDurationMs());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeObjectValue('label', $this->getLabel());
+        $writer->writeStringValue('levelId', $this->getLevelId());
     }
 
     /**
@@ -104,6 +119,14 @@ class ApiStrategyStage implements Parsable
     */
     public function setLabel(?ApiStrategyStage_label $value): void {
         $this->label = $value;
+    }
+
+    /**
+     * Sets the levelId property value. Registered map level for this stage. Omitted values use the map default.
+     * @param string|null $value Value to set for the levelId property.
+    */
+    public function setLevelId(?string $value): void {
+        $this->levelId = $value;
     }
 
 }

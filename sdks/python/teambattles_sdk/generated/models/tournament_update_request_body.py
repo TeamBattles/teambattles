@@ -21,7 +21,7 @@ class TournamentUpdateRequestBody(AdditionalDataHolder, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
 
-    # Convex storage id.
+    # Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
     banner_storage_id: Optional[str] = None
     # The checkInOpensMinutesBefore property
     check_in_opens_minutes_before: Optional[int] = None
@@ -37,7 +37,7 @@ class TournamentUpdateRequestBody(AdditionalDataHolder, Parsable):
     format_config: Optional[TournamentFormatConfig] = None
     # Convex game id.
     game_id: Optional[str] = None
-    # Convex storage id.
+    # Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
     logo_storage_id: Optional[str] = None
     # Re-checked against the format entrant ceiling AND the host plan's participant limit whenever it or `format` changes.
     max_participants: Optional[int] = None

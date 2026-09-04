@@ -41,30 +41,28 @@ The function returns:
 { "deleted": 0, "storageDeleteFailures": 0 }
 ```
 
-- **`deleted`** counts BINDING ROWS removed. The row delete is unconditional -
-  it happens whether or not the storage delete succeeded. **`deleted` on its own
-  is therefore blind** and must never be read as "bytes reclaimed".
-- **`storageDeleteFailures`** counts blobs whose `ctx.storage.delete` threw. This
-  is the number that carries the signal.
+- **`deleted`** counts blobs whose storage deletion succeeded and whose binding
+  row was then removed.
+- **`storageDeleteFailures`** counts blobs whose `ctx.storage.delete` threw. The
+  binding row is retained and its retry grace restarts, preserving the authority
+  needed for a later attempt.
 
 ### Normal
 
-A handful of `storageDeleteFailures` is expected and is not an incident. The
-usual cause is a blob that is already gone: a partial prior run, or a moderation
-delete. The row is drained anyway, deliberately, so a permanently-missing blob
-cannot block the batch behind it forever.
+A handful of `storageDeleteFailures` is expected and is not an incident. Failed
+rows move out of the current batch until the one-hour retry grace expires, so
+they do not block eligible rows behind them.
 
 ### Incident
 
-**`storageDeleteFailures` tracking `deleted`** - that is, most or all of the
-pass failing rather than a few - means the drain is **destroying binding rows
-without reclaiming any bytes.** Every row it removes this way is a blob that can
-never be reclaimed again, because the binding row was the only authorization to
-delete it.
+**`storageDeleteFailures` tracking or exceeding `deleted`** - that is, most or
+all of the pass failing rather than a few - means the storage backend is not
+reclaiming bytes. Binding rows remain available for retry, but the backlog will
+grow until deletion succeeds.
 
-**Response: disable the cron before the next pass**, then investigate. Rows left
-undrained cost storage; rows drained against a failing storage backend cost the
-bytes permanently.
+Investigate the storage errors before the backlog grows materially. Disabling the
+cron is not required to preserve deletion authority because failed rows remain
+bound and retry later.
 
 Check `console.error("Storage delete failed during image blob drain", ...)` in
 the Convex logs for the underlying error before re-enabling.

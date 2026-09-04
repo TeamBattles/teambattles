@@ -2,6 +2,7 @@ package gg.teambattles.sdk.generated.uploads;
 
 import com.microsoft.kiota.BaseRequestBuilder;
 import com.microsoft.kiota.RequestAdapter;
+import gg.teambattles.sdk.generated.uploads.image.ImageRequestBuilder;
 import gg.teambattles.sdk.generated.uploads.imageurl.ImageUrlRequestBuilder;
 import java.util.HashMap;
 import java.util.Objects;
@@ -10,6 +11,14 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class UploadsRequestBuilder extends BaseRequestBuilder {
+    /**
+     * The image property
+     * @return a {@link ImageRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ImageRequestBuilder image() {
+        return new ImageRequestBuilder(pathParameters, requestAdapter);
+    }
     /**
      * The imageUrl property
      * @return a {@link ImageUrlRequestBuilder}

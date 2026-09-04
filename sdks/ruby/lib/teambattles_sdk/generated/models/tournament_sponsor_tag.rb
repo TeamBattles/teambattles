@@ -16,7 +16,7 @@ module TeamBattlesSdk
                 # Used only when prefix is CUSTOM.
                 @custom_prefix
                 ## 
-                # Convex storage id for the sponsor logo.
+                # Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
                 @logo_storage_id
                 ## 
                 # The name property
@@ -87,14 +87,14 @@ module TeamBattlesSdk
                     }
                 end
                 ## 
-                ## Gets the logoStorageId property value. Convex storage id for the sponsor logo.
+                ## Gets the logoStorageId property value. Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
                 ## @return a string
                 ## 
                 def logo_storage_id
                     return @logo_storage_id
                 end
                 ## 
-                ## Sets the logoStorageId property value. Convex storage id for the sponsor logo.
+                ## Sets the logoStorageId property value. Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
                 ## @param value Value to set for the logoStorageId property.
                 ## @return a void
                 ## 

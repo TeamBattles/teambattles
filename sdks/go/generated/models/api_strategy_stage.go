@@ -15,6 +15,8 @@ type ApiStrategyStage struct {
     id *string
     // Author stage label, when set.
     label ApiStrategyStage_ApiStrategyStage_labelable
+    // Registered map level for this stage. Omitted values use the map default.
+    levelId *string
 }
 // ApiStrategyStage_ApiStrategyStage_label composed type wrapper for classes ApiStrategyStage_labelMember1able, string
 type ApiStrategyStage_ApiStrategyStage_label struct {
@@ -150,6 +152,16 @@ func (m *ApiStrategyStage) GetFieldDeserializers()(map[string]func(i878a80d2330e
         }
         return nil
     }
+    res["levelId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLevelId(val)
+        }
+        return nil
+    }
     return res
 }
 // GetId gets the id property value. Stable stage id within the strategy.
@@ -161,6 +173,11 @@ func (m *ApiStrategyStage) GetId()(*string) {
 // returns a ApiStrategyStage_ApiStrategyStage_labelable when successful
 func (m *ApiStrategyStage) GetLabel()(ApiStrategyStage_ApiStrategyStage_labelable) {
     return m.label
+}
+// GetLevelId gets the levelId property value. Registered map level for this stage. Omitted values use the map default.
+// returns a *string when successful
+func (m *ApiStrategyStage) GetLevelId()(*string) {
+    return m.levelId
 }
 // Serialize serializes information the current object
 func (m *ApiStrategyStage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -182,6 +199,12 @@ func (m *ApiStrategyStage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
             return err
         }
     }
+    {
+        err := writer.WriteStringValue("levelId", m.GetLevelId())
+        if err != nil {
+            return err
+        }
+    }
     return nil
 }
 // SetDurationMs sets the durationMs property value. Stage playback duration in milliseconds.
@@ -196,12 +219,18 @@ func (m *ApiStrategyStage) SetId(value *string)() {
 func (m *ApiStrategyStage) SetLabel(value ApiStrategyStage_ApiStrategyStage_labelable)() {
     m.label = value
 }
+// SetLevelId sets the levelId property value. Registered map level for this stage. Omitted values use the map default.
+func (m *ApiStrategyStage) SetLevelId(value *string)() {
+    m.levelId = value
+}
 type ApiStrategyStageable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetDurationMs()(*int32)
     GetId()(*string)
     GetLabel()(ApiStrategyStage_ApiStrategyStage_labelable)
+    GetLevelId()(*string)
     SetDurationMs(value *int32)()
     SetId(value *string)()
     SetLabel(value ApiStrategyStage_ApiStrategyStage_labelable)()
+    SetLevelId(value *string)()
 }

@@ -17,7 +17,7 @@ class TournamentSponsorTag(AdditionalDataHolder, Parsable):
 
     # Used only when prefix is CUSTOM.
     custom_prefix: Optional[str] = None
-    # Convex storage id for the sponsor logo.
+    # Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
     logo_storage_id: Optional[str] = None
     # The name property
     name: Optional[str] = None

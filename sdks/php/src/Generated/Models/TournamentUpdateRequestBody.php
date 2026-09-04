@@ -18,7 +18,7 @@ class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $bannerStorageId Convex storage id.
+     * @var string|null $bannerStorageId Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
     */
     private ?string $bannerStorageId = null;
     
@@ -58,7 +58,7 @@ class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsable
     private ?string $gameId = null;
     
     /**
-     * @var string|null $logoStorageId Convex storage id.
+     * @var string|null $logoStorageId Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
     */
     private ?string $logoStorageId = null;
     
@@ -172,7 +172,7 @@ class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the bannerStorageId property value. Convex storage id.
+     * Gets the bannerStorageId property value. Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      * @return string|null
     */
     public function getBannerStorageId(): ?string {
@@ -272,7 +272,7 @@ class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the logoStorageId property value. Convex storage id.
+     * Gets the logoStorageId property value. Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      * @return string|null
     */
     public function getLogoStorageId(): ?string {
@@ -458,7 +458,7 @@ class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the bannerStorageId property value. Convex storage id.
+     * Sets the bannerStorageId property value. Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      * @param string|null $value Value to set for the bannerStorageId property.
     */
     public function setBannerStorageId(?string $value): void {
@@ -522,7 +522,7 @@ class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the logoStorageId property value. Convex storage id.
+     * Sets the logoStorageId property value. Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      * @param string|null $value Value to set for the logoStorageId property.
     */
     public function setLogoStorageId(?string $value): void {

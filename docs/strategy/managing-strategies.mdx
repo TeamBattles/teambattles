@@ -33,8 +33,9 @@ To group related plays into a folder, see [Managing your boards](/strategy/manag
 
 On maps that come with spawn information - every Black Ops 6 and Black Ops 7 map, all ten
 Counter-Strike 2 maps, and League of Legends Summoner's Rift and Howling Abyss - a new strategy opens
-with player tokens already placed at the two spawns rather than on an empty board. League of Legends
-Arena maps and custom maps start empty; drag tokens in from the **Tokens** panel as usual.
+with player tokens already placed at the two spawns rather than on an empty board. Rainbow Six Siege
+maps, League of Legends Arena maps, and custom maps start empty; drag tokens in from the **Tokens**
+panel as usual.
 
 - **One color per side.** One spawn gets blue tokens, the other red, so the two teams read apart at a
   glance. On Black Ops 7 blue is JSOC and red is Guild; on Black Ops 6 blue is Crimson One and red is
@@ -329,6 +330,19 @@ select one to switch to it. Each has a menu:
 With more than three stages, a **Jump to** menu appears so you can hop to any of them. The `+` at the
 end of the row adds one.
 
+### Levels on built-in maps
+
+When a built-in map has multiple levels, each stage chooses the level it shows. Use the level
+selector or its previous and next buttons in the editor header to change the current stage. A stage
+without a saved level, including an older strategy, uses that map's default level.
+
+Custom maps have one level. They do not show level controls.
+
+Rainbow Six Siege uses this model for every map: its 27-map catalog contains 106 ordered official
+blueprint levels. The room, objective, insertion, destruction, and other annotations provided by
+Ubisoft are embedded in the selected background. They are not separate TeamBattles overlay switches.
+See [Rainbow Six Siege](/games/rainbow-six-siege) for the complete map and token catalog.
+
 <Frame>
 	<img
 		src="../images/tools/battles-strategy/preview-1.webp"
@@ -341,6 +355,13 @@ end of the row adds one.
 **Loop** makes playback go back to the first stage after the last, rather than stopping. It is saved
 with the strategy, and an [embedded](/strategy/embedding) copy follows it too.
 
+### Levels everywhere you use a strategy
+
+Stage levels and token level visibility travel with account saves, local drafts, and downloaded
+project files. They also stay in sync in collab sessions. PNG exports and saved previews use the
+selected stage's level; animated exports and previews follow each stage's level. Public, cinematic,
+session, and embedded players do the same.
+
 ## Tokens
 
 The **Tokens** panel on the right holds everything you can place, for whichever game you are working
@@ -350,9 +371,19 @@ in. Switch game and the whole set changes.
 
 - **Black Ops 6** - 2 player variants, 24 pieces of equipment, and 5 general markers: 31 in total.
 - **Black Ops 7** - 2 player variants, 24 pieces of equipment, and 5 general markers: 31 in total.
-- **Counter-Strike 2** - 2 player variants, 6 pieces of equipment, and 5 general markers: 13 in total.
+- **Counter-Strike 2** - 2 player variants, 6 pieces of equipment, 3 general markers, and 2
+  objective markers: 13 in total.
 - **League of Legends** - 2 player variants, 16 markers for objectives, vision, structures, and
   jungle, and 172 champion portraits: 190 in total. The markers come before the portraits.
+- **Rainbow Six Siege** - 2 shared player tokens, 5 generic markers, 39 attacker badges, 39 defender
+  badges, 14 shared gadget icons, and 76 unique-ability icons: 175 in total.
+
+Every catalog with more than one asset folder has a search box and collapsible groups. Black Ops 6
+and Black Ops 7 group players, equipment, and generic markers. Counter-Strike 2 adds objectives to
+those groups. League of Legends groups players, objectives, vision, structures, jungle, and
+champions. Rainbow Six Siege groups players, attackers, defenders, gadgets, generic markers, and
+unique abilities. A single-folder catalog with fewer than 48 tokens keeps the compact flat list; at
+48 tokens, it also gets search and group navigation.
 
 ### Placing them
 
@@ -362,6 +393,16 @@ tap the token then tap the board.
 Player tokens arrive red; change them to blue or neutral from **Properties**, where you can also give
 them a jersey number. Most tokens let you set their fill and outline colors there too. Champion
 portraits keep their own artwork and cannot be recolored.
+
+### Visible on levels
+
+For a token on a multi-level built-in map, use **Visible on levels** in **Properties** to choose the
+levels where it appears. This setting belongs to the logical token, not to one stage: changing it
+updates every earlier and later stage row with that token identity. Older tokens without this setting
+remain visible on every level, while a newly placed token starts on the current level.
+
+Use the existing **Hidden** control when you want a token absent from one stage. **Visible on levels**
+controls level eligibility across the whole strategy.
 
 ### Vision cones
 
@@ -403,7 +444,8 @@ through.
 
 The **Overlays** button in the header shows the extra map layers available for the game you are in,
 so a Counter-Strike 2 strategy and a Black Ops 7 strategy offer very different things. Games with no
-overlays at all - League of Legends, for instance - have no Overlays button.
+separate overlays - League of Legends and Rainbow Six Siege, for instance - have no Overlays button.
+R6S room and objective annotations are already embedded in its official blueprint backgrounds.
 
 | Group      | Overlay               | Where it appears                     |
 | ---------- | --------------------- | ------------------------------------ |

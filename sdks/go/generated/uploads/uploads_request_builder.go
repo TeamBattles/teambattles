@@ -24,6 +24,11 @@ func NewUploadsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371
     urlParams["request-raw-url"] = rawUrl
     return NewUploadsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Image the image property
+// returns a *ImageRequestBuilder when successful
+func (m *UploadsRequestBuilder) Image()(*ImageRequestBuilder) {
+    return NewImageRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ImageUrl the imageUrl property
 // returns a *ImageUrlRequestBuilder when successful
 func (m *UploadsRequestBuilder) ImageUrl()(*ImageUrlRequestBuilder) {

@@ -25,7 +25,7 @@ class TournamentCreateRequestBody(AdditionalDataHolder, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
 
-    # Convex storage id.
+    # Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
     banner_storage_id: Optional[str] = None
     # The checkInOpensMinutesBefore property
     check_in_opens_minutes_before: Optional[int] = None
@@ -53,7 +53,7 @@ class TournamentCreateRequestBody(AdditionalDataHolder, Parsable):
     league_points_by_placement: Optional[list[TournamentPlacementPointsEntry]] = None
     # LEAGUE HOSTS ONLY. Sending it with a user or org host is a 400.
     league_points_enabled: Optional[bool] = None
-    # Convex storage id.
+    # Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
     logo_storage_id: Optional[str] = None
     # Entrant cap. Also bounded by the format ceiling (SINGLE_ELIMINATION and DOUBLE_ELIMINATION 128, SWISS 64, ROUND_ROBIN 32) and by the host plan's participant limit, both checked server-side.
     max_participants: Optional[int] = None

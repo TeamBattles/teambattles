@@ -4,6 +4,7 @@ namespace TeamBattles\Sdk\Generated\Uploads;
 
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
+use TeamBattles\Sdk\Generated\Uploads\Image\ImageRequestBuilder;
 use TeamBattles\Sdk\Generated\Uploads\ImageUrl\ImageUrlRequestBuilder;
 
 /**
@@ -11,6 +12,13 @@ use TeamBattles\Sdk\Generated\Uploads\ImageUrl\ImageUrlRequestBuilder;
 */
 class UploadsRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The image property
+    */
+    public function image(): ImageRequestBuilder {
+        return new ImageRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * The imageUrl property
     */

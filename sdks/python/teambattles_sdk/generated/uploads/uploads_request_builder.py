@@ -6,6 +6,7 @@ from kiota_abstractions.request_adapter import RequestAdapter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .image.image_request_builder import ImageRequestBuilder
     from .image_url.image_url_request_builder import ImageUrlRequestBuilder
 
 class UploadsRequestBuilder(BaseRequestBuilder):
@@ -20,6 +21,15 @@ class UploadsRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/uploads", path_parameters)
+    
+    @property
+    def image(self) -> ImageRequestBuilder:
+        """
+        The image property
+        """
+        from .image.image_request_builder import ImageRequestBuilder
+
+        return ImageRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def image_url(self) -> ImageUrlRequestBuilder:

@@ -14,7 +14,7 @@ class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsable {
     ///  Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     @override
     Map<String, Object?> additionalData;
-    ///  Convex storage id.
+    ///  Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
     String? bannerStorageId;
     ///  The checkInOpensMinutesBefore property
     int? checkInOpensMinutesBefore;
@@ -30,7 +30,7 @@ class TournamentUpdateRequestBody implements AdditionalDataHolder, Parsable {
     TournamentFormatConfig? formatConfig;
     ///  Convex game id.
     String? gameId;
-    ///  Convex storage id.
+    ///  Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
     String? logoStorageId;
     ///  Re-checked against the format entrant ceiling AND the host plan's participant limit whenever it or `format` changes.
     int? maxParticipants;

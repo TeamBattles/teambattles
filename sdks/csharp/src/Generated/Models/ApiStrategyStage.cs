@@ -31,6 +31,14 @@ namespace TeamBattles.Sdk.Models
 #else
         public global::TeamBattles.Sdk.Models.ApiStrategyStage.ApiStrategyStage_label Label { get; set; }
 #endif
+        /// <summary>Registered map level for this stage. Omitted values use the map default.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LevelId { get; set; }
+#nullable restore
+#else
+        public string LevelId { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -52,6 +60,7 @@ namespace TeamBattles.Sdk.Models
                 { "durationMs", n => { DurationMs = n.GetIntValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "label", n => { Label = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiStrategyStage.ApiStrategyStage_label>(global::TeamBattles.Sdk.Models.ApiStrategyStage.ApiStrategyStage_label.CreateFromDiscriminatorValue); } },
+                { "levelId", n => { LevelId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -64,6 +73,7 @@ namespace TeamBattles.Sdk.Models
             writer.WriteIntValue("durationMs", DurationMs);
             writer.WriteStringValue("id", Id);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiStrategyStage.ApiStrategyStage_label>("label", Label);
+            writer.WriteStringValue("levelId", LevelId);
         }
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiStrategyStage_labelMember1"/>, <see cref="string"/>

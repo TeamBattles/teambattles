@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System;
+using TeamBattles.Sdk.Uploads.Image;
 using TeamBattles.Sdk.Uploads.ImageUrl;
 namespace TeamBattles.Sdk.Uploads
 {
@@ -15,6 +16,11 @@ namespace TeamBattles.Sdk.Uploads
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UploadsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The image property</summary>
+        public global::TeamBattles.Sdk.Uploads.Image.ImageRequestBuilder Image
+        {
+            get => new global::TeamBattles.Sdk.Uploads.Image.ImageRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The imageUrl property</summary>
         public global::TeamBattles.Sdk.Uploads.ImageUrl.ImageUrlRequestBuilder ImageUrl
         {

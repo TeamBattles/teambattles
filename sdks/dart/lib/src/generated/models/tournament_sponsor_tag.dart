@@ -10,7 +10,7 @@ class TournamentSponsorTag implements AdditionalDataHolder, Parsable {
     Map<String, Object?> additionalData;
     ///  Used only when prefix is CUSTOM.
     String? customPrefix;
-    ///  Convex storage id for the sponsor logo.
+    ///  Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
     String? logoStorageId;
     ///  The name property
     String? name;

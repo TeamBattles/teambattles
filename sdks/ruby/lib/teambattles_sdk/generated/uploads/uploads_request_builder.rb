@@ -1,5 +1,6 @@
 require 'microsoft_kiota_abstractions'
 require_relative '../team_battles_sdk::_generated'
+require_relative './image/image_request_builder'
 require_relative './image_url/image_url_request_builder'
 require_relative './uploads'
 
@@ -10,6 +11,11 @@ module TeamBattlesSdk
             # Builds and executes requests for operations under #uploads
             class UploadsRequestBuilder < MicrosoftKiotaAbstractions::BaseRequestBuilder
                 
+                ## 
+                # The image property
+                def image()
+                    return TeamBattlesSdk::Generated::Uploads::Image::ImageRequestBuilder.new(@path_parameters, @request_adapter)
+                end
                 ## 
                 # The imageUrl property
                 def image_url()

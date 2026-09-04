@@ -11,7 +11,7 @@ import (
 type TournamentUpdateRequestBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Convex storage id.
+    // Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
     bannerStorageId *string
     // The checkInOpensMinutesBefore property
     checkInOpensMinutesBefore *int32
@@ -27,7 +27,7 @@ type TournamentUpdateRequestBody struct {
     formatConfig TournamentFormatConfigable
     // Convex game id.
     gameId *string
-    // Convex storage id.
+    // Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
     logoStorageId *string
     // Re-checked against the format entrant ceiling AND the host plan's participant limit whenever it or `format` changes.
     maxParticipants *int32
@@ -81,7 +81,7 @@ func CreateTournamentUpdateRequestBodyFromDiscriminatorValue(parseNode i878a80d2
 func (m *TournamentUpdateRequestBody) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetBannerStorageId gets the bannerStorageId property value. Convex storage id.
+// GetBannerStorageId gets the bannerStorageId property value. Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
 // returns a *string when successful
 func (m *TournamentUpdateRequestBody) GetBannerStorageId()(*string) {
     return m.bannerStorageId
@@ -399,7 +399,7 @@ func (m *TournamentUpdateRequestBody) GetFormatConfig()(TournamentFormatConfigab
 func (m *TournamentUpdateRequestBody) GetGameId()(*string) {
     return m.gameId
 }
-// GetLogoStorageId gets the logoStorageId property value. Convex storage id.
+// GetLogoStorageId gets the logoStorageId property value. Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
 // returns a *string when successful
 func (m *TournamentUpdateRequestBody) GetLogoStorageId()(*string) {
     return m.logoStorageId
@@ -674,7 +674,7 @@ func (m *TournamentUpdateRequestBody) Serialize(writer i878a80d2330e89d26896388a
 func (m *TournamentUpdateRequestBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetBannerStorageId sets the bannerStorageId property value. Convex storage id.
+// SetBannerStorageId sets the bannerStorageId property value. Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
 func (m *TournamentUpdateRequestBody) SetBannerStorageId(value *string)() {
     m.bannerStorageId = value
 }
@@ -706,7 +706,7 @@ func (m *TournamentUpdateRequestBody) SetFormatConfig(value TournamentFormatConf
 func (m *TournamentUpdateRequestBody) SetGameId(value *string)() {
     m.gameId = value
 }
-// SetLogoStorageId sets the logoStorageId property value. Convex storage id.
+// SetLogoStorageId sets the logoStorageId property value. Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
 func (m *TournamentUpdateRequestBody) SetLogoStorageId(value *string)() {
     m.logoStorageId = value
 }

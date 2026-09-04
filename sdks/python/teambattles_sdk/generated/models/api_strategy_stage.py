@@ -18,6 +18,8 @@ class ApiStrategyStage(Parsable):
     id: Optional[str] = None
     # Author stage label, when set.
     label: Optional[ApiStrategyStage_label] = None
+    # Registered map level for this stage. Omitted values use the map default.
+    level_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiStrategyStage:
@@ -43,6 +45,7 @@ class ApiStrategyStage(Parsable):
             "durationMs": lambda n : setattr(self, 'duration_ms', n.get_int_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "label": lambda n : setattr(self, 'label', n.get_object_value(ApiStrategyStage_label)),
+            "levelId": lambda n : setattr(self, 'level_id', n.get_str_value()),
         }
         return fields
     
@@ -57,5 +60,6 @@ class ApiStrategyStage(Parsable):
         writer.write_int_value("durationMs", self.duration_ms)
         writer.write_str_value("id", self.id)
         writer.write_object_value("label", self.label)
+        writer.write_str_value("levelId", self.level_id)
     
 

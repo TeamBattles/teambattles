@@ -13,7 +13,7 @@ module TeamBattlesSdk
                 # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
                 @additional_data
                 ## 
-                # Convex storage id.
+                # Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
                 @banner_storage_id
                 ## 
                 # The checkInOpensMinutesBefore property
@@ -37,7 +37,7 @@ module TeamBattlesSdk
                 # Convex game id.
                 @game_id
                 ## 
-                # Convex storage id.
+                # Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
                 @logo_storage_id
                 ## 
                 # Re-checked against the format entrant ceiling AND the host plan's participant limit whenever it or `format` changes.
@@ -106,14 +106,14 @@ module TeamBattlesSdk
                     @additional_data = value
                 end
                 ## 
-                ## Gets the bannerStorageId property value. Convex storage id.
+                ## Gets the bannerStorageId property value. Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
                 ## @return a string
                 ## 
                 def banner_storage_id
                     return @banner_storage_id
                 end
                 ## 
-                ## Sets the bannerStorageId property value. Convex storage id.
+                ## Sets the bannerStorageId property value. Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
                 ## @param value Value to set for the bannerStorageId property.
                 ## @return a void
                 ## 
@@ -276,14 +276,14 @@ module TeamBattlesSdk
                     }
                 end
                 ## 
-                ## Gets the logoStorageId property value. Convex storage id.
+                ## Gets the logoStorageId property value. Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
                 ## @return a string
                 ## 
                 def logo_storage_id
                     return @logo_storage_id
                 end
                 ## 
-                ## Sets the logoStorageId property value. Convex storage id.
+                ## Sets the logoStorageId property value. Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
                 ## @param value Value to set for the logoStorageId property.
                 ## @return a void
                 ## 

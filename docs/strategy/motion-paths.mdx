@@ -6,6 +6,16 @@ description: "Shape exactly how a token travels from one stage to the next"
 When a token moves between stages, you decide how it gets there. Motion paths show up in the editor
 as curves and play out smoothly when you press play or export an animation.
 
+## Moving between levels
+
+When two neighboring stages use different levels of the same built-in map, the destination level's
+background and drawings cut in at the start of the transition. There is no map crossfade. A token
+eligible on both levels keeps its authored position, rotation, scale, type transition, and motion
+path. A token only on the source level disappears at the cut; one only on the destination level
+appears at the cut.
+
+The same rule applies in animated exports, previews, and read-only playback.
+
 <Frame>
 	<img
 		src="../images/tools/battles-strategy/preview-2.webp"

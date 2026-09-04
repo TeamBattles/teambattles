@@ -23,7 +23,7 @@ namespace TeamBattles.Sdk.Models
 #else
         public string CustomPrefix { get; set; }
 #endif
-        /// <summary>Convex storage id for the sponsor logo.</summary>
+        /// <summary>Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LogoStorageId { get; set; }

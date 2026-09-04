@@ -1,10 +1,15 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
+import './image/image_request_builder.dart';
 import './imageUrl/image_url_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \uploads
 class UploadsRequestBuilder extends BaseRequestBuilder<UploadsRequestBuilder> {
+    ///  The image property
+    ImageRequestBuilder get image {
+        return ImageRequestBuilder(pathParameters, requestAdapter);
+    }
     ///  The imageUrl property
     ImageUrlRequestBuilder get imageUrl {
         return ImageUrlRequestBuilder(pathParameters, requestAdapter);

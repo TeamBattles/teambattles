@@ -19,6 +19,9 @@ module TeamBattlesSdk
                 # Author stage label, when set.
                 @label
                 ## 
+                # Registered map level for this stage. Omitted values use the map default.
+                @level_id
+                ## 
                 ## Creates a new instance of the appropriate class based on discriminator value
                 ## @param parse_node The parse node to use to read the discriminator value and create the object
                 ## @return a api_strategy_stage
@@ -51,6 +54,7 @@ module TeamBattlesSdk
                         "durationMs" => lambda {|n| @duration_ms = n.get_number_value() },
                         "id" => lambda {|n| @id = n.get_string_value() },
                         "label" => lambda {|n| @label = n.get_object_value(lambda {|pn| ApiStrategyStage::ApiStrategyStageLabel.create_from_discriminator_value(pn) }) },
+                        "levelId" => lambda {|n| @level_id = n.get_string_value() },
                     }
                 end
                 ## 
@@ -84,6 +88,21 @@ module TeamBattlesSdk
                     @label = value
                 end
                 ## 
+                ## Gets the levelId property value. Registered map level for this stage. Omitted values use the map default.
+                ## @return a string
+                ## 
+                def level_id
+                    return @level_id
+                end
+                ## 
+                ## Sets the levelId property value. Registered map level for this stage. Omitted values use the map default.
+                ## @param value Value to set for the levelId property.
+                ## @return a void
+                ## 
+                def level_id=(value)
+                    @level_id = value
+                end
+                ## 
                 ## Serializes information the current object
                 ## @param writer Serialization writer to use to serialize this model
                 ## @return a void
@@ -93,6 +112,7 @@ module TeamBattlesSdk
                     writer.write_number_value("durationMs", @duration_ms)
                     writer.write_string_value("id", @id)
                     writer.write_object_value("label", @label)
+                    writer.write_string_value("levelId", @level_id)
                 end
 
                 ## 

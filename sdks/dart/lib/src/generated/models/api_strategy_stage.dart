@@ -11,6 +11,8 @@ class ApiStrategyStage implements Parsable {
     String? id;
     ///  Author stage label, when set.
     ApiStrategyStageLabel? label;
+    ///  Registered map level for this stage. Omitted values use the map default.
+    String? levelId;
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object
     static ApiStrategyStage createFromDiscriminatorValue(ParseNode parseNode) {
@@ -23,6 +25,7 @@ class ApiStrategyStage implements Parsable {
         deserializerMap['durationMs'] = (node) => durationMs = node.getIntValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['label'] = (node) => label = node.getObjectValue<ApiStrategyStageLabel>(ApiStrategyStageLabel.createFromDiscriminatorValue);
+        deserializerMap['levelId'] = (node) => levelId = node.getStringValue();
         return deserializerMap;
     }
     /// Serializes information the current object
@@ -32,5 +35,6 @@ class ApiStrategyStage implements Parsable {
         writer.writeIntValue('durationMs', durationMs);
         writer.writeStringValue('id', id);
         writer.writeObjectValue<ApiStrategyStageLabel>('label', label);
+        writer.writeStringValue('levelId', levelId);
     }
 }

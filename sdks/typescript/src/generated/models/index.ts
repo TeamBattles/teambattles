@@ -1310,6 +1310,10 @@ export interface ApiStrategyStage extends Parsable {
      * Author stage label, when set.
      */
     label?: ApiStrategyStage_labelMember1 | string | null;
+    /**
+     * Registered map level for this stage. Omitted values use the map default.
+     */
+    levelId?: string | null;
 }
 export type ApiStrategyStage_label = ApiStrategyStage_labelMember1 | string;
 export interface ApiStrategyStage_labelMember1 extends AdditionalDataHolder, Parsable {
@@ -1849,6 +1853,19 @@ export interface BansRequestBody extends AdditionalDataHolder, Parsable {
     status?: BansRequestBody_status | null;
 }
 export type BansRequestBody_status = (typeof BansRequestBody_statusObject)[keyof typeof BansRequestBody_statusObject];
+/**
+ * A stored, NSFW-scanned image bound to the API key owner.
+ */
+export interface BoundImageUploadResponse extends Parsable {
+    /**
+     * Convex storage id, already bound to the API key owner. Use it on a write.
+     */
+    storageId?: string | null;
+    /**
+     * Public CDN URL for the stored image.
+     */
+    url?: string | null;
+}
 /**
  * Cancels the match as the API key owner.
  */
@@ -4197,6 +4214,15 @@ export interface CreateBanResponse extends Parsable {
 // @ts-ignore
 export function createBansRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBansRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BoundImageUploadResponse}
+ */
+// @ts-ignore
+export function createBoundImageUploadResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBoundImageUploadResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -10903,6 +10929,7 @@ export function deserializeIntoApiStrategyStage(apiStrategyStage: Partial<ApiStr
         "durationMs": n => { apiStrategyStage.durationMs = n.getNumberValue(); },
         "id": n => { apiStrategyStage.id = n.getStringValue(); },
         "label": n => { apiStrategyStage.label = n.getObjectValue<ApiStrategyStage_labelMember1>(createApiStrategyStage_labelMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "levelId": n => { apiStrategyStage.levelId = n.getStringValue(); },
     }
 }
 /**
@@ -11902,6 +11929,18 @@ export function deserializeIntoApproveLeagueTeamResponse(approveLeagueTeamRespon
 export function deserializeIntoBansRequestBody(bansRequestBody: Partial<BansRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "status": n => { bansRequestBody.status = n.getEnumValue<BansRequestBody_status>(BansRequestBody_statusObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param BoundImageUploadResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBoundImageUploadResponse(boundImageUploadResponse: Partial<BoundImageUploadResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "storageId": n => { boundImageUploadResponse.storageId = n.getStringValue(); },
+        "url": n => { boundImageUploadResponse.url = n.getStringValue(); },
     }
 }
 /**
@@ -22771,6 +22810,7 @@ export function serializeApiStrategyStage(writer: SerializationWriter, apiStrate
     else {
         writer.writeObjectValue<ApiStrategyStage_labelMember1>("label", apiStrategyStage.label as ApiStrategyStage_labelMember1 | undefined | null, serializeApiStrategyStage_label);
     }
+    writer.writeStringValue("levelId", apiStrategyStage.levelId);
 }
 /**
  * Serializes information the current object
@@ -23905,6 +23945,18 @@ export function serializeBansRequestBody(writer: SerializationWriter, bansReques
     if (!bansRequestBody || isSerializingDerivedType) { return; }
     writer.writeEnumValue<BansRequestBody_status>("status", bansRequestBody.status);
     writer.writeAdditionalData(bansRequestBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param BoundImageUploadResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBoundImageUploadResponse(writer: SerializationWriter, boundImageUploadResponse: Partial<BoundImageUploadResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!boundImageUploadResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("storageId", boundImageUploadResponse.storageId);
+    writer.writeStringValue("url", boundImageUploadResponse.url);
 }
 /**
  * Serializes information the current object
@@ -31032,7 +31084,7 @@ export interface TournamentCloseRegistrationResponse extends Parsable {
  */
 export interface TournamentCreateRequestBody extends AdditionalDataHolder, Parsable {
     /**
-     * Convex storage id.
+     * Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      */
     bannerStorageId?: string | null;
     /**
@@ -31088,7 +31140,7 @@ export interface TournamentCreateRequestBody extends AdditionalDataHolder, Parsa
      */
     leaguePointsEnabled?: boolean | null;
     /**
-     * Convex storage id.
+     * Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      */
     logoStorageId?: string | null;
     /**
@@ -32030,7 +32082,7 @@ export interface TournamentSponsorTag extends AdditionalDataHolder, Parsable {
      */
     customPrefix?: string | null;
     /**
-     * Convex storage id for the sponsor logo.
+     * Convex storage id for the sponsor logo, from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url is rejected with 400 error_image_blob_unbound. On an update, re-send the id already stored on each sponsor row you are not changing.
      */
     logoStorageId?: string | null;
     /**
@@ -32266,7 +32318,7 @@ export interface TournamentTeamRosterAddBody extends AdditionalDataHolder, Parsa
  */
 export interface TournamentUpdateRequestBody extends AdditionalDataHolder, Parsable {
     /**
-     * Convex storage id.
+     * Convex storage id from POST /uploads/image with slot=banner (max 2 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      */
     bannerStorageId?: string | null;
     /**
@@ -32298,7 +32350,7 @@ export interface TournamentUpdateRequestBody extends AdditionalDataHolder, Parsa
      */
     gameId?: string | null;
     /**
-     * Convex storage id.
+     * Convex storage id from POST /uploads/image with slot=avatar (max 1 MB). An id minted by POST /uploads/image-url carries no ownership record and is rejected with 400 error_image_blob_unbound.
      */
     logoStorageId?: string | null;
     /**

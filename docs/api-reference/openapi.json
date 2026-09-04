@@ -36145,6 +36145,10 @@
             "minimum": 0,
             "maximum": 9007199254740991,
             "description": "Stage playback duration in milliseconds."
+          },
+          "levelId": {
+            "description": "Registered map level for this stage. Omitted values use the map default.",
+            "type": "string"
           }
         },
         "required": [
