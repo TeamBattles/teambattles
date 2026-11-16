@@ -1,9 +1,9 @@
 ---
 title: "Call of Duty: Modern Warfare 4"
-description: "Match creation across 10 launch modes; no minimap art yet"
+description: "Match creation across 11 modes and 24 maps; no minimap art yet"
 ---
 
-Call of Duty: Modern Warfare 4 supports TeamBattles match creation, challenges, league play, lobby codes, score proof, and disputes. There is no ranked ladder yet, and the [Strategy Editor](https://teambattles.gg/strategy/editor) does not support MW4 maps because no minimap art exists upstream.
+Call of Duty: Modern Warfare 4 supports TeamBattles match creation, challenges, league play, lobby codes, score proof, and disputes. There is no ranked ladder yet, and the [Strategy Editor](https://teambattles.gg/strategy/editor) does not support MW4 maps because there is no minimap art for them yet.
 
 ## Status
 
@@ -49,32 +49,40 @@ the team size.
 
 ## Game Modes
 
-MW4 launches with 10 modes, each drawing from the full 12-map pool:
+MW4 supports 11 modes, and every mode draws from the full 24-map pool. Score limits are the values hosts set in the private match lobby.
 
-- Search & Destroy
-- Hardpoint
-- Hijack
-- Team Deathmatch
-- Domination
-- Kill Confirmed
-- Free-for-All
-- Inflation
-- Gunfight
-- Gunfight 10v10
+| Mode               | Playlists          | Score limit |
+| ------------------ | ------------------ | ----------- |
+| Search & Destroy   | Core and Hardcore  | 6           |
+| Collateral         | Core               | 6           |
+| Hardpoint          | Core and Hardcore  | 250         |
+| Hijack             | Core and Hardcore  | 300         |
+| Team Deathmatch    | Core and Hardcore  | 100         |
+| Domination         | Core and Hardcore  | 200         |
+| Kill Confirmed     | Core and Hardcore  | 75          |
+| Free-for-All       | Core and Hardcore  | 30          |
+| Inflation          | Core and Hardcore  | 1           |
+| Frontline          | Core               | 100         |
+| Gunfight           | Core               | 6           |
 
 <Note>
-	Gunfight is 2v2 with preset loadouts. Gunfight 10v10 is a large-scale variant with preset
-	loadouts and no respawns until a round ends.
+	Collateral is Search & Destroy with a buy phase: you earn cash each round to buy your loadout, then
+	attack or defend two bomb sites with no respawns. Gunfight gives everyone the same preset loadout,
+	which changes every two rounds.
 </Note>
 
 ## Map Selection
 
-During match creation, choose a preference mode - **Veto** (ban maps) or **Preferred** (pick maps) - across the shared 12-map pool: Silkworm, Coal, Lithium, Cachette, Munition, Transit213, Mumbai, Nautical, Rooftops, Sentry, Reactor U92, and Lotus.
+During match creation, choose a preference mode - **Veto** (ban maps) or **Preferred** (pick maps) - across the shared 24-map pool:
+
+- **Launch maps:** Silkworm, Coal, Lithium, Cachette, Munition, Transit 213, Mumbai, Nautical, Rooftops, Sentry, Reactor U92, and Lotus
+- **Season 1 maps:** Backstab, Canyon, and Shoot House
+- **Additional maps:** Cafe, Forest, Imjin Farmland, Library, NYC, Smuggler, Wolves Stadium, Shipment, and Kill Block
 
 <Note>Maps have cover art only. There are no interactive minimaps or tactical callouts for MW4.</Note>
 
 ## What's Not Wired Up Yet
 
-- Strategy editor support (no minimap art upstream)
+- Strategy editor support (no minimap art yet)
 - Rank tracking and stream overlays (no ranked ladder)
-- A few additional game modes, pending icon art
+- Modes outside the table above, such as Gun Game, Proving Grounds, Possession, and Infected
