@@ -4,6 +4,8 @@
 // @ts-ignore
 import { BadgesRequestBuilderNavigationMetadata, type BadgesRequestBuilder } from './badges/index.js';
 // @ts-ignore
+import { StreamsRequestBuilderNavigationMetadata, type StreamsRequestBuilder } from './streams/index.js';
+// @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata } from '@microsoft/kiota-abstractions';
 
 /**
@@ -14,6 +16,10 @@ export interface TwitchRequestBuilder extends BaseRequestBuilder<TwitchRequestBu
      * The badges property
      */
     get badges(): BadgesRequestBuilder;
+    /**
+     * The streams property
+     */
+    get streams(): StreamsRequestBuilder;
 }
 /**
  * Uri template for the request builder.
@@ -25,6 +31,9 @@ export const TwitchRequestBuilderUriTemplate = "{+baseurl}/twitch";
 export const TwitchRequestBuilderNavigationMetadata: Record<Exclude<keyof TwitchRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     badges: {
         navigationMetadata: BadgesRequestBuilderNavigationMetadata,
+    },
+    streams: {
+        navigationMetadata: StreamsRequestBuilderNavigationMetadata,
     },
 };
 /* tslint:enable */

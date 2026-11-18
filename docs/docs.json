@@ -681,7 +681,9 @@
 								"group": "Twitch",
 								"pages": [
 									"api-reference/twitch/channel-badges",
-									"api-reference/twitch/global-badges"
+									"api-reference/twitch/global-badges",
+									"api-reference/twitch/stream-history",
+									"api-reference/twitch/stream-signals"
 								]
 							},
 							{

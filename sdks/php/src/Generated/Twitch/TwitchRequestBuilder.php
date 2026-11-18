@@ -5,6 +5,7 @@ namespace TeamBattles\Sdk\Generated\Twitch;
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
 use Microsoft\Kiota\Abstractions\RequestAdapter;
 use TeamBattles\Sdk\Generated\Twitch\Badges\BadgesRequestBuilder;
+use TeamBattles\Sdk\Generated\Twitch\Streams\StreamsRequestBuilder;
 
 /**
  * Builds and executes requests for operations under /twitch
@@ -16,6 +17,13 @@ class TwitchRequestBuilder extends BaseRequestBuilder
     */
     public function badges(): BadgesRequestBuilder {
         return new BadgesRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The streams property
+    */
+    public function streams(): StreamsRequestBuilder {
+        return new StreamsRequestBuilder($this->pathParameters, $this->requestAdapter);
     }
     
     /**

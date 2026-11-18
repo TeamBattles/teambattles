@@ -6918,6 +6918,33 @@ export function createStartMatchResponseFromDiscriminatorValue(parseNode: ParseN
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {StreamIndexWarning}
+ */
+// @ts-ignore
+export function createStreamIndexWarningFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoStreamIndexWarning;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {StreamSignalsBody_channels}
+ */
+// @ts-ignore
+export function createStreamSignalsBody_channelsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoStreamSignalsBody_channels;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {StreamSignalsBody}
+ */
+// @ts-ignore
+export function createStreamSignalsBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoStreamSignalsBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {SubmitScoreBody}
  */
 // @ts-ignore
@@ -8341,6 +8368,150 @@ export function createTwitchChannelBadgesFromDiscriminatorValue(parseNode: Parse
 // @ts-ignore
 export function createTwitchGlobalBadgesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoTwitchGlobalBadges;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TwitchRecordedStream_ended_atMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_ended_atFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_ended_at;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TwitchRecordedStream_ended_atMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_ended_atMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_ended_atMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TwitchRecordedStream_gameMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_gameFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_game;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TwitchRecordedStream_gameMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_gameMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_gameMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TwitchRecordedStream_hostMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_hostFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_host;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TwitchRecordedStream_hostMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_hostMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_hostMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {number | TwitchRecordedStream_path_timestampMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_path_timestampFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_path_timestamp;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TwitchRecordedStream_path_timestampMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_path_timestampMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_path_timestampMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TwitchRecordedStream_removed_atMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_removed_atFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_removed_at;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TwitchRecordedStream_removed_atMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_removed_atMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_removed_atMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {string | TwitchRecordedStream_titleMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_titleFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_title;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TwitchRecordedStream_titleMember1}
+ */
+// @ts-ignore
+export function createTwitchRecordedStream_titleMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream_titleMember1;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TwitchRecordedStream}
+ */
+// @ts-ignore
+export function createTwitchRecordedStreamFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchRecordedStream;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TwitchStreamHistory}
+ */
+// @ts-ignore
+export function createTwitchStreamHistoryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchStreamHistory;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TwitchStreamSignalsResult_rejected}
+ */
+// @ts-ignore
+export function createTwitchStreamSignalsResult_rejectedFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchStreamSignalsResult_rejected;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TwitchStreamSignalsResult}
+ */
+// @ts-ignore
+export function createTwitchStreamSignalsResultFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTwitchStreamSignalsResult;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -15293,6 +15464,40 @@ export function deserializeIntoStartMatchResponse(startMatchResponse: Partial<St
 }
 /**
  * The deserialization information for the current model
+ * @param StreamIndexWarning The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoStreamIndexWarning(streamIndexWarning: Partial<StreamIndexWarning> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "code": n => { streamIndexWarning.code = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param StreamSignalsBody The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoStreamSignalsBody(streamSignalsBody: Partial<StreamSignalsBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "channels": n => { streamSignalsBody.channels = n.getCollectionOfObjectValues<StreamSignalsBody_channels>(createStreamSignalsBody_channelsFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param StreamSignalsBody_channels The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoStreamSignalsBody_channels(streamSignalsBody_channels: Partial<StreamSignalsBody_channels> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { streamSignalsBody_channels.id = n.getStringValue(); },
+        "kind": n => { streamSignalsBody_channels.kind = n.getEnumValue<StreamSignalsBody_channels_kind>(StreamSignalsBody_channels_kindObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param SubmitScoreBody The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -17190,6 +17395,200 @@ export function deserializeIntoTwitchGlobalBadges(twitchGlobalBadges: Partial<Tw
     return {
         "badges": n => { twitchGlobalBadges.badges = n.getCollectionOfObjectValues<TwitchBadgeSet>(createTwitchBadgeSetFromDiscriminatorValue); },
         "timestamp": n => { twitchGlobalBadges.timestamp = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream(twitchRecordedStream: Partial<TwitchRecordedStream> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "duration_seconds": n => { twitchRecordedStream.durationSeconds = n.getNumberValue(); },
+        "ended_at": n => { twitchRecordedStream.endedAt = n.getStringValue() ?? n.getObjectValue<TwitchRecordedStream_ended_atMember1>(createTwitchRecordedStream_ended_atMember1FromDiscriminatorValue); },
+        "game": n => { twitchRecordedStream.game = n.getStringValue() ?? n.getObjectValue<TwitchRecordedStream_gameMember1>(createTwitchRecordedStream_gameMember1FromDiscriminatorValue); },
+        "host": n => { twitchRecordedStream.host = n.getStringValue() ?? n.getObjectValue<TwitchRecordedStream_hostMember1>(createTwitchRecordedStream_hostMember1FromDiscriminatorValue); },
+        "login": n => { twitchRecordedStream.login = n.getStringValue(); },
+        "path_timestamp": n => { twitchRecordedStream.pathTimestamp = n.getNumberValue() ?? n.getObjectValue<TwitchRecordedStream_path_timestampMember1>(createTwitchRecordedStream_path_timestampMember1FromDiscriminatorValue); },
+        "recording": n => { twitchRecordedStream.recording = n.getEnumValue<TwitchRecordedStream_recording>(TwitchRecordedStream_recordingObject); },
+        "removed_at": n => { twitchRecordedStream.removedAt = n.getStringValue() ?? n.getObjectValue<TwitchRecordedStream_removed_atMember1>(createTwitchRecordedStream_removed_atMember1FromDiscriminatorValue); },
+        "started_at": n => { twitchRecordedStream.startedAt = n.getStringValue(); },
+        "stream_id": n => { twitchRecordedStream.streamId = n.getStringValue(); },
+        "title": n => { twitchRecordedStream.title = n.getStringValue() ?? n.getObjectValue<TwitchRecordedStream_titleMember1>(createTwitchRecordedStream_titleMember1FromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_ended_at The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_ended_at(twitchRecordedStream_ended_at: Partial<Parsable | string | TwitchRecordedStream_ended_atMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { twitchRecordedStream_ended_at = n.getStringValue()},
+        ...deserializeIntoTwitchRecordedStream_ended_atMember1(twitchRecordedStream_ended_at as TwitchRecordedStream_ended_atMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_ended_atMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_ended_atMember1(twitchRecordedStream_ended_atMember1: Partial<TwitchRecordedStream_ended_atMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_game The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_game(twitchRecordedStream_game: Partial<Parsable | string | TwitchRecordedStream_gameMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { twitchRecordedStream_game = n.getStringValue()},
+        ...deserializeIntoTwitchRecordedStream_gameMember1(twitchRecordedStream_game as TwitchRecordedStream_gameMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_gameMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_gameMember1(twitchRecordedStream_gameMember1: Partial<TwitchRecordedStream_gameMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_host The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_host(twitchRecordedStream_host: Partial<Parsable | string | TwitchRecordedStream_hostMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { twitchRecordedStream_host = n.getStringValue()},
+        ...deserializeIntoTwitchRecordedStream_hostMember1(twitchRecordedStream_host as TwitchRecordedStream_hostMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_hostMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_hostMember1(twitchRecordedStream_hostMember1: Partial<TwitchRecordedStream_hostMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_path_timestamp The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_path_timestamp(twitchRecordedStream_path_timestamp: Partial<Parsable | number | TwitchRecordedStream_path_timestampMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { twitchRecordedStream_path_timestamp = n.getNumberValue()},
+        ...deserializeIntoTwitchRecordedStream_path_timestampMember1(twitchRecordedStream_path_timestamp as TwitchRecordedStream_path_timestampMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_path_timestampMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_path_timestampMember1(twitchRecordedStream_path_timestampMember1: Partial<TwitchRecordedStream_path_timestampMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_removed_at The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_removed_at(twitchRecordedStream_removed_at: Partial<Parsable | string | TwitchRecordedStream_removed_atMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { twitchRecordedStream_removed_at = n.getStringValue()},
+        ...deserializeIntoTwitchRecordedStream_removed_atMember1(twitchRecordedStream_removed_at as TwitchRecordedStream_removed_atMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_removed_atMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_removed_atMember1(twitchRecordedStream_removed_atMember1: Partial<TwitchRecordedStream_removed_atMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_title The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_title(twitchRecordedStream_title: Partial<Parsable | string | TwitchRecordedStream_titleMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "" : n => { twitchRecordedStream_title = n.getStringValue()},
+        ...deserializeIntoTwitchRecordedStream_titleMember1(twitchRecordedStream_title as TwitchRecordedStream_titleMember1),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchRecordedStream_titleMember1 The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchRecordedStream_titleMember1(twitchRecordedStream_titleMember1: Partial<TwitchRecordedStream_titleMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchStreamHistory The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchStreamHistory(twitchStreamHistory: Partial<TwitchStreamHistory> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "broadcaster_id": n => { twitchStreamHistory.broadcasterId = n.getStringValue(); },
+        "broadcaster_login": n => { twitchStreamHistory.broadcasterLogin = n.getStringValue(); },
+        "indexed_since": n => { twitchStreamHistory.indexedSince = n.getStringValue(); },
+        "streams": n => { twitchStreamHistory.streams = n.getCollectionOfObjectValues<TwitchRecordedStream>(createTwitchRecordedStreamFromDiscriminatorValue); },
+        "timestamp": n => { twitchStreamHistory.timestamp = n.getStringValue(); },
+        "warnings": n => { twitchStreamHistory.warnings = n.getCollectionOfObjectValues<StreamIndexWarning>(createStreamIndexWarningFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchStreamSignalsResult The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchStreamSignalsResult(twitchStreamSignalsResult: Partial<TwitchStreamSignalsResult> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "accepted": n => { twitchStreamSignalsResult.accepted = n.getNumberValue(); },
+        "added": n => { twitchStreamSignalsResult.added = n.getNumberValue(); },
+        "rejected": n => { twitchStreamSignalsResult.rejected = n.getCollectionOfObjectValues<TwitchStreamSignalsResult_rejected>(createTwitchStreamSignalsResult_rejectedFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TwitchStreamSignalsResult_rejected The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTwitchStreamSignalsResult_rejected(twitchStreamSignalsResult_rejected: Partial<TwitchStreamSignalsResult_rejected> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "code": n => { twitchStreamSignalsResult_rejected.code = n.getStringValue(); },
+        "id": n => { twitchStreamSignalsResult_rejected.id = n.getStringValue(); },
     }
 }
 /**
@@ -27546,6 +27945,43 @@ export function serializeStartMatchResponse(writer: SerializationWriter, startMa
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param StreamIndexWarning The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeStreamIndexWarning(writer: SerializationWriter, streamIndexWarning: Partial<StreamIndexWarning> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!streamIndexWarning || isSerializingDerivedType) { return; }
+    writer.writeStringValue("code", streamIndexWarning.code);
+    writer.writeAdditionalData(streamIndexWarning.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param StreamSignalsBody The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeStreamSignalsBody(writer: SerializationWriter, streamSignalsBody: Partial<StreamSignalsBody> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!streamSignalsBody || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<StreamSignalsBody_channels>("channels", streamSignalsBody.channels, serializeStreamSignalsBody_channels);
+    writer.writeAdditionalData(streamSignalsBody.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param StreamSignalsBody_channels The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeStreamSignalsBody_channels(writer: SerializationWriter, streamSignalsBody_channels: Partial<StreamSignalsBody_channels> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!streamSignalsBody_channels || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", streamSignalsBody_channels.id);
+    writer.writeEnumValue<StreamSignalsBody_channels_kind>("kind", streamSignalsBody_channels.kind);
+    writer.writeAdditionalData(streamSignalsBody_channels.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param SubmitScoreBody The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -29612,6 +30048,224 @@ export function serializeTwitchGlobalBadges(writer: SerializationWriter, twitchG
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream(writer: SerializationWriter, twitchRecordedStream: Partial<TwitchRecordedStream> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!twitchRecordedStream || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("duration_seconds", twitchRecordedStream.durationSeconds);
+    if ( typeof twitchRecordedStream.endedAt === "string") {
+        writer.writeStringValue("ended_at", twitchRecordedStream.endedAt as string);
+    }
+    else {
+        writer.writeObjectValue<TwitchRecordedStream_ended_atMember1>("ended_at", twitchRecordedStream.endedAt as TwitchRecordedStream_ended_atMember1 | undefined | null, serializeTwitchRecordedStream_ended_at);
+    }
+    if ( typeof twitchRecordedStream.game === "string") {
+        writer.writeStringValue("game", twitchRecordedStream.game as string);
+    }
+    else {
+        writer.writeObjectValue<TwitchRecordedStream_gameMember1>("game", twitchRecordedStream.game as TwitchRecordedStream_gameMember1 | undefined | null, serializeTwitchRecordedStream_game);
+    }
+    if ( typeof twitchRecordedStream.host === "string") {
+        writer.writeStringValue("host", twitchRecordedStream.host as string);
+    }
+    else {
+        writer.writeObjectValue<TwitchRecordedStream_hostMember1>("host", twitchRecordedStream.host as TwitchRecordedStream_hostMember1 | undefined | null, serializeTwitchRecordedStream_host);
+    }
+    writer.writeStringValue("login", twitchRecordedStream.login);
+    if ( typeof twitchRecordedStream.pathTimestamp === "number") {
+        writer.writeNumberValue("path_timestamp", twitchRecordedStream.pathTimestamp as number);
+    }
+    else {
+        writer.writeObjectValue<TwitchRecordedStream_path_timestampMember1>("path_timestamp", twitchRecordedStream.pathTimestamp as TwitchRecordedStream_path_timestampMember1 | undefined | null, serializeTwitchRecordedStream_path_timestamp);
+    }
+    writer.writeEnumValue<TwitchRecordedStream_recording>("recording", twitchRecordedStream.recording);
+    if ( typeof twitchRecordedStream.removedAt === "string") {
+        writer.writeStringValue("removed_at", twitchRecordedStream.removedAt as string);
+    }
+    else {
+        writer.writeObjectValue<TwitchRecordedStream_removed_atMember1>("removed_at", twitchRecordedStream.removedAt as TwitchRecordedStream_removed_atMember1 | undefined | null, serializeTwitchRecordedStream_removed_at);
+    }
+    writer.writeStringValue("started_at", twitchRecordedStream.startedAt);
+    writer.writeStringValue("stream_id", twitchRecordedStream.streamId);
+    if ( typeof twitchRecordedStream.title === "string") {
+        writer.writeStringValue("title", twitchRecordedStream.title as string);
+    }
+    else {
+        writer.writeObjectValue<TwitchRecordedStream_titleMember1>("title", twitchRecordedStream.title as TwitchRecordedStream_titleMember1 | undefined | null, serializeTwitchRecordedStream_title);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_ended_at The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_ended_at(writer: SerializationWriter, twitchRecordedStream_ended_at: Partial<Parsable | TwitchRecordedStream_ended_atMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTwitchRecordedStream_ended_atMember1(writer, twitchRecordedStream_ended_at as TwitchRecordedStream_ended_atMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_ended_atMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_ended_atMember1(writer: SerializationWriter, twitchRecordedStream_ended_atMember1: Partial<TwitchRecordedStream_ended_atMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!twitchRecordedStream_ended_atMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(twitchRecordedStream_ended_atMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_game The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_game(writer: SerializationWriter, twitchRecordedStream_game: Partial<Parsable | TwitchRecordedStream_gameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTwitchRecordedStream_gameMember1(writer, twitchRecordedStream_game as TwitchRecordedStream_gameMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_gameMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_gameMember1(writer: SerializationWriter, twitchRecordedStream_gameMember1: Partial<TwitchRecordedStream_gameMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!twitchRecordedStream_gameMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(twitchRecordedStream_gameMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_host The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_host(writer: SerializationWriter, twitchRecordedStream_host: Partial<Parsable | TwitchRecordedStream_hostMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTwitchRecordedStream_hostMember1(writer, twitchRecordedStream_host as TwitchRecordedStream_hostMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_hostMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_hostMember1(writer: SerializationWriter, twitchRecordedStream_hostMember1: Partial<TwitchRecordedStream_hostMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!twitchRecordedStream_hostMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(twitchRecordedStream_hostMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_path_timestamp The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_path_timestamp(writer: SerializationWriter, twitchRecordedStream_path_timestamp: Partial<Parsable | TwitchRecordedStream_path_timestampMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTwitchRecordedStream_path_timestampMember1(writer, twitchRecordedStream_path_timestamp as TwitchRecordedStream_path_timestampMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_path_timestampMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_path_timestampMember1(writer: SerializationWriter, twitchRecordedStream_path_timestampMember1: Partial<TwitchRecordedStream_path_timestampMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!twitchRecordedStream_path_timestampMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(twitchRecordedStream_path_timestampMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_removed_at The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_removed_at(writer: SerializationWriter, twitchRecordedStream_removed_at: Partial<Parsable | TwitchRecordedStream_removed_atMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTwitchRecordedStream_removed_atMember1(writer, twitchRecordedStream_removed_at as TwitchRecordedStream_removed_atMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_removed_atMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_removed_atMember1(writer: SerializationWriter, twitchRecordedStream_removed_atMember1: Partial<TwitchRecordedStream_removed_atMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!twitchRecordedStream_removed_atMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(twitchRecordedStream_removed_atMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_title The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_title(writer: SerializationWriter, twitchRecordedStream_title: Partial<Parsable | TwitchRecordedStream_titleMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    serializeTwitchRecordedStream_titleMember1(writer, twitchRecordedStream_title as TwitchRecordedStream_titleMember1);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchRecordedStream_titleMember1 The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchRecordedStream_titleMember1(writer: SerializationWriter, twitchRecordedStream_titleMember1: Partial<TwitchRecordedStream_titleMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!twitchRecordedStream_titleMember1 || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(twitchRecordedStream_titleMember1.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchStreamHistory The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchStreamHistory(writer: SerializationWriter, twitchStreamHistory: Partial<TwitchStreamHistory> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!twitchStreamHistory || isSerializingDerivedType) { return; }
+    writer.writeStringValue("broadcaster_id", twitchStreamHistory.broadcasterId);
+    writer.writeStringValue("broadcaster_login", twitchStreamHistory.broadcasterLogin);
+    writer.writeStringValue("indexed_since", twitchStreamHistory.indexedSince);
+    writer.writeCollectionOfObjectValues<TwitchRecordedStream>("streams", twitchStreamHistory.streams, serializeTwitchRecordedStream);
+    writer.writeStringValue("timestamp", twitchStreamHistory.timestamp);
+    writer.writeCollectionOfObjectValues<StreamIndexWarning>("warnings", twitchStreamHistory.warnings, serializeStreamIndexWarning);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchStreamSignalsResult The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchStreamSignalsResult(writer: SerializationWriter, twitchStreamSignalsResult: Partial<TwitchStreamSignalsResult> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!twitchStreamSignalsResult || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("accepted", twitchStreamSignalsResult.accepted);
+    writer.writeNumberValue("added", twitchStreamSignalsResult.added);
+    writer.writeCollectionOfObjectValues<TwitchStreamSignalsResult_rejected>("rejected", twitchStreamSignalsResult.rejected, serializeTwitchStreamSignalsResult_rejected);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TwitchStreamSignalsResult_rejected The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTwitchStreamSignalsResult_rejected(writer: SerializationWriter, twitchStreamSignalsResult_rejected: Partial<TwitchStreamSignalsResult_rejected> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!twitchStreamSignalsResult_rejected || isSerializingDerivedType) { return; }
+    writer.writeStringValue("code", twitchStreamSignalsResult_rejected.code);
+    writer.writeStringValue("id", twitchStreamSignalsResult_rejected.id);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param UpdateAttendanceRequestBody The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -30535,7 +31189,36 @@ export interface StartMatchResponse extends Parsable {
     timestamp?: string | null;
 }
 export type StrategyVisibility = (typeof StrategyVisibilityObject)[keyof typeof StrategyVisibilityObject];
+/**
+ * A coverage warning: a code plus the values its wording needs (since, viewer_floor, from, to or limit).
+ */
+export interface StreamIndexWarning extends AdditionalDataHolder, Parsable {
+    /**
+     * A warning_* code, e.g. warning_index_just_added.
+     */
+    code?: string | null;
+}
 export type StreamPlatform = (typeof StreamPlatformObject)[keyof typeof StreamPlatformObject];
+/**
+ * Twitch channels to keep recording, each with why it matters to a user.
+ */
+export interface StreamSignalsBody extends AdditionalDataHolder, Parsable {
+    /**
+     * 1 to 100 channels.
+     */
+    channels?: StreamSignalsBody_channels[] | null;
+}
+export interface StreamSignalsBody_channels extends AdditionalDataHolder, Parsable {
+    /**
+     * Twitch user id.
+     */
+    id?: string | null;
+    /**
+     * favorite: a user starred the channel. follow: a user follows it on Twitch. watch: a user watched it live.
+     */
+    kind?: StreamSignalsBody_channels_kind | null;
+}
+export type StreamSignalsBody_channels_kind = (typeof StreamSignalsBody_channels_kindObject)[keyof typeof StreamSignalsBody_channels_kindObject];
 /**
  * Map score submission payload for a single map.
  */
@@ -32609,6 +33292,130 @@ export interface TwitchGlobalBadges extends Parsable {
     timestamp?: string | null;
 }
 /**
+ * One recorded Twitch stream.
+ */
+export interface TwitchRecordedStream extends Parsable {
+    /**
+     * Seconds from the start to the end, or to when it was last seen live.
+     */
+    durationSeconds?: number | null;
+    /**
+     * Stream end (ISO 8601); null while it was still live at the last pass.
+     */
+    endedAt?: string | TwitchRecordedStream_ended_atMember1 | null;
+    /**
+     * Category name, when Twitch reported one.
+     */
+    game?: string | TwitchRecordedStream_gameMember1 | null;
+    /**
+     * CDN host the recording was found on; null unless recording is available.
+     */
+    host?: string | TwitchRecordedStream_hostMember1 | null;
+    /**
+     * Channel login when the stream ran; part of the recording path.
+     */
+    login?: string | null;
+    /**
+     * Unix second used in the recording path; null unless recording is available.
+     */
+    pathTimestamp?: number | TwitchRecordedStream_path_timestampMember1 | null;
+    /**
+     * available: found on Twitch's video CDN. unverified: not checked yet, or not found. removed: Twitch deleted it (only sent when the index keeps removed recordings).
+     */
+    recording?: TwitchRecordedStream_recording | null;
+    /**
+     * When the recording was found removed (ISO 8601), else null.
+     */
+    removedAt?: string | TwitchRecordedStream_removed_atMember1 | null;
+    /**
+     * Stream start (ISO 8601).
+     */
+    startedAt?: string | null;
+    /**
+     * Twitch stream (broadcast) id.
+     */
+    streamId?: string | null;
+    /**
+     * Stream title, when Twitch reported one.
+     */
+    title?: string | TwitchRecordedStream_titleMember1 | null;
+}
+export type TwitchRecordedStream_ended_at = string | TwitchRecordedStream_ended_atMember1;
+export interface TwitchRecordedStream_ended_atMember1 extends AdditionalDataHolder, Parsable {
+}
+export type TwitchRecordedStream_game = string | TwitchRecordedStream_gameMember1;
+export interface TwitchRecordedStream_gameMember1 extends AdditionalDataHolder, Parsable {
+}
+export type TwitchRecordedStream_host = string | TwitchRecordedStream_hostMember1;
+export interface TwitchRecordedStream_hostMember1 extends AdditionalDataHolder, Parsable {
+}
+export type TwitchRecordedStream_path_timestamp = number | TwitchRecordedStream_path_timestampMember1;
+export interface TwitchRecordedStream_path_timestampMember1 extends AdditionalDataHolder, Parsable {
+}
+export type TwitchRecordedStream_recording = (typeof TwitchRecordedStream_recordingObject)[keyof typeof TwitchRecordedStream_recordingObject];
+export type TwitchRecordedStream_removed_at = string | TwitchRecordedStream_removed_atMember1;
+export interface TwitchRecordedStream_removed_atMember1 extends AdditionalDataHolder, Parsable {
+}
+export type TwitchRecordedStream_title = string | TwitchRecordedStream_titleMember1;
+export interface TwitchRecordedStream_titleMember1 extends AdditionalDataHolder, Parsable {
+}
+/**
+ * A Twitch channel's recorded stream history from the Battles Replay Indexer.
+ */
+export interface TwitchStreamHistory extends Parsable {
+    /**
+     * Twitch user id of the channel.
+     */
+    broadcasterId?: string | null;
+    /**
+     * Channel login.
+     */
+    broadcasterLogin?: string | null;
+    /**
+     * When the index started recording this channel (ISO 8601).
+     */
+    indexedSince?: string | null;
+    /**
+     * Recorded streams, newest first.
+     */
+    streams?: TwitchRecordedStream[] | null;
+    /**
+     * Response generation time (ISO 8601).
+     */
+    timestamp?: string | null;
+    /**
+     * Coverage warnings, each a code with its values.
+     */
+    warnings?: StreamIndexWarning[] | null;
+}
+/**
+ * What the stream index did with the channels it was sent.
+ */
+export interface TwitchStreamSignalsResult extends Parsable {
+    /**
+     * Channels now being recorded: ones already indexed (renewed) plus ones this call added.
+     */
+    accepted?: number | null;
+    /**
+     * Channels this call added to the index.
+     */
+    added?: number | null;
+    /**
+     * Channels that were not taken, each with its code.
+     */
+    rejected?: TwitchStreamSignalsResult_rejected[] | null;
+}
+export interface TwitchStreamSignalsResult_rejected extends Parsable {
+    /**
+     * Why: error_twitch_channel_not_found or error_stream_index_add_limit.
+     */
+    code?: string | null;
+    /**
+     * Twitch user id that was not taken.
+     */
+    id?: string | null;
+}
+/**
  * Updates the API key owner's own attendance status for a match.
  */
 export interface UpdateAttendanceRequestBody extends AdditionalDataHolder, Parsable {
@@ -33758,6 +34565,14 @@ export const StreamPlatformObject = {
     YOUTUBE: "YOUTUBE",
     KICK: "KICK",
 } as const;
+/**
+ * favorite: a user starred the channel. follow: a user follows it on Twitch. watch: a user watched it live.
+ */
+export const StreamSignalsBody_channels_kindObject = {
+    Favorite: "favorite",
+    Follow: "follow",
+    Watch: "watch",
+} as const;
 export const TicketDetail_priorityObject = {
     Low: "low",
     Medium: "medium",
@@ -34043,6 +34858,14 @@ export const TournamentUpdateResponse_approvalStatusObject = {
     AWAITING_APPROVAL: "AWAITING_APPROVAL",
     APPROVED: "APPROVED",
     REJECTED: "REJECTED",
+} as const;
+/**
+ * available: found on Twitch's video CDN. unverified: not checked yet, or not found. removed: Twitch deleted it (only sent when the index keeps removed recordings).
+ */
+export const TwitchRecordedStream_recordingObject = {
+    Available: "available",
+    Unverified: "unverified",
+    Removed: "removed",
 } as const;
 /**
  * The API key owner's attendance status for this match.

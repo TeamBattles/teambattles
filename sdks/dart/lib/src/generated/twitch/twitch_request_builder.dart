@@ -1,6 +1,7 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './badges/badges_request_builder.dart';
+import './streams/streams_request_builder.dart';
 
 /// auto generated
 /// Builds and executes requests for operations under \twitch
@@ -8,6 +9,10 @@ class TwitchRequestBuilder extends BaseRequestBuilder<TwitchRequestBuilder> {
     ///  The badges property
     BadgesRequestBuilder get badges {
         return BadgesRequestBuilder(pathParameters, requestAdapter);
+    }
+    ///  The streams property
+    StreamsRequestBuilder get streams {
+        return StreamsRequestBuilder(pathParameters, requestAdapter);
     }
     /// Clones the requestbuilder.
     @override

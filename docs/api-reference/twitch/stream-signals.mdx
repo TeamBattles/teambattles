@@ -1,0 +1,72 @@
+---
+title: "Send Stream Signals"
+description: "Tell the stream index which Twitch channels to keep recording."
+openapi: "POST /twitch/streams/signals"
+---
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://teambattles.gg/api/v1/twitch/streams/signals" \
+  -H "Content-Type: application/json" \
+  -d '{"channels":[{"id":"71092938","kind":"watch"}]}'
+```
+
+```javascript JavaScript
+const response = await fetch("https://teambattles.gg/api/v1/twitch/streams/signals", {
+	method: "POST",
+	headers: { "Content-Type": "application/json" },
+	body: JSON.stringify({ channels: [{ id: "71092938", kind: "watch" }] })
+});
+
+const { accepted, added, rejected } = await response.json();
+```
+
+</RequestExample>
+
+## Prerequisites
+
+None. This endpoint is public and needs no API key. Each address can make 30 requests a minute; past that you get `429 error_ip_rate_limited`. Send the body as JSON with `Content-Type: application/json`. Form-encoded and plain-text bodies are refused with `403` before they reach the API; any other content type gets `400 error_invalid_request`.
+
+## What It Does
+
+The stream index records a channel only while the channel is in the index. A signal adds a channel that is not there yet, or keeps one that is, so its streams are recorded from then on. Use [Get Stream History](/api-reference/twitch/stream-history) to read what was recorded.
+
+Send each channel as its Twitch user ID with the reason it matters:
+
+| Kind       | Meaning                              |
+| ---------- | ------------------------------------ |
+| `favorite` | A user starred the channel           |
+| `follow`   | A user follows the channel on Twitch |
+| `watch`    | A user watched the channel live      |
+
+Send 1 to 100 channels per request, and split longer lists. Only the IDs and kinds are passed on to the index; no account or user ID is sent or stored.
+
+## Response
+
+| Field      | Meaning                                                                                              |
+| ---------- | ---------------------------------------------------------------------------------------------------- |
+| `accepted` | Channels now being recorded: ones already indexed, which are renewed, plus ones this call added      |
+| `added`    | Channels this call added to the index                                                                 |
+| `rejected` | Channels that were not taken, each with `error_twitch_channel_not_found` or `error_stream_index_add_limit` |
+
+A channel sent twice in one request counts once.
+
+## Errors
+
+| HTTP | Code                             | When                                                                  |
+| ---- | -------------------------------- | --------------------------------------------------------------------- |
+| 400  | `error_invalid_request`          | The body is not sent as JSON, has no channels or more than 100, or has a malformed ID or kind |
+| 403  | (plain text, not JSON)           | The body was sent form-encoded or as plain text                       |
+| 429  | `error_ip_rate_limited`          | Too many requests from your address                                   |
+| 503  | `error_stream_index_unavailable` | The index could not be reached                                        |
+
+## Example Response
+
+```json
+{
+	"accepted": 1,
+	"added": 0,
+	"rejected": []
+}
+```

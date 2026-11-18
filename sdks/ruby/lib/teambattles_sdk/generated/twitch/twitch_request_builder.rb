@@ -1,6 +1,7 @@
 require 'microsoft_kiota_abstractions'
 require_relative '../team_battles_sdk::_generated'
 require_relative './badges/badges_request_builder'
+require_relative './streams/streams_request_builder'
 require_relative './twitch'
 
 module TeamBattlesSdk
@@ -14,6 +15,11 @@ module TeamBattlesSdk
                 # The badges property
                 def badges()
                     return TeamBattlesSdk::Generated::Twitch::Badges::BadgesRequestBuilder.new(@path_parameters, @request_adapter)
+                end
+                ## 
+                # The streams property
+                def streams()
+                    return TeamBattlesSdk::Generated::Twitch::Streams::StreamsRequestBuilder.new(@path_parameters, @request_adapter)
                 end
                 ## 
                 ## Instantiates a new TwitchRequestBuilder and sets the default values.

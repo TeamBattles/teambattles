@@ -1,0 +1,111 @@
+---
+title: "Get Stream History"
+description: "Look up the streams recorded for a Twitch channel, including streams Twitch never published as videos."
+openapi: "GET /twitch/streams/history"
+---
+
+<RequestExample>
+
+```bash cURL (by username)
+curl "https://teambattles.gg/api/v1/twitch/streams/history?username=xqc"
+```
+
+```bash cURL (by ID)
+curl "https://teambattles.gg/api/v1/twitch/streams/history?id=71092938"
+```
+
+```javascript JavaScript
+const response = await fetch("https://teambattles.gg/api/v1/twitch/streams/history?username=xqc");
+
+const { streams, warnings } = await response.json();
+```
+
+</RequestExample>
+
+## Prerequisites
+
+None. This endpoint is public and needs no API key. Each address can make 60 requests a minute; past that you get `429 error_ip_rate_limited`.
+
+## Channel Identification
+
+You must provide exactly **one** of these parameters:
+
+| Parameter  | Description          | Example    |
+| ---------- | -------------------- | ---------- |
+| `username` | Twitch channel login | `xqc`      |
+| `id`       | Twitch user ID       | `71092938` |
+
+## How History Is Recorded
+
+Twitch has no stream history API, so streams are recorded while they are live. The index covers channels seen live with 20 or more viewers, plus any channel someone looks up here. A channel's history starts when it joins the index; earlier streams cannot be recovered.
+
+When you ask for a channel that is not indexed yet, it is added, and you get an empty `streams` list with the `warning_index_just_added` warning. Its streams appear from then on.
+
+## Recordings
+
+Each stream's `recording` field says whether its video was found on Twitch's video CDN:
+
+| Value        | Meaning                                                                      |
+| ------------ | ---------------------------------------------------------------------------- |
+| `available`  | Found. `host` and `path_timestamp` locate it.                                |
+| `unverified` | Not checked yet, or not found.                                               |
+| `removed`    | Twitch deleted it. Only sent when the index is set to keep removed streams.  |
+
+## Warnings
+
+Answers carry codes and values, never sentences, so you can word them for your users. Each entry in `warnings` is a `code` plus the values its wording needs:
+
+| Code                                      | Values                  | Meaning                                                  |
+| ----------------------------------------- | ----------------------- | -------------------------------------------------------- |
+| `warning_index_just_added`                | `viewer_floor`          | The channel was not indexed; this lookup added it        |
+| `warning_history_starts_at_index_start`   | `since`                 | Recorded only since the index itself began               |
+| `warning_history_starts_at_viewer_floor`  | `since`, `viewer_floor` | Recorded only since it was first seen at the viewer floor |
+| `warning_history_starts_at_search`        | `since`                 | Recorded only since someone first looked it up           |
+| `warning_history_starts_at_favorite`      | `since`                 | Recorded only since someone first favorited it           |
+| `warning_history_starts_at_follow`        | `since`                 | Recorded only since a follower first used the add-on     |
+| `warning_history_starts_at_watch`         | `since`                 | Recorded only since someone first watched it             |
+| `warning_index_outage`                    | `from`, `to`            | The index was offline for this stretch                   |
+| `warning_history_truncated`               | `limit`                 | More streams exist than were returned                    |
+
+Treat a code you do not recognize as "history may be incomplete".
+
+## Errors
+
+| HTTP | Code                             | When                                                      |
+| ---- | -------------------------------- | --------------------------------------------------------- |
+| 400  | `error_invalid_request`          | `username` or `id` is missing, doubled or malformed       |
+| 404  | `error_twitch_channel_not_found` | Twitch has no such channel                                |
+| 429  | `error_ip_rate_limited`          | Too many requests from your address                       |
+| 503  | `error_stream_index_add_limit`   | The channel is not indexed and cannot be added right now  |
+| 503  | `error_stream_index_unavailable` | The index could not be reached                            |
+
+## Caching
+
+Successful answers carry `Cache-Control: public, max-age=300`. Errors are never cached.
+
+## Example Response
+
+```json
+{
+	"broadcaster_id": "71092938",
+	"broadcaster_login": "xqc",
+	"indexed_since": "2026-11-17T18:56:30Z",
+	"streams": [
+		{
+			"stream_id": "322415416923",
+			"login": "xqc",
+			"started_at": "2026-11-17T22:41:41Z",
+			"ended_at": "2026-11-18T08:15:00Z",
+			"duration_seconds": 34399,
+			"title": "...",
+			"game": "Just Chatting",
+			"recording": "available",
+			"host": "d1m7jfoe9zdc1j.cloudfront.net",
+			"path_timestamp": 1794955301,
+			"removed_at": null
+		}
+	],
+	"warnings": [{ "code": "warning_history_starts_at_index_start", "since": "2026-11-17T18:56:30Z" }],
+	"timestamp": "2026-11-18T22:00:00Z"
+}
+```

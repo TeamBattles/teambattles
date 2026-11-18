@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .badges.badges_request_builder import BadgesRequestBuilder
+    from .streams.streams_request_builder import StreamsRequestBuilder
 
 class TwitchRequestBuilder(BaseRequestBuilder):
     """
@@ -29,5 +30,14 @@ class TwitchRequestBuilder(BaseRequestBuilder):
         from .badges.badges_request_builder import BadgesRequestBuilder
 
         return BadgesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def streams(self) -> StreamsRequestBuilder:
+        """
+        The streams property
+        """
+        from .streams.streams_request_builder import StreamsRequestBuilder
+
+        return StreamsRequestBuilder(self.request_adapter, self.path_parameters)
     
 

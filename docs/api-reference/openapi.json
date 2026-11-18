@@ -18569,6 +18569,149 @@
         }
       }
     },
+    "/twitch/streams/history": {
+      "get": {
+        "operationId": "getTwitchStreamHistory",
+        "tags": [
+          "Twitch"
+        ],
+        "summary": "Get a Twitch channel's recorded stream history",
+        "description": "Returns the streams the Battles Replay Indexer recorded for a Twitch channel, including streams Twitch never published as videos, with the CDN host and path timestamp of every recording it found. Provide exactly one of the username or id query parameters. Public: no API key. A channel that is not indexed yet is added by the lookup and answers with an empty list and the warning_index_just_added warning. Answers carry codes and values, never sentences. Successful answers are cached for five minutes.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "username",
+            "schema": {
+              "description": "Channel login (e.g. xqc). Provide exactly one of username or id.",
+              "type": "string"
+            },
+            "description": "Channel login (e.g. xqc). Provide exactly one of username or id."
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "description": "Twitch user id (e.g. 71092938). Provide exactly one of username or id.",
+              "type": "string"
+            },
+            "description": "Twitch user id (e.g. 71092938). Provide exactly one of username or id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The channel's recorded streams and any coverage warnings.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TwitchStreamHistory"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/twitch/streams/signals": {
+      "post": {
+        "operationId": "postTwitchStreamSignals",
+        "tags": [
+          "Twitch"
+        ],
+        "summary": "Tell the stream index which Twitch channels to keep recording",
+        "description": "Adds Twitch channels to the Battles Replay Indexer, or renews them, so their streams are recorded from then on. Send 1 to 100 channels as Twitch user ids, each with the reason: favorite, follow or watch. Send it as JSON with Content-Type: application/json. Public: no API key, and no account or user id is sent or stored. Channels Twitch does not have come back in rejected, each with its code.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StreamSignalsBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "How many channels were accepted and added.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TwitchStreamSignalsResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid body, cursor, limit, or date).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/uploads/image-url": {
       "post": {
         "operationId": "createImageUploadUrl",
@@ -28585,6 +28728,44 @@
           "CANCELLED"
         ],
         "description": "Lifecycle status of a tournament."
+      },
+      "StreamSignalsBody": {
+        "type": "object",
+        "properties": {
+          "channels": {
+            "minItems": 1,
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^\\d{1,20}$",
+                  "description": "Twitch user id."
+                },
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "favorite",
+                    "follow",
+                    "watch"
+                  ],
+                  "description": "favorite: a user starred the channel. follow: a user follows it on Twitch. watch: a user watched it live."
+                }
+              },
+              "required": [
+                "id",
+                "kind"
+              ]
+            },
+            "description": "1 to 100 channels."
+          }
+        },
+        "required": [
+          "channels"
+        ],
+        "description": "Twitch channels to keep recording, each with why it matters to a user."
       },
       "GameRankUpsertBody": {
         "type": "object",
@@ -38775,6 +38956,226 @@
         "additionalProperties": false,
         "description": "Global Twitch chat badges."
       },
+      "TwitchStreamHistory": {
+        "type": "object",
+        "properties": {
+          "broadcaster_id": {
+            "type": "string",
+            "description": "Twitch user id of the channel."
+          },
+          "broadcaster_login": {
+            "type": "string",
+            "description": "Channel login."
+          },
+          "indexed_since": {
+            "type": "string",
+            "description": "When the index started recording this channel (ISO 8601)."
+          },
+          "streams": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TwitchRecordedStream"
+            },
+            "description": "Recorded streams, newest first."
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StreamIndexWarning"
+            },
+            "description": "Coverage warnings, each a code with its values."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Response generation time (ISO 8601)."
+          }
+        },
+        "required": [
+          "broadcaster_id",
+          "broadcaster_login",
+          "indexed_since",
+          "streams",
+          "warnings",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "description": "A Twitch channel's recorded stream history from the Battles Replay Indexer."
+      },
+      "TwitchRecordedStream": {
+        "type": "object",
+        "properties": {
+          "stream_id": {
+            "type": "string",
+            "description": "Twitch stream (broadcast) id."
+          },
+          "login": {
+            "type": "string",
+            "description": "Channel login when the stream ran; part of the recording path."
+          },
+          "started_at": {
+            "type": "string",
+            "description": "Stream start (ISO 8601)."
+          },
+          "ended_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Stream end (ISO 8601); null while it was still live at the last pass."
+          },
+          "duration_seconds": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Seconds from the start to the end, or to when it was last seen live."
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Stream title, when Twitch reported one."
+          },
+          "game": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Category name, when Twitch reported one."
+          },
+          "recording": {
+            "type": "string",
+            "enum": [
+              "available",
+              "unverified",
+              "removed"
+            ],
+            "description": "available: found on Twitch's video CDN. unverified: not checked yet, or not found. removed: Twitch deleted it (only sent when the index keeps removed recordings)."
+          },
+          "host": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "CDN host the recording was found on; null unless recording is available."
+          },
+          "path_timestamp": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Unix second used in the recording path; null unless recording is available."
+          },
+          "removed_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the recording was found removed (ISO 8601), else null."
+          }
+        },
+        "required": [
+          "stream_id",
+          "login",
+          "started_at",
+          "ended_at",
+          "duration_seconds",
+          "title",
+          "game",
+          "recording",
+          "host",
+          "path_timestamp",
+          "removed_at"
+        ],
+        "additionalProperties": false,
+        "description": "One recorded Twitch stream."
+      },
+      "StreamIndexWarning": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "A warning_* code, e.g. warning_index_just_added."
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": {},
+        "description": "A coverage warning: a code plus the values its wording needs (since, viewer_floor, from, to or limit)."
+      },
+      "TwitchStreamSignalsResult": {
+        "type": "object",
+        "properties": {
+          "accepted": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Channels now being recorded: ones already indexed (renewed) plus ones this call added."
+          },
+          "added": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Channels this call added to the index."
+          },
+          "rejected": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Twitch user id that was not taken."
+                },
+                "code": {
+                  "type": "string",
+                  "description": "Why: error_twitch_channel_not_found or error_stream_index_add_limit."
+                }
+              },
+              "required": [
+                "id",
+                "code"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Channels that were not taken, each with its code."
+          }
+        },
+        "required": [
+          "accepted",
+          "added",
+          "rejected"
+        ],
+        "additionalProperties": false,
+        "description": "What the stream index did with the channels it was sent."
+      },
       "ImageUploadUrlResponse": {
         "type": "object",
         "properties": {
@@ -40167,7 +40568,10 @@
           "error_invalid_game_specific_option",
           "error_map_not_released",
           "error_map_selection_not_supported",
-          "error_validation_failed"
+          "error_validation_failed",
+          "error_twitch_channel_not_found",
+          "error_stream_index_add_limit",
+          "error_stream_index_unavailable"
         ],
         "description": "Stable machine-readable API error code (documentation enum)."
       },

@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using TeamBattles.Sdk.Twitch.Badges;
+using TeamBattles.Sdk.Twitch.Streams;
 namespace TeamBattles.Sdk.Twitch
 {
     /// <summary>
@@ -19,6 +20,11 @@ namespace TeamBattles.Sdk.Twitch
         public global::TeamBattles.Sdk.Twitch.Badges.BadgesRequestBuilder Badges
         {
             get => new global::TeamBattles.Sdk.Twitch.Badges.BadgesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The streams property</summary>
+        public global::TeamBattles.Sdk.Twitch.Streams.StreamsRequestBuilder Streams
+        {
+            get => new global::TeamBattles.Sdk.Twitch.Streams.StreamsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::TeamBattles.Sdk.Twitch.TwitchRequestBuilder"/> and sets the default values.

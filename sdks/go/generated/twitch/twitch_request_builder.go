@@ -29,3 +29,8 @@ func NewTwitchRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371c
     urlParams["request-raw-url"] = rawUrl
     return NewTwitchRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Streams the streams property
+// returns a *StreamsRequestBuilder when successful
+func (m *TwitchRequestBuilder) Streams()(*StreamsRequestBuilder) {
+    return NewStreamsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}

@@ -3,6 +3,7 @@ package gg.teambattles.sdk.generated.twitch;
 import com.microsoft.kiota.BaseRequestBuilder;
 import com.microsoft.kiota.RequestAdapter;
 import gg.teambattles.sdk.generated.twitch.badges.BadgesRequestBuilder;
+import gg.teambattles.sdk.generated.twitch.streams.StreamsRequestBuilder;
 import java.util.HashMap;
 import java.util.Objects;
 /**
@@ -17,6 +18,14 @@ public class TwitchRequestBuilder extends BaseRequestBuilder {
     @jakarta.annotation.Nonnull
     public BadgesRequestBuilder badges() {
         return new BadgesRequestBuilder(pathParameters, requestAdapter);
+    }
+    /**
+     * The streams property
+     * @return a {@link StreamsRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public StreamsRequestBuilder streams() {
+        return new StreamsRequestBuilder(pathParameters, requestAdapter);
     }
     /**
      * Instantiates a new {@link TwitchRequestBuilder} and sets the default values.
