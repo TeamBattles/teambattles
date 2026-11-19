@@ -24,7 +24,7 @@ const { streams, warnings } = await response.json();
 
 ## Prerequisites
 
-None. This endpoint is public and needs no API key. Each address can make 60 requests a minute; past that you get `429 error_ip_rate_limited`.
+None. This endpoint is public and needs no API key. Each address can make 60 requests a minute (an IPv6 /64 counts as one address); past that you get `429 error_ip_rate_limited`.
 
 ## Channel Identification
 
@@ -37,7 +37,7 @@ You must provide exactly **one** of these parameters:
 
 ## How History Is Recorded
 
-Twitch has no stream history API, so streams are recorded while they are live. The index covers channels seen live with 20 or more viewers, plus any channel someone looks up here. A channel's history starts when it joins the index; earlier streams cannot be recovered.
+Twitch has no stream history API, so streams are recorded while they are live. The index covers channels seen live with 20 or more viewers, plus any channel someone looks up here or sends through [Send Stream Signals](/api-reference/twitch/stream-signals). A channel's history starts when it joins the index; earlier streams cannot be recovered.
 
 When you ask for a channel that is not indexed yet, it is added, and you get an empty `streams` list with the `warning_index_just_added` warning. Its streams appear from then on.
 

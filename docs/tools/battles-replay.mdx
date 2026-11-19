@@ -18,7 +18,8 @@ Everything happens on your own computer. Nothing you save is uploaded anywhere.
 
 - **Save a whole VOD** in one click
 - **Save just a section** by setting a start and end time
-- **Find unlisted broadcasts** a streamer has not published yet _(Twitch only)_
+- **Find unlisted broadcasts** a streamer has not published yet, from the TeamBattles stream index,
+  which has recorded streams since November 17, 2026 _(Twitch only)_
 - **Choose a file type** - MP4, MKV, TS, or MP3 for audio on its own
 - **Choose a quality** - Source, 1080p, 720p, 480p, 360p, or audio only
 - **Queue several at once** and watch them progress
@@ -29,10 +30,11 @@ Everything happens on your own computer. Nothing you save is uploaded anywhere.
 
 ### Recording live streams
 
-- **Keep the last few minutes** of a live stream ready to save, anywhere from 10 minutes to 5 hours
+- **Keep recent history** of a live stream ready to save, from 1 to 120 minutes. It keeps links to
+  the video rather than the video itself, so save while Twitch or Kick still serves it
 - **Clip a moment** out of what has been kept, up to 30 minutes long
-- **Save the lot** when the stream ends
-- **Watch without ads on some channels** by playing Twitch's own recording of the broadcast instead of
+- **Save automatically** each time the kept history reaches its limit, if you turn it on
+- **May avoid ads on some channels** by playing Twitch's own recording of the broadcast instead of
   the live feed. It runs a little behind, and drops back to the live feed if it will not play
   _(Twitch only)_
 - **Quality that adjusts itself** to your connection, with the current choice shown in the player
@@ -49,6 +51,8 @@ Everything happens on your own computer. Nothing you save is uploaded anywhere.
 
 ### Live chat
 
+- **Messages as they arrive** by default, or turn on **Follow video** in the chat settings to hold
+  chat to the video when you pause or rewind
 - **Send messages** without leaving the overlay
 - **Emote picker** for channel, global, and subscriber emotes, with search
 - **@ someone** and their name completes from recent chat
@@ -85,11 +89,12 @@ of the player opens the full set, with a preview as you hover each one.
   [Battles Record](/tools/battles-record) desktop app
 - **Pair once** with a 6-digit code
 - **Choose a format** - resolution, file size, or audio only
-- **Sign-in respected** so private or members-only videos save correctly
+- **Sign-in when you allow it** - turn on Twitch or Instagram account access so subscriber-only or
+  private videos save; everything else downloads as a public visitor
 - **See the connection** at a glance in the extension header
 - **Send a channel to Battles Record** to be recorded automatically, straight from the player
 - **Everything stays in step** across every device connected to the same Battles Record
-- **Connect to another computer** by entering its address
+- **Connect to another computer** by entering its address, over an encrypted (WSS) connection
 
 ### Browsing beyond Twitch and Kick
 
@@ -170,8 +175,8 @@ You need Chrome 121 or later, or Firefox 112 or later.
 		Download the [Battles Record](/tools/battles-record) desktop app
 	</Step>
 	<Step title="Pair the two">
-		In Battles Replay settings, find the Battles Record section and enter the 6-digit code shown in
-		the desktop app
+		In the extension's Settings tab, select **Open secure settings**, then enter the 6-digit code
+		shown in the desktop app under Battles Record
 	</Step>
 	<Step title="Go to the video">
 		Use the site dropdown to pick Twitch, Kick, or Other, or just open the extension on any
@@ -190,15 +195,23 @@ Connecting an account lets you take part in chat rather than just read it.
 <Tabs>
 	<Tab title="Twitch">
 		<Steps>
-			<Step title="Open Settings">Select the gear icon in the extension</Step>
-			<Step title="Select Connect with Twitch">Approve the request on Twitch</Step>
+			<Step title="Open the extension settings">
+				In the extension's Settings tab, select **Open secure settings**. It opens in its own browser
+				tab
+			</Step>
+			<Step title="Select Connect Twitch">Sign in and approve the request on Twitch</Step>
 			<Step title="Start chatting">Live chat is now available on Twitch streams</Step>
 		</Steps>
 	</Tab>
 	<Tab title="Kick">
 		<Steps>
-			<Step title="Open Settings">Select the gear icon in the extension</Step>
-			<Step title="Select Connect with Kick">Approve the request on Kick</Step>
+			<Step title="Sign in on kick.com">
+				Keep kick.com open in a tab. The extension reads your account from it
+			</Step>
+			<Step title="Open the extension settings">
+				In the extension's Settings tab, select **Open secure settings**
+			</Step>
+			<Step title="Select Connect Kick">Your Kick account appears as connected</Step>
 			<Step title="Start chatting">Live chat is now available on Kick streams</Step>
 		</Steps>
 	</Tab>
@@ -228,8 +241,8 @@ moderator badges instead of letter abbreviations.
 **TeamBattles account.** You can link a TeamBattles key to bring your own match data into the
 extension. Create one from
 [Settings > Developer](https://teambattles.gg/settings/developer) with the **Battles Replay** preset,
-which sets the right permissions in one click, then paste it into the extension's Authorization
-section. Copy the key when it is shown - it is not shown again. Full details are in the
+which sets the right permissions in one click, then paste it under **Optional API Credentials** in the extension settings (Settings > **Open
+secure settings**). Copy the key when it is shown - it is not shown again. Full details are in the
 [developer documentation](/developers/authentication).
 
 ## Which file type to pick
@@ -238,23 +251,25 @@ section. Copy the key when it is shown - it is not shown again. Full details are
 | ------- | ----------- | ---------------------------------------------------- |
 | **MP4** | Most things | Plays everywhere                                     |
 | **MKV** | Keeping     | Holds more information about the video, same picture |
-| **TS**  | Long videos | No processing, fastest to save, plays in VLC         |
+| **TS**  | Fast saves  | No conversion, plays in VLC                          |
 | **MP3** | Audio only  | Just the sound                                       |
 
 <Tip>
-	For anything over about 1.2 GB, choose **TS**. It uses very little memory and gives you one file
-	however long the video is.
+	Want a long video as one file? Use [Battles Record](/tools/battles-record). The browser saves long
+	videos in parts.
 </Tip>
 
 ## Long videos
 
-When a download is going to be over about 1.2 GB, you are asked how you want it:
+The browser works through a download in parts, so it never holds the whole video in memory at once.
+When a download is estimated at over 64 MB, you are asked which format you want, and it is saved as
+several files that play in VLC and most media players.
 
-- **TS (recommended)** - one file, very little memory used
-- **MP4 or MKV** - split into several parts. You can set how big each part is in Settings, anywhere
-  from 500 MB to 1.7 GB, with 1 GB to begin with. Above 1.2 GB your browser may struggle.
+- **Part size** - each part takes up to 64 MB of video to begin with. Change it in Settings, anywhere
+  from 16 to 128 MB. Larger parts use more memory
+- **One file** - use [Battles Record](/tools/battles-record) for a long video as a single file
 
-Anything over 30 GB is refused, because no browser can hold it.
+Anything over 30 GB is refused.
 
 ## Chat replay
 
@@ -285,25 +300,28 @@ Open the gear icon in the chat header to change how it looks:
 
 ## Settings
 
-| Setting             | What it does                                             | Default       |
-| ------------------- | -------------------------------------------------------- | ------------- |
-| Auto mini player    | Switch to the mini player when you close the main window | Off           |
-| Part size           | How big each part is when a long MP4 or MKV is split     | 1000 MB       |
-| How much to keep    | How much of a live stream stays ready to save            | 30 min        |
-| Auto-save           | Save what was kept when a stream ends                    | Off           |
-| Use recorded source | Play Twitch live streams from Twitch's own recording     | On            |
-| Player button       | Add the chat button to Twitch's own player               | On            |
-| Twitch connection   | Connect Twitch for live chat                             | Not connected |
-| Kick connection     | Connect Kick for live chat                               | Not connected |
-| Battles Record      | Connect the Battles Record desktop app                   | Not connected |
-| Download filter     | Which downloads to show                                  | All           |
-| Keyboard shortcuts  | Change, add, or turn off shortcuts                       | Enabled       |
-| Live notifications  | Tell me when a followed channel goes live                | Off           |
+| Setting                 | What it does                                                                      | Default       |
+| ----------------------- | --------------------------------------------------------------------------------- | ------------- |
+| Auto mini player        | Switch to the mini player when you close the main window                          | Off           |
+| Part size               | How much video each part of a long download takes (16 to 128 MB)                  | 64 MB         |
+| Recent source history   | How many minutes of a live stream are kept ready to save (1 to 120)               | 30 min        |
+| Auto-download           | Save the kept history each time it reaches its limit                              | Off           |
+| Use recorded source     | Play Twitch live streams from Twitch's own recording                              | On            |
+| Player button           | Add the chat button to Twitch's own player                                        | On            |
+| Twitch connection       | Connect Twitch for live chat                                                      | Not connected |
+| Kick connection         | Connect Kick for live chat                                                        | Not connected |
+| Battles Record          | Connect the Battles Record desktop app                                            | Not connected |
+| Download filter         | Which downloads to show                                                           | All           |
+| Keyboard shortcuts      | Change, add, or turn off shortcuts                                                | Enabled       |
+| Live notifications      | Tell me when a followed channel goes live                                         | Off           |
+| Index streamers I watch | Send channels you watch, follow or favorite to the stream index (3.0.0 and later) | On            |
 
 ## Privacy
 
-**Nothing about you is collected.** Video is processed on your own computer and saved straight to
-your device.
+Video is processed on your own computer and saved straight to your device. From version 3.0.0, the
+extension asks teambattles.gg for the history of channels you open in it and, while **Index streamers
+I watch** is on, sends it the Twitch ids of channels you watch, follow or favorite. It never sends
+your account or cookies.
 
 [Read the privacy policy](https://teambattles.gg/tools/battles-replay/privacy)
 
@@ -312,9 +330,42 @@ your device.
 - Chrome 121 or later, or Firefox 112 or later
 - An internet connection
 - Enough free disk space for what you save
-- Enough free memory for very large downloads - or use TS, which barely uses any
+- For a long video as one file, the [Battles Record](/tools/battles-record) desktop app
 
 ## Changelog
+
+<Accordion title="v3.0.0 - November 19, 2026">
+### Added
+
+- **Stream History from TeamBattles** - Unlisted Twitch broadcasts now come from the TeamBattles stream index instead of SullyGnome. The index records streams while they are live, so history starts November 17, 2026, and streams only SullyGnome listed no longer appear. Cards show each stream's title, and a recording the index has already found opens straight away instead of being searched for
+- **Index Streamers I Watch** - A new setting, on by default. It sends the stream index the Twitch channel ids of streamers you follow, favorite or watch live for a minute (in the extension or on twitch.tv), so their streams are recorded too. No account, user id or cookies are sent, and nothing is sent until you have seen What's New. Turn it off in Settings. On Firefox this is declared as browsing-activity data, so the update asks you to approve it
+- **Removed by Twitch** - Recordings the index knows Twitch removed are marked that way, and the player says when it happened
+- **Clearer History Notices** - The archive notice explains a channel the index has just started recording, rate limits and outages. When a channel has no archives, its history start date is part of the No archives found message
+
+### Changed
+
+- **Secure Extension Settings** - Account connections, API credentials and Battles Record pairing open in their own extension settings tab, laid out like teambattles.gg. The player's Settings tab shows their status at a glance, with an Open secure settings button and jump links to each section
+- **Battles Record Connections** - Remote Battles Record servers need an encrypted (WSS) connection with a trusted certificate. Pair again after this update or after changing servers. Desktop downloads are public by default; Twitch and Instagram account access are separate opt-ins that each ask for browser permission before sign-in cookies are shared
+- **Live Chat Timing** - Live chat shows messages as they arrive. Turn on Follow video in the chat settings to hold chat to the video through pauses and rewinds, using the chat received while you were watching
+- **Search Row** - The channel card sits beside the search field on larger screens, with a Follow star inside it, and every control on the row shares one height. The platform menu shows each platform's icon
+- **Source History** - Keeps 1 to 120 minutes of links and timing, not footage, so Save and Clip fetch the video while Twitch still serves it
+- **Exports** - Every file type can split into parts, sized by a 64 MiB input budget per part by default (adjustable from 16 to 128 MiB). Accurate trimming re-encodes around your selection; fast trimming copies from nearby keyframes
+- **Lighter Page Launch** - The Battles button loads the interface when you open it and keeps it ready afterwards
+
+### Removed
+
+- **SullyGnome** - No longer used, and its site permission is gone
+
+### Fixed
+
+- **Connect Kick** - Works again with kick.com open in a tab. It had been asking Kick for your account at an address Kick no longer serves
+- **Sign-in Errors** - Twitch and Kick sign-in say why they failed instead of reporting every failure as cancelled or not logged in
+- **Following Live Status** - Works again when you follow more than 15 Twitch channels
+- **Pause and Latest Available** - Pausing a live stream keeps your place, and Latest available jumps to the newest point the source can play
+- **Player Controls** - Moving the pointer brings hidden controls back, including in fullscreen
+- **Twitch Archive Search** - No longer reports incomplete data on channels whose last page of archives has no further pages
+- **Safer Requests** - Sign-in, playback, export and settings requests are checked more strictly, and connection logs show text exactly as received
+</Accordion>
 
 <Accordion title="v2.6.1 - August 29, 2026">
 ### Changed

@@ -80,7 +80,7 @@ For example, a channel might have custom subscriber badges. If the `set_id` is `
 
 ## Caching
 
-The response includes a `Cache-Control: public, max-age=3600` header. Channel badges can change when streamers update their artwork, but caching for 1 hour is generally safe.
+The response includes a `Cache-Control: private, max-age=3600` header: your client can cache it for 1 hour, but shared caches do not keep it, because access to it depends on your API key. Channel badges can change when streamers update their artwork, but caching for 1 hour is generally safe.
 
 ## Example Response
 

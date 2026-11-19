@@ -57,7 +57,7 @@ Global badges are Twitch badges available across all channels. Examples include:
 
 ## Caching
 
-The response includes a `Cache-Control: public, max-age=3600` header, indicating the data can be cached for 1 hour. Badge images rarely change, so caching is recommended.
+The response includes a `Cache-Control: private, max-age=3600` header: your client can cache it for 1 hour, but shared caches do not keep it, because access to it depends on your API key. Badge images rarely change, so caching is recommended.
 
 ## Use with Channel Badges
 

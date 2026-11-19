@@ -26,7 +26,7 @@ const { accepted, added, rejected } = await response.json();
 
 ## Prerequisites
 
-None. This endpoint is public and needs no API key. Each address can make 30 requests a minute; past that you get `429 error_ip_rate_limited`. Send the body as JSON with `Content-Type: application/json`. Form-encoded and plain-text bodies are refused with `403` before they reach the API; any other content type gets `400 error_invalid_request`.
+None. This endpoint is public and needs no API key. Each address can make 30 requests a minute (an IPv6 /64 counts as one address); past that you get `429 error_ip_rate_limited`. Send the body as JSON with `Content-Type: application/json`. Form-encoded and plain-text bodies are refused with `403` before they reach the API; any other content type gets `400 error_invalid_request`.
 
 ## What It Does
 
