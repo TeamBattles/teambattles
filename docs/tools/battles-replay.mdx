@@ -17,15 +17,16 @@ Everything happens on your own computer. Nothing you save is uploaded anywhere.
 ### Saving past broadcasts
 
 - **Save a whole VOD** in one click
-- **Save just a section** by setting a start and end time
+- **Save just a section** by setting a start and end time. Sections of 30 seconds or less are cut
+  exactly; longer ones are cut without re-encoding, so they may start or end slightly off your markers
 - **Find unlisted broadcasts** a streamer has not published yet, from the TeamBattles stream index,
   which has recorded streams since November 17, 2026 _(Twitch only)_
 - **Choose a file type** - MP4, MKV, TS, or MP3 for audio on its own
 - **Choose a quality** - Source, 1080p, 720p, 480p, 360p, or audio only
 - **Queue several at once** and watch them progress
 - **Control each one** - pause, resume, cancel, retry, or push one to the front of the queue
-- **Control all of them** - Pause All, Resume All, Cancel All, and Clear All, covering both your own
-  downloads and any running through Battles Record
+- **Control all of them** - pause, resume, or cancel every download in the filter you are viewing,
+  and clear finished ones, covering both your own downloads and any running through Battles Record
 - **Pick up where it left off** after you close your browser or restart your computer
 
 ### Recording live streams
@@ -62,6 +63,7 @@ Everything happens on your own computer. Nothing you save is uploaded anywhere.
 ### Mini player
 
 - **Keep watching in a small floating window** while you browse
+- **See what is playing** - the channel badge and title sit in the corner and fade with the controls
 - **Drag and resize** it anywhere on screen
 - **It stays put** as you move around the site
 - **Snaps to the edge** of the screen when you let go
@@ -148,7 +150,8 @@ You need Chrome 121 or later, or Firefox 112 or later.
 	<Step title="Open a channel">Go to any channel or past broadcast on Twitch or Kick</Step>
 	<Step title="Select the Battles button">You will find it in the page header</Step>
 	<Step title="Find the broadcast">
-		Search, or browse the channel's past broadcasts. Finding unlisted ones is Twitch only.
+		Search, or browse the channel's past broadcasts. Finding unlisted ones is Twitch only. To look up
+		a Kick video by its id, search `vod:channel/video-id`
 	</Step>
 	<Step title="Choose your options">
 		Pick a quality and file type, and set a time range if you only want part of it
@@ -341,6 +344,7 @@ your account or cookies.
 - **Index Streamers I Watch** - A new setting, on by default. It sends the stream index the Twitch channel ids of streamers you follow, favorite or watch live for a minute (in the extension or on twitch.tv), so their streams are recorded too. No account, user id or cookies are sent, and nothing is sent until you have seen What's New. Turn it off in Settings. On Firefox this is declared as browsing-activity data, so the update asks you to approve it
 - **Removed by Twitch** - Recordings the index knows Twitch removed are marked that way, and the player says when it happened
 - **Clearer History Notices** - The archive notice explains a channel the index has just started recording, rate limits and outages. When a channel has no archives, its history start date is part of the No archives found message
+- **Title in the Mini Player** - The mini player shows the channel badge with the stream or video title beside it once it is wide enough, and fullscreen shows the title too. Both fade with the controls, and the mini player's controls grow with its size
 
 ### Changed
 
@@ -349,20 +353,33 @@ your account or cookies.
 - **Live Chat Timing** - Live chat shows messages as they arrive. Turn on Follow video in the chat settings to hold chat to the video through pauses and rewinds, using the chat received while you were watching
 - **Search Row** - The channel card sits beside the search field on larger screens, with a Follow star inside it, and every control on the row shares one height. The platform menu shows each platform's icon
 - **Source History** - Keeps 1 to 120 minutes of links and timing, not footage, so Save and Clip fetch the video while Twitch still serves it
-- **Exports** - Every file type can split into parts, sized by a 64 MiB input budget per part by default (adjustable from 16 to 128 MiB). Accurate trimming re-encodes around your selection; fast trimming copies from nearby keyframes
+- **Exports** - Every file type can split into parts, sized by a 64 MiB input budget per part by default (adjustable from 16 to 128 MiB). Sections of 30 seconds or less are re-encoded for an exact cut; longer ones are copied without re-encoding, so they may start or end slightly off your markers. Long downloads used to re-encode the whole selection, which made them very slow
+- **Download Controls** - Pause, Resume and Cancel for the filter you are viewing sit beside the filter buttons on wider windows. A download waiting on a request says so in its status instead of in a separate line
+- **Following Alerts** - Following errors, such as a failed favorite, appear in the alert at the bottom of the window that downloads use
 - **Lighter Page Launch** - The Battles button loads the interface when you open it and keeps it ready afterwards
 
 ### Removed
 
 - **SullyGnome** - No longer used, and its site permission is gone
+- **Export Precision Setting** - Short sections are always cut exactly and long ones are always copied, so there is nothing to choose
+- **Following Status Line** - The line above Live Now about live checks and the archive limit. Live status still refreshes every minute
 
 ### Fixed
 
 - **Connect Kick** - Works again with kick.com open in a tab. It had been asking Kick for your account at an address Kick no longer serves
+- **Sync Kick Follows** - Works again. Every signed-in account was told it was not signed in to Kick. It now reads your whole follow list
+- **Kick Videos** - Videos opened from kick.com video pages play again instead of reporting that they were deleted. Kick now links videos by a newer id that needs the channel, so to search one yourself use `vod:channel/video-id`. Chat replay works on those pages too
+- **Kick Chat** - Live chat connects and chat replay shows messages again, after Kick changed both services. Sending from a kick.com tab includes the sign-in Kick now requires
+- **Kick Archives and Live Streams** - Archives list each video once, live streams show their thumbnails again, and dates and live start times are no longer shifted by your timezone
+- **Kick Battles Button** - Sits beside kick.com's search field again instead of above it
+- **Favorites in Following** - Starring a channel in Following no longer fails with "Invalid action payload"
 - **Sign-in Errors** - Twitch and Kick sign-in say why they failed instead of reporting every failure as cancelled or not logged in
 - **Following Live Status** - Works again when you follow more than 15 Twitch channels
 - **Pause and Latest Available** - Pausing a live stream keeps your place, and Latest available jumps to the newest point the source can play
-- **Player Controls** - Moving the pointer brings hidden controls back, including in fullscreen
+- **Player Controls** - Moving the pointer brings hidden controls back, including in fullscreen. A click inside the player no longer keeps them on screen: they hide once the pointer leaves the mini player, or when the main player goes idle
+- **Quality and Volume Menus** - The quality menu opens when you hover the gear, like volume. Neither covers its own button, and in a small player they open downwards instead of being cut off
+- **Reopening Keeps Your Place** - Reopening the extension on the same channel or video page keeps your own search instead of searching that channel again
+- **Download Options on Short Windows** - The options scroll, so the Download button stays reachable
 - **Twitch Archive Search** - No longer reports incomplete data on channels whose last page of archives has no further pages
 - **Safer Requests** - Sign-in, playback, export and settings requests are checked more strictly, and connection logs show text exactly as received
 </Accordion>
