@@ -47,8 +47,10 @@ Everything happens on your own computer. Nothing you save is uploaded anywhere.
 
 - **Chat in sync with the video**, message by message, as it was sent
 - **A floating window** you can drag, resize, and keep on screen in fullscreen
-- **Your own look** - colors, transparency, text size, and how many messages to keep
-- **Works with Twitch's own player**, not just ours
+- **Your own look** - colors, transparency, text size, and how many messages to keep. It follows
+  your theme until you pick your own colors
+- **Works with Twitch's and Kick's own players**, not just ours. The chat button in their player
+  opens it over the page, or in its own window if you set **Chat mode** to Window
 
 ### Live chat
 
@@ -63,11 +65,35 @@ Everything happens on your own computer. Nothing you save is uploaded anywhere.
 ### Mini player
 
 - **Keep watching in a small floating window** while you browse
+- **Or give it a window of its own** that stays on top of your other tabs and apps - set **Mini
+  player mode** to Window. Turn on chat and it docks beside or below the video
 - **See what is playing** - the channel badge and title sit in the corner and fade with the controls
 - **Drag and resize** it anywhere on screen
 - **It stays put** as you move around the site
-- **Snaps to the edge** of the screen when you let go
 - **Audio visualizer** when you are listening rather than watching
+
+### Make it yours
+
+Find these under Settings > **Appearance**. New users also see them in the welcome tour.
+
+- **Theme** - Onyx, Navy, Graphite, Bone, or System to follow your device's light or dark setting
+- **Accent** - Red, Amber, Cyan, or Lime for buttons, toggles, and progress
+- **Corners** - Sharp, Soft, or Rounded
+- **Density** - Comfortable, or Compact to fit more on screen
+- **High contrast** and **Reduce motion** if you need them
+- **View mode** - **Docked** opens Battles Replay over the page. **Floating** is a window you move
+  and resize while you keep using the page. **Window** opens it in a separate window that stays on
+  top when you switch tabs, windows, or apps
+- **Chat mode** and **Mini player mode** - Floating over the page, or Window for their own
+  always-on-top window
+- **Floating trigger** - Swaps the Battles button beside the search field for one you can drag
+  anywhere on the page
+
+<Note>
+	The Window choices need Chrome or Edge 116 or later, or Firefox 151 or later, on a computer.
+	Browsers only open these windows when you click, so if Battles Replay opens some other way, a
+	small card asks you to click.
+</Note>
 
 ### Audio visualizer
 
@@ -140,7 +166,7 @@ of the player opens the full set, with a preview as you hover each one.
 	</Tab>
 </Tabs>
 
-You need Chrome 121 or later, or Firefox 112 or later.
+You need Chrome 121 or later, or Firefox 140 or later (Firefox for Android 142 or later).
 
 ## How to use it
 
@@ -148,7 +174,10 @@ You need Chrome 121 or later, or Firefox 112 or later.
 
 <Steps>
 	<Step title="Open a channel">Go to any channel or past broadcast on Twitch or Kick</Step>
-	<Step title="Select the Battles button">You will find it in the page header</Step>
+	<Step title="Select the Battles button">
+		You will find it beside the search field in the page header, or wherever you dragged it if you
+		turned on **Floating trigger**
+	</Step>
 	<Step title="Find the broadcast">
 		Search, or browse the channel's past broadcasts. Finding unlisted ones is Twitch only. To look up
 		a Kick video by its id, search `vod:channel/video-id`
@@ -290,9 +319,9 @@ Open the gear icon in the chat header to change how it looks:
 | Timestamps       | Show how far into the video each message was | Off     |
 | Badges           | Show subscriber and moderator badges         | On      |
 | Fade when idle   | Hide the controls until you hover            | Off     |
-| Background color | The chat window's background                 | #18181B |
-| Text color       | The message text                             | #FAFAFA |
-| Opacity          | How see-through the window is                | 90%     |
+| Background color | The chat window's background                 | Theme   |
+| Text color       | The message text                             | Theme   |
+| Opacity          | How see-through the window is                | 100%    |
 | Font size        | Message text size                            | 14px    |
 | Max messages     | How many messages to keep on screen          | 200     |
 
@@ -305,6 +334,7 @@ Open the gear icon in the chat header to change how it looks:
 
 | Setting                 | What it does                                                                      | Default       |
 | ----------------------- | --------------------------------------------------------------------------------- | ------------- |
+| Appearance              | Theme, accent, corners, density, and where Battles Replay, chat and the mini player open | Onyx, Red, Docked |
 | Auto mini player        | Switch to the mini player when you close the main window                          | Off           |
 | Part size               | How much video each part of a long download takes (16 to 128 MB)                  | 64 MB         |
 | Recent source history   | How many minutes of a live stream are kept ready to save (1 to 120)               | 30 min        |
@@ -330,14 +360,94 @@ your account or cookies.
 
 ## What you need
 
-- Chrome 121 or later, or Firefox 112 or later
+- Chrome 121 or later, or Firefox 140 or later (Firefox for Android 142 or later)
+- For the Window choices in Appearance, Chrome or Edge 116 or later, or Firefox 151 or later, on a
+  computer
 - An internet connection
 - Enough free disk space for what you save
 - For a long video as one file, the [Battles Record](/tools/battles-record) desktop app
 
 ## Changelog
 
-<Accordion title="v3.0.0 - November 19, 2026">
+<Accordion title="v3.2.0 - November 23, 2026">
+### Added
+
+- **View Mode** - Appearance has a View mode in place of the Draggable window switch. **Docked** is the dialog over the page (the default). **Floating** is a window you move by its top edge and resize from the corner while you keep using the page; if you had Draggable window on, Floating is chosen for you. **Window** opens Battles Replay in a separate always-on-top window that stays visible when you switch tabs, windows or apps. Browsing, downloads, settings, the tour, the player, chat and shortcuts all work there, and closing that window closes Battles Replay. It needs Chrome or Edge 116 or later, or Firefox 151 or later, on a computer; elsewhere the choice is disabled and says why
+- **Chat Mode** - Chooses where the chat you open from the Twitch or Kick player button shows. **Floating**, the default, floats it over the page as before. **Window** gives it its own always-on-top window that stays visible over a fullscreen player and outside the tab. Fade when idle is not available there, and a chat in a window does not reopen by itself when a page loads
+- **Mini Player Mode** - **Floating**, the default, is the mini player over the page as before. **Window** opens it in its own always-on-top window: move and resize the window itself, turn on chat to dock it beside or below the video, and close it with the window's close button. Expand takes you back to the full player in the tab. If your browser will not open the window, the mini player floats instead
+- **One Window per Tab** - While View mode is Window, chat stays Floating and the mini player takes over Battles Replay's window. Your own choices come back when you leave the Window view
+- **Click to Open** - Browsers only open these windows when you click. When Battles Replay opens some other way, such as from a notification or from the toolbar button in Firefox, a small card in the page asks you to click. If the browser still refuses, View mode switches to Floating and tells you
+
+### Changed
+
+- **Floating Trigger** - The Draggable trigger switch is now called Floating trigger. It works as before
+- **Live Volume** - A live stream starts at the volume the Twitch or Kick player on that page is set to, so it is not suddenly louder or quieter. Mute is not copied, and you change the volume as before
+- **Fullscreen in a Window** - In a window, the player's fullscreen button fills the window with the video, because browsers do not allow fullscreen there
+- **Toolbar Button** - In Chrome and Edge, the toolbar button can open Battles Replay in its own window on any site
+- **Back to Tab** - The browser's own back-to-tab control is hidden on these windows. Use Battles Replay's Expand button to return to the tab
+- **Shortcut Reset** - Reset all to defaults in Keyboard Shortcuts asks you to click again to confirm, instead of opening a browser dialog
+- **Download Options** - The hint about time formats and arrow keys under the start and end times is gone. A message appears there only when a time is invalid
+- **Reset Appearance** - Also forgets the sizes of these windows and where you placed the floating mini player
+- **Background Tabs** - Closing Battles Replay from its own window while the page's tab is in the background no longer starts the Twitch or Kick player in that hidden tab
+
+### Fixed
+
+- **Cancelled Saves** - Cancelling the save dialog when a download finishes no longer stops the queue. The next download starts, and the cancelled one waits as Save cancelled until you press its Save button, which brings the dialog back without downloading it again. In Firefox a cancelled save no longer counts as a failed download
+- **Live Stream in Search** - Switching the platform menu away and back to Twitch brings back the live stream at the top of your results, not just the videos
+- **Chat Button** - The chat button in the Twitch and Kick player opens the chat while Battles Replay is on Browse, Downloads or Settings. It used to do nothing until you opened a video
+- **Expanding the Mini Player** - After you expand the mini player, the Battles button closes the window on the first click, and the page's own player stays paused underneath
+- **Edit Shortcuts** - The Edit shortcuts link in the shortcuts help works while the mini player is showing
+- **Background Countdowns** - The live chat's slow-mode countdown and the Battles Record pairing countdown keep real time while the tab is in the background
+- **Copy Buttons** - Copy M3U8 URL and the connection log's copy button say when copying failed
+- **Emote Picker** - Shrinks to fit a short chat instead of being cut off at the top
+- **Chat in a Smaller Window** - The chat on Battles Replay's own player stays in reach when you make the window smaller
+</Accordion>
+
+<Accordion title="v3.1.1 - November 21, 2026">
+### Changed
+
+- **Themed Notices** - Warnings and errors across the extension use one card that follows your theme and corners, instead of fixed colors that were hard to read on Bone
+- **Search Errors** - Say what was searched for: Channel not found, Video not found, or Search failed with the reason
+- **Empty Chat** - A chat icon sits above the message when there is nothing to show, and "Waiting for new arrivals" now reads "Waiting for messages". With Fade when idle on, the message fades with the chat header
+
+### Fixed
+
+- **Your Chat Messages** - Messages you send from live chat show your badges and name color for that channel, as in Twitch's own chat
+- **Emote Picker** - Screen readers announce it as a dialog named Emotes
+- **Dragging the Tour** - With Draggable window on, the welcome and What's New tour can be dragged from anywhere along its top
+</Accordion>
+
+<Accordion title="v3.1.0 - November 20, 2026">
+### Added
+
+- **Appearance** - A new Settings card with the teambattles.gg looks: Onyx, Navy, Graphite, Bone or System themes, a Red, Amber, Cyan or Lime accent, High contrast, Reduce motion, Comfortable or Compact density, and Sharp, Soft or Rounded corners. The chat, mini player, player controls, notifications, the extension settings page and the audio visualizer follow along. Reset appearance restores every default
+- **Themed Chat** - The live and replay chat use your theme's colors and are fully opaque, unless you pick your own color or lower the opacity. Theme beside each color returns it to the theme
+- **Draggable Trigger** - Swaps the button beside the Twitch and Kick search field for a floating one you can drag anywhere. It stays above the page, even over a fullscreen player
+- **Draggable Window** - Opens Battles Replay as a window you drag by its top bar and resize from the corner while you keep using the page. Clicking outside no longer closes it
+- **Make It Yours** - The tour gains a step with every Appearance option, shown to new users and to everyone updating from an earlier version
+
+### Changed
+
+- **What's New Catches Up** - After an update, What's New lists every release since the version you last saw, not just the newest one
+- **Platform Menu** - Opens a themed list with each platform's icon and a check on the current one, and works from the keyboard
+- **Emote Picker Tabs** - Use the same tab style as the rest of the extension
+- **Chat Panels** - The message count and status line at the bottom is gone; the dot beside Live Chat still shows the connection. The emote picker opens right above the message bar
+- **Chat Near the Edge** - The floating chat can go as close to the screen edge as the main window
+
+### Fixed
+
+- **Cancelled Save Queue** - Cancelling a download whose save you had cancelled no longer leaves later downloads stuck on "Waiting for the previous file to be saved"
+- **Unpublished Stream Downloads** - No longer fail with "Failed to queue download: Invalid action payload"
+- **Unplayable Live Streams** - A live stream in a video format your browser cannot play no longer sits on "Initializing stream". It falls back to the normal live source straight away, and says so if that cannot play either
+- **Escape in Menus** - Escape closes an open menu, such as the platform menu, instead of the whole window
+- **Button Sizes** - Chat header and player control buttons are one size again, follow your Corners setting, and use your accent instead of Twitch purple
+- **Battles Record Banner** - Its feature descriptions use the main text color, so they read clearly on every theme
+- **What's New Ripple** - The red ripple behind the welcome screen sweeps outward again instead of blinking
+</Accordion>
+
+<Accordion title="v3.0.1 - November 19, 2026">
+Version 3.0.0 was withdrawn from Firefox Add-ons, which never accepts a version number twice, so this release ships as 3.0.1.
+
 ### Added
 
 - **Stream History from TeamBattles** - Unlisted Twitch broadcasts now come from the TeamBattles stream index instead of SullyGnome. The index records streams while they are live, so history starts November 17, 2026, and streams only SullyGnome listed no longer appear. Cards show each stream's title, and a recording the index has already found opens straight away instead of being searched for
@@ -348,6 +458,7 @@ your account or cookies.
 
 ### Changed
 
+- **Firefox 140 or Later** - Firefox now needs version 140 or later (Firefox for Android 142 or later), the first with Firefox's own consent prompt for add-on data, so every Firefox user approves Index streamers I watch through it. Older Firefox versions stay on 2.6.1
 - **Secure Extension Settings** - Account connections, API credentials and Battles Record pairing open in their own extension settings tab, laid out like teambattles.gg. The player's Settings tab shows their status at a glance, with an Open secure settings button and jump links to each section
 - **Battles Record Connections** - Remote Battles Record servers need an encrypted (WSS) connection with a trusted certificate. Pair again after this update or after changing servers. Desktop downloads are public by default; Twitch and Instagram account access are separate opt-ins that each ask for browser permission before sign-in cookies are shared
 - **Live Chat Timing** - Live chat shows messages as they arrive. Turn on Follow video in the chat settings to hold chat to the video through pauses and rewinds, using the chat received while you were watching
