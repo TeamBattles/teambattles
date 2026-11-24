@@ -4,16 +4,13 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .score_submitter_name import ScoreSubmitter_name
-
 @dataclass
 class ScoreSubmitter(Parsable):
     """
     Identity of the captain who submitted a score.
     """
     # The name property
-    name: Optional[ScoreSubmitter_name] = None
+    name: Optional[str] = None
     # The teamId property
     team_id: Optional[str] = None
     # The userId property
@@ -35,12 +32,8 @@ class ScoreSubmitter(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .score_submitter_name import ScoreSubmitter_name
-
-        from .score_submitter_name import ScoreSubmitter_name
-
         fields: dict[str, Callable[[Any], None]] = {
-            "name": lambda n : setattr(self, 'name', n.get_object_value(ScoreSubmitter_name)),
+            "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "teamId": lambda n : setattr(self, 'team_id', n.get_str_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
@@ -54,7 +47,7 @@ class ScoreSubmitter(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("name", self.name)
+        writer.write_str_value("name", self.name)
         writer.write_str_value("teamId", self.team_id)
         writer.write_str_value("userId", self.user_id)
     

@@ -5,8 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .league_summary_avatar_url import LeagueSummary_avatarUrl
-    from .league_summary_banner_url import LeagueSummary_bannerUrl
     from .league_summary_games import LeagueSummary_games
     from .league_summary_season_status import LeagueSummary_seasonStatus
 
@@ -16,9 +14,9 @@ class LeagueSummary(Parsable):
     Summary view of a league for discovery results.
     """
     # League avatar image URL.
-    avatar_url: Optional[LeagueSummary_avatarUrl] = None
+    avatar_url: Optional[str] = None
     # League banner image URL.
-    banner_url: Optional[LeagueSummary_bannerUrl] = None
+    banner_url: Optional[str] = None
     # Creation timestamp (epoch milliseconds).
     created_at: Optional[float] = None
     # League description.
@@ -58,19 +56,15 @@ class LeagueSummary(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .league_summary_avatar_url import LeagueSummary_avatarUrl
-        from .league_summary_banner_url import LeagueSummary_bannerUrl
         from .league_summary_games import LeagueSummary_games
         from .league_summary_season_status import LeagueSummary_seasonStatus
 
-        from .league_summary_avatar_url import LeagueSummary_avatarUrl
-        from .league_summary_banner_url import LeagueSummary_bannerUrl
         from .league_summary_games import LeagueSummary_games
         from .league_summary_season_status import LeagueSummary_seasonStatus
 
         fields: dict[str, Callable[[Any], None]] = {
-            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_object_value(LeagueSummary_avatarUrl)),
-            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_object_value(LeagueSummary_bannerUrl)),
+            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_str_value()),
+            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_str_value()),
             "createdAt": lambda n : setattr(self, 'created_at', n.get_float_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "games": lambda n : setattr(self, 'games', n.get_collection_of_object_values(LeagueSummary_games)),
@@ -93,8 +87,8 @@ class LeagueSummary(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("avatarUrl", self.avatar_url)
-        writer.write_object_value("bannerUrl", self.banner_url)
+        writer.write_str_value("avatarUrl", self.avatar_url)
+        writer.write_str_value("bannerUrl", self.banner_url)
         writer.write_float_value("createdAt", self.created_at)
         writer.write_str_value("description", self.description)
         writer.write_collection_of_object_values("games", self.games)

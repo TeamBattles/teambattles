@@ -12,7 +12,7 @@ type ApiOwnConnection struct {
     // The connectedAt property
     connectedAt ApiOwnConnection_ApiOwnConnection_connectedAtable
     // Gaming platform (e.g. pc / console), when set.
-    gamingPlatform ApiOwnConnection_ApiOwnConnection_gamingPlatformable
+    gamingPlatform *string
     // Connection ID.
     id *string
     // The isPrimary property
@@ -24,13 +24,13 @@ type ApiOwnConnection struct {
     // Connected platform.
     platform *string
     // Connection region, when set.
-    region ApiOwnConnection_ApiOwnConnection_regionable
+    region *string
     // Whether the owner has chosen to show this connection on their profile.
     showOnProfile *bool
     // The url property
-    url ApiOwnConnection_ApiOwnConnection_urlable
+    url *string
     // The username property
-    username ApiOwnConnection_ApiOwnConnection_usernameable
+    username *string
 }
 // ApiOwnConnection_ApiOwnConnection_connectedAt composed type wrapper for classes ApiOwnConnection_connectedAtMember1able, string
 type ApiOwnConnection_ApiOwnConnection_connectedAt struct {
@@ -109,347 +109,11 @@ func (m *ApiOwnConnection_ApiOwnConnection_connectedAt) SetApiOwnConnectionConne
 func (m *ApiOwnConnection_ApiOwnConnection_connectedAt) SetString(value *string)() {
     m.string = value
 }
-// ApiOwnConnection_ApiOwnConnection_gamingPlatform composed type wrapper for classes ApiOwnConnection_gamingPlatformMember1able, string
-type ApiOwnConnection_ApiOwnConnection_gamingPlatform struct {
-    // Composed type representation for type ApiOwnConnection_gamingPlatformMember1able
-    apiOwnConnection_gamingPlatformMember1 ApiOwnConnection_gamingPlatformMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiOwnConnection_ApiOwnConnection_gamingPlatform instantiates a new ApiOwnConnection_ApiOwnConnection_gamingPlatform and sets the default values.
-func NewApiOwnConnection_ApiOwnConnection_gamingPlatform()(*ApiOwnConnection_ApiOwnConnection_gamingPlatform) {
-    m := &ApiOwnConnection_ApiOwnConnection_gamingPlatform{
-    }
-    return m
-}
-// CreateApiOwnConnection_ApiOwnConnection_gamingPlatformFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiOwnConnection_ApiOwnConnection_gamingPlatformFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiOwnConnection_ApiOwnConnection_gamingPlatform()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiOwnConnection_gamingPlatformMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiOwnConnection_gamingPlatformMember1able); ok {
-                result.SetApiOwnConnectionGamingPlatformMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiOwnConnectionGamingPlatformMember1 gets the ApiOwnConnection_gamingPlatformMember1 property value. Composed type representation for type ApiOwnConnection_gamingPlatformMember1able
-// returns a ApiOwnConnection_gamingPlatformMember1able when successful
-func (m *ApiOwnConnection_ApiOwnConnection_gamingPlatform) GetApiOwnConnectionGamingPlatformMember1()(ApiOwnConnection_gamingPlatformMember1able) {
-    return m.apiOwnConnection_gamingPlatformMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiOwnConnection_ApiOwnConnection_gamingPlatform) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiOwnConnection_ApiOwnConnection_gamingPlatform) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiOwnConnection_ApiOwnConnection_gamingPlatform) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiOwnConnection_ApiOwnConnection_gamingPlatform) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiOwnConnectionGamingPlatformMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiOwnConnectionGamingPlatformMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiOwnConnectionGamingPlatformMember1 sets the ApiOwnConnection_gamingPlatformMember1 property value. Composed type representation for type ApiOwnConnection_gamingPlatformMember1able
-func (m *ApiOwnConnection_ApiOwnConnection_gamingPlatform) SetApiOwnConnectionGamingPlatformMember1(value ApiOwnConnection_gamingPlatformMember1able)() {
-    m.apiOwnConnection_gamingPlatformMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiOwnConnection_ApiOwnConnection_gamingPlatform) SetString(value *string)() {
-    m.string = value
-}
-// ApiOwnConnection_ApiOwnConnection_region composed type wrapper for classes ApiOwnConnection_regionMember1able, string
-type ApiOwnConnection_ApiOwnConnection_region struct {
-    // Composed type representation for type ApiOwnConnection_regionMember1able
-    apiOwnConnection_regionMember1 ApiOwnConnection_regionMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiOwnConnection_ApiOwnConnection_region instantiates a new ApiOwnConnection_ApiOwnConnection_region and sets the default values.
-func NewApiOwnConnection_ApiOwnConnection_region()(*ApiOwnConnection_ApiOwnConnection_region) {
-    m := &ApiOwnConnection_ApiOwnConnection_region{
-    }
-    return m
-}
-// CreateApiOwnConnection_ApiOwnConnection_regionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiOwnConnection_ApiOwnConnection_regionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiOwnConnection_ApiOwnConnection_region()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiOwnConnection_regionMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiOwnConnection_regionMember1able); ok {
-                result.SetApiOwnConnectionRegionMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiOwnConnectionRegionMember1 gets the ApiOwnConnection_regionMember1 property value. Composed type representation for type ApiOwnConnection_regionMember1able
-// returns a ApiOwnConnection_regionMember1able when successful
-func (m *ApiOwnConnection_ApiOwnConnection_region) GetApiOwnConnectionRegionMember1()(ApiOwnConnection_regionMember1able) {
-    return m.apiOwnConnection_regionMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiOwnConnection_ApiOwnConnection_region) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiOwnConnection_ApiOwnConnection_region) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiOwnConnection_ApiOwnConnection_region) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiOwnConnection_ApiOwnConnection_region) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiOwnConnectionRegionMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiOwnConnectionRegionMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiOwnConnectionRegionMember1 sets the ApiOwnConnection_regionMember1 property value. Composed type representation for type ApiOwnConnection_regionMember1able
-func (m *ApiOwnConnection_ApiOwnConnection_region) SetApiOwnConnectionRegionMember1(value ApiOwnConnection_regionMember1able)() {
-    m.apiOwnConnection_regionMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiOwnConnection_ApiOwnConnection_region) SetString(value *string)() {
-    m.string = value
-}
-// ApiOwnConnection_ApiOwnConnection_url composed type wrapper for classes ApiOwnConnection_urlMember1able, string
-type ApiOwnConnection_ApiOwnConnection_url struct {
-    // Composed type representation for type ApiOwnConnection_urlMember1able
-    apiOwnConnection_urlMember1 ApiOwnConnection_urlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiOwnConnection_ApiOwnConnection_url instantiates a new ApiOwnConnection_ApiOwnConnection_url and sets the default values.
-func NewApiOwnConnection_ApiOwnConnection_url()(*ApiOwnConnection_ApiOwnConnection_url) {
-    m := &ApiOwnConnection_ApiOwnConnection_url{
-    }
-    return m
-}
-// CreateApiOwnConnection_ApiOwnConnection_urlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiOwnConnection_ApiOwnConnection_urlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiOwnConnection_ApiOwnConnection_url()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiOwnConnection_urlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiOwnConnection_urlMember1able); ok {
-                result.SetApiOwnConnectionUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiOwnConnectionUrlMember1 gets the ApiOwnConnection_urlMember1 property value. Composed type representation for type ApiOwnConnection_urlMember1able
-// returns a ApiOwnConnection_urlMember1able when successful
-func (m *ApiOwnConnection_ApiOwnConnection_url) GetApiOwnConnectionUrlMember1()(ApiOwnConnection_urlMember1able) {
-    return m.apiOwnConnection_urlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiOwnConnection_ApiOwnConnection_url) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiOwnConnection_ApiOwnConnection_url) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiOwnConnection_ApiOwnConnection_url) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiOwnConnection_ApiOwnConnection_url) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiOwnConnectionUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiOwnConnectionUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiOwnConnectionUrlMember1 sets the ApiOwnConnection_urlMember1 property value. Composed type representation for type ApiOwnConnection_urlMember1able
-func (m *ApiOwnConnection_ApiOwnConnection_url) SetApiOwnConnectionUrlMember1(value ApiOwnConnection_urlMember1able)() {
-    m.apiOwnConnection_urlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiOwnConnection_ApiOwnConnection_url) SetString(value *string)() {
-    m.string = value
-}
-// ApiOwnConnection_ApiOwnConnection_username composed type wrapper for classes ApiOwnConnection_usernameMember1able, string
-type ApiOwnConnection_ApiOwnConnection_username struct {
-    // Composed type representation for type ApiOwnConnection_usernameMember1able
-    apiOwnConnection_usernameMember1 ApiOwnConnection_usernameMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiOwnConnection_ApiOwnConnection_username instantiates a new ApiOwnConnection_ApiOwnConnection_username and sets the default values.
-func NewApiOwnConnection_ApiOwnConnection_username()(*ApiOwnConnection_ApiOwnConnection_username) {
-    m := &ApiOwnConnection_ApiOwnConnection_username{
-    }
-    return m
-}
-// CreateApiOwnConnection_ApiOwnConnection_usernameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiOwnConnection_ApiOwnConnection_usernameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiOwnConnection_ApiOwnConnection_username()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiOwnConnection_usernameMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiOwnConnection_usernameMember1able); ok {
-                result.SetApiOwnConnectionUsernameMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiOwnConnectionUsernameMember1 gets the ApiOwnConnection_usernameMember1 property value. Composed type representation for type ApiOwnConnection_usernameMember1able
-// returns a ApiOwnConnection_usernameMember1able when successful
-func (m *ApiOwnConnection_ApiOwnConnection_username) GetApiOwnConnectionUsernameMember1()(ApiOwnConnection_usernameMember1able) {
-    return m.apiOwnConnection_usernameMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiOwnConnection_ApiOwnConnection_username) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiOwnConnection_ApiOwnConnection_username) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiOwnConnection_ApiOwnConnection_username) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiOwnConnection_ApiOwnConnection_username) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiOwnConnectionUsernameMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiOwnConnectionUsernameMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiOwnConnectionUsernameMember1 sets the ApiOwnConnection_usernameMember1 property value. Composed type representation for type ApiOwnConnection_usernameMember1able
-func (m *ApiOwnConnection_ApiOwnConnection_username) SetApiOwnConnectionUsernameMember1(value ApiOwnConnection_usernameMember1able)() {
-    m.apiOwnConnection_usernameMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiOwnConnection_ApiOwnConnection_username) SetString(value *string)() {
-    m.string = value
-}
 type ApiOwnConnection_ApiOwnConnection_connectedAtable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetApiOwnConnectionConnectedAtMember1()(ApiOwnConnection_connectedAtMember1able)
     GetString()(*string)
     SetApiOwnConnectionConnectedAtMember1(value ApiOwnConnection_connectedAtMember1able)()
-    SetString(value *string)()
-}
-type ApiOwnConnection_ApiOwnConnection_gamingPlatformable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiOwnConnectionGamingPlatformMember1()(ApiOwnConnection_gamingPlatformMember1able)
-    GetString()(*string)
-    SetApiOwnConnectionGamingPlatformMember1(value ApiOwnConnection_gamingPlatformMember1able)()
-    SetString(value *string)()
-}
-type ApiOwnConnection_ApiOwnConnection_regionable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiOwnConnectionRegionMember1()(ApiOwnConnection_regionMember1able)
-    GetString()(*string)
-    SetApiOwnConnectionRegionMember1(value ApiOwnConnection_regionMember1able)()
-    SetString(value *string)()
-}
-type ApiOwnConnection_ApiOwnConnection_urlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiOwnConnectionUrlMember1()(ApiOwnConnection_urlMember1able)
-    GetString()(*string)
-    SetApiOwnConnectionUrlMember1(value ApiOwnConnection_urlMember1able)()
-    SetString(value *string)()
-}
-type ApiOwnConnection_ApiOwnConnection_usernameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiOwnConnectionUsernameMember1()(ApiOwnConnection_usernameMember1able)
-    GetString()(*string)
-    SetApiOwnConnectionUsernameMember1(value ApiOwnConnection_usernameMember1able)()
     SetString(value *string)()
 }
 // NewApiOwnConnection instantiates a new ApiOwnConnection and sets the default values.
@@ -483,12 +147,12 @@ func (m *ApiOwnConnection) GetFieldDeserializers()(map[string]func(i878a80d2330e
         return nil
     }
     res["gamingPlatform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiOwnConnection_ApiOwnConnection_gamingPlatformFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetGamingPlatform(val.(ApiOwnConnection_ApiOwnConnection_gamingPlatformable))
+            m.SetGamingPlatform(val)
         }
         return nil
     }
@@ -543,12 +207,12 @@ func (m *ApiOwnConnection) GetFieldDeserializers()(map[string]func(i878a80d2330e
         return nil
     }
     res["region"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiOwnConnection_ApiOwnConnection_regionFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetRegion(val.(ApiOwnConnection_ApiOwnConnection_regionable))
+            m.SetRegion(val)
         }
         return nil
     }
@@ -563,30 +227,30 @@ func (m *ApiOwnConnection) GetFieldDeserializers()(map[string]func(i878a80d2330e
         return nil
     }
     res["url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiOwnConnection_ApiOwnConnection_urlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetUrl(val.(ApiOwnConnection_ApiOwnConnection_urlable))
+            m.SetUrl(val)
         }
         return nil
     }
     res["username"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiOwnConnection_ApiOwnConnection_usernameFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetUsername(val.(ApiOwnConnection_ApiOwnConnection_usernameable))
+            m.SetUsername(val)
         }
         return nil
     }
     return res
 }
 // GetGamingPlatform gets the gamingPlatform property value. Gaming platform (e.g. pc / console), when set.
-// returns a ApiOwnConnection_ApiOwnConnection_gamingPlatformable when successful
-func (m *ApiOwnConnection) GetGamingPlatform()(ApiOwnConnection_ApiOwnConnection_gamingPlatformable) {
+// returns a *string when successful
+func (m *ApiOwnConnection) GetGamingPlatform()(*string) {
     return m.gamingPlatform
 }
 // GetId gets the id property value. Connection ID.
@@ -615,8 +279,8 @@ func (m *ApiOwnConnection) GetPlatform()(*string) {
     return m.platform
 }
 // GetRegion gets the region property value. Connection region, when set.
-// returns a ApiOwnConnection_ApiOwnConnection_regionable when successful
-func (m *ApiOwnConnection) GetRegion()(ApiOwnConnection_ApiOwnConnection_regionable) {
+// returns a *string when successful
+func (m *ApiOwnConnection) GetRegion()(*string) {
     return m.region
 }
 // GetShowOnProfile gets the showOnProfile property value. Whether the owner has chosen to show this connection on their profile.
@@ -625,13 +289,13 @@ func (m *ApiOwnConnection) GetShowOnProfile()(*bool) {
     return m.showOnProfile
 }
 // GetUrl gets the url property value. The url property
-// returns a ApiOwnConnection_ApiOwnConnection_urlable when successful
-func (m *ApiOwnConnection) GetUrl()(ApiOwnConnection_ApiOwnConnection_urlable) {
+// returns a *string when successful
+func (m *ApiOwnConnection) GetUrl()(*string) {
     return m.url
 }
 // GetUsername gets the username property value. The username property
-// returns a ApiOwnConnection_ApiOwnConnection_usernameable when successful
-func (m *ApiOwnConnection) GetUsername()(ApiOwnConnection_ApiOwnConnection_usernameable) {
+// returns a *string when successful
+func (m *ApiOwnConnection) GetUsername()(*string) {
     return m.username
 }
 // Serialize serializes information the current object
@@ -643,7 +307,7 @@ func (m *ApiOwnConnection) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
         }
     }
     {
-        err := writer.WriteObjectValue("gamingPlatform", m.GetGamingPlatform())
+        err := writer.WriteStringValue("gamingPlatform", m.GetGamingPlatform())
         if err != nil {
             return err
         }
@@ -679,7 +343,7 @@ func (m *ApiOwnConnection) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
         }
     }
     {
-        err := writer.WriteObjectValue("region", m.GetRegion())
+        err := writer.WriteStringValue("region", m.GetRegion())
         if err != nil {
             return err
         }
@@ -691,13 +355,13 @@ func (m *ApiOwnConnection) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
         }
     }
     {
-        err := writer.WriteObjectValue("url", m.GetUrl())
+        err := writer.WriteStringValue("url", m.GetUrl())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("username", m.GetUsername())
+        err := writer.WriteStringValue("username", m.GetUsername())
         if err != nil {
             return err
         }
@@ -709,7 +373,7 @@ func (m *ApiOwnConnection) SetConnectedAt(value ApiOwnConnection_ApiOwnConnectio
     m.connectedAt = value
 }
 // SetGamingPlatform sets the gamingPlatform property value. Gaming platform (e.g. pc / console), when set.
-func (m *ApiOwnConnection) SetGamingPlatform(value ApiOwnConnection_ApiOwnConnection_gamingPlatformable)() {
+func (m *ApiOwnConnection) SetGamingPlatform(value *string)() {
     m.gamingPlatform = value
 }
 // SetId sets the id property value. Connection ID.
@@ -733,7 +397,7 @@ func (m *ApiOwnConnection) SetPlatform(value *string)() {
     m.platform = value
 }
 // SetRegion sets the region property value. Connection region, when set.
-func (m *ApiOwnConnection) SetRegion(value ApiOwnConnection_ApiOwnConnection_regionable)() {
+func (m *ApiOwnConnection) SetRegion(value *string)() {
     m.region = value
 }
 // SetShowOnProfile sets the showOnProfile property value. Whether the owner has chosen to show this connection on their profile.
@@ -741,35 +405,35 @@ func (m *ApiOwnConnection) SetShowOnProfile(value *bool)() {
     m.showOnProfile = value
 }
 // SetUrl sets the url property value. The url property
-func (m *ApiOwnConnection) SetUrl(value ApiOwnConnection_ApiOwnConnection_urlable)() {
+func (m *ApiOwnConnection) SetUrl(value *string)() {
     m.url = value
 }
 // SetUsername sets the username property value. The username property
-func (m *ApiOwnConnection) SetUsername(value ApiOwnConnection_ApiOwnConnection_usernameable)() {
+func (m *ApiOwnConnection) SetUsername(value *string)() {
     m.username = value
 }
 type ApiOwnConnectionable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetConnectedAt()(ApiOwnConnection_ApiOwnConnection_connectedAtable)
-    GetGamingPlatform()(ApiOwnConnection_ApiOwnConnection_gamingPlatformable)
+    GetGamingPlatform()(*string)
     GetId()(*string)
     GetIsPrimary()(*bool)
     GetIsSelfReported()(*bool)
     GetIsVerified()(*bool)
     GetPlatform()(*string)
-    GetRegion()(ApiOwnConnection_ApiOwnConnection_regionable)
+    GetRegion()(*string)
     GetShowOnProfile()(*bool)
-    GetUrl()(ApiOwnConnection_ApiOwnConnection_urlable)
-    GetUsername()(ApiOwnConnection_ApiOwnConnection_usernameable)
+    GetUrl()(*string)
+    GetUsername()(*string)
     SetConnectedAt(value ApiOwnConnection_ApiOwnConnection_connectedAtable)()
-    SetGamingPlatform(value ApiOwnConnection_ApiOwnConnection_gamingPlatformable)()
+    SetGamingPlatform(value *string)()
     SetId(value *string)()
     SetIsPrimary(value *bool)()
     SetIsSelfReported(value *bool)()
     SetIsVerified(value *bool)()
     SetPlatform(value *string)()
-    SetRegion(value ApiOwnConnection_ApiOwnConnection_regionable)()
+    SetRegion(value *string)()
     SetShowOnProfile(value *bool)()
-    SetUrl(value ApiOwnConnection_ApiOwnConnection_urlable)()
-    SetUsername(value ApiOwnConnection_ApiOwnConnection_usernameable)()
+    SetUrl(value *string)()
+    SetUsername(value *string)()
 }

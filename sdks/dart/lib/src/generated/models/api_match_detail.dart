@@ -1,15 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './api_match_detail_completed_at.dart';
-import './api_match_detail_created_at.dart';
-import './api_match_detail_league_id.dart';
-import './api_match_detail_league_season_id.dart';
-import './api_match_detail_match_type.dart';
-import './api_match_detail_platform.dart';
-import './api_match_detail_region.dart';
-import './api_match_detail_scheduled_at.dart';
-import './api_match_detail_started_at.dart';
-import './api_match_detail_winner_team_id.dart';
 import './api_match_team.dart';
 import './game.dart';
 import './match_status.dart';
@@ -24,9 +14,9 @@ class ApiMatchDetail implements Parsable {
     ///  The challengedTeam property
     ApiMatchTeam? challengedTeam;
     ///  The completedAt property
-    ApiMatchDetailCompletedAt? completedAt;
+    String? completedAt;
     ///  The createdAt property
-    ApiMatchDetailCreatedAt? createdAt;
+    String? createdAt;
     ///  The creatorTeam property
     ApiMatchTeam? creatorTeam;
     ///  Game definition.
@@ -36,31 +26,31 @@ class ApiMatchDetail implements Parsable {
     ///  The id property
     String? id;
     ///  The leagueId property
-    ApiMatchDetailLeagueId? leagueId;
+    String? leagueId;
     ///  The leagueSeasonId property
-    ApiMatchDetailLeagueSeasonId? leagueSeasonId;
+    String? leagueSeasonId;
     ///  The matchType property
-    ApiMatchDetailMatchType? matchType;
+    String? matchType;
     ///  The platform property
-    ApiMatchDetailPlatform? platform;
+    String? platform;
     ///  The publishStatus property
     String? publishStatus;
     ///  The region property
-    ApiMatchDetailRegion? region;
+    String? region;
     ///  The scheduledAt property
-    ApiMatchDetailScheduledAt? scheduledAt;
+    String? scheduledAt;
     ///  The selectedMaps property
     Iterable<String>? selectedMaps;
     ///  The selectedObjectives property
     Iterable<String>? selectedObjectives;
     ///  The startedAt property
-    ApiMatchDetailStartedAt? startedAt;
+    String? startedAt;
     ///  Lifecycle status of a match.
     MatchStatus? status;
     ///  The teamSize property
     int? teamSize;
     ///  The winnerTeamId property
-    ApiMatchDetailWinnerTeamId? winnerTeamId;
+    String? winnerTeamId;
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object
     static ApiMatchDetail createFromDiscriminatorValue(ParseNode parseNode) {
@@ -73,25 +63,25 @@ class ApiMatchDetail implements Parsable {
         deserializerMap['acceptedTeam'] = (node) => acceptedTeam = node.getObjectValue<ApiMatchTeam>(ApiMatchTeam.createFromDiscriminatorValue);
         deserializerMap['bestOf'] = (node) => bestOf = node.getIntValue();
         deserializerMap['challengedTeam'] = (node) => challengedTeam = node.getObjectValue<ApiMatchTeam>(ApiMatchTeam.createFromDiscriminatorValue);
-        deserializerMap['completedAt'] = (node) => completedAt = node.getObjectValue<ApiMatchDetailCompletedAt>(ApiMatchDetailCompletedAt.createFromDiscriminatorValue);
-        deserializerMap['createdAt'] = (node) => createdAt = node.getObjectValue<ApiMatchDetailCreatedAt>(ApiMatchDetailCreatedAt.createFromDiscriminatorValue);
+        deserializerMap['completedAt'] = (node) => completedAt = node.getStringValue();
+        deserializerMap['createdAt'] = (node) => createdAt = node.getStringValue();
         deserializerMap['creatorTeam'] = (node) => creatorTeam = node.getObjectValue<ApiMatchTeam>(ApiMatchTeam.createFromDiscriminatorValue);
         deserializerMap['game'] = (node) => game = node.getObjectValue<Game>(Game.createFromDiscriminatorValue);
         deserializerMap['gameMode'] = (node) => gameMode = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
-        deserializerMap['leagueId'] = (node) => leagueId = node.getObjectValue<ApiMatchDetailLeagueId>(ApiMatchDetailLeagueId.createFromDiscriminatorValue);
-        deserializerMap['leagueSeasonId'] = (node) => leagueSeasonId = node.getObjectValue<ApiMatchDetailLeagueSeasonId>(ApiMatchDetailLeagueSeasonId.createFromDiscriminatorValue);
-        deserializerMap['matchType'] = (node) => matchType = node.getObjectValue<ApiMatchDetailMatchType>(ApiMatchDetailMatchType.createFromDiscriminatorValue);
-        deserializerMap['platform'] = (node) => platform = node.getObjectValue<ApiMatchDetailPlatform>(ApiMatchDetailPlatform.createFromDiscriminatorValue);
+        deserializerMap['leagueId'] = (node) => leagueId = node.getStringValue();
+        deserializerMap['leagueSeasonId'] = (node) => leagueSeasonId = node.getStringValue();
+        deserializerMap['matchType'] = (node) => matchType = node.getStringValue();
+        deserializerMap['platform'] = (node) => platform = node.getStringValue();
         deserializerMap['publishStatus'] = (node) => publishStatus = node.getStringValue();
-        deserializerMap['region'] = (node) => region = node.getObjectValue<ApiMatchDetailRegion>(ApiMatchDetailRegion.createFromDiscriminatorValue);
-        deserializerMap['scheduledAt'] = (node) => scheduledAt = node.getObjectValue<ApiMatchDetailScheduledAt>(ApiMatchDetailScheduledAt.createFromDiscriminatorValue);
+        deserializerMap['region'] = (node) => region = node.getStringValue();
+        deserializerMap['scheduledAt'] = (node) => scheduledAt = node.getStringValue();
         deserializerMap['selectedMaps'] = (node) => selectedMaps = node.getCollectionOfPrimitiveValues<String>();
         deserializerMap['selectedObjectives'] = (node) => selectedObjectives = node.getCollectionOfPrimitiveValues<String>();
-        deserializerMap['startedAt'] = (node) => startedAt = node.getObjectValue<ApiMatchDetailStartedAt>(ApiMatchDetailStartedAt.createFromDiscriminatorValue);
+        deserializerMap['startedAt'] = (node) => startedAt = node.getStringValue();
         deserializerMap['status'] = (node) => status = node.getEnumValue<MatchStatus>((stringValue) => MatchStatus.values.where((enumVal) => enumVal.value == stringValue).firstOrNull);
         deserializerMap['teamSize'] = (node) => teamSize = node.getIntValue();
-        deserializerMap['winnerTeamId'] = (node) => winnerTeamId = node.getObjectValue<ApiMatchDetailWinnerTeamId>(ApiMatchDetailWinnerTeamId.createFromDiscriminatorValue);
+        deserializerMap['winnerTeamId'] = (node) => winnerTeamId = node.getStringValue();
         return deserializerMap;
     }
     /// Serializes information the current object
@@ -101,24 +91,24 @@ class ApiMatchDetail implements Parsable {
         writer.writeObjectValue<ApiMatchTeam>('acceptedTeam', acceptedTeam);
         writer.writeIntValue('bestOf', bestOf);
         writer.writeObjectValue<ApiMatchTeam>('challengedTeam', challengedTeam);
-        writer.writeObjectValue<ApiMatchDetailCompletedAt>('completedAt', completedAt);
-        writer.writeObjectValue<ApiMatchDetailCreatedAt>('createdAt', createdAt);
+        writer.writeStringValue('completedAt', completedAt);
+        writer.writeStringValue('createdAt', createdAt);
         writer.writeObjectValue<ApiMatchTeam>('creatorTeam', creatorTeam);
         writer.writeObjectValue<Game>('game', game);
         writer.writeStringValue('gameMode', gameMode);
         writer.writeStringValue('id', id);
-        writer.writeObjectValue<ApiMatchDetailLeagueId>('leagueId', leagueId);
-        writer.writeObjectValue<ApiMatchDetailLeagueSeasonId>('leagueSeasonId', leagueSeasonId);
-        writer.writeObjectValue<ApiMatchDetailMatchType>('matchType', matchType);
-        writer.writeObjectValue<ApiMatchDetailPlatform>('platform', platform);
+        writer.writeStringValue('leagueId', leagueId);
+        writer.writeStringValue('leagueSeasonId', leagueSeasonId);
+        writer.writeStringValue('matchType', matchType);
+        writer.writeStringValue('platform', platform);
         writer.writeStringValue('publishStatus', publishStatus);
-        writer.writeObjectValue<ApiMatchDetailRegion>('region', region);
-        writer.writeObjectValue<ApiMatchDetailScheduledAt>('scheduledAt', scheduledAt);
+        writer.writeStringValue('region', region);
+        writer.writeStringValue('scheduledAt', scheduledAt);
         writer.writeCollectionOfPrimitiveValues<String?>('selectedMaps', selectedMaps);
         writer.writeCollectionOfPrimitiveValues<String?>('selectedObjectives', selectedObjectives);
-        writer.writeObjectValue<ApiMatchDetailStartedAt>('startedAt', startedAt);
+        writer.writeStringValue('startedAt', startedAt);
         writer.writeEnumValue<MatchStatus>('status', status, (e) => e?.value);
         writer.writeIntValue('teamSize', teamSize);
-        writer.writeObjectValue<ApiMatchDetailWinnerTeamId>('winnerTeamId', winnerTeamId);
+        writer.writeStringValue('winnerTeamId', winnerTeamId);
     }
 }

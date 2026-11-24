@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class TournamentFreeAgent implements Parsable 
 {
     /**
-     * @var TournamentFreeAgent_avatarUrl|null $avatarUrl Avatar image URL.
+     * @var string|null $avatarUrl Avatar image URL.
     */
-    private ?TournamentFreeAgent_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
      * @var float|null $createdAt Pool join time (epoch milliseconds).
@@ -62,9 +62,9 @@ class TournamentFreeAgent implements Parsable
 
     /**
      * Gets the avatarUrl property value. Avatar image URL.
-     * @return TournamentFreeAgent_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?TournamentFreeAgent_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
@@ -83,7 +83,7 @@ class TournamentFreeAgent implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([TournamentFreeAgent_avatarUrl::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
             'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getFloatValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
@@ -147,7 +147,7 @@ class TournamentFreeAgent implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
         $writer->writeFloatValue('createdAt', $this->getCreatedAt());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('name', $this->getName());
@@ -159,9 +159,9 @@ class TournamentFreeAgent implements Parsable
 
     /**
      * Sets the avatarUrl property value. Avatar image URL.
-     * @param TournamentFreeAgent_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?TournamentFreeAgent_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 

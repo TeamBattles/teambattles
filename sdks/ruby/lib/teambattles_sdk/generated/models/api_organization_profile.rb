@@ -62,7 +62,7 @@ module TeamBattlesSdk
                 @wins
                 ## 
                 ## Gets the avatarUrl property value. The avatarUrl property
-                ## @return a api_organization_profile_avatar_url
+                ## @return a string
                 ## 
                 def avatar_url
                     return @avatar_url
@@ -77,7 +77,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the bannerUrl property value. The bannerUrl property
-                ## @return a api_organization_profile_banner_url
+                ## @return a string
                 ## 
                 def banner_url
                     return @banner_url
@@ -116,7 +116,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the description property value. The description property
-                ## @return a api_organization_profile_description
+                ## @return a string
                 ## 
                 def description
                     return @description
@@ -150,10 +150,10 @@ module TeamBattlesSdk
                 ## 
                 def get_field_deserializers()
                     return {
-                        "avatarUrl" => lambda {|n| @avatar_url = n.get_object_value(lambda {|pn| ApiOrganizationProfile::ApiOrganizationProfileAvatarUrl.create_from_discriminator_value(pn) }) },
-                        "bannerUrl" => lambda {|n| @banner_url = n.get_object_value(lambda {|pn| ApiOrganizationProfile::ApiOrganizationProfileBannerUrl.create_from_discriminator_value(pn) }) },
+                        "avatarUrl" => lambda {|n| @avatar_url = n.get_string_value() },
+                        "bannerUrl" => lambda {|n| @banner_url = n.get_string_value() },
                         "createdAt" => lambda {|n| @created_at = n.get_object_value(lambda {|pn| ApiOrganizationProfile::ApiOrganizationProfileCreatedAt.create_from_discriminator_value(pn) }) },
-                        "description" => lambda {|n| @description = n.get_object_value(lambda {|pn| ApiOrganizationProfile::ApiOrganizationProfileDescription.create_from_discriminator_value(pn) }) },
+                        "description" => lambda {|n| @description = n.get_string_value() },
                         "draws" => lambda {|n| @draws = n.get_number_value() },
                         "id" => lambda {|n| @id = n.get_string_value() },
                         "isMember" => lambda {|n| @is_member = n.get_boolean_value() },
@@ -162,8 +162,8 @@ module TeamBattlesSdk
                         "matchesPlayed" => lambda {|n| @matches_played = n.get_number_value() },
                         "memberCount" => lambda {|n| @member_count = n.get_number_value() },
                         "name" => lambda {|n| @name = n.get_string_value() },
-                        "slug" => lambda {|n| @slug = n.get_object_value(lambda {|pn| ApiOrganizationProfile::ApiOrganizationProfileSlug.create_from_discriminator_value(pn) }) },
-                        "tag" => lambda {|n| @tag = n.get_object_value(lambda {|pn| ApiOrganizationProfile::ApiOrganizationProfileTag.create_from_discriminator_value(pn) }) },
+                        "slug" => lambda {|n| @slug = n.get_string_value() },
+                        "tag" => lambda {|n| @tag = n.get_string_value() },
                         "teamCount" => lambda {|n| @team_count = n.get_number_value() },
                         "visibility" => lambda {|n| @visibility = n.get_enum_value(TeamBattlesSdk::Generated::Models::ProfileVisibility) },
                         "wins" => lambda {|n| @wins = n.get_number_value() },
@@ -281,10 +281,10 @@ module TeamBattlesSdk
                 ## 
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
-                    writer.write_object_value("avatarUrl", @avatar_url)
-                    writer.write_object_value("bannerUrl", @banner_url)
+                    writer.write_string_value("avatarUrl", @avatar_url)
+                    writer.write_string_value("bannerUrl", @banner_url)
                     writer.write_object_value("createdAt", @created_at)
-                    writer.write_object_value("description", @description)
+                    writer.write_string_value("description", @description)
                     writer.write_number_value("draws", @draws)
                     writer.write_string_value("id", @id)
                     writer.write_boolean_value("isMember", @is_member)
@@ -293,15 +293,15 @@ module TeamBattlesSdk
                     writer.write_number_value("matchesPlayed", @matches_played)
                     writer.write_number_value("memberCount", @member_count)
                     writer.write_string_value("name", @name)
-                    writer.write_object_value("slug", @slug)
-                    writer.write_object_value("tag", @tag)
+                    writer.write_string_value("slug", @slug)
+                    writer.write_string_value("tag", @tag)
                     writer.write_number_value("teamCount", @team_count)
                     writer.write_enum_value("visibility", @visibility)
                     writer.write_number_value("wins", @wins)
                 end
                 ## 
                 ## Gets the slug property value. The slug property
-                ## @return a api_organization_profile_slug
+                ## @return a string
                 ## 
                 def slug
                     return @slug
@@ -316,7 +316,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the tag property value. The tag property
-                ## @return a api_organization_profile_tag
+                ## @return a string
                 ## 
                 def tag
                     return @tag
@@ -376,148 +376,6 @@ module TeamBattlesSdk
                 end
 
                 ## 
-                # Composed type wrapper for classes ApiOrganizationProfileAvatarUrlMember1, string
-                class ApiOrganizationProfileAvatarUrl
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiOrganizationProfileAvatarUrlMember1
-                    @api_organization_profile_avatar_url_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiOrganizationProfile_avatarUrlMember1 property value. Composed type representation for type ApiOrganizationProfileAvatarUrlMember1
-                    ## @return a api_organization_profile_avatar_url_member1
-                    ## 
-                    def api_organization_profile_avatar_url_member1
-                        return @api_organization_profile_avatar_url_member1
-                    end
-                    ## 
-                    ## Sets the ApiOrganizationProfile_avatarUrlMember1 property value. Composed type representation for type ApiOrganizationProfileAvatarUrlMember1
-                    ## @param value Value to set for the ApiOrganizationProfile_avatarUrlMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_organization_profile_avatar_url_member1=(value)
-                        @api_organization_profile_avatar_url_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_organization_profile_avatar_url
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiOrganizationProfileAvatarUrl.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiOrganizationProfile_avatarUrlMember1" => lambda {|n| @api_organization_profile_avatar_url_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiOrganizationProfileAvatarUrlMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiOrganizationProfile_avatarUrlMember1", @api_organization_profile_avatar_url_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiOrganizationProfileBannerUrlMember1, string
-                class ApiOrganizationProfileBannerUrl
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiOrganizationProfileBannerUrlMember1
-                    @api_organization_profile_banner_url_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiOrganizationProfile_bannerUrlMember1 property value. Composed type representation for type ApiOrganizationProfileBannerUrlMember1
-                    ## @return a api_organization_profile_banner_url_member1
-                    ## 
-                    def api_organization_profile_banner_url_member1
-                        return @api_organization_profile_banner_url_member1
-                    end
-                    ## 
-                    ## Sets the ApiOrganizationProfile_bannerUrlMember1 property value. Composed type representation for type ApiOrganizationProfileBannerUrlMember1
-                    ## @param value Value to set for the ApiOrganizationProfile_bannerUrlMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_organization_profile_banner_url_member1=(value)
-                        @api_organization_profile_banner_url_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_organization_profile_banner_url
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiOrganizationProfileBannerUrl.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiOrganizationProfile_bannerUrlMember1" => lambda {|n| @api_organization_profile_banner_url_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiOrganizationProfileBannerUrlMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiOrganizationProfile_bannerUrlMember1", @api_organization_profile_banner_url_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
                 # Composed type wrapper for classes ApiOrganizationProfileCreatedAtMember1, string
                 class ApiOrganizationProfileCreatedAt
                     include MicrosoftKiotaAbstractions::Parsable
@@ -569,219 +427,6 @@ module TeamBattlesSdk
                     def serialize(writer)
                         raise StandardError, 'writer cannot be null' if writer.nil?
                         writer.write_object_value("ApiOrganizationProfile_createdAtMember1", @api_organization_profile_created_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiOrganizationProfileDescriptionMember1, string
-                class ApiOrganizationProfileDescription
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiOrganizationProfileDescriptionMember1
-                    @api_organization_profile_description_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiOrganizationProfile_descriptionMember1 property value. Composed type representation for type ApiOrganizationProfileDescriptionMember1
-                    ## @return a api_organization_profile_description_member1
-                    ## 
-                    def api_organization_profile_description_member1
-                        return @api_organization_profile_description_member1
-                    end
-                    ## 
-                    ## Sets the ApiOrganizationProfile_descriptionMember1 property value. Composed type representation for type ApiOrganizationProfileDescriptionMember1
-                    ## @param value Value to set for the ApiOrganizationProfile_descriptionMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_organization_profile_description_member1=(value)
-                        @api_organization_profile_description_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_organization_profile_description
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiOrganizationProfileDescription.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiOrganizationProfile_descriptionMember1" => lambda {|n| @api_organization_profile_description_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiOrganizationProfileDescriptionMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiOrganizationProfile_descriptionMember1", @api_organization_profile_description_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiOrganizationProfileSlugMember1, string
-                class ApiOrganizationProfileSlug
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiOrganizationProfileSlugMember1
-                    @api_organization_profile_slug_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiOrganizationProfile_slugMember1 property value. Composed type representation for type ApiOrganizationProfileSlugMember1
-                    ## @return a api_organization_profile_slug_member1
-                    ## 
-                    def api_organization_profile_slug_member1
-                        return @api_organization_profile_slug_member1
-                    end
-                    ## 
-                    ## Sets the ApiOrganizationProfile_slugMember1 property value. Composed type representation for type ApiOrganizationProfileSlugMember1
-                    ## @param value Value to set for the ApiOrganizationProfile_slugMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_organization_profile_slug_member1=(value)
-                        @api_organization_profile_slug_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_organization_profile_slug
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiOrganizationProfileSlug.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiOrganizationProfile_slugMember1" => lambda {|n| @api_organization_profile_slug_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiOrganizationProfileSlugMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiOrganizationProfile_slugMember1", @api_organization_profile_slug_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiOrganizationProfileTagMember1, string
-                class ApiOrganizationProfileTag
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiOrganizationProfileTagMember1
-                    @api_organization_profile_tag_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiOrganizationProfile_tagMember1 property value. Composed type representation for type ApiOrganizationProfileTagMember1
-                    ## @return a api_organization_profile_tag_member1
-                    ## 
-                    def api_organization_profile_tag_member1
-                        return @api_organization_profile_tag_member1
-                    end
-                    ## 
-                    ## Sets the ApiOrganizationProfile_tagMember1 property value. Composed type representation for type ApiOrganizationProfileTagMember1
-                    ## @param value Value to set for the ApiOrganizationProfile_tagMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_organization_profile_tag_member1=(value)
-                        @api_organization_profile_tag_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_organization_profile_tag
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiOrganizationProfileTag.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiOrganizationProfile_tagMember1" => lambda {|n| @api_organization_profile_tag_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiOrganizationProfileTagMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiOrganizationProfile_tagMember1", @api_organization_profile_tag_member1)
                         writer.write_string_value("string", @string)
                     end
                     ## 

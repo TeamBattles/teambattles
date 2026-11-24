@@ -1,10 +1,6 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './api_user_trophy_awarded_at.dart';
-import './api_user_trophy_description.dart';
-import './api_user_trophy_icon_url.dart';
-import './api_user_trophy_rarity.dart';
-import './api_user_trophy_title.dart';
 
 /// auto generated
 /// API-safe user trophy. Event linkage fields are intentionally omitted.
@@ -12,15 +8,15 @@ class ApiUserTrophy implements Parsable {
     ///  The awardedAt property
     ApiUserTrophyAwardedAt? awardedAt;
     ///  The description property
-    ApiUserTrophyDescription? description;
+    String? description;
     ///  The iconUrl property
-    ApiUserTrophyIconUrl? iconUrl;
+    String? iconUrl;
     ///  Trophy award ID.
     String? id;
     ///  The rarity property
-    ApiUserTrophyRarity? rarity;
+    String? rarity;
     ///  The title property
-    ApiUserTrophyTitle? title;
+    String? title;
     ///  Trophy definition ID.
     String? trophyId;
     /// Creates a new instance of the appropriate class based on discriminator value
@@ -33,11 +29,11 @@ class ApiUserTrophy implements Parsable {
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['awardedAt'] = (node) => awardedAt = node.getObjectValue<ApiUserTrophyAwardedAt>(ApiUserTrophyAwardedAt.createFromDiscriminatorValue);
-        deserializerMap['description'] = (node) => description = node.getObjectValue<ApiUserTrophyDescription>(ApiUserTrophyDescription.createFromDiscriminatorValue);
-        deserializerMap['iconUrl'] = (node) => iconUrl = node.getObjectValue<ApiUserTrophyIconUrl>(ApiUserTrophyIconUrl.createFromDiscriminatorValue);
+        deserializerMap['description'] = (node) => description = node.getStringValue();
+        deserializerMap['iconUrl'] = (node) => iconUrl = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
-        deserializerMap['rarity'] = (node) => rarity = node.getObjectValue<ApiUserTrophyRarity>(ApiUserTrophyRarity.createFromDiscriminatorValue);
-        deserializerMap['title'] = (node) => title = node.getObjectValue<ApiUserTrophyTitle>(ApiUserTrophyTitle.createFromDiscriminatorValue);
+        deserializerMap['rarity'] = (node) => rarity = node.getStringValue();
+        deserializerMap['title'] = (node) => title = node.getStringValue();
         deserializerMap['trophyId'] = (node) => trophyId = node.getStringValue();
         return deserializerMap;
     }
@@ -46,11 +42,11 @@ class ApiUserTrophy implements Parsable {
     @override
     void serialize(SerializationWriter writer) {
         writer.writeObjectValue<ApiUserTrophyAwardedAt>('awardedAt', awardedAt);
-        writer.writeObjectValue<ApiUserTrophyDescription>('description', description);
-        writer.writeObjectValue<ApiUserTrophyIconUrl>('iconUrl', iconUrl);
+        writer.writeStringValue('description', description);
+        writer.writeStringValue('iconUrl', iconUrl);
         writer.writeStringValue('id', id);
-        writer.writeObjectValue<ApiUserTrophyRarity>('rarity', rarity);
-        writer.writeObjectValue<ApiUserTrophyTitle>('title', title);
+        writer.writeStringValue('rarity', rarity);
+        writer.writeStringValue('title', title);
         writer.writeStringValue('trophyId', trophyId);
     }
 }

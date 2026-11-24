@@ -10,7 +10,7 @@ import (
 // OrganizationLeaderboardEntry organization leaderboard row.
 type OrganizationLeaderboardEntry struct {
     // The gameSlug property
-    gameSlug OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlugable
+    gameSlug *string
     // Organization ID.
     id *string
     // Small API-safe organization summary.
@@ -19,90 +19,6 @@ type OrganizationLeaderboardEntry struct {
     rank *int32
     // The stats property
     stats OrganizationLeaderboardEntry_statsable
-}
-// OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug composed type wrapper for classes OrganizationLeaderboardEntry_gameSlugMember1able, string
-type OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug struct {
-    // Composed type representation for type OrganizationLeaderboardEntry_gameSlugMember1able
-    organizationLeaderboardEntry_gameSlugMember1 OrganizationLeaderboardEntry_gameSlugMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewOrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug instantiates a new OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug and sets the default values.
-func NewOrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug()(*OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug) {
-    m := &OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug{
-    }
-    return m
-}
-// CreateOrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlugFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateOrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlugFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewOrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateOrganizationLeaderboardEntry_gameSlugMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(OrganizationLeaderboardEntry_gameSlugMember1able); ok {
-                result.SetOrganizationLeaderboardEntryGameSlugMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug) GetIsComposedType()(bool) {
-    return true
-}
-// GetOrganizationLeaderboardEntryGameSlugMember1 gets the OrganizationLeaderboardEntry_gameSlugMember1 property value. Composed type representation for type OrganizationLeaderboardEntry_gameSlugMember1able
-// returns a OrganizationLeaderboardEntry_gameSlugMember1able when successful
-func (m *OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug) GetOrganizationLeaderboardEntryGameSlugMember1()(OrganizationLeaderboardEntry_gameSlugMember1able) {
-    return m.organizationLeaderboardEntry_gameSlugMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetOrganizationLeaderboardEntryGameSlugMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetOrganizationLeaderboardEntryGameSlugMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetOrganizationLeaderboardEntryGameSlugMember1 sets the OrganizationLeaderboardEntry_gameSlugMember1 property value. Composed type representation for type OrganizationLeaderboardEntry_gameSlugMember1able
-func (m *OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug) SetOrganizationLeaderboardEntryGameSlugMember1(value OrganizationLeaderboardEntry_gameSlugMember1able)() {
-    m.organizationLeaderboardEntry_gameSlugMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlug) SetString(value *string)() {
-    m.string = value
-}
-type OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlugable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetOrganizationLeaderboardEntryGameSlugMember1()(OrganizationLeaderboardEntry_gameSlugMember1able)
-    GetString()(*string)
-    SetOrganizationLeaderboardEntryGameSlugMember1(value OrganizationLeaderboardEntry_gameSlugMember1able)()
-    SetString(value *string)()
 }
 // NewOrganizationLeaderboardEntry instantiates a new OrganizationLeaderboardEntry and sets the default values.
 func NewOrganizationLeaderboardEntry()(*OrganizationLeaderboardEntry) {
@@ -120,12 +36,12 @@ func CreateOrganizationLeaderboardEntryFromDiscriminatorValue(parseNode i878a80d
 func (m *OrganizationLeaderboardEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["gameSlug"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateOrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlugFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetGameSlug(val.(OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlugable))
+            m.SetGameSlug(val)
         }
         return nil
     }
@@ -172,8 +88,8 @@ func (m *OrganizationLeaderboardEntry) GetFieldDeserializers()(map[string]func(i
     return res
 }
 // GetGameSlug gets the gameSlug property value. The gameSlug property
-// returns a OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlugable when successful
-func (m *OrganizationLeaderboardEntry) GetGameSlug()(OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlugable) {
+// returns a *string when successful
+func (m *OrganizationLeaderboardEntry) GetGameSlug()(*string) {
     return m.gameSlug
 }
 // GetId gets the id property value. Organization ID.
@@ -199,7 +115,7 @@ func (m *OrganizationLeaderboardEntry) GetStats()(OrganizationLeaderboardEntry_s
 // Serialize serializes information the current object
 func (m *OrganizationLeaderboardEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("gameSlug", m.GetGameSlug())
+        err := writer.WriteStringValue("gameSlug", m.GetGameSlug())
         if err != nil {
             return err
         }
@@ -231,7 +147,7 @@ func (m *OrganizationLeaderboardEntry) Serialize(writer i878a80d2330e89d26896388
     return nil
 }
 // SetGameSlug sets the gameSlug property value. The gameSlug property
-func (m *OrganizationLeaderboardEntry) SetGameSlug(value OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlugable)() {
+func (m *OrganizationLeaderboardEntry) SetGameSlug(value *string)() {
     m.gameSlug = value
 }
 // SetId sets the id property value. Organization ID.
@@ -252,12 +168,12 @@ func (m *OrganizationLeaderboardEntry) SetStats(value OrganizationLeaderboardEnt
 }
 type OrganizationLeaderboardEntryable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameSlug()(OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlugable)
+    GetGameSlug()(*string)
     GetId()(*string)
     GetOrganization()(ApiOrganizationSummaryable)
     GetRank()(*int32)
     GetStats()(OrganizationLeaderboardEntry_statsable)
-    SetGameSlug(value OrganizationLeaderboardEntry_OrganizationLeaderboardEntry_gameSlugable)()
+    SetGameSlug(value *string)()
     SetId(value *string)()
     SetOrganization(value ApiOrganizationSummaryable)()
     SetRank(value *int32)()

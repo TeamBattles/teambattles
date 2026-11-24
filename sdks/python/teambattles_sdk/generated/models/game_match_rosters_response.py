@@ -5,7 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .game_match_rosters_response_accepted_team_id import GameMatchRostersResponse_acceptedTeamId
     from .game_roster_player import GameRosterPlayer
 
 @dataclass
@@ -16,7 +15,7 @@ class GameMatchRostersResponse(Parsable):
     # Players on the accepted team (empty when unaccepted).
     accepted_roster: Optional[list[GameRosterPlayer]] = None
     # ID of the team that accepted the match, or null if unaccepted.
-    accepted_team_id: Optional[GameMatchRostersResponse_acceptedTeamId] = None
+    accepted_team_id: Optional[str] = None
     # Players on the creator team.
     creator_roster: Optional[list[GameRosterPlayer]] = None
     # ID of the team that created the match.
@@ -40,15 +39,13 @@ class GameMatchRostersResponse(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .game_match_rosters_response_accepted_team_id import GameMatchRostersResponse_acceptedTeamId
         from .game_roster_player import GameRosterPlayer
 
-        from .game_match_rosters_response_accepted_team_id import GameMatchRostersResponse_acceptedTeamId
         from .game_roster_player import GameRosterPlayer
 
         fields: dict[str, Callable[[Any], None]] = {
             "acceptedRoster": lambda n : setattr(self, 'accepted_roster', n.get_collection_of_object_values(GameRosterPlayer)),
-            "acceptedTeamId": lambda n : setattr(self, 'accepted_team_id', n.get_object_value(GameMatchRostersResponse_acceptedTeamId)),
+            "acceptedTeamId": lambda n : setattr(self, 'accepted_team_id', n.get_str_value()),
             "creatorRoster": lambda n : setattr(self, 'creator_roster', n.get_collection_of_object_values(GameRosterPlayer)),
             "creatorTeamId": lambda n : setattr(self, 'creator_team_id', n.get_str_value()),
             "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
@@ -64,7 +61,7 @@ class GameMatchRostersResponse(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("acceptedRoster", self.accepted_roster)
-        writer.write_object_value("acceptedTeamId", self.accepted_team_id)
+        writer.write_str_value("acceptedTeamId", self.accepted_team_id)
         writer.write_collection_of_object_values("creatorRoster", self.creator_roster)
         writer.write_str_value("creatorTeamId", self.creator_team_id)
         writer.write_str_value("timestamp", self.timestamp)

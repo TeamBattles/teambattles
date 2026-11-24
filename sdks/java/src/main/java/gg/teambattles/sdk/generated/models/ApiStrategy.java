@@ -20,7 +20,7 @@ public class ApiStrategy implements Parsable {
     /**
      * Author description, when set.
      */
-    private ApiStrategyDescription description;
+    private String description;
     /**
      * Game slug the strategy targets.
      */
@@ -52,7 +52,7 @@ public class ApiStrategy implements Parsable {
     /**
      * Freshly signed preview image URL, when a preview has been rendered.
      */
-    private ApiStrategyPreviewUrl previewUrl;
+    private String previewUrl;
     /**
      * Public share slug.
      */
@@ -93,10 +93,10 @@ public class ApiStrategy implements Parsable {
     }
     /**
      * Gets the description property value. Author description, when set.
-     * @return a {@link ApiStrategyDescription}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiStrategyDescription getDescription() {
+    public String getDescription() {
         return this.description;
     }
     /**
@@ -107,7 +107,7 @@ public class ApiStrategy implements Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(15);
         deserializerMap.put("createdAt", (n) -> { this.setCreatedAt(n.getObjectValue(ApiStrategyCreatedAt::createFromDiscriminatorValue)); });
-        deserializerMap.put("description", (n) -> { this.setDescription(n.getObjectValue(ApiStrategyDescription::createFromDiscriminatorValue)); });
+        deserializerMap.put("description", (n) -> { this.setDescription(n.getStringValue()); });
         deserializerMap.put("game", (n) -> { this.setGame(n.getStringValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
         deserializerMap.put("mapId", (n) -> { this.setMapId(n.getStringValue()); });
@@ -115,7 +115,7 @@ public class ApiStrategy implements Parsable {
         deserializerMap.put("name", (n) -> { this.setName(n.getStringValue()); });
         deserializerMap.put("ownerId", (n) -> { this.setOwnerId(n.getStringValue()); });
         deserializerMap.put("playbackLoop", (n) -> { this.setPlaybackLoop(n.getBooleanValue()); });
-        deserializerMap.put("previewUrl", (n) -> { this.setPreviewUrl(n.getObjectValue(ApiStrategyPreviewUrl::createFromDiscriminatorValue)); });
+        deserializerMap.put("previewUrl", (n) -> { this.setPreviewUrl(n.getStringValue()); });
         deserializerMap.put("shareSlug", (n) -> { this.setShareSlug(n.getStringValue()); });
         deserializerMap.put("stageCount", (n) -> { this.setStageCount(n.getIntegerValue()); });
         deserializerMap.put("stages", (n) -> { this.setStages(n.getCollectionOfObjectValues(ApiStrategyStage::createFromDiscriminatorValue)); });
@@ -181,10 +181,10 @@ public class ApiStrategy implements Parsable {
     }
     /**
      * Gets the previewUrl property value. Freshly signed preview image URL, when a preview has been rendered.
-     * @return a {@link ApiStrategyPreviewUrl}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiStrategyPreviewUrl getPreviewUrl() {
+    public String getPreviewUrl() {
         return this.previewUrl;
     }
     /**
@@ -234,7 +234,7 @@ public class ApiStrategy implements Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeObjectValue("createdAt", this.getCreatedAt());
-        writer.writeObjectValue("description", this.getDescription());
+        writer.writeStringValue("description", this.getDescription());
         writer.writeStringValue("game", this.getGame());
         writer.writeStringValue("id", this.getId());
         writer.writeStringValue("mapId", this.getMapId());
@@ -242,7 +242,7 @@ public class ApiStrategy implements Parsable {
         writer.writeStringValue("name", this.getName());
         writer.writeStringValue("ownerId", this.getOwnerId());
         writer.writeBooleanValue("playbackLoop", this.getPlaybackLoop());
-        writer.writeObjectValue("previewUrl", this.getPreviewUrl());
+        writer.writeStringValue("previewUrl", this.getPreviewUrl());
         writer.writeStringValue("shareSlug", this.getShareSlug());
         writer.writeIntegerValue("stageCount", this.getStageCount());
         writer.writeCollectionOfObjectValues("stages", this.getStages());
@@ -260,7 +260,7 @@ public class ApiStrategy implements Parsable {
      * Sets the description property value. Author description, when set.
      * @param value Value to set for the description property.
      */
-    public void setDescription(@jakarta.annotation.Nullable final ApiStrategyDescription value) {
+    public void setDescription(@jakarta.annotation.Nullable final String value) {
         this.description = value;
     }
     /**
@@ -316,7 +316,7 @@ public class ApiStrategy implements Parsable {
      * Sets the previewUrl property value. Freshly signed preview image URL, when a preview has been rendered.
      * @param value Value to set for the previewUrl property.
      */
-    public void setPreviewUrl(@jakarta.annotation.Nullable final ApiStrategyPreviewUrl value) {
+    public void setPreviewUrl(@jakarta.annotation.Nullable final String value) {
         this.previewUrl = value;
     }
     /**
@@ -428,172 +428,6 @@ public class ApiStrategy implements Parsable {
          */
         public void setApiStrategyCreatedAtMember1(@jakarta.annotation.Nullable final ApiStrategyCreatedAtMember1 value) {
             this.apiStrategyCreatedAtMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiStrategyDescriptionMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiStrategyDescription implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiStrategyDescriptionMember1}
-         */
-        private ApiStrategyDescriptionMember1 apiStrategyDescriptionMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiStrategyDescription}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiStrategyDescription createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiStrategyDescription result = new ApiStrategyDescription();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiStrategyDescriptionMember1(new ApiStrategyDescriptionMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiStrategy_descriptionMember1 property value. Composed type representation for type {@link ApiStrategyDescriptionMember1}
-         * @return a {@link ApiStrategyDescriptionMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiStrategyDescriptionMember1 getApiStrategyDescriptionMember1() {
-            return this.apiStrategyDescriptionMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiStrategyDescriptionMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiStrategyDescriptionMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiStrategyDescriptionMember1());
-            }
-        }
-        /**
-         * Sets the ApiStrategy_descriptionMember1 property value. Composed type representation for type {@link ApiStrategyDescriptionMember1}
-         * @param value Value to set for the ApiStrategy_descriptionMember1 property.
-         */
-        public void setApiStrategyDescriptionMember1(@jakarta.annotation.Nullable final ApiStrategyDescriptionMember1 value) {
-            this.apiStrategyDescriptionMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiStrategyPreviewUrlMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiStrategyPreviewUrl implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiStrategyPreviewUrlMember1}
-         */
-        private ApiStrategyPreviewUrlMember1 apiStrategyPreviewUrlMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiStrategyPreviewUrl}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiStrategyPreviewUrl createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiStrategyPreviewUrl result = new ApiStrategyPreviewUrl();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiStrategyPreviewUrlMember1(new ApiStrategyPreviewUrlMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiStrategy_previewUrlMember1 property value. Composed type representation for type {@link ApiStrategyPreviewUrlMember1}
-         * @return a {@link ApiStrategyPreviewUrlMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiStrategyPreviewUrlMember1 getApiStrategyPreviewUrlMember1() {
-            return this.apiStrategyPreviewUrlMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiStrategyPreviewUrlMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiStrategyPreviewUrlMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiStrategyPreviewUrlMember1());
-            }
-        }
-        /**
-         * Sets the ApiStrategy_previewUrlMember1 property value. Composed type representation for type {@link ApiStrategyPreviewUrlMember1}
-         * @param value Value to set for the ApiStrategy_previewUrlMember1 property.
-         */
-        public void setApiStrategyPreviewUrlMember1(@jakarta.annotation.Nullable final ApiStrategyPreviewUrlMember1 value) {
-            this.apiStrategyPreviewUrlMember1 = value;
         }
         /**
          * Sets the string property value. Composed type representation for type {@link String}

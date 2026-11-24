@@ -1,6 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './matches_request_body_cursor.dart';
 
 /// auto generated
 /// Filters and cursor pagination for listing matches.
@@ -13,7 +12,7 @@ class MatchesRequestBody implements AdditionalDataHolder, Parsable {
     ///  ISO 8601; only matches created at or before this time.
     String? createdBefore;
     ///  Opaque continuation cursor from a prior page's continueCursor.
-    MatchesRequestBodyCursor? cursor;
+    String? cursor;
     ///  Exclude matches with these MatchStatus codes; unknown values are ignored.
     Iterable<String>? excludeStatuses;
     ///  Filter to a single game by id.
@@ -43,7 +42,7 @@ class MatchesRequestBody implements AdditionalDataHolder, Parsable {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['createdAfter'] = (node) => createdAfter = node.getStringValue();
         deserializerMap['createdBefore'] = (node) => createdBefore = node.getStringValue();
-        deserializerMap['cursor'] = (node) => cursor = node.getObjectValue<MatchesRequestBodyCursor>(MatchesRequestBodyCursor.createFromDiscriminatorValue);
+        deserializerMap['cursor'] = (node) => cursor = node.getStringValue();
         deserializerMap['excludeStatuses'] = (node) => excludeStatuses = node.getCollectionOfPrimitiveValues<String>();
         deserializerMap['gameId'] = (node) => gameId = node.getStringValue();
         deserializerMap['includeStatuses'] = (node) => includeStatuses = node.getCollectionOfPrimitiveValues<String>();
@@ -59,7 +58,7 @@ class MatchesRequestBody implements AdditionalDataHolder, Parsable {
     void serialize(SerializationWriter writer) {
         writer.writeStringValue('createdAfter', createdAfter);
         writer.writeStringValue('createdBefore', createdBefore);
-        writer.writeObjectValue<MatchesRequestBodyCursor>('cursor', cursor);
+        writer.writeStringValue('cursor', cursor);
         writer.writeCollectionOfPrimitiveValues<String?>('excludeStatuses', excludeStatuses);
         writer.writeStringValue('gameId', gameId);
         writer.writeCollectionOfPrimitiveValues<String?>('includeStatuses', includeStatuses);

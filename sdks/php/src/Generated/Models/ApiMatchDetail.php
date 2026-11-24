@@ -28,14 +28,14 @@ class ApiMatchDetail implements Parsable
     private ?ApiMatchTeam $challengedTeam = null;
     
     /**
-     * @var ApiMatchDetail_completedAt|null $completedAt The completedAt property
+     * @var string|null $completedAt The completedAt property
     */
-    private ?ApiMatchDetail_completedAt $completedAt = null;
+    private ?string $completedAt = null;
     
     /**
-     * @var ApiMatchDetail_createdAt|null $createdAt The createdAt property
+     * @var string|null $createdAt The createdAt property
     */
-    private ?ApiMatchDetail_createdAt $createdAt = null;
+    private ?string $createdAt = null;
     
     /**
      * @var ApiMatchTeam|null $creatorTeam The creatorTeam property
@@ -58,24 +58,24 @@ class ApiMatchDetail implements Parsable
     private ?string $id = null;
     
     /**
-     * @var ApiMatchDetail_leagueId|null $leagueId The leagueId property
+     * @var string|null $leagueId The leagueId property
     */
-    private ?ApiMatchDetail_leagueId $leagueId = null;
+    private ?string $leagueId = null;
     
     /**
-     * @var ApiMatchDetail_leagueSeasonId|null $leagueSeasonId The leagueSeasonId property
+     * @var string|null $leagueSeasonId The leagueSeasonId property
     */
-    private ?ApiMatchDetail_leagueSeasonId $leagueSeasonId = null;
+    private ?string $leagueSeasonId = null;
     
     /**
-     * @var ApiMatchDetail_matchType|null $matchType The matchType property
+     * @var string|null $matchType The matchType property
     */
-    private ?ApiMatchDetail_matchType $matchType = null;
+    private ?string $matchType = null;
     
     /**
-     * @var ApiMatchDetail_platform|null $platform The platform property
+     * @var string|null $platform The platform property
     */
-    private ?ApiMatchDetail_platform $platform = null;
+    private ?string $platform = null;
     
     /**
      * @var string|null $publishStatus The publishStatus property
@@ -83,14 +83,14 @@ class ApiMatchDetail implements Parsable
     private ?string $publishStatus = null;
     
     /**
-     * @var ApiMatchDetail_region|null $region The region property
+     * @var string|null $region The region property
     */
-    private ?ApiMatchDetail_region $region = null;
+    private ?string $region = null;
     
     /**
-     * @var ApiMatchDetail_scheduledAt|null $scheduledAt The scheduledAt property
+     * @var string|null $scheduledAt The scheduledAt property
     */
-    private ?ApiMatchDetail_scheduledAt $scheduledAt = null;
+    private ?string $scheduledAt = null;
     
     /**
      * @var array<string>|null $selectedMaps The selectedMaps property
@@ -103,9 +103,9 @@ class ApiMatchDetail implements Parsable
     private ?array $selectedObjectives = null;
     
     /**
-     * @var ApiMatchDetail_startedAt|null $startedAt The startedAt property
+     * @var string|null $startedAt The startedAt property
     */
-    private ?ApiMatchDetail_startedAt $startedAt = null;
+    private ?string $startedAt = null;
     
     /**
      * @var MatchStatus|null $status Lifecycle status of a match.
@@ -118,9 +118,9 @@ class ApiMatchDetail implements Parsable
     private ?int $teamSize = null;
     
     /**
-     * @var ApiMatchDetail_winnerTeamId|null $winnerTeamId The winnerTeamId property
+     * @var string|null $winnerTeamId The winnerTeamId property
     */
-    private ?ApiMatchDetail_winnerTeamId $winnerTeamId = null;
+    private ?string $winnerTeamId = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -157,17 +157,17 @@ class ApiMatchDetail implements Parsable
 
     /**
      * Gets the completedAt property value. The completedAt property
-     * @return ApiMatchDetail_completedAt|null
+     * @return string|null
     */
-    public function getCompletedAt(): ?ApiMatchDetail_completedAt {
+    public function getCompletedAt(): ?string {
         return $this->completedAt;
     }
 
     /**
      * Gets the createdAt property value. The createdAt property
-     * @return ApiMatchDetail_createdAt|null
+     * @return string|null
     */
-    public function getCreatedAt(): ?ApiMatchDetail_createdAt {
+    public function getCreatedAt(): ?string {
         return $this->createdAt;
     }
 
@@ -189,19 +189,19 @@ class ApiMatchDetail implements Parsable
             'acceptedTeam' => fn(ParseNode $n) => $o->setAcceptedTeam($n->getObjectValue([ApiMatchTeam::class, 'createFromDiscriminatorValue'])),
             'bestOf' => fn(ParseNode $n) => $o->setBestOf($n->getIntegerValue()),
             'challengedTeam' => fn(ParseNode $n) => $o->setChallengedTeam($n->getObjectValue([ApiMatchTeam::class, 'createFromDiscriminatorValue'])),
-            'completedAt' => fn(ParseNode $n) => $o->setCompletedAt($n->getObjectValue([ApiMatchDetail_completedAt::class, 'createFromDiscriminatorValue'])),
-            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([ApiMatchDetail_createdAt::class, 'createFromDiscriminatorValue'])),
+            'completedAt' => fn(ParseNode $n) => $o->setCompletedAt($n->getStringValue()),
+            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getStringValue()),
             'creatorTeam' => fn(ParseNode $n) => $o->setCreatorTeam($n->getObjectValue([ApiMatchTeam::class, 'createFromDiscriminatorValue'])),
             'game' => fn(ParseNode $n) => $o->setGame($n->getObjectValue([Game::class, 'createFromDiscriminatorValue'])),
             'gameMode' => fn(ParseNode $n) => $o->setGameMode($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'leagueId' => fn(ParseNode $n) => $o->setLeagueId($n->getObjectValue([ApiMatchDetail_leagueId::class, 'createFromDiscriminatorValue'])),
-            'leagueSeasonId' => fn(ParseNode $n) => $o->setLeagueSeasonId($n->getObjectValue([ApiMatchDetail_leagueSeasonId::class, 'createFromDiscriminatorValue'])),
-            'matchType' => fn(ParseNode $n) => $o->setMatchType($n->getObjectValue([ApiMatchDetail_matchType::class, 'createFromDiscriminatorValue'])),
-            'platform' => fn(ParseNode $n) => $o->setPlatform($n->getObjectValue([ApiMatchDetail_platform::class, 'createFromDiscriminatorValue'])),
+            'leagueId' => fn(ParseNode $n) => $o->setLeagueId($n->getStringValue()),
+            'leagueSeasonId' => fn(ParseNode $n) => $o->setLeagueSeasonId($n->getStringValue()),
+            'matchType' => fn(ParseNode $n) => $o->setMatchType($n->getStringValue()),
+            'platform' => fn(ParseNode $n) => $o->setPlatform($n->getStringValue()),
             'publishStatus' => fn(ParseNode $n) => $o->setPublishStatus($n->getStringValue()),
-            'region' => fn(ParseNode $n) => $o->setRegion($n->getObjectValue([ApiMatchDetail_region::class, 'createFromDiscriminatorValue'])),
-            'scheduledAt' => fn(ParseNode $n) => $o->setScheduledAt($n->getObjectValue([ApiMatchDetail_scheduledAt::class, 'createFromDiscriminatorValue'])),
+            'region' => fn(ParseNode $n) => $o->setRegion($n->getStringValue()),
+            'scheduledAt' => fn(ParseNode $n) => $o->setScheduledAt($n->getStringValue()),
             'selectedMaps' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
                 if (is_array($val)) {
@@ -218,10 +218,10 @@ class ApiMatchDetail implements Parsable
                 /** @var array<string>|null $val */
                 $this->setSelectedObjectives($val);
             },
-            'startedAt' => fn(ParseNode $n) => $o->setStartedAt($n->getObjectValue([ApiMatchDetail_startedAt::class, 'createFromDiscriminatorValue'])),
+            'startedAt' => fn(ParseNode $n) => $o->setStartedAt($n->getStringValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(MatchStatus::class)),
             'teamSize' => fn(ParseNode $n) => $o->setTeamSize($n->getIntegerValue()),
-            'winnerTeamId' => fn(ParseNode $n) => $o->setWinnerTeamId($n->getObjectValue([ApiMatchDetail_winnerTeamId::class, 'createFromDiscriminatorValue'])),
+            'winnerTeamId' => fn(ParseNode $n) => $o->setWinnerTeamId($n->getStringValue()),
         ];
     }
 
@@ -251,33 +251,33 @@ class ApiMatchDetail implements Parsable
 
     /**
      * Gets the leagueId property value. The leagueId property
-     * @return ApiMatchDetail_leagueId|null
+     * @return string|null
     */
-    public function getLeagueId(): ?ApiMatchDetail_leagueId {
+    public function getLeagueId(): ?string {
         return $this->leagueId;
     }
 
     /**
      * Gets the leagueSeasonId property value. The leagueSeasonId property
-     * @return ApiMatchDetail_leagueSeasonId|null
+     * @return string|null
     */
-    public function getLeagueSeasonId(): ?ApiMatchDetail_leagueSeasonId {
+    public function getLeagueSeasonId(): ?string {
         return $this->leagueSeasonId;
     }
 
     /**
      * Gets the matchType property value. The matchType property
-     * @return ApiMatchDetail_matchType|null
+     * @return string|null
     */
-    public function getMatchType(): ?ApiMatchDetail_matchType {
+    public function getMatchType(): ?string {
         return $this->matchType;
     }
 
     /**
      * Gets the platform property value. The platform property
-     * @return ApiMatchDetail_platform|null
+     * @return string|null
     */
-    public function getPlatform(): ?ApiMatchDetail_platform {
+    public function getPlatform(): ?string {
         return $this->platform;
     }
 
@@ -291,17 +291,17 @@ class ApiMatchDetail implements Parsable
 
     /**
      * Gets the region property value. The region property
-     * @return ApiMatchDetail_region|null
+     * @return string|null
     */
-    public function getRegion(): ?ApiMatchDetail_region {
+    public function getRegion(): ?string {
         return $this->region;
     }
 
     /**
      * Gets the scheduledAt property value. The scheduledAt property
-     * @return ApiMatchDetail_scheduledAt|null
+     * @return string|null
     */
-    public function getScheduledAt(): ?ApiMatchDetail_scheduledAt {
+    public function getScheduledAt(): ?string {
         return $this->scheduledAt;
     }
 
@@ -323,9 +323,9 @@ class ApiMatchDetail implements Parsable
 
     /**
      * Gets the startedAt property value. The startedAt property
-     * @return ApiMatchDetail_startedAt|null
+     * @return string|null
     */
-    public function getStartedAt(): ?ApiMatchDetail_startedAt {
+    public function getStartedAt(): ?string {
         return $this->startedAt;
     }
 
@@ -347,9 +347,9 @@ class ApiMatchDetail implements Parsable
 
     /**
      * Gets the winnerTeamId property value. The winnerTeamId property
-     * @return ApiMatchDetail_winnerTeamId|null
+     * @return string|null
     */
-    public function getWinnerTeamId(): ?ApiMatchDetail_winnerTeamId {
+    public function getWinnerTeamId(): ?string {
         return $this->winnerTeamId;
     }
 
@@ -361,25 +361,25 @@ class ApiMatchDetail implements Parsable
         $writer->writeObjectValue('acceptedTeam', $this->getAcceptedTeam());
         $writer->writeIntegerValue('bestOf', $this->getBestOf());
         $writer->writeObjectValue('challengedTeam', $this->getChallengedTeam());
-        $writer->writeObjectValue('completedAt', $this->getCompletedAt());
-        $writer->writeObjectValue('createdAt', $this->getCreatedAt());
+        $writer->writeStringValue('completedAt', $this->getCompletedAt());
+        $writer->writeStringValue('createdAt', $this->getCreatedAt());
         $writer->writeObjectValue('creatorTeam', $this->getCreatorTeam());
         $writer->writeObjectValue('game', $this->getGame());
         $writer->writeStringValue('gameMode', $this->getGameMode());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeObjectValue('leagueId', $this->getLeagueId());
-        $writer->writeObjectValue('leagueSeasonId', $this->getLeagueSeasonId());
-        $writer->writeObjectValue('matchType', $this->getMatchType());
-        $writer->writeObjectValue('platform', $this->getPlatform());
+        $writer->writeStringValue('leagueId', $this->getLeagueId());
+        $writer->writeStringValue('leagueSeasonId', $this->getLeagueSeasonId());
+        $writer->writeStringValue('matchType', $this->getMatchType());
+        $writer->writeStringValue('platform', $this->getPlatform());
         $writer->writeStringValue('publishStatus', $this->getPublishStatus());
-        $writer->writeObjectValue('region', $this->getRegion());
-        $writer->writeObjectValue('scheduledAt', $this->getScheduledAt());
+        $writer->writeStringValue('region', $this->getRegion());
+        $writer->writeStringValue('scheduledAt', $this->getScheduledAt());
         $writer->writeCollectionOfPrimitiveValues('selectedMaps', $this->getSelectedMaps());
         $writer->writeCollectionOfPrimitiveValues('selectedObjectives', $this->getSelectedObjectives());
-        $writer->writeObjectValue('startedAt', $this->getStartedAt());
+        $writer->writeStringValue('startedAt', $this->getStartedAt());
         $writer->writeEnumValue('status', $this->getStatus());
         $writer->writeIntegerValue('teamSize', $this->getTeamSize());
-        $writer->writeObjectValue('winnerTeamId', $this->getWinnerTeamId());
+        $writer->writeStringValue('winnerTeamId', $this->getWinnerTeamId());
     }
 
     /**
@@ -408,17 +408,17 @@ class ApiMatchDetail implements Parsable
 
     /**
      * Sets the completedAt property value. The completedAt property
-     * @param ApiMatchDetail_completedAt|null $value Value to set for the completedAt property.
+     * @param string|null $value Value to set for the completedAt property.
     */
-    public function setCompletedAt(?ApiMatchDetail_completedAt $value): void {
+    public function setCompletedAt(?string $value): void {
         $this->completedAt = $value;
     }
 
     /**
      * Sets the createdAt property value. The createdAt property
-     * @param ApiMatchDetail_createdAt|null $value Value to set for the createdAt property.
+     * @param string|null $value Value to set for the createdAt property.
     */
-    public function setCreatedAt(?ApiMatchDetail_createdAt $value): void {
+    public function setCreatedAt(?string $value): void {
         $this->createdAt = $value;
     }
 
@@ -456,33 +456,33 @@ class ApiMatchDetail implements Parsable
 
     /**
      * Sets the leagueId property value. The leagueId property
-     * @param ApiMatchDetail_leagueId|null $value Value to set for the leagueId property.
+     * @param string|null $value Value to set for the leagueId property.
     */
-    public function setLeagueId(?ApiMatchDetail_leagueId $value): void {
+    public function setLeagueId(?string $value): void {
         $this->leagueId = $value;
     }
 
     /**
      * Sets the leagueSeasonId property value. The leagueSeasonId property
-     * @param ApiMatchDetail_leagueSeasonId|null $value Value to set for the leagueSeasonId property.
+     * @param string|null $value Value to set for the leagueSeasonId property.
     */
-    public function setLeagueSeasonId(?ApiMatchDetail_leagueSeasonId $value): void {
+    public function setLeagueSeasonId(?string $value): void {
         $this->leagueSeasonId = $value;
     }
 
     /**
      * Sets the matchType property value. The matchType property
-     * @param ApiMatchDetail_matchType|null $value Value to set for the matchType property.
+     * @param string|null $value Value to set for the matchType property.
     */
-    public function setMatchType(?ApiMatchDetail_matchType $value): void {
+    public function setMatchType(?string $value): void {
         $this->matchType = $value;
     }
 
     /**
      * Sets the platform property value. The platform property
-     * @param ApiMatchDetail_platform|null $value Value to set for the platform property.
+     * @param string|null $value Value to set for the platform property.
     */
-    public function setPlatform(?ApiMatchDetail_platform $value): void {
+    public function setPlatform(?string $value): void {
         $this->platform = $value;
     }
 
@@ -496,17 +496,17 @@ class ApiMatchDetail implements Parsable
 
     /**
      * Sets the region property value. The region property
-     * @param ApiMatchDetail_region|null $value Value to set for the region property.
+     * @param string|null $value Value to set for the region property.
     */
-    public function setRegion(?ApiMatchDetail_region $value): void {
+    public function setRegion(?string $value): void {
         $this->region = $value;
     }
 
     /**
      * Sets the scheduledAt property value. The scheduledAt property
-     * @param ApiMatchDetail_scheduledAt|null $value Value to set for the scheduledAt property.
+     * @param string|null $value Value to set for the scheduledAt property.
     */
-    public function setScheduledAt(?ApiMatchDetail_scheduledAt $value): void {
+    public function setScheduledAt(?string $value): void {
         $this->scheduledAt = $value;
     }
 
@@ -528,9 +528,9 @@ class ApiMatchDetail implements Parsable
 
     /**
      * Sets the startedAt property value. The startedAt property
-     * @param ApiMatchDetail_startedAt|null $value Value to set for the startedAt property.
+     * @param string|null $value Value to set for the startedAt property.
     */
-    public function setStartedAt(?ApiMatchDetail_startedAt $value): void {
+    public function setStartedAt(?string $value): void {
         $this->startedAt = $value;
     }
 
@@ -552,9 +552,9 @@ class ApiMatchDetail implements Parsable
 
     /**
      * Sets the winnerTeamId property value. The winnerTeamId property
-     * @param ApiMatchDetail_winnerTeamId|null $value Value to set for the winnerTeamId property.
+     * @param string|null $value Value to set for the winnerTeamId property.
     */
-    public function setWinnerTeamId(?ApiMatchDetail_winnerTeamId $value): void {
+    public function setWinnerTeamId(?string $value): void {
         $this->winnerTeamId = $value;
     }
 

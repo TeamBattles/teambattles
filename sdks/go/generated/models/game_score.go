@@ -10,7 +10,7 @@ import (
 // GameScore a single map score as returned when reading scores.
 type GameScore struct {
     // When the score was confirmed (ISO 8601).
-    confirmedAt GameScore_GameScore_confirmedAtable
+    confirmedAt *string
     // Score for the creator team.
     creatorTeamScore *int32
     // Identifier of the map that was played.
@@ -24,175 +24,7 @@ type GameScore struct {
     // Confirmation state: "CONFIRMED" or "PENDING".
     scoreStatus *string
     // When the score was submitted (ISO 8601).
-    submittedAt GameScore_GameScore_submittedAtable
-}
-// GameScore_GameScore_confirmedAt composed type wrapper for classes GameScore_confirmedAtMember1able, string
-type GameScore_GameScore_confirmedAt struct {
-    // Composed type representation for type GameScore_confirmedAtMember1able
-    gameScore_confirmedAtMember1 GameScore_confirmedAtMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewGameScore_GameScore_confirmedAt instantiates a new GameScore_GameScore_confirmedAt and sets the default values.
-func NewGameScore_GameScore_confirmedAt()(*GameScore_GameScore_confirmedAt) {
-    m := &GameScore_GameScore_confirmedAt{
-    }
-    return m
-}
-// CreateGameScore_GameScore_confirmedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateGameScore_GameScore_confirmedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewGameScore_GameScore_confirmedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateGameScore_confirmedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(GameScore_confirmedAtMember1able); ok {
-                result.SetGameScoreConfirmedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *GameScore_GameScore_confirmedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetGameScoreConfirmedAtMember1 gets the GameScore_confirmedAtMember1 property value. Composed type representation for type GameScore_confirmedAtMember1able
-// returns a GameScore_confirmedAtMember1able when successful
-func (m *GameScore_GameScore_confirmedAt) GetGameScoreConfirmedAtMember1()(GameScore_confirmedAtMember1able) {
-    return m.gameScore_confirmedAtMember1
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *GameScore_GameScore_confirmedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *GameScore_GameScore_confirmedAt) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *GameScore_GameScore_confirmedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetGameScoreConfirmedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetGameScoreConfirmedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetGameScoreConfirmedAtMember1 sets the GameScore_confirmedAtMember1 property value. Composed type representation for type GameScore_confirmedAtMember1able
-func (m *GameScore_GameScore_confirmedAt) SetGameScoreConfirmedAtMember1(value GameScore_confirmedAtMember1able)() {
-    m.gameScore_confirmedAtMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *GameScore_GameScore_confirmedAt) SetString(value *string)() {
-    m.string = value
-}
-// GameScore_GameScore_submittedAt composed type wrapper for classes GameScore_submittedAtMember1able, string
-type GameScore_GameScore_submittedAt struct {
-    // Composed type representation for type GameScore_submittedAtMember1able
-    gameScore_submittedAtMember1 GameScore_submittedAtMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewGameScore_GameScore_submittedAt instantiates a new GameScore_GameScore_submittedAt and sets the default values.
-func NewGameScore_GameScore_submittedAt()(*GameScore_GameScore_submittedAt) {
-    m := &GameScore_GameScore_submittedAt{
-    }
-    return m
-}
-// CreateGameScore_GameScore_submittedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateGameScore_GameScore_submittedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewGameScore_GameScore_submittedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateGameScore_submittedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(GameScore_submittedAtMember1able); ok {
-                result.SetGameScoreSubmittedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *GameScore_GameScore_submittedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetGameScoreSubmittedAtMember1 gets the GameScore_submittedAtMember1 property value. Composed type representation for type GameScore_submittedAtMember1able
-// returns a GameScore_submittedAtMember1able when successful
-func (m *GameScore_GameScore_submittedAt) GetGameScoreSubmittedAtMember1()(GameScore_submittedAtMember1able) {
-    return m.gameScore_submittedAtMember1
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *GameScore_GameScore_submittedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *GameScore_GameScore_submittedAt) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *GameScore_GameScore_submittedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetGameScoreSubmittedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetGameScoreSubmittedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetGameScoreSubmittedAtMember1 sets the GameScore_submittedAtMember1 property value. Composed type representation for type GameScore_submittedAtMember1able
-func (m *GameScore_GameScore_submittedAt) SetGameScoreSubmittedAtMember1(value GameScore_submittedAtMember1able)() {
-    m.gameScore_submittedAtMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *GameScore_GameScore_submittedAt) SetString(value *string)() {
-    m.string = value
-}
-type GameScore_GameScore_confirmedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameScoreConfirmedAtMember1()(GameScore_confirmedAtMember1able)
-    GetString()(*string)
-    SetGameScoreConfirmedAtMember1(value GameScore_confirmedAtMember1able)()
-    SetString(value *string)()
-}
-type GameScore_GameScore_submittedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameScoreSubmittedAtMember1()(GameScore_submittedAtMember1able)
-    GetString()(*string)
-    SetGameScoreSubmittedAtMember1(value GameScore_submittedAtMember1able)()
-    SetString(value *string)()
+    submittedAt *string
 }
 // NewGameScore instantiates a new GameScore and sets the default values.
 func NewGameScore()(*GameScore) {
@@ -206,8 +38,8 @@ func CreateGameScoreFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
     return NewGameScore(), nil
 }
 // GetConfirmedAt gets the confirmedAt property value. When the score was confirmed (ISO 8601).
-// returns a GameScore_GameScore_confirmedAtable when successful
-func (m *GameScore) GetConfirmedAt()(GameScore_GameScore_confirmedAtable) {
+// returns a *string when successful
+func (m *GameScore) GetConfirmedAt()(*string) {
     return m.confirmedAt
 }
 // GetCreatorTeamScore gets the creatorTeamScore property value. Score for the creator team.
@@ -220,12 +52,12 @@ func (m *GameScore) GetCreatorTeamScore()(*int32) {
 func (m *GameScore) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["confirmedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGameScore_GameScore_confirmedAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetConfirmedAt(val.(GameScore_GameScore_confirmedAtable))
+            m.SetConfirmedAt(val)
         }
         return nil
     }
@@ -290,12 +122,12 @@ func (m *GameScore) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         return nil
     }
     res["submittedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGameScore_GameScore_submittedAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSubmittedAt(val.(GameScore_GameScore_submittedAtable))
+            m.SetSubmittedAt(val)
         }
         return nil
     }
@@ -327,14 +159,14 @@ func (m *GameScore) GetScoreStatus()(*string) {
     return m.scoreStatus
 }
 // GetSubmittedAt gets the submittedAt property value. When the score was submitted (ISO 8601).
-// returns a GameScore_GameScore_submittedAtable when successful
-func (m *GameScore) GetSubmittedAt()(GameScore_GameScore_submittedAtable) {
+// returns a *string when successful
+func (m *GameScore) GetSubmittedAt()(*string) {
     return m.submittedAt
 }
 // Serialize serializes information the current object
 func (m *GameScore) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("confirmedAt", m.GetConfirmedAt())
+        err := writer.WriteStringValue("confirmedAt", m.GetConfirmedAt())
         if err != nil {
             return err
         }
@@ -376,7 +208,7 @@ func (m *GameScore) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
         }
     }
     {
-        err := writer.WriteObjectValue("submittedAt", m.GetSubmittedAt())
+        err := writer.WriteStringValue("submittedAt", m.GetSubmittedAt())
         if err != nil {
             return err
         }
@@ -384,7 +216,7 @@ func (m *GameScore) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     return nil
 }
 // SetConfirmedAt sets the confirmedAt property value. When the score was confirmed (ISO 8601).
-func (m *GameScore) SetConfirmedAt(value GameScore_GameScore_confirmedAtable)() {
+func (m *GameScore) SetConfirmedAt(value *string)() {
     m.confirmedAt = value
 }
 // SetCreatorTeamScore sets the creatorTeamScore property value. Score for the creator team.
@@ -412,25 +244,25 @@ func (m *GameScore) SetScoreStatus(value *string)() {
     m.scoreStatus = value
 }
 // SetSubmittedAt sets the submittedAt property value. When the score was submitted (ISO 8601).
-func (m *GameScore) SetSubmittedAt(value GameScore_GameScore_submittedAtable)() {
+func (m *GameScore) SetSubmittedAt(value *string)() {
     m.submittedAt = value
 }
 type GameScoreable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetConfirmedAt()(GameScore_GameScore_confirmedAtable)
+    GetConfirmedAt()(*string)
     GetCreatorTeamScore()(*int32)
     GetMapId()(*string)
     GetMapIndex()(*int32)
     GetOpponentTeamScore()(*int32)
     GetPlayerStats()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetScoreStatus()(*string)
-    GetSubmittedAt()(GameScore_GameScore_submittedAtable)
-    SetConfirmedAt(value GameScore_GameScore_confirmedAtable)()
+    GetSubmittedAt()(*string)
+    SetConfirmedAt(value *string)()
     SetCreatorTeamScore(value *int32)()
     SetMapId(value *string)()
     SetMapIndex(value *int32)()
     SetOpponentTeamScore(value *int32)()
     SetPlayerStats(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetScoreStatus(value *string)()
-    SetSubmittedAt(value GameScore_GameScore_submittedAtable)()
+    SetSubmittedAt(value *string)()
 }

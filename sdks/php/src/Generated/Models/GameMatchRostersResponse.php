@@ -17,9 +17,9 @@ class GameMatchRostersResponse implements Parsable
     private ?array $acceptedRoster = null;
     
     /**
-     * @var GameMatchRostersResponse_acceptedTeamId|null $acceptedTeamId ID of the team that accepted the match, or null if unaccepted.
+     * @var string|null $acceptedTeamId ID of the team that accepted the match, or null if unaccepted.
     */
-    private ?GameMatchRostersResponse_acceptedTeamId $acceptedTeamId = null;
+    private ?string $acceptedTeamId = null;
     
     /**
      * @var array<GameRosterPlayer>|null $creatorRoster Players on the creator team.
@@ -55,9 +55,9 @@ class GameMatchRostersResponse implements Parsable
 
     /**
      * Gets the acceptedTeamId property value. ID of the team that accepted the match, or null if unaccepted.
-     * @return GameMatchRostersResponse_acceptedTeamId|null
+     * @return string|null
     */
-    public function getAcceptedTeamId(): ?GameMatchRostersResponse_acceptedTeamId {
+    public function getAcceptedTeamId(): ?string {
         return $this->acceptedTeamId;
     }
 
@@ -85,7 +85,7 @@ class GameMatchRostersResponse implements Parsable
         $o = $this;
         return  [
             'acceptedRoster' => fn(ParseNode $n) => $o->setAcceptedRoster($n->getCollectionOfObjectValues([GameRosterPlayer::class, 'createFromDiscriminatorValue'])),
-            'acceptedTeamId' => fn(ParseNode $n) => $o->setAcceptedTeamId($n->getObjectValue([GameMatchRostersResponse_acceptedTeamId::class, 'createFromDiscriminatorValue'])),
+            'acceptedTeamId' => fn(ParseNode $n) => $o->setAcceptedTeamId($n->getStringValue()),
             'creatorRoster' => fn(ParseNode $n) => $o->setCreatorRoster($n->getCollectionOfObjectValues([GameRosterPlayer::class, 'createFromDiscriminatorValue'])),
             'creatorTeamId' => fn(ParseNode $n) => $o->setCreatorTeamId($n->getStringValue()),
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
@@ -106,7 +106,7 @@ class GameMatchRostersResponse implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('acceptedRoster', $this->getAcceptedRoster());
-        $writer->writeObjectValue('acceptedTeamId', $this->getAcceptedTeamId());
+        $writer->writeStringValue('acceptedTeamId', $this->getAcceptedTeamId());
         $writer->writeCollectionOfObjectValues('creatorRoster', $this->getCreatorRoster());
         $writer->writeStringValue('creatorTeamId', $this->getCreatorTeamId());
         $writer->writeStringValue('timestamp', $this->getTimestamp());
@@ -122,9 +122,9 @@ class GameMatchRostersResponse implements Parsable
 
     /**
      * Sets the acceptedTeamId property value. ID of the team that accepted the match, or null if unaccepted.
-     * @param GameMatchRostersResponse_acceptedTeamId|null $value Value to set for the acceptedTeamId property.
+     * @param string|null $value Value to set for the acceptedTeamId property.
     */
-    public function setAcceptedTeamId(?GameMatchRostersResponse_acceptedTeamId $value): void {
+    public function setAcceptedTeamId(?string $value): void {
         $this->acceptedTeamId = $value;
     }
 

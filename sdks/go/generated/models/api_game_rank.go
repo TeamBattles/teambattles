@@ -22,90 +22,13 @@ type ApiGameRank struct {
     // Origin of the rank: manual entry or an API push.
     source *ApiGameRank_source
     // Skill rating, when set.
-    sr ApiGameRank_ApiGameRank_srable
+    sr *float64
     // Top 250 ladder position (1-250), when applicable.
     top250Rank ApiGameRank_ApiGameRank_top250Rankable
     // When the rank was last updated.
     updatedAt *string
     // Current win streak count.
     winstreak *int32
-}
-// ApiGameRank_ApiGameRank_sr composed type wrapper for classes ApiGameRank_srMember1able, float64
-type ApiGameRank_ApiGameRank_sr struct {
-    // Composed type representation for type ApiGameRank_srMember1able
-    apiGameRank_srMember1 ApiGameRank_srMember1able
-    // Composed type representation for type float64
-    double *float64
-}
-// NewApiGameRank_ApiGameRank_sr instantiates a new ApiGameRank_ApiGameRank_sr and sets the default values.
-func NewApiGameRank_ApiGameRank_sr()(*ApiGameRank_ApiGameRank_sr) {
-    m := &ApiGameRank_ApiGameRank_sr{
-    }
-    return m
-}
-// CreateApiGameRank_ApiGameRank_srFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameRank_ApiGameRank_srFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameRank_ApiGameRank_sr()
-    if parseNode != nil {
-        if val, err := parseNode.GetFloat64Value(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetDouble(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameRank_srMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameRank_srMember1able); ok {
-                result.SetApiGameRankSrMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameRankSrMember1 gets the ApiGameRank_srMember1 property value. Composed type representation for type ApiGameRank_srMember1able
-// returns a ApiGameRank_srMember1able when successful
-func (m *ApiGameRank_ApiGameRank_sr) GetApiGameRankSrMember1()(ApiGameRank_srMember1able) {
-    return m.apiGameRank_srMember1
-}
-// GetDouble gets the double property value. Composed type representation for type float64
-// returns a *float64 when successful
-func (m *ApiGameRank_ApiGameRank_sr) GetDouble()(*float64) {
-    return m.double
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameRank_ApiGameRank_sr) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameRank_ApiGameRank_sr) GetIsComposedType()(bool) {
-    return true
-}
-// Serialize serializes information the current object
-func (m *ApiGameRank_ApiGameRank_sr) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetDouble() != nil {
-        err := writer.WriteFloat64Value("", m.GetDouble())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameRankSrMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameRankSrMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameRankSrMember1 sets the ApiGameRank_srMember1 property value. Composed type representation for type ApiGameRank_srMember1able
-func (m *ApiGameRank_ApiGameRank_sr) SetApiGameRankSrMember1(value ApiGameRank_srMember1able)() {
-    m.apiGameRank_srMember1 = value
-}
-// SetDouble sets the double property value. Composed type representation for type float64
-func (m *ApiGameRank_ApiGameRank_sr) SetDouble(value *float64)() {
-    m.double = value
 }
 // ApiGameRank_ApiGameRank_top250Rank composed type wrapper for classes ApiGameRank_top250RankMember1able, int32
 type ApiGameRank_ApiGameRank_top250Rank struct {
@@ -183,13 +106,6 @@ func (m *ApiGameRank_ApiGameRank_top250Rank) SetApiGameRankTop250RankMember1(val
 // SetInteger sets the integer property value. Composed type representation for type int32
 func (m *ApiGameRank_ApiGameRank_top250Rank) SetInteger(value *int32)() {
     m.integer = value
-}
-type ApiGameRank_ApiGameRank_srable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameRankSrMember1()(ApiGameRank_srMember1able)
-    GetDouble()(*float64)
-    SetApiGameRankSrMember1(value ApiGameRank_srMember1able)()
-    SetDouble(value *float64)()
 }
 type ApiGameRank_ApiGameRank_top250Rankable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
@@ -279,12 +195,12 @@ func (m *ApiGameRank) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["sr"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameRank_ApiGameRank_srFromDiscriminatorValue)
+        val, err := n.GetFloat64Value()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSr(val.(ApiGameRank_ApiGameRank_srable))
+            m.SetSr(val)
         }
         return nil
     }
@@ -346,8 +262,8 @@ func (m *ApiGameRank) GetSource()(*ApiGameRank_source) {
     return m.source
 }
 // GetSr gets the sr property value. Skill rating, when set.
-// returns a ApiGameRank_ApiGameRank_srable when successful
-func (m *ApiGameRank) GetSr()(ApiGameRank_ApiGameRank_srable) {
+// returns a *float64 when successful
+func (m *ApiGameRank) GetSr()(*float64) {
     return m.sr
 }
 // GetTop250Rank gets the top250Rank property value. Top 250 ladder position (1-250), when applicable.
@@ -405,7 +321,7 @@ func (m *ApiGameRank) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteObjectValue("sr", m.GetSr())
+        err := writer.WriteFloat64Value("sr", m.GetSr())
         if err != nil {
             return err
         }
@@ -455,7 +371,7 @@ func (m *ApiGameRank) SetSource(value *ApiGameRank_source)() {
     m.source = value
 }
 // SetSr sets the sr property value. Skill rating, when set.
-func (m *ApiGameRank) SetSr(value ApiGameRank_ApiGameRank_srable)() {
+func (m *ApiGameRank) SetSr(value *float64)() {
     m.sr = value
 }
 // SetTop250Rank sets the top250Rank property value. Top 250 ladder position (1-250), when applicable.
@@ -478,7 +394,7 @@ type ApiGameRankable interface {
     GetIsTop250()(*bool)
     GetMode()(*string)
     GetSource()(*ApiGameRank_source)
-    GetSr()(ApiGameRank_ApiGameRank_srable)
+    GetSr()(*float64)
     GetTop250Rank()(ApiGameRank_ApiGameRank_top250Rankable)
     GetUpdatedAt()(*string)
     GetWinstreak()(*int32)
@@ -488,7 +404,7 @@ type ApiGameRankable interface {
     SetIsTop250(value *bool)()
     SetMode(value *string)()
     SetSource(value *ApiGameRank_source)()
-    SetSr(value ApiGameRank_ApiGameRank_srable)()
+    SetSr(value *float64)()
     SetTop250Rank(value ApiGameRank_ApiGameRank_top250Rankable)()
     SetUpdatedAt(value *string)()
     SetWinstreak(value *int32)()

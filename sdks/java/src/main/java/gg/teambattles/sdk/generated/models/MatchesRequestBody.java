@@ -1,10 +1,8 @@
 package gg.teambattles.sdk.generated.models;
 
 import com.microsoft.kiota.serialization.AdditionalDataHolder;
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +27,7 @@ public class MatchesRequestBody implements AdditionalDataHolder, Parsable {
     /**
      * Opaque continuation cursor from a prior page&apos;s continueCursor.
      */
-    private MatchesRequestBodyCursor cursor;
+    private String cursor;
     /**
      * Exclude matches with these MatchStatus codes; unknown values are ignored.
      */
@@ -101,10 +99,10 @@ public class MatchesRequestBody implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the cursor property value. Opaque continuation cursor from a prior page&apos;s continueCursor.
-     * @return a {@link MatchesRequestBodyCursor}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public MatchesRequestBodyCursor getCursor() {
+    public String getCursor() {
         return this.cursor;
     }
     /**
@@ -124,7 +122,7 @@ public class MatchesRequestBody implements AdditionalDataHolder, Parsable {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(10);
         deserializerMap.put("createdAfter", (n) -> { this.setCreatedAfter(n.getStringValue()); });
         deserializerMap.put("createdBefore", (n) -> { this.setCreatedBefore(n.getStringValue()); });
-        deserializerMap.put("cursor", (n) -> { this.setCursor(n.getObjectValue(MatchesRequestBodyCursor::createFromDiscriminatorValue)); });
+        deserializerMap.put("cursor", (n) -> { this.setCursor(n.getStringValue()); });
         deserializerMap.put("excludeStatuses", (n) -> { this.setExcludeStatuses(n.getCollectionOfPrimitiveValues(String.class)); });
         deserializerMap.put("gameId", (n) -> { this.setGameId(n.getStringValue()); });
         deserializerMap.put("includeStatuses", (n) -> { this.setIncludeStatuses(n.getCollectionOfPrimitiveValues(String.class)); });
@@ -190,7 +188,7 @@ public class MatchesRequestBody implements AdditionalDataHolder, Parsable {
         Objects.requireNonNull(writer);
         writer.writeStringValue("createdAfter", this.getCreatedAfter());
         writer.writeStringValue("createdBefore", this.getCreatedBefore());
-        writer.writeObjectValue("cursor", this.getCursor());
+        writer.writeStringValue("cursor", this.getCursor());
         writer.writeCollectionOfPrimitiveValues("excludeStatuses", this.getExcludeStatuses());
         writer.writeStringValue("gameId", this.getGameId());
         writer.writeCollectionOfPrimitiveValues("includeStatuses", this.getIncludeStatuses());
@@ -225,7 +223,7 @@ public class MatchesRequestBody implements AdditionalDataHolder, Parsable {
      * Sets the cursor property value. Opaque continuation cursor from a prior page&apos;s continueCursor.
      * @param value Value to set for the cursor property.
      */
-    public void setCursor(@jakarta.annotation.Nullable final MatchesRequestBodyCursor value) {
+    public void setCursor(@jakarta.annotation.Nullable final String value) {
         this.cursor = value;
     }
     /**
@@ -276,88 +274,5 @@ public class MatchesRequestBody implements AdditionalDataHolder, Parsable {
      */
     public void setScheduledBefore(@jakarta.annotation.Nullable final String value) {
         this.scheduledBefore = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link MatchesRequestBodyCursorMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class MatchesRequestBodyCursor implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link MatchesRequestBodyCursorMember1}
-         */
-        private MatchesRequestBodyCursorMember1 matchesRequestBodyCursorMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link MatchesRequestBodyCursor}
-         */
-        @jakarta.annotation.Nonnull
-        public static MatchesRequestBodyCursor createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final MatchesRequestBodyCursor result = new MatchesRequestBodyCursor();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setMatchesRequestBodyCursorMember1(new MatchesRequestBodyCursorMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getMatchesRequestBodyCursorMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getMatchesRequestBodyCursorMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the MatchesRequestBody_cursorMember1 property value. Composed type representation for type {@link MatchesRequestBodyCursorMember1}
-         * @return a {@link MatchesRequestBodyCursorMember1}
-         */
-        @jakarta.annotation.Nullable
-        public MatchesRequestBodyCursorMember1 getMatchesRequestBodyCursorMember1() {
-            return this.matchesRequestBodyCursorMember1;
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getMatchesRequestBodyCursorMember1());
-            }
-        }
-        /**
-         * Sets the MatchesRequestBody_cursorMember1 property value. Composed type representation for type {@link MatchesRequestBodyCursorMember1}
-         * @param value Value to set for the MatchesRequestBody_cursorMember1 property.
-         */
-        public void setMatchesRequestBodyCursorMember1(@jakarta.annotation.Nullable final MatchesRequestBodyCursorMember1 value) {
-            this.matchesRequestBodyCursorMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
     }
 }

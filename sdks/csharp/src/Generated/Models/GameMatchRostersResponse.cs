@@ -24,10 +24,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>ID of the team that accepted the match, or null if unaccepted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.GameMatchRostersResponse.GameMatchRostersResponse_acceptedTeamId? AcceptedTeamId { get; set; }
+        public string? AcceptedTeamId { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.GameMatchRostersResponse.GameMatchRostersResponse_acceptedTeamId AcceptedTeamId { get; set; }
+        public string AcceptedTeamId { get; set; }
 #endif
         /// <summary>Players on the creator team.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -72,7 +72,7 @@ namespace TeamBattles.Sdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "acceptedRoster", n => { AcceptedRoster = n.GetCollectionOfObjectValues<global::TeamBattles.Sdk.Models.GameRosterPlayer>(global::TeamBattles.Sdk.Models.GameRosterPlayer.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "acceptedTeamId", n => { AcceptedTeamId = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameMatchRostersResponse.GameMatchRostersResponse_acceptedTeamId>(global::TeamBattles.Sdk.Models.GameMatchRostersResponse.GameMatchRostersResponse_acceptedTeamId.CreateFromDiscriminatorValue); } },
+                { "acceptedTeamId", n => { AcceptedTeamId = n.GetStringValue(); } },
                 { "creatorRoster", n => { CreatorRoster = n.GetCollectionOfObjectValues<global::TeamBattles.Sdk.Models.GameRosterPlayer>(global::TeamBattles.Sdk.Models.GameRosterPlayer.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "creatorTeamId", n => { CreatorTeamId = n.GetStringValue(); } },
                 { "timestamp", n => { Timestamp = n.GetStringValue(); } },
@@ -86,78 +86,10 @@ namespace TeamBattles.Sdk.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::TeamBattles.Sdk.Models.GameRosterPlayer>("acceptedRoster", AcceptedRoster);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchRostersResponse.GameMatchRostersResponse_acceptedTeamId>("acceptedTeamId", AcceptedTeamId);
+            writer.WriteStringValue("acceptedTeamId", AcceptedTeamId);
             writer.WriteCollectionOfObjectValues<global::TeamBattles.Sdk.Models.GameRosterPlayer>("creatorRoster", CreatorRoster);
             writer.WriteStringValue("creatorTeamId", CreatorTeamId);
             writer.WriteStringValue("timestamp", Timestamp);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.GameMatchRostersResponse_acceptedTeamIdMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class GameMatchRostersResponse_acceptedTeamId : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.GameMatchRostersResponse_acceptedTeamIdMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.GameMatchRostersResponse_acceptedTeamIdMember1? GameMatchRostersResponseAcceptedTeamIdMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.GameMatchRostersResponse_acceptedTeamIdMember1 GameMatchRostersResponseAcceptedTeamIdMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameMatchRostersResponse.GameMatchRostersResponse_acceptedTeamId"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.GameMatchRostersResponse.GameMatchRostersResponse_acceptedTeamId CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.GameMatchRostersResponse.GameMatchRostersResponse_acceptedTeamId();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.GameMatchRostersResponseAcceptedTeamIdMember1 = new global::TeamBattles.Sdk.Models.GameMatchRostersResponse_acceptedTeamIdMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(GameMatchRostersResponseAcceptedTeamIdMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GameMatchRostersResponseAcceptedTeamIdMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchRostersResponse_acceptedTeamIdMember1>(null, GameMatchRostersResponseAcceptedTeamIdMember1);
-                }
-            }
         }
     }
 }

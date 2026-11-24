@@ -16,7 +16,7 @@ public class ApiMatchTeam implements Parsable {
     /**
      * Team avatar URL.
      */
-    private ApiMatchTeamAvatarUrl avatarUrl;
+    private String avatarUrl;
     /**
      * Team ID.
      */
@@ -45,10 +45,10 @@ public class ApiMatchTeam implements Parsable {
     }
     /**
      * Gets the avatarUrl property value. Team avatar URL.
-     * @return a {@link ApiMatchTeamAvatarUrl}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiMatchTeamAvatarUrl getAvatarUrl() {
+    public String getAvatarUrl() {
         return this.avatarUrl;
     }
     /**
@@ -58,7 +58,7 @@ public class ApiMatchTeam implements Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(5);
-        deserializerMap.put("avatarUrl", (n) -> { this.setAvatarUrl(n.getObjectValue(ApiMatchTeamAvatarUrl::createFromDiscriminatorValue)); });
+        deserializerMap.put("avatarUrl", (n) -> { this.setAvatarUrl(n.getStringValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
         deserializerMap.put("name", (n) -> { this.setName(n.getStringValue()); });
         deserializerMap.put("score", (n) -> { this.setScore(n.getObjectValue(ApiMatchTeamScore::createFromDiscriminatorValue)); });
@@ -103,7 +103,7 @@ public class ApiMatchTeam implements Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeObjectValue("avatarUrl", this.getAvatarUrl());
+        writer.writeStringValue("avatarUrl", this.getAvatarUrl());
         writer.writeStringValue("id", this.getId());
         writer.writeStringValue("name", this.getName());
         writer.writeObjectValue("score", this.getScore());
@@ -113,7 +113,7 @@ public class ApiMatchTeam implements Parsable {
      * Sets the avatarUrl property value. Team avatar URL.
      * @param value Value to set for the avatarUrl property.
      */
-    public void setAvatarUrl(@jakarta.annotation.Nullable final ApiMatchTeamAvatarUrl value) {
+    public void setAvatarUrl(@jakarta.annotation.Nullable final String value) {
         this.avatarUrl = value;
     }
     /**
@@ -143,89 +143,6 @@ public class ApiMatchTeam implements Parsable {
      */
     public void setTag(@jakarta.annotation.Nullable final String value) {
         this.tag = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiMatchTeamAvatarUrlMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiMatchTeamAvatarUrl implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiMatchTeamAvatarUrlMember1}
-         */
-        private ApiMatchTeamAvatarUrlMember1 apiMatchTeamAvatarUrlMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiMatchTeamAvatarUrl}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiMatchTeamAvatarUrl createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiMatchTeamAvatarUrl result = new ApiMatchTeamAvatarUrl();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiMatchTeamAvatarUrlMember1(new ApiMatchTeamAvatarUrlMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiMatchTeam_avatarUrlMember1 property value. Composed type representation for type {@link ApiMatchTeamAvatarUrlMember1}
-         * @return a {@link ApiMatchTeamAvatarUrlMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiMatchTeamAvatarUrlMember1 getApiMatchTeamAvatarUrlMember1() {
-            return this.apiMatchTeamAvatarUrlMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiMatchTeamAvatarUrlMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiMatchTeamAvatarUrlMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiMatchTeamAvatarUrlMember1());
-            }
-        }
-        /**
-         * Sets the ApiMatchTeam_avatarUrlMember1 property value. Composed type representation for type {@link ApiMatchTeamAvatarUrlMember1}
-         * @param value Value to set for the ApiMatchTeam_avatarUrlMember1 property.
-         */
-        public void setApiMatchTeamAvatarUrlMember1(@jakarta.annotation.Nullable final ApiMatchTeamAvatarUrlMember1 value) {
-            this.apiMatchTeamAvatarUrlMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
     }
     /**
      * Composed type wrapper for classes {@link ApiMatchTeamScoreMember1}, {@link Integer}

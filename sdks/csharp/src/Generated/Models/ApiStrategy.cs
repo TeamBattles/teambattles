@@ -24,10 +24,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Author description, when set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_description? Description { get; set; }
+        public string? Description { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_description Description { get; set; }
+        public string Description { get; set; }
 #endif
         /// <summary>Game slug the strategy targets.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -76,10 +76,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Freshly signed preview image URL, when a preview has been rendered.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_previewUrl? PreviewUrl { get; set; }
+        public string? PreviewUrl { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_previewUrl PreviewUrl { get; set; }
+        public string PreviewUrl { get; set; }
 #endif
         /// <summary>Public share slug.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -128,7 +128,7 @@ namespace TeamBattles.Sdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "createdAt", n => { CreatedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_createdAt>(global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_createdAt.CreateFromDiscriminatorValue); } },
-                { "description", n => { Description = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_description>(global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_description.CreateFromDiscriminatorValue); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "game", n => { Game = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "mapId", n => { MapId = n.GetStringValue(); } },
@@ -136,7 +136,7 @@ namespace TeamBattles.Sdk.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "ownerId", n => { OwnerId = n.GetStringValue(); } },
                 { "playbackLoop", n => { PlaybackLoop = n.GetBoolValue(); } },
-                { "previewUrl", n => { PreviewUrl = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_previewUrl>(global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_previewUrl.CreateFromDiscriminatorValue); } },
+                { "previewUrl", n => { PreviewUrl = n.GetStringValue(); } },
                 { "shareSlug", n => { ShareSlug = n.GetStringValue(); } },
                 { "stageCount", n => { StageCount = n.GetIntValue(); } },
                 { "stages", n => { Stages = n.GetCollectionOfObjectValues<global::TeamBattles.Sdk.Models.ApiStrategyStage>(global::TeamBattles.Sdk.Models.ApiStrategyStage.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -152,7 +152,7 @@ namespace TeamBattles.Sdk.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_createdAt>("createdAt", CreatedAt);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_description>("description", Description);
+            writer.WriteStringValue("description", Description);
             writer.WriteStringValue("game", Game);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("mapId", MapId);
@@ -160,7 +160,7 @@ namespace TeamBattles.Sdk.Models
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("ownerId", OwnerId);
             writer.WriteBoolValue("playbackLoop", PlaybackLoop);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_previewUrl>("previewUrl", PreviewUrl);
+            writer.WriteStringValue("previewUrl", PreviewUrl);
             writer.WriteStringValue("shareSlug", ShareSlug);
             writer.WriteIntValue("stageCount", StageCount);
             writer.WriteCollectionOfObjectValues<global::TeamBattles.Sdk.Models.ApiStrategyStage>("stages", Stages);
@@ -232,142 +232,6 @@ namespace TeamBattles.Sdk.Models
                 }
                 else {
                     writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiStrategy_createdAtMember1>(null, ApiStrategyCreatedAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiStrategy_descriptionMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiStrategy_description : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiStrategy_descriptionMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiStrategy_descriptionMember1? ApiStrategyDescriptionMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiStrategy_descriptionMember1 ApiStrategyDescriptionMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_description"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_description CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_description();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiStrategyDescriptionMember1 = new global::TeamBattles.Sdk.Models.ApiStrategy_descriptionMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiStrategyDescriptionMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiStrategyDescriptionMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiStrategy_descriptionMember1>(null, ApiStrategyDescriptionMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiStrategy_previewUrlMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiStrategy_previewUrl : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiStrategy_previewUrlMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiStrategy_previewUrlMember1? ApiStrategyPreviewUrlMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiStrategy_previewUrlMember1 ApiStrategyPreviewUrlMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_previewUrl"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_previewUrl CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiStrategy.ApiStrategy_previewUrl();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiStrategyPreviewUrlMember1 = new global::TeamBattles.Sdk.Models.ApiStrategy_previewUrlMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiStrategyPreviewUrlMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiStrategyPreviewUrlMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiStrategy_previewUrlMember1>(null, ApiStrategyPreviewUrlMember1);
                 }
             }
         }

@@ -10,19 +10,19 @@ import (
 // ApiTeamProfile aPI-safe team profile.
 type ApiTeamProfile struct {
     // The avatarUrl property
-    avatarUrl ApiTeamProfile_ApiTeamProfile_avatarUrlable
+    avatarUrl *string
     // The bannerUrl property
-    bannerUrl ApiTeamProfile_ApiTeamProfile_bannerUrlable
+    bannerUrl *string
     // The createdAt property
     createdAt ApiTeamProfile_ApiTeamProfile_createdAtable
     // The description property
-    description ApiTeamProfile_ApiTeamProfile_descriptionable
+    description *string
     // The draws property
     draws *int32
     // The experience property
     experience *float64
     // The gameId property
-    gameId ApiTeamProfile_ApiTeamProfile_gameIdable
+    gameId *string
     // Team ID.
     id *string
     // The isMember property
@@ -36,169 +36,15 @@ type ApiTeamProfile struct {
     // Team name.
     name *string
     // The organizationId property
-    organizationId ApiTeamProfile_ApiTeamProfile_organizationIdable
+    organizationId *string
     // The slug property
-    slug ApiTeamProfile_ApiTeamProfile_slugable
+    slug *string
     // The tag property
-    tag ApiTeamProfile_ApiTeamProfile_tagable
+    tag *string
     // Public profile visibility setting.
     visibility *ProfileVisibility
     // The wins property
     wins *int32
-}
-// ApiTeamProfile_ApiTeamProfile_avatarUrl composed type wrapper for classes ApiTeamProfile_avatarUrlMember1able, string
-type ApiTeamProfile_ApiTeamProfile_avatarUrl struct {
-    // Composed type representation for type ApiTeamProfile_avatarUrlMember1able
-    apiTeamProfile_avatarUrlMember1 ApiTeamProfile_avatarUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiTeamProfile_ApiTeamProfile_avatarUrl instantiates a new ApiTeamProfile_ApiTeamProfile_avatarUrl and sets the default values.
-func NewApiTeamProfile_ApiTeamProfile_avatarUrl()(*ApiTeamProfile_ApiTeamProfile_avatarUrl) {
-    m := &ApiTeamProfile_ApiTeamProfile_avatarUrl{
-    }
-    return m
-}
-// CreateApiTeamProfile_ApiTeamProfile_avatarUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiTeamProfile_ApiTeamProfile_avatarUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiTeamProfile_ApiTeamProfile_avatarUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiTeamProfile_avatarUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiTeamProfile_avatarUrlMember1able); ok {
-                result.SetApiTeamProfileAvatarUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiTeamProfileAvatarUrlMember1 gets the ApiTeamProfile_avatarUrlMember1 property value. Composed type representation for type ApiTeamProfile_avatarUrlMember1able
-// returns a ApiTeamProfile_avatarUrlMember1able when successful
-func (m *ApiTeamProfile_ApiTeamProfile_avatarUrl) GetApiTeamProfileAvatarUrlMember1()(ApiTeamProfile_avatarUrlMember1able) {
-    return m.apiTeamProfile_avatarUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiTeamProfile_ApiTeamProfile_avatarUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiTeamProfile_ApiTeamProfile_avatarUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiTeamProfile_ApiTeamProfile_avatarUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiTeamProfile_ApiTeamProfile_avatarUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiTeamProfileAvatarUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiTeamProfileAvatarUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiTeamProfileAvatarUrlMember1 sets the ApiTeamProfile_avatarUrlMember1 property value. Composed type representation for type ApiTeamProfile_avatarUrlMember1able
-func (m *ApiTeamProfile_ApiTeamProfile_avatarUrl) SetApiTeamProfileAvatarUrlMember1(value ApiTeamProfile_avatarUrlMember1able)() {
-    m.apiTeamProfile_avatarUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiTeamProfile_ApiTeamProfile_avatarUrl) SetString(value *string)() {
-    m.string = value
-}
-// ApiTeamProfile_ApiTeamProfile_bannerUrl composed type wrapper for classes ApiTeamProfile_bannerUrlMember1able, string
-type ApiTeamProfile_ApiTeamProfile_bannerUrl struct {
-    // Composed type representation for type ApiTeamProfile_bannerUrlMember1able
-    apiTeamProfile_bannerUrlMember1 ApiTeamProfile_bannerUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiTeamProfile_ApiTeamProfile_bannerUrl instantiates a new ApiTeamProfile_ApiTeamProfile_bannerUrl and sets the default values.
-func NewApiTeamProfile_ApiTeamProfile_bannerUrl()(*ApiTeamProfile_ApiTeamProfile_bannerUrl) {
-    m := &ApiTeamProfile_ApiTeamProfile_bannerUrl{
-    }
-    return m
-}
-// CreateApiTeamProfile_ApiTeamProfile_bannerUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiTeamProfile_ApiTeamProfile_bannerUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiTeamProfile_ApiTeamProfile_bannerUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiTeamProfile_bannerUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiTeamProfile_bannerUrlMember1able); ok {
-                result.SetApiTeamProfileBannerUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiTeamProfileBannerUrlMember1 gets the ApiTeamProfile_bannerUrlMember1 property value. Composed type representation for type ApiTeamProfile_bannerUrlMember1able
-// returns a ApiTeamProfile_bannerUrlMember1able when successful
-func (m *ApiTeamProfile_ApiTeamProfile_bannerUrl) GetApiTeamProfileBannerUrlMember1()(ApiTeamProfile_bannerUrlMember1able) {
-    return m.apiTeamProfile_bannerUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiTeamProfile_ApiTeamProfile_bannerUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiTeamProfile_ApiTeamProfile_bannerUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiTeamProfile_ApiTeamProfile_bannerUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiTeamProfile_ApiTeamProfile_bannerUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiTeamProfileBannerUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiTeamProfileBannerUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiTeamProfileBannerUrlMember1 sets the ApiTeamProfile_bannerUrlMember1 property value. Composed type representation for type ApiTeamProfile_bannerUrlMember1able
-func (m *ApiTeamProfile_ApiTeamProfile_bannerUrl) SetApiTeamProfileBannerUrlMember1(value ApiTeamProfile_bannerUrlMember1able)() {
-    m.apiTeamProfile_bannerUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiTeamProfile_ApiTeamProfile_bannerUrl) SetString(value *string)() {
-    m.string = value
 }
 // ApiTeamProfile_ApiTeamProfile_createdAt composed type wrapper for classes ApiTeamProfile_createdAtMember1able, string
 type ApiTeamProfile_ApiTeamProfile_createdAt struct {
@@ -277,445 +123,11 @@ func (m *ApiTeamProfile_ApiTeamProfile_createdAt) SetApiTeamProfileCreatedAtMemb
 func (m *ApiTeamProfile_ApiTeamProfile_createdAt) SetString(value *string)() {
     m.string = value
 }
-// ApiTeamProfile_ApiTeamProfile_description composed type wrapper for classes ApiTeamProfile_descriptionMember1able, string
-type ApiTeamProfile_ApiTeamProfile_description struct {
-    // Composed type representation for type ApiTeamProfile_descriptionMember1able
-    apiTeamProfile_descriptionMember1 ApiTeamProfile_descriptionMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiTeamProfile_ApiTeamProfile_description instantiates a new ApiTeamProfile_ApiTeamProfile_description and sets the default values.
-func NewApiTeamProfile_ApiTeamProfile_description()(*ApiTeamProfile_ApiTeamProfile_description) {
-    m := &ApiTeamProfile_ApiTeamProfile_description{
-    }
-    return m
-}
-// CreateApiTeamProfile_ApiTeamProfile_descriptionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiTeamProfile_ApiTeamProfile_descriptionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiTeamProfile_ApiTeamProfile_description()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiTeamProfile_descriptionMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiTeamProfile_descriptionMember1able); ok {
-                result.SetApiTeamProfileDescriptionMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiTeamProfileDescriptionMember1 gets the ApiTeamProfile_descriptionMember1 property value. Composed type representation for type ApiTeamProfile_descriptionMember1able
-// returns a ApiTeamProfile_descriptionMember1able when successful
-func (m *ApiTeamProfile_ApiTeamProfile_description) GetApiTeamProfileDescriptionMember1()(ApiTeamProfile_descriptionMember1able) {
-    return m.apiTeamProfile_descriptionMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiTeamProfile_ApiTeamProfile_description) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiTeamProfile_ApiTeamProfile_description) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiTeamProfile_ApiTeamProfile_description) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiTeamProfile_ApiTeamProfile_description) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiTeamProfileDescriptionMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiTeamProfileDescriptionMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiTeamProfileDescriptionMember1 sets the ApiTeamProfile_descriptionMember1 property value. Composed type representation for type ApiTeamProfile_descriptionMember1able
-func (m *ApiTeamProfile_ApiTeamProfile_description) SetApiTeamProfileDescriptionMember1(value ApiTeamProfile_descriptionMember1able)() {
-    m.apiTeamProfile_descriptionMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiTeamProfile_ApiTeamProfile_description) SetString(value *string)() {
-    m.string = value
-}
-// ApiTeamProfile_ApiTeamProfile_gameId composed type wrapper for classes ApiTeamProfile_gameIdMember1able, string
-type ApiTeamProfile_ApiTeamProfile_gameId struct {
-    // Composed type representation for type ApiTeamProfile_gameIdMember1able
-    apiTeamProfile_gameIdMember1 ApiTeamProfile_gameIdMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiTeamProfile_ApiTeamProfile_gameId instantiates a new ApiTeamProfile_ApiTeamProfile_gameId and sets the default values.
-func NewApiTeamProfile_ApiTeamProfile_gameId()(*ApiTeamProfile_ApiTeamProfile_gameId) {
-    m := &ApiTeamProfile_ApiTeamProfile_gameId{
-    }
-    return m
-}
-// CreateApiTeamProfile_ApiTeamProfile_gameIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiTeamProfile_ApiTeamProfile_gameIdFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiTeamProfile_ApiTeamProfile_gameId()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiTeamProfile_gameIdMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiTeamProfile_gameIdMember1able); ok {
-                result.SetApiTeamProfileGameIdMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiTeamProfileGameIdMember1 gets the ApiTeamProfile_gameIdMember1 property value. Composed type representation for type ApiTeamProfile_gameIdMember1able
-// returns a ApiTeamProfile_gameIdMember1able when successful
-func (m *ApiTeamProfile_ApiTeamProfile_gameId) GetApiTeamProfileGameIdMember1()(ApiTeamProfile_gameIdMember1able) {
-    return m.apiTeamProfile_gameIdMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiTeamProfile_ApiTeamProfile_gameId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiTeamProfile_ApiTeamProfile_gameId) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiTeamProfile_ApiTeamProfile_gameId) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiTeamProfile_ApiTeamProfile_gameId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiTeamProfileGameIdMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiTeamProfileGameIdMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiTeamProfileGameIdMember1 sets the ApiTeamProfile_gameIdMember1 property value. Composed type representation for type ApiTeamProfile_gameIdMember1able
-func (m *ApiTeamProfile_ApiTeamProfile_gameId) SetApiTeamProfileGameIdMember1(value ApiTeamProfile_gameIdMember1able)() {
-    m.apiTeamProfile_gameIdMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiTeamProfile_ApiTeamProfile_gameId) SetString(value *string)() {
-    m.string = value
-}
-// ApiTeamProfile_ApiTeamProfile_organizationId composed type wrapper for classes ApiTeamProfile_organizationIdMember1able, string
-type ApiTeamProfile_ApiTeamProfile_organizationId struct {
-    // Composed type representation for type ApiTeamProfile_organizationIdMember1able
-    apiTeamProfile_organizationIdMember1 ApiTeamProfile_organizationIdMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiTeamProfile_ApiTeamProfile_organizationId instantiates a new ApiTeamProfile_ApiTeamProfile_organizationId and sets the default values.
-func NewApiTeamProfile_ApiTeamProfile_organizationId()(*ApiTeamProfile_ApiTeamProfile_organizationId) {
-    m := &ApiTeamProfile_ApiTeamProfile_organizationId{
-    }
-    return m
-}
-// CreateApiTeamProfile_ApiTeamProfile_organizationIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiTeamProfile_ApiTeamProfile_organizationIdFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiTeamProfile_ApiTeamProfile_organizationId()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiTeamProfile_organizationIdMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiTeamProfile_organizationIdMember1able); ok {
-                result.SetApiTeamProfileOrganizationIdMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiTeamProfileOrganizationIdMember1 gets the ApiTeamProfile_organizationIdMember1 property value. Composed type representation for type ApiTeamProfile_organizationIdMember1able
-// returns a ApiTeamProfile_organizationIdMember1able when successful
-func (m *ApiTeamProfile_ApiTeamProfile_organizationId) GetApiTeamProfileOrganizationIdMember1()(ApiTeamProfile_organizationIdMember1able) {
-    return m.apiTeamProfile_organizationIdMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiTeamProfile_ApiTeamProfile_organizationId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiTeamProfile_ApiTeamProfile_organizationId) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiTeamProfile_ApiTeamProfile_organizationId) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiTeamProfile_ApiTeamProfile_organizationId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiTeamProfileOrganizationIdMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiTeamProfileOrganizationIdMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiTeamProfileOrganizationIdMember1 sets the ApiTeamProfile_organizationIdMember1 property value. Composed type representation for type ApiTeamProfile_organizationIdMember1able
-func (m *ApiTeamProfile_ApiTeamProfile_organizationId) SetApiTeamProfileOrganizationIdMember1(value ApiTeamProfile_organizationIdMember1able)() {
-    m.apiTeamProfile_organizationIdMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiTeamProfile_ApiTeamProfile_organizationId) SetString(value *string)() {
-    m.string = value
-}
-// ApiTeamProfile_ApiTeamProfile_slug composed type wrapper for classes ApiTeamProfile_slugMember1able, string
-type ApiTeamProfile_ApiTeamProfile_slug struct {
-    // Composed type representation for type ApiTeamProfile_slugMember1able
-    apiTeamProfile_slugMember1 ApiTeamProfile_slugMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiTeamProfile_ApiTeamProfile_slug instantiates a new ApiTeamProfile_ApiTeamProfile_slug and sets the default values.
-func NewApiTeamProfile_ApiTeamProfile_slug()(*ApiTeamProfile_ApiTeamProfile_slug) {
-    m := &ApiTeamProfile_ApiTeamProfile_slug{
-    }
-    return m
-}
-// CreateApiTeamProfile_ApiTeamProfile_slugFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiTeamProfile_ApiTeamProfile_slugFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiTeamProfile_ApiTeamProfile_slug()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiTeamProfile_slugMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiTeamProfile_slugMember1able); ok {
-                result.SetApiTeamProfileSlugMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiTeamProfileSlugMember1 gets the ApiTeamProfile_slugMember1 property value. Composed type representation for type ApiTeamProfile_slugMember1able
-// returns a ApiTeamProfile_slugMember1able when successful
-func (m *ApiTeamProfile_ApiTeamProfile_slug) GetApiTeamProfileSlugMember1()(ApiTeamProfile_slugMember1able) {
-    return m.apiTeamProfile_slugMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiTeamProfile_ApiTeamProfile_slug) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiTeamProfile_ApiTeamProfile_slug) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiTeamProfile_ApiTeamProfile_slug) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiTeamProfile_ApiTeamProfile_slug) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiTeamProfileSlugMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiTeamProfileSlugMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiTeamProfileSlugMember1 sets the ApiTeamProfile_slugMember1 property value. Composed type representation for type ApiTeamProfile_slugMember1able
-func (m *ApiTeamProfile_ApiTeamProfile_slug) SetApiTeamProfileSlugMember1(value ApiTeamProfile_slugMember1able)() {
-    m.apiTeamProfile_slugMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiTeamProfile_ApiTeamProfile_slug) SetString(value *string)() {
-    m.string = value
-}
-// ApiTeamProfile_ApiTeamProfile_tag composed type wrapper for classes ApiTeamProfile_tagMember1able, string
-type ApiTeamProfile_ApiTeamProfile_tag struct {
-    // Composed type representation for type ApiTeamProfile_tagMember1able
-    apiTeamProfile_tagMember1 ApiTeamProfile_tagMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiTeamProfile_ApiTeamProfile_tag instantiates a new ApiTeamProfile_ApiTeamProfile_tag and sets the default values.
-func NewApiTeamProfile_ApiTeamProfile_tag()(*ApiTeamProfile_ApiTeamProfile_tag) {
-    m := &ApiTeamProfile_ApiTeamProfile_tag{
-    }
-    return m
-}
-// CreateApiTeamProfile_ApiTeamProfile_tagFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiTeamProfile_ApiTeamProfile_tagFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiTeamProfile_ApiTeamProfile_tag()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiTeamProfile_tagMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiTeamProfile_tagMember1able); ok {
-                result.SetApiTeamProfileTagMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiTeamProfileTagMember1 gets the ApiTeamProfile_tagMember1 property value. Composed type representation for type ApiTeamProfile_tagMember1able
-// returns a ApiTeamProfile_tagMember1able when successful
-func (m *ApiTeamProfile_ApiTeamProfile_tag) GetApiTeamProfileTagMember1()(ApiTeamProfile_tagMember1able) {
-    return m.apiTeamProfile_tagMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiTeamProfile_ApiTeamProfile_tag) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiTeamProfile_ApiTeamProfile_tag) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiTeamProfile_ApiTeamProfile_tag) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiTeamProfile_ApiTeamProfile_tag) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiTeamProfileTagMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiTeamProfileTagMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiTeamProfileTagMember1 sets the ApiTeamProfile_tagMember1 property value. Composed type representation for type ApiTeamProfile_tagMember1able
-func (m *ApiTeamProfile_ApiTeamProfile_tag) SetApiTeamProfileTagMember1(value ApiTeamProfile_tagMember1able)() {
-    m.apiTeamProfile_tagMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiTeamProfile_ApiTeamProfile_tag) SetString(value *string)() {
-    m.string = value
-}
-type ApiTeamProfile_ApiTeamProfile_avatarUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiTeamProfileAvatarUrlMember1()(ApiTeamProfile_avatarUrlMember1able)
-    GetString()(*string)
-    SetApiTeamProfileAvatarUrlMember1(value ApiTeamProfile_avatarUrlMember1able)()
-    SetString(value *string)()
-}
-type ApiTeamProfile_ApiTeamProfile_bannerUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiTeamProfileBannerUrlMember1()(ApiTeamProfile_bannerUrlMember1able)
-    GetString()(*string)
-    SetApiTeamProfileBannerUrlMember1(value ApiTeamProfile_bannerUrlMember1able)()
-    SetString(value *string)()
-}
 type ApiTeamProfile_ApiTeamProfile_createdAtable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetApiTeamProfileCreatedAtMember1()(ApiTeamProfile_createdAtMember1able)
     GetString()(*string)
     SetApiTeamProfileCreatedAtMember1(value ApiTeamProfile_createdAtMember1able)()
-    SetString(value *string)()
-}
-type ApiTeamProfile_ApiTeamProfile_descriptionable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiTeamProfileDescriptionMember1()(ApiTeamProfile_descriptionMember1able)
-    GetString()(*string)
-    SetApiTeamProfileDescriptionMember1(value ApiTeamProfile_descriptionMember1able)()
-    SetString(value *string)()
-}
-type ApiTeamProfile_ApiTeamProfile_gameIdable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiTeamProfileGameIdMember1()(ApiTeamProfile_gameIdMember1able)
-    GetString()(*string)
-    SetApiTeamProfileGameIdMember1(value ApiTeamProfile_gameIdMember1able)()
-    SetString(value *string)()
-}
-type ApiTeamProfile_ApiTeamProfile_organizationIdable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiTeamProfileOrganizationIdMember1()(ApiTeamProfile_organizationIdMember1able)
-    GetString()(*string)
-    SetApiTeamProfileOrganizationIdMember1(value ApiTeamProfile_organizationIdMember1able)()
-    SetString(value *string)()
-}
-type ApiTeamProfile_ApiTeamProfile_slugable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiTeamProfileSlugMember1()(ApiTeamProfile_slugMember1able)
-    GetString()(*string)
-    SetApiTeamProfileSlugMember1(value ApiTeamProfile_slugMember1able)()
-    SetString(value *string)()
-}
-type ApiTeamProfile_ApiTeamProfile_tagable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiTeamProfileTagMember1()(ApiTeamProfile_tagMember1able)
-    GetString()(*string)
-    SetApiTeamProfileTagMember1(value ApiTeamProfile_tagMember1able)()
     SetString(value *string)()
 }
 // NewApiTeamProfile instantiates a new ApiTeamProfile and sets the default values.
@@ -730,13 +142,13 @@ func CreateApiTeamProfileFromDiscriminatorValue(parseNode i878a80d2330e89d268963
     return NewApiTeamProfile(), nil
 }
 // GetAvatarUrl gets the avatarUrl property value. The avatarUrl property
-// returns a ApiTeamProfile_ApiTeamProfile_avatarUrlable when successful
-func (m *ApiTeamProfile) GetAvatarUrl()(ApiTeamProfile_ApiTeamProfile_avatarUrlable) {
+// returns a *string when successful
+func (m *ApiTeamProfile) GetAvatarUrl()(*string) {
     return m.avatarUrl
 }
 // GetBannerUrl gets the bannerUrl property value. The bannerUrl property
-// returns a ApiTeamProfile_ApiTeamProfile_bannerUrlable when successful
-func (m *ApiTeamProfile) GetBannerUrl()(ApiTeamProfile_ApiTeamProfile_bannerUrlable) {
+// returns a *string when successful
+func (m *ApiTeamProfile) GetBannerUrl()(*string) {
     return m.bannerUrl
 }
 // GetCreatedAt gets the createdAt property value. The createdAt property
@@ -745,8 +157,8 @@ func (m *ApiTeamProfile) GetCreatedAt()(ApiTeamProfile_ApiTeamProfile_createdAta
     return m.createdAt
 }
 // GetDescription gets the description property value. The description property
-// returns a ApiTeamProfile_ApiTeamProfile_descriptionable when successful
-func (m *ApiTeamProfile) GetDescription()(ApiTeamProfile_ApiTeamProfile_descriptionable) {
+// returns a *string when successful
+func (m *ApiTeamProfile) GetDescription()(*string) {
     return m.description
 }
 // GetDraws gets the draws property value. The draws property
@@ -764,22 +176,22 @@ func (m *ApiTeamProfile) GetExperience()(*float64) {
 func (m *ApiTeamProfile) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["avatarUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiTeamProfile_ApiTeamProfile_avatarUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetAvatarUrl(val.(ApiTeamProfile_ApiTeamProfile_avatarUrlable))
+            m.SetAvatarUrl(val)
         }
         return nil
     }
     res["bannerUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiTeamProfile_ApiTeamProfile_bannerUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetBannerUrl(val.(ApiTeamProfile_ApiTeamProfile_bannerUrlable))
+            m.SetBannerUrl(val)
         }
         return nil
     }
@@ -794,12 +206,12 @@ func (m *ApiTeamProfile) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiTeamProfile_ApiTeamProfile_descriptionFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDescription(val.(ApiTeamProfile_ApiTeamProfile_descriptionable))
+            m.SetDescription(val)
         }
         return nil
     }
@@ -824,12 +236,12 @@ func (m *ApiTeamProfile) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["gameId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiTeamProfile_ApiTeamProfile_gameIdFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetGameId(val.(ApiTeamProfile_ApiTeamProfile_gameIdable))
+            m.SetGameId(val)
         }
         return nil
     }
@@ -894,32 +306,32 @@ func (m *ApiTeamProfile) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["organizationId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiTeamProfile_ApiTeamProfile_organizationIdFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetOrganizationId(val.(ApiTeamProfile_ApiTeamProfile_organizationIdable))
+            m.SetOrganizationId(val)
         }
         return nil
     }
     res["slug"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiTeamProfile_ApiTeamProfile_slugFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSlug(val.(ApiTeamProfile_ApiTeamProfile_slugable))
+            m.SetSlug(val)
         }
         return nil
     }
     res["tag"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiTeamProfile_ApiTeamProfile_tagFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetTag(val.(ApiTeamProfile_ApiTeamProfile_tagable))
+            m.SetTag(val)
         }
         return nil
     }
@@ -946,8 +358,8 @@ func (m *ApiTeamProfile) GetFieldDeserializers()(map[string]func(i878a80d2330e89
     return res
 }
 // GetGameId gets the gameId property value. The gameId property
-// returns a ApiTeamProfile_ApiTeamProfile_gameIdable when successful
-func (m *ApiTeamProfile) GetGameId()(ApiTeamProfile_ApiTeamProfile_gameIdable) {
+// returns a *string when successful
+func (m *ApiTeamProfile) GetGameId()(*string) {
     return m.gameId
 }
 // GetId gets the id property value. Team ID.
@@ -981,18 +393,18 @@ func (m *ApiTeamProfile) GetName()(*string) {
     return m.name
 }
 // GetOrganizationId gets the organizationId property value. The organizationId property
-// returns a ApiTeamProfile_ApiTeamProfile_organizationIdable when successful
-func (m *ApiTeamProfile) GetOrganizationId()(ApiTeamProfile_ApiTeamProfile_organizationIdable) {
+// returns a *string when successful
+func (m *ApiTeamProfile) GetOrganizationId()(*string) {
     return m.organizationId
 }
 // GetSlug gets the slug property value. The slug property
-// returns a ApiTeamProfile_ApiTeamProfile_slugable when successful
-func (m *ApiTeamProfile) GetSlug()(ApiTeamProfile_ApiTeamProfile_slugable) {
+// returns a *string when successful
+func (m *ApiTeamProfile) GetSlug()(*string) {
     return m.slug
 }
 // GetTag gets the tag property value. The tag property
-// returns a ApiTeamProfile_ApiTeamProfile_tagable when successful
-func (m *ApiTeamProfile) GetTag()(ApiTeamProfile_ApiTeamProfile_tagable) {
+// returns a *string when successful
+func (m *ApiTeamProfile) GetTag()(*string) {
     return m.tag
 }
 // GetVisibility gets the visibility property value. Public profile visibility setting.
@@ -1008,13 +420,13 @@ func (m *ApiTeamProfile) GetWins()(*int32) {
 // Serialize serializes information the current object
 func (m *ApiTeamProfile) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("avatarUrl", m.GetAvatarUrl())
+        err := writer.WriteStringValue("avatarUrl", m.GetAvatarUrl())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("bannerUrl", m.GetBannerUrl())
+        err := writer.WriteStringValue("bannerUrl", m.GetBannerUrl())
         if err != nil {
             return err
         }
@@ -1026,7 +438,7 @@ func (m *ApiTeamProfile) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteObjectValue("description", m.GetDescription())
+        err := writer.WriteStringValue("description", m.GetDescription())
         if err != nil {
             return err
         }
@@ -1044,7 +456,7 @@ func (m *ApiTeamProfile) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteObjectValue("gameId", m.GetGameId())
+        err := writer.WriteStringValue("gameId", m.GetGameId())
         if err != nil {
             return err
         }
@@ -1086,19 +498,19 @@ func (m *ApiTeamProfile) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteObjectValue("organizationId", m.GetOrganizationId())
+        err := writer.WriteStringValue("organizationId", m.GetOrganizationId())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("slug", m.GetSlug())
+        err := writer.WriteStringValue("slug", m.GetSlug())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("tag", m.GetTag())
+        err := writer.WriteStringValue("tag", m.GetTag())
         if err != nil {
             return err
         }
@@ -1119,11 +531,11 @@ func (m *ApiTeamProfile) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     return nil
 }
 // SetAvatarUrl sets the avatarUrl property value. The avatarUrl property
-func (m *ApiTeamProfile) SetAvatarUrl(value ApiTeamProfile_ApiTeamProfile_avatarUrlable)() {
+func (m *ApiTeamProfile) SetAvatarUrl(value *string)() {
     m.avatarUrl = value
 }
 // SetBannerUrl sets the bannerUrl property value. The bannerUrl property
-func (m *ApiTeamProfile) SetBannerUrl(value ApiTeamProfile_ApiTeamProfile_bannerUrlable)() {
+func (m *ApiTeamProfile) SetBannerUrl(value *string)() {
     m.bannerUrl = value
 }
 // SetCreatedAt sets the createdAt property value. The createdAt property
@@ -1131,7 +543,7 @@ func (m *ApiTeamProfile) SetCreatedAt(value ApiTeamProfile_ApiTeamProfile_create
     m.createdAt = value
 }
 // SetDescription sets the description property value. The description property
-func (m *ApiTeamProfile) SetDescription(value ApiTeamProfile_ApiTeamProfile_descriptionable)() {
+func (m *ApiTeamProfile) SetDescription(value *string)() {
     m.description = value
 }
 // SetDraws sets the draws property value. The draws property
@@ -1143,7 +555,7 @@ func (m *ApiTeamProfile) SetExperience(value *float64)() {
     m.experience = value
 }
 // SetGameId sets the gameId property value. The gameId property
-func (m *ApiTeamProfile) SetGameId(value ApiTeamProfile_ApiTeamProfile_gameIdable)() {
+func (m *ApiTeamProfile) SetGameId(value *string)() {
     m.gameId = value
 }
 // SetId sets the id property value. Team ID.
@@ -1171,15 +583,15 @@ func (m *ApiTeamProfile) SetName(value *string)() {
     m.name = value
 }
 // SetOrganizationId sets the organizationId property value. The organizationId property
-func (m *ApiTeamProfile) SetOrganizationId(value ApiTeamProfile_ApiTeamProfile_organizationIdable)() {
+func (m *ApiTeamProfile) SetOrganizationId(value *string)() {
     m.organizationId = value
 }
 // SetSlug sets the slug property value. The slug property
-func (m *ApiTeamProfile) SetSlug(value ApiTeamProfile_ApiTeamProfile_slugable)() {
+func (m *ApiTeamProfile) SetSlug(value *string)() {
     m.slug = value
 }
 // SetTag sets the tag property value. The tag property
-func (m *ApiTeamProfile) SetTag(value ApiTeamProfile_ApiTeamProfile_tagable)() {
+func (m *ApiTeamProfile) SetTag(value *string)() {
     m.tag = value
 }
 // SetVisibility sets the visibility property value. Public profile visibility setting.
@@ -1192,40 +604,40 @@ func (m *ApiTeamProfile) SetWins(value *int32)() {
 }
 type ApiTeamProfileable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAvatarUrl()(ApiTeamProfile_ApiTeamProfile_avatarUrlable)
-    GetBannerUrl()(ApiTeamProfile_ApiTeamProfile_bannerUrlable)
+    GetAvatarUrl()(*string)
+    GetBannerUrl()(*string)
     GetCreatedAt()(ApiTeamProfile_ApiTeamProfile_createdAtable)
-    GetDescription()(ApiTeamProfile_ApiTeamProfile_descriptionable)
+    GetDescription()(*string)
     GetDraws()(*int32)
     GetExperience()(*float64)
-    GetGameId()(ApiTeamProfile_ApiTeamProfile_gameIdable)
+    GetGameId()(*string)
     GetId()(*string)
     GetIsMember()(*bool)
     GetLosses()(*int32)
     GetMatchesPlayed()(*int32)
     GetMemberCount()(*int32)
     GetName()(*string)
-    GetOrganizationId()(ApiTeamProfile_ApiTeamProfile_organizationIdable)
-    GetSlug()(ApiTeamProfile_ApiTeamProfile_slugable)
-    GetTag()(ApiTeamProfile_ApiTeamProfile_tagable)
+    GetOrganizationId()(*string)
+    GetSlug()(*string)
+    GetTag()(*string)
     GetVisibility()(*ProfileVisibility)
     GetWins()(*int32)
-    SetAvatarUrl(value ApiTeamProfile_ApiTeamProfile_avatarUrlable)()
-    SetBannerUrl(value ApiTeamProfile_ApiTeamProfile_bannerUrlable)()
+    SetAvatarUrl(value *string)()
+    SetBannerUrl(value *string)()
     SetCreatedAt(value ApiTeamProfile_ApiTeamProfile_createdAtable)()
-    SetDescription(value ApiTeamProfile_ApiTeamProfile_descriptionable)()
+    SetDescription(value *string)()
     SetDraws(value *int32)()
     SetExperience(value *float64)()
-    SetGameId(value ApiTeamProfile_ApiTeamProfile_gameIdable)()
+    SetGameId(value *string)()
     SetId(value *string)()
     SetIsMember(value *bool)()
     SetLosses(value *int32)()
     SetMatchesPlayed(value *int32)()
     SetMemberCount(value *int32)()
     SetName(value *string)()
-    SetOrganizationId(value ApiTeamProfile_ApiTeamProfile_organizationIdable)()
-    SetSlug(value ApiTeamProfile_ApiTeamProfile_slugable)()
-    SetTag(value ApiTeamProfile_ApiTeamProfile_tagable)()
+    SetOrganizationId(value *string)()
+    SetSlug(value *string)()
+    SetTag(value *string)()
     SetVisibility(value *ProfileVisibility)()
     SetWins(value *int32)()
 }

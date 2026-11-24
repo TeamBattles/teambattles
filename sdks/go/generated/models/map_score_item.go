@@ -12,7 +12,7 @@ type MapScoreItem struct {
     // The confirmedBy property
     confirmedBy ScoreConfirmerable
     // Creation time (ISO 8601).
-    createdAt MapScoreItem_MapScoreItem_createdAtable
+    createdAt *string
     // The creatorTeamScore property
     creatorTeamScore *int32
     // The mapId property
@@ -27,90 +27,6 @@ type MapScoreItem struct {
     screenshotUrls []string
     // The submittedBy property
     submittedBy ScoreSubmitterable
-}
-// MapScoreItem_MapScoreItem_createdAt composed type wrapper for classes MapScoreItem_createdAtMember1able, string
-type MapScoreItem_MapScoreItem_createdAt struct {
-    // Composed type representation for type MapScoreItem_createdAtMember1able
-    mapScoreItem_createdAtMember1 MapScoreItem_createdAtMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewMapScoreItem_MapScoreItem_createdAt instantiates a new MapScoreItem_MapScoreItem_createdAt and sets the default values.
-func NewMapScoreItem_MapScoreItem_createdAt()(*MapScoreItem_MapScoreItem_createdAt) {
-    m := &MapScoreItem_MapScoreItem_createdAt{
-    }
-    return m
-}
-// CreateMapScoreItem_MapScoreItem_createdAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateMapScoreItem_MapScoreItem_createdAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewMapScoreItem_MapScoreItem_createdAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateMapScoreItem_createdAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(MapScoreItem_createdAtMember1able); ok {
-                result.SetMapScoreItemCreatedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *MapScoreItem_MapScoreItem_createdAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *MapScoreItem_MapScoreItem_createdAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetMapScoreItemCreatedAtMember1 gets the MapScoreItem_createdAtMember1 property value. Composed type representation for type MapScoreItem_createdAtMember1able
-// returns a MapScoreItem_createdAtMember1able when successful
-func (m *MapScoreItem_MapScoreItem_createdAt) GetMapScoreItemCreatedAtMember1()(MapScoreItem_createdAtMember1able) {
-    return m.mapScoreItem_createdAtMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *MapScoreItem_MapScoreItem_createdAt) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *MapScoreItem_MapScoreItem_createdAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetMapScoreItemCreatedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetMapScoreItemCreatedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetMapScoreItemCreatedAtMember1 sets the MapScoreItem_createdAtMember1 property value. Composed type representation for type MapScoreItem_createdAtMember1able
-func (m *MapScoreItem_MapScoreItem_createdAt) SetMapScoreItemCreatedAtMember1(value MapScoreItem_createdAtMember1able)() {
-    m.mapScoreItem_createdAtMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *MapScoreItem_MapScoreItem_createdAt) SetString(value *string)() {
-    m.string = value
-}
-type MapScoreItem_MapScoreItem_createdAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetMapScoreItemCreatedAtMember1()(MapScoreItem_createdAtMember1able)
-    GetString()(*string)
-    SetMapScoreItemCreatedAtMember1(value MapScoreItem_createdAtMember1able)()
-    SetString(value *string)()
 }
 // NewMapScoreItem instantiates a new MapScoreItem and sets the default values.
 func NewMapScoreItem()(*MapScoreItem) {
@@ -129,8 +45,8 @@ func (m *MapScoreItem) GetConfirmedBy()(ScoreConfirmerable) {
     return m.confirmedBy
 }
 // GetCreatedAt gets the createdAt property value. Creation time (ISO 8601).
-// returns a MapScoreItem_MapScoreItem_createdAtable when successful
-func (m *MapScoreItem) GetCreatedAt()(MapScoreItem_MapScoreItem_createdAtable) {
+// returns a *string when successful
+func (m *MapScoreItem) GetCreatedAt()(*string) {
     return m.createdAt
 }
 // GetCreatorTeamScore gets the creatorTeamScore property value. The creatorTeamScore property
@@ -153,12 +69,12 @@ func (m *MapScoreItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         return nil
     }
     res["createdAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateMapScoreItem_MapScoreItem_createdAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCreatedAt(val.(MapScoreItem_MapScoreItem_createdAtable))
+            m.SetCreatedAt(val)
         }
         return nil
     }
@@ -279,7 +195,7 @@ func (m *MapScoreItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
         }
     }
     {
-        err := writer.WriteObjectValue("createdAt", m.GetCreatedAt())
+        err := writer.WriteStringValue("createdAt", m.GetCreatedAt())
         if err != nil {
             return err
         }
@@ -333,7 +249,7 @@ func (m *MapScoreItem) SetConfirmedBy(value ScoreConfirmerable)() {
     m.confirmedBy = value
 }
 // SetCreatedAt sets the createdAt property value. Creation time (ISO 8601).
-func (m *MapScoreItem) SetCreatedAt(value MapScoreItem_MapScoreItem_createdAtable)() {
+func (m *MapScoreItem) SetCreatedAt(value *string)() {
     m.createdAt = value
 }
 // SetCreatorTeamScore sets the creatorTeamScore property value. The creatorTeamScore property
@@ -367,7 +283,7 @@ func (m *MapScoreItem) SetSubmittedBy(value ScoreSubmitterable)() {
 type MapScoreItemable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetConfirmedBy()(ScoreConfirmerable)
-    GetCreatedAt()(MapScoreItem_MapScoreItem_createdAtable)
+    GetCreatedAt()(*string)
     GetCreatorTeamScore()(*int32)
     GetMapId()(*string)
     GetMapIndex()(*int32)
@@ -376,7 +292,7 @@ type MapScoreItemable interface {
     GetScreenshotUrls()([]string)
     GetSubmittedBy()(ScoreSubmitterable)
     SetConfirmedBy(value ScoreConfirmerable)()
-    SetCreatedAt(value MapScoreItem_MapScoreItem_createdAtable)()
+    SetCreatedAt(value *string)()
     SetCreatorTeamScore(value *int32)()
     SetMapId(value *string)()
     SetMapIndex(value *int32)()

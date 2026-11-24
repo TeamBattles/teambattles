@@ -4,10 +4,6 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .api_game_playlist_description_key import ApiGamePlaylist_descriptionKey
-    from .api_game_playlist_image import ApiGamePlaylist_image
-
 @dataclass
 class ApiGamePlaylist(Parsable):
     """
@@ -16,11 +12,11 @@ class ApiGamePlaylist(Parsable):
     # The allowedGameModeIds property
     allowed_game_mode_ids: Optional[list[str]] = None
     # The descriptionKey property
-    description_key: Optional[ApiGamePlaylist_descriptionKey] = None
+    description_key: Optional[str] = None
     # The id property
     id: Optional[str] = None
     # The image property
-    image: Optional[ApiGamePlaylist_image] = None
+    image: Optional[str] = None
     # The nameKey property
     name_key: Optional[str] = None
     
@@ -40,17 +36,11 @@ class ApiGamePlaylist(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .api_game_playlist_description_key import ApiGamePlaylist_descriptionKey
-        from .api_game_playlist_image import ApiGamePlaylist_image
-
-        from .api_game_playlist_description_key import ApiGamePlaylist_descriptionKey
-        from .api_game_playlist_image import ApiGamePlaylist_image
-
         fields: dict[str, Callable[[Any], None]] = {
             "allowedGameModeIds": lambda n : setattr(self, 'allowed_game_mode_ids', n.get_collection_of_primitive_values(str)),
-            "descriptionKey": lambda n : setattr(self, 'description_key', n.get_object_value(ApiGamePlaylist_descriptionKey)),
+            "descriptionKey": lambda n : setattr(self, 'description_key', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "image": lambda n : setattr(self, 'image', n.get_object_value(ApiGamePlaylist_image)),
+            "image": lambda n : setattr(self, 'image', n.get_str_value()),
             "nameKey": lambda n : setattr(self, 'name_key', n.get_str_value()),
         }
         return fields
@@ -64,9 +54,9 @@ class ApiGamePlaylist(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("allowedGameModeIds", self.allowed_game_mode_ids)
-        writer.write_object_value("descriptionKey", self.description_key)
+        writer.write_str_value("descriptionKey", self.description_key)
         writer.write_str_value("id", self.id)
-        writer.write_object_value("image", self.image)
+        writer.write_str_value("image", self.image)
         writer.write_str_value("nameKey", self.name_key)
     
 

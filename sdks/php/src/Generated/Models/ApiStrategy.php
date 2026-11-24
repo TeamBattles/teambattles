@@ -17,9 +17,9 @@ class ApiStrategy implements Parsable
     private ?ApiStrategy_createdAt $createdAt = null;
     
     /**
-     * @var ApiStrategy_description|null $description Author description, when set.
+     * @var string|null $description Author description, when set.
     */
-    private ?ApiStrategy_description $description = null;
+    private ?string $description = null;
     
     /**
      * @var string|null $game Game slug the strategy targets.
@@ -57,9 +57,9 @@ class ApiStrategy implements Parsable
     private ?bool $playbackLoop = null;
     
     /**
-     * @var ApiStrategy_previewUrl|null $previewUrl Freshly signed preview image URL, when a preview has been rendered.
+     * @var string|null $previewUrl Freshly signed preview image URL, when a preview has been rendered.
     */
-    private ?ApiStrategy_previewUrl $previewUrl = null;
+    private ?string $previewUrl = null;
     
     /**
      * @var string|null $shareSlug Public share slug.
@@ -105,9 +105,9 @@ class ApiStrategy implements Parsable
 
     /**
      * Gets the description property value. Author description, when set.
-     * @return ApiStrategy_description|null
+     * @return string|null
     */
-    public function getDescription(): ?ApiStrategy_description {
+    public function getDescription(): ?string {
         return $this->description;
     }
 
@@ -119,7 +119,7 @@ class ApiStrategy implements Parsable
         $o = $this;
         return  [
             'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([ApiStrategy_createdAt::class, 'createFromDiscriminatorValue'])),
-            'description' => fn(ParseNode $n) => $o->setDescription($n->getObjectValue([ApiStrategy_description::class, 'createFromDiscriminatorValue'])),
+            'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
             'game' => fn(ParseNode $n) => $o->setGame($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'mapId' => fn(ParseNode $n) => $o->setMapId($n->getStringValue()),
@@ -127,7 +127,7 @@ class ApiStrategy implements Parsable
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'ownerId' => fn(ParseNode $n) => $o->setOwnerId($n->getStringValue()),
             'playbackLoop' => fn(ParseNode $n) => $o->setPlaybackLoop($n->getBooleanValue()),
-            'previewUrl' => fn(ParseNode $n) => $o->setPreviewUrl($n->getObjectValue([ApiStrategy_previewUrl::class, 'createFromDiscriminatorValue'])),
+            'previewUrl' => fn(ParseNode $n) => $o->setPreviewUrl($n->getStringValue()),
             'shareSlug' => fn(ParseNode $n) => $o->setShareSlug($n->getStringValue()),
             'stageCount' => fn(ParseNode $n) => $o->setStageCount($n->getIntegerValue()),
             'stages' => fn(ParseNode $n) => $o->setStages($n->getCollectionOfObjectValues([ApiStrategyStage::class, 'createFromDiscriminatorValue'])),
@@ -194,9 +194,9 @@ class ApiStrategy implements Parsable
 
     /**
      * Gets the previewUrl property value. Freshly signed preview image URL, when a preview has been rendered.
-     * @return ApiStrategy_previewUrl|null
+     * @return string|null
     */
-    public function getPreviewUrl(): ?ApiStrategy_previewUrl {
+    public function getPreviewUrl(): ?string {
         return $this->previewUrl;
     }
 
@@ -246,7 +246,7 @@ class ApiStrategy implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('createdAt', $this->getCreatedAt());
-        $writer->writeObjectValue('description', $this->getDescription());
+        $writer->writeStringValue('description', $this->getDescription());
         $writer->writeStringValue('game', $this->getGame());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('mapId', $this->getMapId());
@@ -254,7 +254,7 @@ class ApiStrategy implements Parsable
         $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('ownerId', $this->getOwnerId());
         $writer->writeBooleanValue('playbackLoop', $this->getPlaybackLoop());
-        $writer->writeObjectValue('previewUrl', $this->getPreviewUrl());
+        $writer->writeStringValue('previewUrl', $this->getPreviewUrl());
         $writer->writeStringValue('shareSlug', $this->getShareSlug());
         $writer->writeIntegerValue('stageCount', $this->getStageCount());
         $writer->writeCollectionOfObjectValues('stages', $this->getStages());
@@ -272,9 +272,9 @@ class ApiStrategy implements Parsable
 
     /**
      * Sets the description property value. Author description, when set.
-     * @param ApiStrategy_description|null $value Value to set for the description property.
+     * @param string|null $value Value to set for the description property.
     */
-    public function setDescription(?ApiStrategy_description $value): void {
+    public function setDescription(?string $value): void {
         $this->description = $value;
     }
 
@@ -336,9 +336,9 @@ class ApiStrategy implements Parsable
 
     /**
      * Sets the previewUrl property value. Freshly signed preview image URL, when a preview has been rendered.
-     * @param ApiStrategy_previewUrl|null $value Value to set for the previewUrl property.
+     * @param string|null $value Value to set for the previewUrl property.
     */
-    public function setPreviewUrl(?ApiStrategy_previewUrl $value): void {
+    public function setPreviewUrl(?string $value): void {
         $this->previewUrl = $value;
     }
 

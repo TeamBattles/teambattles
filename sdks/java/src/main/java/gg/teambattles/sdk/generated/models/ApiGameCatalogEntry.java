@@ -1,9 +1,7 @@
 package gg.teambattles.sdk.generated.models;
 
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +14,7 @@ public class ApiGameCatalogEntry implements Parsable {
     /**
      * The bannerImage property
      */
-    private ApiGameCatalogEntryBannerImage bannerImage;
+    private String bannerImage;
     /**
      * The category property
      */
@@ -24,11 +22,11 @@ public class ApiGameCatalogEntry implements Parsable {
     /**
      * Active Convex games-table ID, when available for match APIs.
      */
-    private ApiGameCatalogEntryConvexId convexId;
+    private String convexId;
     /**
      * The coverImage property
      */
-    private ApiGameCatalogEntryCoverImage coverImage;
+    private String coverImage;
     /**
      * The defaultTeamSize property
      */
@@ -36,7 +34,7 @@ public class ApiGameCatalogEntry implements Parsable {
     /**
      * The descriptionKey property
      */
-    private ApiGameCatalogEntryDescriptionKey descriptionKey;
+    private String descriptionKey;
     /**
      * The hasCompetitiveMode property
      */
@@ -76,11 +74,11 @@ public class ApiGameCatalogEntry implements Parsable {
     /**
      * The rulesLink property
      */
-    private ApiGameCatalogEntryRulesLink rulesLink;
+    private String rulesLink;
     /**
      * The shortNameKey property
      */
-    private ApiGameCatalogEntryShortNameKey shortNameKey;
+    private String shortNameKey;
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param parseNode The parse node to use to read the discriminator value and create the object
@@ -93,10 +91,10 @@ public class ApiGameCatalogEntry implements Parsable {
     }
     /**
      * Gets the bannerImage property value. The bannerImage property
-     * @return a {@link ApiGameCatalogEntryBannerImage}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiGameCatalogEntryBannerImage getBannerImage() {
+    public String getBannerImage() {
         return this.bannerImage;
     }
     /**
@@ -109,18 +107,18 @@ public class ApiGameCatalogEntry implements Parsable {
     }
     /**
      * Gets the convexId property value. Active Convex games-table ID, when available for match APIs.
-     * @return a {@link ApiGameCatalogEntryConvexId}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiGameCatalogEntryConvexId getConvexId() {
+    public String getConvexId() {
         return this.convexId;
     }
     /**
      * Gets the coverImage property value. The coverImage property
-     * @return a {@link ApiGameCatalogEntryCoverImage}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiGameCatalogEntryCoverImage getCoverImage() {
+    public String getCoverImage() {
         return this.coverImage;
     }
     /**
@@ -133,10 +131,10 @@ public class ApiGameCatalogEntry implements Parsable {
     }
     /**
      * Gets the descriptionKey property value. The descriptionKey property
-     * @return a {@link ApiGameCatalogEntryDescriptionKey}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiGameCatalogEntryDescriptionKey getDescriptionKey() {
+    public String getDescriptionKey() {
         return this.descriptionKey;
     }
     /**
@@ -146,12 +144,12 @@ public class ApiGameCatalogEntry implements Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(17);
-        deserializerMap.put("bannerImage", (n) -> { this.setBannerImage(n.getObjectValue(ApiGameCatalogEntryBannerImage::createFromDiscriminatorValue)); });
+        deserializerMap.put("bannerImage", (n) -> { this.setBannerImage(n.getStringValue()); });
         deserializerMap.put("category", (n) -> { this.setCategory(n.getStringValue()); });
-        deserializerMap.put("convexId", (n) -> { this.setConvexId(n.getObjectValue(ApiGameCatalogEntryConvexId::createFromDiscriminatorValue)); });
-        deserializerMap.put("coverImage", (n) -> { this.setCoverImage(n.getObjectValue(ApiGameCatalogEntryCoverImage::createFromDiscriminatorValue)); });
+        deserializerMap.put("convexId", (n) -> { this.setConvexId(n.getStringValue()); });
+        deserializerMap.put("coverImage", (n) -> { this.setCoverImage(n.getStringValue()); });
         deserializerMap.put("defaultTeamSize", (n) -> { this.setDefaultTeamSize(n.getIntegerValue()); });
-        deserializerMap.put("descriptionKey", (n) -> { this.setDescriptionKey(n.getObjectValue(ApiGameCatalogEntryDescriptionKey::createFromDiscriminatorValue)); });
+        deserializerMap.put("descriptionKey", (n) -> { this.setDescriptionKey(n.getStringValue()); });
         deserializerMap.put("hasCompetitiveMode", (n) -> { this.setHasCompetitiveMode(n.getBooleanValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
         deserializerMap.put("isAvailableForMatchApi", (n) -> { this.setIsAvailableForMatchApi(n.getBooleanValue()); });
@@ -161,8 +159,8 @@ public class ApiGameCatalogEntry implements Parsable {
         deserializerMap.put("modes", (n) -> { this.setModes(n.getCollectionOfObjectValues(ApiGameMode::createFromDiscriminatorValue)); });
         deserializerMap.put("nameKey", (n) -> { this.setNameKey(n.getStringValue()); });
         deserializerMap.put("playlists", (n) -> { this.setPlaylists(n.getCollectionOfObjectValues(ApiGamePlaylist::createFromDiscriminatorValue)); });
-        deserializerMap.put("rulesLink", (n) -> { this.setRulesLink(n.getObjectValue(ApiGameCatalogEntryRulesLink::createFromDiscriminatorValue)); });
-        deserializerMap.put("shortNameKey", (n) -> { this.setShortNameKey(n.getObjectValue(ApiGameCatalogEntryShortNameKey::createFromDiscriminatorValue)); });
+        deserializerMap.put("rulesLink", (n) -> { this.setRulesLink(n.getStringValue()); });
+        deserializerMap.put("shortNameKey", (n) -> { this.setShortNameKey(n.getStringValue()); });
         return deserializerMap;
     }
     /**
@@ -239,18 +237,18 @@ public class ApiGameCatalogEntry implements Parsable {
     }
     /**
      * Gets the rulesLink property value. The rulesLink property
-     * @return a {@link ApiGameCatalogEntryRulesLink}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiGameCatalogEntryRulesLink getRulesLink() {
+    public String getRulesLink() {
         return this.rulesLink;
     }
     /**
      * Gets the shortNameKey property value. The shortNameKey property
-     * @return a {@link ApiGameCatalogEntryShortNameKey}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiGameCatalogEntryShortNameKey getShortNameKey() {
+    public String getShortNameKey() {
         return this.shortNameKey;
     }
     /**
@@ -259,12 +257,12 @@ public class ApiGameCatalogEntry implements Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeObjectValue("bannerImage", this.getBannerImage());
+        writer.writeStringValue("bannerImage", this.getBannerImage());
         writer.writeStringValue("category", this.getCategory());
-        writer.writeObjectValue("convexId", this.getConvexId());
-        writer.writeObjectValue("coverImage", this.getCoverImage());
+        writer.writeStringValue("convexId", this.getConvexId());
+        writer.writeStringValue("coverImage", this.getCoverImage());
         writer.writeIntegerValue("defaultTeamSize", this.getDefaultTeamSize());
-        writer.writeObjectValue("descriptionKey", this.getDescriptionKey());
+        writer.writeStringValue("descriptionKey", this.getDescriptionKey());
         writer.writeBooleanValue("hasCompetitiveMode", this.getHasCompetitiveMode());
         writer.writeStringValue("id", this.getId());
         writer.writeBooleanValue("isAvailableForMatchApi", this.getIsAvailableForMatchApi());
@@ -274,14 +272,14 @@ public class ApiGameCatalogEntry implements Parsable {
         writer.writeCollectionOfObjectValues("modes", this.getModes());
         writer.writeStringValue("nameKey", this.getNameKey());
         writer.writeCollectionOfObjectValues("playlists", this.getPlaylists());
-        writer.writeObjectValue("rulesLink", this.getRulesLink());
-        writer.writeObjectValue("shortNameKey", this.getShortNameKey());
+        writer.writeStringValue("rulesLink", this.getRulesLink());
+        writer.writeStringValue("shortNameKey", this.getShortNameKey());
     }
     /**
      * Sets the bannerImage property value. The bannerImage property
      * @param value Value to set for the bannerImage property.
      */
-    public void setBannerImage(@jakarta.annotation.Nullable final ApiGameCatalogEntryBannerImage value) {
+    public void setBannerImage(@jakarta.annotation.Nullable final String value) {
         this.bannerImage = value;
     }
     /**
@@ -295,14 +293,14 @@ public class ApiGameCatalogEntry implements Parsable {
      * Sets the convexId property value. Active Convex games-table ID, when available for match APIs.
      * @param value Value to set for the convexId property.
      */
-    public void setConvexId(@jakarta.annotation.Nullable final ApiGameCatalogEntryConvexId value) {
+    public void setConvexId(@jakarta.annotation.Nullable final String value) {
         this.convexId = value;
     }
     /**
      * Sets the coverImage property value. The coverImage property
      * @param value Value to set for the coverImage property.
      */
-    public void setCoverImage(@jakarta.annotation.Nullable final ApiGameCatalogEntryCoverImage value) {
+    public void setCoverImage(@jakarta.annotation.Nullable final String value) {
         this.coverImage = value;
     }
     /**
@@ -316,7 +314,7 @@ public class ApiGameCatalogEntry implements Parsable {
      * Sets the descriptionKey property value. The descriptionKey property
      * @param value Value to set for the descriptionKey property.
      */
-    public void setDescriptionKey(@jakarta.annotation.Nullable final ApiGameCatalogEntryDescriptionKey value) {
+    public void setDescriptionKey(@jakarta.annotation.Nullable final String value) {
         this.descriptionKey = value;
     }
     /**
@@ -386,512 +384,14 @@ public class ApiGameCatalogEntry implements Parsable {
      * Sets the rulesLink property value. The rulesLink property
      * @param value Value to set for the rulesLink property.
      */
-    public void setRulesLink(@jakarta.annotation.Nullable final ApiGameCatalogEntryRulesLink value) {
+    public void setRulesLink(@jakarta.annotation.Nullable final String value) {
         this.rulesLink = value;
     }
     /**
      * Sets the shortNameKey property value. The shortNameKey property
      * @param value Value to set for the shortNameKey property.
      */
-    public void setShortNameKey(@jakarta.annotation.Nullable final ApiGameCatalogEntryShortNameKey value) {
+    public void setShortNameKey(@jakarta.annotation.Nullable final String value) {
         this.shortNameKey = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiGameCatalogEntryBannerImageMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiGameCatalogEntryBannerImage implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiGameCatalogEntryBannerImageMember1}
-         */
-        private ApiGameCatalogEntryBannerImageMember1 apiGameCatalogEntryBannerImageMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiGameCatalogEntryBannerImage}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiGameCatalogEntryBannerImage createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiGameCatalogEntryBannerImage result = new ApiGameCatalogEntryBannerImage();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiGameCatalogEntryBannerImageMember1(new ApiGameCatalogEntryBannerImageMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiGameCatalogEntry_bannerImageMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryBannerImageMember1}
-         * @return a {@link ApiGameCatalogEntryBannerImageMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiGameCatalogEntryBannerImageMember1 getApiGameCatalogEntryBannerImageMember1() {
-            return this.apiGameCatalogEntryBannerImageMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiGameCatalogEntryBannerImageMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiGameCatalogEntryBannerImageMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiGameCatalogEntryBannerImageMember1());
-            }
-        }
-        /**
-         * Sets the ApiGameCatalogEntry_bannerImageMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryBannerImageMember1}
-         * @param value Value to set for the ApiGameCatalogEntry_bannerImageMember1 property.
-         */
-        public void setApiGameCatalogEntryBannerImageMember1(@jakarta.annotation.Nullable final ApiGameCatalogEntryBannerImageMember1 value) {
-            this.apiGameCatalogEntryBannerImageMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiGameCatalogEntryConvexIdMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiGameCatalogEntryConvexId implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiGameCatalogEntryConvexIdMember1}
-         */
-        private ApiGameCatalogEntryConvexIdMember1 apiGameCatalogEntryConvexIdMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiGameCatalogEntryConvexId}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiGameCatalogEntryConvexId createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiGameCatalogEntryConvexId result = new ApiGameCatalogEntryConvexId();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiGameCatalogEntryConvexIdMember1(new ApiGameCatalogEntryConvexIdMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiGameCatalogEntry_convexIdMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryConvexIdMember1}
-         * @return a {@link ApiGameCatalogEntryConvexIdMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiGameCatalogEntryConvexIdMember1 getApiGameCatalogEntryConvexIdMember1() {
-            return this.apiGameCatalogEntryConvexIdMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiGameCatalogEntryConvexIdMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiGameCatalogEntryConvexIdMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiGameCatalogEntryConvexIdMember1());
-            }
-        }
-        /**
-         * Sets the ApiGameCatalogEntry_convexIdMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryConvexIdMember1}
-         * @param value Value to set for the ApiGameCatalogEntry_convexIdMember1 property.
-         */
-        public void setApiGameCatalogEntryConvexIdMember1(@jakarta.annotation.Nullable final ApiGameCatalogEntryConvexIdMember1 value) {
-            this.apiGameCatalogEntryConvexIdMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiGameCatalogEntryCoverImageMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiGameCatalogEntryCoverImage implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiGameCatalogEntryCoverImageMember1}
-         */
-        private ApiGameCatalogEntryCoverImageMember1 apiGameCatalogEntryCoverImageMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiGameCatalogEntryCoverImage}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiGameCatalogEntryCoverImage createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiGameCatalogEntryCoverImage result = new ApiGameCatalogEntryCoverImage();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiGameCatalogEntryCoverImageMember1(new ApiGameCatalogEntryCoverImageMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiGameCatalogEntry_coverImageMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryCoverImageMember1}
-         * @return a {@link ApiGameCatalogEntryCoverImageMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiGameCatalogEntryCoverImageMember1 getApiGameCatalogEntryCoverImageMember1() {
-            return this.apiGameCatalogEntryCoverImageMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiGameCatalogEntryCoverImageMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiGameCatalogEntryCoverImageMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiGameCatalogEntryCoverImageMember1());
-            }
-        }
-        /**
-         * Sets the ApiGameCatalogEntry_coverImageMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryCoverImageMember1}
-         * @param value Value to set for the ApiGameCatalogEntry_coverImageMember1 property.
-         */
-        public void setApiGameCatalogEntryCoverImageMember1(@jakarta.annotation.Nullable final ApiGameCatalogEntryCoverImageMember1 value) {
-            this.apiGameCatalogEntryCoverImageMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiGameCatalogEntryDescriptionKeyMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiGameCatalogEntryDescriptionKey implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiGameCatalogEntryDescriptionKeyMember1}
-         */
-        private ApiGameCatalogEntryDescriptionKeyMember1 apiGameCatalogEntryDescriptionKeyMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiGameCatalogEntryDescriptionKey}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiGameCatalogEntryDescriptionKey createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiGameCatalogEntryDescriptionKey result = new ApiGameCatalogEntryDescriptionKey();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiGameCatalogEntryDescriptionKeyMember1(new ApiGameCatalogEntryDescriptionKeyMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiGameCatalogEntry_descriptionKeyMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryDescriptionKeyMember1}
-         * @return a {@link ApiGameCatalogEntryDescriptionKeyMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiGameCatalogEntryDescriptionKeyMember1 getApiGameCatalogEntryDescriptionKeyMember1() {
-            return this.apiGameCatalogEntryDescriptionKeyMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiGameCatalogEntryDescriptionKeyMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiGameCatalogEntryDescriptionKeyMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiGameCatalogEntryDescriptionKeyMember1());
-            }
-        }
-        /**
-         * Sets the ApiGameCatalogEntry_descriptionKeyMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryDescriptionKeyMember1}
-         * @param value Value to set for the ApiGameCatalogEntry_descriptionKeyMember1 property.
-         */
-        public void setApiGameCatalogEntryDescriptionKeyMember1(@jakarta.annotation.Nullable final ApiGameCatalogEntryDescriptionKeyMember1 value) {
-            this.apiGameCatalogEntryDescriptionKeyMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiGameCatalogEntryRulesLinkMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiGameCatalogEntryRulesLink implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiGameCatalogEntryRulesLinkMember1}
-         */
-        private ApiGameCatalogEntryRulesLinkMember1 apiGameCatalogEntryRulesLinkMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiGameCatalogEntryRulesLink}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiGameCatalogEntryRulesLink createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiGameCatalogEntryRulesLink result = new ApiGameCatalogEntryRulesLink();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiGameCatalogEntryRulesLinkMember1(new ApiGameCatalogEntryRulesLinkMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiGameCatalogEntry_rulesLinkMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryRulesLinkMember1}
-         * @return a {@link ApiGameCatalogEntryRulesLinkMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiGameCatalogEntryRulesLinkMember1 getApiGameCatalogEntryRulesLinkMember1() {
-            return this.apiGameCatalogEntryRulesLinkMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiGameCatalogEntryRulesLinkMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiGameCatalogEntryRulesLinkMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiGameCatalogEntryRulesLinkMember1());
-            }
-        }
-        /**
-         * Sets the ApiGameCatalogEntry_rulesLinkMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryRulesLinkMember1}
-         * @param value Value to set for the ApiGameCatalogEntry_rulesLinkMember1 property.
-         */
-        public void setApiGameCatalogEntryRulesLinkMember1(@jakarta.annotation.Nullable final ApiGameCatalogEntryRulesLinkMember1 value) {
-            this.apiGameCatalogEntryRulesLinkMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiGameCatalogEntryShortNameKeyMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiGameCatalogEntryShortNameKey implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiGameCatalogEntryShortNameKeyMember1}
-         */
-        private ApiGameCatalogEntryShortNameKeyMember1 apiGameCatalogEntryShortNameKeyMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiGameCatalogEntryShortNameKey}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiGameCatalogEntryShortNameKey createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiGameCatalogEntryShortNameKey result = new ApiGameCatalogEntryShortNameKey();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiGameCatalogEntryShortNameKeyMember1(new ApiGameCatalogEntryShortNameKeyMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiGameCatalogEntry_shortNameKeyMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryShortNameKeyMember1}
-         * @return a {@link ApiGameCatalogEntryShortNameKeyMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiGameCatalogEntryShortNameKeyMember1 getApiGameCatalogEntryShortNameKeyMember1() {
-            return this.apiGameCatalogEntryShortNameKeyMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiGameCatalogEntryShortNameKeyMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiGameCatalogEntryShortNameKeyMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiGameCatalogEntryShortNameKeyMember1());
-            }
-        }
-        /**
-         * Sets the ApiGameCatalogEntry_shortNameKeyMember1 property value. Composed type representation for type {@link ApiGameCatalogEntryShortNameKeyMember1}
-         * @param value Value to set for the ApiGameCatalogEntry_shortNameKeyMember1 property.
-         */
-        public void setApiGameCatalogEntryShortNameKeyMember1(@jakarta.annotation.Nullable final ApiGameCatalogEntryShortNameKeyMember1 value) {
-            this.apiGameCatalogEntryShortNameKeyMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
     }
 }

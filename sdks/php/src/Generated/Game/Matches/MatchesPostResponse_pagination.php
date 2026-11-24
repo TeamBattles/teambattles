@@ -9,9 +9,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class MatchesPostResponse_pagination implements Parsable 
 {
     /**
-     * @var MatchesPostResponse_pagination_cursor|null $cursor The cursor property
+     * @var string|null $cursor The cursor property
     */
-    private ?MatchesPostResponse_pagination_cursor $cursor = null;
+    private ?string $cursor = null;
     
     /**
      * @var bool|null $hasMore The hasMore property
@@ -29,9 +29,9 @@ class MatchesPostResponse_pagination implements Parsable
 
     /**
      * Gets the cursor property value. The cursor property
-     * @return MatchesPostResponse_pagination_cursor|null
+     * @return string|null
     */
-    public function getCursor(): ?MatchesPostResponse_pagination_cursor {
+    public function getCursor(): ?string {
         return $this->cursor;
     }
 
@@ -42,7 +42,7 @@ class MatchesPostResponse_pagination implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'cursor' => fn(ParseNode $n) => $o->setCursor($n->getObjectValue([MatchesPostResponse_pagination_cursor::class, 'createFromDiscriminatorValue'])),
+            'cursor' => fn(ParseNode $n) => $o->setCursor($n->getStringValue()),
             'hasMore' => fn(ParseNode $n) => $o->setHasMore($n->getBooleanValue()),
         ];
     }
@@ -60,15 +60,15 @@ class MatchesPostResponse_pagination implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('cursor', $this->getCursor());
+        $writer->writeStringValue('cursor', $this->getCursor());
         $writer->writeBooleanValue('hasMore', $this->getHasMore());
     }
 
     /**
      * Sets the cursor property value. The cursor property
-     * @param MatchesPostResponse_pagination_cursor|null $value Value to set for the cursor property.
+     * @param string|null $value Value to set for the cursor property.
     */
-    public function setCursor(?MatchesPostResponse_pagination_cursor $value): void {
+    public function setCursor(?string $value): void {
         $this->cursor = $value;
     }
 

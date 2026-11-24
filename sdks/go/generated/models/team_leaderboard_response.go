@@ -10,97 +10,13 @@ import (
 // TeamLeaderboardResponse team leaderboard response.
 type TeamLeaderboardResponse struct {
     // The gameSlug property
-    gameSlug TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlugable
+    gameSlug *string
     // Supported leaderboard sort field.
     sortBy *LeaderboardSortBy
     // The teams property
     teams []TeamLeaderboardEntryable
     // The timestamp property
     timestamp *string
-}
-// TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug composed type wrapper for classes string, TeamLeaderboardResponse_gameSlugMember1able
-type TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TeamLeaderboardResponse_gameSlugMember1able
-    teamLeaderboardResponse_gameSlugMember1 TeamLeaderboardResponse_gameSlugMember1able
-}
-// NewTeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug instantiates a new TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug and sets the default values.
-func NewTeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug()(*TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug) {
-    m := &TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug{
-    }
-    return m
-}
-// CreateTeamLeaderboardResponse_TeamLeaderboardResponse_gameSlugFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTeamLeaderboardResponse_TeamLeaderboardResponse_gameSlugFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTeamLeaderboardResponse_gameSlugMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TeamLeaderboardResponse_gameSlugMember1able); ok {
-                result.SetTeamLeaderboardResponseGameSlugMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug) GetString()(*string) {
-    return m.string
-}
-// GetTeamLeaderboardResponseGameSlugMember1 gets the TeamLeaderboardResponse_gameSlugMember1 property value. Composed type representation for type TeamLeaderboardResponse_gameSlugMember1able
-// returns a TeamLeaderboardResponse_gameSlugMember1able when successful
-func (m *TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug) GetTeamLeaderboardResponseGameSlugMember1()(TeamLeaderboardResponse_gameSlugMember1able) {
-    return m.teamLeaderboardResponse_gameSlugMember1
-}
-// Serialize serializes information the current object
-func (m *TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTeamLeaderboardResponseGameSlugMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTeamLeaderboardResponseGameSlugMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug) SetString(value *string)() {
-    m.string = value
-}
-// SetTeamLeaderboardResponseGameSlugMember1 sets the TeamLeaderboardResponse_gameSlugMember1 property value. Composed type representation for type TeamLeaderboardResponse_gameSlugMember1able
-func (m *TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlug) SetTeamLeaderboardResponseGameSlugMember1(value TeamLeaderboardResponse_gameSlugMember1able)() {
-    m.teamLeaderboardResponse_gameSlugMember1 = value
-}
-type TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlugable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTeamLeaderboardResponseGameSlugMember1()(TeamLeaderboardResponse_gameSlugMember1able)
-    SetString(value *string)()
-    SetTeamLeaderboardResponseGameSlugMember1(value TeamLeaderboardResponse_gameSlugMember1able)()
 }
 // NewTeamLeaderboardResponse instantiates a new TeamLeaderboardResponse and sets the default values.
 func NewTeamLeaderboardResponse()(*TeamLeaderboardResponse) {
@@ -118,12 +34,12 @@ func CreateTeamLeaderboardResponseFromDiscriminatorValue(parseNode i878a80d2330e
 func (m *TeamLeaderboardResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["gameSlug"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTeamLeaderboardResponse_TeamLeaderboardResponse_gameSlugFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetGameSlug(val.(TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlugable))
+            m.SetGameSlug(val)
         }
         return nil
     }
@@ -166,8 +82,8 @@ func (m *TeamLeaderboardResponse) GetFieldDeserializers()(map[string]func(i878a8
     return res
 }
 // GetGameSlug gets the gameSlug property value. The gameSlug property
-// returns a TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlugable when successful
-func (m *TeamLeaderboardResponse) GetGameSlug()(TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlugable) {
+// returns a *string when successful
+func (m *TeamLeaderboardResponse) GetGameSlug()(*string) {
     return m.gameSlug
 }
 // GetSortBy gets the sortBy property value. Supported leaderboard sort field.
@@ -188,7 +104,7 @@ func (m *TeamLeaderboardResponse) GetTimestamp()(*string) {
 // Serialize serializes information the current object
 func (m *TeamLeaderboardResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("gameSlug", m.GetGameSlug())
+        err := writer.WriteStringValue("gameSlug", m.GetGameSlug())
         if err != nil {
             return err
         }
@@ -221,7 +137,7 @@ func (m *TeamLeaderboardResponse) Serialize(writer i878a80d2330e89d26896388a3f48
     return nil
 }
 // SetGameSlug sets the gameSlug property value. The gameSlug property
-func (m *TeamLeaderboardResponse) SetGameSlug(value TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlugable)() {
+func (m *TeamLeaderboardResponse) SetGameSlug(value *string)() {
     m.gameSlug = value
 }
 // SetSortBy sets the sortBy property value. Supported leaderboard sort field.
@@ -238,11 +154,11 @@ func (m *TeamLeaderboardResponse) SetTimestamp(value *string)() {
 }
 type TeamLeaderboardResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameSlug()(TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlugable)
+    GetGameSlug()(*string)
     GetSortBy()(*LeaderboardSortBy)
     GetTeams()([]TeamLeaderboardEntryable)
     GetTimestamp()(*string)
-    SetGameSlug(value TeamLeaderboardResponse_TeamLeaderboardResponse_gameSlugable)()
+    SetGameSlug(value *string)()
     SetSortBy(value *LeaderboardSortBy)()
     SetTeams(value []TeamLeaderboardEntryable)()
     SetTimestamp(value *string)()

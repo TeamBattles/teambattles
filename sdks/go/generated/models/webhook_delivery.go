@@ -14,9 +14,9 @@ type WebhookDelivery struct {
     // Emit/creation epoch ms (retention key).
     createdAt *float64
     // Epoch ms of successful delivery, or null.
-    deliveredAt WebhookDelivery_WebhookDelivery_deliveredAtable
+    deliveredAt *float64
     // Last error message, or null.
-    errorMessage WebhookDelivery_WebhookDelivery_errorMessageable
+    errorMessage *string
     // The delivered event name.
     event *string
     // Delivery-log row id.
@@ -26,244 +26,13 @@ type WebhookDelivery struct {
     // True for test.ping deliveries.
     isTest *bool
     // Epoch ms of the next scheduled retry, or null.
-    nextAttemptAt WebhookDelivery_WebhookDelivery_nextAttemptAtable
+    nextAttemptAt *float64
     // Lifecycle status of one logical delivery (endpoint x idempotency id).
     status *WebhookDelivery_status
     // Last HTTP response status, or null.
     statusCode WebhookDelivery_WebhookDelivery_statusCodeable
     // Last update epoch ms.
     updatedAt *float64
-}
-// WebhookDelivery_WebhookDelivery_deliveredAt composed type wrapper for classes float64, WebhookDelivery_deliveredAtMember1able
-type WebhookDelivery_WebhookDelivery_deliveredAt struct {
-    // Composed type representation for type float64
-    double *float64
-    // Composed type representation for type WebhookDelivery_deliveredAtMember1able
-    webhookDelivery_deliveredAtMember1 WebhookDelivery_deliveredAtMember1able
-}
-// NewWebhookDelivery_WebhookDelivery_deliveredAt instantiates a new WebhookDelivery_WebhookDelivery_deliveredAt and sets the default values.
-func NewWebhookDelivery_WebhookDelivery_deliveredAt()(*WebhookDelivery_WebhookDelivery_deliveredAt) {
-    m := &WebhookDelivery_WebhookDelivery_deliveredAt{
-    }
-    return m
-}
-// CreateWebhookDelivery_WebhookDelivery_deliveredAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateWebhookDelivery_WebhookDelivery_deliveredAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewWebhookDelivery_WebhookDelivery_deliveredAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetFloat64Value(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetDouble(val)
-        } else if val, err := parseNode.GetObjectValue(CreateWebhookDelivery_deliveredAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(WebhookDelivery_deliveredAtMember1able); ok {
-                result.SetWebhookDeliveryDeliveredAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetDouble gets the double property value. Composed type representation for type float64
-// returns a *float64 when successful
-func (m *WebhookDelivery_WebhookDelivery_deliveredAt) GetDouble()(*float64) {
-    return m.double
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *WebhookDelivery_WebhookDelivery_deliveredAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *WebhookDelivery_WebhookDelivery_deliveredAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetWebhookDeliveryDeliveredAtMember1 gets the WebhookDelivery_deliveredAtMember1 property value. Composed type representation for type WebhookDelivery_deliveredAtMember1able
-// returns a WebhookDelivery_deliveredAtMember1able when successful
-func (m *WebhookDelivery_WebhookDelivery_deliveredAt) GetWebhookDeliveryDeliveredAtMember1()(WebhookDelivery_deliveredAtMember1able) {
-    return m.webhookDelivery_deliveredAtMember1
-}
-// Serialize serializes information the current object
-func (m *WebhookDelivery_WebhookDelivery_deliveredAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetDouble() != nil {
-        err := writer.WriteFloat64Value("", m.GetDouble())
-        if err != nil {
-            return err
-        }
-    } else if m.GetWebhookDeliveryDeliveredAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetWebhookDeliveryDeliveredAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetDouble sets the double property value. Composed type representation for type float64
-func (m *WebhookDelivery_WebhookDelivery_deliveredAt) SetDouble(value *float64)() {
-    m.double = value
-}
-// SetWebhookDeliveryDeliveredAtMember1 sets the WebhookDelivery_deliveredAtMember1 property value. Composed type representation for type WebhookDelivery_deliveredAtMember1able
-func (m *WebhookDelivery_WebhookDelivery_deliveredAt) SetWebhookDeliveryDeliveredAtMember1(value WebhookDelivery_deliveredAtMember1able)() {
-    m.webhookDelivery_deliveredAtMember1 = value
-}
-// WebhookDelivery_WebhookDelivery_errorMessage composed type wrapper for classes string, WebhookDelivery_errorMessageMember1able
-type WebhookDelivery_WebhookDelivery_errorMessage struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type WebhookDelivery_errorMessageMember1able
-    webhookDelivery_errorMessageMember1 WebhookDelivery_errorMessageMember1able
-}
-// NewWebhookDelivery_WebhookDelivery_errorMessage instantiates a new WebhookDelivery_WebhookDelivery_errorMessage and sets the default values.
-func NewWebhookDelivery_WebhookDelivery_errorMessage()(*WebhookDelivery_WebhookDelivery_errorMessage) {
-    m := &WebhookDelivery_WebhookDelivery_errorMessage{
-    }
-    return m
-}
-// CreateWebhookDelivery_WebhookDelivery_errorMessageFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateWebhookDelivery_WebhookDelivery_errorMessageFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewWebhookDelivery_WebhookDelivery_errorMessage()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateWebhookDelivery_errorMessageMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(WebhookDelivery_errorMessageMember1able); ok {
-                result.SetWebhookDeliveryErrorMessageMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *WebhookDelivery_WebhookDelivery_errorMessage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *WebhookDelivery_WebhookDelivery_errorMessage) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *WebhookDelivery_WebhookDelivery_errorMessage) GetString()(*string) {
-    return m.string
-}
-// GetWebhookDeliveryErrorMessageMember1 gets the WebhookDelivery_errorMessageMember1 property value. Composed type representation for type WebhookDelivery_errorMessageMember1able
-// returns a WebhookDelivery_errorMessageMember1able when successful
-func (m *WebhookDelivery_WebhookDelivery_errorMessage) GetWebhookDeliveryErrorMessageMember1()(WebhookDelivery_errorMessageMember1able) {
-    return m.webhookDelivery_errorMessageMember1
-}
-// Serialize serializes information the current object
-func (m *WebhookDelivery_WebhookDelivery_errorMessage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetWebhookDeliveryErrorMessageMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetWebhookDeliveryErrorMessageMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *WebhookDelivery_WebhookDelivery_errorMessage) SetString(value *string)() {
-    m.string = value
-}
-// SetWebhookDeliveryErrorMessageMember1 sets the WebhookDelivery_errorMessageMember1 property value. Composed type representation for type WebhookDelivery_errorMessageMember1able
-func (m *WebhookDelivery_WebhookDelivery_errorMessage) SetWebhookDeliveryErrorMessageMember1(value WebhookDelivery_errorMessageMember1able)() {
-    m.webhookDelivery_errorMessageMember1 = value
-}
-// WebhookDelivery_WebhookDelivery_nextAttemptAt composed type wrapper for classes float64, WebhookDelivery_nextAttemptAtMember1able
-type WebhookDelivery_WebhookDelivery_nextAttemptAt struct {
-    // Composed type representation for type float64
-    double *float64
-    // Composed type representation for type WebhookDelivery_nextAttemptAtMember1able
-    webhookDelivery_nextAttemptAtMember1 WebhookDelivery_nextAttemptAtMember1able
-}
-// NewWebhookDelivery_WebhookDelivery_nextAttemptAt instantiates a new WebhookDelivery_WebhookDelivery_nextAttemptAt and sets the default values.
-func NewWebhookDelivery_WebhookDelivery_nextAttemptAt()(*WebhookDelivery_WebhookDelivery_nextAttemptAt) {
-    m := &WebhookDelivery_WebhookDelivery_nextAttemptAt{
-    }
-    return m
-}
-// CreateWebhookDelivery_WebhookDelivery_nextAttemptAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateWebhookDelivery_WebhookDelivery_nextAttemptAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewWebhookDelivery_WebhookDelivery_nextAttemptAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetFloat64Value(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetDouble(val)
-        } else if val, err := parseNode.GetObjectValue(CreateWebhookDelivery_nextAttemptAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(WebhookDelivery_nextAttemptAtMember1able); ok {
-                result.SetWebhookDeliveryNextAttemptAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetDouble gets the double property value. Composed type representation for type float64
-// returns a *float64 when successful
-func (m *WebhookDelivery_WebhookDelivery_nextAttemptAt) GetDouble()(*float64) {
-    return m.double
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *WebhookDelivery_WebhookDelivery_nextAttemptAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *WebhookDelivery_WebhookDelivery_nextAttemptAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetWebhookDeliveryNextAttemptAtMember1 gets the WebhookDelivery_nextAttemptAtMember1 property value. Composed type representation for type WebhookDelivery_nextAttemptAtMember1able
-// returns a WebhookDelivery_nextAttemptAtMember1able when successful
-func (m *WebhookDelivery_WebhookDelivery_nextAttemptAt) GetWebhookDeliveryNextAttemptAtMember1()(WebhookDelivery_nextAttemptAtMember1able) {
-    return m.webhookDelivery_nextAttemptAtMember1
-}
-// Serialize serializes information the current object
-func (m *WebhookDelivery_WebhookDelivery_nextAttemptAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetDouble() != nil {
-        err := writer.WriteFloat64Value("", m.GetDouble())
-        if err != nil {
-            return err
-        }
-    } else if m.GetWebhookDeliveryNextAttemptAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetWebhookDeliveryNextAttemptAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetDouble sets the double property value. Composed type representation for type float64
-func (m *WebhookDelivery_WebhookDelivery_nextAttemptAt) SetDouble(value *float64)() {
-    m.double = value
-}
-// SetWebhookDeliveryNextAttemptAtMember1 sets the WebhookDelivery_nextAttemptAtMember1 property value. Composed type representation for type WebhookDelivery_nextAttemptAtMember1able
-func (m *WebhookDelivery_WebhookDelivery_nextAttemptAt) SetWebhookDeliveryNextAttemptAtMember1(value WebhookDelivery_nextAttemptAtMember1able)() {
-    m.webhookDelivery_nextAttemptAtMember1 = value
 }
 // WebhookDelivery_WebhookDelivery_statusCode composed type wrapper for classes int32, WebhookDelivery_statusCodeMember1able
 type WebhookDelivery_WebhookDelivery_statusCode struct {
@@ -342,27 +111,6 @@ func (m *WebhookDelivery_WebhookDelivery_statusCode) SetInteger(value *int32)() 
 func (m *WebhookDelivery_WebhookDelivery_statusCode) SetWebhookDeliveryStatusCodeMember1(value WebhookDelivery_statusCodeMember1able)() {
     m.webhookDelivery_statusCodeMember1 = value
 }
-type WebhookDelivery_WebhookDelivery_deliveredAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDouble()(*float64)
-    GetWebhookDeliveryDeliveredAtMember1()(WebhookDelivery_deliveredAtMember1able)
-    SetDouble(value *float64)()
-    SetWebhookDeliveryDeliveredAtMember1(value WebhookDelivery_deliveredAtMember1able)()
-}
-type WebhookDelivery_WebhookDelivery_errorMessageable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetWebhookDeliveryErrorMessageMember1()(WebhookDelivery_errorMessageMember1able)
-    SetString(value *string)()
-    SetWebhookDeliveryErrorMessageMember1(value WebhookDelivery_errorMessageMember1able)()
-}
-type WebhookDelivery_WebhookDelivery_nextAttemptAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDouble()(*float64)
-    GetWebhookDeliveryNextAttemptAtMember1()(WebhookDelivery_nextAttemptAtMember1able)
-    SetDouble(value *float64)()
-    SetWebhookDeliveryNextAttemptAtMember1(value WebhookDelivery_nextAttemptAtMember1able)()
-}
 type WebhookDelivery_WebhookDelivery_statusCodeable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetInteger()(*int32)
@@ -392,13 +140,13 @@ func (m *WebhookDelivery) GetCreatedAt()(*float64) {
     return m.createdAt
 }
 // GetDeliveredAt gets the deliveredAt property value. Epoch ms of successful delivery, or null.
-// returns a WebhookDelivery_WebhookDelivery_deliveredAtable when successful
-func (m *WebhookDelivery) GetDeliveredAt()(WebhookDelivery_WebhookDelivery_deliveredAtable) {
+// returns a *float64 when successful
+func (m *WebhookDelivery) GetDeliveredAt()(*float64) {
     return m.deliveredAt
 }
 // GetErrorMessage gets the errorMessage property value. Last error message, or null.
-// returns a WebhookDelivery_WebhookDelivery_errorMessageable when successful
-func (m *WebhookDelivery) GetErrorMessage()(WebhookDelivery_WebhookDelivery_errorMessageable) {
+// returns a *string when successful
+func (m *WebhookDelivery) GetErrorMessage()(*string) {
     return m.errorMessage
 }
 // GetEvent gets the event property value. The delivered event name.
@@ -431,22 +179,22 @@ func (m *WebhookDelivery) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         return nil
     }
     res["deliveredAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateWebhookDelivery_WebhookDelivery_deliveredAtFromDiscriminatorValue)
+        val, err := n.GetFloat64Value()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDeliveredAt(val.(WebhookDelivery_WebhookDelivery_deliveredAtable))
+            m.SetDeliveredAt(val)
         }
         return nil
     }
     res["errorMessage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateWebhookDelivery_WebhookDelivery_errorMessageFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetErrorMessage(val.(WebhookDelivery_WebhookDelivery_errorMessageable))
+            m.SetErrorMessage(val)
         }
         return nil
     }
@@ -491,12 +239,12 @@ func (m *WebhookDelivery) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         return nil
     }
     res["nextAttemptAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateWebhookDelivery_WebhookDelivery_nextAttemptAtFromDiscriminatorValue)
+        val, err := n.GetFloat64Value()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetNextAttemptAt(val.(WebhookDelivery_WebhookDelivery_nextAttemptAtable))
+            m.SetNextAttemptAt(val)
         }
         return nil
     }
@@ -548,8 +296,8 @@ func (m *WebhookDelivery) GetIsTest()(*bool) {
     return m.isTest
 }
 // GetNextAttemptAt gets the nextAttemptAt property value. Epoch ms of the next scheduled retry, or null.
-// returns a WebhookDelivery_WebhookDelivery_nextAttemptAtable when successful
-func (m *WebhookDelivery) GetNextAttemptAt()(WebhookDelivery_WebhookDelivery_nextAttemptAtable) {
+// returns a *float64 when successful
+func (m *WebhookDelivery) GetNextAttemptAt()(*float64) {
     return m.nextAttemptAt
 }
 // GetStatus gets the status property value. Lifecycle status of one logical delivery (endpoint x idempotency id).
@@ -582,13 +330,13 @@ func (m *WebhookDelivery) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
         }
     }
     {
-        err := writer.WriteObjectValue("deliveredAt", m.GetDeliveredAt())
+        err := writer.WriteFloat64Value("deliveredAt", m.GetDeliveredAt())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("errorMessage", m.GetErrorMessage())
+        err := writer.WriteStringValue("errorMessage", m.GetErrorMessage())
         if err != nil {
             return err
         }
@@ -618,7 +366,7 @@ func (m *WebhookDelivery) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
         }
     }
     {
-        err := writer.WriteObjectValue("nextAttemptAt", m.GetNextAttemptAt())
+        err := writer.WriteFloat64Value("nextAttemptAt", m.GetNextAttemptAt())
         if err != nil {
             return err
         }
@@ -653,11 +401,11 @@ func (m *WebhookDelivery) SetCreatedAt(value *float64)() {
     m.createdAt = value
 }
 // SetDeliveredAt sets the deliveredAt property value. Epoch ms of successful delivery, or null.
-func (m *WebhookDelivery) SetDeliveredAt(value WebhookDelivery_WebhookDelivery_deliveredAtable)() {
+func (m *WebhookDelivery) SetDeliveredAt(value *float64)() {
     m.deliveredAt = value
 }
 // SetErrorMessage sets the errorMessage property value. Last error message, or null.
-func (m *WebhookDelivery) SetErrorMessage(value WebhookDelivery_WebhookDelivery_errorMessageable)() {
+func (m *WebhookDelivery) SetErrorMessage(value *string)() {
     m.errorMessage = value
 }
 // SetEvent sets the event property value. The delivered event name.
@@ -677,7 +425,7 @@ func (m *WebhookDelivery) SetIsTest(value *bool)() {
     m.isTest = value
 }
 // SetNextAttemptAt sets the nextAttemptAt property value. Epoch ms of the next scheduled retry, or null.
-func (m *WebhookDelivery) SetNextAttemptAt(value WebhookDelivery_WebhookDelivery_nextAttemptAtable)() {
+func (m *WebhookDelivery) SetNextAttemptAt(value *float64)() {
     m.nextAttemptAt = value
 }
 // SetStatus sets the status property value. Lifecycle status of one logical delivery (endpoint x idempotency id).
@@ -696,25 +444,25 @@ type WebhookDeliveryable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAttemptCount()(*int32)
     GetCreatedAt()(*float64)
-    GetDeliveredAt()(WebhookDelivery_WebhookDelivery_deliveredAtable)
-    GetErrorMessage()(WebhookDelivery_WebhookDelivery_errorMessageable)
+    GetDeliveredAt()(*float64)
+    GetErrorMessage()(*string)
     GetEvent()(*string)
     GetId()(*string)
     GetIdempotencyId()(*string)
     GetIsTest()(*bool)
-    GetNextAttemptAt()(WebhookDelivery_WebhookDelivery_nextAttemptAtable)
+    GetNextAttemptAt()(*float64)
     GetStatus()(*WebhookDelivery_status)
     GetStatusCode()(WebhookDelivery_WebhookDelivery_statusCodeable)
     GetUpdatedAt()(*float64)
     SetAttemptCount(value *int32)()
     SetCreatedAt(value *float64)()
-    SetDeliveredAt(value WebhookDelivery_WebhookDelivery_deliveredAtable)()
-    SetErrorMessage(value WebhookDelivery_WebhookDelivery_errorMessageable)()
+    SetDeliveredAt(value *float64)()
+    SetErrorMessage(value *string)()
     SetEvent(value *string)()
     SetId(value *string)()
     SetIdempotencyId(value *string)()
     SetIsTest(value *bool)()
-    SetNextAttemptAt(value WebhookDelivery_WebhookDelivery_nextAttemptAtable)()
+    SetNextAttemptAt(value *float64)()
     SetStatus(value *WebhookDelivery_status)()
     SetStatusCode(value WebhookDelivery_WebhookDelivery_statusCodeable)()
     SetUpdatedAt(value *float64)()

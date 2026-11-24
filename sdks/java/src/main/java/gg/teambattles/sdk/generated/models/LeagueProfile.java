@@ -1,9 +1,7 @@
 package gg.teambattles.sdk.generated.models;
 
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import com.microsoft.kiota.serialization.UntypedNode;
 import java.util.HashMap;
@@ -21,11 +19,11 @@ public class LeagueProfile implements Parsable {
     /**
      * League avatar image URL.
      */
-    private LeagueProfileAvatarUrl avatarUrl;
+    private String avatarUrl;
     /**
      * League banner image URL.
      */
-    private LeagueProfileBannerUrl bannerUrl;
+    private String bannerUrl;
     /**
      * Creation timestamp (epoch milliseconds).
      */
@@ -94,18 +92,18 @@ public class LeagueProfile implements Parsable {
     }
     /**
      * Gets the avatarUrl property value. League avatar image URL.
-     * @return a {@link LeagueProfileAvatarUrl}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public LeagueProfileAvatarUrl getAvatarUrl() {
+    public String getAvatarUrl() {
         return this.avatarUrl;
     }
     /**
      * Gets the bannerUrl property value. League banner image URL.
-     * @return a {@link LeagueProfileBannerUrl}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public LeagueProfileBannerUrl getBannerUrl() {
+    public String getBannerUrl() {
         return this.bannerUrl;
     }
     /**
@@ -132,8 +130,8 @@ public class LeagueProfile implements Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(15);
         deserializerMap.put("activeSeasons", (n) -> { this.setActiveSeasons(n.getCollectionOfObjectValues(LeagueProfileActiveSeasons::createFromDiscriminatorValue)); });
-        deserializerMap.put("avatarUrl", (n) -> { this.setAvatarUrl(n.getObjectValue(LeagueProfileAvatarUrl::createFromDiscriminatorValue)); });
-        deserializerMap.put("bannerUrl", (n) -> { this.setBannerUrl(n.getObjectValue(LeagueProfileBannerUrl::createFromDiscriminatorValue)); });
+        deserializerMap.put("avatarUrl", (n) -> { this.setAvatarUrl(n.getStringValue()); });
+        deserializerMap.put("bannerUrl", (n) -> { this.setBannerUrl(n.getStringValue()); });
         deserializerMap.put("createdAt", (n) -> { this.setCreatedAt(n.getDoubleValue()); });
         deserializerMap.put("description", (n) -> { this.setDescription(n.getStringValue()); });
         deserializerMap.put("games", (n) -> { this.setGames(n.getCollectionOfObjectValues(LeagueProfileGames::createFromDiscriminatorValue)); });
@@ -235,8 +233,8 @@ public class LeagueProfile implements Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeCollectionOfObjectValues("activeSeasons", this.getActiveSeasons());
-        writer.writeObjectValue("avatarUrl", this.getAvatarUrl());
-        writer.writeObjectValue("bannerUrl", this.getBannerUrl());
+        writer.writeStringValue("avatarUrl", this.getAvatarUrl());
+        writer.writeStringValue("bannerUrl", this.getBannerUrl());
         writer.writeDoubleValue("createdAt", this.getCreatedAt());
         writer.writeStringValue("description", this.getDescription());
         writer.writeCollectionOfObjectValues("games", this.getGames());
@@ -261,14 +259,14 @@ public class LeagueProfile implements Parsable {
      * Sets the avatarUrl property value. League avatar image URL.
      * @param value Value to set for the avatarUrl property.
      */
-    public void setAvatarUrl(@jakarta.annotation.Nullable final LeagueProfileAvatarUrl value) {
+    public void setAvatarUrl(@jakarta.annotation.Nullable final String value) {
         this.avatarUrl = value;
     }
     /**
      * Sets the bannerUrl property value. League banner image URL.
      * @param value Value to set for the bannerUrl property.
      */
-    public void setBannerUrl(@jakarta.annotation.Nullable final LeagueProfileBannerUrl value) {
+    public void setBannerUrl(@jakarta.annotation.Nullable final String value) {
         this.bannerUrl = value;
     }
     /**
@@ -354,171 +352,5 @@ public class LeagueProfile implements Parsable {
      */
     public void setTeamCount(@jakarta.annotation.Nullable final Integer value) {
         this.teamCount = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link LeagueProfileAvatarUrlMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class LeagueProfileAvatarUrl implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link LeagueProfileAvatarUrlMember1}
-         */
-        private LeagueProfileAvatarUrlMember1 leagueProfileAvatarUrlMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link LeagueProfileAvatarUrl}
-         */
-        @jakarta.annotation.Nonnull
-        public static LeagueProfileAvatarUrl createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final LeagueProfileAvatarUrl result = new LeagueProfileAvatarUrl();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setLeagueProfileAvatarUrlMember1(new LeagueProfileAvatarUrlMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getLeagueProfileAvatarUrlMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getLeagueProfileAvatarUrlMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the LeagueProfile_avatarUrlMember1 property value. Composed type representation for type {@link LeagueProfileAvatarUrlMember1}
-         * @return a {@link LeagueProfileAvatarUrlMember1}
-         */
-        @jakarta.annotation.Nullable
-        public LeagueProfileAvatarUrlMember1 getLeagueProfileAvatarUrlMember1() {
-            return this.leagueProfileAvatarUrlMember1;
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getLeagueProfileAvatarUrlMember1());
-            }
-        }
-        /**
-         * Sets the LeagueProfile_avatarUrlMember1 property value. Composed type representation for type {@link LeagueProfileAvatarUrlMember1}
-         * @param value Value to set for the LeagueProfile_avatarUrlMember1 property.
-         */
-        public void setLeagueProfileAvatarUrlMember1(@jakarta.annotation.Nullable final LeagueProfileAvatarUrlMember1 value) {
-            this.leagueProfileAvatarUrlMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link LeagueProfileBannerUrlMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class LeagueProfileBannerUrl implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link LeagueProfileBannerUrlMember1}
-         */
-        private LeagueProfileBannerUrlMember1 leagueProfileBannerUrlMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link LeagueProfileBannerUrl}
-         */
-        @jakarta.annotation.Nonnull
-        public static LeagueProfileBannerUrl createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final LeagueProfileBannerUrl result = new LeagueProfileBannerUrl();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setLeagueProfileBannerUrlMember1(new LeagueProfileBannerUrlMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getLeagueProfileBannerUrlMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getLeagueProfileBannerUrlMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the LeagueProfile_bannerUrlMember1 property value. Composed type representation for type {@link LeagueProfileBannerUrlMember1}
-         * @return a {@link LeagueProfileBannerUrlMember1}
-         */
-        @jakarta.annotation.Nullable
-        public LeagueProfileBannerUrlMember1 getLeagueProfileBannerUrlMember1() {
-            return this.leagueProfileBannerUrlMember1;
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getLeagueProfileBannerUrlMember1());
-            }
-        }
-        /**
-         * Sets the LeagueProfile_bannerUrlMember1 property value. Composed type representation for type {@link LeagueProfileBannerUrlMember1}
-         * @param value Value to set for the LeagueProfile_bannerUrlMember1 property.
-         */
-        public void setLeagueProfileBannerUrlMember1(@jakarta.annotation.Nullable final LeagueProfileBannerUrlMember1 value) {
-            this.leagueProfileBannerUrlMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
     }
 }

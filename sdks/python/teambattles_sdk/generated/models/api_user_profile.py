@@ -5,12 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .api_user_profile_avatar_url import ApiUserProfile_avatarUrl
-    from .api_user_profile_banner_url import ApiUserProfile_bannerUrl
-    from .api_user_profile_bio import ApiUserProfile_bio
     from .api_user_profile_created_at import ApiUserProfile_createdAt
-    from .api_user_profile_name import ApiUserProfile_name
-    from .api_user_profile_username import ApiUserProfile_username
     from .profile_visibility import ProfileVisibility
 
 @dataclass
@@ -19,11 +14,11 @@ class ApiUserProfile(Parsable):
     API-safe public user profile.
     """
     # Avatar image URL, when set.
-    avatar_url: Optional[ApiUserProfile_avatarUrl] = None
+    avatar_url: Optional[str] = None
     # Banner image URL, when set.
-    banner_url: Optional[ApiUserProfile_bannerUrl] = None
+    banner_url: Optional[str] = None
     # Public profile bio.
-    bio: Optional[ApiUserProfile_bio] = None
+    bio: Optional[str] = None
     # The createdAt property
     created_at: Optional[ApiUserProfile_createdAt] = None
     # User ID.
@@ -31,9 +26,9 @@ class ApiUserProfile(Parsable):
     # The isVerified property
     is_verified: Optional[bool] = None
     # Display name, when set.
-    name: Optional[ApiUserProfile_name] = None
+    name: Optional[str] = None
     # User handle, when set.
-    username: Optional[ApiUserProfile_username] = None
+    username: Optional[str] = None
     # Public profile visibility setting.
     visibility: Optional[ProfileVisibility] = None
     
@@ -53,31 +48,21 @@ class ApiUserProfile(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .api_user_profile_avatar_url import ApiUserProfile_avatarUrl
-        from .api_user_profile_banner_url import ApiUserProfile_bannerUrl
-        from .api_user_profile_bio import ApiUserProfile_bio
         from .api_user_profile_created_at import ApiUserProfile_createdAt
-        from .api_user_profile_name import ApiUserProfile_name
-        from .api_user_profile_username import ApiUserProfile_username
         from .profile_visibility import ProfileVisibility
 
-        from .api_user_profile_avatar_url import ApiUserProfile_avatarUrl
-        from .api_user_profile_banner_url import ApiUserProfile_bannerUrl
-        from .api_user_profile_bio import ApiUserProfile_bio
         from .api_user_profile_created_at import ApiUserProfile_createdAt
-        from .api_user_profile_name import ApiUserProfile_name
-        from .api_user_profile_username import ApiUserProfile_username
         from .profile_visibility import ProfileVisibility
 
         fields: dict[str, Callable[[Any], None]] = {
-            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_object_value(ApiUserProfile_avatarUrl)),
-            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_object_value(ApiUserProfile_bannerUrl)),
-            "bio": lambda n : setattr(self, 'bio', n.get_object_value(ApiUserProfile_bio)),
+            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_str_value()),
+            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_str_value()),
+            "bio": lambda n : setattr(self, 'bio', n.get_str_value()),
             "createdAt": lambda n : setattr(self, 'created_at', n.get_object_value(ApiUserProfile_createdAt)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isVerified": lambda n : setattr(self, 'is_verified', n.get_bool_value()),
-            "name": lambda n : setattr(self, 'name', n.get_object_value(ApiUserProfile_name)),
-            "username": lambda n : setattr(self, 'username', n.get_object_value(ApiUserProfile_username)),
+            "name": lambda n : setattr(self, 'name', n.get_str_value()),
+            "username": lambda n : setattr(self, 'username', n.get_str_value()),
             "visibility": lambda n : setattr(self, 'visibility', n.get_enum_value(ProfileVisibility)),
         }
         return fields
@@ -90,14 +75,14 @@ class ApiUserProfile(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("avatarUrl", self.avatar_url)
-        writer.write_object_value("bannerUrl", self.banner_url)
-        writer.write_object_value("bio", self.bio)
+        writer.write_str_value("avatarUrl", self.avatar_url)
+        writer.write_str_value("bannerUrl", self.banner_url)
+        writer.write_str_value("bio", self.bio)
         writer.write_object_value("createdAt", self.created_at)
         writer.write_str_value("id", self.id)
         writer.write_bool_value("isVerified", self.is_verified)
-        writer.write_object_value("name", self.name)
-        writer.write_object_value("username", self.username)
+        writer.write_str_value("name", self.name)
+        writer.write_str_value("username", self.username)
         writer.write_enum_value("visibility", self.visibility)
     
 

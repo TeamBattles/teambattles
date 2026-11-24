@@ -53,7 +53,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the createdAt property value. Creation time (ISO 8601).
-                ## @return a map_score_item_created_at
+                ## @return a string
                 ## 
                 def created_at
                     return @created_at
@@ -97,7 +97,7 @@ module TeamBattlesSdk
                 def get_field_deserializers()
                     return {
                         "confirmedBy" => lambda {|n| @confirmed_by = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ScoreConfirmer.create_from_discriminator_value(pn) }) },
-                        "createdAt" => lambda {|n| @created_at = n.get_object_value(lambda {|pn| MapScoreItem::MapScoreItemCreatedAt.create_from_discriminator_value(pn) }) },
+                        "createdAt" => lambda {|n| @created_at = n.get_string_value() },
                         "creatorTeamScore" => lambda {|n| @creator_team_score = n.get_number_value() },
                         "mapId" => lambda {|n| @map_id = n.get_string_value() },
                         "mapIndex" => lambda {|n| @map_index = n.get_number_value() },
@@ -190,7 +190,7 @@ module TeamBattlesSdk
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
                     writer.write_object_value("confirmedBy", @confirmed_by)
-                    writer.write_object_value("createdAt", @created_at)
+                    writer.write_string_value("createdAt", @created_at)
                     writer.write_number_value("creatorTeamScore", @creator_team_score)
                     writer.write_string_value("mapId", @map_id)
                     writer.write_number_value("mapIndex", @map_index)
@@ -213,77 +213,6 @@ module TeamBattlesSdk
                 ## 
                 def submitted_by=(value)
                     @submitted_by = value
-                end
-
-                ## 
-                # Composed type wrapper for classes MapScoreItemCreatedAtMember1, string
-                class MapScoreItemCreatedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type MapScoreItemCreatedAtMember1
-                    @map_score_item_created_at_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a map_score_item_created_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return MapScoreItemCreatedAt.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "MapScoreItem_createdAtMember1" => lambda {|n| @map_score_item_created_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::MapScoreItemCreatedAtMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Gets the MapScoreItem_createdAtMember1 property value. Composed type representation for type MapScoreItemCreatedAtMember1
-                    ## @return a map_score_item_created_at_member1
-                    ## 
-                    def map_score_item_created_at_member1
-                        return @map_score_item_created_at_member1
-                    end
-                    ## 
-                    ## Sets the MapScoreItem_createdAtMember1 property value. Composed type representation for type MapScoreItemCreatedAtMember1
-                    ## @param value Value to set for the MapScoreItem_createdAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def map_score_item_created_at_member1=(value)
-                        @map_score_item_created_at_member1 = value
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("MapScoreItem_createdAtMember1", @map_score_item_created_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
                 end
             end
         end

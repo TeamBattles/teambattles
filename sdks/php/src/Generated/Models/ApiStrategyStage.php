@@ -22,9 +22,9 @@ class ApiStrategyStage implements Parsable
     private ?string $id = null;
     
     /**
-     * @var ApiStrategyStage_label|null $label Author stage label, when set.
+     * @var string|null $label Author stage label, when set.
     */
-    private ?ApiStrategyStage_label $label = null;
+    private ?string $label = null;
     
     /**
      * @var string|null $levelId Registered map level for this stage. Omitted values use the map default.
@@ -57,7 +57,7 @@ class ApiStrategyStage implements Parsable
         return  [
             'durationMs' => fn(ParseNode $n) => $o->setDurationMs($n->getIntegerValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'label' => fn(ParseNode $n) => $o->setLabel($n->getObjectValue([ApiStrategyStage_label::class, 'createFromDiscriminatorValue'])),
+            'label' => fn(ParseNode $n) => $o->setLabel($n->getStringValue()),
             'levelId' => fn(ParseNode $n) => $o->setLevelId($n->getStringValue()),
         ];
     }
@@ -72,9 +72,9 @@ class ApiStrategyStage implements Parsable
 
     /**
      * Gets the label property value. Author stage label, when set.
-     * @return ApiStrategyStage_label|null
+     * @return string|null
     */
-    public function getLabel(): ?ApiStrategyStage_label {
+    public function getLabel(): ?string {
         return $this->label;
     }
 
@@ -93,7 +93,7 @@ class ApiStrategyStage implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeIntegerValue('durationMs', $this->getDurationMs());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeObjectValue('label', $this->getLabel());
+        $writer->writeStringValue('label', $this->getLabel());
         $writer->writeStringValue('levelId', $this->getLevelId());
     }
 
@@ -115,9 +115,9 @@ class ApiStrategyStage implements Parsable
 
     /**
      * Sets the label property value. Author stage label, when set.
-     * @param ApiStrategyStage_label|null $value Value to set for the label property.
+     * @param string|null $value Value to set for the label property.
     */
-    public function setLabel(?ApiStrategyStage_label $value): void {
+    public function setLabel(?string $value): void {
         $this->label = $value;
     }
 

@@ -6,7 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .api_game_rank_source import ApiGameRank_source
-    from .api_game_rank_sr import ApiGameRank_sr
     from .api_game_rank_top250_rank import ApiGameRank_top250Rank
 
 @dataclass
@@ -27,7 +26,7 @@ class ApiGameRank(Parsable):
     # Origin of the rank: manual entry or an API push.
     source: Optional[ApiGameRank_source] = None
     # Skill rating, when set.
-    sr: Optional[ApiGameRank_sr] = None
+    sr: Optional[float] = None
     # Top 250 ladder position (1-250), when applicable.
     top250_rank: Optional[ApiGameRank_top250Rank] = None
     # When the rank was last updated.
@@ -52,11 +51,9 @@ class ApiGameRank(Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .api_game_rank_source import ApiGameRank_source
-        from .api_game_rank_sr import ApiGameRank_sr
         from .api_game_rank_top250_rank import ApiGameRank_top250Rank
 
         from .api_game_rank_source import ApiGameRank_source
-        from .api_game_rank_sr import ApiGameRank_sr
         from .api_game_rank_top250_rank import ApiGameRank_top250Rank
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -66,7 +63,7 @@ class ApiGameRank(Parsable):
             "isTop250": lambda n : setattr(self, 'is_top250', n.get_bool_value()),
             "mode": lambda n : setattr(self, 'mode', n.get_str_value()),
             "source": lambda n : setattr(self, 'source', n.get_enum_value(ApiGameRank_source)),
-            "sr": lambda n : setattr(self, 'sr', n.get_object_value(ApiGameRank_sr)),
+            "sr": lambda n : setattr(self, 'sr', n.get_float_value()),
             "top250Rank": lambda n : setattr(self, 'top250_rank', n.get_object_value(ApiGameRank_top250Rank)),
             "updatedAt": lambda n : setattr(self, 'updated_at', n.get_str_value()),
             "winstreak": lambda n : setattr(self, 'winstreak', n.get_int_value()),
@@ -87,7 +84,7 @@ class ApiGameRank(Parsable):
         writer.write_bool_value("isTop250", self.is_top250)
         writer.write_str_value("mode", self.mode)
         writer.write_enum_value("source", self.source)
-        writer.write_object_value("sr", self.sr)
+        writer.write_float_value("sr", self.sr)
         writer.write_object_value("top250Rank", self.top250_rank)
         writer.write_str_value("updatedAt", self.updated_at)
         writer.write_int_value("winstreak", self.winstreak)

@@ -50,7 +50,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the descriptionKey property value. The descriptionKey property
-                ## @return a api_game_playlist_description_key
+                ## @return a string
                 ## 
                 def description_key
                     return @description_key
@@ -70,9 +70,9 @@ module TeamBattlesSdk
                 def get_field_deserializers()
                     return {
                         "allowedGameModeIds" => lambda {|n| @allowed_game_mode_ids = n.get_collection_of_primitive_values(String) },
-                        "descriptionKey" => lambda {|n| @description_key = n.get_object_value(lambda {|pn| ApiGamePlaylist::ApiGamePlaylistDescriptionKey.create_from_discriminator_value(pn) }) },
+                        "descriptionKey" => lambda {|n| @description_key = n.get_string_value() },
                         "id" => lambda {|n| @id = n.get_string_value() },
-                        "image" => lambda {|n| @image = n.get_object_value(lambda {|pn| ApiGamePlaylist::ApiGamePlaylistImage.create_from_discriminator_value(pn) }) },
+                        "image" => lambda {|n| @image = n.get_string_value() },
                         "nameKey" => lambda {|n| @name_key = n.get_string_value() },
                     }
                 end
@@ -93,7 +93,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the image property value. The image property
-                ## @return a api_game_playlist_image
+                ## @return a string
                 ## 
                 def image
                     return @image
@@ -129,152 +129,10 @@ module TeamBattlesSdk
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
                     writer.write_collection_of_primitive_values("allowedGameModeIds", @allowed_game_mode_ids)
-                    writer.write_object_value("descriptionKey", @description_key)
+                    writer.write_string_value("descriptionKey", @description_key)
                     writer.write_string_value("id", @id)
-                    writer.write_object_value("image", @image)
+                    writer.write_string_value("image", @image)
                     writer.write_string_value("nameKey", @name_key)
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiGamePlaylistDescriptionKeyMember1, string
-                class ApiGamePlaylistDescriptionKey
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiGamePlaylistDescriptionKeyMember1
-                    @api_game_playlist_description_key_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiGamePlaylist_descriptionKeyMember1 property value. Composed type representation for type ApiGamePlaylistDescriptionKeyMember1
-                    ## @return a api_game_playlist_description_key_member1
-                    ## 
-                    def api_game_playlist_description_key_member1
-                        return @api_game_playlist_description_key_member1
-                    end
-                    ## 
-                    ## Sets the ApiGamePlaylist_descriptionKeyMember1 property value. Composed type representation for type ApiGamePlaylistDescriptionKeyMember1
-                    ## @param value Value to set for the ApiGamePlaylist_descriptionKeyMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_game_playlist_description_key_member1=(value)
-                        @api_game_playlist_description_key_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_game_playlist_description_key
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiGamePlaylistDescriptionKey.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiGamePlaylist_descriptionKeyMember1" => lambda {|n| @api_game_playlist_description_key_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiGamePlaylistDescriptionKeyMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiGamePlaylist_descriptionKeyMember1", @api_game_playlist_description_key_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiGamePlaylistImageMember1, string
-                class ApiGamePlaylistImage
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiGamePlaylistImageMember1
-                    @api_game_playlist_image_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiGamePlaylist_imageMember1 property value. Composed type representation for type ApiGamePlaylistImageMember1
-                    ## @return a api_game_playlist_image_member1
-                    ## 
-                    def api_game_playlist_image_member1
-                        return @api_game_playlist_image_member1
-                    end
-                    ## 
-                    ## Sets the ApiGamePlaylist_imageMember1 property value. Composed type representation for type ApiGamePlaylistImageMember1
-                    ## @param value Value to set for the ApiGamePlaylist_imageMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_game_playlist_image_member1=(value)
-                        @api_game_playlist_image_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_game_playlist_image
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiGamePlaylistImage.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiGamePlaylist_imageMember1" => lambda {|n| @api_game_playlist_image_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiGamePlaylistImageMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiGamePlaylist_imageMember1", @api_game_playlist_image_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
                 end
             end
         end

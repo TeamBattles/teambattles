@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class TeamLeaderboardResponse implements Parsable 
 {
     /**
-     * @var TeamLeaderboardResponse_gameSlug|null $gameSlug The gameSlug property
+     * @var string|null $gameSlug The gameSlug property
     */
-    private ?TeamLeaderboardResponse_gameSlug $gameSlug = null;
+    private ?string $gameSlug = null;
     
     /**
      * @var LeaderboardSortBy|null $sortBy Supported leaderboard sort field.
@@ -47,7 +47,7 @@ class TeamLeaderboardResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'gameSlug' => fn(ParseNode $n) => $o->setGameSlug($n->getObjectValue([TeamLeaderboardResponse_gameSlug::class, 'createFromDiscriminatorValue'])),
+            'gameSlug' => fn(ParseNode $n) => $o->setGameSlug($n->getStringValue()),
             'sortBy' => fn(ParseNode $n) => $o->setSortBy($n->getEnumValue(LeaderboardSortBy::class)),
             'teams' => fn(ParseNode $n) => $o->setTeams($n->getCollectionOfObjectValues([TeamLeaderboardEntry::class, 'createFromDiscriminatorValue'])),
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
@@ -56,9 +56,9 @@ class TeamLeaderboardResponse implements Parsable
 
     /**
      * Gets the gameSlug property value. The gameSlug property
-     * @return TeamLeaderboardResponse_gameSlug|null
+     * @return string|null
     */
-    public function getGameSlug(): ?TeamLeaderboardResponse_gameSlug {
+    public function getGameSlug(): ?string {
         return $this->gameSlug;
     }
 
@@ -91,7 +91,7 @@ class TeamLeaderboardResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('gameSlug', $this->getGameSlug());
+        $writer->writeStringValue('gameSlug', $this->getGameSlug());
         $writer->writeEnumValue('sortBy', $this->getSortBy());
         $writer->writeCollectionOfObjectValues('teams', $this->getTeams());
         $writer->writeStringValue('timestamp', $this->getTimestamp());
@@ -99,9 +99,9 @@ class TeamLeaderboardResponse implements Parsable
 
     /**
      * Sets the gameSlug property value. The gameSlug property
-     * @param TeamLeaderboardResponse_gameSlug|null $value Value to set for the gameSlug property.
+     * @param string|null $value Value to set for the gameSlug property.
     */
-    public function setGameSlug(?TeamLeaderboardResponse_gameSlug $value): void {
+    public function setGameSlug(?string $value): void {
         $this->gameSlug = $value;
     }
 

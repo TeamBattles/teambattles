@@ -1,8 +1,6 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './league_profile_active_seasons.dart';
-import './league_profile_avatar_url.dart';
-import './league_profile_banner_url.dart';
 import './league_profile_games.dart';
 
 /// auto generated
@@ -11,9 +9,9 @@ class LeagueProfile implements Parsable {
     ///  Currently active seasons.
     Iterable<LeagueProfileActiveSeasons>? activeSeasons;
     ///  League avatar image URL.
-    LeagueProfileAvatarUrl? avatarUrl;
+    String? avatarUrl;
     ///  League banner image URL.
-    LeagueProfileBannerUrl? bannerUrl;
+    String? bannerUrl;
     ///  Creation timestamp (epoch milliseconds).
     double? createdAt;
     ///  League description.
@@ -48,8 +46,8 @@ class LeagueProfile implements Parsable {
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['activeSeasons'] = (node) => activeSeasons = node.getCollectionOfObjectValues<LeagueProfileActiveSeasons>(LeagueProfileActiveSeasons.createFromDiscriminatorValue);
-        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getObjectValue<LeagueProfileAvatarUrl>(LeagueProfileAvatarUrl.createFromDiscriminatorValue);
-        deserializerMap['bannerUrl'] = (node) => bannerUrl = node.getObjectValue<LeagueProfileBannerUrl>(LeagueProfileBannerUrl.createFromDiscriminatorValue);
+        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getStringValue();
+        deserializerMap['bannerUrl'] = (node) => bannerUrl = node.getStringValue();
         deserializerMap['createdAt'] = (node) => createdAt = node.getDoubleValue();
         deserializerMap['description'] = (node) => description = node.getStringValue();
         deserializerMap['games'] = (node) => games = node.getCollectionOfObjectValues<LeagueProfileGames>(LeagueProfileGames.createFromDiscriminatorValue);
@@ -69,8 +67,8 @@ class LeagueProfile implements Parsable {
     @override
     void serialize(SerializationWriter writer) {
         writer.writeCollectionOfObjectValues<LeagueProfileActiveSeasons>('activeSeasons', activeSeasons);
-        writer.writeObjectValue<LeagueProfileAvatarUrl>('avatarUrl', avatarUrl);
-        writer.writeObjectValue<LeagueProfileBannerUrl>('bannerUrl', bannerUrl);
+        writer.writeStringValue('avatarUrl', avatarUrl);
+        writer.writeStringValue('bannerUrl', bannerUrl);
         writer.writeDoubleValue('createdAt', createdAt);
         writer.writeStringValue('description', description);
         writer.writeCollectionOfObjectValues<LeagueProfileGames>('games', games);

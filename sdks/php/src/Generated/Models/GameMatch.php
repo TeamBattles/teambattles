@@ -27,14 +27,14 @@ class GameMatch implements Parsable
     private ?int $bestOf = null;
     
     /**
-     * @var GameMatch_completedAt|null $completedAt Completion time (ISO 8601).
+     * @var string|null $completedAt Completion time (ISO 8601).
     */
-    private ?GameMatch_completedAt $completedAt = null;
+    private ?string $completedAt = null;
     
     /**
-     * @var GameMatch_createdAt|null $createdAt Creation time (ISO 8601).
+     * @var string|null $createdAt Creation time (ISO 8601).
     */
-    private ?GameMatch_createdAt $createdAt = null;
+    private ?string $createdAt = null;
     
     /**
      * @var Team|null $creatorTeam The creatorTeam property
@@ -57,14 +57,14 @@ class GameMatch implements Parsable
     private ?string $id = null;
     
     /**
-     * @var GameMatch_scheduledAt|null $scheduledAt Scheduled start time (ISO 8601).
+     * @var string|null $scheduledAt Scheduled start time (ISO 8601).
     */
-    private ?GameMatch_scheduledAt $scheduledAt = null;
+    private ?string $scheduledAt = null;
     
     /**
-     * @var GameMatch_startedAt|null $startedAt Actual start time (ISO 8601).
+     * @var string|null $startedAt Actual start time (ISO 8601).
     */
-    private ?GameMatch_startedAt $startedAt = null;
+    private ?string $startedAt = null;
     
     /**
      * @var MatchStatus|null $status Lifecycle status of a match.
@@ -106,17 +106,17 @@ class GameMatch implements Parsable
 
     /**
      * Gets the completedAt property value. Completion time (ISO 8601).
-     * @return GameMatch_completedAt|null
+     * @return string|null
     */
-    public function getCompletedAt(): ?GameMatch_completedAt {
+    public function getCompletedAt(): ?string {
         return $this->completedAt;
     }
 
     /**
      * Gets the createdAt property value. Creation time (ISO 8601).
-     * @return GameMatch_createdAt|null
+     * @return string|null
     */
-    public function getCreatedAt(): ?GameMatch_createdAt {
+    public function getCreatedAt(): ?string {
         return $this->createdAt;
     }
 
@@ -146,14 +146,14 @@ class GameMatch implements Parsable
             'acceptedTeam' => fn(ParseNode $n) => $o->setAcceptedTeam($n->getObjectValue([Team::class, 'createFromDiscriminatorValue'])),
             'acceptedTeamScore' => fn(ParseNode $n) => $o->setAcceptedTeamScore($n->getObjectValue([GameMatch_acceptedTeamScore::class, 'createFromDiscriminatorValue'])),
             'bestOf' => fn(ParseNode $n) => $o->setBestOf($n->getIntegerValue()),
-            'completedAt' => fn(ParseNode $n) => $o->setCompletedAt($n->getObjectValue([GameMatch_completedAt::class, 'createFromDiscriminatorValue'])),
-            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([GameMatch_createdAt::class, 'createFromDiscriminatorValue'])),
+            'completedAt' => fn(ParseNode $n) => $o->setCompletedAt($n->getStringValue()),
+            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getStringValue()),
             'creatorTeam' => fn(ParseNode $n) => $o->setCreatorTeam($n->getObjectValue([Team::class, 'createFromDiscriminatorValue'])),
             'creatorTeamScore' => fn(ParseNode $n) => $o->setCreatorTeamScore($n->getObjectValue([GameMatch_creatorTeamScore::class, 'createFromDiscriminatorValue'])),
             'gameMode' => fn(ParseNode $n) => $o->setGameMode($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'scheduledAt' => fn(ParseNode $n) => $o->setScheduledAt($n->getObjectValue([GameMatch_scheduledAt::class, 'createFromDiscriminatorValue'])),
-            'startedAt' => fn(ParseNode $n) => $o->setStartedAt($n->getObjectValue([GameMatch_startedAt::class, 'createFromDiscriminatorValue'])),
+            'scheduledAt' => fn(ParseNode $n) => $o->setScheduledAt($n->getStringValue()),
+            'startedAt' => fn(ParseNode $n) => $o->setStartedAt($n->getStringValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(MatchStatus::class)),
         ];
     }
@@ -176,17 +176,17 @@ class GameMatch implements Parsable
 
     /**
      * Gets the scheduledAt property value. Scheduled start time (ISO 8601).
-     * @return GameMatch_scheduledAt|null
+     * @return string|null
     */
-    public function getScheduledAt(): ?GameMatch_scheduledAt {
+    public function getScheduledAt(): ?string {
         return $this->scheduledAt;
     }
 
     /**
      * Gets the startedAt property value. Actual start time (ISO 8601).
-     * @return GameMatch_startedAt|null
+     * @return string|null
     */
-    public function getStartedAt(): ?GameMatch_startedAt {
+    public function getStartedAt(): ?string {
         return $this->startedAt;
     }
 
@@ -206,14 +206,14 @@ class GameMatch implements Parsable
         $writer->writeObjectValue('acceptedTeam', $this->getAcceptedTeam());
         $writer->writeObjectValue('acceptedTeamScore', $this->getAcceptedTeamScore());
         $writer->writeIntegerValue('bestOf', $this->getBestOf());
-        $writer->writeObjectValue('completedAt', $this->getCompletedAt());
-        $writer->writeObjectValue('createdAt', $this->getCreatedAt());
+        $writer->writeStringValue('completedAt', $this->getCompletedAt());
+        $writer->writeStringValue('createdAt', $this->getCreatedAt());
         $writer->writeObjectValue('creatorTeam', $this->getCreatorTeam());
         $writer->writeObjectValue('creatorTeamScore', $this->getCreatorTeamScore());
         $writer->writeStringValue('gameMode', $this->getGameMode());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeObjectValue('scheduledAt', $this->getScheduledAt());
-        $writer->writeObjectValue('startedAt', $this->getStartedAt());
+        $writer->writeStringValue('scheduledAt', $this->getScheduledAt());
+        $writer->writeStringValue('startedAt', $this->getStartedAt());
         $writer->writeEnumValue('status', $this->getStatus());
     }
 
@@ -243,17 +243,17 @@ class GameMatch implements Parsable
 
     /**
      * Sets the completedAt property value. Completion time (ISO 8601).
-     * @param GameMatch_completedAt|null $value Value to set for the completedAt property.
+     * @param string|null $value Value to set for the completedAt property.
     */
-    public function setCompletedAt(?GameMatch_completedAt $value): void {
+    public function setCompletedAt(?string $value): void {
         $this->completedAt = $value;
     }
 
     /**
      * Sets the createdAt property value. Creation time (ISO 8601).
-     * @param GameMatch_createdAt|null $value Value to set for the createdAt property.
+     * @param string|null $value Value to set for the createdAt property.
     */
-    public function setCreatedAt(?GameMatch_createdAt $value): void {
+    public function setCreatedAt(?string $value): void {
         $this->createdAt = $value;
     }
 
@@ -291,17 +291,17 @@ class GameMatch implements Parsable
 
     /**
      * Sets the scheduledAt property value. Scheduled start time (ISO 8601).
-     * @param GameMatch_scheduledAt|null $value Value to set for the scheduledAt property.
+     * @param string|null $value Value to set for the scheduledAt property.
     */
-    public function setScheduledAt(?GameMatch_scheduledAt $value): void {
+    public function setScheduledAt(?string $value): void {
         $this->scheduledAt = $value;
     }
 
     /**
      * Sets the startedAt property value. Actual start time (ISO 8601).
-     * @param GameMatch_startedAt|null $value Value to set for the startedAt property.
+     * @param string|null $value Value to set for the startedAt property.
     */
-    public function setStartedAt(?GameMatch_startedAt $value): void {
+    public function setStartedAt(?string $value): void {
         $this->startedAt = $value;
     }
 

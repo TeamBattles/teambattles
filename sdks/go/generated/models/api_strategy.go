@@ -12,7 +12,7 @@ type ApiStrategy struct {
     // The createdAt property
     createdAt ApiStrategy_ApiStrategy_createdAtable
     // Author description, when set.
-    description ApiStrategy_ApiStrategy_descriptionable
+    description *string
     // Game slug the strategy targets.
     game *string
     // Strategy ID.
@@ -28,7 +28,7 @@ type ApiStrategy struct {
     // Whether frame playback wraps from the last stage to the first.
     playbackLoop *bool
     // Freshly signed preview image URL, when a preview has been rendered.
-    previewUrl ApiStrategy_ApiStrategy_previewUrlable
+    previewUrl *string
     // Public share slug.
     shareSlug *string
     // The stageCount property
@@ -117,160 +117,6 @@ func (m *ApiStrategy_ApiStrategy_createdAt) SetApiStrategyCreatedAtMember1(value
 func (m *ApiStrategy_ApiStrategy_createdAt) SetString(value *string)() {
     m.string = value
 }
-// ApiStrategy_ApiStrategy_description composed type wrapper for classes ApiStrategy_descriptionMember1able, string
-type ApiStrategy_ApiStrategy_description struct {
-    // Composed type representation for type ApiStrategy_descriptionMember1able
-    apiStrategy_descriptionMember1 ApiStrategy_descriptionMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiStrategy_ApiStrategy_description instantiates a new ApiStrategy_ApiStrategy_description and sets the default values.
-func NewApiStrategy_ApiStrategy_description()(*ApiStrategy_ApiStrategy_description) {
-    m := &ApiStrategy_ApiStrategy_description{
-    }
-    return m
-}
-// CreateApiStrategy_ApiStrategy_descriptionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiStrategy_ApiStrategy_descriptionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiStrategy_ApiStrategy_description()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiStrategy_descriptionMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiStrategy_descriptionMember1able); ok {
-                result.SetApiStrategyDescriptionMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiStrategyDescriptionMember1 gets the ApiStrategy_descriptionMember1 property value. Composed type representation for type ApiStrategy_descriptionMember1able
-// returns a ApiStrategy_descriptionMember1able when successful
-func (m *ApiStrategy_ApiStrategy_description) GetApiStrategyDescriptionMember1()(ApiStrategy_descriptionMember1able) {
-    return m.apiStrategy_descriptionMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiStrategy_ApiStrategy_description) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiStrategy_ApiStrategy_description) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiStrategy_ApiStrategy_description) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiStrategy_ApiStrategy_description) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiStrategyDescriptionMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiStrategyDescriptionMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiStrategyDescriptionMember1 sets the ApiStrategy_descriptionMember1 property value. Composed type representation for type ApiStrategy_descriptionMember1able
-func (m *ApiStrategy_ApiStrategy_description) SetApiStrategyDescriptionMember1(value ApiStrategy_descriptionMember1able)() {
-    m.apiStrategy_descriptionMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiStrategy_ApiStrategy_description) SetString(value *string)() {
-    m.string = value
-}
-// ApiStrategy_ApiStrategy_previewUrl composed type wrapper for classes ApiStrategy_previewUrlMember1able, string
-type ApiStrategy_ApiStrategy_previewUrl struct {
-    // Composed type representation for type ApiStrategy_previewUrlMember1able
-    apiStrategy_previewUrlMember1 ApiStrategy_previewUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiStrategy_ApiStrategy_previewUrl instantiates a new ApiStrategy_ApiStrategy_previewUrl and sets the default values.
-func NewApiStrategy_ApiStrategy_previewUrl()(*ApiStrategy_ApiStrategy_previewUrl) {
-    m := &ApiStrategy_ApiStrategy_previewUrl{
-    }
-    return m
-}
-// CreateApiStrategy_ApiStrategy_previewUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiStrategy_ApiStrategy_previewUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiStrategy_ApiStrategy_previewUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiStrategy_previewUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiStrategy_previewUrlMember1able); ok {
-                result.SetApiStrategyPreviewUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiStrategyPreviewUrlMember1 gets the ApiStrategy_previewUrlMember1 property value. Composed type representation for type ApiStrategy_previewUrlMember1able
-// returns a ApiStrategy_previewUrlMember1able when successful
-func (m *ApiStrategy_ApiStrategy_previewUrl) GetApiStrategyPreviewUrlMember1()(ApiStrategy_previewUrlMember1able) {
-    return m.apiStrategy_previewUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiStrategy_ApiStrategy_previewUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiStrategy_ApiStrategy_previewUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiStrategy_ApiStrategy_previewUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiStrategy_ApiStrategy_previewUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiStrategyPreviewUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiStrategyPreviewUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiStrategyPreviewUrlMember1 sets the ApiStrategy_previewUrlMember1 property value. Composed type representation for type ApiStrategy_previewUrlMember1able
-func (m *ApiStrategy_ApiStrategy_previewUrl) SetApiStrategyPreviewUrlMember1(value ApiStrategy_previewUrlMember1able)() {
-    m.apiStrategy_previewUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiStrategy_ApiStrategy_previewUrl) SetString(value *string)() {
-    m.string = value
-}
 // ApiStrategy_ApiStrategy_updatedAt composed type wrapper for classes ApiStrategy_updatedAtMember1able, string
 type ApiStrategy_ApiStrategy_updatedAt struct {
     // Composed type representation for type ApiStrategy_updatedAtMember1able
@@ -355,20 +201,6 @@ type ApiStrategy_ApiStrategy_createdAtable interface {
     SetApiStrategyCreatedAtMember1(value ApiStrategy_createdAtMember1able)()
     SetString(value *string)()
 }
-type ApiStrategy_ApiStrategy_descriptionable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiStrategyDescriptionMember1()(ApiStrategy_descriptionMember1able)
-    GetString()(*string)
-    SetApiStrategyDescriptionMember1(value ApiStrategy_descriptionMember1able)()
-    SetString(value *string)()
-}
-type ApiStrategy_ApiStrategy_previewUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiStrategyPreviewUrlMember1()(ApiStrategy_previewUrlMember1able)
-    GetString()(*string)
-    SetApiStrategyPreviewUrlMember1(value ApiStrategy_previewUrlMember1able)()
-    SetString(value *string)()
-}
 type ApiStrategy_ApiStrategy_updatedAtable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetApiStrategyUpdatedAtMember1()(ApiStrategy_updatedAtMember1able)
@@ -393,8 +225,8 @@ func (m *ApiStrategy) GetCreatedAt()(ApiStrategy_ApiStrategy_createdAtable) {
     return m.createdAt
 }
 // GetDescription gets the description property value. Author description, when set.
-// returns a ApiStrategy_ApiStrategy_descriptionable when successful
-func (m *ApiStrategy) GetDescription()(ApiStrategy_ApiStrategy_descriptionable) {
+// returns a *string when successful
+func (m *ApiStrategy) GetDescription()(*string) {
     return m.description
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -412,12 +244,12 @@ func (m *ApiStrategy) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiStrategy_ApiStrategy_descriptionFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDescription(val.(ApiStrategy_ApiStrategy_descriptionable))
+            m.SetDescription(val)
         }
         return nil
     }
@@ -492,12 +324,12 @@ func (m *ApiStrategy) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["previewUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiStrategy_ApiStrategy_previewUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetPreviewUrl(val.(ApiStrategy_ApiStrategy_previewUrlable))
+            m.SetPreviewUrl(val)
         }
         return nil
     }
@@ -595,8 +427,8 @@ func (m *ApiStrategy) GetPlaybackLoop()(*bool) {
     return m.playbackLoop
 }
 // GetPreviewUrl gets the previewUrl property value. Freshly signed preview image URL, when a preview has been rendered.
-// returns a ApiStrategy_ApiStrategy_previewUrlable when successful
-func (m *ApiStrategy) GetPreviewUrl()(ApiStrategy_ApiStrategy_previewUrlable) {
+// returns a *string when successful
+func (m *ApiStrategy) GetPreviewUrl()(*string) {
     return m.previewUrl
 }
 // GetShareSlug gets the shareSlug property value. Public share slug.
@@ -633,7 +465,7 @@ func (m *ApiStrategy) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteObjectValue("description", m.GetDescription())
+        err := writer.WriteStringValue("description", m.GetDescription())
         if err != nil {
             return err
         }
@@ -681,7 +513,7 @@ func (m *ApiStrategy) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteObjectValue("previewUrl", m.GetPreviewUrl())
+        err := writer.WriteStringValue("previewUrl", m.GetPreviewUrl())
         if err != nil {
             return err
         }
@@ -730,7 +562,7 @@ func (m *ApiStrategy) SetCreatedAt(value ApiStrategy_ApiStrategy_createdAtable)(
     m.createdAt = value
 }
 // SetDescription sets the description property value. Author description, when set.
-func (m *ApiStrategy) SetDescription(value ApiStrategy_ApiStrategy_descriptionable)() {
+func (m *ApiStrategy) SetDescription(value *string)() {
     m.description = value
 }
 // SetGame sets the game property value. Game slug the strategy targets.
@@ -762,7 +594,7 @@ func (m *ApiStrategy) SetPlaybackLoop(value *bool)() {
     m.playbackLoop = value
 }
 // SetPreviewUrl sets the previewUrl property value. Freshly signed preview image URL, when a preview has been rendered.
-func (m *ApiStrategy) SetPreviewUrl(value ApiStrategy_ApiStrategy_previewUrlable)() {
+func (m *ApiStrategy) SetPreviewUrl(value *string)() {
     m.previewUrl = value
 }
 // SetShareSlug sets the shareSlug property value. Public share slug.
@@ -788,7 +620,7 @@ func (m *ApiStrategy) SetVisibility(value *StrategyVisibility)() {
 type ApiStrategyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetCreatedAt()(ApiStrategy_ApiStrategy_createdAtable)
-    GetDescription()(ApiStrategy_ApiStrategy_descriptionable)
+    GetDescription()(*string)
     GetGame()(*string)
     GetId()(*string)
     GetMapId()(*string)
@@ -796,14 +628,14 @@ type ApiStrategyable interface {
     GetName()(*string)
     GetOwnerId()(*string)
     GetPlaybackLoop()(*bool)
-    GetPreviewUrl()(ApiStrategy_ApiStrategy_previewUrlable)
+    GetPreviewUrl()(*string)
     GetShareSlug()(*string)
     GetStageCount()(*int32)
     GetStages()([]ApiStrategyStageable)
     GetUpdatedAt()(ApiStrategy_ApiStrategy_updatedAtable)
     GetVisibility()(*StrategyVisibility)
     SetCreatedAt(value ApiStrategy_ApiStrategy_createdAtable)()
-    SetDescription(value ApiStrategy_ApiStrategy_descriptionable)()
+    SetDescription(value *string)()
     SetGame(value *string)()
     SetId(value *string)()
     SetMapId(value *string)()
@@ -811,7 +643,7 @@ type ApiStrategyable interface {
     SetName(value *string)()
     SetOwnerId(value *string)()
     SetPlaybackLoop(value *bool)()
-    SetPreviewUrl(value ApiStrategy_ApiStrategy_previewUrlable)()
+    SetPreviewUrl(value *string)()
     SetShareSlug(value *string)()
     SetStageCount(value *int32)()
     SetStages(value []ApiStrategyStageable)()

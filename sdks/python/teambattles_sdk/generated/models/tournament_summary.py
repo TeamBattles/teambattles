@@ -7,8 +7,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .tournament_format import TournamentFormat
     from .tournament_status import TournamentStatus
-    from .tournament_summary_banner_url import TournamentSummary_bannerUrl
-    from .tournament_summary_logo_url import TournamentSummary_logoUrl
 
 @dataclass
 class TournamentSummary(Parsable):
@@ -16,7 +14,7 @@ class TournamentSummary(Parsable):
     Summary view of a tournament for discovery.
     """
     # Banner image URL.
-    banner_url: Optional[TournamentSummary_bannerUrl] = None
+    banner_url: Optional[str] = None
     # Short tournament description.
     description: Optional[str] = None
     # Bracket format of a tournament.
@@ -26,7 +24,7 @@ class TournamentSummary(Parsable):
     # Whether the featured placement is live at request time.
     is_featured: Optional[bool] = None
     # Logo image URL.
-    logo_url: Optional[TournamentSummary_logoUrl] = None
+    logo_url: Optional[str] = None
     # Participant cap.
     max_participants: Optional[int] = None
     # Tournament display name.
@@ -62,21 +60,17 @@ class TournamentSummary(Parsable):
         """
         from .tournament_format import TournamentFormat
         from .tournament_status import TournamentStatus
-        from .tournament_summary_banner_url import TournamentSummary_bannerUrl
-        from .tournament_summary_logo_url import TournamentSummary_logoUrl
 
         from .tournament_format import TournamentFormat
         from .tournament_status import TournamentStatus
-        from .tournament_summary_banner_url import TournamentSummary_bannerUrl
-        from .tournament_summary_logo_url import TournamentSummary_logoUrl
 
         fields: dict[str, Callable[[Any], None]] = {
-            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_object_value(TournamentSummary_bannerUrl)),
+            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "format": lambda n : setattr(self, 'format', n.get_enum_value(TournamentFormat)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isFeatured": lambda n : setattr(self, 'is_featured', n.get_bool_value()),
-            "logoUrl": lambda n : setattr(self, 'logo_url', n.get_object_value(TournamentSummary_logoUrl)),
+            "logoUrl": lambda n : setattr(self, 'logo_url', n.get_str_value()),
             "maxParticipants": lambda n : setattr(self, 'max_participants', n.get_int_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "participantCount": lambda n : setattr(self, 'participant_count', n.get_int_value()),
@@ -96,12 +90,12 @@ class TournamentSummary(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("bannerUrl", self.banner_url)
+        writer.write_str_value("bannerUrl", self.banner_url)
         writer.write_str_value("description", self.description)
         writer.write_enum_value("format", self.format)
         writer.write_str_value("id", self.id)
         writer.write_bool_value("isFeatured", self.is_featured)
-        writer.write_object_value("logoUrl", self.logo_url)
+        writer.write_str_value("logoUrl", self.logo_url)
         writer.write_int_value("maxParticipants", self.max_participants)
         writer.write_str_value("name", self.name)
         writer.write_int_value("participantCount", self.participant_count)

@@ -14,93 +14,9 @@ type TicketsGetResponse struct {
     // The hasMore property
     hasMore *bool
     // The nextCursor property
-    nextCursor TicketsGetResponse_TicketsGetResponse_nextCursorable
+    nextCursor *string
     // The timestamp property
     timestamp *string
-}
-// TicketsGetResponse_TicketsGetResponse_nextCursor composed type wrapper for classes string, TicketsGetResponse_nextCursorMember1able
-type TicketsGetResponse_TicketsGetResponse_nextCursor struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TicketsGetResponse_nextCursorMember1able
-    ticketsGetResponse_nextCursorMember1 TicketsGetResponse_nextCursorMember1able
-}
-// NewTicketsGetResponse_TicketsGetResponse_nextCursor instantiates a new TicketsGetResponse_TicketsGetResponse_nextCursor and sets the default values.
-func NewTicketsGetResponse_TicketsGetResponse_nextCursor()(*TicketsGetResponse_TicketsGetResponse_nextCursor) {
-    m := &TicketsGetResponse_TicketsGetResponse_nextCursor{
-    }
-    return m
-}
-// CreateTicketsGetResponse_TicketsGetResponse_nextCursorFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTicketsGetResponse_TicketsGetResponse_nextCursorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTicketsGetResponse_TicketsGetResponse_nextCursor()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTicketsGetResponse_nextCursorMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TicketsGetResponse_nextCursorMember1able); ok {
-                result.SetTicketsGetResponseNextCursorMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TicketsGetResponse_TicketsGetResponse_nextCursor) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TicketsGetResponse_TicketsGetResponse_nextCursor) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TicketsGetResponse_TicketsGetResponse_nextCursor) GetString()(*string) {
-    return m.string
-}
-// GetTicketsGetResponseNextCursorMember1 gets the ticketsGetResponse_nextCursorMember1 property value. Composed type representation for type TicketsGetResponse_nextCursorMember1able
-// returns a TicketsGetResponse_nextCursorMember1able when successful
-func (m *TicketsGetResponse_TicketsGetResponse_nextCursor) GetTicketsGetResponseNextCursorMember1()(TicketsGetResponse_nextCursorMember1able) {
-    return m.ticketsGetResponse_nextCursorMember1
-}
-// Serialize serializes information the current object
-func (m *TicketsGetResponse_TicketsGetResponse_nextCursor) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTicketsGetResponseNextCursorMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTicketsGetResponseNextCursorMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TicketsGetResponse_TicketsGetResponse_nextCursor) SetString(value *string)() {
-    m.string = value
-}
-// SetTicketsGetResponseNextCursorMember1 sets the ticketsGetResponse_nextCursorMember1 property value. Composed type representation for type TicketsGetResponse_nextCursorMember1able
-func (m *TicketsGetResponse_TicketsGetResponse_nextCursor) SetTicketsGetResponseNextCursorMember1(value TicketsGetResponse_nextCursorMember1able)() {
-    m.ticketsGetResponse_nextCursorMember1 = value
-}
-type TicketsGetResponse_TicketsGetResponse_nextCursorable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTicketsGetResponseNextCursorMember1()(TicketsGetResponse_nextCursorMember1able)
-    SetString(value *string)()
-    SetTicketsGetResponseNextCursorMember1(value TicketsGetResponse_nextCursorMember1able)()
 }
 // NewTicketsGetResponse instantiates a new TicketsGetResponse and sets the default values.
 func NewTicketsGetResponse()(*TicketsGetResponse) {
@@ -149,12 +65,12 @@ func (m *TicketsGetResponse) GetFieldDeserializers()(map[string]func(i878a80d233
         return nil
     }
     res["nextCursor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTicketsGetResponse_TicketsGetResponse_nextCursorFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetNextCursor(val.(TicketsGetResponse_TicketsGetResponse_nextCursorable))
+            m.SetNextCursor(val)
         }
         return nil
     }
@@ -176,8 +92,8 @@ func (m *TicketsGetResponse) GetHasMore()(*bool) {
     return m.hasMore
 }
 // GetNextCursor gets the nextCursor property value. The nextCursor property
-// returns a TicketsGetResponse_TicketsGetResponse_nextCursorable when successful
-func (m *TicketsGetResponse) GetNextCursor()(TicketsGetResponse_TicketsGetResponse_nextCursorable) {
+// returns a *string when successful
+func (m *TicketsGetResponse) GetNextCursor()(*string) {
     return m.nextCursor
 }
 // GetTimestamp gets the timestamp property value. The timestamp property
@@ -206,7 +122,7 @@ func (m *TicketsGetResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef2
         }
     }
     {
-        err := writer.WriteObjectValue("nextCursor", m.GetNextCursor())
+        err := writer.WriteStringValue("nextCursor", m.GetNextCursor())
         if err != nil {
             return err
         }
@@ -228,7 +144,7 @@ func (m *TicketsGetResponse) SetHasMore(value *bool)() {
     m.hasMore = value
 }
 // SetNextCursor sets the nextCursor property value. The nextCursor property
-func (m *TicketsGetResponse) SetNextCursor(value TicketsGetResponse_TicketsGetResponse_nextCursorable)() {
+func (m *TicketsGetResponse) SetNextCursor(value *string)() {
     m.nextCursor = value
 }
 // SetTimestamp sets the timestamp property value. The timestamp property
@@ -239,10 +155,10 @@ type TicketsGetResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetData()([]i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.TicketSummaryable)
     GetHasMore()(*bool)
-    GetNextCursor()(TicketsGetResponse_TicketsGetResponse_nextCursorable)
+    GetNextCursor()(*string)
     GetTimestamp()(*string)
     SetData(value []i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.TicketSummaryable)()
     SetHasMore(value *bool)()
-    SetNextCursor(value TicketsGetResponse_TicketsGetResponse_nextCursorable)()
+    SetNextCursor(value *string)()
     SetTimestamp(value *string)()
 }

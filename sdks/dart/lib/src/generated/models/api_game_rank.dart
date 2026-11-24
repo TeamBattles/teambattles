@@ -1,7 +1,6 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './api_game_rank_source.dart';
-import './api_game_rank_sr.dart';
 import './api_game_rank_top250_rank.dart';
 
 /// auto generated
@@ -20,7 +19,7 @@ class ApiGameRank implements Parsable {
     ///  Origin of the rank: manual entry or an API push.
     ApiGameRankSource? source;
     ///  Skill rating, when set.
-    ApiGameRankSr? sr;
+    double? sr;
     ///  Top 250 ladder position (1-250), when applicable.
     ApiGameRankTop250Rank? top250Rank;
     ///  When the rank was last updated.
@@ -42,7 +41,7 @@ class ApiGameRank implements Parsable {
         deserializerMap['isTop250'] = (node) => isTop250 = node.getBoolValue();
         deserializerMap['mode'] = (node) => mode = node.getStringValue();
         deserializerMap['source'] = (node) => source = node.getEnumValue<ApiGameRankSource>((stringValue) => ApiGameRankSource.values.where((enumVal) => enumVal.value == stringValue).firstOrNull);
-        deserializerMap['sr'] = (node) => sr = node.getObjectValue<ApiGameRankSr>(ApiGameRankSr.createFromDiscriminatorValue);
+        deserializerMap['sr'] = (node) => sr = node.getDoubleValue();
         deserializerMap['top250Rank'] = (node) => top250Rank = node.getObjectValue<ApiGameRankTop250Rank>(ApiGameRankTop250Rank.createFromDiscriminatorValue);
         deserializerMap['updatedAt'] = (node) => updatedAt = node.getStringValue();
         deserializerMap['winstreak'] = (node) => winstreak = node.getIntValue();
@@ -58,7 +57,7 @@ class ApiGameRank implements Parsable {
         writer.writeBoolValue('isTop250', value:isTop250);
         writer.writeStringValue('mode', mode);
         writer.writeEnumValue<ApiGameRankSource>('source', source, (e) => e?.value);
-        writer.writeObjectValue<ApiGameRankSr>('sr', sr);
+        writer.writeDoubleValue('sr', sr);
         writer.writeObjectValue<ApiGameRankTop250Rank>('top250Rank', top250Rank);
         writer.writeStringValue('updatedAt', updatedAt);
         writer.writeIntValue('winstreak', winstreak);

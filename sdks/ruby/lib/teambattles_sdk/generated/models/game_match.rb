@@ -92,7 +92,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the completedAt property value. Completion time (ISO 8601).
-                ## @return a game_match_completed_at
+                ## @return a string
                 ## 
                 def completed_at
                     return @completed_at
@@ -107,7 +107,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the createdAt property value. Creation time (ISO 8601).
-                ## @return a game_match_created_at
+                ## @return a string
                 ## 
                 def created_at
                     return @created_at
@@ -183,14 +183,14 @@ module TeamBattlesSdk
                         "acceptedTeam" => lambda {|n| @accepted_team = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::Team.create_from_discriminator_value(pn) }) },
                         "acceptedTeamScore" => lambda {|n| @accepted_team_score = n.get_object_value(lambda {|pn| GameMatch::GameMatchAcceptedTeamScore.create_from_discriminator_value(pn) }) },
                         "bestOf" => lambda {|n| @best_of = n.get_number_value() },
-                        "completedAt" => lambda {|n| @completed_at = n.get_object_value(lambda {|pn| GameMatch::GameMatchCompletedAt.create_from_discriminator_value(pn) }) },
-                        "createdAt" => lambda {|n| @created_at = n.get_object_value(lambda {|pn| GameMatch::GameMatchCreatedAt.create_from_discriminator_value(pn) }) },
+                        "completedAt" => lambda {|n| @completed_at = n.get_string_value() },
+                        "createdAt" => lambda {|n| @created_at = n.get_string_value() },
                         "creatorTeam" => lambda {|n| @creator_team = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::Team.create_from_discriminator_value(pn) }) },
                         "creatorTeamScore" => lambda {|n| @creator_team_score = n.get_object_value(lambda {|pn| GameMatch::GameMatchCreatorTeamScore.create_from_discriminator_value(pn) }) },
                         "gameMode" => lambda {|n| @game_mode = n.get_string_value() },
                         "id" => lambda {|n| @id = n.get_string_value() },
-                        "scheduledAt" => lambda {|n| @scheduled_at = n.get_object_value(lambda {|pn| GameMatch::GameMatchScheduledAt.create_from_discriminator_value(pn) }) },
-                        "startedAt" => lambda {|n| @started_at = n.get_object_value(lambda {|pn| GameMatch::GameMatchStartedAt.create_from_discriminator_value(pn) }) },
+                        "scheduledAt" => lambda {|n| @scheduled_at = n.get_string_value() },
+                        "startedAt" => lambda {|n| @started_at = n.get_string_value() },
                         "status" => lambda {|n| @status = n.get_enum_value(TeamBattlesSdk::Generated::Models::MatchStatus) },
                     }
                 end
@@ -211,7 +211,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the scheduledAt property value. Scheduled start time (ISO 8601).
-                ## @return a game_match_scheduled_at
+                ## @return a string
                 ## 
                 def scheduled_at
                     return @scheduled_at
@@ -234,19 +234,19 @@ module TeamBattlesSdk
                     writer.write_object_value("acceptedTeam", @accepted_team)
                     writer.write_object_value("acceptedTeamScore", @accepted_team_score)
                     writer.write_number_value("bestOf", @best_of)
-                    writer.write_object_value("completedAt", @completed_at)
-                    writer.write_object_value("createdAt", @created_at)
+                    writer.write_string_value("completedAt", @completed_at)
+                    writer.write_string_value("createdAt", @created_at)
                     writer.write_object_value("creatorTeam", @creator_team)
                     writer.write_object_value("creatorTeamScore", @creator_team_score)
                     writer.write_string_value("gameMode", @game_mode)
                     writer.write_string_value("id", @id)
-                    writer.write_object_value("scheduledAt", @scheduled_at)
-                    writer.write_object_value("startedAt", @started_at)
+                    writer.write_string_value("scheduledAt", @scheduled_at)
+                    writer.write_string_value("startedAt", @started_at)
                     writer.write_enum_value("status", @status)
                 end
                 ## 
                 ## Gets the startedAt property value. Actual start time (ISO 8601).
-                ## @return a game_match_started_at
+                ## @return a string
                 ## 
                 def started_at
                     return @started_at
@@ -347,148 +347,6 @@ module TeamBattlesSdk
                 end
 
                 ## 
-                # Composed type wrapper for classes GameMatchCompletedAtMember1, string
-                class GameMatchCompletedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type GameMatchCompletedAtMember1
-                    @game_match_completed_at_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a game_match_completed_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return GameMatchCompletedAt.new
-                    end
-                    ## 
-                    ## Gets the GameMatch_completedAtMember1 property value. Composed type representation for type GameMatchCompletedAtMember1
-                    ## @return a game_match_completed_at_member1
-                    ## 
-                    def game_match_completed_at_member1
-                        return @game_match_completed_at_member1
-                    end
-                    ## 
-                    ## Sets the GameMatch_completedAtMember1 property value. Composed type representation for type GameMatchCompletedAtMember1
-                    ## @param value Value to set for the GameMatch_completedAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def game_match_completed_at_member1=(value)
-                        @game_match_completed_at_member1 = value
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "GameMatch_completedAtMember1" => lambda {|n| @game_match_completed_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::GameMatchCompletedAtMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("GameMatch_completedAtMember1", @game_match_completed_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes GameMatchCreatedAtMember1, string
-                class GameMatchCreatedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type GameMatchCreatedAtMember1
-                    @game_match_created_at_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a game_match_created_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return GameMatchCreatedAt.new
-                    end
-                    ## 
-                    ## Gets the GameMatch_createdAtMember1 property value. Composed type representation for type GameMatchCreatedAtMember1
-                    ## @return a game_match_created_at_member1
-                    ## 
-                    def game_match_created_at_member1
-                        return @game_match_created_at_member1
-                    end
-                    ## 
-                    ## Sets the GameMatch_createdAtMember1 property value. Composed type representation for type GameMatchCreatedAtMember1
-                    ## @param value Value to set for the GameMatch_createdAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def game_match_created_at_member1=(value)
-                        @game_match_created_at_member1 = value
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "GameMatch_createdAtMember1" => lambda {|n| @game_match_created_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::GameMatchCreatedAtMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("GameMatch_createdAtMember1", @game_match_created_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
                 # Composed type wrapper for classes GameMatchCreatorTeamScoreMember1, number
                 class GameMatchCreatorTeamScore
                     include MicrosoftKiotaAbstractions::Parsable
@@ -556,148 +414,6 @@ module TeamBattlesSdk
                         raise StandardError, 'writer cannot be null' if writer.nil?
                         writer.write_object_value("GameMatch_creatorTeamScoreMember1", @game_match_creator_team_score_member1)
                         writer.write_number_value("integer", @integer)
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes GameMatchScheduledAtMember1, string
-                class GameMatchScheduledAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type GameMatchScheduledAtMember1
-                    @game_match_scheduled_at_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a game_match_scheduled_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return GameMatchScheduledAt.new
-                    end
-                    ## 
-                    ## Gets the GameMatch_scheduledAtMember1 property value. Composed type representation for type GameMatchScheduledAtMember1
-                    ## @return a game_match_scheduled_at_member1
-                    ## 
-                    def game_match_scheduled_at_member1
-                        return @game_match_scheduled_at_member1
-                    end
-                    ## 
-                    ## Sets the GameMatch_scheduledAtMember1 property value. Composed type representation for type GameMatchScheduledAtMember1
-                    ## @param value Value to set for the GameMatch_scheduledAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def game_match_scheduled_at_member1=(value)
-                        @game_match_scheduled_at_member1 = value
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "GameMatch_scheduledAtMember1" => lambda {|n| @game_match_scheduled_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::GameMatchScheduledAtMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("GameMatch_scheduledAtMember1", @game_match_scheduled_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes GameMatchStartedAtMember1, string
-                class GameMatchStartedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type GameMatchStartedAtMember1
-                    @game_match_started_at_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a game_match_started_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return GameMatchStartedAt.new
-                    end
-                    ## 
-                    ## Gets the GameMatch_startedAtMember1 property value. Composed type representation for type GameMatchStartedAtMember1
-                    ## @return a game_match_started_at_member1
-                    ## 
-                    def game_match_started_at_member1
-                        return @game_match_started_at_member1
-                    end
-                    ## 
-                    ## Sets the GameMatch_startedAtMember1 property value. Composed type representation for type GameMatchStartedAtMember1
-                    ## @param value Value to set for the GameMatch_startedAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def game_match_started_at_member1=(value)
-                        @game_match_started_at_member1 = value
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "GameMatch_startedAtMember1" => lambda {|n| @game_match_started_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::GameMatchStartedAtMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("GameMatch_startedAtMember1", @game_match_started_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
                     end
                 end
             end

@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class LeaderboardRankResponse implements Parsable 
 {
     /**
-     * @var LeaderboardRankResponse_gameSlug|null $gameSlug The gameSlug property
+     * @var string|null $gameSlug The gameSlug property
     */
-    private ?LeaderboardRankResponse_gameSlug $gameSlug = null;
+    private ?string $gameSlug = null;
     
     /**
      * @var string|null $id Resolved entity ID.
@@ -52,7 +52,7 @@ class LeaderboardRankResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'gameSlug' => fn(ParseNode $n) => $o->setGameSlug($n->getObjectValue([LeaderboardRankResponse_gameSlug::class, 'createFromDiscriminatorValue'])),
+            'gameSlug' => fn(ParseNode $n) => $o->setGameSlug($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'rank' => fn(ParseNode $n) => $o->setRank($n->getObjectValue([LeaderboardRankResponse_rank::class, 'createFromDiscriminatorValue'])),
             'sortBy' => fn(ParseNode $n) => $o->setSortBy($n->getEnumValue(LeaderboardSortBy::class)),
@@ -62,9 +62,9 @@ class LeaderboardRankResponse implements Parsable
 
     /**
      * Gets the gameSlug property value. The gameSlug property
-     * @return LeaderboardRankResponse_gameSlug|null
+     * @return string|null
     */
-    public function getGameSlug(): ?LeaderboardRankResponse_gameSlug {
+    public function getGameSlug(): ?string {
         return $this->gameSlug;
     }
 
@@ -105,7 +105,7 @@ class LeaderboardRankResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('gameSlug', $this->getGameSlug());
+        $writer->writeStringValue('gameSlug', $this->getGameSlug());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeObjectValue('rank', $this->getRank());
         $writer->writeEnumValue('sortBy', $this->getSortBy());
@@ -114,9 +114,9 @@ class LeaderboardRankResponse implements Parsable
 
     /**
      * Sets the gameSlug property value. The gameSlug property
-     * @param LeaderboardRankResponse_gameSlug|null $value Value to set for the gameSlug property.
+     * @param string|null $value Value to set for the gameSlug property.
     */
-    public function setGameSlug(?LeaderboardRankResponse_gameSlug $value): void {
+    public function setGameSlug(?string $value): void {
         $this->gameSlug = $value;
     }
 

@@ -18,9 +18,9 @@ class LeagueActivityFeedRequestBody implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var LeagueActivityFeedRequestBody_cursor|null $cursor The cursor property
+     * @var string|null $cursor The cursor property
     */
-    private ?LeagueActivityFeedRequestBody_cursor $cursor = null;
+    private ?string $cursor = null;
     
     /**
      * @var int|null $limit The limit property
@@ -54,9 +54,9 @@ class LeagueActivityFeedRequestBody implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the cursor property value. The cursor property
-     * @return LeagueActivityFeedRequestBody_cursor|null
+     * @return string|null
     */
-    public function getCursor(): ?LeagueActivityFeedRequestBody_cursor {
+    public function getCursor(): ?string {
         return $this->cursor;
     }
 
@@ -67,7 +67,7 @@ class LeagueActivityFeedRequestBody implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'cursor' => fn(ParseNode $n) => $o->setCursor($n->getObjectValue([LeagueActivityFeedRequestBody_cursor::class, 'createFromDiscriminatorValue'])),
+            'cursor' => fn(ParseNode $n) => $o->setCursor($n->getStringValue()),
             'limit' => fn(ParseNode $n) => $o->setLimit($n->getIntegerValue()),
         ];
     }
@@ -85,7 +85,7 @@ class LeagueActivityFeedRequestBody implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('cursor', $this->getCursor());
+        $writer->writeStringValue('cursor', $this->getCursor());
         $writer->writeIntegerValue('limit', $this->getLimit());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -100,9 +100,9 @@ class LeagueActivityFeedRequestBody implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the cursor property value. The cursor property
-     * @param LeagueActivityFeedRequestBody_cursor|null $value Value to set for the cursor property.
+     * @param string|null $value Value to set for the cursor property.
     */
-    public function setCursor(?LeagueActivityFeedRequestBody_cursor $value): void {
+    public function setCursor(?string $value): void {
         $this->cursor = $value;
     }
 

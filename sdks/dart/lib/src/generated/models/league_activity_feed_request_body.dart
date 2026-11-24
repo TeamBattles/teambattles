@@ -1,6 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './league_activity_feed_request_body_cursor.dart';
 
 /// auto generated
 /// Cursor pagination options for a league activity feed.
@@ -9,7 +8,7 @@ class LeagueActivityFeedRequestBody implements AdditionalDataHolder, Parsable {
     @override
     Map<String, Object?> additionalData;
     ///  The cursor property
-    LeagueActivityFeedRequestBodyCursor? cursor;
+    String? cursor;
     ///  The limit property
     int? limit;
     /// Instantiates a new [LeagueActivityFeedRequestBody] and sets the default values.
@@ -25,7 +24,7 @@ class LeagueActivityFeedRequestBody implements AdditionalDataHolder, Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['cursor'] = (node) => cursor = node.getObjectValue<LeagueActivityFeedRequestBodyCursor>(LeagueActivityFeedRequestBodyCursor.createFromDiscriminatorValue);
+        deserializerMap['cursor'] = (node) => cursor = node.getStringValue();
         deserializerMap['limit'] = (node) => limit = node.getIntValue();
         return deserializerMap;
     }
@@ -33,7 +32,7 @@ class LeagueActivityFeedRequestBody implements AdditionalDataHolder, Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<LeagueActivityFeedRequestBodyCursor>('cursor', cursor);
+        writer.writeStringValue('cursor', cursor);
         writer.writeIntValue('limit', limit);
         writer.writeAdditionalData(additionalData);
     }

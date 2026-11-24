@@ -10,26 +10,8 @@ import { CreateRequestBuilderRequestsMetadata, type CreateRequestBuilder } from 
 // @ts-ignore
 import { type WithMatchItemRequestBuilder, WithMatchItemRequestBuilderNavigationMetadata, WithMatchItemRequestBuilderRequestsMetadata } from './item/index.js';
 // @ts-ignore
-import { type AdditionalDataHolder, type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
 
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {MatchesPostResponse_pagination_cursorMember1 | string}
- */
-// @ts-ignore
-export function createMatchesPostResponse_pagination_cursorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoMatchesPostResponse_pagination_cursor;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {MatchesPostResponse_pagination_cursorMember1}
- */
-// @ts-ignore
-export function createMatchesPostResponse_pagination_cursorMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoMatchesPostResponse_pagination_cursorMember1;
-}
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
@@ -70,30 +52,8 @@ export function deserializeIntoMatchesPostResponse(matchesPostResponse: Partial<
 // @ts-ignore
 export function deserializeIntoMatchesPostResponse_pagination(matchesPostResponse_pagination: Partial<MatchesPostResponse_pagination> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "cursor": n => { matchesPostResponse_pagination.cursor = n.getObjectValue<MatchesPostResponse_pagination_cursorMember1>(createMatchesPostResponse_pagination_cursorMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "cursor": n => { matchesPostResponse_pagination.cursor = n.getStringValue(); },
         "hasMore": n => { matchesPostResponse_pagination.hasMore = n.getBooleanValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param MatchesPostResponse_pagination_cursor The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoMatchesPostResponse_pagination_cursor(matchesPostResponse_pagination_cursor: Partial<Parsable | MatchesPostResponse_pagination_cursorMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "" : n => { matchesPostResponse_pagination_cursor = n.getStringValue()},
-        ...deserializeIntoMatchesPostResponse_pagination_cursorMember1(matchesPostResponse_pagination_cursor as MatchesPostResponse_pagination_cursorMember1),
-    }
-}
-/**
- * The deserialization information for the current model
- * @param MatchesPostResponse_pagination_cursorMember1 The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoMatchesPostResponse_pagination_cursorMember1(matchesPostResponse_pagination_cursorMember1: Partial<MatchesPostResponse_pagination_cursorMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
     }
 }
 export interface MatchesPostResponse extends Parsable {
@@ -118,14 +78,11 @@ export interface MatchesPostResponse_pagination extends Parsable {
     /**
      * The cursor property
      */
-    cursor?: MatchesPostResponse_pagination_cursorMember1 | string | null;
+    cursor?: string | null;
     /**
      * The hasMore property
      */
     hasMore?: boolean | null;
-}
-export type MatchesPostResponse_pagination_cursor = MatchesPostResponse_pagination_cursorMember1 | string;
-export interface MatchesPostResponse_pagination_cursorMember1 extends AdditionalDataHolder, Parsable {
 }
 /**
  * Builds and executes requests for operations under /game/matches
@@ -186,34 +143,8 @@ export function serializeMatchesPostResponse(writer: SerializationWriter, matche
 // @ts-ignore
 export function serializeMatchesPostResponse_pagination(writer: SerializationWriter, matchesPostResponse_pagination: Partial<MatchesPostResponse_pagination> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!matchesPostResponse_pagination || isSerializingDerivedType) { return; }
-    if ( typeof matchesPostResponse_pagination.cursor === "string") {
-        writer.writeStringValue("cursor", matchesPostResponse_pagination.cursor as string);
-    }
-    else {
-        writer.writeObjectValue<MatchesPostResponse_pagination_cursorMember1>("cursor", matchesPostResponse_pagination.cursor as MatchesPostResponse_pagination_cursorMember1 | undefined | null, serializeMatchesPostResponse_pagination_cursor);
-    }
+    writer.writeStringValue("cursor", matchesPostResponse_pagination.cursor);
     writer.writeBooleanValue("hasMore", matchesPostResponse_pagination.hasMore);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param MatchesPostResponse_pagination_cursor The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeMatchesPostResponse_pagination_cursor(writer: SerializationWriter, matchesPostResponse_pagination_cursor: Partial<Parsable | MatchesPostResponse_pagination_cursorMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    serializeMatchesPostResponse_pagination_cursorMember1(writer, matchesPostResponse_pagination_cursor as MatchesPostResponse_pagination_cursorMember1);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param MatchesPostResponse_pagination_cursorMember1 The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeMatchesPostResponse_pagination_cursorMember1(writer: SerializationWriter, matchesPostResponse_pagination_cursorMember1: Partial<MatchesPostResponse_pagination_cursorMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!matchesPostResponse_pagination_cursorMember1 || isSerializingDerivedType) { return; }
-    writer.writeAdditionalData(matchesPostResponse_pagination_cursorMember1.additionalData);
 }
 /**
  * Uri template for the request builder.

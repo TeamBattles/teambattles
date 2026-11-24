@@ -13,9 +13,9 @@ use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 class ApiGameMode implements Parsable 
 {
     /**
-     * @var ApiGameMode_descriptionKey|null $descriptionKey The descriptionKey property
+     * @var string|null $descriptionKey The descriptionKey property
     */
-    private ?ApiGameMode_descriptionKey $descriptionKey = null;
+    private ?string $descriptionKey = null;
     
     /**
      * @var string|null $id The id property
@@ -23,9 +23,9 @@ class ApiGameMode implements Parsable
     private ?string $id = null;
     
     /**
-     * @var ApiGameMode_image|null $image The image property
+     * @var string|null $image The image property
     */
-    private ?ApiGameMode_image $image = null;
+    private ?string $image = null;
     
     /**
      * @var array<string>|null $mapIds The mapIds property
@@ -38,14 +38,14 @@ class ApiGameMode implements Parsable
     private ?string $nameKey = null;
     
     /**
-     * @var ApiGameMode_rewardBonus|null $rewardBonus The rewardBonus property
+     * @var float|null $rewardBonus The rewardBonus property
     */
-    private ?ApiGameMode_rewardBonus $rewardBonus = null;
+    private ?float $rewardBonus = null;
     
     /**
-     * @var ApiGameMode_shortName|null $shortName The shortName property
+     * @var string|null $shortName The shortName property
     */
-    private ?ApiGameMode_shortName $shortName = null;
+    private ?string $shortName = null;
     
     /**
      * @var bool|null $supportsDraftToggle The supportsDraftToggle property
@@ -63,9 +63,9 @@ class ApiGameMode implements Parsable
 
     /**
      * Gets the descriptionKey property value. The descriptionKey property
-     * @return ApiGameMode_descriptionKey|null
+     * @return string|null
     */
-    public function getDescriptionKey(): ?ApiGameMode_descriptionKey {
+    public function getDescriptionKey(): ?string {
         return $this->descriptionKey;
     }
 
@@ -76,9 +76,9 @@ class ApiGameMode implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'descriptionKey' => fn(ParseNode $n) => $o->setDescriptionKey($n->getObjectValue([ApiGameMode_descriptionKey::class, 'createFromDiscriminatorValue'])),
+            'descriptionKey' => fn(ParseNode $n) => $o->setDescriptionKey($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'image' => fn(ParseNode $n) => $o->setImage($n->getObjectValue([ApiGameMode_image::class, 'createFromDiscriminatorValue'])),
+            'image' => fn(ParseNode $n) => $o->setImage($n->getStringValue()),
             'mapIds' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
                 if (is_array($val)) {
@@ -88,8 +88,8 @@ class ApiGameMode implements Parsable
                 $this->setMapIds($val);
             },
             'nameKey' => fn(ParseNode $n) => $o->setNameKey($n->getStringValue()),
-            'rewardBonus' => fn(ParseNode $n) => $o->setRewardBonus($n->getObjectValue([ApiGameMode_rewardBonus::class, 'createFromDiscriminatorValue'])),
-            'shortName' => fn(ParseNode $n) => $o->setShortName($n->getObjectValue([ApiGameMode_shortName::class, 'createFromDiscriminatorValue'])),
+            'rewardBonus' => fn(ParseNode $n) => $o->setRewardBonus($n->getFloatValue()),
+            'shortName' => fn(ParseNode $n) => $o->setShortName($n->getStringValue()),
             'supportsDraftToggle' => fn(ParseNode $n) => $o->setSupportsDraftToggle($n->getBooleanValue()),
         ];
     }
@@ -104,9 +104,9 @@ class ApiGameMode implements Parsable
 
     /**
      * Gets the image property value. The image property
-     * @return ApiGameMode_image|null
+     * @return string|null
     */
-    public function getImage(): ?ApiGameMode_image {
+    public function getImage(): ?string {
         return $this->image;
     }
 
@@ -128,17 +128,17 @@ class ApiGameMode implements Parsable
 
     /**
      * Gets the rewardBonus property value. The rewardBonus property
-     * @return ApiGameMode_rewardBonus|null
+     * @return float|null
     */
-    public function getRewardBonus(): ?ApiGameMode_rewardBonus {
+    public function getRewardBonus(): ?float {
         return $this->rewardBonus;
     }
 
     /**
      * Gets the shortName property value. The shortName property
-     * @return ApiGameMode_shortName|null
+     * @return string|null
     */
-    public function getShortName(): ?ApiGameMode_shortName {
+    public function getShortName(): ?string {
         return $this->shortName;
     }
 
@@ -155,21 +155,21 @@ class ApiGameMode implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('descriptionKey', $this->getDescriptionKey());
+        $writer->writeStringValue('descriptionKey', $this->getDescriptionKey());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeObjectValue('image', $this->getImage());
+        $writer->writeStringValue('image', $this->getImage());
         $writer->writeCollectionOfPrimitiveValues('mapIds', $this->getMapIds());
         $writer->writeStringValue('nameKey', $this->getNameKey());
-        $writer->writeObjectValue('rewardBonus', $this->getRewardBonus());
-        $writer->writeObjectValue('shortName', $this->getShortName());
+        $writer->writeFloatValue('rewardBonus', $this->getRewardBonus());
+        $writer->writeStringValue('shortName', $this->getShortName());
         $writer->writeBooleanValue('supportsDraftToggle', $this->getSupportsDraftToggle());
     }
 
     /**
      * Sets the descriptionKey property value. The descriptionKey property
-     * @param ApiGameMode_descriptionKey|null $value Value to set for the descriptionKey property.
+     * @param string|null $value Value to set for the descriptionKey property.
     */
-    public function setDescriptionKey(?ApiGameMode_descriptionKey $value): void {
+    public function setDescriptionKey(?string $value): void {
         $this->descriptionKey = $value;
     }
 
@@ -183,9 +183,9 @@ class ApiGameMode implements Parsable
 
     /**
      * Sets the image property value. The image property
-     * @param ApiGameMode_image|null $value Value to set for the image property.
+     * @param string|null $value Value to set for the image property.
     */
-    public function setImage(?ApiGameMode_image $value): void {
+    public function setImage(?string $value): void {
         $this->image = $value;
     }
 
@@ -207,17 +207,17 @@ class ApiGameMode implements Parsable
 
     /**
      * Sets the rewardBonus property value. The rewardBonus property
-     * @param ApiGameMode_rewardBonus|null $value Value to set for the rewardBonus property.
+     * @param float|null $value Value to set for the rewardBonus property.
     */
-    public function setRewardBonus(?ApiGameMode_rewardBonus $value): void {
+    public function setRewardBonus(?float $value): void {
         $this->rewardBonus = $value;
     }
 
     /**
      * Sets the shortName property value. The shortName property
-     * @param ApiGameMode_shortName|null $value Value to set for the shortName property.
+     * @param string|null $value Value to set for the shortName property.
     */
-    public function setShortName(?ApiGameMode_shortName $value): void {
+    public function setShortName(?string $value): void {
         $this->shortName = $value;
     }
 

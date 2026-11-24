@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ApiMatchTeam implements Parsable 
 {
     /**
-     * @var ApiMatchTeam_avatarUrl|null $avatarUrl Team avatar URL.
+     * @var string|null $avatarUrl Team avatar URL.
     */
-    private ?ApiMatchTeam_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
      * @var string|null $id Team ID.
@@ -47,9 +47,9 @@ class ApiMatchTeam implements Parsable
 
     /**
      * Gets the avatarUrl property value. Team avatar URL.
-     * @return ApiMatchTeam_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?ApiMatchTeam_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
@@ -60,7 +60,7 @@ class ApiMatchTeam implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([ApiMatchTeam_avatarUrl::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'score' => fn(ParseNode $n) => $o->setScore($n->getObjectValue([ApiMatchTeam_score::class, 'createFromDiscriminatorValue'])),
@@ -105,7 +105,7 @@ class ApiMatchTeam implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeObjectValue('score', $this->getScore());
@@ -114,9 +114,9 @@ class ApiMatchTeam implements Parsable
 
     /**
      * Sets the avatarUrl property value. Team avatar URL.
-     * @param ApiMatchTeam_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?ApiMatchTeam_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 

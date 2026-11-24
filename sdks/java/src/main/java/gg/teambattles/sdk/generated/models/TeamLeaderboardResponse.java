@@ -1,9 +1,7 @@
 package gg.teambattles.sdk.generated.models;
 
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +14,7 @@ public class TeamLeaderboardResponse implements Parsable {
     /**
      * The gameSlug property
      */
-    private TeamLeaderboardResponseGameSlug gameSlug;
+    private String gameSlug;
     /**
      * Supported leaderboard sort field.
      */
@@ -46,7 +44,7 @@ public class TeamLeaderboardResponse implements Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
-        deserializerMap.put("gameSlug", (n) -> { this.setGameSlug(n.getObjectValue(TeamLeaderboardResponseGameSlug::createFromDiscriminatorValue)); });
+        deserializerMap.put("gameSlug", (n) -> { this.setGameSlug(n.getStringValue()); });
         deserializerMap.put("sortBy", (n) -> { this.setSortBy(n.getEnumValue(LeaderboardSortBy::forValue)); });
         deserializerMap.put("teams", (n) -> { this.setTeams(n.getCollectionOfObjectValues(TeamLeaderboardEntry::createFromDiscriminatorValue)); });
         deserializerMap.put("timestamp", (n) -> { this.setTimestamp(n.getStringValue()); });
@@ -54,10 +52,10 @@ public class TeamLeaderboardResponse implements Parsable {
     }
     /**
      * Gets the gameSlug property value. The gameSlug property
-     * @return a {@link TeamLeaderboardResponseGameSlug}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public TeamLeaderboardResponseGameSlug getGameSlug() {
+    public String getGameSlug() {
         return this.gameSlug;
     }
     /**
@@ -90,7 +88,7 @@ public class TeamLeaderboardResponse implements Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeObjectValue("gameSlug", this.getGameSlug());
+        writer.writeStringValue("gameSlug", this.getGameSlug());
         writer.writeEnumValue("sortBy", this.getSortBy());
         writer.writeCollectionOfObjectValues("teams", this.getTeams());
         writer.writeStringValue("timestamp", this.getTimestamp());
@@ -99,7 +97,7 @@ public class TeamLeaderboardResponse implements Parsable {
      * Sets the gameSlug property value. The gameSlug property
      * @param value Value to set for the gameSlug property.
      */
-    public void setGameSlug(@jakarta.annotation.Nullable final TeamLeaderboardResponseGameSlug value) {
+    public void setGameSlug(@jakarta.annotation.Nullable final String value) {
         this.gameSlug = value;
     }
     /**
@@ -122,88 +120,5 @@ public class TeamLeaderboardResponse implements Parsable {
      */
     public void setTimestamp(@jakarta.annotation.Nullable final String value) {
         this.timestamp = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link String}, {@link TeamLeaderboardResponseGameSlugMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class TeamLeaderboardResponseGameSlug implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Composed type representation for type {@link TeamLeaderboardResponseGameSlugMember1}
-         */
-        private TeamLeaderboardResponseGameSlugMember1 teamLeaderboardResponseGameSlugMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link TeamLeaderboardResponseGameSlug}
-         */
-        @jakarta.annotation.Nonnull
-        public static TeamLeaderboardResponseGameSlug createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final TeamLeaderboardResponseGameSlug result = new TeamLeaderboardResponseGameSlug();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setTeamLeaderboardResponseGameSlugMember1(new TeamLeaderboardResponseGameSlugMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getTeamLeaderboardResponseGameSlugMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getTeamLeaderboardResponseGameSlugMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Gets the TeamLeaderboardResponse_gameSlugMember1 property value. Composed type representation for type {@link TeamLeaderboardResponseGameSlugMember1}
-         * @return a {@link TeamLeaderboardResponseGameSlugMember1}
-         */
-        @jakarta.annotation.Nullable
-        public TeamLeaderboardResponseGameSlugMember1 getTeamLeaderboardResponseGameSlugMember1() {
-            return this.teamLeaderboardResponseGameSlugMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getTeamLeaderboardResponseGameSlugMember1());
-            }
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-        /**
-         * Sets the TeamLeaderboardResponse_gameSlugMember1 property value. Composed type representation for type {@link TeamLeaderboardResponseGameSlugMember1}
-         * @param value Value to set for the TeamLeaderboardResponse_gameSlugMember1 property.
-         */
-        public void setTeamLeaderboardResponseGameSlugMember1(@jakarta.annotation.Nullable final TeamLeaderboardResponseGameSlugMember1 value) {
-            this.teamLeaderboardResponseGameSlugMember1 = value;
-        }
     }
 }

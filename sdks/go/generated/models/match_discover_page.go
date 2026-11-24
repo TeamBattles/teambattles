@@ -14,93 +14,9 @@ type MatchDiscoverPage struct {
     // The hasMore property
     hasMore *bool
     // The nextCursor property
-    nextCursor MatchDiscoverPage_MatchDiscoverPage_nextCursorable
+    nextCursor *string
     // The timestamp property
     timestamp *string
-}
-// MatchDiscoverPage_MatchDiscoverPage_nextCursor composed type wrapper for classes MatchDiscoverPage_nextCursorMember1able, string
-type MatchDiscoverPage_MatchDiscoverPage_nextCursor struct {
-    // Composed type representation for type MatchDiscoverPage_nextCursorMember1able
-    matchDiscoverPage_nextCursorMember1 MatchDiscoverPage_nextCursorMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewMatchDiscoverPage_MatchDiscoverPage_nextCursor instantiates a new MatchDiscoverPage_MatchDiscoverPage_nextCursor and sets the default values.
-func NewMatchDiscoverPage_MatchDiscoverPage_nextCursor()(*MatchDiscoverPage_MatchDiscoverPage_nextCursor) {
-    m := &MatchDiscoverPage_MatchDiscoverPage_nextCursor{
-    }
-    return m
-}
-// CreateMatchDiscoverPage_MatchDiscoverPage_nextCursorFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateMatchDiscoverPage_MatchDiscoverPage_nextCursorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewMatchDiscoverPage_MatchDiscoverPage_nextCursor()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateMatchDiscoverPage_nextCursorMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(MatchDiscoverPage_nextCursorMember1able); ok {
-                result.SetMatchDiscoverPageNextCursorMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *MatchDiscoverPage_MatchDiscoverPage_nextCursor) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *MatchDiscoverPage_MatchDiscoverPage_nextCursor) GetIsComposedType()(bool) {
-    return true
-}
-// GetMatchDiscoverPageNextCursorMember1 gets the MatchDiscoverPage_nextCursorMember1 property value. Composed type representation for type MatchDiscoverPage_nextCursorMember1able
-// returns a MatchDiscoverPage_nextCursorMember1able when successful
-func (m *MatchDiscoverPage_MatchDiscoverPage_nextCursor) GetMatchDiscoverPageNextCursorMember1()(MatchDiscoverPage_nextCursorMember1able) {
-    return m.matchDiscoverPage_nextCursorMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *MatchDiscoverPage_MatchDiscoverPage_nextCursor) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *MatchDiscoverPage_MatchDiscoverPage_nextCursor) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetMatchDiscoverPageNextCursorMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetMatchDiscoverPageNextCursorMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetMatchDiscoverPageNextCursorMember1 sets the MatchDiscoverPage_nextCursorMember1 property value. Composed type representation for type MatchDiscoverPage_nextCursorMember1able
-func (m *MatchDiscoverPage_MatchDiscoverPage_nextCursor) SetMatchDiscoverPageNextCursorMember1(value MatchDiscoverPage_nextCursorMember1able)() {
-    m.matchDiscoverPage_nextCursorMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *MatchDiscoverPage_MatchDiscoverPage_nextCursor) SetString(value *string)() {
-    m.string = value
-}
-type MatchDiscoverPage_MatchDiscoverPage_nextCursorable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetMatchDiscoverPageNextCursorMember1()(MatchDiscoverPage_nextCursorMember1able)
-    GetString()(*string)
-    SetMatchDiscoverPageNextCursorMember1(value MatchDiscoverPage_nextCursorMember1able)()
-    SetString(value *string)()
 }
 // NewMatchDiscoverPage instantiates a new MatchDiscoverPage and sets the default values.
 func NewMatchDiscoverPage()(*MatchDiscoverPage) {
@@ -149,12 +65,12 @@ func (m *MatchDiscoverPage) GetFieldDeserializers()(map[string]func(i878a80d2330
         return nil
     }
     res["nextCursor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateMatchDiscoverPage_MatchDiscoverPage_nextCursorFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetNextCursor(val.(MatchDiscoverPage_MatchDiscoverPage_nextCursorable))
+            m.SetNextCursor(val)
         }
         return nil
     }
@@ -176,8 +92,8 @@ func (m *MatchDiscoverPage) GetHasMore()(*bool) {
     return m.hasMore
 }
 // GetNextCursor gets the nextCursor property value. The nextCursor property
-// returns a MatchDiscoverPage_MatchDiscoverPage_nextCursorable when successful
-func (m *MatchDiscoverPage) GetNextCursor()(MatchDiscoverPage_MatchDiscoverPage_nextCursorable) {
+// returns a *string when successful
+func (m *MatchDiscoverPage) GetNextCursor()(*string) {
     return m.nextCursor
 }
 // GetTimestamp gets the timestamp property value. The timestamp property
@@ -206,7 +122,7 @@ func (m *MatchDiscoverPage) Serialize(writer i878a80d2330e89d26896388a3f487eef27
         }
     }
     {
-        err := writer.WriteObjectValue("nextCursor", m.GetNextCursor())
+        err := writer.WriteStringValue("nextCursor", m.GetNextCursor())
         if err != nil {
             return err
         }
@@ -228,7 +144,7 @@ func (m *MatchDiscoverPage) SetHasMore(value *bool)() {
     m.hasMore = value
 }
 // SetNextCursor sets the nextCursor property value. The nextCursor property
-func (m *MatchDiscoverPage) SetNextCursor(value MatchDiscoverPage_MatchDiscoverPage_nextCursorable)() {
+func (m *MatchDiscoverPage) SetNextCursor(value *string)() {
     m.nextCursor = value
 }
 // SetTimestamp sets the timestamp property value. The timestamp property
@@ -239,10 +155,10 @@ type MatchDiscoverPageable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetData()([]ApiMatchDetailable)
     GetHasMore()(*bool)
-    GetNextCursor()(MatchDiscoverPage_MatchDiscoverPage_nextCursorable)
+    GetNextCursor()(*string)
     GetTimestamp()(*string)
     SetData(value []ApiMatchDetailable)()
     SetHasMore(value *bool)()
-    SetNextCursor(value MatchDiscoverPage_MatchDiscoverPage_nextCursorable)()
+    SetNextCursor(value *string)()
     SetTimestamp(value *string)()
 }

@@ -34,18 +34,18 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The completedAt property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_completedAt? CompletedAt { get; set; }
+        public string? CompletedAt { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_completedAt CompletedAt { get; set; }
+        public string CompletedAt { get; set; }
 #endif
         /// <summary>The createdAt property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_createdAt? CreatedAt { get; set; }
+        public string? CreatedAt { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_createdAt CreatedAt { get; set; }
+        public string CreatedAt { get; set; }
 #endif
         /// <summary>The creatorTeam property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -82,34 +82,34 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The leagueId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueId? LeagueId { get; set; }
+        public string? LeagueId { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueId LeagueId { get; set; }
+        public string LeagueId { get; set; }
 #endif
         /// <summary>The leagueSeasonId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueSeasonId? LeagueSeasonId { get; set; }
+        public string? LeagueSeasonId { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueSeasonId LeagueSeasonId { get; set; }
+        public string LeagueSeasonId { get; set; }
 #endif
         /// <summary>The matchType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_matchType? MatchType { get; set; }
+        public string? MatchType { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_matchType MatchType { get; set; }
+        public string MatchType { get; set; }
 #endif
         /// <summary>The platform property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_platform? Platform { get; set; }
+        public string? Platform { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_platform Platform { get; set; }
+        public string Platform { get; set; }
 #endif
         /// <summary>The publishStatus property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -122,18 +122,18 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The region property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_region? Region { get; set; }
+        public string? Region { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_region Region { get; set; }
+        public string Region { get; set; }
 #endif
         /// <summary>The scheduledAt property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_scheduledAt? ScheduledAt { get; set; }
+        public string? ScheduledAt { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_scheduledAt ScheduledAt { get; set; }
+        public string ScheduledAt { get; set; }
 #endif
         /// <summary>The selectedMaps property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -154,10 +154,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The startedAt property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_startedAt? StartedAt { get; set; }
+        public string? StartedAt { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_startedAt StartedAt { get; set; }
+        public string StartedAt { get; set; }
 #endif
         /// <summary>Lifecycle status of a match.</summary>
         public global::TeamBattles.Sdk.Models.MatchStatus? Status { get; set; }
@@ -166,10 +166,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The winnerTeamId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_winnerTeamId? WinnerTeamId { get; set; }
+        public string? WinnerTeamId { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_winnerTeamId WinnerTeamId { get; set; }
+        public string WinnerTeamId { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -192,25 +192,25 @@ namespace TeamBattles.Sdk.Models
                 { "acceptedTeam", n => { AcceptedTeam = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchTeam>(global::TeamBattles.Sdk.Models.ApiMatchTeam.CreateFromDiscriminatorValue); } },
                 { "bestOf", n => { BestOf = n.GetIntValue(); } },
                 { "challengedTeam", n => { ChallengedTeam = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchTeam>(global::TeamBattles.Sdk.Models.ApiMatchTeam.CreateFromDiscriminatorValue); } },
-                { "completedAt", n => { CompletedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_completedAt>(global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_completedAt.CreateFromDiscriminatorValue); } },
-                { "createdAt", n => { CreatedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_createdAt>(global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_createdAt.CreateFromDiscriminatorValue); } },
+                { "completedAt", n => { CompletedAt = n.GetStringValue(); } },
+                { "createdAt", n => { CreatedAt = n.GetStringValue(); } },
                 { "creatorTeam", n => { CreatorTeam = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchTeam>(global::TeamBattles.Sdk.Models.ApiMatchTeam.CreateFromDiscriminatorValue); } },
                 { "game", n => { Game = n.GetObjectValue<global::TeamBattles.Sdk.Models.Game>(global::TeamBattles.Sdk.Models.Game.CreateFromDiscriminatorValue); } },
                 { "gameMode", n => { GameMode = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "leagueId", n => { LeagueId = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueId>(global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueId.CreateFromDiscriminatorValue); } },
-                { "leagueSeasonId", n => { LeagueSeasonId = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueSeasonId>(global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueSeasonId.CreateFromDiscriminatorValue); } },
-                { "matchType", n => { MatchType = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_matchType>(global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_matchType.CreateFromDiscriminatorValue); } },
-                { "platform", n => { Platform = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_platform>(global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_platform.CreateFromDiscriminatorValue); } },
+                { "leagueId", n => { LeagueId = n.GetStringValue(); } },
+                { "leagueSeasonId", n => { LeagueSeasonId = n.GetStringValue(); } },
+                { "matchType", n => { MatchType = n.GetStringValue(); } },
+                { "platform", n => { Platform = n.GetStringValue(); } },
                 { "publishStatus", n => { PublishStatus = n.GetStringValue(); } },
-                { "region", n => { Region = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_region>(global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_region.CreateFromDiscriminatorValue); } },
-                { "scheduledAt", n => { ScheduledAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_scheduledAt>(global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_scheduledAt.CreateFromDiscriminatorValue); } },
+                { "region", n => { Region = n.GetStringValue(); } },
+                { "scheduledAt", n => { ScheduledAt = n.GetStringValue(); } },
                 { "selectedMaps", n => { SelectedMaps = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "selectedObjectives", n => { SelectedObjectives = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "startedAt", n => { StartedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_startedAt>(global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_startedAt.CreateFromDiscriminatorValue); } },
+                { "startedAt", n => { StartedAt = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::TeamBattles.Sdk.Models.MatchStatus>(); } },
                 { "teamSize", n => { TeamSize = n.GetIntValue(); } },
-                { "winnerTeamId", n => { WinnerTeamId = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_winnerTeamId>(global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_winnerTeamId.CreateFromDiscriminatorValue); } },
+                { "winnerTeamId", n => { WinnerTeamId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -223,705 +223,25 @@ namespace TeamBattles.Sdk.Models
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchTeam>("acceptedTeam", AcceptedTeam);
             writer.WriteIntValue("bestOf", BestOf);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchTeam>("challengedTeam", ChallengedTeam);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_completedAt>("completedAt", CompletedAt);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_createdAt>("createdAt", CreatedAt);
+            writer.WriteStringValue("completedAt", CompletedAt);
+            writer.WriteStringValue("createdAt", CreatedAt);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchTeam>("creatorTeam", CreatorTeam);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.Game>("game", Game);
             writer.WriteStringValue("gameMode", GameMode);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueId>("leagueId", LeagueId);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueSeasonId>("leagueSeasonId", LeagueSeasonId);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_matchType>("matchType", MatchType);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_platform>("platform", Platform);
+            writer.WriteStringValue("leagueId", LeagueId);
+            writer.WriteStringValue("leagueSeasonId", LeagueSeasonId);
+            writer.WriteStringValue("matchType", MatchType);
+            writer.WriteStringValue("platform", Platform);
             writer.WriteStringValue("publishStatus", PublishStatus);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_region>("region", Region);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_scheduledAt>("scheduledAt", ScheduledAt);
+            writer.WriteStringValue("region", Region);
+            writer.WriteStringValue("scheduledAt", ScheduledAt);
             writer.WriteCollectionOfPrimitiveValues<string>("selectedMaps", SelectedMaps);
             writer.WriteCollectionOfPrimitiveValues<string>("selectedObjectives", SelectedObjectives);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_startedAt>("startedAt", StartedAt);
+            writer.WriteStringValue("startedAt", StartedAt);
             writer.WriteEnumValue<global::TeamBattles.Sdk.Models.MatchStatus>("status", Status);
             writer.WriteIntValue("teamSize", TeamSize);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_winnerTeamId>("winnerTeamId", WinnerTeamId);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_completedAtMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiMatchDetail_completedAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_completedAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_completedAtMember1? ApiMatchDetailCompletedAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_completedAtMember1 ApiMatchDetailCompletedAtMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_completedAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_completedAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_completedAt();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiMatchDetailCompletedAtMember1 = new global::TeamBattles.Sdk.Models.ApiMatchDetail_completedAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiMatchDetailCompletedAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiMatchDetailCompletedAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail_completedAtMember1>(null, ApiMatchDetailCompletedAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_createdAtMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiMatchDetail_createdAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_createdAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_createdAtMember1? ApiMatchDetailCreatedAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_createdAtMember1 ApiMatchDetailCreatedAtMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_createdAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_createdAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_createdAt();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiMatchDetailCreatedAtMember1 = new global::TeamBattles.Sdk.Models.ApiMatchDetail_createdAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiMatchDetailCreatedAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiMatchDetailCreatedAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail_createdAtMember1>(null, ApiMatchDetailCreatedAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueIdMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiMatchDetail_leagueId : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueIdMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueIdMember1? ApiMatchDetailLeagueIdMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueIdMember1 ApiMatchDetailLeagueIdMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueId"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueId CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueId();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiMatchDetailLeagueIdMember1 = new global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueIdMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiMatchDetailLeagueIdMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiMatchDetailLeagueIdMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueIdMember1>(null, ApiMatchDetailLeagueIdMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueSeasonIdMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiMatchDetail_leagueSeasonId : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueSeasonIdMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueSeasonIdMember1? ApiMatchDetailLeagueSeasonIdMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueSeasonIdMember1 ApiMatchDetailLeagueSeasonIdMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueSeasonId"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueSeasonId CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_leagueSeasonId();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiMatchDetailLeagueSeasonIdMember1 = new global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueSeasonIdMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiMatchDetailLeagueSeasonIdMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiMatchDetailLeagueSeasonIdMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail_leagueSeasonIdMember1>(null, ApiMatchDetailLeagueSeasonIdMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_matchTypeMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiMatchDetail_matchType : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_matchTypeMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_matchTypeMember1? ApiMatchDetailMatchTypeMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_matchTypeMember1 ApiMatchDetailMatchTypeMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_matchType"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_matchType CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_matchType();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiMatchDetailMatchTypeMember1 = new global::TeamBattles.Sdk.Models.ApiMatchDetail_matchTypeMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiMatchDetailMatchTypeMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiMatchDetailMatchTypeMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail_matchTypeMember1>(null, ApiMatchDetailMatchTypeMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_platformMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiMatchDetail_platform : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_platformMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_platformMember1? ApiMatchDetailPlatformMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_platformMember1 ApiMatchDetailPlatformMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_platform"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_platform CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_platform();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiMatchDetailPlatformMember1 = new global::TeamBattles.Sdk.Models.ApiMatchDetail_platformMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiMatchDetailPlatformMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiMatchDetailPlatformMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail_platformMember1>(null, ApiMatchDetailPlatformMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_regionMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiMatchDetail_region : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_regionMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_regionMember1? ApiMatchDetailRegionMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_regionMember1 ApiMatchDetailRegionMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_region"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_region CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_region();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiMatchDetailRegionMember1 = new global::TeamBattles.Sdk.Models.ApiMatchDetail_regionMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiMatchDetailRegionMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiMatchDetailRegionMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail_regionMember1>(null, ApiMatchDetailRegionMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_scheduledAtMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiMatchDetail_scheduledAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_scheduledAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_scheduledAtMember1? ApiMatchDetailScheduledAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_scheduledAtMember1 ApiMatchDetailScheduledAtMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_scheduledAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_scheduledAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_scheduledAt();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiMatchDetailScheduledAtMember1 = new global::TeamBattles.Sdk.Models.ApiMatchDetail_scheduledAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiMatchDetailScheduledAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiMatchDetailScheduledAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail_scheduledAtMember1>(null, ApiMatchDetailScheduledAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_startedAtMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiMatchDetail_startedAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_startedAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_startedAtMember1? ApiMatchDetailStartedAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_startedAtMember1 ApiMatchDetailStartedAtMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_startedAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_startedAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_startedAt();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiMatchDetailStartedAtMember1 = new global::TeamBattles.Sdk.Models.ApiMatchDetail_startedAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiMatchDetailStartedAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiMatchDetailStartedAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail_startedAtMember1>(null, ApiMatchDetailStartedAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_winnerTeamIdMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiMatchDetail_winnerTeamId : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail_winnerTeamIdMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_winnerTeamIdMember1? ApiMatchDetailWinnerTeamIdMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiMatchDetail_winnerTeamIdMember1 ApiMatchDetailWinnerTeamIdMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_winnerTeamId"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_winnerTeamId CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiMatchDetail.ApiMatchDetail_winnerTeamId();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiMatchDetailWinnerTeamIdMember1 = new global::TeamBattles.Sdk.Models.ApiMatchDetail_winnerTeamIdMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiMatchDetailWinnerTeamIdMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiMatchDetailWinnerTeamIdMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiMatchDetail_winnerTeamIdMember1>(null, ApiMatchDetailWinnerTeamIdMember1);
-                }
-            }
+            writer.WriteStringValue("winnerTeamId", WinnerTeamId);
         }
     }
 }

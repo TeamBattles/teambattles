@@ -1,7 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './league_summary_avatar_url.dart';
-import './league_summary_banner_url.dart';
 import './league_summary_games.dart';
 import './league_summary_season_status.dart';
 
@@ -9,9 +7,9 @@ import './league_summary_season_status.dart';
 /// Summary view of a league for discovery results.
 class LeagueSummary implements Parsable {
     ///  League avatar image URL.
-    LeagueSummaryAvatarUrl? avatarUrl;
+    String? avatarUrl;
     ///  League banner image URL.
-    LeagueSummaryBannerUrl? bannerUrl;
+    String? bannerUrl;
     ///  Creation timestamp (epoch milliseconds).
     double? createdAt;
     ///  League description.
@@ -43,8 +41,8 @@ class LeagueSummary implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getObjectValue<LeagueSummaryAvatarUrl>(LeagueSummaryAvatarUrl.createFromDiscriminatorValue);
-        deserializerMap['bannerUrl'] = (node) => bannerUrl = node.getObjectValue<LeagueSummaryBannerUrl>(LeagueSummaryBannerUrl.createFromDiscriminatorValue);
+        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getStringValue();
+        deserializerMap['bannerUrl'] = (node) => bannerUrl = node.getStringValue();
         deserializerMap['createdAt'] = (node) => createdAt = node.getDoubleValue();
         deserializerMap['description'] = (node) => description = node.getStringValue();
         deserializerMap['games'] = (node) => games = node.getCollectionOfObjectValues<LeagueSummaryGames>(LeagueSummaryGames.createFromDiscriminatorValue);
@@ -62,8 +60,8 @@ class LeagueSummary implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<LeagueSummaryAvatarUrl>('avatarUrl', avatarUrl);
-        writer.writeObjectValue<LeagueSummaryBannerUrl>('bannerUrl', bannerUrl);
+        writer.writeStringValue('avatarUrl', avatarUrl);
+        writer.writeStringValue('bannerUrl', bannerUrl);
         writer.writeDoubleValue('createdAt', createdAt);
         writer.writeStringValue('description', description);
         writer.writeCollectionOfObjectValues<LeagueSummaryGames>('games', games);

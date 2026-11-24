@@ -1,9 +1,7 @@
 package gg.teambattles.sdk.generated.models;
 
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,15 +34,15 @@ public class WebhookEndpoint implements Parsable {
     /**
      * Human label, or null.
      */
-    private WebhookEndpointLabel label;
+    private String label;
     /**
      * Epoch ms of the last successful delivery, or null.
      */
-    private WebhookEndpointLastDeliveredAt lastDeliveredAt;
+    private Double lastDeliveredAt;
     /**
      * Epoch ms of the last failed delivery, or null.
      */
-    private WebhookEndpointLastFailedAt lastFailedAt;
+    private Double lastFailedAt;
     /**
      * Stringified bound scope id.
      */
@@ -111,9 +109,9 @@ public class WebhookEndpoint implements Parsable {
         deserializerMap.put("failureCount", (n) -> { this.setFailureCount(n.getIntegerValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
         deserializerMap.put("isActive", (n) -> { this.setIsActive(n.getBooleanValue()); });
-        deserializerMap.put("label", (n) -> { this.setLabel(n.getObjectValue(WebhookEndpointLabel::createFromDiscriminatorValue)); });
-        deserializerMap.put("lastDeliveredAt", (n) -> { this.setLastDeliveredAt(n.getObjectValue(WebhookEndpointLastDeliveredAt::createFromDiscriminatorValue)); });
-        deserializerMap.put("lastFailedAt", (n) -> { this.setLastFailedAt(n.getObjectValue(WebhookEndpointLastFailedAt::createFromDiscriminatorValue)); });
+        deserializerMap.put("label", (n) -> { this.setLabel(n.getStringValue()); });
+        deserializerMap.put("lastDeliveredAt", (n) -> { this.setLastDeliveredAt(n.getDoubleValue()); });
+        deserializerMap.put("lastFailedAt", (n) -> { this.setLastFailedAt(n.getDoubleValue()); });
         deserializerMap.put("scopeId", (n) -> { this.setScopeId(n.getStringValue()); });
         deserializerMap.put("scopeType", (n) -> { this.setScopeType(n.getEnumValue(WebhookEndpointScopeType::forValue)); });
         deserializerMap.put("secretPrefix", (n) -> { this.setSecretPrefix(n.getStringValue()); });
@@ -139,26 +137,26 @@ public class WebhookEndpoint implements Parsable {
     }
     /**
      * Gets the label property value. Human label, or null.
-     * @return a {@link WebhookEndpointLabel}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public WebhookEndpointLabel getLabel() {
+    public String getLabel() {
         return this.label;
     }
     /**
      * Gets the lastDeliveredAt property value. Epoch ms of the last successful delivery, or null.
-     * @return a {@link WebhookEndpointLastDeliveredAt}
+     * @return a {@link Double}
      */
     @jakarta.annotation.Nullable
-    public WebhookEndpointLastDeliveredAt getLastDeliveredAt() {
+    public Double getLastDeliveredAt() {
         return this.lastDeliveredAt;
     }
     /**
      * Gets the lastFailedAt property value. Epoch ms of the last failed delivery, or null.
-     * @return a {@link WebhookEndpointLastFailedAt}
+     * @return a {@link Double}
      */
     @jakarta.annotation.Nullable
-    public WebhookEndpointLastFailedAt getLastFailedAt() {
+    public Double getLastFailedAt() {
         return this.lastFailedAt;
     }
     /**
@@ -212,9 +210,9 @@ public class WebhookEndpoint implements Parsable {
         writer.writeIntegerValue("failureCount", this.getFailureCount());
         writer.writeStringValue("id", this.getId());
         writer.writeBooleanValue("isActive", this.getIsActive());
-        writer.writeObjectValue("label", this.getLabel());
-        writer.writeObjectValue("lastDeliveredAt", this.getLastDeliveredAt());
-        writer.writeObjectValue("lastFailedAt", this.getLastFailedAt());
+        writer.writeStringValue("label", this.getLabel());
+        writer.writeDoubleValue("lastDeliveredAt", this.getLastDeliveredAt());
+        writer.writeDoubleValue("lastFailedAt", this.getLastFailedAt());
         writer.writeStringValue("scopeId", this.getScopeId());
         writer.writeEnumValue("scopeType", this.getScopeType());
         writer.writeStringValue("secretPrefix", this.getSecretPrefix());
@@ -260,21 +258,21 @@ public class WebhookEndpoint implements Parsable {
      * Sets the label property value. Human label, or null.
      * @param value Value to set for the label property.
      */
-    public void setLabel(@jakarta.annotation.Nullable final WebhookEndpointLabel value) {
+    public void setLabel(@jakarta.annotation.Nullable final String value) {
         this.label = value;
     }
     /**
      * Sets the lastDeliveredAt property value. Epoch ms of the last successful delivery, or null.
      * @param value Value to set for the lastDeliveredAt property.
      */
-    public void setLastDeliveredAt(@jakarta.annotation.Nullable final WebhookEndpointLastDeliveredAt value) {
+    public void setLastDeliveredAt(@jakarta.annotation.Nullable final Double value) {
         this.lastDeliveredAt = value;
     }
     /**
      * Sets the lastFailedAt property value. Epoch ms of the last failed delivery, or null.
      * @param value Value to set for the lastFailedAt property.
      */
-    public void setLastFailedAt(@jakarta.annotation.Nullable final WebhookEndpointLastFailedAt value) {
+    public void setLastFailedAt(@jakarta.annotation.Nullable final Double value) {
         this.lastFailedAt = value;
     }
     /**
@@ -311,254 +309,5 @@ public class WebhookEndpoint implements Parsable {
      */
     public void setUrl(@jakarta.annotation.Nullable final String value) {
         this.url = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link String}, {@link WebhookEndpointLabelMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class WebhookEndpointLabel implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Composed type representation for type {@link WebhookEndpointLabelMember1}
-         */
-        private WebhookEndpointLabelMember1 webhookEndpointLabelMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link WebhookEndpointLabel}
-         */
-        @jakarta.annotation.Nonnull
-        public static WebhookEndpointLabel createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final WebhookEndpointLabel result = new WebhookEndpointLabel();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setWebhookEndpointLabelMember1(new WebhookEndpointLabelMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getWebhookEndpointLabelMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getWebhookEndpointLabelMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Gets the WebhookEndpoint_labelMember1 property value. Composed type representation for type {@link WebhookEndpointLabelMember1}
-         * @return a {@link WebhookEndpointLabelMember1}
-         */
-        @jakarta.annotation.Nullable
-        public WebhookEndpointLabelMember1 getWebhookEndpointLabelMember1() {
-            return this.webhookEndpointLabelMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getWebhookEndpointLabelMember1());
-            }
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-        /**
-         * Sets the WebhookEndpoint_labelMember1 property value. Composed type representation for type {@link WebhookEndpointLabelMember1}
-         * @param value Value to set for the WebhookEndpoint_labelMember1 property.
-         */
-        public void setWebhookEndpointLabelMember1(@jakarta.annotation.Nullable final WebhookEndpointLabelMember1 value) {
-            this.webhookEndpointLabelMember1 = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link Double}, {@link WebhookEndpointLastDeliveredAtMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class WebhookEndpointLastDeliveredAt implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link Double}
-         */
-        private Double doubleEscaped;
-        /**
-         * Composed type representation for type {@link WebhookEndpointLastDeliveredAtMember1}
-         */
-        private WebhookEndpointLastDeliveredAtMember1 webhookEndpointLastDeliveredAtMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link WebhookEndpointLastDeliveredAt}
-         */
-        @jakarta.annotation.Nonnull
-        public static WebhookEndpointLastDeliveredAt createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final WebhookEndpointLastDeliveredAt result = new WebhookEndpointLastDeliveredAt();
-            if (parseNode.getDoubleValue() != null) {
-                result.setDouble(parseNode.getDoubleValue());
-            } else {
-                result.setWebhookEndpointLastDeliveredAtMember1(new WebhookEndpointLastDeliveredAtMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the double property value. Composed type representation for type {@link Double}
-         * @return a {@link Double}
-         */
-        @jakarta.annotation.Nullable
-        public Double getDouble() {
-            return this.doubleEscaped;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getWebhookEndpointLastDeliveredAtMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getWebhookEndpointLastDeliveredAtMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the WebhookEndpoint_lastDeliveredAtMember1 property value. Composed type representation for type {@link WebhookEndpointLastDeliveredAtMember1}
-         * @return a {@link WebhookEndpointLastDeliveredAtMember1}
-         */
-        @jakarta.annotation.Nullable
-        public WebhookEndpointLastDeliveredAtMember1 getWebhookEndpointLastDeliveredAtMember1() {
-            return this.webhookEndpointLastDeliveredAtMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getDouble() != null) {
-                writer.writeDoubleValue(null, this.getDouble());
-            } else {
-                writer.writeObjectValue(null, this.getWebhookEndpointLastDeliveredAtMember1());
-            }
-        }
-        /**
-         * Sets the double property value. Composed type representation for type {@link Double}
-         * @param value Value to set for the double property.
-         */
-        public void setDouble(@jakarta.annotation.Nullable final Double value) {
-            this.doubleEscaped = value;
-        }
-        /**
-         * Sets the WebhookEndpoint_lastDeliveredAtMember1 property value. Composed type representation for type {@link WebhookEndpointLastDeliveredAtMember1}
-         * @param value Value to set for the WebhookEndpoint_lastDeliveredAtMember1 property.
-         */
-        public void setWebhookEndpointLastDeliveredAtMember1(@jakarta.annotation.Nullable final WebhookEndpointLastDeliveredAtMember1 value) {
-            this.webhookEndpointLastDeliveredAtMember1 = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link Double}, {@link WebhookEndpointLastFailedAtMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class WebhookEndpointLastFailedAt implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link Double}
-         */
-        private Double doubleEscaped;
-        /**
-         * Composed type representation for type {@link WebhookEndpointLastFailedAtMember1}
-         */
-        private WebhookEndpointLastFailedAtMember1 webhookEndpointLastFailedAtMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link WebhookEndpointLastFailedAt}
-         */
-        @jakarta.annotation.Nonnull
-        public static WebhookEndpointLastFailedAt createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final WebhookEndpointLastFailedAt result = new WebhookEndpointLastFailedAt();
-            if (parseNode.getDoubleValue() != null) {
-                result.setDouble(parseNode.getDoubleValue());
-            } else {
-                result.setWebhookEndpointLastFailedAtMember1(new WebhookEndpointLastFailedAtMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the double property value. Composed type representation for type {@link Double}
-         * @return a {@link Double}
-         */
-        @jakarta.annotation.Nullable
-        public Double getDouble() {
-            return this.doubleEscaped;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getWebhookEndpointLastFailedAtMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getWebhookEndpointLastFailedAtMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the WebhookEndpoint_lastFailedAtMember1 property value. Composed type representation for type {@link WebhookEndpointLastFailedAtMember1}
-         * @return a {@link WebhookEndpointLastFailedAtMember1}
-         */
-        @jakarta.annotation.Nullable
-        public WebhookEndpointLastFailedAtMember1 getWebhookEndpointLastFailedAtMember1() {
-            return this.webhookEndpointLastFailedAtMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getDouble() != null) {
-                writer.writeDoubleValue(null, this.getDouble());
-            } else {
-                writer.writeObjectValue(null, this.getWebhookEndpointLastFailedAtMember1());
-            }
-        }
-        /**
-         * Sets the double property value. Composed type representation for type {@link Double}
-         * @param value Value to set for the double property.
-         */
-        public void setDouble(@jakarta.annotation.Nullable final Double value) {
-            this.doubleEscaped = value;
-        }
-        /**
-         * Sets the WebhookEndpoint_lastFailedAtMember1 property value. Composed type representation for type {@link WebhookEndpointLastFailedAtMember1}
-         * @param value Value to set for the WebhookEndpoint_lastFailedAtMember1 property.
-         */
-        public void setWebhookEndpointLastFailedAtMember1(@jakarta.annotation.Nullable final WebhookEndpointLastFailedAtMember1 value) {
-            this.webhookEndpointLastFailedAtMember1 = value;
-        }
     }
 }

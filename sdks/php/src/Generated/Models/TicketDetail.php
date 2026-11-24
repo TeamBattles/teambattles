@@ -14,14 +14,14 @@ class TicketDetail implements Parsable
     private ?string $category = null;
     
     /**
-     * @var TicketDetail_closedAt|null $closedAt The closedAt property
+     * @var string|null $closedAt The closedAt property
     */
-    private ?TicketDetail_closedAt $closedAt = null;
+    private ?string $closedAt = null;
     
     /**
-     * @var TicketDetail_createdAt|null $createdAt The createdAt property
+     * @var string|null $createdAt The createdAt property
     */
-    private ?TicketDetail_createdAt $createdAt = null;
+    private ?string $createdAt = null;
     
     /**
      * @var string|null $description The description property
@@ -44,9 +44,9 @@ class TicketDetail implements Parsable
     private ?TicketDetail_priority $priority = null;
     
     /**
-     * @var TicketDetail_resolvedAt|null $resolvedAt The resolvedAt property
+     * @var string|null $resolvedAt The resolvedAt property
     */
-    private ?TicketDetail_resolvedAt $resolvedAt = null;
+    private ?string $resolvedAt = null;
     
     /**
      * @var TicketDetail_status|null $status The status property
@@ -69,9 +69,9 @@ class TicketDetail implements Parsable
     private ?string $timestamp = null;
     
     /**
-     * @var TicketDetail_updatedAt|null $updatedAt The updatedAt property
+     * @var string|null $updatedAt The updatedAt property
     */
-    private ?TicketDetail_updatedAt $updatedAt = null;
+    private ?string $updatedAt = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -92,17 +92,17 @@ class TicketDetail implements Parsable
 
     /**
      * Gets the closedAt property value. The closedAt property
-     * @return TicketDetail_closedAt|null
+     * @return string|null
     */
-    public function getClosedAt(): ?TicketDetail_closedAt {
+    public function getClosedAt(): ?string {
         return $this->closedAt;
     }
 
     /**
      * Gets the createdAt property value. The createdAt property
-     * @return TicketDetail_createdAt|null
+     * @return string|null
     */
-    public function getCreatedAt(): ?TicketDetail_createdAt {
+    public function getCreatedAt(): ?string {
         return $this->createdAt;
     }
 
@@ -122,18 +122,18 @@ class TicketDetail implements Parsable
         $o = $this;
         return  [
             'category' => fn(ParseNode $n) => $o->setCategory($n->getStringValue()),
-            'closedAt' => fn(ParseNode $n) => $o->setClosedAt($n->getObjectValue([TicketDetail_closedAt::class, 'createFromDiscriminatorValue'])),
-            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([TicketDetail_createdAt::class, 'createFromDiscriminatorValue'])),
+            'closedAt' => fn(ParseNode $n) => $o->setClosedAt($n->getStringValue()),
+            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getStringValue()),
             'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'messages' => fn(ParseNode $n) => $o->setMessages($n->getCollectionOfObjectValues([TicketDetail_messages::class, 'createFromDiscriminatorValue'])),
             'priority' => fn(ParseNode $n) => $o->setPriority($n->getEnumValue(TicketDetail_priority::class)),
-            'resolvedAt' => fn(ParseNode $n) => $o->setResolvedAt($n->getObjectValue([TicketDetail_resolvedAt::class, 'createFromDiscriminatorValue'])),
+            'resolvedAt' => fn(ParseNode $n) => $o->setResolvedAt($n->getStringValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(TicketDetail_status::class)),
             'subject' => fn(ParseNode $n) => $o->setSubject($n->getStringValue()),
             'ticketNumber' => fn(ParseNode $n) => $o->setTicketNumber($n->getIntegerValue()),
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
-            'updatedAt' => fn(ParseNode $n) => $o->setUpdatedAt($n->getObjectValue([TicketDetail_updatedAt::class, 'createFromDiscriminatorValue'])),
+            'updatedAt' => fn(ParseNode $n) => $o->setUpdatedAt($n->getStringValue()),
         ];
     }
 
@@ -163,9 +163,9 @@ class TicketDetail implements Parsable
 
     /**
      * Gets the resolvedAt property value. The resolvedAt property
-     * @return TicketDetail_resolvedAt|null
+     * @return string|null
     */
-    public function getResolvedAt(): ?TicketDetail_resolvedAt {
+    public function getResolvedAt(): ?string {
         return $this->resolvedAt;
     }
 
@@ -203,9 +203,9 @@ class TicketDetail implements Parsable
 
     /**
      * Gets the updatedAt property value. The updatedAt property
-     * @return TicketDetail_updatedAt|null
+     * @return string|null
     */
-    public function getUpdatedAt(): ?TicketDetail_updatedAt {
+    public function getUpdatedAt(): ?string {
         return $this->updatedAt;
     }
 
@@ -215,18 +215,18 @@ class TicketDetail implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('category', $this->getCategory());
-        $writer->writeObjectValue('closedAt', $this->getClosedAt());
-        $writer->writeObjectValue('createdAt', $this->getCreatedAt());
+        $writer->writeStringValue('closedAt', $this->getClosedAt());
+        $writer->writeStringValue('createdAt', $this->getCreatedAt());
         $writer->writeStringValue('description', $this->getDescription());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeCollectionOfObjectValues('messages', $this->getMessages());
         $writer->writeEnumValue('priority', $this->getPriority());
-        $writer->writeObjectValue('resolvedAt', $this->getResolvedAt());
+        $writer->writeStringValue('resolvedAt', $this->getResolvedAt());
         $writer->writeEnumValue('status', $this->getStatus());
         $writer->writeStringValue('subject', $this->getSubject());
         $writer->writeIntegerValue('ticketNumber', $this->getTicketNumber());
         $writer->writeStringValue('timestamp', $this->getTimestamp());
-        $writer->writeObjectValue('updatedAt', $this->getUpdatedAt());
+        $writer->writeStringValue('updatedAt', $this->getUpdatedAt());
     }
 
     /**
@@ -239,17 +239,17 @@ class TicketDetail implements Parsable
 
     /**
      * Sets the closedAt property value. The closedAt property
-     * @param TicketDetail_closedAt|null $value Value to set for the closedAt property.
+     * @param string|null $value Value to set for the closedAt property.
     */
-    public function setClosedAt(?TicketDetail_closedAt $value): void {
+    public function setClosedAt(?string $value): void {
         $this->closedAt = $value;
     }
 
     /**
      * Sets the createdAt property value. The createdAt property
-     * @param TicketDetail_createdAt|null $value Value to set for the createdAt property.
+     * @param string|null $value Value to set for the createdAt property.
     */
-    public function setCreatedAt(?TicketDetail_createdAt $value): void {
+    public function setCreatedAt(?string $value): void {
         $this->createdAt = $value;
     }
 
@@ -287,9 +287,9 @@ class TicketDetail implements Parsable
 
     /**
      * Sets the resolvedAt property value. The resolvedAt property
-     * @param TicketDetail_resolvedAt|null $value Value to set for the resolvedAt property.
+     * @param string|null $value Value to set for the resolvedAt property.
     */
-    public function setResolvedAt(?TicketDetail_resolvedAt $value): void {
+    public function setResolvedAt(?string $value): void {
         $this->resolvedAt = $value;
     }
 
@@ -327,9 +327,9 @@ class TicketDetail implements Parsable
 
     /**
      * Sets the updatedAt property value. The updatedAt property
-     * @param TicketDetail_updatedAt|null $value Value to set for the updatedAt property.
+     * @param string|null $value Value to set for the updatedAt property.
     */
-    public function setUpdatedAt(?TicketDetail_updatedAt $value): void {
+    public function setUpdatedAt(?string $value): void {
         $this->updatedAt = $value;
     }
 

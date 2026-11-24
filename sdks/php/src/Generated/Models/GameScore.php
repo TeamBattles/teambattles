@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class GameScore implements Parsable 
 {
     /**
-     * @var GameScore_confirmedAt|null $confirmedAt When the score was confirmed (ISO 8601).
+     * @var string|null $confirmedAt When the score was confirmed (ISO 8601).
     */
-    private ?GameScore_confirmedAt $confirmedAt = null;
+    private ?string $confirmedAt = null;
     
     /**
      * @var int|null $creatorTeamScore Score for the creator team.
@@ -42,9 +42,9 @@ class GameScore implements Parsable
     private ?string $scoreStatus = null;
     
     /**
-     * @var GameScore_submittedAt|null $submittedAt When the score was submitted (ISO 8601).
+     * @var string|null $submittedAt When the score was submitted (ISO 8601).
     */
-    private ?GameScore_submittedAt $submittedAt = null;
+    private ?string $submittedAt = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -57,9 +57,9 @@ class GameScore implements Parsable
 
     /**
      * Gets the confirmedAt property value. When the score was confirmed (ISO 8601).
-     * @return GameScore_confirmedAt|null
+     * @return string|null
     */
-    public function getConfirmedAt(): ?GameScore_confirmedAt {
+    public function getConfirmedAt(): ?string {
         return $this->confirmedAt;
     }
 
@@ -78,13 +78,13 @@ class GameScore implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'confirmedAt' => fn(ParseNode $n) => $o->setConfirmedAt($n->getObjectValue([GameScore_confirmedAt::class, 'createFromDiscriminatorValue'])),
+            'confirmedAt' => fn(ParseNode $n) => $o->setConfirmedAt($n->getStringValue()),
             'creatorTeamScore' => fn(ParseNode $n) => $o->setCreatorTeamScore($n->getIntegerValue()),
             'mapId' => fn(ParseNode $n) => $o->setMapId($n->getStringValue()),
             'mapIndex' => fn(ParseNode $n) => $o->setMapIndex($n->getIntegerValue()),
             'opponentTeamScore' => fn(ParseNode $n) => $o->setOpponentTeamScore($n->getIntegerValue()),
             'scoreStatus' => fn(ParseNode $n) => $o->setScoreStatus($n->getStringValue()),
-            'submittedAt' => fn(ParseNode $n) => $o->setSubmittedAt($n->getObjectValue([GameScore_submittedAt::class, 'createFromDiscriminatorValue'])),
+            'submittedAt' => fn(ParseNode $n) => $o->setSubmittedAt($n->getStringValue()),
         ];
     }
 
@@ -122,9 +122,9 @@ class GameScore implements Parsable
 
     /**
      * Gets the submittedAt property value. When the score was submitted (ISO 8601).
-     * @return GameScore_submittedAt|null
+     * @return string|null
     */
-    public function getSubmittedAt(): ?GameScore_submittedAt {
+    public function getSubmittedAt(): ?string {
         return $this->submittedAt;
     }
 
@@ -133,20 +133,20 @@ class GameScore implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('confirmedAt', $this->getConfirmedAt());
+        $writer->writeStringValue('confirmedAt', $this->getConfirmedAt());
         $writer->writeIntegerValue('creatorTeamScore', $this->getCreatorTeamScore());
         $writer->writeStringValue('mapId', $this->getMapId());
         $writer->writeIntegerValue('mapIndex', $this->getMapIndex());
         $writer->writeIntegerValue('opponentTeamScore', $this->getOpponentTeamScore());
         $writer->writeStringValue('scoreStatus', $this->getScoreStatus());
-        $writer->writeObjectValue('submittedAt', $this->getSubmittedAt());
+        $writer->writeStringValue('submittedAt', $this->getSubmittedAt());
     }
 
     /**
      * Sets the confirmedAt property value. When the score was confirmed (ISO 8601).
-     * @param GameScore_confirmedAt|null $value Value to set for the confirmedAt property.
+     * @param string|null $value Value to set for the confirmedAt property.
     */
-    public function setConfirmedAt(?GameScore_confirmedAt $value): void {
+    public function setConfirmedAt(?string $value): void {
         $this->confirmedAt = $value;
     }
 
@@ -192,9 +192,9 @@ class GameScore implements Parsable
 
     /**
      * Sets the submittedAt property value. When the score was submitted (ISO 8601).
-     * @param GameScore_submittedAt|null $value Value to set for the submittedAt property.
+     * @param string|null $value Value to set for the submittedAt property.
     */
-    public function setSubmittedAt(?GameScore_submittedAt $value): void {
+    public function setSubmittedAt(?string $value): void {
         $this->submittedAt = $value;
     }
 

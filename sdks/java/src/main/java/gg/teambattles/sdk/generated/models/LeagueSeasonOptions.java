@@ -1,9 +1,7 @@
 package gg.teambattles.sdk.generated.models;
 
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +14,7 @@ public class LeagueSeasonOptions implements Parsable {
     /**
      * Recommended default option.
      */
-    private LeagueSeasonOptionsDefaultSeasonId defaultSeasonId;
+    private String defaultSeasonId;
     /**
      * Season selector options for a league game.
      */
@@ -37,10 +35,10 @@ public class LeagueSeasonOptions implements Parsable {
     }
     /**
      * Gets the defaultSeasonId property value. Recommended default option.
-     * @return a {@link LeagueSeasonOptionsDefaultSeasonId}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public LeagueSeasonOptionsDefaultSeasonId getDefaultSeasonId() {
+    public String getDefaultSeasonId() {
         return this.defaultSeasonId;
     }
     /**
@@ -50,7 +48,7 @@ public class LeagueSeasonOptions implements Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
-        deserializerMap.put("defaultSeasonId", (n) -> { this.setDefaultSeasonId(n.getObjectValue(LeagueSeasonOptionsDefaultSeasonId::createFromDiscriminatorValue)); });
+        deserializerMap.put("defaultSeasonId", (n) -> { this.setDefaultSeasonId(n.getStringValue()); });
         deserializerMap.put("seasons", (n) -> { this.setSeasons(n.getCollectionOfObjectValues(LeagueSeasonOptionsSeasons::createFromDiscriminatorValue)); });
         deserializerMap.put("timestamp", (n) -> { this.setTimestamp(n.getStringValue()); });
         return deserializerMap;
@@ -77,7 +75,7 @@ public class LeagueSeasonOptions implements Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeObjectValue("defaultSeasonId", this.getDefaultSeasonId());
+        writer.writeStringValue("defaultSeasonId", this.getDefaultSeasonId());
         writer.writeCollectionOfObjectValues("seasons", this.getSeasons());
         writer.writeStringValue("timestamp", this.getTimestamp());
     }
@@ -85,7 +83,7 @@ public class LeagueSeasonOptions implements Parsable {
      * Sets the defaultSeasonId property value. Recommended default option.
      * @param value Value to set for the defaultSeasonId property.
      */
-    public void setDefaultSeasonId(@jakarta.annotation.Nullable final LeagueSeasonOptionsDefaultSeasonId value) {
+    public void setDefaultSeasonId(@jakarta.annotation.Nullable final String value) {
         this.defaultSeasonId = value;
     }
     /**
@@ -101,88 +99,5 @@ public class LeagueSeasonOptions implements Parsable {
      */
     public void setTimestamp(@jakarta.annotation.Nullable final String value) {
         this.timestamp = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link LeagueSeasonOptionsDefaultSeasonIdMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class LeagueSeasonOptionsDefaultSeasonId implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link LeagueSeasonOptionsDefaultSeasonIdMember1}
-         */
-        private LeagueSeasonOptionsDefaultSeasonIdMember1 leagueSeasonOptionsDefaultSeasonIdMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link LeagueSeasonOptionsDefaultSeasonId}
-         */
-        @jakarta.annotation.Nonnull
-        public static LeagueSeasonOptionsDefaultSeasonId createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final LeagueSeasonOptionsDefaultSeasonId result = new LeagueSeasonOptionsDefaultSeasonId();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setLeagueSeasonOptionsDefaultSeasonIdMember1(new LeagueSeasonOptionsDefaultSeasonIdMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getLeagueSeasonOptionsDefaultSeasonIdMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getLeagueSeasonOptionsDefaultSeasonIdMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the LeagueSeasonOptions_defaultSeasonIdMember1 property value. Composed type representation for type {@link LeagueSeasonOptionsDefaultSeasonIdMember1}
-         * @return a {@link LeagueSeasonOptionsDefaultSeasonIdMember1}
-         */
-        @jakarta.annotation.Nullable
-        public LeagueSeasonOptionsDefaultSeasonIdMember1 getLeagueSeasonOptionsDefaultSeasonIdMember1() {
-            return this.leagueSeasonOptionsDefaultSeasonIdMember1;
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getLeagueSeasonOptionsDefaultSeasonIdMember1());
-            }
-        }
-        /**
-         * Sets the LeagueSeasonOptions_defaultSeasonIdMember1 property value. Composed type representation for type {@link LeagueSeasonOptionsDefaultSeasonIdMember1}
-         * @param value Value to set for the LeagueSeasonOptions_defaultSeasonIdMember1 property.
-         */
-        public void setLeagueSeasonOptionsDefaultSeasonIdMember1(@jakarta.annotation.Nullable final LeagueSeasonOptionsDefaultSeasonIdMember1 value) {
-            this.leagueSeasonOptionsDefaultSeasonIdMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
     }
 }

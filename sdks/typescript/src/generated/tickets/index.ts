@@ -6,26 +6,8 @@ import { createCreateTicketResponseFromDiscriminatorValue, createErrorEscapedFro
 // @ts-ignore
 import { type WithTicketItemRequestBuilder, WithTicketItemRequestBuilderNavigationMetadata, WithTicketItemRequestBuilderRequestsMetadata } from './item/index.js';
 // @ts-ignore
-import { type AdditionalDataHolder, type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
 
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {string | TicketsGetResponse_nextCursorMember1}
- */
-// @ts-ignore
-export function createTicketsGetResponse_nextCursorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoTicketsGetResponse_nextCursor;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {TicketsGetResponse_nextCursorMember1}
- */
-// @ts-ignore
-export function createTicketsGetResponse_nextCursorMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoTicketsGetResponse_nextCursorMember1;
-}
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
@@ -45,30 +27,8 @@ export function deserializeIntoTicketsGetResponse(ticketsGetResponse: Partial<Ti
     return {
         "data": n => { ticketsGetResponse.data = n.getCollectionOfObjectValues<TicketSummary>(createTicketSummaryFromDiscriminatorValue); },
         "hasMore": n => { ticketsGetResponse.hasMore = n.getBooleanValue(); },
-        "nextCursor": n => { ticketsGetResponse.nextCursor = n.getStringValue() ?? n.getObjectValue<TicketsGetResponse_nextCursorMember1>(createTicketsGetResponse_nextCursorMember1FromDiscriminatorValue); },
+        "nextCursor": n => { ticketsGetResponse.nextCursor = n.getStringValue(); },
         "timestamp": n => { ticketsGetResponse.timestamp = n.getStringValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param TicketsGetResponse_nextCursor The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoTicketsGetResponse_nextCursor(ticketsGetResponse_nextCursor: Partial<Parsable | string | TicketsGetResponse_nextCursorMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "" : n => { ticketsGetResponse_nextCursor = n.getStringValue()},
-        ...deserializeIntoTicketsGetResponse_nextCursorMember1(ticketsGetResponse_nextCursor as TicketsGetResponse_nextCursorMember1),
-    }
-}
-/**
- * The deserialization information for the current model
- * @param TicketsGetResponse_nextCursorMember1 The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoTicketsGetResponse_nextCursorMember1(ticketsGetResponse_nextCursorMember1: Partial<TicketsGetResponse_nextCursorMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
     }
 }
 /**
@@ -82,34 +42,8 @@ export function serializeTicketsGetResponse(writer: SerializationWriter, tickets
     if (!ticketsGetResponse || isSerializingDerivedType) { return; }
     writer.writeCollectionOfObjectValues<TicketSummary>("data", ticketsGetResponse.data, serializeTicketSummary);
     writer.writeBooleanValue("hasMore", ticketsGetResponse.hasMore);
-    if ( typeof ticketsGetResponse.nextCursor === "string") {
-        writer.writeStringValue("nextCursor", ticketsGetResponse.nextCursor as string);
-    }
-    else {
-        writer.writeObjectValue<TicketsGetResponse_nextCursorMember1>("nextCursor", ticketsGetResponse.nextCursor as TicketsGetResponse_nextCursorMember1 | undefined | null, serializeTicketsGetResponse_nextCursor);
-    }
+    writer.writeStringValue("nextCursor", ticketsGetResponse.nextCursor);
     writer.writeStringValue("timestamp", ticketsGetResponse.timestamp);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param TicketsGetResponse_nextCursor The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeTicketsGetResponse_nextCursor(writer: SerializationWriter, ticketsGetResponse_nextCursor: Partial<Parsable | TicketsGetResponse_nextCursorMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    serializeTicketsGetResponse_nextCursorMember1(writer, ticketsGetResponse_nextCursor as TicketsGetResponse_nextCursorMember1);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param TicketsGetResponse_nextCursorMember1 The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeTicketsGetResponse_nextCursorMember1(writer: SerializationWriter, ticketsGetResponse_nextCursorMember1: Partial<TicketsGetResponse_nextCursorMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!ticketsGetResponse_nextCursorMember1 || isSerializingDerivedType) { return; }
-    writer.writeAdditionalData(ticketsGetResponse_nextCursorMember1.additionalData);
 }
 export interface TicketsGetResponse extends Parsable {
     /**
@@ -123,14 +57,11 @@ export interface TicketsGetResponse extends Parsable {
     /**
      * The nextCursor property
      */
-    nextCursor?: string | TicketsGetResponse_nextCursorMember1 | null;
+    nextCursor?: string | null;
     /**
      * The timestamp property
      */
     timestamp?: string | null;
-}
-export type TicketsGetResponse_nextCursor = string | TicketsGetResponse_nextCursorMember1;
-export interface TicketsGetResponse_nextCursorMember1 extends AdditionalDataHolder, Parsable {
 }
 /**
  * Builds and executes requests for operations under /tickets

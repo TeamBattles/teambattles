@@ -14,7 +14,7 @@ type UserMatch struct {
     // Number of maps in the series (1, 3, 5, or 7).
     bestOf *int32
     // Completion time (ISO 8601).
-    completedAt UserMatch_UserMatch_completedAtable
+    completedAt *string
     // The creatorTeam property
     creatorTeam Teamable
     // Game definition.
@@ -24,263 +24,11 @@ type UserMatch struct {
     // The id property
     id *string
     // Scheduled start time (ISO 8601).
-    scheduledAt UserMatch_UserMatch_scheduledAtable
+    scheduledAt *string
     // Actual start time (ISO 8601).
-    startedAt UserMatch_UserMatch_startedAtable
+    startedAt *string
     // Lifecycle status of a match.
     status *MatchStatus
-}
-// UserMatch_UserMatch_completedAt composed type wrapper for classes string, UserMatch_completedAtMember1able
-type UserMatch_UserMatch_completedAt struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type UserMatch_completedAtMember1able
-    userMatch_completedAtMember1 UserMatch_completedAtMember1able
-}
-// NewUserMatch_UserMatch_completedAt instantiates a new UserMatch_UserMatch_completedAt and sets the default values.
-func NewUserMatch_UserMatch_completedAt()(*UserMatch_UserMatch_completedAt) {
-    m := &UserMatch_UserMatch_completedAt{
-    }
-    return m
-}
-// CreateUserMatch_UserMatch_completedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateUserMatch_UserMatch_completedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewUserMatch_UserMatch_completedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateUserMatch_completedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(UserMatch_completedAtMember1able); ok {
-                result.SetUserMatchCompletedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserMatch_UserMatch_completedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *UserMatch_UserMatch_completedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *UserMatch_UserMatch_completedAt) GetString()(*string) {
-    return m.string
-}
-// GetUserMatchCompletedAtMember1 gets the UserMatch_completedAtMember1 property value. Composed type representation for type UserMatch_completedAtMember1able
-// returns a UserMatch_completedAtMember1able when successful
-func (m *UserMatch_UserMatch_completedAt) GetUserMatchCompletedAtMember1()(UserMatch_completedAtMember1able) {
-    return m.userMatch_completedAtMember1
-}
-// Serialize serializes information the current object
-func (m *UserMatch_UserMatch_completedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetUserMatchCompletedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetUserMatchCompletedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *UserMatch_UserMatch_completedAt) SetString(value *string)() {
-    m.string = value
-}
-// SetUserMatchCompletedAtMember1 sets the UserMatch_completedAtMember1 property value. Composed type representation for type UserMatch_completedAtMember1able
-func (m *UserMatch_UserMatch_completedAt) SetUserMatchCompletedAtMember1(value UserMatch_completedAtMember1able)() {
-    m.userMatch_completedAtMember1 = value
-}
-// UserMatch_UserMatch_scheduledAt composed type wrapper for classes string, UserMatch_scheduledAtMember1able
-type UserMatch_UserMatch_scheduledAt struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type UserMatch_scheduledAtMember1able
-    userMatch_scheduledAtMember1 UserMatch_scheduledAtMember1able
-}
-// NewUserMatch_UserMatch_scheduledAt instantiates a new UserMatch_UserMatch_scheduledAt and sets the default values.
-func NewUserMatch_UserMatch_scheduledAt()(*UserMatch_UserMatch_scheduledAt) {
-    m := &UserMatch_UserMatch_scheduledAt{
-    }
-    return m
-}
-// CreateUserMatch_UserMatch_scheduledAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateUserMatch_UserMatch_scheduledAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewUserMatch_UserMatch_scheduledAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateUserMatch_scheduledAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(UserMatch_scheduledAtMember1able); ok {
-                result.SetUserMatchScheduledAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserMatch_UserMatch_scheduledAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *UserMatch_UserMatch_scheduledAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *UserMatch_UserMatch_scheduledAt) GetString()(*string) {
-    return m.string
-}
-// GetUserMatchScheduledAtMember1 gets the UserMatch_scheduledAtMember1 property value. Composed type representation for type UserMatch_scheduledAtMember1able
-// returns a UserMatch_scheduledAtMember1able when successful
-func (m *UserMatch_UserMatch_scheduledAt) GetUserMatchScheduledAtMember1()(UserMatch_scheduledAtMember1able) {
-    return m.userMatch_scheduledAtMember1
-}
-// Serialize serializes information the current object
-func (m *UserMatch_UserMatch_scheduledAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetUserMatchScheduledAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetUserMatchScheduledAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *UserMatch_UserMatch_scheduledAt) SetString(value *string)() {
-    m.string = value
-}
-// SetUserMatchScheduledAtMember1 sets the UserMatch_scheduledAtMember1 property value. Composed type representation for type UserMatch_scheduledAtMember1able
-func (m *UserMatch_UserMatch_scheduledAt) SetUserMatchScheduledAtMember1(value UserMatch_scheduledAtMember1able)() {
-    m.userMatch_scheduledAtMember1 = value
-}
-// UserMatch_UserMatch_startedAt composed type wrapper for classes string, UserMatch_startedAtMember1able
-type UserMatch_UserMatch_startedAt struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type UserMatch_startedAtMember1able
-    userMatch_startedAtMember1 UserMatch_startedAtMember1able
-}
-// NewUserMatch_UserMatch_startedAt instantiates a new UserMatch_UserMatch_startedAt and sets the default values.
-func NewUserMatch_UserMatch_startedAt()(*UserMatch_UserMatch_startedAt) {
-    m := &UserMatch_UserMatch_startedAt{
-    }
-    return m
-}
-// CreateUserMatch_UserMatch_startedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateUserMatch_UserMatch_startedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewUserMatch_UserMatch_startedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateUserMatch_startedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(UserMatch_startedAtMember1able); ok {
-                result.SetUserMatchStartedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserMatch_UserMatch_startedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *UserMatch_UserMatch_startedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *UserMatch_UserMatch_startedAt) GetString()(*string) {
-    return m.string
-}
-// GetUserMatchStartedAtMember1 gets the UserMatch_startedAtMember1 property value. Composed type representation for type UserMatch_startedAtMember1able
-// returns a UserMatch_startedAtMember1able when successful
-func (m *UserMatch_UserMatch_startedAt) GetUserMatchStartedAtMember1()(UserMatch_startedAtMember1able) {
-    return m.userMatch_startedAtMember1
-}
-// Serialize serializes information the current object
-func (m *UserMatch_UserMatch_startedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetUserMatchStartedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetUserMatchStartedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *UserMatch_UserMatch_startedAt) SetString(value *string)() {
-    m.string = value
-}
-// SetUserMatchStartedAtMember1 sets the UserMatch_startedAtMember1 property value. Composed type representation for type UserMatch_startedAtMember1able
-func (m *UserMatch_UserMatch_startedAt) SetUserMatchStartedAtMember1(value UserMatch_startedAtMember1able)() {
-    m.userMatch_startedAtMember1 = value
-}
-type UserMatch_UserMatch_completedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetUserMatchCompletedAtMember1()(UserMatch_completedAtMember1able)
-    SetString(value *string)()
-    SetUserMatchCompletedAtMember1(value UserMatch_completedAtMember1able)()
-}
-type UserMatch_UserMatch_scheduledAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetUserMatchScheduledAtMember1()(UserMatch_scheduledAtMember1able)
-    SetString(value *string)()
-    SetUserMatchScheduledAtMember1(value UserMatch_scheduledAtMember1able)()
-}
-type UserMatch_UserMatch_startedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetUserMatchStartedAtMember1()(UserMatch_startedAtMember1able)
-    SetString(value *string)()
-    SetUserMatchStartedAtMember1(value UserMatch_startedAtMember1able)()
 }
 // NewUserMatch instantiates a new UserMatch and sets the default values.
 func NewUserMatch()(*UserMatch) {
@@ -304,8 +52,8 @@ func (m *UserMatch) GetBestOf()(*int32) {
     return m.bestOf
 }
 // GetCompletedAt gets the completedAt property value. Completion time (ISO 8601).
-// returns a UserMatch_UserMatch_completedAtable when successful
-func (m *UserMatch) GetCompletedAt()(UserMatch_UserMatch_completedAtable) {
+// returns a *string when successful
+func (m *UserMatch) GetCompletedAt()(*string) {
     return m.completedAt
 }
 // GetCreatorTeam gets the creatorTeam property value. The creatorTeam property
@@ -338,12 +86,12 @@ func (m *UserMatch) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         return nil
     }
     res["completedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserMatch_UserMatch_completedAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCompletedAt(val.(UserMatch_UserMatch_completedAtable))
+            m.SetCompletedAt(val)
         }
         return nil
     }
@@ -388,22 +136,22 @@ func (m *UserMatch) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         return nil
     }
     res["scheduledAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserMatch_UserMatch_scheduledAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetScheduledAt(val.(UserMatch_UserMatch_scheduledAtable))
+            m.SetScheduledAt(val)
         }
         return nil
     }
     res["startedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserMatch_UserMatch_startedAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetStartedAt(val.(UserMatch_UserMatch_startedAtable))
+            m.SetStartedAt(val)
         }
         return nil
     }
@@ -435,13 +183,13 @@ func (m *UserMatch) GetId()(*string) {
     return m.id
 }
 // GetScheduledAt gets the scheduledAt property value. Scheduled start time (ISO 8601).
-// returns a UserMatch_UserMatch_scheduledAtable when successful
-func (m *UserMatch) GetScheduledAt()(UserMatch_UserMatch_scheduledAtable) {
+// returns a *string when successful
+func (m *UserMatch) GetScheduledAt()(*string) {
     return m.scheduledAt
 }
 // GetStartedAt gets the startedAt property value. Actual start time (ISO 8601).
-// returns a UserMatch_UserMatch_startedAtable when successful
-func (m *UserMatch) GetStartedAt()(UserMatch_UserMatch_startedAtable) {
+// returns a *string when successful
+func (m *UserMatch) GetStartedAt()(*string) {
     return m.startedAt
 }
 // GetStatus gets the status property value. Lifecycle status of a match.
@@ -464,7 +212,7 @@ func (m *UserMatch) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
         }
     }
     {
-        err := writer.WriteObjectValue("completedAt", m.GetCompletedAt())
+        err := writer.WriteStringValue("completedAt", m.GetCompletedAt())
         if err != nil {
             return err
         }
@@ -494,13 +242,13 @@ func (m *UserMatch) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
         }
     }
     {
-        err := writer.WriteObjectValue("scheduledAt", m.GetScheduledAt())
+        err := writer.WriteStringValue("scheduledAt", m.GetScheduledAt())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("startedAt", m.GetStartedAt())
+        err := writer.WriteStringValue("startedAt", m.GetStartedAt())
         if err != nil {
             return err
         }
@@ -523,7 +271,7 @@ func (m *UserMatch) SetBestOf(value *int32)() {
     m.bestOf = value
 }
 // SetCompletedAt sets the completedAt property value. Completion time (ISO 8601).
-func (m *UserMatch) SetCompletedAt(value UserMatch_UserMatch_completedAtable)() {
+func (m *UserMatch) SetCompletedAt(value *string)() {
     m.completedAt = value
 }
 // SetCreatorTeam sets the creatorTeam property value. The creatorTeam property
@@ -543,11 +291,11 @@ func (m *UserMatch) SetId(value *string)() {
     m.id = value
 }
 // SetScheduledAt sets the scheduledAt property value. Scheduled start time (ISO 8601).
-func (m *UserMatch) SetScheduledAt(value UserMatch_UserMatch_scheduledAtable)() {
+func (m *UserMatch) SetScheduledAt(value *string)() {
     m.scheduledAt = value
 }
 // SetStartedAt sets the startedAt property value. Actual start time (ISO 8601).
-func (m *UserMatch) SetStartedAt(value UserMatch_UserMatch_startedAtable)() {
+func (m *UserMatch) SetStartedAt(value *string)() {
     m.startedAt = value
 }
 // SetStatus sets the status property value. Lifecycle status of a match.
@@ -558,22 +306,22 @@ type UserMatchable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAcceptedTeam()(Teamable)
     GetBestOf()(*int32)
-    GetCompletedAt()(UserMatch_UserMatch_completedAtable)
+    GetCompletedAt()(*string)
     GetCreatorTeam()(Teamable)
     GetGame()(Gameable)
     GetGameMode()(*string)
     GetId()(*string)
-    GetScheduledAt()(UserMatch_UserMatch_scheduledAtable)
-    GetStartedAt()(UserMatch_UserMatch_startedAtable)
+    GetScheduledAt()(*string)
+    GetStartedAt()(*string)
     GetStatus()(*MatchStatus)
     SetAcceptedTeam(value Teamable)()
     SetBestOf(value *int32)()
-    SetCompletedAt(value UserMatch_UserMatch_completedAtable)()
+    SetCompletedAt(value *string)()
     SetCreatorTeam(value Teamable)()
     SetGame(value Gameable)()
     SetGameMode(value *string)()
     SetId(value *string)()
-    SetScheduledAt(value UserMatch_UserMatch_scheduledAtable)()
-    SetStartedAt(value UserMatch_UserMatch_startedAtable)()
+    SetScheduledAt(value *string)()
+    SetStartedAt(value *string)()
     SetStatus(value *MatchStatus)()
 }

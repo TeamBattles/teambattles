@@ -27,14 +27,14 @@ class GameMatchDetail implements Parsable
     private ?int $bestOf = null;
     
     /**
-     * @var GameMatchDetail_completedAt|null $completedAt Completion time (ISO 8601).
+     * @var string|null $completedAt Completion time (ISO 8601).
     */
-    private ?GameMatchDetail_completedAt $completedAt = null;
+    private ?string $completedAt = null;
     
     /**
-     * @var GameMatchDetail_createdAt|null $createdAt Creation time (ISO 8601).
+     * @var string|null $createdAt Creation time (ISO 8601).
     */
-    private ?GameMatchDetail_createdAt $createdAt = null;
+    private ?string $createdAt = null;
     
     /**
      * @var GameDetailTeam|null $creatorTeam The creatorTeam property
@@ -62,29 +62,29 @@ class GameMatchDetail implements Parsable
     private ?string $id = null;
     
     /**
-     * @var GameMatchDetail_leagueId|null $leagueId League this match belongs to, if any (SP-7 league wave).
+     * @var string|null $leagueId League this match belongs to, if any (SP-7 league wave).
     */
-    private ?GameMatchDetail_leagueId $leagueId = null;
+    private ?string $leagueId = null;
     
     /**
-     * @var GameMatchDetail_leagueSeasonId|null $leagueSeasonId League season this match belongs to, if any.
+     * @var string|null $leagueSeasonId League season this match belongs to, if any.
     */
-    private ?GameMatchDetail_leagueSeasonId $leagueSeasonId = null;
+    private ?string $leagueSeasonId = null;
     
     /**
-     * @var GameMatchDetail_loserTeamId|null $loserTeamId Losing team ID once the match completes.
+     * @var string|null $loserTeamId Losing team ID once the match completes.
     */
-    private ?GameMatchDetail_loserTeamId $loserTeamId = null;
+    private ?string $loserTeamId = null;
     
     /**
-     * @var GameMatchDetail_scheduledAt|null $scheduledAt Scheduled start time (ISO 8601).
+     * @var string|null $scheduledAt Scheduled start time (ISO 8601).
     */
-    private ?GameMatchDetail_scheduledAt $scheduledAt = null;
+    private ?string $scheduledAt = null;
     
     /**
-     * @var GameMatchDetail_startedAt|null $startedAt Actual start time (ISO 8601).
+     * @var string|null $startedAt Actual start time (ISO 8601).
     */
-    private ?GameMatchDetail_startedAt $startedAt = null;
+    private ?string $startedAt = null;
     
     /**
      * @var MatchStatus|null $status Lifecycle status of a match.
@@ -92,9 +92,9 @@ class GameMatchDetail implements Parsable
     private ?MatchStatus $status = null;
     
     /**
-     * @var GameMatchDetail_winnerTeamId|null $winnerTeamId Winning team ID once the match completes.
+     * @var string|null $winnerTeamId Winning team ID once the match completes.
     */
-    private ?GameMatchDetail_winnerTeamId $winnerTeamId = null;
+    private ?string $winnerTeamId = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -131,17 +131,17 @@ class GameMatchDetail implements Parsable
 
     /**
      * Gets the completedAt property value. Completion time (ISO 8601).
-     * @return GameMatchDetail_completedAt|null
+     * @return string|null
     */
-    public function getCompletedAt(): ?GameMatchDetail_completedAt {
+    public function getCompletedAt(): ?string {
         return $this->completedAt;
     }
 
     /**
      * Gets the createdAt property value. Creation time (ISO 8601).
-     * @return GameMatchDetail_createdAt|null
+     * @return string|null
     */
-    public function getCreatedAt(): ?GameMatchDetail_createdAt {
+    public function getCreatedAt(): ?string {
         return $this->createdAt;
     }
 
@@ -171,20 +171,20 @@ class GameMatchDetail implements Parsable
             'acceptedTeam' => fn(ParseNode $n) => $o->setAcceptedTeam($n->getObjectValue([GameDetailTeam::class, 'createFromDiscriminatorValue'])),
             'acceptedTeamScore' => fn(ParseNode $n) => $o->setAcceptedTeamScore($n->getObjectValue([GameMatchDetail_acceptedTeamScore::class, 'createFromDiscriminatorValue'])),
             'bestOf' => fn(ParseNode $n) => $o->setBestOf($n->getIntegerValue()),
-            'completedAt' => fn(ParseNode $n) => $o->setCompletedAt($n->getObjectValue([GameMatchDetail_completedAt::class, 'createFromDiscriminatorValue'])),
-            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([GameMatchDetail_createdAt::class, 'createFromDiscriminatorValue'])),
+            'completedAt' => fn(ParseNode $n) => $o->setCompletedAt($n->getStringValue()),
+            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getStringValue()),
             'creatorTeam' => fn(ParseNode $n) => $o->setCreatorTeam($n->getObjectValue([GameDetailTeam::class, 'createFromDiscriminatorValue'])),
             'creatorTeamScore' => fn(ParseNode $n) => $o->setCreatorTeamScore($n->getObjectValue([GameMatchDetail_creatorTeamScore::class, 'createFromDiscriminatorValue'])),
             'gameId' => fn(ParseNode $n) => $o->setGameId($n->getStringValue()),
             'gameMode' => fn(ParseNode $n) => $o->setGameMode($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'leagueId' => fn(ParseNode $n) => $o->setLeagueId($n->getObjectValue([GameMatchDetail_leagueId::class, 'createFromDiscriminatorValue'])),
-            'leagueSeasonId' => fn(ParseNode $n) => $o->setLeagueSeasonId($n->getObjectValue([GameMatchDetail_leagueSeasonId::class, 'createFromDiscriminatorValue'])),
-            'loserTeamId' => fn(ParseNode $n) => $o->setLoserTeamId($n->getObjectValue([GameMatchDetail_loserTeamId::class, 'createFromDiscriminatorValue'])),
-            'scheduledAt' => fn(ParseNode $n) => $o->setScheduledAt($n->getObjectValue([GameMatchDetail_scheduledAt::class, 'createFromDiscriminatorValue'])),
-            'startedAt' => fn(ParseNode $n) => $o->setStartedAt($n->getObjectValue([GameMatchDetail_startedAt::class, 'createFromDiscriminatorValue'])),
+            'leagueId' => fn(ParseNode $n) => $o->setLeagueId($n->getStringValue()),
+            'leagueSeasonId' => fn(ParseNode $n) => $o->setLeagueSeasonId($n->getStringValue()),
+            'loserTeamId' => fn(ParseNode $n) => $o->setLoserTeamId($n->getStringValue()),
+            'scheduledAt' => fn(ParseNode $n) => $o->setScheduledAt($n->getStringValue()),
+            'startedAt' => fn(ParseNode $n) => $o->setStartedAt($n->getStringValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(MatchStatus::class)),
-            'winnerTeamId' => fn(ParseNode $n) => $o->setWinnerTeamId($n->getObjectValue([GameMatchDetail_winnerTeamId::class, 'createFromDiscriminatorValue'])),
+            'winnerTeamId' => fn(ParseNode $n) => $o->setWinnerTeamId($n->getStringValue()),
         ];
     }
 
@@ -214,41 +214,41 @@ class GameMatchDetail implements Parsable
 
     /**
      * Gets the leagueId property value. League this match belongs to, if any (SP-7 league wave).
-     * @return GameMatchDetail_leagueId|null
+     * @return string|null
     */
-    public function getLeagueId(): ?GameMatchDetail_leagueId {
+    public function getLeagueId(): ?string {
         return $this->leagueId;
     }
 
     /**
      * Gets the leagueSeasonId property value. League season this match belongs to, if any.
-     * @return GameMatchDetail_leagueSeasonId|null
+     * @return string|null
     */
-    public function getLeagueSeasonId(): ?GameMatchDetail_leagueSeasonId {
+    public function getLeagueSeasonId(): ?string {
         return $this->leagueSeasonId;
     }
 
     /**
      * Gets the loserTeamId property value. Losing team ID once the match completes.
-     * @return GameMatchDetail_loserTeamId|null
+     * @return string|null
     */
-    public function getLoserTeamId(): ?GameMatchDetail_loserTeamId {
+    public function getLoserTeamId(): ?string {
         return $this->loserTeamId;
     }
 
     /**
      * Gets the scheduledAt property value. Scheduled start time (ISO 8601).
-     * @return GameMatchDetail_scheduledAt|null
+     * @return string|null
     */
-    public function getScheduledAt(): ?GameMatchDetail_scheduledAt {
+    public function getScheduledAt(): ?string {
         return $this->scheduledAt;
     }
 
     /**
      * Gets the startedAt property value. Actual start time (ISO 8601).
-     * @return GameMatchDetail_startedAt|null
+     * @return string|null
     */
-    public function getStartedAt(): ?GameMatchDetail_startedAt {
+    public function getStartedAt(): ?string {
         return $this->startedAt;
     }
 
@@ -262,9 +262,9 @@ class GameMatchDetail implements Parsable
 
     /**
      * Gets the winnerTeamId property value. Winning team ID once the match completes.
-     * @return GameMatchDetail_winnerTeamId|null
+     * @return string|null
     */
-    public function getWinnerTeamId(): ?GameMatchDetail_winnerTeamId {
+    public function getWinnerTeamId(): ?string {
         return $this->winnerTeamId;
     }
 
@@ -276,20 +276,20 @@ class GameMatchDetail implements Parsable
         $writer->writeObjectValue('acceptedTeam', $this->getAcceptedTeam());
         $writer->writeObjectValue('acceptedTeamScore', $this->getAcceptedTeamScore());
         $writer->writeIntegerValue('bestOf', $this->getBestOf());
-        $writer->writeObjectValue('completedAt', $this->getCompletedAt());
-        $writer->writeObjectValue('createdAt', $this->getCreatedAt());
+        $writer->writeStringValue('completedAt', $this->getCompletedAt());
+        $writer->writeStringValue('createdAt', $this->getCreatedAt());
         $writer->writeObjectValue('creatorTeam', $this->getCreatorTeam());
         $writer->writeObjectValue('creatorTeamScore', $this->getCreatorTeamScore());
         $writer->writeStringValue('gameId', $this->getGameId());
         $writer->writeStringValue('gameMode', $this->getGameMode());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeObjectValue('leagueId', $this->getLeagueId());
-        $writer->writeObjectValue('leagueSeasonId', $this->getLeagueSeasonId());
-        $writer->writeObjectValue('loserTeamId', $this->getLoserTeamId());
-        $writer->writeObjectValue('scheduledAt', $this->getScheduledAt());
-        $writer->writeObjectValue('startedAt', $this->getStartedAt());
+        $writer->writeStringValue('leagueId', $this->getLeagueId());
+        $writer->writeStringValue('leagueSeasonId', $this->getLeagueSeasonId());
+        $writer->writeStringValue('loserTeamId', $this->getLoserTeamId());
+        $writer->writeStringValue('scheduledAt', $this->getScheduledAt());
+        $writer->writeStringValue('startedAt', $this->getStartedAt());
         $writer->writeEnumValue('status', $this->getStatus());
-        $writer->writeObjectValue('winnerTeamId', $this->getWinnerTeamId());
+        $writer->writeStringValue('winnerTeamId', $this->getWinnerTeamId());
     }
 
     /**
@@ -318,17 +318,17 @@ class GameMatchDetail implements Parsable
 
     /**
      * Sets the completedAt property value. Completion time (ISO 8601).
-     * @param GameMatchDetail_completedAt|null $value Value to set for the completedAt property.
+     * @param string|null $value Value to set for the completedAt property.
     */
-    public function setCompletedAt(?GameMatchDetail_completedAt $value): void {
+    public function setCompletedAt(?string $value): void {
         $this->completedAt = $value;
     }
 
     /**
      * Sets the createdAt property value. Creation time (ISO 8601).
-     * @param GameMatchDetail_createdAt|null $value Value to set for the createdAt property.
+     * @param string|null $value Value to set for the createdAt property.
     */
-    public function setCreatedAt(?GameMatchDetail_createdAt $value): void {
+    public function setCreatedAt(?string $value): void {
         $this->createdAt = $value;
     }
 
@@ -374,41 +374,41 @@ class GameMatchDetail implements Parsable
 
     /**
      * Sets the leagueId property value. League this match belongs to, if any (SP-7 league wave).
-     * @param GameMatchDetail_leagueId|null $value Value to set for the leagueId property.
+     * @param string|null $value Value to set for the leagueId property.
     */
-    public function setLeagueId(?GameMatchDetail_leagueId $value): void {
+    public function setLeagueId(?string $value): void {
         $this->leagueId = $value;
     }
 
     /**
      * Sets the leagueSeasonId property value. League season this match belongs to, if any.
-     * @param GameMatchDetail_leagueSeasonId|null $value Value to set for the leagueSeasonId property.
+     * @param string|null $value Value to set for the leagueSeasonId property.
     */
-    public function setLeagueSeasonId(?GameMatchDetail_leagueSeasonId $value): void {
+    public function setLeagueSeasonId(?string $value): void {
         $this->leagueSeasonId = $value;
     }
 
     /**
      * Sets the loserTeamId property value. Losing team ID once the match completes.
-     * @param GameMatchDetail_loserTeamId|null $value Value to set for the loserTeamId property.
+     * @param string|null $value Value to set for the loserTeamId property.
     */
-    public function setLoserTeamId(?GameMatchDetail_loserTeamId $value): void {
+    public function setLoserTeamId(?string $value): void {
         $this->loserTeamId = $value;
     }
 
     /**
      * Sets the scheduledAt property value. Scheduled start time (ISO 8601).
-     * @param GameMatchDetail_scheduledAt|null $value Value to set for the scheduledAt property.
+     * @param string|null $value Value to set for the scheduledAt property.
     */
-    public function setScheduledAt(?GameMatchDetail_scheduledAt $value): void {
+    public function setScheduledAt(?string $value): void {
         $this->scheduledAt = $value;
     }
 
     /**
      * Sets the startedAt property value. Actual start time (ISO 8601).
-     * @param GameMatchDetail_startedAt|null $value Value to set for the startedAt property.
+     * @param string|null $value Value to set for the startedAt property.
     */
-    public function setStartedAt(?GameMatchDetail_startedAt $value): void {
+    public function setStartedAt(?string $value): void {
         $this->startedAt = $value;
     }
 
@@ -422,9 +422,9 @@ class GameMatchDetail implements Parsable
 
     /**
      * Sets the winnerTeamId property value. Winning team ID once the match completes.
-     * @param GameMatchDetail_winnerTeamId|null $value Value to set for the winnerTeamId property.
+     * @param string|null $value Value to set for the winnerTeamId property.
     */
-    public function setWinnerTeamId(?GameMatchDetail_winnerTeamId $value): void {
+    public function setWinnerTeamId(?string $value): void {
         $this->winnerTeamId = $value;
     }
 

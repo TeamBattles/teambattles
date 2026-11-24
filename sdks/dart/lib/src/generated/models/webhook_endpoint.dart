@@ -1,8 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './webhook_endpoint_label.dart';
-import './webhook_endpoint_last_delivered_at.dart';
-import './webhook_endpoint_last_failed_at.dart';
 import './webhook_endpoint_scope_type.dart';
 
 /// auto generated
@@ -19,11 +16,11 @@ class WebhookEndpoint implements Parsable {
     ///  Whether the endpoint receives deliveries.
     bool? isActive;
     ///  Human label, or null.
-    WebhookEndpointLabel? label;
+    String? label;
     ///  Epoch ms of the last successful delivery, or null.
-    WebhookEndpointLastDeliveredAt? lastDeliveredAt;
+    double? lastDeliveredAt;
     ///  Epoch ms of the last failed delivery, or null.
-    WebhookEndpointLastFailedAt? lastFailedAt;
+    double? lastFailedAt;
     ///  Stringified bound scope id.
     String? scopeId;
     ///  The single scope dimension an endpoint is bound to.
@@ -48,9 +45,9 @@ class WebhookEndpoint implements Parsable {
         deserializerMap['failureCount'] = (node) => failureCount = node.getIntValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['isActive'] = (node) => isActive = node.getBoolValue();
-        deserializerMap['label'] = (node) => label = node.getObjectValue<WebhookEndpointLabel>(WebhookEndpointLabel.createFromDiscriminatorValue);
-        deserializerMap['lastDeliveredAt'] = (node) => lastDeliveredAt = node.getObjectValue<WebhookEndpointLastDeliveredAt>(WebhookEndpointLastDeliveredAt.createFromDiscriminatorValue);
-        deserializerMap['lastFailedAt'] = (node) => lastFailedAt = node.getObjectValue<WebhookEndpointLastFailedAt>(WebhookEndpointLastFailedAt.createFromDiscriminatorValue);
+        deserializerMap['label'] = (node) => label = node.getStringValue();
+        deserializerMap['lastDeliveredAt'] = (node) => lastDeliveredAt = node.getDoubleValue();
+        deserializerMap['lastFailedAt'] = (node) => lastFailedAt = node.getDoubleValue();
         deserializerMap['scopeId'] = (node) => scopeId = node.getStringValue();
         deserializerMap['scopeType'] = (node) => scopeType = node.getEnumValue<WebhookEndpointScopeType>((stringValue) => WebhookEndpointScopeType.values.where((enumVal) => enumVal.value == stringValue).firstOrNull);
         deserializerMap['secretPrefix'] = (node) => secretPrefix = node.getStringValue();
@@ -67,9 +64,9 @@ class WebhookEndpoint implements Parsable {
         writer.writeIntValue('failureCount', failureCount);
         writer.writeStringValue('id', id);
         writer.writeBoolValue('isActive', value:isActive);
-        writer.writeObjectValue<WebhookEndpointLabel>('label', label);
-        writer.writeObjectValue<WebhookEndpointLastDeliveredAt>('lastDeliveredAt', lastDeliveredAt);
-        writer.writeObjectValue<WebhookEndpointLastFailedAt>('lastFailedAt', lastFailedAt);
+        writer.writeStringValue('label', label);
+        writer.writeDoubleValue('lastDeliveredAt', lastDeliveredAt);
+        writer.writeDoubleValue('lastFailedAt', lastFailedAt);
         writer.writeStringValue('scopeId', scopeId);
         writer.writeEnumValue<WebhookEndpointScopeType>('scopeType', scopeType, (e) => e?.value);
         writer.writeStringValue('secretPrefix', secretPrefix);

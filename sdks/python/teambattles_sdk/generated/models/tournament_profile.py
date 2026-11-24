@@ -6,8 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .tournament_format import TournamentFormat
-    from .tournament_profile_banner_url import TournamentProfile_bannerUrl
-    from .tournament_profile_logo_url import TournamentProfile_logoUrl
     from .tournament_profile_viewer_management import TournamentProfile_viewerManagement
     from .tournament_status import TournamentStatus
 
@@ -22,7 +20,7 @@ class TournamentProfile(AdditionalDataHolder, Parsable):
     # Platform review state, independent of `status`.
     approval_status: Optional[str] = None
     # Banner image URL.
-    banner_url: Optional[TournamentProfile_bannerUrl] = None
+    banner_url: Optional[str] = None
     # Bracket format of a tournament.
     format: Optional[TournamentFormat] = None
     # Tournament ID.
@@ -30,7 +28,7 @@ class TournamentProfile(AdditionalDataHolder, Parsable):
     # Whether the tournament appears in discovery.
     is_publicly_listed: Optional[bool] = None
     # Logo image URL.
-    logo_url: Optional[TournamentProfile_logoUrl] = None
+    logo_url: Optional[str] = None
     # Participant cap.
     max_participants: Optional[int] = None
     # Tournament display name.
@@ -67,24 +65,20 @@ class TournamentProfile(AdditionalDataHolder, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .tournament_format import TournamentFormat
-        from .tournament_profile_banner_url import TournamentProfile_bannerUrl
-        from .tournament_profile_logo_url import TournamentProfile_logoUrl
         from .tournament_profile_viewer_management import TournamentProfile_viewerManagement
         from .tournament_status import TournamentStatus
 
         from .tournament_format import TournamentFormat
-        from .tournament_profile_banner_url import TournamentProfile_bannerUrl
-        from .tournament_profile_logo_url import TournamentProfile_logoUrl
         from .tournament_profile_viewer_management import TournamentProfile_viewerManagement
         from .tournament_status import TournamentStatus
 
         fields: dict[str, Callable[[Any], None]] = {
             "approvalStatus": lambda n : setattr(self, 'approval_status', n.get_str_value()),
-            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_object_value(TournamentProfile_bannerUrl)),
+            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_str_value()),
             "format": lambda n : setattr(self, 'format', n.get_enum_value(TournamentFormat)),
             "_id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isPubliclyListed": lambda n : setattr(self, 'is_publicly_listed', n.get_bool_value()),
-            "logoUrl": lambda n : setattr(self, 'logo_url', n.get_object_value(TournamentProfile_logoUrl)),
+            "logoUrl": lambda n : setattr(self, 'logo_url', n.get_str_value()),
             "maxParticipants": lambda n : setattr(self, 'max_participants', n.get_int_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "needsAttention": lambda n : setattr(self, 'needs_attention', n.get_bool_value()),
@@ -106,11 +100,11 @@ class TournamentProfile(AdditionalDataHolder, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("approvalStatus", self.approval_status)
-        writer.write_object_value("bannerUrl", self.banner_url)
+        writer.write_str_value("bannerUrl", self.banner_url)
         writer.write_enum_value("format", self.format)
         writer.write_str_value("_id", self.id)
         writer.write_bool_value("isPubliclyListed", self.is_publicly_listed)
-        writer.write_object_value("logoUrl", self.logo_url)
+        writer.write_str_value("logoUrl", self.logo_url)
         writer.write_int_value("maxParticipants", self.max_participants)
         writer.write_str_value("name", self.name)
         writer.write_bool_value("needsAttention", self.needs_attention)

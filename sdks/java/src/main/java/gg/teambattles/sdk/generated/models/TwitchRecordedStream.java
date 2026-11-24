@@ -20,15 +20,15 @@ public class TwitchRecordedStream implements Parsable {
     /**
      * Stream end (ISO 8601); null while it was still live at the last pass.
      */
-    private TwitchRecordedStreamEndedAt endedAt;
+    private String endedAt;
     /**
      * Category name, when Twitch reported one.
      */
-    private TwitchRecordedStreamGame game;
+    private String game;
     /**
      * CDN host the recording was found on; null unless recording is available.
      */
-    private TwitchRecordedStreamHost host;
+    private String host;
     /**
      * Channel login when the stream ran; part of the recording path.
      */
@@ -44,7 +44,7 @@ public class TwitchRecordedStream implements Parsable {
     /**
      * When the recording was found removed (ISO 8601), else null.
      */
-    private TwitchRecordedStreamRemovedAt removedAt;
+    private String removedAt;
     /**
      * Stream start (ISO 8601).
      */
@@ -56,7 +56,7 @@ public class TwitchRecordedStream implements Parsable {
     /**
      * Stream title, when Twitch reported one.
      */
-    private TwitchRecordedStreamTitle title;
+    private String title;
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param parseNode The parse node to use to read the discriminator value and create the object
@@ -77,10 +77,10 @@ public class TwitchRecordedStream implements Parsable {
     }
     /**
      * Gets the ended_at property value. Stream end (ISO 8601); null while it was still live at the last pass.
-     * @return a {@link TwitchRecordedStreamEndedAt}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public TwitchRecordedStreamEndedAt getEndedAt() {
+    public String getEndedAt() {
         return this.endedAt;
     }
     /**
@@ -91,32 +91,32 @@ public class TwitchRecordedStream implements Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(11);
         deserializerMap.put("duration_seconds", (n) -> { this.setDurationSeconds(n.getIntegerValue()); });
-        deserializerMap.put("ended_at", (n) -> { this.setEndedAt(n.getObjectValue(TwitchRecordedStreamEndedAt::createFromDiscriminatorValue)); });
-        deserializerMap.put("game", (n) -> { this.setGame(n.getObjectValue(TwitchRecordedStreamGame::createFromDiscriminatorValue)); });
-        deserializerMap.put("host", (n) -> { this.setHost(n.getObjectValue(TwitchRecordedStreamHost::createFromDiscriminatorValue)); });
+        deserializerMap.put("ended_at", (n) -> { this.setEndedAt(n.getStringValue()); });
+        deserializerMap.put("game", (n) -> { this.setGame(n.getStringValue()); });
+        deserializerMap.put("host", (n) -> { this.setHost(n.getStringValue()); });
         deserializerMap.put("login", (n) -> { this.setLogin(n.getStringValue()); });
         deserializerMap.put("path_timestamp", (n) -> { this.setPathTimestamp(n.getObjectValue(TwitchRecordedStreamPathTimestamp::createFromDiscriminatorValue)); });
         deserializerMap.put("recording", (n) -> { this.setRecording(n.getEnumValue(TwitchRecordedStreamRecording::forValue)); });
-        deserializerMap.put("removed_at", (n) -> { this.setRemovedAt(n.getObjectValue(TwitchRecordedStreamRemovedAt::createFromDiscriminatorValue)); });
+        deserializerMap.put("removed_at", (n) -> { this.setRemovedAt(n.getStringValue()); });
         deserializerMap.put("started_at", (n) -> { this.setStartedAt(n.getStringValue()); });
         deserializerMap.put("stream_id", (n) -> { this.setStreamId(n.getStringValue()); });
-        deserializerMap.put("title", (n) -> { this.setTitle(n.getObjectValue(TwitchRecordedStreamTitle::createFromDiscriminatorValue)); });
+        deserializerMap.put("title", (n) -> { this.setTitle(n.getStringValue()); });
         return deserializerMap;
     }
     /**
      * Gets the game property value. Category name, when Twitch reported one.
-     * @return a {@link TwitchRecordedStreamGame}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public TwitchRecordedStreamGame getGame() {
+    public String getGame() {
         return this.game;
     }
     /**
      * Gets the host property value. CDN host the recording was found on; null unless recording is available.
-     * @return a {@link TwitchRecordedStreamHost}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public TwitchRecordedStreamHost getHost() {
+    public String getHost() {
         return this.host;
     }
     /**
@@ -145,10 +145,10 @@ public class TwitchRecordedStream implements Parsable {
     }
     /**
      * Gets the removed_at property value. When the recording was found removed (ISO 8601), else null.
-     * @return a {@link TwitchRecordedStreamRemovedAt}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public TwitchRecordedStreamRemovedAt getRemovedAt() {
+    public String getRemovedAt() {
         return this.removedAt;
     }
     /**
@@ -169,10 +169,10 @@ public class TwitchRecordedStream implements Parsable {
     }
     /**
      * Gets the title property value. Stream title, when Twitch reported one.
-     * @return a {@link TwitchRecordedStreamTitle}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public TwitchRecordedStreamTitle getTitle() {
+    public String getTitle() {
         return this.title;
     }
     /**
@@ -182,16 +182,16 @@ public class TwitchRecordedStream implements Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeIntegerValue("duration_seconds", this.getDurationSeconds());
-        writer.writeObjectValue("ended_at", this.getEndedAt());
-        writer.writeObjectValue("game", this.getGame());
-        writer.writeObjectValue("host", this.getHost());
+        writer.writeStringValue("ended_at", this.getEndedAt());
+        writer.writeStringValue("game", this.getGame());
+        writer.writeStringValue("host", this.getHost());
         writer.writeStringValue("login", this.getLogin());
         writer.writeObjectValue("path_timestamp", this.getPathTimestamp());
         writer.writeEnumValue("recording", this.getRecording());
-        writer.writeObjectValue("removed_at", this.getRemovedAt());
+        writer.writeStringValue("removed_at", this.getRemovedAt());
         writer.writeStringValue("started_at", this.getStartedAt());
         writer.writeStringValue("stream_id", this.getStreamId());
-        writer.writeObjectValue("title", this.getTitle());
+        writer.writeStringValue("title", this.getTitle());
     }
     /**
      * Sets the duration_seconds property value. Seconds from the start to the end, or to when it was last seen live.
@@ -204,21 +204,21 @@ public class TwitchRecordedStream implements Parsable {
      * Sets the ended_at property value. Stream end (ISO 8601); null while it was still live at the last pass.
      * @param value Value to set for the ended_at property.
      */
-    public void setEndedAt(@jakarta.annotation.Nullable final TwitchRecordedStreamEndedAt value) {
+    public void setEndedAt(@jakarta.annotation.Nullable final String value) {
         this.endedAt = value;
     }
     /**
      * Sets the game property value. Category name, when Twitch reported one.
      * @param value Value to set for the game property.
      */
-    public void setGame(@jakarta.annotation.Nullable final TwitchRecordedStreamGame value) {
+    public void setGame(@jakarta.annotation.Nullable final String value) {
         this.game = value;
     }
     /**
      * Sets the host property value. CDN host the recording was found on; null unless recording is available.
      * @param value Value to set for the host property.
      */
-    public void setHost(@jakarta.annotation.Nullable final TwitchRecordedStreamHost value) {
+    public void setHost(@jakarta.annotation.Nullable final String value) {
         this.host = value;
     }
     /**
@@ -246,7 +246,7 @@ public class TwitchRecordedStream implements Parsable {
      * Sets the removed_at property value. When the recording was found removed (ISO 8601), else null.
      * @param value Value to set for the removed_at property.
      */
-    public void setRemovedAt(@jakarta.annotation.Nullable final TwitchRecordedStreamRemovedAt value) {
+    public void setRemovedAt(@jakarta.annotation.Nullable final String value) {
         this.removedAt = value;
     }
     /**
@@ -267,257 +267,8 @@ public class TwitchRecordedStream implements Parsable {
      * Sets the title property value. Stream title, when Twitch reported one.
      * @param value Value to set for the title property.
      */
-    public void setTitle(@jakarta.annotation.Nullable final TwitchRecordedStreamTitle value) {
+    public void setTitle(@jakarta.annotation.Nullable final String value) {
         this.title = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link String}, {@link TwitchRecordedStreamEndedAtMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class TwitchRecordedStreamEndedAt implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Composed type representation for type {@link TwitchRecordedStreamEndedAtMember1}
-         */
-        private TwitchRecordedStreamEndedAtMember1 twitchRecordedStreamEndedAtMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link TwitchRecordedStreamEndedAt}
-         */
-        @jakarta.annotation.Nonnull
-        public static TwitchRecordedStreamEndedAt createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final TwitchRecordedStreamEndedAt result = new TwitchRecordedStreamEndedAt();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setTwitchRecordedStreamEndedAtMember1(new TwitchRecordedStreamEndedAtMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getTwitchRecordedStreamEndedAtMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getTwitchRecordedStreamEndedAtMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Gets the TwitchRecordedStream_ended_atMember1 property value. Composed type representation for type {@link TwitchRecordedStreamEndedAtMember1}
-         * @return a {@link TwitchRecordedStreamEndedAtMember1}
-         */
-        @jakarta.annotation.Nullable
-        public TwitchRecordedStreamEndedAtMember1 getTwitchRecordedStreamEndedAtMember1() {
-            return this.twitchRecordedStreamEndedAtMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getTwitchRecordedStreamEndedAtMember1());
-            }
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-        /**
-         * Sets the TwitchRecordedStream_ended_atMember1 property value. Composed type representation for type {@link TwitchRecordedStreamEndedAtMember1}
-         * @param value Value to set for the TwitchRecordedStream_ended_atMember1 property.
-         */
-        public void setTwitchRecordedStreamEndedAtMember1(@jakarta.annotation.Nullable final TwitchRecordedStreamEndedAtMember1 value) {
-            this.twitchRecordedStreamEndedAtMember1 = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link String}, {@link TwitchRecordedStreamGameMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class TwitchRecordedStreamGame implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Composed type representation for type {@link TwitchRecordedStreamGameMember1}
-         */
-        private TwitchRecordedStreamGameMember1 twitchRecordedStreamGameMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link TwitchRecordedStreamGame}
-         */
-        @jakarta.annotation.Nonnull
-        public static TwitchRecordedStreamGame createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final TwitchRecordedStreamGame result = new TwitchRecordedStreamGame();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setTwitchRecordedStreamGameMember1(new TwitchRecordedStreamGameMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getTwitchRecordedStreamGameMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getTwitchRecordedStreamGameMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Gets the TwitchRecordedStream_gameMember1 property value. Composed type representation for type {@link TwitchRecordedStreamGameMember1}
-         * @return a {@link TwitchRecordedStreamGameMember1}
-         */
-        @jakarta.annotation.Nullable
-        public TwitchRecordedStreamGameMember1 getTwitchRecordedStreamGameMember1() {
-            return this.twitchRecordedStreamGameMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getTwitchRecordedStreamGameMember1());
-            }
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-        /**
-         * Sets the TwitchRecordedStream_gameMember1 property value. Composed type representation for type {@link TwitchRecordedStreamGameMember1}
-         * @param value Value to set for the TwitchRecordedStream_gameMember1 property.
-         */
-        public void setTwitchRecordedStreamGameMember1(@jakarta.annotation.Nullable final TwitchRecordedStreamGameMember1 value) {
-            this.twitchRecordedStreamGameMember1 = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link String}, {@link TwitchRecordedStreamHostMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class TwitchRecordedStreamHost implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Composed type representation for type {@link TwitchRecordedStreamHostMember1}
-         */
-        private TwitchRecordedStreamHostMember1 twitchRecordedStreamHostMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link TwitchRecordedStreamHost}
-         */
-        @jakarta.annotation.Nonnull
-        public static TwitchRecordedStreamHost createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final TwitchRecordedStreamHost result = new TwitchRecordedStreamHost();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setTwitchRecordedStreamHostMember1(new TwitchRecordedStreamHostMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getTwitchRecordedStreamHostMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getTwitchRecordedStreamHostMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Gets the TwitchRecordedStream_hostMember1 property value. Composed type representation for type {@link TwitchRecordedStreamHostMember1}
-         * @return a {@link TwitchRecordedStreamHostMember1}
-         */
-        @jakarta.annotation.Nullable
-        public TwitchRecordedStreamHostMember1 getTwitchRecordedStreamHostMember1() {
-            return this.twitchRecordedStreamHostMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getTwitchRecordedStreamHostMember1());
-            }
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-        /**
-         * Sets the TwitchRecordedStream_hostMember1 property value. Composed type representation for type {@link TwitchRecordedStreamHostMember1}
-         * @param value Value to set for the TwitchRecordedStream_hostMember1 property.
-         */
-        public void setTwitchRecordedStreamHostMember1(@jakarta.annotation.Nullable final TwitchRecordedStreamHostMember1 value) {
-            this.twitchRecordedStreamHostMember1 = value;
-        }
     }
     /**
      * Composed type wrapper for classes {@link Integer}, {@link TwitchRecordedStreamPathTimestampMember1}
@@ -600,172 +351,6 @@ public class TwitchRecordedStream implements Parsable {
          */
         public void setTwitchRecordedStreamPathTimestampMember1(@jakarta.annotation.Nullable final TwitchRecordedStreamPathTimestampMember1 value) {
             this.twitchRecordedStreamPathTimestampMember1 = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link String}, {@link TwitchRecordedStreamRemovedAtMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class TwitchRecordedStreamRemovedAt implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Composed type representation for type {@link TwitchRecordedStreamRemovedAtMember1}
-         */
-        private TwitchRecordedStreamRemovedAtMember1 twitchRecordedStreamRemovedAtMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link TwitchRecordedStreamRemovedAt}
-         */
-        @jakarta.annotation.Nonnull
-        public static TwitchRecordedStreamRemovedAt createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final TwitchRecordedStreamRemovedAt result = new TwitchRecordedStreamRemovedAt();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setTwitchRecordedStreamRemovedAtMember1(new TwitchRecordedStreamRemovedAtMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getTwitchRecordedStreamRemovedAtMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getTwitchRecordedStreamRemovedAtMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Gets the TwitchRecordedStream_removed_atMember1 property value. Composed type representation for type {@link TwitchRecordedStreamRemovedAtMember1}
-         * @return a {@link TwitchRecordedStreamRemovedAtMember1}
-         */
-        @jakarta.annotation.Nullable
-        public TwitchRecordedStreamRemovedAtMember1 getTwitchRecordedStreamRemovedAtMember1() {
-            return this.twitchRecordedStreamRemovedAtMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getTwitchRecordedStreamRemovedAtMember1());
-            }
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-        /**
-         * Sets the TwitchRecordedStream_removed_atMember1 property value. Composed type representation for type {@link TwitchRecordedStreamRemovedAtMember1}
-         * @param value Value to set for the TwitchRecordedStream_removed_atMember1 property.
-         */
-        public void setTwitchRecordedStreamRemovedAtMember1(@jakarta.annotation.Nullable final TwitchRecordedStreamRemovedAtMember1 value) {
-            this.twitchRecordedStreamRemovedAtMember1 = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link String}, {@link TwitchRecordedStreamTitleMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class TwitchRecordedStreamTitle implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Composed type representation for type {@link TwitchRecordedStreamTitleMember1}
-         */
-        private TwitchRecordedStreamTitleMember1 twitchRecordedStreamTitleMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link TwitchRecordedStreamTitle}
-         */
-        @jakarta.annotation.Nonnull
-        public static TwitchRecordedStreamTitle createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final TwitchRecordedStreamTitle result = new TwitchRecordedStreamTitle();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setTwitchRecordedStreamTitleMember1(new TwitchRecordedStreamTitleMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getTwitchRecordedStreamTitleMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getTwitchRecordedStreamTitleMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Gets the TwitchRecordedStream_titleMember1 property value. Composed type representation for type {@link TwitchRecordedStreamTitleMember1}
-         * @return a {@link TwitchRecordedStreamTitleMember1}
-         */
-        @jakarta.annotation.Nullable
-        public TwitchRecordedStreamTitleMember1 getTwitchRecordedStreamTitleMember1() {
-            return this.twitchRecordedStreamTitleMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getTwitchRecordedStreamTitleMember1());
-            }
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-        /**
-         * Sets the TwitchRecordedStream_titleMember1 property value. Composed type representation for type {@link TwitchRecordedStreamTitleMember1}
-         * @param value Value to set for the TwitchRecordedStream_titleMember1 property.
-         */
-        public void setTwitchRecordedStreamTitleMember1(@jakarta.annotation.Nullable final TwitchRecordedStreamTitleMember1 value) {
-            this.twitchRecordedStreamTitleMember1 = value;
         }
     }
 }

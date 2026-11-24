@@ -37,14 +37,14 @@ class ApiUserConnection implements Parsable
     private ?string $platform = null;
     
     /**
-     * @var ApiUserConnection_url|null $url The url property
+     * @var string|null $url The url property
     */
-    private ?ApiUserConnection_url $url = null;
+    private ?string $url = null;
     
     /**
-     * @var ApiUserConnection_username|null $username The username property
+     * @var string|null $username The username property
     */
-    private ?ApiUserConnection_username $username = null;
+    private ?string $username = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -75,8 +75,8 @@ class ApiUserConnection implements Parsable
             'isPrimary' => fn(ParseNode $n) => $o->setIsPrimary($n->getBooleanValue()),
             'isVerified' => fn(ParseNode $n) => $o->setIsVerified($n->getBooleanValue()),
             'platform' => fn(ParseNode $n) => $o->setPlatform($n->getStringValue()),
-            'url' => fn(ParseNode $n) => $o->setUrl($n->getObjectValue([ApiUserConnection_url::class, 'createFromDiscriminatorValue'])),
-            'username' => fn(ParseNode $n) => $o->setUsername($n->getObjectValue([ApiUserConnection_username::class, 'createFromDiscriminatorValue'])),
+            'url' => fn(ParseNode $n) => $o->setUrl($n->getStringValue()),
+            'username' => fn(ParseNode $n) => $o->setUsername($n->getStringValue()),
         ];
     }
 
@@ -114,17 +114,17 @@ class ApiUserConnection implements Parsable
 
     /**
      * Gets the url property value. The url property
-     * @return ApiUserConnection_url|null
+     * @return string|null
     */
-    public function getUrl(): ?ApiUserConnection_url {
+    public function getUrl(): ?string {
         return $this->url;
     }
 
     /**
      * Gets the username property value. The username property
-     * @return ApiUserConnection_username|null
+     * @return string|null
     */
-    public function getUsername(): ?ApiUserConnection_username {
+    public function getUsername(): ?string {
         return $this->username;
     }
 
@@ -138,8 +138,8 @@ class ApiUserConnection implements Parsable
         $writer->writeBooleanValue('isPrimary', $this->getIsPrimary());
         $writer->writeBooleanValue('isVerified', $this->getIsVerified());
         $writer->writeStringValue('platform', $this->getPlatform());
-        $writer->writeObjectValue('url', $this->getUrl());
-        $writer->writeObjectValue('username', $this->getUsername());
+        $writer->writeStringValue('url', $this->getUrl());
+        $writer->writeStringValue('username', $this->getUsername());
     }
 
     /**
@@ -184,17 +184,17 @@ class ApiUserConnection implements Parsable
 
     /**
      * Sets the url property value. The url property
-     * @param ApiUserConnection_url|null $value Value to set for the url property.
+     * @param string|null $value Value to set for the url property.
     */
-    public function setUrl(?ApiUserConnection_url $value): void {
+    public function setUrl(?string $value): void {
         $this->url = $value;
     }
 
     /**
      * Sets the username property value. The username property
-     * @param ApiUserConnection_username|null $value Value to set for the username property.
+     * @param string|null $value Value to set for the username property.
     */
-    public function setUsername(?ApiUserConnection_username $value): void {
+    public function setUsername(?string $value): void {
         $this->username = $value;
     }
 

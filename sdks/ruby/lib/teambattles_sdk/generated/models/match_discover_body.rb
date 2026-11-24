@@ -79,7 +79,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the cursor property value. The cursor property
-                ## @return a match_discover_body_cursor
+                ## @return a string
                 ## 
                 def cursor
                     return @cursor
@@ -128,7 +128,7 @@ module TeamBattlesSdk
                 ## 
                 def get_field_deserializers()
                     return {
-                        "cursor" => lambda {|n| @cursor = n.get_object_value(lambda {|pn| MatchDiscoverBody::MatchDiscoverBodyCursor.create_from_discriminator_value(pn) }) },
+                        "cursor" => lambda {|n| @cursor = n.get_string_value() },
                         "gameId" => lambda {|n| @game_id = n.get_string_value() },
                         "gameSlug" => lambda {|n| @game_slug = n.get_string_value() },
                         "leagueId" => lambda {|n| @league_id = n.get_string_value() },
@@ -268,7 +268,7 @@ module TeamBattlesSdk
                 ## 
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
-                    writer.write_object_value("cursor", @cursor)
+                    writer.write_string_value("cursor", @cursor)
                     writer.write_string_value("gameId", @game_id)
                     writer.write_string_value("gameSlug", @game_slug)
                     writer.write_string_value("leagueId", @league_id)
@@ -280,77 +280,6 @@ module TeamBattlesSdk
                     writer.write_string_value("scheduledAfter", @scheduled_after)
                     writer.write_string_value("scheduledBefore", @scheduled_before)
                     writer.write_additional_data(@additional_data)
-                end
-
-                ## 
-                # Composed type wrapper for classes MatchDiscoverBodyCursorMember1, string
-                class MatchDiscoverBodyCursor
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type MatchDiscoverBodyCursorMember1
-                    @match_discover_body_cursor_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a match_discover_body_cursor
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return MatchDiscoverBodyCursor.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "MatchDiscoverBody_cursorMember1" => lambda {|n| @match_discover_body_cursor_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::MatchDiscoverBodyCursorMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Gets the MatchDiscoverBody_cursorMember1 property value. Composed type representation for type MatchDiscoverBodyCursorMember1
-                    ## @return a match_discover_body_cursor_member1
-                    ## 
-                    def match_discover_body_cursor_member1
-                        return @match_discover_body_cursor_member1
-                    end
-                    ## 
-                    ## Sets the MatchDiscoverBody_cursorMember1 property value. Composed type representation for type MatchDiscoverBodyCursorMember1
-                    ## @param value Value to set for the MatchDiscoverBody_cursorMember1 property.
-                    ## @return a void
-                    ## 
-                    def match_discover_body_cursor_member1=(value)
-                        @match_discover_body_cursor_member1 = value
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("MatchDiscoverBody_cursorMember1", @match_discover_body_cursor_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
                 end
             end
         end

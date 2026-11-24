@@ -68,7 +68,7 @@ module TeamBattlesSdk
                         "invitedByUserId" => lambda {|n| @invited_by_user_id = n.get_string_value() },
                         "respondedAt" => lambda {|n| @responded_at = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
                         "status" => lambda {|n| @status = n.get_enum_value(TeamBattlesSdk::Generated::Models::TournamentInviteStatus) },
-                        "teamAvatarUrl" => lambda {|n| @team_avatar_url = n.get_object_value(lambda {|pn| TournamentInvite::TournamentInviteTeamAvatarUrl.create_from_discriminator_value(pn) }) },
+                        "teamAvatarUrl" => lambda {|n| @team_avatar_url = n.get_string_value() },
                         "teamId" => lambda {|n| @team_id = n.get_string_value() },
                         "teamName" => lambda {|n| @team_name = n.get_string_value() },
                     }
@@ -130,7 +130,7 @@ module TeamBattlesSdk
                     writer.write_string_value("invitedByUserId", @invited_by_user_id)
                     writer.write_object_value("respondedAt", @responded_at)
                     writer.write_enum_value("status", @status)
-                    writer.write_object_value("teamAvatarUrl", @team_avatar_url)
+                    writer.write_string_value("teamAvatarUrl", @team_avatar_url)
                     writer.write_string_value("teamId", @team_id)
                     writer.write_string_value("teamName", @team_name)
                 end
@@ -151,7 +151,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the teamAvatarUrl property value. Invited team's avatar URL.
-                ## @return a tournament_invite_team_avatar_url
+                ## @return a string
                 ## 
                 def team_avatar_url
                     return @team_avatar_url
@@ -193,77 +193,6 @@ module TeamBattlesSdk
                 ## 
                 def team_name=(value)
                     @team_name = value
-                end
-
-                ## 
-                # Composed type wrapper for classes string, TournamentInviteTeamAvatarUrlMember1
-                class TournamentInviteTeamAvatarUrl
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type TournamentInviteTeamAvatarUrlMember1
-                    @tournament_invite_team_avatar_url_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a tournament_invite_team_avatar_url
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return TournamentInviteTeamAvatarUrl.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "TournamentInvite_teamAvatarUrlMember1" => lambda {|n| @tournament_invite_team_avatar_url_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::TournamentInviteTeamAvatarUrlMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("TournamentInvite_teamAvatarUrlMember1", @tournament_invite_team_avatar_url_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the TournamentInvite_teamAvatarUrlMember1 property value. Composed type representation for type TournamentInviteTeamAvatarUrlMember1
-                    ## @return a tournament_invite_team_avatar_url_member1
-                    ## 
-                    def tournament_invite_team_avatar_url_member1
-                        return @tournament_invite_team_avatar_url_member1
-                    end
-                    ## 
-                    ## Sets the TournamentInvite_teamAvatarUrlMember1 property value. Composed type representation for type TournamentInviteTeamAvatarUrlMember1
-                    ## @param value Value to set for the TournamentInvite_teamAvatarUrlMember1 property.
-                    ## @return a void
-                    ## 
-                    def tournament_invite_team_avatar_url_member1=(value)
-                        @tournament_invite_team_avatar_url_member1 = value
-                    end
                 end
             end
         end

@@ -4,16 +4,13 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .tournament_roster_member_avatar_url import TournamentRosterMember_avatarUrl
-
 @dataclass
 class TournamentRosterMember(Parsable):
     """
     One member of a participant's roster.
     """
     # Avatar image URL.
-    avatar_url: Optional[TournamentRosterMember_avatarUrl] = None
+    avatar_url: Optional[str] = None
     # User ID.
     id: Optional[str] = None
     # Display name.
@@ -39,12 +36,8 @@ class TournamentRosterMember(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .tournament_roster_member_avatar_url import TournamentRosterMember_avatarUrl
-
-        from .tournament_roster_member_avatar_url import TournamentRosterMember_avatarUrl
-
         fields: dict[str, Callable[[Any], None]] = {
-            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_object_value(TournamentRosterMember_avatarUrl)),
+            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "source": lambda n : setattr(self, 'source', n.get_str_value()),
@@ -60,7 +53,7 @@ class TournamentRosterMember(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("avatarUrl", self.avatar_url)
+        writer.write_str_value("avatarUrl", self.avatar_url)
         writer.write_str_value("id", self.id)
         writer.write_str_value("name", self.name)
         writer.write_str_value("source", self.source)

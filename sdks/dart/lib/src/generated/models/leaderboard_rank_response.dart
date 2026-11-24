@@ -1,6 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './leaderboard_rank_response_game_slug.dart';
 import './leaderboard_rank_response_rank.dart';
 import './leaderboard_sort_by.dart';
 
@@ -8,7 +7,7 @@ import './leaderboard_sort_by.dart';
 /// Leaderboard rank lookup response.
 class LeaderboardRankResponse implements Parsable {
     ///  The gameSlug property
-    LeaderboardRankResponseGameSlug? gameSlug;
+    String? gameSlug;
     ///  Resolved entity ID.
     String? id;
     ///  The rank property
@@ -26,7 +25,7 @@ class LeaderboardRankResponse implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['gameSlug'] = (node) => gameSlug = node.getObjectValue<LeaderboardRankResponseGameSlug>(LeaderboardRankResponseGameSlug.createFromDiscriminatorValue);
+        deserializerMap['gameSlug'] = (node) => gameSlug = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['rank'] = (node) => rank = node.getObjectValue<LeaderboardRankResponseRank>(LeaderboardRankResponseRank.createFromDiscriminatorValue);
         deserializerMap['sortBy'] = (node) => sortBy = node.getEnumValue<LeaderboardSortBy>((stringValue) => LeaderboardSortBy.values.where((enumVal) => enumVal.value == stringValue).firstOrNull);
@@ -37,7 +36,7 @@ class LeaderboardRankResponse implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<LeaderboardRankResponseGameSlug>('gameSlug', gameSlug);
+        writer.writeStringValue('gameSlug', gameSlug);
         writer.writeStringValue('id', id);
         writer.writeObjectValue<LeaderboardRankResponseRank>('rank', rank);
         writer.writeEnumValue<LeaderboardSortBy>('sortBy', sortBy, (e) => e?.value);

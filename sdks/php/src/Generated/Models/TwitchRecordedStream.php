@@ -17,19 +17,19 @@ class TwitchRecordedStream implements Parsable
     private ?int $duration_seconds = null;
     
     /**
-     * @var TwitchRecordedStream_ended_at|null $ended_at Stream end (ISO 8601); null while it was still live at the last pass.
+     * @var string|null $ended_at Stream end (ISO 8601); null while it was still live at the last pass.
     */
-    private ?TwitchRecordedStream_ended_at $ended_at = null;
+    private ?string $ended_at = null;
     
     /**
-     * @var TwitchRecordedStream_game|null $game Category name, when Twitch reported one.
+     * @var string|null $game Category name, when Twitch reported one.
     */
-    private ?TwitchRecordedStream_game $game = null;
+    private ?string $game = null;
     
     /**
-     * @var TwitchRecordedStream_host|null $host CDN host the recording was found on; null unless recording is available.
+     * @var string|null $host CDN host the recording was found on; null unless recording is available.
     */
-    private ?TwitchRecordedStream_host $host = null;
+    private ?string $host = null;
     
     /**
      * @var string|null $login Channel login when the stream ran; part of the recording path.
@@ -47,9 +47,9 @@ class TwitchRecordedStream implements Parsable
     private ?TwitchRecordedStream_recording $recording = null;
     
     /**
-     * @var TwitchRecordedStream_removed_at|null $removed_at When the recording was found removed (ISO 8601), else null.
+     * @var string|null $removed_at When the recording was found removed (ISO 8601), else null.
     */
-    private ?TwitchRecordedStream_removed_at $removed_at = null;
+    private ?string $removed_at = null;
     
     /**
      * @var string|null $started_at Stream start (ISO 8601).
@@ -62,9 +62,9 @@ class TwitchRecordedStream implements Parsable
     private ?string $stream_id = null;
     
     /**
-     * @var TwitchRecordedStream_title|null $title Stream title, when Twitch reported one.
+     * @var string|null $title Stream title, when Twitch reported one.
     */
-    private ?TwitchRecordedStream_title $title = null;
+    private ?string $title = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -85,9 +85,9 @@ class TwitchRecordedStream implements Parsable
 
     /**
      * Gets the ended_at property value. Stream end (ISO 8601); null while it was still live at the last pass.
-     * @return TwitchRecordedStream_ended_at|null
+     * @return string|null
     */
-    public function getEndedAt(): ?TwitchRecordedStream_ended_at {
+    public function getEndedAt(): ?string {
         return $this->ended_at;
     }
 
@@ -99,32 +99,32 @@ class TwitchRecordedStream implements Parsable
         $o = $this;
         return  [
             'duration_seconds' => fn(ParseNode $n) => $o->setDurationSeconds($n->getIntegerValue()),
-            'ended_at' => fn(ParseNode $n) => $o->setEndedAt($n->getObjectValue([TwitchRecordedStream_ended_at::class, 'createFromDiscriminatorValue'])),
-            'game' => fn(ParseNode $n) => $o->setGame($n->getObjectValue([TwitchRecordedStream_game::class, 'createFromDiscriminatorValue'])),
-            'host' => fn(ParseNode $n) => $o->setHost($n->getObjectValue([TwitchRecordedStream_host::class, 'createFromDiscriminatorValue'])),
+            'ended_at' => fn(ParseNode $n) => $o->setEndedAt($n->getStringValue()),
+            'game' => fn(ParseNode $n) => $o->setGame($n->getStringValue()),
+            'host' => fn(ParseNode $n) => $o->setHost($n->getStringValue()),
             'login' => fn(ParseNode $n) => $o->setLogin($n->getStringValue()),
             'path_timestamp' => fn(ParseNode $n) => $o->setPathTimestamp($n->getObjectValue([TwitchRecordedStream_path_timestamp::class, 'createFromDiscriminatorValue'])),
             'recording' => fn(ParseNode $n) => $o->setRecording($n->getEnumValue(TwitchRecordedStream_recording::class)),
-            'removed_at' => fn(ParseNode $n) => $o->setRemovedAt($n->getObjectValue([TwitchRecordedStream_removed_at::class, 'createFromDiscriminatorValue'])),
+            'removed_at' => fn(ParseNode $n) => $o->setRemovedAt($n->getStringValue()),
             'started_at' => fn(ParseNode $n) => $o->setStartedAt($n->getStringValue()),
             'stream_id' => fn(ParseNode $n) => $o->setStreamId($n->getStringValue()),
-            'title' => fn(ParseNode $n) => $o->setTitle($n->getObjectValue([TwitchRecordedStream_title::class, 'createFromDiscriminatorValue'])),
+            'title' => fn(ParseNode $n) => $o->setTitle($n->getStringValue()),
         ];
     }
 
     /**
      * Gets the game property value. Category name, when Twitch reported one.
-     * @return TwitchRecordedStream_game|null
+     * @return string|null
     */
-    public function getGame(): ?TwitchRecordedStream_game {
+    public function getGame(): ?string {
         return $this->game;
     }
 
     /**
      * Gets the host property value. CDN host the recording was found on; null unless recording is available.
-     * @return TwitchRecordedStream_host|null
+     * @return string|null
     */
-    public function getHost(): ?TwitchRecordedStream_host {
+    public function getHost(): ?string {
         return $this->host;
     }
 
@@ -154,9 +154,9 @@ class TwitchRecordedStream implements Parsable
 
     /**
      * Gets the removed_at property value. When the recording was found removed (ISO 8601), else null.
-     * @return TwitchRecordedStream_removed_at|null
+     * @return string|null
     */
-    public function getRemovedAt(): ?TwitchRecordedStream_removed_at {
+    public function getRemovedAt(): ?string {
         return $this->removed_at;
     }
 
@@ -178,9 +178,9 @@ class TwitchRecordedStream implements Parsable
 
     /**
      * Gets the title property value. Stream title, when Twitch reported one.
-     * @return TwitchRecordedStream_title|null
+     * @return string|null
     */
-    public function getTitle(): ?TwitchRecordedStream_title {
+    public function getTitle(): ?string {
         return $this->title;
     }
 
@@ -190,16 +190,16 @@ class TwitchRecordedStream implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeIntegerValue('duration_seconds', $this->getDurationSeconds());
-        $writer->writeObjectValue('ended_at', $this->getEndedAt());
-        $writer->writeObjectValue('game', $this->getGame());
-        $writer->writeObjectValue('host', $this->getHost());
+        $writer->writeStringValue('ended_at', $this->getEndedAt());
+        $writer->writeStringValue('game', $this->getGame());
+        $writer->writeStringValue('host', $this->getHost());
         $writer->writeStringValue('login', $this->getLogin());
         $writer->writeObjectValue('path_timestamp', $this->getPathTimestamp());
         $writer->writeEnumValue('recording', $this->getRecording());
-        $writer->writeObjectValue('removed_at', $this->getRemovedAt());
+        $writer->writeStringValue('removed_at', $this->getRemovedAt());
         $writer->writeStringValue('started_at', $this->getStartedAt());
         $writer->writeStringValue('stream_id', $this->getStreamId());
-        $writer->writeObjectValue('title', $this->getTitle());
+        $writer->writeStringValue('title', $this->getTitle());
     }
 
     /**
@@ -212,25 +212,25 @@ class TwitchRecordedStream implements Parsable
 
     /**
      * Sets the ended_at property value. Stream end (ISO 8601); null while it was still live at the last pass.
-     * @param TwitchRecordedStream_ended_at|null $value Value to set for the ended_at property.
+     * @param string|null $value Value to set for the ended_at property.
     */
-    public function setEndedAt(?TwitchRecordedStream_ended_at $value): void {
+    public function setEndedAt(?string $value): void {
         $this->ended_at = $value;
     }
 
     /**
      * Sets the game property value. Category name, when Twitch reported one.
-     * @param TwitchRecordedStream_game|null $value Value to set for the game property.
+     * @param string|null $value Value to set for the game property.
     */
-    public function setGame(?TwitchRecordedStream_game $value): void {
+    public function setGame(?string $value): void {
         $this->game = $value;
     }
 
     /**
      * Sets the host property value. CDN host the recording was found on; null unless recording is available.
-     * @param TwitchRecordedStream_host|null $value Value to set for the host property.
+     * @param string|null $value Value to set for the host property.
     */
-    public function setHost(?TwitchRecordedStream_host $value): void {
+    public function setHost(?string $value): void {
         $this->host = $value;
     }
 
@@ -260,9 +260,9 @@ class TwitchRecordedStream implements Parsable
 
     /**
      * Sets the removed_at property value. When the recording was found removed (ISO 8601), else null.
-     * @param TwitchRecordedStream_removed_at|null $value Value to set for the removed_at property.
+     * @param string|null $value Value to set for the removed_at property.
     */
-    public function setRemovedAt(?TwitchRecordedStream_removed_at $value): void {
+    public function setRemovedAt(?string $value): void {
         $this->removed_at = $value;
     }
 
@@ -284,9 +284,9 @@ class TwitchRecordedStream implements Parsable
 
     /**
      * Sets the title property value. Stream title, when Twitch reported one.
-     * @param TwitchRecordedStream_title|null $value Value to set for the title property.
+     * @param string|null $value Value to set for the title property.
     */
-    public function setTitle(?TwitchRecordedStream_title $value): void {
+    public function setTitle(?string $value): void {
         $this->title = $value;
     }
 

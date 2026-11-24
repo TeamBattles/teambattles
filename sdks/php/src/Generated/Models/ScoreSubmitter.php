@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ScoreSubmitter implements Parsable 
 {
     /**
-     * @var ScoreSubmitter_name|null $name The name property
+     * @var string|null $name The name property
     */
-    private ?ScoreSubmitter_name $name = null;
+    private ?string $name = null;
     
     /**
      * @var string|null $teamId The teamId property
@@ -42,7 +42,7 @@ class ScoreSubmitter implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'name' => fn(ParseNode $n) => $o->setName($n->getObjectValue([ScoreSubmitter_name::class, 'createFromDiscriminatorValue'])),
+            'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'teamId' => fn(ParseNode $n) => $o->setTeamId($n->getStringValue()),
             'userId' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
@@ -50,9 +50,9 @@ class ScoreSubmitter implements Parsable
 
     /**
      * Gets the name property value. The name property
-     * @return ScoreSubmitter_name|null
+     * @return string|null
     */
-    public function getName(): ?ScoreSubmitter_name {
+    public function getName(): ?string {
         return $this->name;
     }
 
@@ -77,16 +77,16 @@ class ScoreSubmitter implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('name', $this->getName());
+        $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('teamId', $this->getTeamId());
         $writer->writeStringValue('userId', $this->getUserId());
     }
 
     /**
      * Sets the name property value. The name property
-     * @param ScoreSubmitter_name|null $value Value to set for the name property.
+     * @param string|null $value Value to set for the name property.
     */
-    public function setName(?ScoreSubmitter_name $value): void {
+    public function setName(?string $value): void {
         $this->name = $value;
     }
 

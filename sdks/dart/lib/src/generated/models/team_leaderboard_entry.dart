@@ -2,13 +2,12 @@
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './api_team_summary.dart';
 import './leaderboard_stats.dart';
-import './team_leaderboard_entry_game_slug.dart';
 
 /// auto generated
 /// Team leaderboard row.
 class TeamLeaderboardEntry implements Parsable {
     ///  The gameSlug property
-    TeamLeaderboardEntryGameSlug? gameSlug;
+    String? gameSlug;
     ///  Team ID.
     String? id;
     ///  The rank property
@@ -26,7 +25,7 @@ class TeamLeaderboardEntry implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['gameSlug'] = (node) => gameSlug = node.getObjectValue<TeamLeaderboardEntryGameSlug>(TeamLeaderboardEntryGameSlug.createFromDiscriminatorValue);
+        deserializerMap['gameSlug'] = (node) => gameSlug = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['rank'] = (node) => rank = node.getIntValue();
         deserializerMap['stats'] = (node) => stats = node.getObjectValue<LeaderboardStats>(LeaderboardStats.createFromDiscriminatorValue);
@@ -37,7 +36,7 @@ class TeamLeaderboardEntry implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<TeamLeaderboardEntryGameSlug>('gameSlug', gameSlug);
+        writer.writeStringValue('gameSlug', gameSlug);
         writer.writeStringValue('id', id);
         writer.writeIntValue('rank', rank);
         writer.writeObjectValue<LeaderboardStats>('stats', stats);

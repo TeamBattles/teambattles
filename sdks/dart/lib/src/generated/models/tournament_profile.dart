@@ -1,8 +1,6 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './tournament_format.dart';
-import './tournament_profile_banner_url.dart';
-import './tournament_profile_logo_url.dart';
 import './tournament_profile_viewer_management.dart';
 import './tournament_status.dart';
 
@@ -15,7 +13,7 @@ class TournamentProfile implements AdditionalDataHolder, Parsable {
     ///  Platform review state, independent of `status`.
     String? approvalStatus;
     ///  Banner image URL.
-    TournamentProfileBannerUrl? bannerUrl;
+    String? bannerUrl;
     ///  Bracket format of a tournament.
     TournamentFormat? format;
     ///  Game summary, or null if the game row is missing.
@@ -27,7 +25,7 @@ class TournamentProfile implements AdditionalDataHolder, Parsable {
     ///  Whether the tournament appears in discovery.
     bool? isPubliclyListed;
     ///  Logo image URL.
-    TournamentProfileLogoUrl? logoUrl;
+    String? logoUrl;
     ///  Participant cap.
     int? maxParticipants;
     ///  Tournament display name.
@@ -59,13 +57,13 @@ class TournamentProfile implements AdditionalDataHolder, Parsable {
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['approvalStatus'] = (node) => approvalStatus = node.getStringValue();
-        deserializerMap['bannerUrl'] = (node) => bannerUrl = node.getObjectValue<TournamentProfileBannerUrl>(TournamentProfileBannerUrl.createFromDiscriminatorValue);
+        deserializerMap['bannerUrl'] = (node) => bannerUrl = node.getStringValue();
         deserializerMap['format'] = (node) => format = node.getEnumValue<TournamentFormat>((stringValue) => TournamentFormat.values.where((enumVal) => enumVal.value == stringValue).firstOrNull);
         deserializerMap['game'] = (node) => game = node.getObjectValue<UntypedNode>(UntypedNode.createFromDiscriminatorValue);
         deserializerMap['host'] = (node) => host = node.getObjectValue<UntypedNode>(UntypedNode.createFromDiscriminatorValue);
         deserializerMap['_id'] = (node) => id = node.getStringValue();
         deserializerMap['isPubliclyListed'] = (node) => isPubliclyListed = node.getBoolValue();
-        deserializerMap['logoUrl'] = (node) => logoUrl = node.getObjectValue<TournamentProfileLogoUrl>(TournamentProfileLogoUrl.createFromDiscriminatorValue);
+        deserializerMap['logoUrl'] = (node) => logoUrl = node.getStringValue();
         deserializerMap['maxParticipants'] = (node) => maxParticipants = node.getIntValue();
         deserializerMap['name'] = (node) => name = node.getStringValue();
         deserializerMap['needsAttention'] = (node) => needsAttention = node.getBoolValue();
@@ -82,13 +80,13 @@ class TournamentProfile implements AdditionalDataHolder, Parsable {
     @override
     void serialize(SerializationWriter writer) {
         writer.writeStringValue('approvalStatus', approvalStatus);
-        writer.writeObjectValue<TournamentProfileBannerUrl>('bannerUrl', bannerUrl);
+        writer.writeStringValue('bannerUrl', bannerUrl);
         writer.writeEnumValue<TournamentFormat>('format', format, (e) => e?.value);
         writer.writeObjectValue<UntypedNode>('game', game);
         writer.writeObjectValue<UntypedNode>('host', host);
         writer.writeStringValue('_id', id);
         writer.writeBoolValue('isPubliclyListed', value:isPubliclyListed);
-        writer.writeObjectValue<TournamentProfileLogoUrl>('logoUrl', logoUrl);
+        writer.writeStringValue('logoUrl', logoUrl);
         writer.writeIntValue('maxParticipants', maxParticipants);
         writer.writeStringValue('name', name);
         writer.writeBoolValue('needsAttention', value:needsAttention);

@@ -16,52 +16,52 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Game/category being streamed, when known.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_gameName? GameName { get; set; }
+        public string? GameName { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_gameName GameName { get; set; }
+        public string GameName { get; set; }
 #endif
         /// <summary>ISO timestamp the user was last observed live, when known.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_lastLiveAt? LastLiveAt { get; set; }
+        public string? LastLiveAt { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_lastLiveAt LastLiveAt { get; set; }
+        public string LastLiveAt { get; set; }
 #endif
         /// <summary>Supported streaming platform.</summary>
         public global::TeamBattles.Sdk.Models.StreamPlatform? Platform { get; set; }
         /// <summary>Stream start time (platform-provided ISO timestamp), when known.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_startedAt? StartedAt { get; set; }
+        public string? StartedAt { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_startedAt StartedAt { get; set; }
+        public string StartedAt { get; set; }
 #endif
         /// <summary>Watch URL, when known.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_streamUrl? StreamUrl { get; set; }
+        public string? StreamUrl { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_streamUrl StreamUrl { get; set; }
+        public string StreamUrl { get; set; }
 #endif
         /// <summary>Stream thumbnail URL, when known.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_thumbnailUrl? ThumbnailUrl { get; set; }
+        public string? ThumbnailUrl { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_thumbnailUrl ThumbnailUrl { get; set; }
+        public string ThumbnailUrl { get; set; }
 #endif
         /// <summary>Stream title, when known.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_title? Title { get; set; }
+        public string? Title { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_title Title { get; set; }
+        public string Title { get; set; }
 #endif
         /// <summary>Current viewer count, when known.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -89,13 +89,13 @@ namespace TeamBattles.Sdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "gameName", n => { GameName = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_gameName>(global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_gameName.CreateFromDiscriminatorValue); } },
-                { "lastLiveAt", n => { LastLiveAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_lastLiveAt>(global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_lastLiveAt.CreateFromDiscriminatorValue); } },
+                { "gameName", n => { GameName = n.GetStringValue(); } },
+                { "lastLiveAt", n => { LastLiveAt = n.GetStringValue(); } },
                 { "platform", n => { Platform = n.GetEnumValue<global::TeamBattles.Sdk.Models.StreamPlatform>(); } },
-                { "startedAt", n => { StartedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_startedAt>(global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_startedAt.CreateFromDiscriminatorValue); } },
-                { "streamUrl", n => { StreamUrl = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_streamUrl>(global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_streamUrl.CreateFromDiscriminatorValue); } },
-                { "thumbnailUrl", n => { ThumbnailUrl = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_thumbnailUrl>(global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_thumbnailUrl.CreateFromDiscriminatorValue); } },
-                { "title", n => { Title = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_title>(global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_title.CreateFromDiscriminatorValue); } },
+                { "startedAt", n => { StartedAt = n.GetStringValue(); } },
+                { "streamUrl", n => { StreamUrl = n.GetStringValue(); } },
+                { "thumbnailUrl", n => { ThumbnailUrl = n.GetStringValue(); } },
+                { "title", n => { Title = n.GetStringValue(); } },
                 { "viewerCount", n => { ViewerCount = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_viewerCount>(global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_viewerCount.CreateFromDiscriminatorValue); } },
             };
         }
@@ -106,422 +106,14 @@ namespace TeamBattles.Sdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_gameName>("gameName", GameName);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_lastLiveAt>("lastLiveAt", LastLiveAt);
+            writer.WriteStringValue("gameName", GameName);
+            writer.WriteStringValue("lastLiveAt", LastLiveAt);
             writer.WriteEnumValue<global::TeamBattles.Sdk.Models.StreamPlatform>("platform", Platform);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_startedAt>("startedAt", StartedAt);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_streamUrl>("streamUrl", StreamUrl);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_thumbnailUrl>("thumbnailUrl", ThumbnailUrl);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_title>("title", Title);
+            writer.WriteStringValue("startedAt", StartedAt);
+            writer.WriteStringValue("streamUrl", StreamUrl);
+            writer.WriteStringValue("thumbnailUrl", ThumbnailUrl);
+            writer.WriteStringValue("title", Title);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_viewerCount>("viewerCount", ViewerCount);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_gameNameMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiPrimaryStream_gameName : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_gameNameMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_gameNameMember1? ApiPrimaryStreamGameNameMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_gameNameMember1 ApiPrimaryStreamGameNameMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_gameName"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_gameName CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_gameName();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiPrimaryStreamGameNameMember1 = new global::TeamBattles.Sdk.Models.ApiPrimaryStream_gameNameMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiPrimaryStreamGameNameMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiPrimaryStreamGameNameMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream_gameNameMember1>(null, ApiPrimaryStreamGameNameMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_lastLiveAtMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiPrimaryStream_lastLiveAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_lastLiveAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_lastLiveAtMember1? ApiPrimaryStreamLastLiveAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_lastLiveAtMember1 ApiPrimaryStreamLastLiveAtMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_lastLiveAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_lastLiveAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_lastLiveAt();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiPrimaryStreamLastLiveAtMember1 = new global::TeamBattles.Sdk.Models.ApiPrimaryStream_lastLiveAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiPrimaryStreamLastLiveAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiPrimaryStreamLastLiveAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream_lastLiveAtMember1>(null, ApiPrimaryStreamLastLiveAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_startedAtMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiPrimaryStream_startedAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_startedAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_startedAtMember1? ApiPrimaryStreamStartedAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_startedAtMember1 ApiPrimaryStreamStartedAtMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_startedAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_startedAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_startedAt();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiPrimaryStreamStartedAtMember1 = new global::TeamBattles.Sdk.Models.ApiPrimaryStream_startedAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiPrimaryStreamStartedAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiPrimaryStreamStartedAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream_startedAtMember1>(null, ApiPrimaryStreamStartedAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_streamUrlMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiPrimaryStream_streamUrl : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_streamUrlMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_streamUrlMember1? ApiPrimaryStreamStreamUrlMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_streamUrlMember1 ApiPrimaryStreamStreamUrlMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_streamUrl"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_streamUrl CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_streamUrl();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiPrimaryStreamStreamUrlMember1 = new global::TeamBattles.Sdk.Models.ApiPrimaryStream_streamUrlMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiPrimaryStreamStreamUrlMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiPrimaryStreamStreamUrlMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream_streamUrlMember1>(null, ApiPrimaryStreamStreamUrlMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_thumbnailUrlMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiPrimaryStream_thumbnailUrl : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_thumbnailUrlMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_thumbnailUrlMember1? ApiPrimaryStreamThumbnailUrlMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_thumbnailUrlMember1 ApiPrimaryStreamThumbnailUrlMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_thumbnailUrl"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_thumbnailUrl CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_thumbnailUrl();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiPrimaryStreamThumbnailUrlMember1 = new global::TeamBattles.Sdk.Models.ApiPrimaryStream_thumbnailUrlMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiPrimaryStreamThumbnailUrlMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiPrimaryStreamThumbnailUrlMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream_thumbnailUrlMember1>(null, ApiPrimaryStreamThumbnailUrlMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_titleMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiPrimaryStream_title : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_titleMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_titleMember1? ApiPrimaryStreamTitleMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiPrimaryStream_titleMember1 ApiPrimaryStreamTitleMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_title"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_title CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiPrimaryStream.ApiPrimaryStream_title();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiPrimaryStreamTitleMember1 = new global::TeamBattles.Sdk.Models.ApiPrimaryStream_titleMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiPrimaryStreamTitleMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiPrimaryStreamTitleMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiPrimaryStream_titleMember1>(null, ApiPrimaryStreamTitleMember1);
-                }
-            }
         }
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiPrimaryStream_viewerCountMember1"/>, <see cref="int"/>

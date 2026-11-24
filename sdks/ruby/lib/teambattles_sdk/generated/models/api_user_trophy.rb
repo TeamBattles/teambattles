@@ -56,7 +56,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the description property value. The description property
-                ## @return a api_user_trophy_description
+                ## @return a string
                 ## 
                 def description
                     return @description
@@ -76,17 +76,17 @@ module TeamBattlesSdk
                 def get_field_deserializers()
                     return {
                         "awardedAt" => lambda {|n| @awarded_at = n.get_object_value(lambda {|pn| ApiUserTrophy::ApiUserTrophyAwardedAt.create_from_discriminator_value(pn) }) },
-                        "description" => lambda {|n| @description = n.get_object_value(lambda {|pn| ApiUserTrophy::ApiUserTrophyDescription.create_from_discriminator_value(pn) }) },
-                        "iconUrl" => lambda {|n| @icon_url = n.get_object_value(lambda {|pn| ApiUserTrophy::ApiUserTrophyIconUrl.create_from_discriminator_value(pn) }) },
+                        "description" => lambda {|n| @description = n.get_string_value() },
+                        "iconUrl" => lambda {|n| @icon_url = n.get_string_value() },
                         "id" => lambda {|n| @id = n.get_string_value() },
-                        "rarity" => lambda {|n| @rarity = n.get_object_value(lambda {|pn| ApiUserTrophy::ApiUserTrophyRarity.create_from_discriminator_value(pn) }) },
-                        "title" => lambda {|n| @title = n.get_object_value(lambda {|pn| ApiUserTrophy::ApiUserTrophyTitle.create_from_discriminator_value(pn) }) },
+                        "rarity" => lambda {|n| @rarity = n.get_string_value() },
+                        "title" => lambda {|n| @title = n.get_string_value() },
                         "trophyId" => lambda {|n| @trophy_id = n.get_string_value() },
                     }
                 end
                 ## 
                 ## Gets the iconUrl property value. The iconUrl property
-                ## @return a api_user_trophy_icon_url
+                ## @return a string
                 ## 
                 def icon_url
                     return @icon_url
@@ -116,7 +116,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the rarity property value. The rarity property
-                ## @return a api_user_trophy_rarity
+                ## @return a string
                 ## 
                 def rarity
                     return @rarity
@@ -137,16 +137,16 @@ module TeamBattlesSdk
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
                     writer.write_object_value("awardedAt", @awarded_at)
-                    writer.write_object_value("description", @description)
-                    writer.write_object_value("iconUrl", @icon_url)
+                    writer.write_string_value("description", @description)
+                    writer.write_string_value("iconUrl", @icon_url)
                     writer.write_string_value("id", @id)
-                    writer.write_object_value("rarity", @rarity)
-                    writer.write_object_value("title", @title)
+                    writer.write_string_value("rarity", @rarity)
+                    writer.write_string_value("title", @title)
                     writer.write_string_value("trophyId", @trophy_id)
                 end
                 ## 
                 ## Gets the title property value. The title property
-                ## @return a api_user_trophy_title
+                ## @return a string
                 ## 
                 def title
                     return @title
@@ -227,290 +227,6 @@ module TeamBattlesSdk
                     def serialize(writer)
                         raise StandardError, 'writer cannot be null' if writer.nil?
                         writer.write_object_value("ApiUserTrophy_awardedAtMember1", @api_user_trophy_awarded_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiUserTrophyDescriptionMember1, string
-                class ApiUserTrophyDescription
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiUserTrophyDescriptionMember1
-                    @api_user_trophy_description_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiUserTrophy_descriptionMember1 property value. Composed type representation for type ApiUserTrophyDescriptionMember1
-                    ## @return a api_user_trophy_description_member1
-                    ## 
-                    def api_user_trophy_description_member1
-                        return @api_user_trophy_description_member1
-                    end
-                    ## 
-                    ## Sets the ApiUserTrophy_descriptionMember1 property value. Composed type representation for type ApiUserTrophyDescriptionMember1
-                    ## @param value Value to set for the ApiUserTrophy_descriptionMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_user_trophy_description_member1=(value)
-                        @api_user_trophy_description_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_user_trophy_description
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiUserTrophyDescription.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiUserTrophy_descriptionMember1" => lambda {|n| @api_user_trophy_description_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiUserTrophyDescriptionMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiUserTrophy_descriptionMember1", @api_user_trophy_description_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiUserTrophyIconUrlMember1, string
-                class ApiUserTrophyIconUrl
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiUserTrophyIconUrlMember1
-                    @api_user_trophy_icon_url_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiUserTrophy_iconUrlMember1 property value. Composed type representation for type ApiUserTrophyIconUrlMember1
-                    ## @return a api_user_trophy_icon_url_member1
-                    ## 
-                    def api_user_trophy_icon_url_member1
-                        return @api_user_trophy_icon_url_member1
-                    end
-                    ## 
-                    ## Sets the ApiUserTrophy_iconUrlMember1 property value. Composed type representation for type ApiUserTrophyIconUrlMember1
-                    ## @param value Value to set for the ApiUserTrophy_iconUrlMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_user_trophy_icon_url_member1=(value)
-                        @api_user_trophy_icon_url_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_user_trophy_icon_url
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiUserTrophyIconUrl.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiUserTrophy_iconUrlMember1" => lambda {|n| @api_user_trophy_icon_url_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiUserTrophyIconUrlMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiUserTrophy_iconUrlMember1", @api_user_trophy_icon_url_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiUserTrophyRarityMember1, string
-                class ApiUserTrophyRarity
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiUserTrophyRarityMember1
-                    @api_user_trophy_rarity_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiUserTrophy_rarityMember1 property value. Composed type representation for type ApiUserTrophyRarityMember1
-                    ## @return a api_user_trophy_rarity_member1
-                    ## 
-                    def api_user_trophy_rarity_member1
-                        return @api_user_trophy_rarity_member1
-                    end
-                    ## 
-                    ## Sets the ApiUserTrophy_rarityMember1 property value. Composed type representation for type ApiUserTrophyRarityMember1
-                    ## @param value Value to set for the ApiUserTrophy_rarityMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_user_trophy_rarity_member1=(value)
-                        @api_user_trophy_rarity_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_user_trophy_rarity
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiUserTrophyRarity.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiUserTrophy_rarityMember1" => lambda {|n| @api_user_trophy_rarity_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiUserTrophyRarityMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiUserTrophy_rarityMember1", @api_user_trophy_rarity_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiUserTrophyTitleMember1, string
-                class ApiUserTrophyTitle
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiUserTrophyTitleMember1
-                    @api_user_trophy_title_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiUserTrophy_titleMember1 property value. Composed type representation for type ApiUserTrophyTitleMember1
-                    ## @return a api_user_trophy_title_member1
-                    ## 
-                    def api_user_trophy_title_member1
-                        return @api_user_trophy_title_member1
-                    end
-                    ## 
-                    ## Sets the ApiUserTrophy_titleMember1 property value. Composed type representation for type ApiUserTrophyTitleMember1
-                    ## @param value Value to set for the ApiUserTrophy_titleMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_user_trophy_title_member1=(value)
-                        @api_user_trophy_title_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_user_trophy_title
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiUserTrophyTitle.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiUserTrophy_titleMember1" => lambda {|n| @api_user_trophy_title_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiUserTrophyTitleMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiUserTrophy_titleMember1", @api_user_trophy_title_member1)
                         writer.write_string_value("string", @string)
                     end
                     ## 

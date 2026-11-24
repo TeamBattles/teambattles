@@ -12,14 +12,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ApiPrimaryStream implements Parsable 
 {
     /**
-     * @var ApiPrimaryStream_gameName|null $gameName Game/category being streamed, when known.
+     * @var string|null $gameName Game/category being streamed, when known.
     */
-    private ?ApiPrimaryStream_gameName $gameName = null;
+    private ?string $gameName = null;
     
     /**
-     * @var ApiPrimaryStream_lastLiveAt|null $lastLiveAt ISO timestamp the user was last observed live, when known.
+     * @var string|null $lastLiveAt ISO timestamp the user was last observed live, when known.
     */
-    private ?ApiPrimaryStream_lastLiveAt $lastLiveAt = null;
+    private ?string $lastLiveAt = null;
     
     /**
      * @var StreamPlatform|null $platform Supported streaming platform.
@@ -27,24 +27,24 @@ class ApiPrimaryStream implements Parsable
     private ?StreamPlatform $platform = null;
     
     /**
-     * @var ApiPrimaryStream_startedAt|null $startedAt Stream start time (platform-provided ISO timestamp), when known.
+     * @var string|null $startedAt Stream start time (platform-provided ISO timestamp), when known.
     */
-    private ?ApiPrimaryStream_startedAt $startedAt = null;
+    private ?string $startedAt = null;
     
     /**
-     * @var ApiPrimaryStream_streamUrl|null $streamUrl Watch URL, when known.
+     * @var string|null $streamUrl Watch URL, when known.
     */
-    private ?ApiPrimaryStream_streamUrl $streamUrl = null;
+    private ?string $streamUrl = null;
     
     /**
-     * @var ApiPrimaryStream_thumbnailUrl|null $thumbnailUrl Stream thumbnail URL, when known.
+     * @var string|null $thumbnailUrl Stream thumbnail URL, when known.
     */
-    private ?ApiPrimaryStream_thumbnailUrl $thumbnailUrl = null;
+    private ?string $thumbnailUrl = null;
     
     /**
-     * @var ApiPrimaryStream_title|null $title Stream title, when known.
+     * @var string|null $title Stream title, when known.
     */
-    private ?ApiPrimaryStream_title $title = null;
+    private ?string $title = null;
     
     /**
      * @var ApiPrimaryStream_viewerCount|null $viewerCount Current viewer count, when known.
@@ -67,30 +67,30 @@ class ApiPrimaryStream implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'gameName' => fn(ParseNode $n) => $o->setGameName($n->getObjectValue([ApiPrimaryStream_gameName::class, 'createFromDiscriminatorValue'])),
-            'lastLiveAt' => fn(ParseNode $n) => $o->setLastLiveAt($n->getObjectValue([ApiPrimaryStream_lastLiveAt::class, 'createFromDiscriminatorValue'])),
+            'gameName' => fn(ParseNode $n) => $o->setGameName($n->getStringValue()),
+            'lastLiveAt' => fn(ParseNode $n) => $o->setLastLiveAt($n->getStringValue()),
             'platform' => fn(ParseNode $n) => $o->setPlatform($n->getEnumValue(StreamPlatform::class)),
-            'startedAt' => fn(ParseNode $n) => $o->setStartedAt($n->getObjectValue([ApiPrimaryStream_startedAt::class, 'createFromDiscriminatorValue'])),
-            'streamUrl' => fn(ParseNode $n) => $o->setStreamUrl($n->getObjectValue([ApiPrimaryStream_streamUrl::class, 'createFromDiscriminatorValue'])),
-            'thumbnailUrl' => fn(ParseNode $n) => $o->setThumbnailUrl($n->getObjectValue([ApiPrimaryStream_thumbnailUrl::class, 'createFromDiscriminatorValue'])),
-            'title' => fn(ParseNode $n) => $o->setTitle($n->getObjectValue([ApiPrimaryStream_title::class, 'createFromDiscriminatorValue'])),
+            'startedAt' => fn(ParseNode $n) => $o->setStartedAt($n->getStringValue()),
+            'streamUrl' => fn(ParseNode $n) => $o->setStreamUrl($n->getStringValue()),
+            'thumbnailUrl' => fn(ParseNode $n) => $o->setThumbnailUrl($n->getStringValue()),
+            'title' => fn(ParseNode $n) => $o->setTitle($n->getStringValue()),
             'viewerCount' => fn(ParseNode $n) => $o->setViewerCount($n->getObjectValue([ApiPrimaryStream_viewerCount::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
     /**
      * Gets the gameName property value. Game/category being streamed, when known.
-     * @return ApiPrimaryStream_gameName|null
+     * @return string|null
     */
-    public function getGameName(): ?ApiPrimaryStream_gameName {
+    public function getGameName(): ?string {
         return $this->gameName;
     }
 
     /**
      * Gets the lastLiveAt property value. ISO timestamp the user was last observed live, when known.
-     * @return ApiPrimaryStream_lastLiveAt|null
+     * @return string|null
     */
-    public function getLastLiveAt(): ?ApiPrimaryStream_lastLiveAt {
+    public function getLastLiveAt(): ?string {
         return $this->lastLiveAt;
     }
 
@@ -104,33 +104,33 @@ class ApiPrimaryStream implements Parsable
 
     /**
      * Gets the startedAt property value. Stream start time (platform-provided ISO timestamp), when known.
-     * @return ApiPrimaryStream_startedAt|null
+     * @return string|null
     */
-    public function getStartedAt(): ?ApiPrimaryStream_startedAt {
+    public function getStartedAt(): ?string {
         return $this->startedAt;
     }
 
     /**
      * Gets the streamUrl property value. Watch URL, when known.
-     * @return ApiPrimaryStream_streamUrl|null
+     * @return string|null
     */
-    public function getStreamUrl(): ?ApiPrimaryStream_streamUrl {
+    public function getStreamUrl(): ?string {
         return $this->streamUrl;
     }
 
     /**
      * Gets the thumbnailUrl property value. Stream thumbnail URL, when known.
-     * @return ApiPrimaryStream_thumbnailUrl|null
+     * @return string|null
     */
-    public function getThumbnailUrl(): ?ApiPrimaryStream_thumbnailUrl {
+    public function getThumbnailUrl(): ?string {
         return $this->thumbnailUrl;
     }
 
     /**
      * Gets the title property value. Stream title, when known.
-     * @return ApiPrimaryStream_title|null
+     * @return string|null
     */
-    public function getTitle(): ?ApiPrimaryStream_title {
+    public function getTitle(): ?string {
         return $this->title;
     }
 
@@ -147,29 +147,29 @@ class ApiPrimaryStream implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('gameName', $this->getGameName());
-        $writer->writeObjectValue('lastLiveAt', $this->getLastLiveAt());
+        $writer->writeStringValue('gameName', $this->getGameName());
+        $writer->writeStringValue('lastLiveAt', $this->getLastLiveAt());
         $writer->writeEnumValue('platform', $this->getPlatform());
-        $writer->writeObjectValue('startedAt', $this->getStartedAt());
-        $writer->writeObjectValue('streamUrl', $this->getStreamUrl());
-        $writer->writeObjectValue('thumbnailUrl', $this->getThumbnailUrl());
-        $writer->writeObjectValue('title', $this->getTitle());
+        $writer->writeStringValue('startedAt', $this->getStartedAt());
+        $writer->writeStringValue('streamUrl', $this->getStreamUrl());
+        $writer->writeStringValue('thumbnailUrl', $this->getThumbnailUrl());
+        $writer->writeStringValue('title', $this->getTitle());
         $writer->writeObjectValue('viewerCount', $this->getViewerCount());
     }
 
     /**
      * Sets the gameName property value. Game/category being streamed, when known.
-     * @param ApiPrimaryStream_gameName|null $value Value to set for the gameName property.
+     * @param string|null $value Value to set for the gameName property.
     */
-    public function setGameName(?ApiPrimaryStream_gameName $value): void {
+    public function setGameName(?string $value): void {
         $this->gameName = $value;
     }
 
     /**
      * Sets the lastLiveAt property value. ISO timestamp the user was last observed live, when known.
-     * @param ApiPrimaryStream_lastLiveAt|null $value Value to set for the lastLiveAt property.
+     * @param string|null $value Value to set for the lastLiveAt property.
     */
-    public function setLastLiveAt(?ApiPrimaryStream_lastLiveAt $value): void {
+    public function setLastLiveAt(?string $value): void {
         $this->lastLiveAt = $value;
     }
 
@@ -183,33 +183,33 @@ class ApiPrimaryStream implements Parsable
 
     /**
      * Sets the startedAt property value. Stream start time (platform-provided ISO timestamp), when known.
-     * @param ApiPrimaryStream_startedAt|null $value Value to set for the startedAt property.
+     * @param string|null $value Value to set for the startedAt property.
     */
-    public function setStartedAt(?ApiPrimaryStream_startedAt $value): void {
+    public function setStartedAt(?string $value): void {
         $this->startedAt = $value;
     }
 
     /**
      * Sets the streamUrl property value. Watch URL, when known.
-     * @param ApiPrimaryStream_streamUrl|null $value Value to set for the streamUrl property.
+     * @param string|null $value Value to set for the streamUrl property.
     */
-    public function setStreamUrl(?ApiPrimaryStream_streamUrl $value): void {
+    public function setStreamUrl(?string $value): void {
         $this->streamUrl = $value;
     }
 
     /**
      * Sets the thumbnailUrl property value. Stream thumbnail URL, when known.
-     * @param ApiPrimaryStream_thumbnailUrl|null $value Value to set for the thumbnailUrl property.
+     * @param string|null $value Value to set for the thumbnailUrl property.
     */
-    public function setThumbnailUrl(?ApiPrimaryStream_thumbnailUrl $value): void {
+    public function setThumbnailUrl(?string $value): void {
         $this->thumbnailUrl = $value;
     }
 
     /**
      * Sets the title property value. Stream title, when known.
-     * @param ApiPrimaryStream_title|null $value Value to set for the title property.
+     * @param string|null $value Value to set for the title property.
     */
-    public function setTitle(?ApiPrimaryStream_title $value): void {
+    public function setTitle(?string $value): void {
         $this->title = $value;
     }
 

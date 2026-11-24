@@ -106,7 +106,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the cursor property value. Opaque continuation cursor from a prior page's continueCursor.
-                ## @return a matches_request_body_cursor
+                ## @return a string
                 ## 
                 def cursor
                     return @cursor
@@ -157,7 +157,7 @@ module TeamBattlesSdk
                     return {
                         "createdAfter" => lambda {|n| @created_after = n.get_string_value() },
                         "createdBefore" => lambda {|n| @created_before = n.get_string_value() },
-                        "cursor" => lambda {|n| @cursor = n.get_object_value(lambda {|pn| MatchesRequestBody::MatchesRequestBodyCursor.create_from_discriminator_value(pn) }) },
+                        "cursor" => lambda {|n| @cursor = n.get_string_value() },
                         "excludeStatuses" => lambda {|n| @exclude_statuses = n.get_collection_of_primitive_values(String) },
                         "gameId" => lambda {|n| @game_id = n.get_string_value() },
                         "includeStatuses" => lambda {|n| @include_statuses = n.get_collection_of_primitive_values(String) },
@@ -251,7 +251,7 @@ module TeamBattlesSdk
                     raise StandardError, 'writer cannot be null' if writer.nil?
                     writer.write_string_value("createdAfter", @created_after)
                     writer.write_string_value("createdBefore", @created_before)
-                    writer.write_object_value("cursor", @cursor)
+                    writer.write_string_value("cursor", @cursor)
                     writer.write_collection_of_primitive_values("excludeStatuses", @exclude_statuses)
                     writer.write_string_value("gameId", @game_id)
                     writer.write_collection_of_primitive_values("includeStatuses", @include_statuses)
@@ -260,77 +260,6 @@ module TeamBattlesSdk
                     writer.write_string_value("scheduledAfter", @scheduled_after)
                     writer.write_string_value("scheduledBefore", @scheduled_before)
                     writer.write_additional_data(@additional_data)
-                end
-
-                ## 
-                # Composed type wrapper for classes MatchesRequestBodyCursorMember1, string
-                class MatchesRequestBodyCursor
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type MatchesRequestBodyCursorMember1
-                    @matches_request_body_cursor_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a matches_request_body_cursor
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return MatchesRequestBodyCursor.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "MatchesRequestBody_cursorMember1" => lambda {|n| @matches_request_body_cursor_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::MatchesRequestBodyCursorMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Gets the MatchesRequestBody_cursorMember1 property value. Composed type representation for type MatchesRequestBodyCursorMember1
-                    ## @return a matches_request_body_cursor_member1
-                    ## 
-                    def matches_request_body_cursor_member1
-                        return @matches_request_body_cursor_member1
-                    end
-                    ## 
-                    ## Sets the MatchesRequestBody_cursorMember1 property value. Composed type representation for type MatchesRequestBodyCursorMember1
-                    ## @param value Value to set for the MatchesRequestBody_cursorMember1 property.
-                    ## @return a void
-                    ## 
-                    def matches_request_body_cursor_member1=(value)
-                        @matches_request_body_cursor_member1 = value
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("MatchesRequestBody_cursorMember1", @matches_request_body_cursor_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
                 end
             end
         end

@@ -10,7 +10,7 @@ import (
 // TeamLeaderboardEntry team leaderboard row.
 type TeamLeaderboardEntry struct {
     // The gameSlug property
-    gameSlug TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlugable
+    gameSlug *string
     // Team ID.
     id *string
     // The rank property
@@ -19,90 +19,6 @@ type TeamLeaderboardEntry struct {
     stats LeaderboardStatsable
     // Small API-safe team summary.
     team ApiTeamSummaryable
-}
-// TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug composed type wrapper for classes string, TeamLeaderboardEntry_gameSlugMember1able
-type TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TeamLeaderboardEntry_gameSlugMember1able
-    teamLeaderboardEntry_gameSlugMember1 TeamLeaderboardEntry_gameSlugMember1able
-}
-// NewTeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug instantiates a new TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug and sets the default values.
-func NewTeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug()(*TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug) {
-    m := &TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug{
-    }
-    return m
-}
-// CreateTeamLeaderboardEntry_TeamLeaderboardEntry_gameSlugFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTeamLeaderboardEntry_TeamLeaderboardEntry_gameSlugFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTeamLeaderboardEntry_gameSlugMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TeamLeaderboardEntry_gameSlugMember1able); ok {
-                result.SetTeamLeaderboardEntryGameSlugMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug) GetString()(*string) {
-    return m.string
-}
-// GetTeamLeaderboardEntryGameSlugMember1 gets the TeamLeaderboardEntry_gameSlugMember1 property value. Composed type representation for type TeamLeaderboardEntry_gameSlugMember1able
-// returns a TeamLeaderboardEntry_gameSlugMember1able when successful
-func (m *TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug) GetTeamLeaderboardEntryGameSlugMember1()(TeamLeaderboardEntry_gameSlugMember1able) {
-    return m.teamLeaderboardEntry_gameSlugMember1
-}
-// Serialize serializes information the current object
-func (m *TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTeamLeaderboardEntryGameSlugMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTeamLeaderboardEntryGameSlugMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug) SetString(value *string)() {
-    m.string = value
-}
-// SetTeamLeaderboardEntryGameSlugMember1 sets the TeamLeaderboardEntry_gameSlugMember1 property value. Composed type representation for type TeamLeaderboardEntry_gameSlugMember1able
-func (m *TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlug) SetTeamLeaderboardEntryGameSlugMember1(value TeamLeaderboardEntry_gameSlugMember1able)() {
-    m.teamLeaderboardEntry_gameSlugMember1 = value
-}
-type TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlugable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTeamLeaderboardEntryGameSlugMember1()(TeamLeaderboardEntry_gameSlugMember1able)
-    SetString(value *string)()
-    SetTeamLeaderboardEntryGameSlugMember1(value TeamLeaderboardEntry_gameSlugMember1able)()
 }
 // NewTeamLeaderboardEntry instantiates a new TeamLeaderboardEntry and sets the default values.
 func NewTeamLeaderboardEntry()(*TeamLeaderboardEntry) {
@@ -120,12 +36,12 @@ func CreateTeamLeaderboardEntryFromDiscriminatorValue(parseNode i878a80d2330e89d
 func (m *TeamLeaderboardEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["gameSlug"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTeamLeaderboardEntry_TeamLeaderboardEntry_gameSlugFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetGameSlug(val.(TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlugable))
+            m.SetGameSlug(val)
         }
         return nil
     }
@@ -172,8 +88,8 @@ func (m *TeamLeaderboardEntry) GetFieldDeserializers()(map[string]func(i878a80d2
     return res
 }
 // GetGameSlug gets the gameSlug property value. The gameSlug property
-// returns a TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlugable when successful
-func (m *TeamLeaderboardEntry) GetGameSlug()(TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlugable) {
+// returns a *string when successful
+func (m *TeamLeaderboardEntry) GetGameSlug()(*string) {
     return m.gameSlug
 }
 // GetId gets the id property value. Team ID.
@@ -199,7 +115,7 @@ func (m *TeamLeaderboardEntry) GetTeam()(ApiTeamSummaryable) {
 // Serialize serializes information the current object
 func (m *TeamLeaderboardEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("gameSlug", m.GetGameSlug())
+        err := writer.WriteStringValue("gameSlug", m.GetGameSlug())
         if err != nil {
             return err
         }
@@ -231,7 +147,7 @@ func (m *TeamLeaderboardEntry) Serialize(writer i878a80d2330e89d26896388a3f487ee
     return nil
 }
 // SetGameSlug sets the gameSlug property value. The gameSlug property
-func (m *TeamLeaderboardEntry) SetGameSlug(value TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlugable)() {
+func (m *TeamLeaderboardEntry) SetGameSlug(value *string)() {
     m.gameSlug = value
 }
 // SetId sets the id property value. Team ID.
@@ -252,12 +168,12 @@ func (m *TeamLeaderboardEntry) SetTeam(value ApiTeamSummaryable)() {
 }
 type TeamLeaderboardEntryable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameSlug()(TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlugable)
+    GetGameSlug()(*string)
     GetId()(*string)
     GetRank()(*int32)
     GetStats()(LeaderboardStatsable)
     GetTeam()(ApiTeamSummaryable)
-    SetGameSlug(value TeamLeaderboardEntry_TeamLeaderboardEntry_gameSlugable)()
+    SetGameSlug(value *string)()
     SetId(value *string)()
     SetRank(value *int32)()
     SetStats(value LeaderboardStatsable)()

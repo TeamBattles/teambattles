@@ -10,357 +10,21 @@ import (
 // ApiGameMode static game mode definition.
 type ApiGameMode struct {
     // The descriptionKey property
-    descriptionKey ApiGameMode_ApiGameMode_descriptionKeyable
+    descriptionKey *string
     // The id property
     id *string
     // The image property
-    image ApiGameMode_ApiGameMode_imageable
+    image *string
     // The mapIds property
     mapIds []string
     // The nameKey property
     nameKey *string
     // The rewardBonus property
-    rewardBonus ApiGameMode_ApiGameMode_rewardBonusable
+    rewardBonus *float64
     // The shortName property
-    shortName ApiGameMode_ApiGameMode_shortNameable
+    shortName *string
     // The supportsDraftToggle property
     supportsDraftToggle *bool
-}
-// ApiGameMode_ApiGameMode_descriptionKey composed type wrapper for classes ApiGameMode_descriptionKeyMember1able, string
-type ApiGameMode_ApiGameMode_descriptionKey struct {
-    // Composed type representation for type ApiGameMode_descriptionKeyMember1able
-    apiGameMode_descriptionKeyMember1 ApiGameMode_descriptionKeyMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGameMode_ApiGameMode_descriptionKey instantiates a new ApiGameMode_ApiGameMode_descriptionKey and sets the default values.
-func NewApiGameMode_ApiGameMode_descriptionKey()(*ApiGameMode_ApiGameMode_descriptionKey) {
-    m := &ApiGameMode_ApiGameMode_descriptionKey{
-    }
-    return m
-}
-// CreateApiGameMode_ApiGameMode_descriptionKeyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameMode_ApiGameMode_descriptionKeyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameMode_ApiGameMode_descriptionKey()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameMode_descriptionKeyMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameMode_descriptionKeyMember1able); ok {
-                result.SetApiGameModeDescriptionKeyMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameModeDescriptionKeyMember1 gets the ApiGameMode_descriptionKeyMember1 property value. Composed type representation for type ApiGameMode_descriptionKeyMember1able
-// returns a ApiGameMode_descriptionKeyMember1able when successful
-func (m *ApiGameMode_ApiGameMode_descriptionKey) GetApiGameModeDescriptionKeyMember1()(ApiGameMode_descriptionKeyMember1able) {
-    return m.apiGameMode_descriptionKeyMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameMode_ApiGameMode_descriptionKey) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameMode_ApiGameMode_descriptionKey) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGameMode_ApiGameMode_descriptionKey) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGameMode_ApiGameMode_descriptionKey) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameModeDescriptionKeyMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameModeDescriptionKeyMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameModeDescriptionKeyMember1 sets the ApiGameMode_descriptionKeyMember1 property value. Composed type representation for type ApiGameMode_descriptionKeyMember1able
-func (m *ApiGameMode_ApiGameMode_descriptionKey) SetApiGameModeDescriptionKeyMember1(value ApiGameMode_descriptionKeyMember1able)() {
-    m.apiGameMode_descriptionKeyMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGameMode_ApiGameMode_descriptionKey) SetString(value *string)() {
-    m.string = value
-}
-// ApiGameMode_ApiGameMode_image composed type wrapper for classes ApiGameMode_imageMember1able, string
-type ApiGameMode_ApiGameMode_image struct {
-    // Composed type representation for type ApiGameMode_imageMember1able
-    apiGameMode_imageMember1 ApiGameMode_imageMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGameMode_ApiGameMode_image instantiates a new ApiGameMode_ApiGameMode_image and sets the default values.
-func NewApiGameMode_ApiGameMode_image()(*ApiGameMode_ApiGameMode_image) {
-    m := &ApiGameMode_ApiGameMode_image{
-    }
-    return m
-}
-// CreateApiGameMode_ApiGameMode_imageFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameMode_ApiGameMode_imageFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameMode_ApiGameMode_image()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameMode_imageMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameMode_imageMember1able); ok {
-                result.SetApiGameModeImageMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameModeImageMember1 gets the ApiGameMode_imageMember1 property value. Composed type representation for type ApiGameMode_imageMember1able
-// returns a ApiGameMode_imageMember1able when successful
-func (m *ApiGameMode_ApiGameMode_image) GetApiGameModeImageMember1()(ApiGameMode_imageMember1able) {
-    return m.apiGameMode_imageMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameMode_ApiGameMode_image) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameMode_ApiGameMode_image) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGameMode_ApiGameMode_image) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGameMode_ApiGameMode_image) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameModeImageMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameModeImageMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameModeImageMember1 sets the ApiGameMode_imageMember1 property value. Composed type representation for type ApiGameMode_imageMember1able
-func (m *ApiGameMode_ApiGameMode_image) SetApiGameModeImageMember1(value ApiGameMode_imageMember1able)() {
-    m.apiGameMode_imageMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGameMode_ApiGameMode_image) SetString(value *string)() {
-    m.string = value
-}
-// ApiGameMode_ApiGameMode_rewardBonus composed type wrapper for classes ApiGameMode_rewardBonusMember1able, float64
-type ApiGameMode_ApiGameMode_rewardBonus struct {
-    // Composed type representation for type ApiGameMode_rewardBonusMember1able
-    apiGameMode_rewardBonusMember1 ApiGameMode_rewardBonusMember1able
-    // Composed type representation for type float64
-    double *float64
-}
-// NewApiGameMode_ApiGameMode_rewardBonus instantiates a new ApiGameMode_ApiGameMode_rewardBonus and sets the default values.
-func NewApiGameMode_ApiGameMode_rewardBonus()(*ApiGameMode_ApiGameMode_rewardBonus) {
-    m := &ApiGameMode_ApiGameMode_rewardBonus{
-    }
-    return m
-}
-// CreateApiGameMode_ApiGameMode_rewardBonusFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameMode_ApiGameMode_rewardBonusFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameMode_ApiGameMode_rewardBonus()
-    if parseNode != nil {
-        if val, err := parseNode.GetFloat64Value(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetDouble(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameMode_rewardBonusMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameMode_rewardBonusMember1able); ok {
-                result.SetApiGameModeRewardBonusMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameModeRewardBonusMember1 gets the ApiGameMode_rewardBonusMember1 property value. Composed type representation for type ApiGameMode_rewardBonusMember1able
-// returns a ApiGameMode_rewardBonusMember1able when successful
-func (m *ApiGameMode_ApiGameMode_rewardBonus) GetApiGameModeRewardBonusMember1()(ApiGameMode_rewardBonusMember1able) {
-    return m.apiGameMode_rewardBonusMember1
-}
-// GetDouble gets the double property value. Composed type representation for type float64
-// returns a *float64 when successful
-func (m *ApiGameMode_ApiGameMode_rewardBonus) GetDouble()(*float64) {
-    return m.double
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameMode_ApiGameMode_rewardBonus) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameMode_ApiGameMode_rewardBonus) GetIsComposedType()(bool) {
-    return true
-}
-// Serialize serializes information the current object
-func (m *ApiGameMode_ApiGameMode_rewardBonus) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetDouble() != nil {
-        err := writer.WriteFloat64Value("", m.GetDouble())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameModeRewardBonusMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameModeRewardBonusMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameModeRewardBonusMember1 sets the ApiGameMode_rewardBonusMember1 property value. Composed type representation for type ApiGameMode_rewardBonusMember1able
-func (m *ApiGameMode_ApiGameMode_rewardBonus) SetApiGameModeRewardBonusMember1(value ApiGameMode_rewardBonusMember1able)() {
-    m.apiGameMode_rewardBonusMember1 = value
-}
-// SetDouble sets the double property value. Composed type representation for type float64
-func (m *ApiGameMode_ApiGameMode_rewardBonus) SetDouble(value *float64)() {
-    m.double = value
-}
-// ApiGameMode_ApiGameMode_shortName composed type wrapper for classes ApiGameMode_shortNameMember1able, string
-type ApiGameMode_ApiGameMode_shortName struct {
-    // Composed type representation for type ApiGameMode_shortNameMember1able
-    apiGameMode_shortNameMember1 ApiGameMode_shortNameMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGameMode_ApiGameMode_shortName instantiates a new ApiGameMode_ApiGameMode_shortName and sets the default values.
-func NewApiGameMode_ApiGameMode_shortName()(*ApiGameMode_ApiGameMode_shortName) {
-    m := &ApiGameMode_ApiGameMode_shortName{
-    }
-    return m
-}
-// CreateApiGameMode_ApiGameMode_shortNameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameMode_ApiGameMode_shortNameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameMode_ApiGameMode_shortName()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameMode_shortNameMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameMode_shortNameMember1able); ok {
-                result.SetApiGameModeShortNameMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameModeShortNameMember1 gets the ApiGameMode_shortNameMember1 property value. Composed type representation for type ApiGameMode_shortNameMember1able
-// returns a ApiGameMode_shortNameMember1able when successful
-func (m *ApiGameMode_ApiGameMode_shortName) GetApiGameModeShortNameMember1()(ApiGameMode_shortNameMember1able) {
-    return m.apiGameMode_shortNameMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameMode_ApiGameMode_shortName) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameMode_ApiGameMode_shortName) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGameMode_ApiGameMode_shortName) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGameMode_ApiGameMode_shortName) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameModeShortNameMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameModeShortNameMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameModeShortNameMember1 sets the ApiGameMode_shortNameMember1 property value. Composed type representation for type ApiGameMode_shortNameMember1able
-func (m *ApiGameMode_ApiGameMode_shortName) SetApiGameModeShortNameMember1(value ApiGameMode_shortNameMember1able)() {
-    m.apiGameMode_shortNameMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGameMode_ApiGameMode_shortName) SetString(value *string)() {
-    m.string = value
-}
-type ApiGameMode_ApiGameMode_descriptionKeyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameModeDescriptionKeyMember1()(ApiGameMode_descriptionKeyMember1able)
-    GetString()(*string)
-    SetApiGameModeDescriptionKeyMember1(value ApiGameMode_descriptionKeyMember1able)()
-    SetString(value *string)()
-}
-type ApiGameMode_ApiGameMode_imageable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameModeImageMember1()(ApiGameMode_imageMember1able)
-    GetString()(*string)
-    SetApiGameModeImageMember1(value ApiGameMode_imageMember1able)()
-    SetString(value *string)()
-}
-type ApiGameMode_ApiGameMode_rewardBonusable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameModeRewardBonusMember1()(ApiGameMode_rewardBonusMember1able)
-    GetDouble()(*float64)
-    SetApiGameModeRewardBonusMember1(value ApiGameMode_rewardBonusMember1able)()
-    SetDouble(value *float64)()
-}
-type ApiGameMode_ApiGameMode_shortNameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameModeShortNameMember1()(ApiGameMode_shortNameMember1able)
-    GetString()(*string)
-    SetApiGameModeShortNameMember1(value ApiGameMode_shortNameMember1able)()
-    SetString(value *string)()
 }
 // NewApiGameMode instantiates a new ApiGameMode and sets the default values.
 func NewApiGameMode()(*ApiGameMode) {
@@ -374,8 +38,8 @@ func CreateApiGameModeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
     return NewApiGameMode(), nil
 }
 // GetDescriptionKey gets the descriptionKey property value. The descriptionKey property
-// returns a ApiGameMode_ApiGameMode_descriptionKeyable when successful
-func (m *ApiGameMode) GetDescriptionKey()(ApiGameMode_ApiGameMode_descriptionKeyable) {
+// returns a *string when successful
+func (m *ApiGameMode) GetDescriptionKey()(*string) {
     return m.descriptionKey
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -383,12 +47,12 @@ func (m *ApiGameMode) GetDescriptionKey()(ApiGameMode_ApiGameMode_descriptionKey
 func (m *ApiGameMode) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["descriptionKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameMode_ApiGameMode_descriptionKeyFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDescriptionKey(val.(ApiGameMode_ApiGameMode_descriptionKeyable))
+            m.SetDescriptionKey(val)
         }
         return nil
     }
@@ -403,12 +67,12 @@ func (m *ApiGameMode) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["image"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameMode_ApiGameMode_imageFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetImage(val.(ApiGameMode_ApiGameMode_imageable))
+            m.SetImage(val)
         }
         return nil
     }
@@ -439,22 +103,22 @@ func (m *ApiGameMode) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["rewardBonus"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameMode_ApiGameMode_rewardBonusFromDiscriminatorValue)
+        val, err := n.GetFloat64Value()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetRewardBonus(val.(ApiGameMode_ApiGameMode_rewardBonusable))
+            m.SetRewardBonus(val)
         }
         return nil
     }
     res["shortName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameMode_ApiGameMode_shortNameFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetShortName(val.(ApiGameMode_ApiGameMode_shortNameable))
+            m.SetShortName(val)
         }
         return nil
     }
@@ -476,8 +140,8 @@ func (m *ApiGameMode) GetId()(*string) {
     return m.id
 }
 // GetImage gets the image property value. The image property
-// returns a ApiGameMode_ApiGameMode_imageable when successful
-func (m *ApiGameMode) GetImage()(ApiGameMode_ApiGameMode_imageable) {
+// returns a *string when successful
+func (m *ApiGameMode) GetImage()(*string) {
     return m.image
 }
 // GetMapIds gets the mapIds property value. The mapIds property
@@ -491,13 +155,13 @@ func (m *ApiGameMode) GetNameKey()(*string) {
     return m.nameKey
 }
 // GetRewardBonus gets the rewardBonus property value. The rewardBonus property
-// returns a ApiGameMode_ApiGameMode_rewardBonusable when successful
-func (m *ApiGameMode) GetRewardBonus()(ApiGameMode_ApiGameMode_rewardBonusable) {
+// returns a *float64 when successful
+func (m *ApiGameMode) GetRewardBonus()(*float64) {
     return m.rewardBonus
 }
 // GetShortName gets the shortName property value. The shortName property
-// returns a ApiGameMode_ApiGameMode_shortNameable when successful
-func (m *ApiGameMode) GetShortName()(ApiGameMode_ApiGameMode_shortNameable) {
+// returns a *string when successful
+func (m *ApiGameMode) GetShortName()(*string) {
     return m.shortName
 }
 // GetSupportsDraftToggle gets the supportsDraftToggle property value. The supportsDraftToggle property
@@ -508,7 +172,7 @@ func (m *ApiGameMode) GetSupportsDraftToggle()(*bool) {
 // Serialize serializes information the current object
 func (m *ApiGameMode) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("descriptionKey", m.GetDescriptionKey())
+        err := writer.WriteStringValue("descriptionKey", m.GetDescriptionKey())
         if err != nil {
             return err
         }
@@ -520,7 +184,7 @@ func (m *ApiGameMode) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteObjectValue("image", m.GetImage())
+        err := writer.WriteStringValue("image", m.GetImage())
         if err != nil {
             return err
         }
@@ -538,13 +202,13 @@ func (m *ApiGameMode) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteObjectValue("rewardBonus", m.GetRewardBonus())
+        err := writer.WriteFloat64Value("rewardBonus", m.GetRewardBonus())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("shortName", m.GetShortName())
+        err := writer.WriteStringValue("shortName", m.GetShortName())
         if err != nil {
             return err
         }
@@ -558,7 +222,7 @@ func (m *ApiGameMode) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     return nil
 }
 // SetDescriptionKey sets the descriptionKey property value. The descriptionKey property
-func (m *ApiGameMode) SetDescriptionKey(value ApiGameMode_ApiGameMode_descriptionKeyable)() {
+func (m *ApiGameMode) SetDescriptionKey(value *string)() {
     m.descriptionKey = value
 }
 // SetId sets the id property value. The id property
@@ -566,7 +230,7 @@ func (m *ApiGameMode) SetId(value *string)() {
     m.id = value
 }
 // SetImage sets the image property value. The image property
-func (m *ApiGameMode) SetImage(value ApiGameMode_ApiGameMode_imageable)() {
+func (m *ApiGameMode) SetImage(value *string)() {
     m.image = value
 }
 // SetMapIds sets the mapIds property value. The mapIds property
@@ -578,11 +242,11 @@ func (m *ApiGameMode) SetNameKey(value *string)() {
     m.nameKey = value
 }
 // SetRewardBonus sets the rewardBonus property value. The rewardBonus property
-func (m *ApiGameMode) SetRewardBonus(value ApiGameMode_ApiGameMode_rewardBonusable)() {
+func (m *ApiGameMode) SetRewardBonus(value *float64)() {
     m.rewardBonus = value
 }
 // SetShortName sets the shortName property value. The shortName property
-func (m *ApiGameMode) SetShortName(value ApiGameMode_ApiGameMode_shortNameable)() {
+func (m *ApiGameMode) SetShortName(value *string)() {
     m.shortName = value
 }
 // SetSupportsDraftToggle sets the supportsDraftToggle property value. The supportsDraftToggle property
@@ -591,20 +255,20 @@ func (m *ApiGameMode) SetSupportsDraftToggle(value *bool)() {
 }
 type ApiGameModeable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDescriptionKey()(ApiGameMode_ApiGameMode_descriptionKeyable)
+    GetDescriptionKey()(*string)
     GetId()(*string)
-    GetImage()(ApiGameMode_ApiGameMode_imageable)
+    GetImage()(*string)
     GetMapIds()([]string)
     GetNameKey()(*string)
-    GetRewardBonus()(ApiGameMode_ApiGameMode_rewardBonusable)
-    GetShortName()(ApiGameMode_ApiGameMode_shortNameable)
+    GetRewardBonus()(*float64)
+    GetShortName()(*string)
     GetSupportsDraftToggle()(*bool)
-    SetDescriptionKey(value ApiGameMode_ApiGameMode_descriptionKeyable)()
+    SetDescriptionKey(value *string)()
     SetId(value *string)()
-    SetImage(value ApiGameMode_ApiGameMode_imageable)()
+    SetImage(value *string)()
     SetMapIds(value []string)()
     SetNameKey(value *string)()
-    SetRewardBonus(value ApiGameMode_ApiGameMode_rewardBonusable)()
-    SetShortName(value ApiGameMode_ApiGameMode_shortNameable)()
+    SetRewardBonus(value *float64)()
+    SetShortName(value *string)()
     SetSupportsDraftToggle(value *bool)()
 }

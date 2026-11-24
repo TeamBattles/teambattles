@@ -6,8 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .league_profile_active_seasons import LeagueProfile_activeSeasons
-    from .league_profile_avatar_url import LeagueProfile_avatarUrl
-    from .league_profile_banner_url import LeagueProfile_bannerUrl
     from .league_profile_games import LeagueProfile_games
 
 @dataclass
@@ -18,9 +16,9 @@ class LeagueProfile(Parsable):
     # Currently active seasons.
     active_seasons: Optional[list[LeagueProfile_activeSeasons]] = None
     # League avatar image URL.
-    avatar_url: Optional[LeagueProfile_avatarUrl] = None
+    avatar_url: Optional[str] = None
     # League banner image URL.
-    banner_url: Optional[LeagueProfile_bannerUrl] = None
+    banner_url: Optional[str] = None
     # Creation timestamp (epoch milliseconds).
     created_at: Optional[float] = None
     # League description.
@@ -61,19 +59,15 @@ class LeagueProfile(Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .league_profile_active_seasons import LeagueProfile_activeSeasons
-        from .league_profile_avatar_url import LeagueProfile_avatarUrl
-        from .league_profile_banner_url import LeagueProfile_bannerUrl
         from .league_profile_games import LeagueProfile_games
 
         from .league_profile_active_seasons import LeagueProfile_activeSeasons
-        from .league_profile_avatar_url import LeagueProfile_avatarUrl
-        from .league_profile_banner_url import LeagueProfile_bannerUrl
         from .league_profile_games import LeagueProfile_games
 
         fields: dict[str, Callable[[Any], None]] = {
             "activeSeasons": lambda n : setattr(self, 'active_seasons', n.get_collection_of_object_values(LeagueProfile_activeSeasons)),
-            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_object_value(LeagueProfile_avatarUrl)),
-            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_object_value(LeagueProfile_bannerUrl)),
+            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_str_value()),
+            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_str_value()),
             "createdAt": lambda n : setattr(self, 'created_at', n.get_float_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "games": lambda n : setattr(self, 'games', n.get_collection_of_object_values(LeagueProfile_games)),
@@ -97,8 +91,8 @@ class LeagueProfile(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("activeSeasons", self.active_seasons)
-        writer.write_object_value("avatarUrl", self.avatar_url)
-        writer.write_object_value("bannerUrl", self.banner_url)
+        writer.write_str_value("avatarUrl", self.avatar_url)
+        writer.write_str_value("bannerUrl", self.banner_url)
         writer.write_float_value("createdAt", self.created_at)
         writer.write_str_value("description", self.description)
         writer.write_collection_of_object_values("games", self.games)

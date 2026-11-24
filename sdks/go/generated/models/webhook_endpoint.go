@@ -20,11 +20,11 @@ type WebhookEndpoint struct {
     // Whether the endpoint receives deliveries.
     isActive *bool
     // Human label, or null.
-    label WebhookEndpoint_WebhookEndpoint_labelable
+    label *string
     // Epoch ms of the last successful delivery, or null.
-    lastDeliveredAt WebhookEndpoint_WebhookEndpoint_lastDeliveredAtable
+    lastDeliveredAt *float64
     // Epoch ms of the last failed delivery, or null.
-    lastFailedAt WebhookEndpoint_WebhookEndpoint_lastFailedAtable
+    lastFailedAt *float64
     // Stringified bound scope id.
     scopeId *string
     // The single scope dimension an endpoint is bound to.
@@ -35,258 +35,6 @@ type WebhookEndpoint struct {
     updatedAt *float64
     // Delivery URL.
     url *string
-}
-// WebhookEndpoint_WebhookEndpoint_label composed type wrapper for classes string, WebhookEndpoint_labelMember1able
-type WebhookEndpoint_WebhookEndpoint_label struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type WebhookEndpoint_labelMember1able
-    webhookEndpoint_labelMember1 WebhookEndpoint_labelMember1able
-}
-// NewWebhookEndpoint_WebhookEndpoint_label instantiates a new WebhookEndpoint_WebhookEndpoint_label and sets the default values.
-func NewWebhookEndpoint_WebhookEndpoint_label()(*WebhookEndpoint_WebhookEndpoint_label) {
-    m := &WebhookEndpoint_WebhookEndpoint_label{
-    }
-    return m
-}
-// CreateWebhookEndpoint_WebhookEndpoint_labelFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateWebhookEndpoint_WebhookEndpoint_labelFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewWebhookEndpoint_WebhookEndpoint_label()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateWebhookEndpoint_labelMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(WebhookEndpoint_labelMember1able); ok {
-                result.SetWebhookEndpointLabelMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *WebhookEndpoint_WebhookEndpoint_label) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *WebhookEndpoint_WebhookEndpoint_label) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *WebhookEndpoint_WebhookEndpoint_label) GetString()(*string) {
-    return m.string
-}
-// GetWebhookEndpointLabelMember1 gets the WebhookEndpoint_labelMember1 property value. Composed type representation for type WebhookEndpoint_labelMember1able
-// returns a WebhookEndpoint_labelMember1able when successful
-func (m *WebhookEndpoint_WebhookEndpoint_label) GetWebhookEndpointLabelMember1()(WebhookEndpoint_labelMember1able) {
-    return m.webhookEndpoint_labelMember1
-}
-// Serialize serializes information the current object
-func (m *WebhookEndpoint_WebhookEndpoint_label) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetWebhookEndpointLabelMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetWebhookEndpointLabelMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *WebhookEndpoint_WebhookEndpoint_label) SetString(value *string)() {
-    m.string = value
-}
-// SetWebhookEndpointLabelMember1 sets the WebhookEndpoint_labelMember1 property value. Composed type representation for type WebhookEndpoint_labelMember1able
-func (m *WebhookEndpoint_WebhookEndpoint_label) SetWebhookEndpointLabelMember1(value WebhookEndpoint_labelMember1able)() {
-    m.webhookEndpoint_labelMember1 = value
-}
-// WebhookEndpoint_WebhookEndpoint_lastDeliveredAt composed type wrapper for classes float64, WebhookEndpoint_lastDeliveredAtMember1able
-type WebhookEndpoint_WebhookEndpoint_lastDeliveredAt struct {
-    // Composed type representation for type float64
-    double *float64
-    // Composed type representation for type WebhookEndpoint_lastDeliveredAtMember1able
-    webhookEndpoint_lastDeliveredAtMember1 WebhookEndpoint_lastDeliveredAtMember1able
-}
-// NewWebhookEndpoint_WebhookEndpoint_lastDeliveredAt instantiates a new WebhookEndpoint_WebhookEndpoint_lastDeliveredAt and sets the default values.
-func NewWebhookEndpoint_WebhookEndpoint_lastDeliveredAt()(*WebhookEndpoint_WebhookEndpoint_lastDeliveredAt) {
-    m := &WebhookEndpoint_WebhookEndpoint_lastDeliveredAt{
-    }
-    return m
-}
-// CreateWebhookEndpoint_WebhookEndpoint_lastDeliveredAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateWebhookEndpoint_WebhookEndpoint_lastDeliveredAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewWebhookEndpoint_WebhookEndpoint_lastDeliveredAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetFloat64Value(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetDouble(val)
-        } else if val, err := parseNode.GetObjectValue(CreateWebhookEndpoint_lastDeliveredAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(WebhookEndpoint_lastDeliveredAtMember1able); ok {
-                result.SetWebhookEndpointLastDeliveredAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetDouble gets the double property value. Composed type representation for type float64
-// returns a *float64 when successful
-func (m *WebhookEndpoint_WebhookEndpoint_lastDeliveredAt) GetDouble()(*float64) {
-    return m.double
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *WebhookEndpoint_WebhookEndpoint_lastDeliveredAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *WebhookEndpoint_WebhookEndpoint_lastDeliveredAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetWebhookEndpointLastDeliveredAtMember1 gets the WebhookEndpoint_lastDeliveredAtMember1 property value. Composed type representation for type WebhookEndpoint_lastDeliveredAtMember1able
-// returns a WebhookEndpoint_lastDeliveredAtMember1able when successful
-func (m *WebhookEndpoint_WebhookEndpoint_lastDeliveredAt) GetWebhookEndpointLastDeliveredAtMember1()(WebhookEndpoint_lastDeliveredAtMember1able) {
-    return m.webhookEndpoint_lastDeliveredAtMember1
-}
-// Serialize serializes information the current object
-func (m *WebhookEndpoint_WebhookEndpoint_lastDeliveredAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetDouble() != nil {
-        err := writer.WriteFloat64Value("", m.GetDouble())
-        if err != nil {
-            return err
-        }
-    } else if m.GetWebhookEndpointLastDeliveredAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetWebhookEndpointLastDeliveredAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetDouble sets the double property value. Composed type representation for type float64
-func (m *WebhookEndpoint_WebhookEndpoint_lastDeliveredAt) SetDouble(value *float64)() {
-    m.double = value
-}
-// SetWebhookEndpointLastDeliveredAtMember1 sets the WebhookEndpoint_lastDeliveredAtMember1 property value. Composed type representation for type WebhookEndpoint_lastDeliveredAtMember1able
-func (m *WebhookEndpoint_WebhookEndpoint_lastDeliveredAt) SetWebhookEndpointLastDeliveredAtMember1(value WebhookEndpoint_lastDeliveredAtMember1able)() {
-    m.webhookEndpoint_lastDeliveredAtMember1 = value
-}
-// WebhookEndpoint_WebhookEndpoint_lastFailedAt composed type wrapper for classes float64, WebhookEndpoint_lastFailedAtMember1able
-type WebhookEndpoint_WebhookEndpoint_lastFailedAt struct {
-    // Composed type representation for type float64
-    double *float64
-    // Composed type representation for type WebhookEndpoint_lastFailedAtMember1able
-    webhookEndpoint_lastFailedAtMember1 WebhookEndpoint_lastFailedAtMember1able
-}
-// NewWebhookEndpoint_WebhookEndpoint_lastFailedAt instantiates a new WebhookEndpoint_WebhookEndpoint_lastFailedAt and sets the default values.
-func NewWebhookEndpoint_WebhookEndpoint_lastFailedAt()(*WebhookEndpoint_WebhookEndpoint_lastFailedAt) {
-    m := &WebhookEndpoint_WebhookEndpoint_lastFailedAt{
-    }
-    return m
-}
-// CreateWebhookEndpoint_WebhookEndpoint_lastFailedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateWebhookEndpoint_WebhookEndpoint_lastFailedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewWebhookEndpoint_WebhookEndpoint_lastFailedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetFloat64Value(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetDouble(val)
-        } else if val, err := parseNode.GetObjectValue(CreateWebhookEndpoint_lastFailedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(WebhookEndpoint_lastFailedAtMember1able); ok {
-                result.SetWebhookEndpointLastFailedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetDouble gets the double property value. Composed type representation for type float64
-// returns a *float64 when successful
-func (m *WebhookEndpoint_WebhookEndpoint_lastFailedAt) GetDouble()(*float64) {
-    return m.double
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *WebhookEndpoint_WebhookEndpoint_lastFailedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *WebhookEndpoint_WebhookEndpoint_lastFailedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetWebhookEndpointLastFailedAtMember1 gets the WebhookEndpoint_lastFailedAtMember1 property value. Composed type representation for type WebhookEndpoint_lastFailedAtMember1able
-// returns a WebhookEndpoint_lastFailedAtMember1able when successful
-func (m *WebhookEndpoint_WebhookEndpoint_lastFailedAt) GetWebhookEndpointLastFailedAtMember1()(WebhookEndpoint_lastFailedAtMember1able) {
-    return m.webhookEndpoint_lastFailedAtMember1
-}
-// Serialize serializes information the current object
-func (m *WebhookEndpoint_WebhookEndpoint_lastFailedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetDouble() != nil {
-        err := writer.WriteFloat64Value("", m.GetDouble())
-        if err != nil {
-            return err
-        }
-    } else if m.GetWebhookEndpointLastFailedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetWebhookEndpointLastFailedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetDouble sets the double property value. Composed type representation for type float64
-func (m *WebhookEndpoint_WebhookEndpoint_lastFailedAt) SetDouble(value *float64)() {
-    m.double = value
-}
-// SetWebhookEndpointLastFailedAtMember1 sets the WebhookEndpoint_lastFailedAtMember1 property value. Composed type representation for type WebhookEndpoint_lastFailedAtMember1able
-func (m *WebhookEndpoint_WebhookEndpoint_lastFailedAt) SetWebhookEndpointLastFailedAtMember1(value WebhookEndpoint_lastFailedAtMember1able)() {
-    m.webhookEndpoint_lastFailedAtMember1 = value
-}
-type WebhookEndpoint_WebhookEndpoint_labelable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetWebhookEndpointLabelMember1()(WebhookEndpoint_labelMember1able)
-    SetString(value *string)()
-    SetWebhookEndpointLabelMember1(value WebhookEndpoint_labelMember1able)()
-}
-type WebhookEndpoint_WebhookEndpoint_lastDeliveredAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDouble()(*float64)
-    GetWebhookEndpointLastDeliveredAtMember1()(WebhookEndpoint_lastDeliveredAtMember1able)
-    SetDouble(value *float64)()
-    SetWebhookEndpointLastDeliveredAtMember1(value WebhookEndpoint_lastDeliveredAtMember1able)()
-}
-type WebhookEndpoint_WebhookEndpoint_lastFailedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDouble()(*float64)
-    GetWebhookEndpointLastFailedAtMember1()(WebhookEndpoint_lastFailedAtMember1able)
-    SetDouble(value *float64)()
-    SetWebhookEndpointLastFailedAtMember1(value WebhookEndpoint_lastFailedAtMember1able)()
 }
 // NewWebhookEndpoint instantiates a new WebhookEndpoint and sets the default values.
 func NewWebhookEndpoint()(*WebhookEndpoint) {
@@ -375,32 +123,32 @@ func (m *WebhookEndpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         return nil
     }
     res["label"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateWebhookEndpoint_WebhookEndpoint_labelFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetLabel(val.(WebhookEndpoint_WebhookEndpoint_labelable))
+            m.SetLabel(val)
         }
         return nil
     }
     res["lastDeliveredAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateWebhookEndpoint_WebhookEndpoint_lastDeliveredAtFromDiscriminatorValue)
+        val, err := n.GetFloat64Value()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetLastDeliveredAt(val.(WebhookEndpoint_WebhookEndpoint_lastDeliveredAtable))
+            m.SetLastDeliveredAt(val)
         }
         return nil
     }
     res["lastFailedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateWebhookEndpoint_WebhookEndpoint_lastFailedAtFromDiscriminatorValue)
+        val, err := n.GetFloat64Value()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetLastFailedAt(val.(WebhookEndpoint_WebhookEndpoint_lastFailedAtable))
+            m.SetLastFailedAt(val)
         }
         return nil
     }
@@ -467,18 +215,18 @@ func (m *WebhookEndpoint) GetIsActive()(*bool) {
     return m.isActive
 }
 // GetLabel gets the label property value. Human label, or null.
-// returns a WebhookEndpoint_WebhookEndpoint_labelable when successful
-func (m *WebhookEndpoint) GetLabel()(WebhookEndpoint_WebhookEndpoint_labelable) {
+// returns a *string when successful
+func (m *WebhookEndpoint) GetLabel()(*string) {
     return m.label
 }
 // GetLastDeliveredAt gets the lastDeliveredAt property value. Epoch ms of the last successful delivery, or null.
-// returns a WebhookEndpoint_WebhookEndpoint_lastDeliveredAtable when successful
-func (m *WebhookEndpoint) GetLastDeliveredAt()(WebhookEndpoint_WebhookEndpoint_lastDeliveredAtable) {
+// returns a *float64 when successful
+func (m *WebhookEndpoint) GetLastDeliveredAt()(*float64) {
     return m.lastDeliveredAt
 }
 // GetLastFailedAt gets the lastFailedAt property value. Epoch ms of the last failed delivery, or null.
-// returns a WebhookEndpoint_WebhookEndpoint_lastFailedAtable when successful
-func (m *WebhookEndpoint) GetLastFailedAt()(WebhookEndpoint_WebhookEndpoint_lastFailedAtable) {
+// returns a *float64 when successful
+func (m *WebhookEndpoint) GetLastFailedAt()(*float64) {
     return m.lastFailedAt
 }
 // GetScopeId gets the scopeId property value. Stringified bound scope id.
@@ -539,19 +287,19 @@ func (m *WebhookEndpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
         }
     }
     {
-        err := writer.WriteObjectValue("label", m.GetLabel())
+        err := writer.WriteStringValue("label", m.GetLabel())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("lastDeliveredAt", m.GetLastDeliveredAt())
+        err := writer.WriteFloat64Value("lastDeliveredAt", m.GetLastDeliveredAt())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("lastFailedAt", m.GetLastFailedAt())
+        err := writer.WriteFloat64Value("lastFailedAt", m.GetLastFailedAt())
         if err != nil {
             return err
         }
@@ -610,15 +358,15 @@ func (m *WebhookEndpoint) SetIsActive(value *bool)() {
     m.isActive = value
 }
 // SetLabel sets the label property value. Human label, or null.
-func (m *WebhookEndpoint) SetLabel(value WebhookEndpoint_WebhookEndpoint_labelable)() {
+func (m *WebhookEndpoint) SetLabel(value *string)() {
     m.label = value
 }
 // SetLastDeliveredAt sets the lastDeliveredAt property value. Epoch ms of the last successful delivery, or null.
-func (m *WebhookEndpoint) SetLastDeliveredAt(value WebhookEndpoint_WebhookEndpoint_lastDeliveredAtable)() {
+func (m *WebhookEndpoint) SetLastDeliveredAt(value *float64)() {
     m.lastDeliveredAt = value
 }
 // SetLastFailedAt sets the lastFailedAt property value. Epoch ms of the last failed delivery, or null.
-func (m *WebhookEndpoint) SetLastFailedAt(value WebhookEndpoint_WebhookEndpoint_lastFailedAtable)() {
+func (m *WebhookEndpoint) SetLastFailedAt(value *float64)() {
     m.lastFailedAt = value
 }
 // SetScopeId sets the scopeId property value. Stringified bound scope id.
@@ -648,9 +396,9 @@ type WebhookEndpointable interface {
     GetFailureCount()(*int32)
     GetId()(*string)
     GetIsActive()(*bool)
-    GetLabel()(WebhookEndpoint_WebhookEndpoint_labelable)
-    GetLastDeliveredAt()(WebhookEndpoint_WebhookEndpoint_lastDeliveredAtable)
-    GetLastFailedAt()(WebhookEndpoint_WebhookEndpoint_lastFailedAtable)
+    GetLabel()(*string)
+    GetLastDeliveredAt()(*float64)
+    GetLastFailedAt()(*float64)
     GetScopeId()(*string)
     GetScopeType()(*WebhookEndpoint_scopeType)
     GetSecretPrefix()(*string)
@@ -661,9 +409,9 @@ type WebhookEndpointable interface {
     SetFailureCount(value *int32)()
     SetId(value *string)()
     SetIsActive(value *bool)()
-    SetLabel(value WebhookEndpoint_WebhookEndpoint_labelable)()
-    SetLastDeliveredAt(value WebhookEndpoint_WebhookEndpoint_lastDeliveredAtable)()
-    SetLastFailedAt(value WebhookEndpoint_WebhookEndpoint_lastFailedAtable)()
+    SetLabel(value *string)()
+    SetLastDeliveredAt(value *float64)()
+    SetLastFailedAt(value *float64)()
     SetScopeId(value *string)()
     SetScopeType(value *WebhookEndpoint_scopeType)()
     SetSecretPrefix(value *string)()

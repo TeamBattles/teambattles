@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ApiTeamSummary implements Parsable 
 {
     /**
-     * @var ApiTeamSummary_avatarUrl|null $avatarUrl The avatarUrl property
+     * @var string|null $avatarUrl The avatarUrl property
     */
-    private ?ApiTeamSummary_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
      * @var string|null $id Team ID.
@@ -27,14 +27,14 @@ class ApiTeamSummary implements Parsable
     private ?string $name = null;
     
     /**
-     * @var ApiTeamSummary_slug|null $slug The slug property
+     * @var string|null $slug The slug property
     */
-    private ?ApiTeamSummary_slug $slug = null;
+    private ?string $slug = null;
     
     /**
-     * @var ApiTeamSummary_tag|null $tag The tag property
+     * @var string|null $tag The tag property
     */
-    private ?ApiTeamSummary_tag $tag = null;
+    private ?string $tag = null;
     
     /**
      * @var ProfileVisibility|null $visibility Public profile visibility setting.
@@ -52,9 +52,9 @@ class ApiTeamSummary implements Parsable
 
     /**
      * Gets the avatarUrl property value. The avatarUrl property
-     * @return ApiTeamSummary_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?ApiTeamSummary_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
@@ -65,11 +65,11 @@ class ApiTeamSummary implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([ApiTeamSummary_avatarUrl::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'slug' => fn(ParseNode $n) => $o->setSlug($n->getObjectValue([ApiTeamSummary_slug::class, 'createFromDiscriminatorValue'])),
-            'tag' => fn(ParseNode $n) => $o->setTag($n->getObjectValue([ApiTeamSummary_tag::class, 'createFromDiscriminatorValue'])),
+            'slug' => fn(ParseNode $n) => $o->setSlug($n->getStringValue()),
+            'tag' => fn(ParseNode $n) => $o->setTag($n->getStringValue()),
             'visibility' => fn(ParseNode $n) => $o->setVisibility($n->getEnumValue(ProfileVisibility::class)),
         ];
     }
@@ -92,17 +92,17 @@ class ApiTeamSummary implements Parsable
 
     /**
      * Gets the slug property value. The slug property
-     * @return ApiTeamSummary_slug|null
+     * @return string|null
     */
-    public function getSlug(): ?ApiTeamSummary_slug {
+    public function getSlug(): ?string {
         return $this->slug;
     }
 
     /**
      * Gets the tag property value. The tag property
-     * @return ApiTeamSummary_tag|null
+     * @return string|null
     */
-    public function getTag(): ?ApiTeamSummary_tag {
+    public function getTag(): ?string {
         return $this->tag;
     }
 
@@ -119,19 +119,19 @@ class ApiTeamSummary implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeObjectValue('slug', $this->getSlug());
-        $writer->writeObjectValue('tag', $this->getTag());
+        $writer->writeStringValue('slug', $this->getSlug());
+        $writer->writeStringValue('tag', $this->getTag());
         $writer->writeEnumValue('visibility', $this->getVisibility());
     }
 
     /**
      * Sets the avatarUrl property value. The avatarUrl property
-     * @param ApiTeamSummary_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?ApiTeamSummary_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 
@@ -153,17 +153,17 @@ class ApiTeamSummary implements Parsable
 
     /**
      * Sets the slug property value. The slug property
-     * @param ApiTeamSummary_slug|null $value Value to set for the slug property.
+     * @param string|null $value Value to set for the slug property.
     */
-    public function setSlug(?ApiTeamSummary_slug $value): void {
+    public function setSlug(?string $value): void {
         $this->slug = $value;
     }
 
     /**
      * Sets the tag property value. The tag property
-     * @param ApiTeamSummary_tag|null $value Value to set for the tag property.
+     * @param string|null $value Value to set for the tag property.
     */
-    public function setTag(?ApiTeamSummary_tag $value): void {
+    public function setTag(?string $value): void {
         $this->tag = $value;
     }
 

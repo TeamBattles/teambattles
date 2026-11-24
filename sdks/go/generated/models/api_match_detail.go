@@ -16,9 +16,9 @@ type ApiMatchDetail struct {
     // The challengedTeam property
     challengedTeam ApiMatchTeamable
     // The completedAt property
-    completedAt ApiMatchDetail_ApiMatchDetail_completedAtable
+    completedAt *string
     // The createdAt property
-    createdAt ApiMatchDetail_ApiMatchDetail_createdAtable
+    createdAt *string
     // The creatorTeam property
     creatorTeam ApiMatchTeamable
     // Game definition.
@@ -28,871 +28,31 @@ type ApiMatchDetail struct {
     // The id property
     id *string
     // The leagueId property
-    leagueId ApiMatchDetail_ApiMatchDetail_leagueIdable
+    leagueId *string
     // The leagueSeasonId property
-    leagueSeasonId ApiMatchDetail_ApiMatchDetail_leagueSeasonIdable
+    leagueSeasonId *string
     // The matchType property
-    matchType ApiMatchDetail_ApiMatchDetail_matchTypeable
+    matchType *string
     // The platform property
-    platform ApiMatchDetail_ApiMatchDetail_platformable
+    platform *string
     // The publishStatus property
     publishStatus *string
     // The region property
-    region ApiMatchDetail_ApiMatchDetail_regionable
+    region *string
     // The scheduledAt property
-    scheduledAt ApiMatchDetail_ApiMatchDetail_scheduledAtable
+    scheduledAt *string
     // The selectedMaps property
     selectedMaps []string
     // The selectedObjectives property
     selectedObjectives []string
     // The startedAt property
-    startedAt ApiMatchDetail_ApiMatchDetail_startedAtable
+    startedAt *string
     // Lifecycle status of a match.
     status *MatchStatus
     // The teamSize property
     teamSize *int32
     // The winnerTeamId property
-    winnerTeamId ApiMatchDetail_ApiMatchDetail_winnerTeamIdable
-}
-// ApiMatchDetail_ApiMatchDetail_completedAt composed type wrapper for classes ApiMatchDetail_completedAtMember1able, string
-type ApiMatchDetail_ApiMatchDetail_completedAt struct {
-    // Composed type representation for type ApiMatchDetail_completedAtMember1able
-    apiMatchDetail_completedAtMember1 ApiMatchDetail_completedAtMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiMatchDetail_ApiMatchDetail_completedAt instantiates a new ApiMatchDetail_ApiMatchDetail_completedAt and sets the default values.
-func NewApiMatchDetail_ApiMatchDetail_completedAt()(*ApiMatchDetail_ApiMatchDetail_completedAt) {
-    m := &ApiMatchDetail_ApiMatchDetail_completedAt{
-    }
-    return m
-}
-// CreateApiMatchDetail_ApiMatchDetail_completedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiMatchDetail_ApiMatchDetail_completedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiMatchDetail_ApiMatchDetail_completedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiMatchDetail_completedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiMatchDetail_completedAtMember1able); ok {
-                result.SetApiMatchDetailCompletedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiMatchDetailCompletedAtMember1 gets the ApiMatchDetail_completedAtMember1 property value. Composed type representation for type ApiMatchDetail_completedAtMember1able
-// returns a ApiMatchDetail_completedAtMember1able when successful
-func (m *ApiMatchDetail_ApiMatchDetail_completedAt) GetApiMatchDetailCompletedAtMember1()(ApiMatchDetail_completedAtMember1able) {
-    return m.apiMatchDetail_completedAtMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiMatchDetail_ApiMatchDetail_completedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiMatchDetail_ApiMatchDetail_completedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiMatchDetail_ApiMatchDetail_completedAt) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiMatchDetail_ApiMatchDetail_completedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiMatchDetailCompletedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiMatchDetailCompletedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiMatchDetailCompletedAtMember1 sets the ApiMatchDetail_completedAtMember1 property value. Composed type representation for type ApiMatchDetail_completedAtMember1able
-func (m *ApiMatchDetail_ApiMatchDetail_completedAt) SetApiMatchDetailCompletedAtMember1(value ApiMatchDetail_completedAtMember1able)() {
-    m.apiMatchDetail_completedAtMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiMatchDetail_ApiMatchDetail_completedAt) SetString(value *string)() {
-    m.string = value
-}
-// ApiMatchDetail_ApiMatchDetail_createdAt composed type wrapper for classes ApiMatchDetail_createdAtMember1able, string
-type ApiMatchDetail_ApiMatchDetail_createdAt struct {
-    // Composed type representation for type ApiMatchDetail_createdAtMember1able
-    apiMatchDetail_createdAtMember1 ApiMatchDetail_createdAtMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiMatchDetail_ApiMatchDetail_createdAt instantiates a new ApiMatchDetail_ApiMatchDetail_createdAt and sets the default values.
-func NewApiMatchDetail_ApiMatchDetail_createdAt()(*ApiMatchDetail_ApiMatchDetail_createdAt) {
-    m := &ApiMatchDetail_ApiMatchDetail_createdAt{
-    }
-    return m
-}
-// CreateApiMatchDetail_ApiMatchDetail_createdAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiMatchDetail_ApiMatchDetail_createdAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiMatchDetail_ApiMatchDetail_createdAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiMatchDetail_createdAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiMatchDetail_createdAtMember1able); ok {
-                result.SetApiMatchDetailCreatedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiMatchDetailCreatedAtMember1 gets the ApiMatchDetail_createdAtMember1 property value. Composed type representation for type ApiMatchDetail_createdAtMember1able
-// returns a ApiMatchDetail_createdAtMember1able when successful
-func (m *ApiMatchDetail_ApiMatchDetail_createdAt) GetApiMatchDetailCreatedAtMember1()(ApiMatchDetail_createdAtMember1able) {
-    return m.apiMatchDetail_createdAtMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiMatchDetail_ApiMatchDetail_createdAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiMatchDetail_ApiMatchDetail_createdAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiMatchDetail_ApiMatchDetail_createdAt) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiMatchDetail_ApiMatchDetail_createdAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiMatchDetailCreatedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiMatchDetailCreatedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiMatchDetailCreatedAtMember1 sets the ApiMatchDetail_createdAtMember1 property value. Composed type representation for type ApiMatchDetail_createdAtMember1able
-func (m *ApiMatchDetail_ApiMatchDetail_createdAt) SetApiMatchDetailCreatedAtMember1(value ApiMatchDetail_createdAtMember1able)() {
-    m.apiMatchDetail_createdAtMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiMatchDetail_ApiMatchDetail_createdAt) SetString(value *string)() {
-    m.string = value
-}
-// ApiMatchDetail_ApiMatchDetail_leagueId composed type wrapper for classes ApiMatchDetail_leagueIdMember1able, string
-type ApiMatchDetail_ApiMatchDetail_leagueId struct {
-    // Composed type representation for type ApiMatchDetail_leagueIdMember1able
-    apiMatchDetail_leagueIdMember1 ApiMatchDetail_leagueIdMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiMatchDetail_ApiMatchDetail_leagueId instantiates a new ApiMatchDetail_ApiMatchDetail_leagueId and sets the default values.
-func NewApiMatchDetail_ApiMatchDetail_leagueId()(*ApiMatchDetail_ApiMatchDetail_leagueId) {
-    m := &ApiMatchDetail_ApiMatchDetail_leagueId{
-    }
-    return m
-}
-// CreateApiMatchDetail_ApiMatchDetail_leagueIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiMatchDetail_ApiMatchDetail_leagueIdFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiMatchDetail_ApiMatchDetail_leagueId()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiMatchDetail_leagueIdMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiMatchDetail_leagueIdMember1able); ok {
-                result.SetApiMatchDetailLeagueIdMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiMatchDetailLeagueIdMember1 gets the ApiMatchDetail_leagueIdMember1 property value. Composed type representation for type ApiMatchDetail_leagueIdMember1able
-// returns a ApiMatchDetail_leagueIdMember1able when successful
-func (m *ApiMatchDetail_ApiMatchDetail_leagueId) GetApiMatchDetailLeagueIdMember1()(ApiMatchDetail_leagueIdMember1able) {
-    return m.apiMatchDetail_leagueIdMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiMatchDetail_ApiMatchDetail_leagueId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiMatchDetail_ApiMatchDetail_leagueId) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiMatchDetail_ApiMatchDetail_leagueId) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiMatchDetail_ApiMatchDetail_leagueId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiMatchDetailLeagueIdMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiMatchDetailLeagueIdMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiMatchDetailLeagueIdMember1 sets the ApiMatchDetail_leagueIdMember1 property value. Composed type representation for type ApiMatchDetail_leagueIdMember1able
-func (m *ApiMatchDetail_ApiMatchDetail_leagueId) SetApiMatchDetailLeagueIdMember1(value ApiMatchDetail_leagueIdMember1able)() {
-    m.apiMatchDetail_leagueIdMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiMatchDetail_ApiMatchDetail_leagueId) SetString(value *string)() {
-    m.string = value
-}
-// ApiMatchDetail_ApiMatchDetail_leagueSeasonId composed type wrapper for classes ApiMatchDetail_leagueSeasonIdMember1able, string
-type ApiMatchDetail_ApiMatchDetail_leagueSeasonId struct {
-    // Composed type representation for type ApiMatchDetail_leagueSeasonIdMember1able
-    apiMatchDetail_leagueSeasonIdMember1 ApiMatchDetail_leagueSeasonIdMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiMatchDetail_ApiMatchDetail_leagueSeasonId instantiates a new ApiMatchDetail_ApiMatchDetail_leagueSeasonId and sets the default values.
-func NewApiMatchDetail_ApiMatchDetail_leagueSeasonId()(*ApiMatchDetail_ApiMatchDetail_leagueSeasonId) {
-    m := &ApiMatchDetail_ApiMatchDetail_leagueSeasonId{
-    }
-    return m
-}
-// CreateApiMatchDetail_ApiMatchDetail_leagueSeasonIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiMatchDetail_ApiMatchDetail_leagueSeasonIdFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiMatchDetail_ApiMatchDetail_leagueSeasonId()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiMatchDetail_leagueSeasonIdMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiMatchDetail_leagueSeasonIdMember1able); ok {
-                result.SetApiMatchDetailLeagueSeasonIdMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiMatchDetailLeagueSeasonIdMember1 gets the ApiMatchDetail_leagueSeasonIdMember1 property value. Composed type representation for type ApiMatchDetail_leagueSeasonIdMember1able
-// returns a ApiMatchDetail_leagueSeasonIdMember1able when successful
-func (m *ApiMatchDetail_ApiMatchDetail_leagueSeasonId) GetApiMatchDetailLeagueSeasonIdMember1()(ApiMatchDetail_leagueSeasonIdMember1able) {
-    return m.apiMatchDetail_leagueSeasonIdMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiMatchDetail_ApiMatchDetail_leagueSeasonId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiMatchDetail_ApiMatchDetail_leagueSeasonId) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiMatchDetail_ApiMatchDetail_leagueSeasonId) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiMatchDetail_ApiMatchDetail_leagueSeasonId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiMatchDetailLeagueSeasonIdMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiMatchDetailLeagueSeasonIdMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiMatchDetailLeagueSeasonIdMember1 sets the ApiMatchDetail_leagueSeasonIdMember1 property value. Composed type representation for type ApiMatchDetail_leagueSeasonIdMember1able
-func (m *ApiMatchDetail_ApiMatchDetail_leagueSeasonId) SetApiMatchDetailLeagueSeasonIdMember1(value ApiMatchDetail_leagueSeasonIdMember1able)() {
-    m.apiMatchDetail_leagueSeasonIdMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiMatchDetail_ApiMatchDetail_leagueSeasonId) SetString(value *string)() {
-    m.string = value
-}
-// ApiMatchDetail_ApiMatchDetail_matchType composed type wrapper for classes ApiMatchDetail_matchTypeMember1able, string
-type ApiMatchDetail_ApiMatchDetail_matchType struct {
-    // Composed type representation for type ApiMatchDetail_matchTypeMember1able
-    apiMatchDetail_matchTypeMember1 ApiMatchDetail_matchTypeMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiMatchDetail_ApiMatchDetail_matchType instantiates a new ApiMatchDetail_ApiMatchDetail_matchType and sets the default values.
-func NewApiMatchDetail_ApiMatchDetail_matchType()(*ApiMatchDetail_ApiMatchDetail_matchType) {
-    m := &ApiMatchDetail_ApiMatchDetail_matchType{
-    }
-    return m
-}
-// CreateApiMatchDetail_ApiMatchDetail_matchTypeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiMatchDetail_ApiMatchDetail_matchTypeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiMatchDetail_ApiMatchDetail_matchType()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiMatchDetail_matchTypeMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiMatchDetail_matchTypeMember1able); ok {
-                result.SetApiMatchDetailMatchTypeMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiMatchDetailMatchTypeMember1 gets the ApiMatchDetail_matchTypeMember1 property value. Composed type representation for type ApiMatchDetail_matchTypeMember1able
-// returns a ApiMatchDetail_matchTypeMember1able when successful
-func (m *ApiMatchDetail_ApiMatchDetail_matchType) GetApiMatchDetailMatchTypeMember1()(ApiMatchDetail_matchTypeMember1able) {
-    return m.apiMatchDetail_matchTypeMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiMatchDetail_ApiMatchDetail_matchType) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiMatchDetail_ApiMatchDetail_matchType) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiMatchDetail_ApiMatchDetail_matchType) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiMatchDetail_ApiMatchDetail_matchType) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiMatchDetailMatchTypeMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiMatchDetailMatchTypeMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiMatchDetailMatchTypeMember1 sets the ApiMatchDetail_matchTypeMember1 property value. Composed type representation for type ApiMatchDetail_matchTypeMember1able
-func (m *ApiMatchDetail_ApiMatchDetail_matchType) SetApiMatchDetailMatchTypeMember1(value ApiMatchDetail_matchTypeMember1able)() {
-    m.apiMatchDetail_matchTypeMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiMatchDetail_ApiMatchDetail_matchType) SetString(value *string)() {
-    m.string = value
-}
-// ApiMatchDetail_ApiMatchDetail_platform composed type wrapper for classes ApiMatchDetail_platformMember1able, string
-type ApiMatchDetail_ApiMatchDetail_platform struct {
-    // Composed type representation for type ApiMatchDetail_platformMember1able
-    apiMatchDetail_platformMember1 ApiMatchDetail_platformMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiMatchDetail_ApiMatchDetail_platform instantiates a new ApiMatchDetail_ApiMatchDetail_platform and sets the default values.
-func NewApiMatchDetail_ApiMatchDetail_platform()(*ApiMatchDetail_ApiMatchDetail_platform) {
-    m := &ApiMatchDetail_ApiMatchDetail_platform{
-    }
-    return m
-}
-// CreateApiMatchDetail_ApiMatchDetail_platformFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiMatchDetail_ApiMatchDetail_platformFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiMatchDetail_ApiMatchDetail_platform()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiMatchDetail_platformMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiMatchDetail_platformMember1able); ok {
-                result.SetApiMatchDetailPlatformMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiMatchDetailPlatformMember1 gets the ApiMatchDetail_platformMember1 property value. Composed type representation for type ApiMatchDetail_platformMember1able
-// returns a ApiMatchDetail_platformMember1able when successful
-func (m *ApiMatchDetail_ApiMatchDetail_platform) GetApiMatchDetailPlatformMember1()(ApiMatchDetail_platformMember1able) {
-    return m.apiMatchDetail_platformMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiMatchDetail_ApiMatchDetail_platform) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiMatchDetail_ApiMatchDetail_platform) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiMatchDetail_ApiMatchDetail_platform) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiMatchDetail_ApiMatchDetail_platform) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiMatchDetailPlatformMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiMatchDetailPlatformMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiMatchDetailPlatformMember1 sets the ApiMatchDetail_platformMember1 property value. Composed type representation for type ApiMatchDetail_platformMember1able
-func (m *ApiMatchDetail_ApiMatchDetail_platform) SetApiMatchDetailPlatformMember1(value ApiMatchDetail_platformMember1able)() {
-    m.apiMatchDetail_platformMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiMatchDetail_ApiMatchDetail_platform) SetString(value *string)() {
-    m.string = value
-}
-// ApiMatchDetail_ApiMatchDetail_region composed type wrapper for classes ApiMatchDetail_regionMember1able, string
-type ApiMatchDetail_ApiMatchDetail_region struct {
-    // Composed type representation for type ApiMatchDetail_regionMember1able
-    apiMatchDetail_regionMember1 ApiMatchDetail_regionMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiMatchDetail_ApiMatchDetail_region instantiates a new ApiMatchDetail_ApiMatchDetail_region and sets the default values.
-func NewApiMatchDetail_ApiMatchDetail_region()(*ApiMatchDetail_ApiMatchDetail_region) {
-    m := &ApiMatchDetail_ApiMatchDetail_region{
-    }
-    return m
-}
-// CreateApiMatchDetail_ApiMatchDetail_regionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiMatchDetail_ApiMatchDetail_regionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiMatchDetail_ApiMatchDetail_region()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiMatchDetail_regionMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiMatchDetail_regionMember1able); ok {
-                result.SetApiMatchDetailRegionMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiMatchDetailRegionMember1 gets the ApiMatchDetail_regionMember1 property value. Composed type representation for type ApiMatchDetail_regionMember1able
-// returns a ApiMatchDetail_regionMember1able when successful
-func (m *ApiMatchDetail_ApiMatchDetail_region) GetApiMatchDetailRegionMember1()(ApiMatchDetail_regionMember1able) {
-    return m.apiMatchDetail_regionMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiMatchDetail_ApiMatchDetail_region) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiMatchDetail_ApiMatchDetail_region) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiMatchDetail_ApiMatchDetail_region) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiMatchDetail_ApiMatchDetail_region) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiMatchDetailRegionMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiMatchDetailRegionMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiMatchDetailRegionMember1 sets the ApiMatchDetail_regionMember1 property value. Composed type representation for type ApiMatchDetail_regionMember1able
-func (m *ApiMatchDetail_ApiMatchDetail_region) SetApiMatchDetailRegionMember1(value ApiMatchDetail_regionMember1able)() {
-    m.apiMatchDetail_regionMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiMatchDetail_ApiMatchDetail_region) SetString(value *string)() {
-    m.string = value
-}
-// ApiMatchDetail_ApiMatchDetail_scheduledAt composed type wrapper for classes ApiMatchDetail_scheduledAtMember1able, string
-type ApiMatchDetail_ApiMatchDetail_scheduledAt struct {
-    // Composed type representation for type ApiMatchDetail_scheduledAtMember1able
-    apiMatchDetail_scheduledAtMember1 ApiMatchDetail_scheduledAtMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiMatchDetail_ApiMatchDetail_scheduledAt instantiates a new ApiMatchDetail_ApiMatchDetail_scheduledAt and sets the default values.
-func NewApiMatchDetail_ApiMatchDetail_scheduledAt()(*ApiMatchDetail_ApiMatchDetail_scheduledAt) {
-    m := &ApiMatchDetail_ApiMatchDetail_scheduledAt{
-    }
-    return m
-}
-// CreateApiMatchDetail_ApiMatchDetail_scheduledAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiMatchDetail_ApiMatchDetail_scheduledAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiMatchDetail_ApiMatchDetail_scheduledAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiMatchDetail_scheduledAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiMatchDetail_scheduledAtMember1able); ok {
-                result.SetApiMatchDetailScheduledAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiMatchDetailScheduledAtMember1 gets the ApiMatchDetail_scheduledAtMember1 property value. Composed type representation for type ApiMatchDetail_scheduledAtMember1able
-// returns a ApiMatchDetail_scheduledAtMember1able when successful
-func (m *ApiMatchDetail_ApiMatchDetail_scheduledAt) GetApiMatchDetailScheduledAtMember1()(ApiMatchDetail_scheduledAtMember1able) {
-    return m.apiMatchDetail_scheduledAtMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiMatchDetail_ApiMatchDetail_scheduledAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiMatchDetail_ApiMatchDetail_scheduledAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiMatchDetail_ApiMatchDetail_scheduledAt) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiMatchDetail_ApiMatchDetail_scheduledAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiMatchDetailScheduledAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiMatchDetailScheduledAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiMatchDetailScheduledAtMember1 sets the ApiMatchDetail_scheduledAtMember1 property value. Composed type representation for type ApiMatchDetail_scheduledAtMember1able
-func (m *ApiMatchDetail_ApiMatchDetail_scheduledAt) SetApiMatchDetailScheduledAtMember1(value ApiMatchDetail_scheduledAtMember1able)() {
-    m.apiMatchDetail_scheduledAtMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiMatchDetail_ApiMatchDetail_scheduledAt) SetString(value *string)() {
-    m.string = value
-}
-// ApiMatchDetail_ApiMatchDetail_startedAt composed type wrapper for classes ApiMatchDetail_startedAtMember1able, string
-type ApiMatchDetail_ApiMatchDetail_startedAt struct {
-    // Composed type representation for type ApiMatchDetail_startedAtMember1able
-    apiMatchDetail_startedAtMember1 ApiMatchDetail_startedAtMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiMatchDetail_ApiMatchDetail_startedAt instantiates a new ApiMatchDetail_ApiMatchDetail_startedAt and sets the default values.
-func NewApiMatchDetail_ApiMatchDetail_startedAt()(*ApiMatchDetail_ApiMatchDetail_startedAt) {
-    m := &ApiMatchDetail_ApiMatchDetail_startedAt{
-    }
-    return m
-}
-// CreateApiMatchDetail_ApiMatchDetail_startedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiMatchDetail_ApiMatchDetail_startedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiMatchDetail_ApiMatchDetail_startedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiMatchDetail_startedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiMatchDetail_startedAtMember1able); ok {
-                result.SetApiMatchDetailStartedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiMatchDetailStartedAtMember1 gets the ApiMatchDetail_startedAtMember1 property value. Composed type representation for type ApiMatchDetail_startedAtMember1able
-// returns a ApiMatchDetail_startedAtMember1able when successful
-func (m *ApiMatchDetail_ApiMatchDetail_startedAt) GetApiMatchDetailStartedAtMember1()(ApiMatchDetail_startedAtMember1able) {
-    return m.apiMatchDetail_startedAtMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiMatchDetail_ApiMatchDetail_startedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiMatchDetail_ApiMatchDetail_startedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiMatchDetail_ApiMatchDetail_startedAt) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiMatchDetail_ApiMatchDetail_startedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiMatchDetailStartedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiMatchDetailStartedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiMatchDetailStartedAtMember1 sets the ApiMatchDetail_startedAtMember1 property value. Composed type representation for type ApiMatchDetail_startedAtMember1able
-func (m *ApiMatchDetail_ApiMatchDetail_startedAt) SetApiMatchDetailStartedAtMember1(value ApiMatchDetail_startedAtMember1able)() {
-    m.apiMatchDetail_startedAtMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiMatchDetail_ApiMatchDetail_startedAt) SetString(value *string)() {
-    m.string = value
-}
-// ApiMatchDetail_ApiMatchDetail_winnerTeamId composed type wrapper for classes ApiMatchDetail_winnerTeamIdMember1able, string
-type ApiMatchDetail_ApiMatchDetail_winnerTeamId struct {
-    // Composed type representation for type ApiMatchDetail_winnerTeamIdMember1able
-    apiMatchDetail_winnerTeamIdMember1 ApiMatchDetail_winnerTeamIdMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiMatchDetail_ApiMatchDetail_winnerTeamId instantiates a new ApiMatchDetail_ApiMatchDetail_winnerTeamId and sets the default values.
-func NewApiMatchDetail_ApiMatchDetail_winnerTeamId()(*ApiMatchDetail_ApiMatchDetail_winnerTeamId) {
-    m := &ApiMatchDetail_ApiMatchDetail_winnerTeamId{
-    }
-    return m
-}
-// CreateApiMatchDetail_ApiMatchDetail_winnerTeamIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiMatchDetail_ApiMatchDetail_winnerTeamIdFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiMatchDetail_ApiMatchDetail_winnerTeamId()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiMatchDetail_winnerTeamIdMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiMatchDetail_winnerTeamIdMember1able); ok {
-                result.SetApiMatchDetailWinnerTeamIdMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiMatchDetailWinnerTeamIdMember1 gets the ApiMatchDetail_winnerTeamIdMember1 property value. Composed type representation for type ApiMatchDetail_winnerTeamIdMember1able
-// returns a ApiMatchDetail_winnerTeamIdMember1able when successful
-func (m *ApiMatchDetail_ApiMatchDetail_winnerTeamId) GetApiMatchDetailWinnerTeamIdMember1()(ApiMatchDetail_winnerTeamIdMember1able) {
-    return m.apiMatchDetail_winnerTeamIdMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiMatchDetail_ApiMatchDetail_winnerTeamId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiMatchDetail_ApiMatchDetail_winnerTeamId) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiMatchDetail_ApiMatchDetail_winnerTeamId) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiMatchDetail_ApiMatchDetail_winnerTeamId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiMatchDetailWinnerTeamIdMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiMatchDetailWinnerTeamIdMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiMatchDetailWinnerTeamIdMember1 sets the ApiMatchDetail_winnerTeamIdMember1 property value. Composed type representation for type ApiMatchDetail_winnerTeamIdMember1able
-func (m *ApiMatchDetail_ApiMatchDetail_winnerTeamId) SetApiMatchDetailWinnerTeamIdMember1(value ApiMatchDetail_winnerTeamIdMember1able)() {
-    m.apiMatchDetail_winnerTeamIdMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiMatchDetail_ApiMatchDetail_winnerTeamId) SetString(value *string)() {
-    m.string = value
-}
-type ApiMatchDetail_ApiMatchDetail_completedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiMatchDetailCompletedAtMember1()(ApiMatchDetail_completedAtMember1able)
-    GetString()(*string)
-    SetApiMatchDetailCompletedAtMember1(value ApiMatchDetail_completedAtMember1able)()
-    SetString(value *string)()
-}
-type ApiMatchDetail_ApiMatchDetail_createdAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiMatchDetailCreatedAtMember1()(ApiMatchDetail_createdAtMember1able)
-    GetString()(*string)
-    SetApiMatchDetailCreatedAtMember1(value ApiMatchDetail_createdAtMember1able)()
-    SetString(value *string)()
-}
-type ApiMatchDetail_ApiMatchDetail_leagueIdable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiMatchDetailLeagueIdMember1()(ApiMatchDetail_leagueIdMember1able)
-    GetString()(*string)
-    SetApiMatchDetailLeagueIdMember1(value ApiMatchDetail_leagueIdMember1able)()
-    SetString(value *string)()
-}
-type ApiMatchDetail_ApiMatchDetail_leagueSeasonIdable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiMatchDetailLeagueSeasonIdMember1()(ApiMatchDetail_leagueSeasonIdMember1able)
-    GetString()(*string)
-    SetApiMatchDetailLeagueSeasonIdMember1(value ApiMatchDetail_leagueSeasonIdMember1able)()
-    SetString(value *string)()
-}
-type ApiMatchDetail_ApiMatchDetail_matchTypeable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiMatchDetailMatchTypeMember1()(ApiMatchDetail_matchTypeMember1able)
-    GetString()(*string)
-    SetApiMatchDetailMatchTypeMember1(value ApiMatchDetail_matchTypeMember1able)()
-    SetString(value *string)()
-}
-type ApiMatchDetail_ApiMatchDetail_platformable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiMatchDetailPlatformMember1()(ApiMatchDetail_platformMember1able)
-    GetString()(*string)
-    SetApiMatchDetailPlatformMember1(value ApiMatchDetail_platformMember1able)()
-    SetString(value *string)()
-}
-type ApiMatchDetail_ApiMatchDetail_regionable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiMatchDetailRegionMember1()(ApiMatchDetail_regionMember1able)
-    GetString()(*string)
-    SetApiMatchDetailRegionMember1(value ApiMatchDetail_regionMember1able)()
-    SetString(value *string)()
-}
-type ApiMatchDetail_ApiMatchDetail_scheduledAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiMatchDetailScheduledAtMember1()(ApiMatchDetail_scheduledAtMember1able)
-    GetString()(*string)
-    SetApiMatchDetailScheduledAtMember1(value ApiMatchDetail_scheduledAtMember1able)()
-    SetString(value *string)()
-}
-type ApiMatchDetail_ApiMatchDetail_startedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiMatchDetailStartedAtMember1()(ApiMatchDetail_startedAtMember1able)
-    GetString()(*string)
-    SetApiMatchDetailStartedAtMember1(value ApiMatchDetail_startedAtMember1able)()
-    SetString(value *string)()
-}
-type ApiMatchDetail_ApiMatchDetail_winnerTeamIdable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiMatchDetailWinnerTeamIdMember1()(ApiMatchDetail_winnerTeamIdMember1able)
-    GetString()(*string)
-    SetApiMatchDetailWinnerTeamIdMember1(value ApiMatchDetail_winnerTeamIdMember1able)()
-    SetString(value *string)()
+    winnerTeamId *string
 }
 // NewApiMatchDetail instantiates a new ApiMatchDetail and sets the default values.
 func NewApiMatchDetail()(*ApiMatchDetail) {
@@ -921,13 +81,13 @@ func (m *ApiMatchDetail) GetChallengedTeam()(ApiMatchTeamable) {
     return m.challengedTeam
 }
 // GetCompletedAt gets the completedAt property value. The completedAt property
-// returns a ApiMatchDetail_ApiMatchDetail_completedAtable when successful
-func (m *ApiMatchDetail) GetCompletedAt()(ApiMatchDetail_ApiMatchDetail_completedAtable) {
+// returns a *string when successful
+func (m *ApiMatchDetail) GetCompletedAt()(*string) {
     return m.completedAt
 }
 // GetCreatedAt gets the createdAt property value. The createdAt property
-// returns a ApiMatchDetail_ApiMatchDetail_createdAtable when successful
-func (m *ApiMatchDetail) GetCreatedAt()(ApiMatchDetail_ApiMatchDetail_createdAtable) {
+// returns a *string when successful
+func (m *ApiMatchDetail) GetCreatedAt()(*string) {
     return m.createdAt
 }
 // GetCreatorTeam gets the creatorTeam property value. The creatorTeam property
@@ -970,22 +130,22 @@ func (m *ApiMatchDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["completedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiMatchDetail_ApiMatchDetail_completedAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCompletedAt(val.(ApiMatchDetail_ApiMatchDetail_completedAtable))
+            m.SetCompletedAt(val)
         }
         return nil
     }
     res["createdAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiMatchDetail_ApiMatchDetail_createdAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCreatedAt(val.(ApiMatchDetail_ApiMatchDetail_createdAtable))
+            m.SetCreatedAt(val)
         }
         return nil
     }
@@ -1030,42 +190,42 @@ func (m *ApiMatchDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["leagueId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiMatchDetail_ApiMatchDetail_leagueIdFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetLeagueId(val.(ApiMatchDetail_ApiMatchDetail_leagueIdable))
+            m.SetLeagueId(val)
         }
         return nil
     }
     res["leagueSeasonId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiMatchDetail_ApiMatchDetail_leagueSeasonIdFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetLeagueSeasonId(val.(ApiMatchDetail_ApiMatchDetail_leagueSeasonIdable))
+            m.SetLeagueSeasonId(val)
         }
         return nil
     }
     res["matchType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiMatchDetail_ApiMatchDetail_matchTypeFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetMatchType(val.(ApiMatchDetail_ApiMatchDetail_matchTypeable))
+            m.SetMatchType(val)
         }
         return nil
     }
     res["platform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiMatchDetail_ApiMatchDetail_platformFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetPlatform(val.(ApiMatchDetail_ApiMatchDetail_platformable))
+            m.SetPlatform(val)
         }
         return nil
     }
@@ -1080,22 +240,22 @@ func (m *ApiMatchDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["region"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiMatchDetail_ApiMatchDetail_regionFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetRegion(val.(ApiMatchDetail_ApiMatchDetail_regionable))
+            m.SetRegion(val)
         }
         return nil
     }
     res["scheduledAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiMatchDetail_ApiMatchDetail_scheduledAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetScheduledAt(val.(ApiMatchDetail_ApiMatchDetail_scheduledAtable))
+            m.SetScheduledAt(val)
         }
         return nil
     }
@@ -1132,12 +292,12 @@ func (m *ApiMatchDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["startedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiMatchDetail_ApiMatchDetail_startedAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetStartedAt(val.(ApiMatchDetail_ApiMatchDetail_startedAtable))
+            m.SetStartedAt(val)
         }
         return nil
     }
@@ -1162,12 +322,12 @@ func (m *ApiMatchDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["winnerTeamId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiMatchDetail_ApiMatchDetail_winnerTeamIdFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetWinnerTeamId(val.(ApiMatchDetail_ApiMatchDetail_winnerTeamIdable))
+            m.SetWinnerTeamId(val)
         }
         return nil
     }
@@ -1189,23 +349,23 @@ func (m *ApiMatchDetail) GetId()(*string) {
     return m.id
 }
 // GetLeagueId gets the leagueId property value. The leagueId property
-// returns a ApiMatchDetail_ApiMatchDetail_leagueIdable when successful
-func (m *ApiMatchDetail) GetLeagueId()(ApiMatchDetail_ApiMatchDetail_leagueIdable) {
+// returns a *string when successful
+func (m *ApiMatchDetail) GetLeagueId()(*string) {
     return m.leagueId
 }
 // GetLeagueSeasonId gets the leagueSeasonId property value. The leagueSeasonId property
-// returns a ApiMatchDetail_ApiMatchDetail_leagueSeasonIdable when successful
-func (m *ApiMatchDetail) GetLeagueSeasonId()(ApiMatchDetail_ApiMatchDetail_leagueSeasonIdable) {
+// returns a *string when successful
+func (m *ApiMatchDetail) GetLeagueSeasonId()(*string) {
     return m.leagueSeasonId
 }
 // GetMatchType gets the matchType property value. The matchType property
-// returns a ApiMatchDetail_ApiMatchDetail_matchTypeable when successful
-func (m *ApiMatchDetail) GetMatchType()(ApiMatchDetail_ApiMatchDetail_matchTypeable) {
+// returns a *string when successful
+func (m *ApiMatchDetail) GetMatchType()(*string) {
     return m.matchType
 }
 // GetPlatform gets the platform property value. The platform property
-// returns a ApiMatchDetail_ApiMatchDetail_platformable when successful
-func (m *ApiMatchDetail) GetPlatform()(ApiMatchDetail_ApiMatchDetail_platformable) {
+// returns a *string when successful
+func (m *ApiMatchDetail) GetPlatform()(*string) {
     return m.platform
 }
 // GetPublishStatus gets the publishStatus property value. The publishStatus property
@@ -1214,13 +374,13 @@ func (m *ApiMatchDetail) GetPublishStatus()(*string) {
     return m.publishStatus
 }
 // GetRegion gets the region property value. The region property
-// returns a ApiMatchDetail_ApiMatchDetail_regionable when successful
-func (m *ApiMatchDetail) GetRegion()(ApiMatchDetail_ApiMatchDetail_regionable) {
+// returns a *string when successful
+func (m *ApiMatchDetail) GetRegion()(*string) {
     return m.region
 }
 // GetScheduledAt gets the scheduledAt property value. The scheduledAt property
-// returns a ApiMatchDetail_ApiMatchDetail_scheduledAtable when successful
-func (m *ApiMatchDetail) GetScheduledAt()(ApiMatchDetail_ApiMatchDetail_scheduledAtable) {
+// returns a *string when successful
+func (m *ApiMatchDetail) GetScheduledAt()(*string) {
     return m.scheduledAt
 }
 // GetSelectedMaps gets the selectedMaps property value. The selectedMaps property
@@ -1234,8 +394,8 @@ func (m *ApiMatchDetail) GetSelectedObjectives()([]string) {
     return m.selectedObjectives
 }
 // GetStartedAt gets the startedAt property value. The startedAt property
-// returns a ApiMatchDetail_ApiMatchDetail_startedAtable when successful
-func (m *ApiMatchDetail) GetStartedAt()(ApiMatchDetail_ApiMatchDetail_startedAtable) {
+// returns a *string when successful
+func (m *ApiMatchDetail) GetStartedAt()(*string) {
     return m.startedAt
 }
 // GetStatus gets the status property value. Lifecycle status of a match.
@@ -1249,8 +409,8 @@ func (m *ApiMatchDetail) GetTeamSize()(*int32) {
     return m.teamSize
 }
 // GetWinnerTeamId gets the winnerTeamId property value. The winnerTeamId property
-// returns a ApiMatchDetail_ApiMatchDetail_winnerTeamIdable when successful
-func (m *ApiMatchDetail) GetWinnerTeamId()(ApiMatchDetail_ApiMatchDetail_winnerTeamIdable) {
+// returns a *string when successful
+func (m *ApiMatchDetail) GetWinnerTeamId()(*string) {
     return m.winnerTeamId
 }
 // Serialize serializes information the current object
@@ -1274,13 +434,13 @@ func (m *ApiMatchDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteObjectValue("completedAt", m.GetCompletedAt())
+        err := writer.WriteStringValue("completedAt", m.GetCompletedAt())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("createdAt", m.GetCreatedAt())
+        err := writer.WriteStringValue("createdAt", m.GetCreatedAt())
         if err != nil {
             return err
         }
@@ -1310,25 +470,25 @@ func (m *ApiMatchDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteObjectValue("leagueId", m.GetLeagueId())
+        err := writer.WriteStringValue("leagueId", m.GetLeagueId())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("leagueSeasonId", m.GetLeagueSeasonId())
+        err := writer.WriteStringValue("leagueSeasonId", m.GetLeagueSeasonId())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("matchType", m.GetMatchType())
+        err := writer.WriteStringValue("matchType", m.GetMatchType())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("platform", m.GetPlatform())
+        err := writer.WriteStringValue("platform", m.GetPlatform())
         if err != nil {
             return err
         }
@@ -1340,13 +500,13 @@ func (m *ApiMatchDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteObjectValue("region", m.GetRegion())
+        err := writer.WriteStringValue("region", m.GetRegion())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("scheduledAt", m.GetScheduledAt())
+        err := writer.WriteStringValue("scheduledAt", m.GetScheduledAt())
         if err != nil {
             return err
         }
@@ -1364,7 +524,7 @@ func (m *ApiMatchDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteObjectValue("startedAt", m.GetStartedAt())
+        err := writer.WriteStringValue("startedAt", m.GetStartedAt())
         if err != nil {
             return err
         }
@@ -1383,7 +543,7 @@ func (m *ApiMatchDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteObjectValue("winnerTeamId", m.GetWinnerTeamId())
+        err := writer.WriteStringValue("winnerTeamId", m.GetWinnerTeamId())
         if err != nil {
             return err
         }
@@ -1403,11 +563,11 @@ func (m *ApiMatchDetail) SetChallengedTeam(value ApiMatchTeamable)() {
     m.challengedTeam = value
 }
 // SetCompletedAt sets the completedAt property value. The completedAt property
-func (m *ApiMatchDetail) SetCompletedAt(value ApiMatchDetail_ApiMatchDetail_completedAtable)() {
+func (m *ApiMatchDetail) SetCompletedAt(value *string)() {
     m.completedAt = value
 }
 // SetCreatedAt sets the createdAt property value. The createdAt property
-func (m *ApiMatchDetail) SetCreatedAt(value ApiMatchDetail_ApiMatchDetail_createdAtable)() {
+func (m *ApiMatchDetail) SetCreatedAt(value *string)() {
     m.createdAt = value
 }
 // SetCreatorTeam sets the creatorTeam property value. The creatorTeam property
@@ -1427,19 +587,19 @@ func (m *ApiMatchDetail) SetId(value *string)() {
     m.id = value
 }
 // SetLeagueId sets the leagueId property value. The leagueId property
-func (m *ApiMatchDetail) SetLeagueId(value ApiMatchDetail_ApiMatchDetail_leagueIdable)() {
+func (m *ApiMatchDetail) SetLeagueId(value *string)() {
     m.leagueId = value
 }
 // SetLeagueSeasonId sets the leagueSeasonId property value. The leagueSeasonId property
-func (m *ApiMatchDetail) SetLeagueSeasonId(value ApiMatchDetail_ApiMatchDetail_leagueSeasonIdable)() {
+func (m *ApiMatchDetail) SetLeagueSeasonId(value *string)() {
     m.leagueSeasonId = value
 }
 // SetMatchType sets the matchType property value. The matchType property
-func (m *ApiMatchDetail) SetMatchType(value ApiMatchDetail_ApiMatchDetail_matchTypeable)() {
+func (m *ApiMatchDetail) SetMatchType(value *string)() {
     m.matchType = value
 }
 // SetPlatform sets the platform property value. The platform property
-func (m *ApiMatchDetail) SetPlatform(value ApiMatchDetail_ApiMatchDetail_platformable)() {
+func (m *ApiMatchDetail) SetPlatform(value *string)() {
     m.platform = value
 }
 // SetPublishStatus sets the publishStatus property value. The publishStatus property
@@ -1447,11 +607,11 @@ func (m *ApiMatchDetail) SetPublishStatus(value *string)() {
     m.publishStatus = value
 }
 // SetRegion sets the region property value. The region property
-func (m *ApiMatchDetail) SetRegion(value ApiMatchDetail_ApiMatchDetail_regionable)() {
+func (m *ApiMatchDetail) SetRegion(value *string)() {
     m.region = value
 }
 // SetScheduledAt sets the scheduledAt property value. The scheduledAt property
-func (m *ApiMatchDetail) SetScheduledAt(value ApiMatchDetail_ApiMatchDetail_scheduledAtable)() {
+func (m *ApiMatchDetail) SetScheduledAt(value *string)() {
     m.scheduledAt = value
 }
 // SetSelectedMaps sets the selectedMaps property value. The selectedMaps property
@@ -1463,7 +623,7 @@ func (m *ApiMatchDetail) SetSelectedObjectives(value []string)() {
     m.selectedObjectives = value
 }
 // SetStartedAt sets the startedAt property value. The startedAt property
-func (m *ApiMatchDetail) SetStartedAt(value ApiMatchDetail_ApiMatchDetail_startedAtable)() {
+func (m *ApiMatchDetail) SetStartedAt(value *string)() {
     m.startedAt = value
 }
 // SetStatus sets the status property value. Lifecycle status of a match.
@@ -1475,7 +635,7 @@ func (m *ApiMatchDetail) SetTeamSize(value *int32)() {
     m.teamSize = value
 }
 // SetWinnerTeamId sets the winnerTeamId property value. The winnerTeamId property
-func (m *ApiMatchDetail) SetWinnerTeamId(value ApiMatchDetail_ApiMatchDetail_winnerTeamIdable)() {
+func (m *ApiMatchDetail) SetWinnerTeamId(value *string)() {
     m.winnerTeamId = value
 }
 type ApiMatchDetailable interface {
@@ -1483,45 +643,45 @@ type ApiMatchDetailable interface {
     GetAcceptedTeam()(ApiMatchTeamable)
     GetBestOf()(*int32)
     GetChallengedTeam()(ApiMatchTeamable)
-    GetCompletedAt()(ApiMatchDetail_ApiMatchDetail_completedAtable)
-    GetCreatedAt()(ApiMatchDetail_ApiMatchDetail_createdAtable)
+    GetCompletedAt()(*string)
+    GetCreatedAt()(*string)
     GetCreatorTeam()(ApiMatchTeamable)
     GetGame()(Gameable)
     GetGameMode()(*string)
     GetId()(*string)
-    GetLeagueId()(ApiMatchDetail_ApiMatchDetail_leagueIdable)
-    GetLeagueSeasonId()(ApiMatchDetail_ApiMatchDetail_leagueSeasonIdable)
-    GetMatchType()(ApiMatchDetail_ApiMatchDetail_matchTypeable)
-    GetPlatform()(ApiMatchDetail_ApiMatchDetail_platformable)
+    GetLeagueId()(*string)
+    GetLeagueSeasonId()(*string)
+    GetMatchType()(*string)
+    GetPlatform()(*string)
     GetPublishStatus()(*string)
-    GetRegion()(ApiMatchDetail_ApiMatchDetail_regionable)
-    GetScheduledAt()(ApiMatchDetail_ApiMatchDetail_scheduledAtable)
+    GetRegion()(*string)
+    GetScheduledAt()(*string)
     GetSelectedMaps()([]string)
     GetSelectedObjectives()([]string)
-    GetStartedAt()(ApiMatchDetail_ApiMatchDetail_startedAtable)
+    GetStartedAt()(*string)
     GetStatus()(*MatchStatus)
     GetTeamSize()(*int32)
-    GetWinnerTeamId()(ApiMatchDetail_ApiMatchDetail_winnerTeamIdable)
+    GetWinnerTeamId()(*string)
     SetAcceptedTeam(value ApiMatchTeamable)()
     SetBestOf(value *int32)()
     SetChallengedTeam(value ApiMatchTeamable)()
-    SetCompletedAt(value ApiMatchDetail_ApiMatchDetail_completedAtable)()
-    SetCreatedAt(value ApiMatchDetail_ApiMatchDetail_createdAtable)()
+    SetCompletedAt(value *string)()
+    SetCreatedAt(value *string)()
     SetCreatorTeam(value ApiMatchTeamable)()
     SetGame(value Gameable)()
     SetGameMode(value *string)()
     SetId(value *string)()
-    SetLeagueId(value ApiMatchDetail_ApiMatchDetail_leagueIdable)()
-    SetLeagueSeasonId(value ApiMatchDetail_ApiMatchDetail_leagueSeasonIdable)()
-    SetMatchType(value ApiMatchDetail_ApiMatchDetail_matchTypeable)()
-    SetPlatform(value ApiMatchDetail_ApiMatchDetail_platformable)()
+    SetLeagueId(value *string)()
+    SetLeagueSeasonId(value *string)()
+    SetMatchType(value *string)()
+    SetPlatform(value *string)()
     SetPublishStatus(value *string)()
-    SetRegion(value ApiMatchDetail_ApiMatchDetail_regionable)()
-    SetScheduledAt(value ApiMatchDetail_ApiMatchDetail_scheduledAtable)()
+    SetRegion(value *string)()
+    SetScheduledAt(value *string)()
     SetSelectedMaps(value []string)()
     SetSelectedObjectives(value []string)()
-    SetStartedAt(value ApiMatchDetail_ApiMatchDetail_startedAtable)()
+    SetStartedAt(value *string)()
     SetStatus(value *MatchStatus)()
     SetTeamSize(value *int32)()
-    SetWinnerTeamId(value ApiMatchDetail_ApiMatchDetail_winnerTeamIdable)()
+    SetWinnerTeamId(value *string)()
 }

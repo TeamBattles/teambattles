@@ -5,7 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .leaderboard_rank_response_game_slug import LeaderboardRankResponse_gameSlug
     from .leaderboard_rank_response_rank import LeaderboardRankResponse_rank
     from .leaderboard_sort_by import LeaderboardSortBy
 
@@ -15,7 +14,7 @@ class LeaderboardRankResponse(Parsable):
     Leaderboard rank lookup response.
     """
     # The gameSlug property
-    game_slug: Optional[LeaderboardRankResponse_gameSlug] = None
+    game_slug: Optional[str] = None
     # Resolved entity ID.
     id: Optional[str] = None
     # The rank property
@@ -41,16 +40,14 @@ class LeaderboardRankResponse(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .leaderboard_rank_response_game_slug import LeaderboardRankResponse_gameSlug
         from .leaderboard_rank_response_rank import LeaderboardRankResponse_rank
         from .leaderboard_sort_by import LeaderboardSortBy
 
-        from .leaderboard_rank_response_game_slug import LeaderboardRankResponse_gameSlug
         from .leaderboard_rank_response_rank import LeaderboardRankResponse_rank
         from .leaderboard_sort_by import LeaderboardSortBy
 
         fields: dict[str, Callable[[Any], None]] = {
-            "gameSlug": lambda n : setattr(self, 'game_slug', n.get_object_value(LeaderboardRankResponse_gameSlug)),
+            "gameSlug": lambda n : setattr(self, 'game_slug', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "rank": lambda n : setattr(self, 'rank', n.get_object_value(LeaderboardRankResponse_rank)),
             "sortBy": lambda n : setattr(self, 'sort_by', n.get_enum_value(LeaderboardSortBy)),
@@ -66,7 +63,7 @@ class LeaderboardRankResponse(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("gameSlug", self.game_slug)
+        writer.write_str_value("gameSlug", self.game_slug)
         writer.write_str_value("id", self.id)
         writer.write_object_value("rank", self.rank)
         writer.write_enum_value("sortBy", self.sort_by)

@@ -10,7 +10,7 @@ import (
 // LeaderboardRankResponse leaderboard rank lookup response.
 type LeaderboardRankResponse struct {
     // The gameSlug property
-    gameSlug LeaderboardRankResponse_LeaderboardRankResponse_gameSlugable
+    gameSlug *string
     // Resolved entity ID.
     id *string
     // The rank property
@@ -19,83 +19,6 @@ type LeaderboardRankResponse struct {
     sortBy *LeaderboardSortBy
     // The timestamp property
     timestamp *string
-}
-// LeaderboardRankResponse_LeaderboardRankResponse_gameSlug composed type wrapper for classes LeaderboardRankResponse_gameSlugMember1able, string
-type LeaderboardRankResponse_LeaderboardRankResponse_gameSlug struct {
-    // Composed type representation for type LeaderboardRankResponse_gameSlugMember1able
-    leaderboardRankResponse_gameSlugMember1 LeaderboardRankResponse_gameSlugMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewLeaderboardRankResponse_LeaderboardRankResponse_gameSlug instantiates a new LeaderboardRankResponse_LeaderboardRankResponse_gameSlug and sets the default values.
-func NewLeaderboardRankResponse_LeaderboardRankResponse_gameSlug()(*LeaderboardRankResponse_LeaderboardRankResponse_gameSlug) {
-    m := &LeaderboardRankResponse_LeaderboardRankResponse_gameSlug{
-    }
-    return m
-}
-// CreateLeaderboardRankResponse_LeaderboardRankResponse_gameSlugFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateLeaderboardRankResponse_LeaderboardRankResponse_gameSlugFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewLeaderboardRankResponse_LeaderboardRankResponse_gameSlug()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateLeaderboardRankResponse_gameSlugMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(LeaderboardRankResponse_gameSlugMember1able); ok {
-                result.SetLeaderboardRankResponseGameSlugMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *LeaderboardRankResponse_LeaderboardRankResponse_gameSlug) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *LeaderboardRankResponse_LeaderboardRankResponse_gameSlug) GetIsComposedType()(bool) {
-    return true
-}
-// GetLeaderboardRankResponseGameSlugMember1 gets the LeaderboardRankResponse_gameSlugMember1 property value. Composed type representation for type LeaderboardRankResponse_gameSlugMember1able
-// returns a LeaderboardRankResponse_gameSlugMember1able when successful
-func (m *LeaderboardRankResponse_LeaderboardRankResponse_gameSlug) GetLeaderboardRankResponseGameSlugMember1()(LeaderboardRankResponse_gameSlugMember1able) {
-    return m.leaderboardRankResponse_gameSlugMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *LeaderboardRankResponse_LeaderboardRankResponse_gameSlug) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *LeaderboardRankResponse_LeaderboardRankResponse_gameSlug) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetLeaderboardRankResponseGameSlugMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetLeaderboardRankResponseGameSlugMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetLeaderboardRankResponseGameSlugMember1 sets the LeaderboardRankResponse_gameSlugMember1 property value. Composed type representation for type LeaderboardRankResponse_gameSlugMember1able
-func (m *LeaderboardRankResponse_LeaderboardRankResponse_gameSlug) SetLeaderboardRankResponseGameSlugMember1(value LeaderboardRankResponse_gameSlugMember1able)() {
-    m.leaderboardRankResponse_gameSlugMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *LeaderboardRankResponse_LeaderboardRankResponse_gameSlug) SetString(value *string)() {
-    m.string = value
 }
 // LeaderboardRankResponse_LeaderboardRankResponse_rank composed type wrapper for classes int32, LeaderboardRankResponse_rankMember1able
 type LeaderboardRankResponse_LeaderboardRankResponse_rank struct {
@@ -174,13 +97,6 @@ func (m *LeaderboardRankResponse_LeaderboardRankResponse_rank) SetInteger(value 
 func (m *LeaderboardRankResponse_LeaderboardRankResponse_rank) SetLeaderboardRankResponseRankMember1(value LeaderboardRankResponse_rankMember1able)() {
     m.leaderboardRankResponse_rankMember1 = value
 }
-type LeaderboardRankResponse_LeaderboardRankResponse_gameSlugable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetLeaderboardRankResponseGameSlugMember1()(LeaderboardRankResponse_gameSlugMember1able)
-    GetString()(*string)
-    SetLeaderboardRankResponseGameSlugMember1(value LeaderboardRankResponse_gameSlugMember1able)()
-    SetString(value *string)()
-}
 type LeaderboardRankResponse_LeaderboardRankResponse_rankable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetInteger()(*int32)
@@ -204,12 +120,12 @@ func CreateLeaderboardRankResponseFromDiscriminatorValue(parseNode i878a80d2330e
 func (m *LeaderboardRankResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["gameSlug"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateLeaderboardRankResponse_LeaderboardRankResponse_gameSlugFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetGameSlug(val.(LeaderboardRankResponse_LeaderboardRankResponse_gameSlugable))
+            m.SetGameSlug(val)
         }
         return nil
     }
@@ -256,8 +172,8 @@ func (m *LeaderboardRankResponse) GetFieldDeserializers()(map[string]func(i878a8
     return res
 }
 // GetGameSlug gets the gameSlug property value. The gameSlug property
-// returns a LeaderboardRankResponse_LeaderboardRankResponse_gameSlugable when successful
-func (m *LeaderboardRankResponse) GetGameSlug()(LeaderboardRankResponse_LeaderboardRankResponse_gameSlugable) {
+// returns a *string when successful
+func (m *LeaderboardRankResponse) GetGameSlug()(*string) {
     return m.gameSlug
 }
 // GetId gets the id property value. Resolved entity ID.
@@ -283,7 +199,7 @@ func (m *LeaderboardRankResponse) GetTimestamp()(*string) {
 // Serialize serializes information the current object
 func (m *LeaderboardRankResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("gameSlug", m.GetGameSlug())
+        err := writer.WriteStringValue("gameSlug", m.GetGameSlug())
         if err != nil {
             return err
         }
@@ -316,7 +232,7 @@ func (m *LeaderboardRankResponse) Serialize(writer i878a80d2330e89d26896388a3f48
     return nil
 }
 // SetGameSlug sets the gameSlug property value. The gameSlug property
-func (m *LeaderboardRankResponse) SetGameSlug(value LeaderboardRankResponse_LeaderboardRankResponse_gameSlugable)() {
+func (m *LeaderboardRankResponse) SetGameSlug(value *string)() {
     m.gameSlug = value
 }
 // SetId sets the id property value. Resolved entity ID.
@@ -337,12 +253,12 @@ func (m *LeaderboardRankResponse) SetTimestamp(value *string)() {
 }
 type LeaderboardRankResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameSlug()(LeaderboardRankResponse_LeaderboardRankResponse_gameSlugable)
+    GetGameSlug()(*string)
     GetId()(*string)
     GetRank()(LeaderboardRankResponse_LeaderboardRankResponse_rankable)
     GetSortBy()(*LeaderboardSortBy)
     GetTimestamp()(*string)
-    SetGameSlug(value LeaderboardRankResponse_LeaderboardRankResponse_gameSlugable)()
+    SetGameSlug(value *string)()
     SetId(value *string)()
     SetRank(value LeaderboardRankResponse_LeaderboardRankResponse_rankable)()
     SetSortBy(value *LeaderboardSortBy)()

@@ -10,95 +10,11 @@ import (
 // ScoreSubmitter identity of the captain who submitted a score.
 type ScoreSubmitter struct {
     // The name property
-    name ScoreSubmitter_ScoreSubmitter_nameable
+    name *string
     // The teamId property
     teamId *string
     // The userId property
     userId *string
-}
-// ScoreSubmitter_ScoreSubmitter_name composed type wrapper for classes ScoreSubmitter_nameMember1able, string
-type ScoreSubmitter_ScoreSubmitter_name struct {
-    // Composed type representation for type ScoreSubmitter_nameMember1able
-    scoreSubmitter_nameMember1 ScoreSubmitter_nameMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewScoreSubmitter_ScoreSubmitter_name instantiates a new ScoreSubmitter_ScoreSubmitter_name and sets the default values.
-func NewScoreSubmitter_ScoreSubmitter_name()(*ScoreSubmitter_ScoreSubmitter_name) {
-    m := &ScoreSubmitter_ScoreSubmitter_name{
-    }
-    return m
-}
-// CreateScoreSubmitter_ScoreSubmitter_nameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateScoreSubmitter_ScoreSubmitter_nameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewScoreSubmitter_ScoreSubmitter_name()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateScoreSubmitter_nameMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ScoreSubmitter_nameMember1able); ok {
-                result.SetScoreSubmitterNameMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ScoreSubmitter_ScoreSubmitter_name) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ScoreSubmitter_ScoreSubmitter_name) GetIsComposedType()(bool) {
-    return true
-}
-// GetScoreSubmitterNameMember1 gets the ScoreSubmitter_nameMember1 property value. Composed type representation for type ScoreSubmitter_nameMember1able
-// returns a ScoreSubmitter_nameMember1able when successful
-func (m *ScoreSubmitter_ScoreSubmitter_name) GetScoreSubmitterNameMember1()(ScoreSubmitter_nameMember1able) {
-    return m.scoreSubmitter_nameMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ScoreSubmitter_ScoreSubmitter_name) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ScoreSubmitter_ScoreSubmitter_name) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetScoreSubmitterNameMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetScoreSubmitterNameMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetScoreSubmitterNameMember1 sets the ScoreSubmitter_nameMember1 property value. Composed type representation for type ScoreSubmitter_nameMember1able
-func (m *ScoreSubmitter_ScoreSubmitter_name) SetScoreSubmitterNameMember1(value ScoreSubmitter_nameMember1able)() {
-    m.scoreSubmitter_nameMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ScoreSubmitter_ScoreSubmitter_name) SetString(value *string)() {
-    m.string = value
-}
-type ScoreSubmitter_ScoreSubmitter_nameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetScoreSubmitterNameMember1()(ScoreSubmitter_nameMember1able)
-    GetString()(*string)
-    SetScoreSubmitterNameMember1(value ScoreSubmitter_nameMember1able)()
-    SetString(value *string)()
 }
 // NewScoreSubmitter instantiates a new ScoreSubmitter and sets the default values.
 func NewScoreSubmitter()(*ScoreSubmitter) {
@@ -116,12 +32,12 @@ func CreateScoreSubmitterFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 func (m *ScoreSubmitter) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateScoreSubmitter_ScoreSubmitter_nameFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetName(val.(ScoreSubmitter_ScoreSubmitter_nameable))
+            m.SetName(val)
         }
         return nil
     }
@@ -148,8 +64,8 @@ func (m *ScoreSubmitter) GetFieldDeserializers()(map[string]func(i878a80d2330e89
     return res
 }
 // GetName gets the name property value. The name property
-// returns a ScoreSubmitter_ScoreSubmitter_nameable when successful
-func (m *ScoreSubmitter) GetName()(ScoreSubmitter_ScoreSubmitter_nameable) {
+// returns a *string when successful
+func (m *ScoreSubmitter) GetName()(*string) {
     return m.name
 }
 // GetTeamId gets the teamId property value. The teamId property
@@ -165,7 +81,7 @@ func (m *ScoreSubmitter) GetUserId()(*string) {
 // Serialize serializes information the current object
 func (m *ScoreSubmitter) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("name", m.GetName())
+        err := writer.WriteStringValue("name", m.GetName())
         if err != nil {
             return err
         }
@@ -185,7 +101,7 @@ func (m *ScoreSubmitter) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     return nil
 }
 // SetName sets the name property value. The name property
-func (m *ScoreSubmitter) SetName(value ScoreSubmitter_ScoreSubmitter_nameable)() {
+func (m *ScoreSubmitter) SetName(value *string)() {
     m.name = value
 }
 // SetTeamId sets the teamId property value. The teamId property
@@ -198,10 +114,10 @@ func (m *ScoreSubmitter) SetUserId(value *string)() {
 }
 type ScoreSubmitterable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetName()(ScoreSubmitter_ScoreSubmitter_nameable)
+    GetName()(*string)
     GetTeamId()(*string)
     GetUserId()(*string)
-    SetName(value ScoreSubmitter_ScoreSubmitter_nameable)()
+    SetName(value *string)()
     SetTeamId(value *string)()
     SetUserId(value *string)()
 }

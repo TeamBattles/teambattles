@@ -11,9 +11,9 @@ type TicketDetail struct {
     // The category property
     category *string
     // The closedAt property
-    closedAt TicketDetail_TicketDetail_closedAtable
+    closedAt *string
     // The createdAt property
-    createdAt TicketDetail_TicketDetail_createdAtable
+    createdAt *string
     // The description property
     description *string
     // The id property
@@ -23,7 +23,7 @@ type TicketDetail struct {
     // The priority property
     priority *TicketDetail_priority
     // The resolvedAt property
-    resolvedAt TicketDetail_TicketDetail_resolvedAtable
+    resolvedAt *string
     // The status property
     status *TicketDetail_status
     // The subject property
@@ -33,343 +33,7 @@ type TicketDetail struct {
     // The timestamp property
     timestamp *string
     // The updatedAt property
-    updatedAt TicketDetail_TicketDetail_updatedAtable
-}
-// TicketDetail_TicketDetail_closedAt composed type wrapper for classes string, TicketDetail_closedAtMember1able
-type TicketDetail_TicketDetail_closedAt struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TicketDetail_closedAtMember1able
-    ticketDetail_closedAtMember1 TicketDetail_closedAtMember1able
-}
-// NewTicketDetail_TicketDetail_closedAt instantiates a new TicketDetail_TicketDetail_closedAt and sets the default values.
-func NewTicketDetail_TicketDetail_closedAt()(*TicketDetail_TicketDetail_closedAt) {
-    m := &TicketDetail_TicketDetail_closedAt{
-    }
-    return m
-}
-// CreateTicketDetail_TicketDetail_closedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTicketDetail_TicketDetail_closedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTicketDetail_TicketDetail_closedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTicketDetail_closedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TicketDetail_closedAtMember1able); ok {
-                result.SetTicketDetailClosedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TicketDetail_TicketDetail_closedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TicketDetail_TicketDetail_closedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TicketDetail_TicketDetail_closedAt) GetString()(*string) {
-    return m.string
-}
-// GetTicketDetailClosedAtMember1 gets the TicketDetail_closedAtMember1 property value. Composed type representation for type TicketDetail_closedAtMember1able
-// returns a TicketDetail_closedAtMember1able when successful
-func (m *TicketDetail_TicketDetail_closedAt) GetTicketDetailClosedAtMember1()(TicketDetail_closedAtMember1able) {
-    return m.ticketDetail_closedAtMember1
-}
-// Serialize serializes information the current object
-func (m *TicketDetail_TicketDetail_closedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTicketDetailClosedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTicketDetailClosedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TicketDetail_TicketDetail_closedAt) SetString(value *string)() {
-    m.string = value
-}
-// SetTicketDetailClosedAtMember1 sets the TicketDetail_closedAtMember1 property value. Composed type representation for type TicketDetail_closedAtMember1able
-func (m *TicketDetail_TicketDetail_closedAt) SetTicketDetailClosedAtMember1(value TicketDetail_closedAtMember1able)() {
-    m.ticketDetail_closedAtMember1 = value
-}
-// TicketDetail_TicketDetail_createdAt composed type wrapper for classes string, TicketDetail_createdAtMember1able
-type TicketDetail_TicketDetail_createdAt struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TicketDetail_createdAtMember1able
-    ticketDetail_createdAtMember1 TicketDetail_createdAtMember1able
-}
-// NewTicketDetail_TicketDetail_createdAt instantiates a new TicketDetail_TicketDetail_createdAt and sets the default values.
-func NewTicketDetail_TicketDetail_createdAt()(*TicketDetail_TicketDetail_createdAt) {
-    m := &TicketDetail_TicketDetail_createdAt{
-    }
-    return m
-}
-// CreateTicketDetail_TicketDetail_createdAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTicketDetail_TicketDetail_createdAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTicketDetail_TicketDetail_createdAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTicketDetail_createdAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TicketDetail_createdAtMember1able); ok {
-                result.SetTicketDetailCreatedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TicketDetail_TicketDetail_createdAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TicketDetail_TicketDetail_createdAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TicketDetail_TicketDetail_createdAt) GetString()(*string) {
-    return m.string
-}
-// GetTicketDetailCreatedAtMember1 gets the TicketDetail_createdAtMember1 property value. Composed type representation for type TicketDetail_createdAtMember1able
-// returns a TicketDetail_createdAtMember1able when successful
-func (m *TicketDetail_TicketDetail_createdAt) GetTicketDetailCreatedAtMember1()(TicketDetail_createdAtMember1able) {
-    return m.ticketDetail_createdAtMember1
-}
-// Serialize serializes information the current object
-func (m *TicketDetail_TicketDetail_createdAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTicketDetailCreatedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTicketDetailCreatedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TicketDetail_TicketDetail_createdAt) SetString(value *string)() {
-    m.string = value
-}
-// SetTicketDetailCreatedAtMember1 sets the TicketDetail_createdAtMember1 property value. Composed type representation for type TicketDetail_createdAtMember1able
-func (m *TicketDetail_TicketDetail_createdAt) SetTicketDetailCreatedAtMember1(value TicketDetail_createdAtMember1able)() {
-    m.ticketDetail_createdAtMember1 = value
-}
-// TicketDetail_TicketDetail_resolvedAt composed type wrapper for classes string, TicketDetail_resolvedAtMember1able
-type TicketDetail_TicketDetail_resolvedAt struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TicketDetail_resolvedAtMember1able
-    ticketDetail_resolvedAtMember1 TicketDetail_resolvedAtMember1able
-}
-// NewTicketDetail_TicketDetail_resolvedAt instantiates a new TicketDetail_TicketDetail_resolvedAt and sets the default values.
-func NewTicketDetail_TicketDetail_resolvedAt()(*TicketDetail_TicketDetail_resolvedAt) {
-    m := &TicketDetail_TicketDetail_resolvedAt{
-    }
-    return m
-}
-// CreateTicketDetail_TicketDetail_resolvedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTicketDetail_TicketDetail_resolvedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTicketDetail_TicketDetail_resolvedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTicketDetail_resolvedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TicketDetail_resolvedAtMember1able); ok {
-                result.SetTicketDetailResolvedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TicketDetail_TicketDetail_resolvedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TicketDetail_TicketDetail_resolvedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TicketDetail_TicketDetail_resolvedAt) GetString()(*string) {
-    return m.string
-}
-// GetTicketDetailResolvedAtMember1 gets the TicketDetail_resolvedAtMember1 property value. Composed type representation for type TicketDetail_resolvedAtMember1able
-// returns a TicketDetail_resolvedAtMember1able when successful
-func (m *TicketDetail_TicketDetail_resolvedAt) GetTicketDetailResolvedAtMember1()(TicketDetail_resolvedAtMember1able) {
-    return m.ticketDetail_resolvedAtMember1
-}
-// Serialize serializes information the current object
-func (m *TicketDetail_TicketDetail_resolvedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTicketDetailResolvedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTicketDetailResolvedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TicketDetail_TicketDetail_resolvedAt) SetString(value *string)() {
-    m.string = value
-}
-// SetTicketDetailResolvedAtMember1 sets the TicketDetail_resolvedAtMember1 property value. Composed type representation for type TicketDetail_resolvedAtMember1able
-func (m *TicketDetail_TicketDetail_resolvedAt) SetTicketDetailResolvedAtMember1(value TicketDetail_resolvedAtMember1able)() {
-    m.ticketDetail_resolvedAtMember1 = value
-}
-// TicketDetail_TicketDetail_updatedAt composed type wrapper for classes string, TicketDetail_updatedAtMember1able
-type TicketDetail_TicketDetail_updatedAt struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TicketDetail_updatedAtMember1able
-    ticketDetail_updatedAtMember1 TicketDetail_updatedAtMember1able
-}
-// NewTicketDetail_TicketDetail_updatedAt instantiates a new TicketDetail_TicketDetail_updatedAt and sets the default values.
-func NewTicketDetail_TicketDetail_updatedAt()(*TicketDetail_TicketDetail_updatedAt) {
-    m := &TicketDetail_TicketDetail_updatedAt{
-    }
-    return m
-}
-// CreateTicketDetail_TicketDetail_updatedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTicketDetail_TicketDetail_updatedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTicketDetail_TicketDetail_updatedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTicketDetail_updatedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TicketDetail_updatedAtMember1able); ok {
-                result.SetTicketDetailUpdatedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TicketDetail_TicketDetail_updatedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TicketDetail_TicketDetail_updatedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TicketDetail_TicketDetail_updatedAt) GetString()(*string) {
-    return m.string
-}
-// GetTicketDetailUpdatedAtMember1 gets the TicketDetail_updatedAtMember1 property value. Composed type representation for type TicketDetail_updatedAtMember1able
-// returns a TicketDetail_updatedAtMember1able when successful
-func (m *TicketDetail_TicketDetail_updatedAt) GetTicketDetailUpdatedAtMember1()(TicketDetail_updatedAtMember1able) {
-    return m.ticketDetail_updatedAtMember1
-}
-// Serialize serializes information the current object
-func (m *TicketDetail_TicketDetail_updatedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTicketDetailUpdatedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTicketDetailUpdatedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TicketDetail_TicketDetail_updatedAt) SetString(value *string)() {
-    m.string = value
-}
-// SetTicketDetailUpdatedAtMember1 sets the TicketDetail_updatedAtMember1 property value. Composed type representation for type TicketDetail_updatedAtMember1able
-func (m *TicketDetail_TicketDetail_updatedAt) SetTicketDetailUpdatedAtMember1(value TicketDetail_updatedAtMember1able)() {
-    m.ticketDetail_updatedAtMember1 = value
-}
-type TicketDetail_TicketDetail_closedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTicketDetailClosedAtMember1()(TicketDetail_closedAtMember1able)
-    SetString(value *string)()
-    SetTicketDetailClosedAtMember1(value TicketDetail_closedAtMember1able)()
-}
-type TicketDetail_TicketDetail_createdAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTicketDetailCreatedAtMember1()(TicketDetail_createdAtMember1able)
-    SetString(value *string)()
-    SetTicketDetailCreatedAtMember1(value TicketDetail_createdAtMember1able)()
-}
-type TicketDetail_TicketDetail_resolvedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTicketDetailResolvedAtMember1()(TicketDetail_resolvedAtMember1able)
-    SetString(value *string)()
-    SetTicketDetailResolvedAtMember1(value TicketDetail_resolvedAtMember1able)()
-}
-type TicketDetail_TicketDetail_updatedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTicketDetailUpdatedAtMember1()(TicketDetail_updatedAtMember1able)
-    SetString(value *string)()
-    SetTicketDetailUpdatedAtMember1(value TicketDetail_updatedAtMember1able)()
+    updatedAt *string
 }
 // NewTicketDetail instantiates a new TicketDetail and sets the default values.
 func NewTicketDetail()(*TicketDetail) {
@@ -388,13 +52,13 @@ func (m *TicketDetail) GetCategory()(*string) {
     return m.category
 }
 // GetClosedAt gets the closedAt property value. The closedAt property
-// returns a TicketDetail_TicketDetail_closedAtable when successful
-func (m *TicketDetail) GetClosedAt()(TicketDetail_TicketDetail_closedAtable) {
+// returns a *string when successful
+func (m *TicketDetail) GetClosedAt()(*string) {
     return m.closedAt
 }
 // GetCreatedAt gets the createdAt property value. The createdAt property
-// returns a TicketDetail_TicketDetail_createdAtable when successful
-func (m *TicketDetail) GetCreatedAt()(TicketDetail_TicketDetail_createdAtable) {
+// returns a *string when successful
+func (m *TicketDetail) GetCreatedAt()(*string) {
     return m.createdAt
 }
 // GetDescription gets the description property value. The description property
@@ -417,22 +81,22 @@ func (m *TicketDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         return nil
     }
     res["closedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTicketDetail_TicketDetail_closedAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetClosedAt(val.(TicketDetail_TicketDetail_closedAtable))
+            m.SetClosedAt(val)
         }
         return nil
     }
     res["createdAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTicketDetail_TicketDetail_createdAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCreatedAt(val.(TicketDetail_TicketDetail_createdAtable))
+            m.SetCreatedAt(val)
         }
         return nil
     }
@@ -483,12 +147,12 @@ func (m *TicketDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         return nil
     }
     res["resolvedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTicketDetail_TicketDetail_resolvedAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetResolvedAt(val.(TicketDetail_TicketDetail_resolvedAtable))
+            m.SetResolvedAt(val)
         }
         return nil
     }
@@ -533,12 +197,12 @@ func (m *TicketDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         return nil
     }
     res["updatedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTicketDetail_TicketDetail_updatedAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetUpdatedAt(val.(TicketDetail_TicketDetail_updatedAtable))
+            m.SetUpdatedAt(val)
         }
         return nil
     }
@@ -560,8 +224,8 @@ func (m *TicketDetail) GetPriority()(*TicketDetail_priority) {
     return m.priority
 }
 // GetResolvedAt gets the resolvedAt property value. The resolvedAt property
-// returns a TicketDetail_TicketDetail_resolvedAtable when successful
-func (m *TicketDetail) GetResolvedAt()(TicketDetail_TicketDetail_resolvedAtable) {
+// returns a *string when successful
+func (m *TicketDetail) GetResolvedAt()(*string) {
     return m.resolvedAt
 }
 // GetStatus gets the status property value. The status property
@@ -585,8 +249,8 @@ func (m *TicketDetail) GetTimestamp()(*string) {
     return m.timestamp
 }
 // GetUpdatedAt gets the updatedAt property value. The updatedAt property
-// returns a TicketDetail_TicketDetail_updatedAtable when successful
-func (m *TicketDetail) GetUpdatedAt()(TicketDetail_TicketDetail_updatedAtable) {
+// returns a *string when successful
+func (m *TicketDetail) GetUpdatedAt()(*string) {
     return m.updatedAt
 }
 // Serialize serializes information the current object
@@ -598,13 +262,13 @@ func (m *TicketDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
         }
     }
     {
-        err := writer.WriteObjectValue("closedAt", m.GetClosedAt())
+        err := writer.WriteStringValue("closedAt", m.GetClosedAt())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("createdAt", m.GetCreatedAt())
+        err := writer.WriteStringValue("createdAt", m.GetCreatedAt())
         if err != nil {
             return err
         }
@@ -641,7 +305,7 @@ func (m *TicketDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
         }
     }
     {
-        err := writer.WriteObjectValue("resolvedAt", m.GetResolvedAt())
+        err := writer.WriteStringValue("resolvedAt", m.GetResolvedAt())
         if err != nil {
             return err
         }
@@ -672,7 +336,7 @@ func (m *TicketDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
         }
     }
     {
-        err := writer.WriteObjectValue("updatedAt", m.GetUpdatedAt())
+        err := writer.WriteStringValue("updatedAt", m.GetUpdatedAt())
         if err != nil {
             return err
         }
@@ -684,11 +348,11 @@ func (m *TicketDetail) SetCategory(value *string)() {
     m.category = value
 }
 // SetClosedAt sets the closedAt property value. The closedAt property
-func (m *TicketDetail) SetClosedAt(value TicketDetail_TicketDetail_closedAtable)() {
+func (m *TicketDetail) SetClosedAt(value *string)() {
     m.closedAt = value
 }
 // SetCreatedAt sets the createdAt property value. The createdAt property
-func (m *TicketDetail) SetCreatedAt(value TicketDetail_TicketDetail_createdAtable)() {
+func (m *TicketDetail) SetCreatedAt(value *string)() {
     m.createdAt = value
 }
 // SetDescription sets the description property value. The description property
@@ -708,7 +372,7 @@ func (m *TicketDetail) SetPriority(value *TicketDetail_priority)() {
     m.priority = value
 }
 // SetResolvedAt sets the resolvedAt property value. The resolvedAt property
-func (m *TicketDetail) SetResolvedAt(value TicketDetail_TicketDetail_resolvedAtable)() {
+func (m *TicketDetail) SetResolvedAt(value *string)() {
     m.resolvedAt = value
 }
 // SetStatus sets the status property value. The status property
@@ -728,35 +392,35 @@ func (m *TicketDetail) SetTimestamp(value *string)() {
     m.timestamp = value
 }
 // SetUpdatedAt sets the updatedAt property value. The updatedAt property
-func (m *TicketDetail) SetUpdatedAt(value TicketDetail_TicketDetail_updatedAtable)() {
+func (m *TicketDetail) SetUpdatedAt(value *string)() {
     m.updatedAt = value
 }
 type TicketDetailable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetCategory()(*string)
-    GetClosedAt()(TicketDetail_TicketDetail_closedAtable)
-    GetCreatedAt()(TicketDetail_TicketDetail_createdAtable)
+    GetClosedAt()(*string)
+    GetCreatedAt()(*string)
     GetDescription()(*string)
     GetId()(*string)
     GetMessages()([]TicketDetail_messagesable)
     GetPriority()(*TicketDetail_priority)
-    GetResolvedAt()(TicketDetail_TicketDetail_resolvedAtable)
+    GetResolvedAt()(*string)
     GetStatus()(*TicketDetail_status)
     GetSubject()(*string)
     GetTicketNumber()(*int32)
     GetTimestamp()(*string)
-    GetUpdatedAt()(TicketDetail_TicketDetail_updatedAtable)
+    GetUpdatedAt()(*string)
     SetCategory(value *string)()
-    SetClosedAt(value TicketDetail_TicketDetail_closedAtable)()
-    SetCreatedAt(value TicketDetail_TicketDetail_createdAtable)()
+    SetClosedAt(value *string)()
+    SetCreatedAt(value *string)()
     SetDescription(value *string)()
     SetId(value *string)()
     SetMessages(value []TicketDetail_messagesable)()
     SetPriority(value *TicketDetail_priority)()
-    SetResolvedAt(value TicketDetail_TicketDetail_resolvedAtable)()
+    SetResolvedAt(value *string)()
     SetStatus(value *TicketDetail_status)()
     SetSubject(value *string)()
     SetTicketNumber(value *int32)()
     SetTimestamp(value *string)()
-    SetUpdatedAt(value TicketDetail_TicketDetail_updatedAtable)()
+    SetUpdatedAt(value *string)()
 }

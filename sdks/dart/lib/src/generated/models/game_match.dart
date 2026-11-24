@@ -1,11 +1,7 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './game_match_accepted_team_score.dart';
-import './game_match_completed_at.dart';
-import './game_match_created_at.dart';
 import './game_match_creator_team_score.dart';
-import './game_match_scheduled_at.dart';
-import './game_match_started_at.dart';
 import './match_status.dart';
 import './team.dart';
 
@@ -19,9 +15,9 @@ class GameMatch implements Parsable {
     ///  Number of maps in the series (1, 3, 5, or 7).
     int? bestOf;
     ///  Completion time (ISO 8601).
-    GameMatchCompletedAt? completedAt;
+    String? completedAt;
     ///  Creation time (ISO 8601).
-    GameMatchCreatedAt? createdAt;
+    String? createdAt;
     ///  The creatorTeam property
     Team? creatorTeam;
     ///  The creatorTeamScore property
@@ -31,9 +27,9 @@ class GameMatch implements Parsable {
     ///  The id property
     String? id;
     ///  Scheduled start time (ISO 8601).
-    GameMatchScheduledAt? scheduledAt;
+    String? scheduledAt;
     ///  Actual start time (ISO 8601).
-    GameMatchStartedAt? startedAt;
+    String? startedAt;
     ///  Lifecycle status of a match.
     MatchStatus? status;
     /// Creates a new instance of the appropriate class based on discriminator value
@@ -48,14 +44,14 @@ class GameMatch implements Parsable {
         deserializerMap['acceptedTeam'] = (node) => acceptedTeam = node.getObjectValue<Team>(Team.createFromDiscriminatorValue);
         deserializerMap['acceptedTeamScore'] = (node) => acceptedTeamScore = node.getObjectValue<GameMatchAcceptedTeamScore>(GameMatchAcceptedTeamScore.createFromDiscriminatorValue);
         deserializerMap['bestOf'] = (node) => bestOf = node.getIntValue();
-        deserializerMap['completedAt'] = (node) => completedAt = node.getObjectValue<GameMatchCompletedAt>(GameMatchCompletedAt.createFromDiscriminatorValue);
-        deserializerMap['createdAt'] = (node) => createdAt = node.getObjectValue<GameMatchCreatedAt>(GameMatchCreatedAt.createFromDiscriminatorValue);
+        deserializerMap['completedAt'] = (node) => completedAt = node.getStringValue();
+        deserializerMap['createdAt'] = (node) => createdAt = node.getStringValue();
         deserializerMap['creatorTeam'] = (node) => creatorTeam = node.getObjectValue<Team>(Team.createFromDiscriminatorValue);
         deserializerMap['creatorTeamScore'] = (node) => creatorTeamScore = node.getObjectValue<GameMatchCreatorTeamScore>(GameMatchCreatorTeamScore.createFromDiscriminatorValue);
         deserializerMap['gameMode'] = (node) => gameMode = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
-        deserializerMap['scheduledAt'] = (node) => scheduledAt = node.getObjectValue<GameMatchScheduledAt>(GameMatchScheduledAt.createFromDiscriminatorValue);
-        deserializerMap['startedAt'] = (node) => startedAt = node.getObjectValue<GameMatchStartedAt>(GameMatchStartedAt.createFromDiscriminatorValue);
+        deserializerMap['scheduledAt'] = (node) => scheduledAt = node.getStringValue();
+        deserializerMap['startedAt'] = (node) => startedAt = node.getStringValue();
         deserializerMap['status'] = (node) => status = node.getEnumValue<MatchStatus>((stringValue) => MatchStatus.values.where((enumVal) => enumVal.value == stringValue).firstOrNull);
         return deserializerMap;
     }
@@ -66,14 +62,14 @@ class GameMatch implements Parsable {
         writer.writeObjectValue<Team>('acceptedTeam', acceptedTeam);
         writer.writeObjectValue<GameMatchAcceptedTeamScore>('acceptedTeamScore', acceptedTeamScore);
         writer.writeIntValue('bestOf', bestOf);
-        writer.writeObjectValue<GameMatchCompletedAt>('completedAt', completedAt);
-        writer.writeObjectValue<GameMatchCreatedAt>('createdAt', createdAt);
+        writer.writeStringValue('completedAt', completedAt);
+        writer.writeStringValue('createdAt', createdAt);
         writer.writeObjectValue<Team>('creatorTeam', creatorTeam);
         writer.writeObjectValue<GameMatchCreatorTeamScore>('creatorTeamScore', creatorTeamScore);
         writer.writeStringValue('gameMode', gameMode);
         writer.writeStringValue('id', id);
-        writer.writeObjectValue<GameMatchScheduledAt>('scheduledAt', scheduledAt);
-        writer.writeObjectValue<GameMatchStartedAt>('startedAt', startedAt);
+        writer.writeStringValue('scheduledAt', scheduledAt);
+        writer.writeStringValue('startedAt', startedAt);
         writer.writeEnumValue<MatchStatus>('status', status, (e) => e?.value);
     }
 }

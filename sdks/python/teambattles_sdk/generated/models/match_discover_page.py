@@ -6,7 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .api_match_detail import ApiMatchDetail
-    from .match_discover_page_next_cursor import MatchDiscoverPage_nextCursor
 
 @dataclass
 class MatchDiscoverPage(Parsable):
@@ -18,7 +17,7 @@ class MatchDiscoverPage(Parsable):
     # The hasMore property
     has_more: Optional[bool] = None
     # The nextCursor property
-    next_cursor: Optional[MatchDiscoverPage_nextCursor] = None
+    next_cursor: Optional[str] = None
     # The timestamp property
     timestamp: Optional[str] = None
     
@@ -39,15 +38,13 @@ class MatchDiscoverPage(Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .api_match_detail import ApiMatchDetail
-        from .match_discover_page_next_cursor import MatchDiscoverPage_nextCursor
 
         from .api_match_detail import ApiMatchDetail
-        from .match_discover_page_next_cursor import MatchDiscoverPage_nextCursor
 
         fields: dict[str, Callable[[Any], None]] = {
             "data": lambda n : setattr(self, 'data', n.get_collection_of_object_values(ApiMatchDetail)),
             "hasMore": lambda n : setattr(self, 'has_more', n.get_bool_value()),
-            "nextCursor": lambda n : setattr(self, 'next_cursor', n.get_object_value(MatchDiscoverPage_nextCursor)),
+            "nextCursor": lambda n : setattr(self, 'next_cursor', n.get_str_value()),
             "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
         }
         return fields
@@ -62,7 +59,7 @@ class MatchDiscoverPage(Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("data", self.data)
         writer.write_bool_value("hasMore", self.has_more)
-        writer.write_object_value("nextCursor", self.next_cursor)
+        writer.write_str_value("nextCursor", self.next_cursor)
         writer.write_str_value("timestamp", self.timestamp)
     
 

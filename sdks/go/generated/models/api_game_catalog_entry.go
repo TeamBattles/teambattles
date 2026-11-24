@@ -10,17 +10,17 @@ import (
 // ApiGameCatalogEntry static public game catalog entry.
 type ApiGameCatalogEntry struct {
     // The bannerImage property
-    bannerImage ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImageable
+    bannerImage *string
     // The category property
     category *string
     // Active Convex games-table ID, when available for match APIs.
-    convexId ApiGameCatalogEntry_ApiGameCatalogEntry_convexIdable
+    convexId *string
     // The coverImage property
-    coverImage ApiGameCatalogEntry_ApiGameCatalogEntry_coverImageable
+    coverImage *string
     // The defaultTeamSize property
     defaultTeamSize *int32
     // The descriptionKey property
-    descriptionKey ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKeyable
+    descriptionKey *string
     // The hasCompetitiveMode property
     hasCompetitiveMode *bool
     // Static public game ID/slug.
@@ -40,513 +40,9 @@ type ApiGameCatalogEntry struct {
     // The playlists property
     playlists []ApiGamePlaylistable
     // The rulesLink property
-    rulesLink ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLinkable
+    rulesLink *string
     // The shortNameKey property
-    shortNameKey ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKeyable
-}
-// ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage composed type wrapper for classes ApiGameCatalogEntry_bannerImageMember1able, string
-type ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage struct {
-    // Composed type representation for type ApiGameCatalogEntry_bannerImageMember1able
-    apiGameCatalogEntry_bannerImageMember1 ApiGameCatalogEntry_bannerImageMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage instantiates a new ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage and sets the default values.
-func NewApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage()(*ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage) {
-    m := &ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage{
-    }
-    return m
-}
-// CreateApiGameCatalogEntry_ApiGameCatalogEntry_bannerImageFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameCatalogEntry_ApiGameCatalogEntry_bannerImageFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameCatalogEntry_bannerImageMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameCatalogEntry_bannerImageMember1able); ok {
-                result.SetApiGameCatalogEntryBannerImageMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameCatalogEntryBannerImageMember1 gets the ApiGameCatalogEntry_bannerImageMember1 property value. Composed type representation for type ApiGameCatalogEntry_bannerImageMember1able
-// returns a ApiGameCatalogEntry_bannerImageMember1able when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage) GetApiGameCatalogEntryBannerImageMember1()(ApiGameCatalogEntry_bannerImageMember1able) {
-    return m.apiGameCatalogEntry_bannerImageMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameCatalogEntryBannerImageMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameCatalogEntryBannerImageMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameCatalogEntryBannerImageMember1 sets the ApiGameCatalogEntry_bannerImageMember1 property value. Composed type representation for type ApiGameCatalogEntry_bannerImageMember1able
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage) SetApiGameCatalogEntryBannerImageMember1(value ApiGameCatalogEntry_bannerImageMember1able)() {
-    m.apiGameCatalogEntry_bannerImageMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImage) SetString(value *string)() {
-    m.string = value
-}
-// ApiGameCatalogEntry_ApiGameCatalogEntry_convexId composed type wrapper for classes ApiGameCatalogEntry_convexIdMember1able, string
-type ApiGameCatalogEntry_ApiGameCatalogEntry_convexId struct {
-    // Composed type representation for type ApiGameCatalogEntry_convexIdMember1able
-    apiGameCatalogEntry_convexIdMember1 ApiGameCatalogEntry_convexIdMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGameCatalogEntry_ApiGameCatalogEntry_convexId instantiates a new ApiGameCatalogEntry_ApiGameCatalogEntry_convexId and sets the default values.
-func NewApiGameCatalogEntry_ApiGameCatalogEntry_convexId()(*ApiGameCatalogEntry_ApiGameCatalogEntry_convexId) {
-    m := &ApiGameCatalogEntry_ApiGameCatalogEntry_convexId{
-    }
-    return m
-}
-// CreateApiGameCatalogEntry_ApiGameCatalogEntry_convexIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameCatalogEntry_ApiGameCatalogEntry_convexIdFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameCatalogEntry_ApiGameCatalogEntry_convexId()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameCatalogEntry_convexIdMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameCatalogEntry_convexIdMember1able); ok {
-                result.SetApiGameCatalogEntryConvexIdMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameCatalogEntryConvexIdMember1 gets the ApiGameCatalogEntry_convexIdMember1 property value. Composed type representation for type ApiGameCatalogEntry_convexIdMember1able
-// returns a ApiGameCatalogEntry_convexIdMember1able when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_convexId) GetApiGameCatalogEntryConvexIdMember1()(ApiGameCatalogEntry_convexIdMember1able) {
-    return m.apiGameCatalogEntry_convexIdMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_convexId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_convexId) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_convexId) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_convexId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameCatalogEntryConvexIdMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameCatalogEntryConvexIdMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameCatalogEntryConvexIdMember1 sets the ApiGameCatalogEntry_convexIdMember1 property value. Composed type representation for type ApiGameCatalogEntry_convexIdMember1able
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_convexId) SetApiGameCatalogEntryConvexIdMember1(value ApiGameCatalogEntry_convexIdMember1able)() {
-    m.apiGameCatalogEntry_convexIdMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_convexId) SetString(value *string)() {
-    m.string = value
-}
-// ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage composed type wrapper for classes ApiGameCatalogEntry_coverImageMember1able, string
-type ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage struct {
-    // Composed type representation for type ApiGameCatalogEntry_coverImageMember1able
-    apiGameCatalogEntry_coverImageMember1 ApiGameCatalogEntry_coverImageMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGameCatalogEntry_ApiGameCatalogEntry_coverImage instantiates a new ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage and sets the default values.
-func NewApiGameCatalogEntry_ApiGameCatalogEntry_coverImage()(*ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage) {
-    m := &ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage{
-    }
-    return m
-}
-// CreateApiGameCatalogEntry_ApiGameCatalogEntry_coverImageFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameCatalogEntry_ApiGameCatalogEntry_coverImageFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameCatalogEntry_ApiGameCatalogEntry_coverImage()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameCatalogEntry_coverImageMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameCatalogEntry_coverImageMember1able); ok {
-                result.SetApiGameCatalogEntryCoverImageMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameCatalogEntryCoverImageMember1 gets the ApiGameCatalogEntry_coverImageMember1 property value. Composed type representation for type ApiGameCatalogEntry_coverImageMember1able
-// returns a ApiGameCatalogEntry_coverImageMember1able when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage) GetApiGameCatalogEntryCoverImageMember1()(ApiGameCatalogEntry_coverImageMember1able) {
-    return m.apiGameCatalogEntry_coverImageMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameCatalogEntryCoverImageMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameCatalogEntryCoverImageMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameCatalogEntryCoverImageMember1 sets the ApiGameCatalogEntry_coverImageMember1 property value. Composed type representation for type ApiGameCatalogEntry_coverImageMember1able
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage) SetApiGameCatalogEntryCoverImageMember1(value ApiGameCatalogEntry_coverImageMember1able)() {
-    m.apiGameCatalogEntry_coverImageMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_coverImage) SetString(value *string)() {
-    m.string = value
-}
-// ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey composed type wrapper for classes ApiGameCatalogEntry_descriptionKeyMember1able, string
-type ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey struct {
-    // Composed type representation for type ApiGameCatalogEntry_descriptionKeyMember1able
-    apiGameCatalogEntry_descriptionKeyMember1 ApiGameCatalogEntry_descriptionKeyMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey instantiates a new ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey and sets the default values.
-func NewApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey()(*ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey) {
-    m := &ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey{
-    }
-    return m
-}
-// CreateApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKeyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKeyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameCatalogEntry_descriptionKeyMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameCatalogEntry_descriptionKeyMember1able); ok {
-                result.SetApiGameCatalogEntryDescriptionKeyMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameCatalogEntryDescriptionKeyMember1 gets the ApiGameCatalogEntry_descriptionKeyMember1 property value. Composed type representation for type ApiGameCatalogEntry_descriptionKeyMember1able
-// returns a ApiGameCatalogEntry_descriptionKeyMember1able when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey) GetApiGameCatalogEntryDescriptionKeyMember1()(ApiGameCatalogEntry_descriptionKeyMember1able) {
-    return m.apiGameCatalogEntry_descriptionKeyMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameCatalogEntryDescriptionKeyMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameCatalogEntryDescriptionKeyMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameCatalogEntryDescriptionKeyMember1 sets the ApiGameCatalogEntry_descriptionKeyMember1 property value. Composed type representation for type ApiGameCatalogEntry_descriptionKeyMember1able
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey) SetApiGameCatalogEntryDescriptionKeyMember1(value ApiGameCatalogEntry_descriptionKeyMember1able)() {
-    m.apiGameCatalogEntry_descriptionKeyMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKey) SetString(value *string)() {
-    m.string = value
-}
-// ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink composed type wrapper for classes ApiGameCatalogEntry_rulesLinkMember1able, string
-type ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink struct {
-    // Composed type representation for type ApiGameCatalogEntry_rulesLinkMember1able
-    apiGameCatalogEntry_rulesLinkMember1 ApiGameCatalogEntry_rulesLinkMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink instantiates a new ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink and sets the default values.
-func NewApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink()(*ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink) {
-    m := &ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink{
-    }
-    return m
-}
-// CreateApiGameCatalogEntry_ApiGameCatalogEntry_rulesLinkFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameCatalogEntry_ApiGameCatalogEntry_rulesLinkFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameCatalogEntry_rulesLinkMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameCatalogEntry_rulesLinkMember1able); ok {
-                result.SetApiGameCatalogEntryRulesLinkMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameCatalogEntryRulesLinkMember1 gets the ApiGameCatalogEntry_rulesLinkMember1 property value. Composed type representation for type ApiGameCatalogEntry_rulesLinkMember1able
-// returns a ApiGameCatalogEntry_rulesLinkMember1able when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink) GetApiGameCatalogEntryRulesLinkMember1()(ApiGameCatalogEntry_rulesLinkMember1able) {
-    return m.apiGameCatalogEntry_rulesLinkMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameCatalogEntryRulesLinkMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameCatalogEntryRulesLinkMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameCatalogEntryRulesLinkMember1 sets the ApiGameCatalogEntry_rulesLinkMember1 property value. Composed type representation for type ApiGameCatalogEntry_rulesLinkMember1able
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink) SetApiGameCatalogEntryRulesLinkMember1(value ApiGameCatalogEntry_rulesLinkMember1able)() {
-    m.apiGameCatalogEntry_rulesLinkMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLink) SetString(value *string)() {
-    m.string = value
-}
-// ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey composed type wrapper for classes ApiGameCatalogEntry_shortNameKeyMember1able, string
-type ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey struct {
-    // Composed type representation for type ApiGameCatalogEntry_shortNameKeyMember1able
-    apiGameCatalogEntry_shortNameKeyMember1 ApiGameCatalogEntry_shortNameKeyMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey instantiates a new ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey and sets the default values.
-func NewApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey()(*ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey) {
-    m := &ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey{
-    }
-    return m
-}
-// CreateApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKeyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKeyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameCatalogEntry_shortNameKeyMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameCatalogEntry_shortNameKeyMember1able); ok {
-                result.SetApiGameCatalogEntryShortNameKeyMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameCatalogEntryShortNameKeyMember1 gets the ApiGameCatalogEntry_shortNameKeyMember1 property value. Composed type representation for type ApiGameCatalogEntry_shortNameKeyMember1able
-// returns a ApiGameCatalogEntry_shortNameKeyMember1able when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey) GetApiGameCatalogEntryShortNameKeyMember1()(ApiGameCatalogEntry_shortNameKeyMember1able) {
-    return m.apiGameCatalogEntry_shortNameKeyMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameCatalogEntryShortNameKeyMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameCatalogEntryShortNameKeyMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameCatalogEntryShortNameKeyMember1 sets the ApiGameCatalogEntry_shortNameKeyMember1 property value. Composed type representation for type ApiGameCatalogEntry_shortNameKeyMember1able
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey) SetApiGameCatalogEntryShortNameKeyMember1(value ApiGameCatalogEntry_shortNameKeyMember1able)() {
-    m.apiGameCatalogEntry_shortNameKeyMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKey) SetString(value *string)() {
-    m.string = value
-}
-type ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImageable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameCatalogEntryBannerImageMember1()(ApiGameCatalogEntry_bannerImageMember1able)
-    GetString()(*string)
-    SetApiGameCatalogEntryBannerImageMember1(value ApiGameCatalogEntry_bannerImageMember1able)()
-    SetString(value *string)()
-}
-type ApiGameCatalogEntry_ApiGameCatalogEntry_convexIdable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameCatalogEntryConvexIdMember1()(ApiGameCatalogEntry_convexIdMember1able)
-    GetString()(*string)
-    SetApiGameCatalogEntryConvexIdMember1(value ApiGameCatalogEntry_convexIdMember1able)()
-    SetString(value *string)()
-}
-type ApiGameCatalogEntry_ApiGameCatalogEntry_coverImageable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameCatalogEntryCoverImageMember1()(ApiGameCatalogEntry_coverImageMember1able)
-    GetString()(*string)
-    SetApiGameCatalogEntryCoverImageMember1(value ApiGameCatalogEntry_coverImageMember1able)()
-    SetString(value *string)()
-}
-type ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKeyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameCatalogEntryDescriptionKeyMember1()(ApiGameCatalogEntry_descriptionKeyMember1able)
-    GetString()(*string)
-    SetApiGameCatalogEntryDescriptionKeyMember1(value ApiGameCatalogEntry_descriptionKeyMember1able)()
-    SetString(value *string)()
-}
-type ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLinkable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameCatalogEntryRulesLinkMember1()(ApiGameCatalogEntry_rulesLinkMember1able)
-    GetString()(*string)
-    SetApiGameCatalogEntryRulesLinkMember1(value ApiGameCatalogEntry_rulesLinkMember1able)()
-    SetString(value *string)()
-}
-type ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKeyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameCatalogEntryShortNameKeyMember1()(ApiGameCatalogEntry_shortNameKeyMember1able)
-    GetString()(*string)
-    SetApiGameCatalogEntryShortNameKeyMember1(value ApiGameCatalogEntry_shortNameKeyMember1able)()
-    SetString(value *string)()
+    shortNameKey *string
 }
 // NewApiGameCatalogEntry instantiates a new ApiGameCatalogEntry and sets the default values.
 func NewApiGameCatalogEntry()(*ApiGameCatalogEntry) {
@@ -560,8 +56,8 @@ func CreateApiGameCatalogEntryFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewApiGameCatalogEntry(), nil
 }
 // GetBannerImage gets the bannerImage property value. The bannerImage property
-// returns a ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImageable when successful
-func (m *ApiGameCatalogEntry) GetBannerImage()(ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImageable) {
+// returns a *string when successful
+func (m *ApiGameCatalogEntry) GetBannerImage()(*string) {
     return m.bannerImage
 }
 // GetCategory gets the category property value. The category property
@@ -570,13 +66,13 @@ func (m *ApiGameCatalogEntry) GetCategory()(*string) {
     return m.category
 }
 // GetConvexId gets the convexId property value. Active Convex games-table ID, when available for match APIs.
-// returns a ApiGameCatalogEntry_ApiGameCatalogEntry_convexIdable when successful
-func (m *ApiGameCatalogEntry) GetConvexId()(ApiGameCatalogEntry_ApiGameCatalogEntry_convexIdable) {
+// returns a *string when successful
+func (m *ApiGameCatalogEntry) GetConvexId()(*string) {
     return m.convexId
 }
 // GetCoverImage gets the coverImage property value. The coverImage property
-// returns a ApiGameCatalogEntry_ApiGameCatalogEntry_coverImageable when successful
-func (m *ApiGameCatalogEntry) GetCoverImage()(ApiGameCatalogEntry_ApiGameCatalogEntry_coverImageable) {
+// returns a *string when successful
+func (m *ApiGameCatalogEntry) GetCoverImage()(*string) {
     return m.coverImage
 }
 // GetDefaultTeamSize gets the defaultTeamSize property value. The defaultTeamSize property
@@ -585,8 +81,8 @@ func (m *ApiGameCatalogEntry) GetDefaultTeamSize()(*int32) {
     return m.defaultTeamSize
 }
 // GetDescriptionKey gets the descriptionKey property value. The descriptionKey property
-// returns a ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKeyable when successful
-func (m *ApiGameCatalogEntry) GetDescriptionKey()(ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKeyable) {
+// returns a *string when successful
+func (m *ApiGameCatalogEntry) GetDescriptionKey()(*string) {
     return m.descriptionKey
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -594,12 +90,12 @@ func (m *ApiGameCatalogEntry) GetDescriptionKey()(ApiGameCatalogEntry_ApiGameCat
 func (m *ApiGameCatalogEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["bannerImage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameCatalogEntry_ApiGameCatalogEntry_bannerImageFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetBannerImage(val.(ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImageable))
+            m.SetBannerImage(val)
         }
         return nil
     }
@@ -614,22 +110,22 @@ func (m *ApiGameCatalogEntry) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["convexId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameCatalogEntry_ApiGameCatalogEntry_convexIdFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetConvexId(val.(ApiGameCatalogEntry_ApiGameCatalogEntry_convexIdable))
+            m.SetConvexId(val)
         }
         return nil
     }
     res["coverImage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameCatalogEntry_ApiGameCatalogEntry_coverImageFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCoverImage(val.(ApiGameCatalogEntry_ApiGameCatalogEntry_coverImageable))
+            m.SetCoverImage(val)
         }
         return nil
     }
@@ -644,12 +140,12 @@ func (m *ApiGameCatalogEntry) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["descriptionKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKeyFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDescriptionKey(val.(ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKeyable))
+            m.SetDescriptionKey(val)
         }
         return nil
     }
@@ -768,22 +264,22 @@ func (m *ApiGameCatalogEntry) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["rulesLink"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameCatalogEntry_ApiGameCatalogEntry_rulesLinkFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetRulesLink(val.(ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLinkable))
+            m.SetRulesLink(val)
         }
         return nil
     }
     res["shortNameKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKeyFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetShortNameKey(val.(ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKeyable))
+            m.SetShortNameKey(val)
         }
         return nil
     }
@@ -835,19 +331,19 @@ func (m *ApiGameCatalogEntry) GetPlaylists()([]ApiGamePlaylistable) {
     return m.playlists
 }
 // GetRulesLink gets the rulesLink property value. The rulesLink property
-// returns a ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLinkable when successful
-func (m *ApiGameCatalogEntry) GetRulesLink()(ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLinkable) {
+// returns a *string when successful
+func (m *ApiGameCatalogEntry) GetRulesLink()(*string) {
     return m.rulesLink
 }
 // GetShortNameKey gets the shortNameKey property value. The shortNameKey property
-// returns a ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKeyable when successful
-func (m *ApiGameCatalogEntry) GetShortNameKey()(ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKeyable) {
+// returns a *string when successful
+func (m *ApiGameCatalogEntry) GetShortNameKey()(*string) {
     return m.shortNameKey
 }
 // Serialize serializes information the current object
 func (m *ApiGameCatalogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("bannerImage", m.GetBannerImage())
+        err := writer.WriteStringValue("bannerImage", m.GetBannerImage())
         if err != nil {
             return err
         }
@@ -859,13 +355,13 @@ func (m *ApiGameCatalogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
-        err := writer.WriteObjectValue("convexId", m.GetConvexId())
+        err := writer.WriteStringValue("convexId", m.GetConvexId())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("coverImage", m.GetCoverImage())
+        err := writer.WriteStringValue("coverImage", m.GetCoverImage())
         if err != nil {
             return err
         }
@@ -877,7 +373,7 @@ func (m *ApiGameCatalogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
-        err := writer.WriteObjectValue("descriptionKey", m.GetDescriptionKey())
+        err := writer.WriteStringValue("descriptionKey", m.GetDescriptionKey())
         if err != nil {
             return err
         }
@@ -961,13 +457,13 @@ func (m *ApiGameCatalogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
-        err := writer.WriteObjectValue("rulesLink", m.GetRulesLink())
+        err := writer.WriteStringValue("rulesLink", m.GetRulesLink())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("shortNameKey", m.GetShortNameKey())
+        err := writer.WriteStringValue("shortNameKey", m.GetShortNameKey())
         if err != nil {
             return err
         }
@@ -975,7 +471,7 @@ func (m *ApiGameCatalogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetBannerImage sets the bannerImage property value. The bannerImage property
-func (m *ApiGameCatalogEntry) SetBannerImage(value ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImageable)() {
+func (m *ApiGameCatalogEntry) SetBannerImage(value *string)() {
     m.bannerImage = value
 }
 // SetCategory sets the category property value. The category property
@@ -983,11 +479,11 @@ func (m *ApiGameCatalogEntry) SetCategory(value *string)() {
     m.category = value
 }
 // SetConvexId sets the convexId property value. Active Convex games-table ID, when available for match APIs.
-func (m *ApiGameCatalogEntry) SetConvexId(value ApiGameCatalogEntry_ApiGameCatalogEntry_convexIdable)() {
+func (m *ApiGameCatalogEntry) SetConvexId(value *string)() {
     m.convexId = value
 }
 // SetCoverImage sets the coverImage property value. The coverImage property
-func (m *ApiGameCatalogEntry) SetCoverImage(value ApiGameCatalogEntry_ApiGameCatalogEntry_coverImageable)() {
+func (m *ApiGameCatalogEntry) SetCoverImage(value *string)() {
     m.coverImage = value
 }
 // SetDefaultTeamSize sets the defaultTeamSize property value. The defaultTeamSize property
@@ -995,7 +491,7 @@ func (m *ApiGameCatalogEntry) SetDefaultTeamSize(value *int32)() {
     m.defaultTeamSize = value
 }
 // SetDescriptionKey sets the descriptionKey property value. The descriptionKey property
-func (m *ApiGameCatalogEntry) SetDescriptionKey(value ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKeyable)() {
+func (m *ApiGameCatalogEntry) SetDescriptionKey(value *string)() {
     m.descriptionKey = value
 }
 // SetHasCompetitiveMode sets the hasCompetitiveMode property value. The hasCompetitiveMode property
@@ -1035,21 +531,21 @@ func (m *ApiGameCatalogEntry) SetPlaylists(value []ApiGamePlaylistable)() {
     m.playlists = value
 }
 // SetRulesLink sets the rulesLink property value. The rulesLink property
-func (m *ApiGameCatalogEntry) SetRulesLink(value ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLinkable)() {
+func (m *ApiGameCatalogEntry) SetRulesLink(value *string)() {
     m.rulesLink = value
 }
 // SetShortNameKey sets the shortNameKey property value. The shortNameKey property
-func (m *ApiGameCatalogEntry) SetShortNameKey(value ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKeyable)() {
+func (m *ApiGameCatalogEntry) SetShortNameKey(value *string)() {
     m.shortNameKey = value
 }
 type ApiGameCatalogEntryable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBannerImage()(ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImageable)
+    GetBannerImage()(*string)
     GetCategory()(*string)
-    GetConvexId()(ApiGameCatalogEntry_ApiGameCatalogEntry_convexIdable)
-    GetCoverImage()(ApiGameCatalogEntry_ApiGameCatalogEntry_coverImageable)
+    GetConvexId()(*string)
+    GetCoverImage()(*string)
     GetDefaultTeamSize()(*int32)
-    GetDescriptionKey()(ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKeyable)
+    GetDescriptionKey()(*string)
     GetHasCompetitiveMode()(*bool)
     GetId()(*string)
     GetIsAvailableForMatchApi()(*bool)
@@ -1059,14 +555,14 @@ type ApiGameCatalogEntryable interface {
     GetModes()([]ApiGameModeable)
     GetNameKey()(*string)
     GetPlaylists()([]ApiGamePlaylistable)
-    GetRulesLink()(ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLinkable)
-    GetShortNameKey()(ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKeyable)
-    SetBannerImage(value ApiGameCatalogEntry_ApiGameCatalogEntry_bannerImageable)()
+    GetRulesLink()(*string)
+    GetShortNameKey()(*string)
+    SetBannerImage(value *string)()
     SetCategory(value *string)()
-    SetConvexId(value ApiGameCatalogEntry_ApiGameCatalogEntry_convexIdable)()
-    SetCoverImage(value ApiGameCatalogEntry_ApiGameCatalogEntry_coverImageable)()
+    SetConvexId(value *string)()
+    SetCoverImage(value *string)()
     SetDefaultTeamSize(value *int32)()
-    SetDescriptionKey(value ApiGameCatalogEntry_ApiGameCatalogEntry_descriptionKeyable)()
+    SetDescriptionKey(value *string)()
     SetHasCompetitiveMode(value *bool)()
     SetId(value *string)()
     SetIsAvailableForMatchApi(value *bool)()
@@ -1076,6 +572,6 @@ type ApiGameCatalogEntryable interface {
     SetModes(value []ApiGameModeable)()
     SetNameKey(value *string)()
     SetPlaylists(value []ApiGamePlaylistable)()
-    SetRulesLink(value ApiGameCatalogEntry_ApiGameCatalogEntry_rulesLinkable)()
-    SetShortNameKey(value ApiGameCatalogEntry_ApiGameCatalogEntry_shortNameKeyable)()
+    SetRulesLink(value *string)()
+    SetShortNameKey(value *string)()
 }

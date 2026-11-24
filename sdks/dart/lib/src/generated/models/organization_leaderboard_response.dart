@@ -2,13 +2,12 @@
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './leaderboard_sort_by.dart';
 import './organization_leaderboard_entry.dart';
-import './organization_leaderboard_response_game_slug.dart';
 
 /// auto generated
 /// Organization leaderboard response.
 class OrganizationLeaderboardResponse implements Parsable {
     ///  The gameSlug property
-    OrganizationLeaderboardResponseGameSlug? gameSlug;
+    String? gameSlug;
     ///  The organizations property
     Iterable<OrganizationLeaderboardEntry>? organizations;
     ///  Supported leaderboard sort field.
@@ -24,7 +23,7 @@ class OrganizationLeaderboardResponse implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['gameSlug'] = (node) => gameSlug = node.getObjectValue<OrganizationLeaderboardResponseGameSlug>(OrganizationLeaderboardResponseGameSlug.createFromDiscriminatorValue);
+        deserializerMap['gameSlug'] = (node) => gameSlug = node.getStringValue();
         deserializerMap['organizations'] = (node) => organizations = node.getCollectionOfObjectValues<OrganizationLeaderboardEntry>(OrganizationLeaderboardEntry.createFromDiscriminatorValue);
         deserializerMap['sortBy'] = (node) => sortBy = node.getEnumValue<LeaderboardSortBy>((stringValue) => LeaderboardSortBy.values.where((enumVal) => enumVal.value == stringValue).firstOrNull);
         deserializerMap['timestamp'] = (node) => timestamp = node.getStringValue();
@@ -34,7 +33,7 @@ class OrganizationLeaderboardResponse implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<OrganizationLeaderboardResponseGameSlug>('gameSlug', gameSlug);
+        writer.writeStringValue('gameSlug', gameSlug);
         writer.writeCollectionOfObjectValues<OrganizationLeaderboardEntry>('organizations', organizations);
         writer.writeEnumValue<LeaderboardSortBy>('sortBy', sortBy, (e) => e?.value);
         writer.writeStringValue('timestamp', timestamp);

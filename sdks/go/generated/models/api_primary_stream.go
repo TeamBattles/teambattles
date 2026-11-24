@@ -10,483 +10,21 @@ import (
 // ApiPrimaryStream the user's primary (highest-viewer) live stream.
 type ApiPrimaryStream struct {
     // Game/category being streamed, when known.
-    gameName ApiPrimaryStream_ApiPrimaryStream_gameNameable
+    gameName *string
     // ISO timestamp the user was last observed live, when known.
-    lastLiveAt ApiPrimaryStream_ApiPrimaryStream_lastLiveAtable
+    lastLiveAt *string
     // Supported streaming platform.
     platform *StreamPlatform
     // Stream start time (platform-provided ISO timestamp), when known.
-    startedAt ApiPrimaryStream_ApiPrimaryStream_startedAtable
+    startedAt *string
     // Watch URL, when known.
-    streamUrl ApiPrimaryStream_ApiPrimaryStream_streamUrlable
+    streamUrl *string
     // Stream thumbnail URL, when known.
-    thumbnailUrl ApiPrimaryStream_ApiPrimaryStream_thumbnailUrlable
+    thumbnailUrl *string
     // Stream title, when known.
-    title ApiPrimaryStream_ApiPrimaryStream_titleable
+    title *string
     // Current viewer count, when known.
     viewerCount ApiPrimaryStream_ApiPrimaryStream_viewerCountable
-}
-// ApiPrimaryStream_ApiPrimaryStream_gameName composed type wrapper for classes ApiPrimaryStream_gameNameMember1able, string
-type ApiPrimaryStream_ApiPrimaryStream_gameName struct {
-    // Composed type representation for type ApiPrimaryStream_gameNameMember1able
-    apiPrimaryStream_gameNameMember1 ApiPrimaryStream_gameNameMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiPrimaryStream_ApiPrimaryStream_gameName instantiates a new ApiPrimaryStream_ApiPrimaryStream_gameName and sets the default values.
-func NewApiPrimaryStream_ApiPrimaryStream_gameName()(*ApiPrimaryStream_ApiPrimaryStream_gameName) {
-    m := &ApiPrimaryStream_ApiPrimaryStream_gameName{
-    }
-    return m
-}
-// CreateApiPrimaryStream_ApiPrimaryStream_gameNameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiPrimaryStream_ApiPrimaryStream_gameNameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiPrimaryStream_ApiPrimaryStream_gameName()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiPrimaryStream_gameNameMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiPrimaryStream_gameNameMember1able); ok {
-                result.SetApiPrimaryStreamGameNameMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiPrimaryStreamGameNameMember1 gets the ApiPrimaryStream_gameNameMember1 property value. Composed type representation for type ApiPrimaryStream_gameNameMember1able
-// returns a ApiPrimaryStream_gameNameMember1able when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_gameName) GetApiPrimaryStreamGameNameMember1()(ApiPrimaryStream_gameNameMember1able) {
-    return m.apiPrimaryStream_gameNameMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_gameName) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_gameName) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_gameName) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiPrimaryStream_ApiPrimaryStream_gameName) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiPrimaryStreamGameNameMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiPrimaryStreamGameNameMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiPrimaryStreamGameNameMember1 sets the ApiPrimaryStream_gameNameMember1 property value. Composed type representation for type ApiPrimaryStream_gameNameMember1able
-func (m *ApiPrimaryStream_ApiPrimaryStream_gameName) SetApiPrimaryStreamGameNameMember1(value ApiPrimaryStream_gameNameMember1able)() {
-    m.apiPrimaryStream_gameNameMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiPrimaryStream_ApiPrimaryStream_gameName) SetString(value *string)() {
-    m.string = value
-}
-// ApiPrimaryStream_ApiPrimaryStream_lastLiveAt composed type wrapper for classes ApiPrimaryStream_lastLiveAtMember1able, string
-type ApiPrimaryStream_ApiPrimaryStream_lastLiveAt struct {
-    // Composed type representation for type ApiPrimaryStream_lastLiveAtMember1able
-    apiPrimaryStream_lastLiveAtMember1 ApiPrimaryStream_lastLiveAtMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiPrimaryStream_ApiPrimaryStream_lastLiveAt instantiates a new ApiPrimaryStream_ApiPrimaryStream_lastLiveAt and sets the default values.
-func NewApiPrimaryStream_ApiPrimaryStream_lastLiveAt()(*ApiPrimaryStream_ApiPrimaryStream_lastLiveAt) {
-    m := &ApiPrimaryStream_ApiPrimaryStream_lastLiveAt{
-    }
-    return m
-}
-// CreateApiPrimaryStream_ApiPrimaryStream_lastLiveAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiPrimaryStream_ApiPrimaryStream_lastLiveAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiPrimaryStream_ApiPrimaryStream_lastLiveAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiPrimaryStream_lastLiveAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiPrimaryStream_lastLiveAtMember1able); ok {
-                result.SetApiPrimaryStreamLastLiveAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiPrimaryStreamLastLiveAtMember1 gets the ApiPrimaryStream_lastLiveAtMember1 property value. Composed type representation for type ApiPrimaryStream_lastLiveAtMember1able
-// returns a ApiPrimaryStream_lastLiveAtMember1able when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_lastLiveAt) GetApiPrimaryStreamLastLiveAtMember1()(ApiPrimaryStream_lastLiveAtMember1able) {
-    return m.apiPrimaryStream_lastLiveAtMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_lastLiveAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_lastLiveAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_lastLiveAt) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiPrimaryStream_ApiPrimaryStream_lastLiveAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiPrimaryStreamLastLiveAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiPrimaryStreamLastLiveAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiPrimaryStreamLastLiveAtMember1 sets the ApiPrimaryStream_lastLiveAtMember1 property value. Composed type representation for type ApiPrimaryStream_lastLiveAtMember1able
-func (m *ApiPrimaryStream_ApiPrimaryStream_lastLiveAt) SetApiPrimaryStreamLastLiveAtMember1(value ApiPrimaryStream_lastLiveAtMember1able)() {
-    m.apiPrimaryStream_lastLiveAtMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiPrimaryStream_ApiPrimaryStream_lastLiveAt) SetString(value *string)() {
-    m.string = value
-}
-// ApiPrimaryStream_ApiPrimaryStream_startedAt composed type wrapper for classes ApiPrimaryStream_startedAtMember1able, string
-type ApiPrimaryStream_ApiPrimaryStream_startedAt struct {
-    // Composed type representation for type ApiPrimaryStream_startedAtMember1able
-    apiPrimaryStream_startedAtMember1 ApiPrimaryStream_startedAtMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiPrimaryStream_ApiPrimaryStream_startedAt instantiates a new ApiPrimaryStream_ApiPrimaryStream_startedAt and sets the default values.
-func NewApiPrimaryStream_ApiPrimaryStream_startedAt()(*ApiPrimaryStream_ApiPrimaryStream_startedAt) {
-    m := &ApiPrimaryStream_ApiPrimaryStream_startedAt{
-    }
-    return m
-}
-// CreateApiPrimaryStream_ApiPrimaryStream_startedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiPrimaryStream_ApiPrimaryStream_startedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiPrimaryStream_ApiPrimaryStream_startedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiPrimaryStream_startedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiPrimaryStream_startedAtMember1able); ok {
-                result.SetApiPrimaryStreamStartedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiPrimaryStreamStartedAtMember1 gets the ApiPrimaryStream_startedAtMember1 property value. Composed type representation for type ApiPrimaryStream_startedAtMember1able
-// returns a ApiPrimaryStream_startedAtMember1able when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_startedAt) GetApiPrimaryStreamStartedAtMember1()(ApiPrimaryStream_startedAtMember1able) {
-    return m.apiPrimaryStream_startedAtMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_startedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_startedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_startedAt) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiPrimaryStream_ApiPrimaryStream_startedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiPrimaryStreamStartedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiPrimaryStreamStartedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiPrimaryStreamStartedAtMember1 sets the ApiPrimaryStream_startedAtMember1 property value. Composed type representation for type ApiPrimaryStream_startedAtMember1able
-func (m *ApiPrimaryStream_ApiPrimaryStream_startedAt) SetApiPrimaryStreamStartedAtMember1(value ApiPrimaryStream_startedAtMember1able)() {
-    m.apiPrimaryStream_startedAtMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiPrimaryStream_ApiPrimaryStream_startedAt) SetString(value *string)() {
-    m.string = value
-}
-// ApiPrimaryStream_ApiPrimaryStream_streamUrl composed type wrapper for classes ApiPrimaryStream_streamUrlMember1able, string
-type ApiPrimaryStream_ApiPrimaryStream_streamUrl struct {
-    // Composed type representation for type ApiPrimaryStream_streamUrlMember1able
-    apiPrimaryStream_streamUrlMember1 ApiPrimaryStream_streamUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiPrimaryStream_ApiPrimaryStream_streamUrl instantiates a new ApiPrimaryStream_ApiPrimaryStream_streamUrl and sets the default values.
-func NewApiPrimaryStream_ApiPrimaryStream_streamUrl()(*ApiPrimaryStream_ApiPrimaryStream_streamUrl) {
-    m := &ApiPrimaryStream_ApiPrimaryStream_streamUrl{
-    }
-    return m
-}
-// CreateApiPrimaryStream_ApiPrimaryStream_streamUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiPrimaryStream_ApiPrimaryStream_streamUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiPrimaryStream_ApiPrimaryStream_streamUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiPrimaryStream_streamUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiPrimaryStream_streamUrlMember1able); ok {
-                result.SetApiPrimaryStreamStreamUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiPrimaryStreamStreamUrlMember1 gets the ApiPrimaryStream_streamUrlMember1 property value. Composed type representation for type ApiPrimaryStream_streamUrlMember1able
-// returns a ApiPrimaryStream_streamUrlMember1able when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_streamUrl) GetApiPrimaryStreamStreamUrlMember1()(ApiPrimaryStream_streamUrlMember1able) {
-    return m.apiPrimaryStream_streamUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_streamUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_streamUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_streamUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiPrimaryStream_ApiPrimaryStream_streamUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiPrimaryStreamStreamUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiPrimaryStreamStreamUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiPrimaryStreamStreamUrlMember1 sets the ApiPrimaryStream_streamUrlMember1 property value. Composed type representation for type ApiPrimaryStream_streamUrlMember1able
-func (m *ApiPrimaryStream_ApiPrimaryStream_streamUrl) SetApiPrimaryStreamStreamUrlMember1(value ApiPrimaryStream_streamUrlMember1able)() {
-    m.apiPrimaryStream_streamUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiPrimaryStream_ApiPrimaryStream_streamUrl) SetString(value *string)() {
-    m.string = value
-}
-// ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl composed type wrapper for classes ApiPrimaryStream_thumbnailUrlMember1able, string
-type ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl struct {
-    // Composed type representation for type ApiPrimaryStream_thumbnailUrlMember1able
-    apiPrimaryStream_thumbnailUrlMember1 ApiPrimaryStream_thumbnailUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiPrimaryStream_ApiPrimaryStream_thumbnailUrl instantiates a new ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl and sets the default values.
-func NewApiPrimaryStream_ApiPrimaryStream_thumbnailUrl()(*ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl) {
-    m := &ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl{
-    }
-    return m
-}
-// CreateApiPrimaryStream_ApiPrimaryStream_thumbnailUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiPrimaryStream_ApiPrimaryStream_thumbnailUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiPrimaryStream_ApiPrimaryStream_thumbnailUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiPrimaryStream_thumbnailUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiPrimaryStream_thumbnailUrlMember1able); ok {
-                result.SetApiPrimaryStreamThumbnailUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiPrimaryStreamThumbnailUrlMember1 gets the ApiPrimaryStream_thumbnailUrlMember1 property value. Composed type representation for type ApiPrimaryStream_thumbnailUrlMember1able
-// returns a ApiPrimaryStream_thumbnailUrlMember1able when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl) GetApiPrimaryStreamThumbnailUrlMember1()(ApiPrimaryStream_thumbnailUrlMember1able) {
-    return m.apiPrimaryStream_thumbnailUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiPrimaryStreamThumbnailUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiPrimaryStreamThumbnailUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiPrimaryStreamThumbnailUrlMember1 sets the ApiPrimaryStream_thumbnailUrlMember1 property value. Composed type representation for type ApiPrimaryStream_thumbnailUrlMember1able
-func (m *ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl) SetApiPrimaryStreamThumbnailUrlMember1(value ApiPrimaryStream_thumbnailUrlMember1able)() {
-    m.apiPrimaryStream_thumbnailUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiPrimaryStream_ApiPrimaryStream_thumbnailUrl) SetString(value *string)() {
-    m.string = value
-}
-// ApiPrimaryStream_ApiPrimaryStream_title composed type wrapper for classes ApiPrimaryStream_titleMember1able, string
-type ApiPrimaryStream_ApiPrimaryStream_title struct {
-    // Composed type representation for type ApiPrimaryStream_titleMember1able
-    apiPrimaryStream_titleMember1 ApiPrimaryStream_titleMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiPrimaryStream_ApiPrimaryStream_title instantiates a new ApiPrimaryStream_ApiPrimaryStream_title and sets the default values.
-func NewApiPrimaryStream_ApiPrimaryStream_title()(*ApiPrimaryStream_ApiPrimaryStream_title) {
-    m := &ApiPrimaryStream_ApiPrimaryStream_title{
-    }
-    return m
-}
-// CreateApiPrimaryStream_ApiPrimaryStream_titleFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiPrimaryStream_ApiPrimaryStream_titleFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiPrimaryStream_ApiPrimaryStream_title()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiPrimaryStream_titleMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiPrimaryStream_titleMember1able); ok {
-                result.SetApiPrimaryStreamTitleMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiPrimaryStreamTitleMember1 gets the ApiPrimaryStream_titleMember1 property value. Composed type representation for type ApiPrimaryStream_titleMember1able
-// returns a ApiPrimaryStream_titleMember1able when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_title) GetApiPrimaryStreamTitleMember1()(ApiPrimaryStream_titleMember1able) {
-    return m.apiPrimaryStream_titleMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_title) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_title) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiPrimaryStream_ApiPrimaryStream_title) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiPrimaryStream_ApiPrimaryStream_title) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiPrimaryStreamTitleMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiPrimaryStreamTitleMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiPrimaryStreamTitleMember1 sets the ApiPrimaryStream_titleMember1 property value. Composed type representation for type ApiPrimaryStream_titleMember1able
-func (m *ApiPrimaryStream_ApiPrimaryStream_title) SetApiPrimaryStreamTitleMember1(value ApiPrimaryStream_titleMember1able)() {
-    m.apiPrimaryStream_titleMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiPrimaryStream_ApiPrimaryStream_title) SetString(value *string)() {
-    m.string = value
 }
 // ApiPrimaryStream_ApiPrimaryStream_viewerCount composed type wrapper for classes ApiPrimaryStream_viewerCountMember1able, int32
 type ApiPrimaryStream_ApiPrimaryStream_viewerCount struct {
@@ -565,48 +103,6 @@ func (m *ApiPrimaryStream_ApiPrimaryStream_viewerCount) SetApiPrimaryStreamViewe
 func (m *ApiPrimaryStream_ApiPrimaryStream_viewerCount) SetInteger(value *int32)() {
     m.integer = value
 }
-type ApiPrimaryStream_ApiPrimaryStream_gameNameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiPrimaryStreamGameNameMember1()(ApiPrimaryStream_gameNameMember1able)
-    GetString()(*string)
-    SetApiPrimaryStreamGameNameMember1(value ApiPrimaryStream_gameNameMember1able)()
-    SetString(value *string)()
-}
-type ApiPrimaryStream_ApiPrimaryStream_lastLiveAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiPrimaryStreamLastLiveAtMember1()(ApiPrimaryStream_lastLiveAtMember1able)
-    GetString()(*string)
-    SetApiPrimaryStreamLastLiveAtMember1(value ApiPrimaryStream_lastLiveAtMember1able)()
-    SetString(value *string)()
-}
-type ApiPrimaryStream_ApiPrimaryStream_startedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiPrimaryStreamStartedAtMember1()(ApiPrimaryStream_startedAtMember1able)
-    GetString()(*string)
-    SetApiPrimaryStreamStartedAtMember1(value ApiPrimaryStream_startedAtMember1able)()
-    SetString(value *string)()
-}
-type ApiPrimaryStream_ApiPrimaryStream_streamUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiPrimaryStreamStreamUrlMember1()(ApiPrimaryStream_streamUrlMember1able)
-    GetString()(*string)
-    SetApiPrimaryStreamStreamUrlMember1(value ApiPrimaryStream_streamUrlMember1able)()
-    SetString(value *string)()
-}
-type ApiPrimaryStream_ApiPrimaryStream_thumbnailUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiPrimaryStreamThumbnailUrlMember1()(ApiPrimaryStream_thumbnailUrlMember1able)
-    GetString()(*string)
-    SetApiPrimaryStreamThumbnailUrlMember1(value ApiPrimaryStream_thumbnailUrlMember1able)()
-    SetString(value *string)()
-}
-type ApiPrimaryStream_ApiPrimaryStream_titleable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiPrimaryStreamTitleMember1()(ApiPrimaryStream_titleMember1able)
-    GetString()(*string)
-    SetApiPrimaryStreamTitleMember1(value ApiPrimaryStream_titleMember1able)()
-    SetString(value *string)()
-}
 type ApiPrimaryStream_ApiPrimaryStream_viewerCountable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetApiPrimaryStreamViewerCountMember1()(ApiPrimaryStream_viewerCountMember1able)
@@ -630,22 +126,22 @@ func CreateApiPrimaryStreamFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 func (m *ApiPrimaryStream) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["gameName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiPrimaryStream_ApiPrimaryStream_gameNameFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetGameName(val.(ApiPrimaryStream_ApiPrimaryStream_gameNameable))
+            m.SetGameName(val)
         }
         return nil
     }
     res["lastLiveAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiPrimaryStream_ApiPrimaryStream_lastLiveAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetLastLiveAt(val.(ApiPrimaryStream_ApiPrimaryStream_lastLiveAtable))
+            m.SetLastLiveAt(val)
         }
         return nil
     }
@@ -660,42 +156,42 @@ func (m *ApiPrimaryStream) GetFieldDeserializers()(map[string]func(i878a80d2330e
         return nil
     }
     res["startedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiPrimaryStream_ApiPrimaryStream_startedAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetStartedAt(val.(ApiPrimaryStream_ApiPrimaryStream_startedAtable))
+            m.SetStartedAt(val)
         }
         return nil
     }
     res["streamUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiPrimaryStream_ApiPrimaryStream_streamUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetStreamUrl(val.(ApiPrimaryStream_ApiPrimaryStream_streamUrlable))
+            m.SetStreamUrl(val)
         }
         return nil
     }
     res["thumbnailUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiPrimaryStream_ApiPrimaryStream_thumbnailUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetThumbnailUrl(val.(ApiPrimaryStream_ApiPrimaryStream_thumbnailUrlable))
+            m.SetThumbnailUrl(val)
         }
         return nil
     }
     res["title"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiPrimaryStream_ApiPrimaryStream_titleFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetTitle(val.(ApiPrimaryStream_ApiPrimaryStream_titleable))
+            m.SetTitle(val)
         }
         return nil
     }
@@ -712,13 +208,13 @@ func (m *ApiPrimaryStream) GetFieldDeserializers()(map[string]func(i878a80d2330e
     return res
 }
 // GetGameName gets the gameName property value. Game/category being streamed, when known.
-// returns a ApiPrimaryStream_ApiPrimaryStream_gameNameable when successful
-func (m *ApiPrimaryStream) GetGameName()(ApiPrimaryStream_ApiPrimaryStream_gameNameable) {
+// returns a *string when successful
+func (m *ApiPrimaryStream) GetGameName()(*string) {
     return m.gameName
 }
 // GetLastLiveAt gets the lastLiveAt property value. ISO timestamp the user was last observed live, when known.
-// returns a ApiPrimaryStream_ApiPrimaryStream_lastLiveAtable when successful
-func (m *ApiPrimaryStream) GetLastLiveAt()(ApiPrimaryStream_ApiPrimaryStream_lastLiveAtable) {
+// returns a *string when successful
+func (m *ApiPrimaryStream) GetLastLiveAt()(*string) {
     return m.lastLiveAt
 }
 // GetPlatform gets the platform property value. Supported streaming platform.
@@ -727,23 +223,23 @@ func (m *ApiPrimaryStream) GetPlatform()(*StreamPlatform) {
     return m.platform
 }
 // GetStartedAt gets the startedAt property value. Stream start time (platform-provided ISO timestamp), when known.
-// returns a ApiPrimaryStream_ApiPrimaryStream_startedAtable when successful
-func (m *ApiPrimaryStream) GetStartedAt()(ApiPrimaryStream_ApiPrimaryStream_startedAtable) {
+// returns a *string when successful
+func (m *ApiPrimaryStream) GetStartedAt()(*string) {
     return m.startedAt
 }
 // GetStreamUrl gets the streamUrl property value. Watch URL, when known.
-// returns a ApiPrimaryStream_ApiPrimaryStream_streamUrlable when successful
-func (m *ApiPrimaryStream) GetStreamUrl()(ApiPrimaryStream_ApiPrimaryStream_streamUrlable) {
+// returns a *string when successful
+func (m *ApiPrimaryStream) GetStreamUrl()(*string) {
     return m.streamUrl
 }
 // GetThumbnailUrl gets the thumbnailUrl property value. Stream thumbnail URL, when known.
-// returns a ApiPrimaryStream_ApiPrimaryStream_thumbnailUrlable when successful
-func (m *ApiPrimaryStream) GetThumbnailUrl()(ApiPrimaryStream_ApiPrimaryStream_thumbnailUrlable) {
+// returns a *string when successful
+func (m *ApiPrimaryStream) GetThumbnailUrl()(*string) {
     return m.thumbnailUrl
 }
 // GetTitle gets the title property value. Stream title, when known.
-// returns a ApiPrimaryStream_ApiPrimaryStream_titleable when successful
-func (m *ApiPrimaryStream) GetTitle()(ApiPrimaryStream_ApiPrimaryStream_titleable) {
+// returns a *string when successful
+func (m *ApiPrimaryStream) GetTitle()(*string) {
     return m.title
 }
 // GetViewerCount gets the viewerCount property value. Current viewer count, when known.
@@ -754,13 +250,13 @@ func (m *ApiPrimaryStream) GetViewerCount()(ApiPrimaryStream_ApiPrimaryStream_vi
 // Serialize serializes information the current object
 func (m *ApiPrimaryStream) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("gameName", m.GetGameName())
+        err := writer.WriteStringValue("gameName", m.GetGameName())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("lastLiveAt", m.GetLastLiveAt())
+        err := writer.WriteStringValue("lastLiveAt", m.GetLastLiveAt())
         if err != nil {
             return err
         }
@@ -773,25 +269,25 @@ func (m *ApiPrimaryStream) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
         }
     }
     {
-        err := writer.WriteObjectValue("startedAt", m.GetStartedAt())
+        err := writer.WriteStringValue("startedAt", m.GetStartedAt())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("streamUrl", m.GetStreamUrl())
+        err := writer.WriteStringValue("streamUrl", m.GetStreamUrl())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("thumbnailUrl", m.GetThumbnailUrl())
+        err := writer.WriteStringValue("thumbnailUrl", m.GetThumbnailUrl())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("title", m.GetTitle())
+        err := writer.WriteStringValue("title", m.GetTitle())
         if err != nil {
             return err
         }
@@ -805,11 +301,11 @@ func (m *ApiPrimaryStream) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
     return nil
 }
 // SetGameName sets the gameName property value. Game/category being streamed, when known.
-func (m *ApiPrimaryStream) SetGameName(value ApiPrimaryStream_ApiPrimaryStream_gameNameable)() {
+func (m *ApiPrimaryStream) SetGameName(value *string)() {
     m.gameName = value
 }
 // SetLastLiveAt sets the lastLiveAt property value. ISO timestamp the user was last observed live, when known.
-func (m *ApiPrimaryStream) SetLastLiveAt(value ApiPrimaryStream_ApiPrimaryStream_lastLiveAtable)() {
+func (m *ApiPrimaryStream) SetLastLiveAt(value *string)() {
     m.lastLiveAt = value
 }
 // SetPlatform sets the platform property value. Supported streaming platform.
@@ -817,19 +313,19 @@ func (m *ApiPrimaryStream) SetPlatform(value *StreamPlatform)() {
     m.platform = value
 }
 // SetStartedAt sets the startedAt property value. Stream start time (platform-provided ISO timestamp), when known.
-func (m *ApiPrimaryStream) SetStartedAt(value ApiPrimaryStream_ApiPrimaryStream_startedAtable)() {
+func (m *ApiPrimaryStream) SetStartedAt(value *string)() {
     m.startedAt = value
 }
 // SetStreamUrl sets the streamUrl property value. Watch URL, when known.
-func (m *ApiPrimaryStream) SetStreamUrl(value ApiPrimaryStream_ApiPrimaryStream_streamUrlable)() {
+func (m *ApiPrimaryStream) SetStreamUrl(value *string)() {
     m.streamUrl = value
 }
 // SetThumbnailUrl sets the thumbnailUrl property value. Stream thumbnail URL, when known.
-func (m *ApiPrimaryStream) SetThumbnailUrl(value ApiPrimaryStream_ApiPrimaryStream_thumbnailUrlable)() {
+func (m *ApiPrimaryStream) SetThumbnailUrl(value *string)() {
     m.thumbnailUrl = value
 }
 // SetTitle sets the title property value. Stream title, when known.
-func (m *ApiPrimaryStream) SetTitle(value ApiPrimaryStream_ApiPrimaryStream_titleable)() {
+func (m *ApiPrimaryStream) SetTitle(value *string)() {
     m.title = value
 }
 // SetViewerCount sets the viewerCount property value. Current viewer count, when known.
@@ -838,20 +334,20 @@ func (m *ApiPrimaryStream) SetViewerCount(value ApiPrimaryStream_ApiPrimaryStrea
 }
 type ApiPrimaryStreamable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameName()(ApiPrimaryStream_ApiPrimaryStream_gameNameable)
-    GetLastLiveAt()(ApiPrimaryStream_ApiPrimaryStream_lastLiveAtable)
+    GetGameName()(*string)
+    GetLastLiveAt()(*string)
     GetPlatform()(*StreamPlatform)
-    GetStartedAt()(ApiPrimaryStream_ApiPrimaryStream_startedAtable)
-    GetStreamUrl()(ApiPrimaryStream_ApiPrimaryStream_streamUrlable)
-    GetThumbnailUrl()(ApiPrimaryStream_ApiPrimaryStream_thumbnailUrlable)
-    GetTitle()(ApiPrimaryStream_ApiPrimaryStream_titleable)
+    GetStartedAt()(*string)
+    GetStreamUrl()(*string)
+    GetThumbnailUrl()(*string)
+    GetTitle()(*string)
     GetViewerCount()(ApiPrimaryStream_ApiPrimaryStream_viewerCountable)
-    SetGameName(value ApiPrimaryStream_ApiPrimaryStream_gameNameable)()
-    SetLastLiveAt(value ApiPrimaryStream_ApiPrimaryStream_lastLiveAtable)()
+    SetGameName(value *string)()
+    SetLastLiveAt(value *string)()
     SetPlatform(value *StreamPlatform)()
-    SetStartedAt(value ApiPrimaryStream_ApiPrimaryStream_startedAtable)()
-    SetStreamUrl(value ApiPrimaryStream_ApiPrimaryStream_streamUrlable)()
-    SetThumbnailUrl(value ApiPrimaryStream_ApiPrimaryStream_thumbnailUrlable)()
-    SetTitle(value ApiPrimaryStream_ApiPrimaryStream_titleable)()
+    SetStartedAt(value *string)()
+    SetStreamUrl(value *string)()
+    SetThumbnailUrl(value *string)()
+    SetTitle(value *string)()
     SetViewerCount(value ApiPrimaryStream_ApiPrimaryStream_viewerCountable)()
 }

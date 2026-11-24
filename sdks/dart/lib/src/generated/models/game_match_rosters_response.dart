@@ -1,6 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './game_match_rosters_response_accepted_team_id.dart';
 import './game_roster_player.dart';
 
 /// auto generated
@@ -9,7 +8,7 @@ class GameMatchRostersResponse implements Parsable {
     ///  Players on the accepted team (empty when unaccepted).
     Iterable<GameRosterPlayer>? acceptedRoster;
     ///  ID of the team that accepted the match, or null if unaccepted.
-    GameMatchRostersResponseAcceptedTeamId? acceptedTeamId;
+    String? acceptedTeamId;
     ///  Players on the creator team.
     Iterable<GameRosterPlayer>? creatorRoster;
     ///  ID of the team that created the match.
@@ -26,7 +25,7 @@ class GameMatchRostersResponse implements Parsable {
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['acceptedRoster'] = (node) => acceptedRoster = node.getCollectionOfObjectValues<GameRosterPlayer>(GameRosterPlayer.createFromDiscriminatorValue);
-        deserializerMap['acceptedTeamId'] = (node) => acceptedTeamId = node.getObjectValue<GameMatchRostersResponseAcceptedTeamId>(GameMatchRostersResponseAcceptedTeamId.createFromDiscriminatorValue);
+        deserializerMap['acceptedTeamId'] = (node) => acceptedTeamId = node.getStringValue();
         deserializerMap['creatorRoster'] = (node) => creatorRoster = node.getCollectionOfObjectValues<GameRosterPlayer>(GameRosterPlayer.createFromDiscriminatorValue);
         deserializerMap['creatorTeamId'] = (node) => creatorTeamId = node.getStringValue();
         deserializerMap['timestamp'] = (node) => timestamp = node.getStringValue();
@@ -37,7 +36,7 @@ class GameMatchRostersResponse implements Parsable {
     @override
     void serialize(SerializationWriter writer) {
         writer.writeCollectionOfObjectValues<GameRosterPlayer>('acceptedRoster', acceptedRoster);
-        writer.writeObjectValue<GameMatchRostersResponseAcceptedTeamId>('acceptedTeamId', acceptedTeamId);
+        writer.writeStringValue('acceptedTeamId', acceptedTeamId);
         writer.writeCollectionOfObjectValues<GameRosterPlayer>('creatorRoster', creatorRoster);
         writer.writeStringValue('creatorTeamId', creatorTeamId);
         writer.writeStringValue('timestamp', timestamp);

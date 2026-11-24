@@ -26,10 +26,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Banner image URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_bannerUrl? BannerUrl { get; set; }
+        public string? BannerUrl { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_bannerUrl BannerUrl { get; set; }
+        public string BannerUrl { get; set; }
 #endif
         /// <summary>Bracket format of a tournament.</summary>
         public global::TeamBattles.Sdk.Models.TournamentFormat? Format { get; set; }
@@ -62,10 +62,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Logo image URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_logoUrl? LogoUrl { get; set; }
+        public string? LogoUrl { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_logoUrl LogoUrl { get; set; }
+        public string LogoUrl { get; set; }
 #endif
         /// <summary>Participant cap.</summary>
         public int? MaxParticipants { get; set; }
@@ -135,13 +135,13 @@ namespace TeamBattles.Sdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "approvalStatus", n => { ApprovalStatus = n.GetStringValue(); } },
-                { "bannerUrl", n => { BannerUrl = n.GetObjectValue<global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_bannerUrl>(global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_bannerUrl.CreateFromDiscriminatorValue); } },
+                { "bannerUrl", n => { BannerUrl = n.GetStringValue(); } },
                 { "format", n => { Format = n.GetEnumValue<global::TeamBattles.Sdk.Models.TournamentFormat>(); } },
                 { "game", n => { Game = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "host", n => { Host = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "_id", n => { Id = n.GetStringValue(); } },
                 { "isPubliclyListed", n => { IsPubliclyListed = n.GetBoolValue(); } },
-                { "logoUrl", n => { LogoUrl = n.GetObjectValue<global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_logoUrl>(global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_logoUrl.CreateFromDiscriminatorValue); } },
+                { "logoUrl", n => { LogoUrl = n.GetStringValue(); } },
                 { "maxParticipants", n => { MaxParticipants = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "needsAttention", n => { NeedsAttention = n.GetBoolValue(); } },
@@ -161,13 +161,13 @@ namespace TeamBattles.Sdk.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("approvalStatus", ApprovalStatus);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_bannerUrl>("bannerUrl", BannerUrl);
+            writer.WriteStringValue("bannerUrl", BannerUrl);
             writer.WriteEnumValue<global::TeamBattles.Sdk.Models.TournamentFormat>("format", Format);
             writer.WriteObjectValue<UntypedNode>("game", Game);
             writer.WriteObjectValue<UntypedNode>("host", Host);
             writer.WriteStringValue("_id", Id);
             writer.WriteBoolValue("isPubliclyListed", IsPubliclyListed);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_logoUrl>("logoUrl", LogoUrl);
+            writer.WriteStringValue("logoUrl", LogoUrl);
             writer.WriteIntValue("maxParticipants", MaxParticipants);
             writer.WriteStringValue("name", Name);
             writer.WriteBoolValue("needsAttention", NeedsAttention);
@@ -178,142 +178,6 @@ namespace TeamBattles.Sdk.Models
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.TournamentProfile_viewerManagement>("viewerManagement", ViewerManagement);
             writer.WriteStringValue("visibility", Visibility);
             writer.WriteAdditionalData(AdditionalData);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.TournamentProfile_bannerUrlMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class TournamentProfile_bannerUrl : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.TournamentProfile_bannerUrlMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.TournamentProfile_bannerUrlMember1? TournamentProfileBannerUrlMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.TournamentProfile_bannerUrlMember1 TournamentProfileBannerUrlMember1 { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_bannerUrl"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_bannerUrl CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_bannerUrl();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.TournamentProfileBannerUrlMember1 = new global::TeamBattles.Sdk.Models.TournamentProfile_bannerUrlMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(TournamentProfileBannerUrlMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(TournamentProfileBannerUrlMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.TournamentProfile_bannerUrlMember1>(null, TournamentProfileBannerUrlMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.TournamentProfile_logoUrlMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class TournamentProfile_logoUrl : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.TournamentProfile_logoUrlMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.TournamentProfile_logoUrlMember1? TournamentProfileLogoUrlMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.TournamentProfile_logoUrlMember1 TournamentProfileLogoUrlMember1 { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_logoUrl"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_logoUrl CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.TournamentProfile.TournamentProfile_logoUrl();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.TournamentProfileLogoUrlMember1 = new global::TeamBattles.Sdk.Models.TournamentProfile_logoUrlMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(TournamentProfileLogoUrlMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(TournamentProfileLogoUrlMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.TournamentProfile_logoUrlMember1>(null, TournamentProfileLogoUrlMember1);
-                }
-            }
         }
     }
 }

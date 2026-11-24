@@ -1,9 +1,7 @@
 package gg.teambattles.sdk.generated.models;
 
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +14,7 @@ public class TournamentStaffMember implements Parsable {
     /**
      * Avatar image URL.
      */
-    private TournamentStaffMemberAvatarUrl avatarUrl;
+    private String avatarUrl;
     /**
      * Time the row was added (epoch milliseconds).
      */
@@ -53,10 +51,10 @@ public class TournamentStaffMember implements Parsable {
     }
     /**
      * Gets the avatarUrl property value. Avatar image URL.
-     * @return a {@link TournamentStaffMemberAvatarUrl}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public TournamentStaffMemberAvatarUrl getAvatarUrl() {
+    public String getAvatarUrl() {
         return this.avatarUrl;
     }
     /**
@@ -74,7 +72,7 @@ public class TournamentStaffMember implements Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(7);
-        deserializerMap.put("avatarUrl", (n) -> { this.setAvatarUrl(n.getObjectValue(TournamentStaffMemberAvatarUrl::createFromDiscriminatorValue)); });
+        deserializerMap.put("avatarUrl", (n) -> { this.setAvatarUrl(n.getStringValue()); });
         deserializerMap.put("createdAt", (n) -> { this.setCreatedAt(n.getDoubleValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
         deserializerMap.put("name", (n) -> { this.setName(n.getStringValue()); });
@@ -129,7 +127,7 @@ public class TournamentStaffMember implements Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeObjectValue("avatarUrl", this.getAvatarUrl());
+        writer.writeStringValue("avatarUrl", this.getAvatarUrl());
         writer.writeDoubleValue("createdAt", this.getCreatedAt());
         writer.writeStringValue("id", this.getId());
         writer.writeStringValue("name", this.getName());
@@ -141,7 +139,7 @@ public class TournamentStaffMember implements Parsable {
      * Sets the avatarUrl property value. Avatar image URL.
      * @param value Value to set for the avatarUrl property.
      */
-    public void setAvatarUrl(@jakarta.annotation.Nullable final TournamentStaffMemberAvatarUrl value) {
+    public void setAvatarUrl(@jakarta.annotation.Nullable final String value) {
         this.avatarUrl = value;
     }
     /**
@@ -185,88 +183,5 @@ public class TournamentStaffMember implements Parsable {
      */
     public void setUsername(@jakarta.annotation.Nullable final String value) {
         this.username = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link String}, {@link TournamentStaffMemberAvatarUrlMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class TournamentStaffMemberAvatarUrl implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Composed type representation for type {@link TournamentStaffMemberAvatarUrlMember1}
-         */
-        private TournamentStaffMemberAvatarUrlMember1 tournamentStaffMemberAvatarUrlMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link TournamentStaffMemberAvatarUrl}
-         */
-        @jakarta.annotation.Nonnull
-        public static TournamentStaffMemberAvatarUrl createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final TournamentStaffMemberAvatarUrl result = new TournamentStaffMemberAvatarUrl();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setTournamentStaffMemberAvatarUrlMember1(new TournamentStaffMemberAvatarUrlMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getTournamentStaffMemberAvatarUrlMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getTournamentStaffMemberAvatarUrlMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Gets the TournamentStaffMember_avatarUrlMember1 property value. Composed type representation for type {@link TournamentStaffMemberAvatarUrlMember1}
-         * @return a {@link TournamentStaffMemberAvatarUrlMember1}
-         */
-        @jakarta.annotation.Nullable
-        public TournamentStaffMemberAvatarUrlMember1 getTournamentStaffMemberAvatarUrlMember1() {
-            return this.tournamentStaffMemberAvatarUrlMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getTournamentStaffMemberAvatarUrlMember1());
-            }
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-        /**
-         * Sets the TournamentStaffMember_avatarUrlMember1 property value. Composed type representation for type {@link TournamentStaffMemberAvatarUrlMember1}
-         * @param value Value to set for the TournamentStaffMember_avatarUrlMember1 property.
-         */
-        public void setTournamentStaffMemberAvatarUrlMember1(@jakarta.annotation.Nullable final TournamentStaffMemberAvatarUrlMember1 value) {
-            this.tournamentStaffMemberAvatarUrlMember1 = value;
-        }
     }
 }

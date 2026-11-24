@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class Team implements Parsable 
 {
     /**
-     * @var Team_avatarUrl|null $avatarUrl Team avatar URL.
+     * @var string|null $avatarUrl Team avatar URL.
     */
-    private ?Team_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
      * @var string|null $id Team ID.
@@ -42,9 +42,9 @@ class Team implements Parsable
 
     /**
      * Gets the avatarUrl property value. Team avatar URL.
-     * @return Team_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?Team_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
@@ -55,7 +55,7 @@ class Team implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([Team_avatarUrl::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'tag' => fn(ParseNode $n) => $o->setTag($n->getStringValue()),
@@ -91,7 +91,7 @@ class Team implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('tag', $this->getTag());
@@ -99,9 +99,9 @@ class Team implements Parsable
 
     /**
      * Sets the avatarUrl property value. Team avatar URL.
-     * @param Team_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?Team_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 

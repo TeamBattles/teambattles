@@ -12,179 +12,11 @@ type TwitchChannelBadges struct {
     // Channel-specific Twitch chat badge sets.
     badges []TwitchBadgeSetable
     // Resolved broadcaster (channel) id.
-    broadcaster_id TwitchChannelBadges_TwitchChannelBadges_broadcaster_idable
+    broadcaster_id *string
     // Resolved broadcaster display name or login.
-    broadcaster_name TwitchChannelBadges_TwitchChannelBadges_broadcaster_nameable
+    broadcaster_name *string
     // Response generation time (ISO 8601).
     timestamp *string
-}
-// TwitchChannelBadges_TwitchChannelBadges_broadcaster_id composed type wrapper for classes string, TwitchChannelBadges_broadcaster_idMember1able
-type TwitchChannelBadges_TwitchChannelBadges_broadcaster_id struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TwitchChannelBadges_broadcaster_idMember1able
-    twitchChannelBadges_broadcaster_idMember1 TwitchChannelBadges_broadcaster_idMember1able
-}
-// NewTwitchChannelBadges_TwitchChannelBadges_broadcaster_id instantiates a new TwitchChannelBadges_TwitchChannelBadges_broadcaster_id and sets the default values.
-func NewTwitchChannelBadges_TwitchChannelBadges_broadcaster_id()(*TwitchChannelBadges_TwitchChannelBadges_broadcaster_id) {
-    m := &TwitchChannelBadges_TwitchChannelBadges_broadcaster_id{
-    }
-    return m
-}
-// CreateTwitchChannelBadges_TwitchChannelBadges_broadcaster_idFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTwitchChannelBadges_TwitchChannelBadges_broadcaster_idFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTwitchChannelBadges_TwitchChannelBadges_broadcaster_id()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTwitchChannelBadges_broadcaster_idMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TwitchChannelBadges_broadcaster_idMember1able); ok {
-                result.SetTwitchChannelBadgesBroadcasterIdMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_id) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_id) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_id) GetString()(*string) {
-    return m.string
-}
-// GetTwitchChannelBadgesBroadcasterIdMember1 gets the TwitchChannelBadges_broadcaster_idMember1 property value. Composed type representation for type TwitchChannelBadges_broadcaster_idMember1able
-// returns a TwitchChannelBadges_broadcaster_idMember1able when successful
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_id) GetTwitchChannelBadgesBroadcasterIdMember1()(TwitchChannelBadges_broadcaster_idMember1able) {
-    return m.twitchChannelBadges_broadcaster_idMember1
-}
-// Serialize serializes information the current object
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_id) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTwitchChannelBadgesBroadcasterIdMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTwitchChannelBadgesBroadcasterIdMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_id) SetString(value *string)() {
-    m.string = value
-}
-// SetTwitchChannelBadgesBroadcasterIdMember1 sets the TwitchChannelBadges_broadcaster_idMember1 property value. Composed type representation for type TwitchChannelBadges_broadcaster_idMember1able
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_id) SetTwitchChannelBadgesBroadcasterIdMember1(value TwitchChannelBadges_broadcaster_idMember1able)() {
-    m.twitchChannelBadges_broadcaster_idMember1 = value
-}
-// TwitchChannelBadges_TwitchChannelBadges_broadcaster_name composed type wrapper for classes string, TwitchChannelBadges_broadcaster_nameMember1able
-type TwitchChannelBadges_TwitchChannelBadges_broadcaster_name struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TwitchChannelBadges_broadcaster_nameMember1able
-    twitchChannelBadges_broadcaster_nameMember1 TwitchChannelBadges_broadcaster_nameMember1able
-}
-// NewTwitchChannelBadges_TwitchChannelBadges_broadcaster_name instantiates a new TwitchChannelBadges_TwitchChannelBadges_broadcaster_name and sets the default values.
-func NewTwitchChannelBadges_TwitchChannelBadges_broadcaster_name()(*TwitchChannelBadges_TwitchChannelBadges_broadcaster_name) {
-    m := &TwitchChannelBadges_TwitchChannelBadges_broadcaster_name{
-    }
-    return m
-}
-// CreateTwitchChannelBadges_TwitchChannelBadges_broadcaster_nameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTwitchChannelBadges_TwitchChannelBadges_broadcaster_nameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTwitchChannelBadges_TwitchChannelBadges_broadcaster_name()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTwitchChannelBadges_broadcaster_nameMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TwitchChannelBadges_broadcaster_nameMember1able); ok {
-                result.SetTwitchChannelBadgesBroadcasterNameMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_name) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_name) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_name) GetString()(*string) {
-    return m.string
-}
-// GetTwitchChannelBadgesBroadcasterNameMember1 gets the TwitchChannelBadges_broadcaster_nameMember1 property value. Composed type representation for type TwitchChannelBadges_broadcaster_nameMember1able
-// returns a TwitchChannelBadges_broadcaster_nameMember1able when successful
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_name) GetTwitchChannelBadgesBroadcasterNameMember1()(TwitchChannelBadges_broadcaster_nameMember1able) {
-    return m.twitchChannelBadges_broadcaster_nameMember1
-}
-// Serialize serializes information the current object
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_name) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTwitchChannelBadgesBroadcasterNameMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTwitchChannelBadgesBroadcasterNameMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_name) SetString(value *string)() {
-    m.string = value
-}
-// SetTwitchChannelBadgesBroadcasterNameMember1 sets the TwitchChannelBadges_broadcaster_nameMember1 property value. Composed type representation for type TwitchChannelBadges_broadcaster_nameMember1able
-func (m *TwitchChannelBadges_TwitchChannelBadges_broadcaster_name) SetTwitchChannelBadgesBroadcasterNameMember1(value TwitchChannelBadges_broadcaster_nameMember1able)() {
-    m.twitchChannelBadges_broadcaster_nameMember1 = value
-}
-type TwitchChannelBadges_TwitchChannelBadges_broadcaster_idable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTwitchChannelBadgesBroadcasterIdMember1()(TwitchChannelBadges_broadcaster_idMember1able)
-    SetString(value *string)()
-    SetTwitchChannelBadgesBroadcasterIdMember1(value TwitchChannelBadges_broadcaster_idMember1able)()
-}
-type TwitchChannelBadges_TwitchChannelBadges_broadcaster_nameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTwitchChannelBadgesBroadcasterNameMember1()(TwitchChannelBadges_broadcaster_nameMember1able)
-    SetString(value *string)()
-    SetTwitchChannelBadgesBroadcasterNameMember1(value TwitchChannelBadges_broadcaster_nameMember1able)()
 }
 // NewTwitchChannelBadges instantiates a new TwitchChannelBadges and sets the default values.
 func NewTwitchChannelBadges()(*TwitchChannelBadges) {
@@ -203,13 +35,13 @@ func (m *TwitchChannelBadges) GetBadges()([]TwitchBadgeSetable) {
     return m.badges
 }
 // GetBroadcasterId gets the broadcaster_id property value. Resolved broadcaster (channel) id.
-// returns a TwitchChannelBadges_TwitchChannelBadges_broadcaster_idable when successful
-func (m *TwitchChannelBadges) GetBroadcasterId()(TwitchChannelBadges_TwitchChannelBadges_broadcaster_idable) {
+// returns a *string when successful
+func (m *TwitchChannelBadges) GetBroadcasterId()(*string) {
     return m.broadcaster_id
 }
 // GetBroadcasterName gets the broadcaster_name property value. Resolved broadcaster display name or login.
-// returns a TwitchChannelBadges_TwitchChannelBadges_broadcaster_nameable when successful
-func (m *TwitchChannelBadges) GetBroadcasterName()(TwitchChannelBadges_TwitchChannelBadges_broadcaster_nameable) {
+// returns a *string when successful
+func (m *TwitchChannelBadges) GetBroadcasterName()(*string) {
     return m.broadcaster_name
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -233,22 +65,22 @@ func (m *TwitchChannelBadges) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["broadcaster_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTwitchChannelBadges_TwitchChannelBadges_broadcaster_idFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetBroadcasterId(val.(TwitchChannelBadges_TwitchChannelBadges_broadcaster_idable))
+            m.SetBroadcasterId(val)
         }
         return nil
     }
     res["broadcaster_name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTwitchChannelBadges_TwitchChannelBadges_broadcaster_nameFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetBroadcasterName(val.(TwitchChannelBadges_TwitchChannelBadges_broadcaster_nameable))
+            m.SetBroadcasterName(val)
         }
         return nil
     }
@@ -284,13 +116,13 @@ func (m *TwitchChannelBadges) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
-        err := writer.WriteObjectValue("broadcaster_id", m.GetBroadcasterId())
+        err := writer.WriteStringValue("broadcaster_id", m.GetBroadcasterId())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("broadcaster_name", m.GetBroadcasterName())
+        err := writer.WriteStringValue("broadcaster_name", m.GetBroadcasterName())
         if err != nil {
             return err
         }
@@ -308,11 +140,11 @@ func (m *TwitchChannelBadges) SetBadges(value []TwitchBadgeSetable)() {
     m.badges = value
 }
 // SetBroadcasterId sets the broadcaster_id property value. Resolved broadcaster (channel) id.
-func (m *TwitchChannelBadges) SetBroadcasterId(value TwitchChannelBadges_TwitchChannelBadges_broadcaster_idable)() {
+func (m *TwitchChannelBadges) SetBroadcasterId(value *string)() {
     m.broadcaster_id = value
 }
 // SetBroadcasterName sets the broadcaster_name property value. Resolved broadcaster display name or login.
-func (m *TwitchChannelBadges) SetBroadcasterName(value TwitchChannelBadges_TwitchChannelBadges_broadcaster_nameable)() {
+func (m *TwitchChannelBadges) SetBroadcasterName(value *string)() {
     m.broadcaster_name = value
 }
 // SetTimestamp sets the timestamp property value. Response generation time (ISO 8601).
@@ -322,11 +154,11 @@ func (m *TwitchChannelBadges) SetTimestamp(value *string)() {
 type TwitchChannelBadgesable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetBadges()([]TwitchBadgeSetable)
-    GetBroadcasterId()(TwitchChannelBadges_TwitchChannelBadges_broadcaster_idable)
-    GetBroadcasterName()(TwitchChannelBadges_TwitchChannelBadges_broadcaster_nameable)
+    GetBroadcasterId()(*string)
+    GetBroadcasterName()(*string)
     GetTimestamp()(*string)
     SetBadges(value []TwitchBadgeSetable)()
-    SetBroadcasterId(value TwitchChannelBadges_TwitchChannelBadges_broadcaster_idable)()
-    SetBroadcasterName(value TwitchChannelBadges_TwitchChannelBadges_broadcaster_nameable)()
+    SetBroadcasterId(value *string)()
+    SetBroadcasterName(value *string)()
     SetTimestamp(value *string)()
 }

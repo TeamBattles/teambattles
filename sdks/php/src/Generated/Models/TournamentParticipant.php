@@ -42,9 +42,9 @@ class TournamentParticipant implements Parsable
     private ?string $status = null;
     
     /**
-     * @var TournamentParticipant_teamAvatarUrl|null $teamAvatarUrl Team avatar URL.
+     * @var string|null $teamAvatarUrl Team avatar URL.
     */
-    private ?TournamentParticipant_teamAvatarUrl $teamAvatarUrl = null;
+    private ?string $teamAvatarUrl = null;
     
     /**
      * @var string|null $teamId Team ID.
@@ -86,7 +86,7 @@ class TournamentParticipant implements Parsable
             'roster' => fn(ParseNode $n) => $o->setRoster($n->getCollectionOfObjectValues([TournamentRosterMember::class, 'createFromDiscriminatorValue'])),
             'seed' => fn(ParseNode $n) => $o->setSeed($n->getIntegerValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getStringValue()),
-            'teamAvatarUrl' => fn(ParseNode $n) => $o->setTeamAvatarUrl($n->getObjectValue([TournamentParticipant_teamAvatarUrl::class, 'createFromDiscriminatorValue'])),
+            'teamAvatarUrl' => fn(ParseNode $n) => $o->setTeamAvatarUrl($n->getStringValue()),
             'teamId' => fn(ParseNode $n) => $o->setTeamId($n->getStringValue()),
             'teamName' => fn(ParseNode $n) => $o->setTeamName($n->getStringValue()),
         ];
@@ -134,9 +134,9 @@ class TournamentParticipant implements Parsable
 
     /**
      * Gets the teamAvatarUrl property value. Team avatar URL.
-     * @return TournamentParticipant_teamAvatarUrl|null
+     * @return string|null
     */
-    public function getTeamAvatarUrl(): ?TournamentParticipant_teamAvatarUrl {
+    public function getTeamAvatarUrl(): ?string {
         return $this->teamAvatarUrl;
     }
 
@@ -167,7 +167,7 @@ class TournamentParticipant implements Parsable
         $writer->writeCollectionOfObjectValues('roster', $this->getRoster());
         $writer->writeIntegerValue('seed', $this->getSeed());
         $writer->writeStringValue('status', $this->getStatus());
-        $writer->writeObjectValue('teamAvatarUrl', $this->getTeamAvatarUrl());
+        $writer->writeStringValue('teamAvatarUrl', $this->getTeamAvatarUrl());
         $writer->writeStringValue('teamId', $this->getTeamId());
         $writer->writeStringValue('teamName', $this->getTeamName());
     }
@@ -222,9 +222,9 @@ class TournamentParticipant implements Parsable
 
     /**
      * Sets the teamAvatarUrl property value. Team avatar URL.
-     * @param TournamentParticipant_teamAvatarUrl|null $value Value to set for the teamAvatarUrl property.
+     * @param string|null $value Value to set for the teamAvatarUrl property.
     */
-    public function setTeamAvatarUrl(?TournamentParticipant_teamAvatarUrl $value): void {
+    public function setTeamAvatarUrl(?string $value): void {
         $this->teamAvatarUrl = $value;
     }
 

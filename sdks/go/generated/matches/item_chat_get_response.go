@@ -14,93 +14,9 @@ type ItemChatGetResponse struct {
     // The hasMore property
     hasMore *bool
     // The nextCursor property
-    nextCursor ItemChatGetResponse_ChatGetResponse_nextCursorable
+    nextCursor *string
     // The timestamp property
     timestamp *string
-}
-// ItemChatGetResponse_ChatGetResponse_nextCursor composed type wrapper for classes ItemChatGetResponse_nextCursorMember1able, string
-type ItemChatGetResponse_ChatGetResponse_nextCursor struct {
-    // Composed type representation for type ItemChatGetResponse_nextCursorMember1able
-    itemChatGetResponse_nextCursorMember1 ItemChatGetResponse_nextCursorMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewItemChatGetResponse_ChatGetResponse_nextCursor instantiates a new ItemChatGetResponse_ChatGetResponse_nextCursor and sets the default values.
-func NewItemChatGetResponse_ChatGetResponse_nextCursor()(*ItemChatGetResponse_ChatGetResponse_nextCursor) {
-    m := &ItemChatGetResponse_ChatGetResponse_nextCursor{
-    }
-    return m
-}
-// CreateItemChatGetResponse_ChatGetResponse_nextCursorFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateItemChatGetResponse_ChatGetResponse_nextCursorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewItemChatGetResponse_ChatGetResponse_nextCursor()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateItemChatGetResponse_nextCursorMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ItemChatGetResponse_nextCursorMember1able); ok {
-                result.SetItemChatGetResponseNextCursorMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ItemChatGetResponse_ChatGetResponse_nextCursor) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ItemChatGetResponse_ChatGetResponse_nextCursor) GetIsComposedType()(bool) {
-    return true
-}
-// GetItemChatGetResponseNextCursorMember1 gets the ItemChatGetResponse_nextCursorMember1 property value. Composed type representation for type ItemChatGetResponse_nextCursorMember1able
-// returns a ItemChatGetResponse_nextCursorMember1able when successful
-func (m *ItemChatGetResponse_ChatGetResponse_nextCursor) GetItemChatGetResponseNextCursorMember1()(ItemChatGetResponse_nextCursorMember1able) {
-    return m.itemChatGetResponse_nextCursorMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ItemChatGetResponse_ChatGetResponse_nextCursor) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ItemChatGetResponse_ChatGetResponse_nextCursor) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetItemChatGetResponseNextCursorMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetItemChatGetResponseNextCursorMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetItemChatGetResponseNextCursorMember1 sets the ItemChatGetResponse_nextCursorMember1 property value. Composed type representation for type ItemChatGetResponse_nextCursorMember1able
-func (m *ItemChatGetResponse_ChatGetResponse_nextCursor) SetItemChatGetResponseNextCursorMember1(value ItemChatGetResponse_nextCursorMember1able)() {
-    m.itemChatGetResponse_nextCursorMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ItemChatGetResponse_ChatGetResponse_nextCursor) SetString(value *string)() {
-    m.string = value
-}
-type ItemChatGetResponse_ChatGetResponse_nextCursorable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetItemChatGetResponseNextCursorMember1()(ItemChatGetResponse_nextCursorMember1able)
-    GetString()(*string)
-    SetItemChatGetResponseNextCursorMember1(value ItemChatGetResponse_nextCursorMember1able)()
-    SetString(value *string)()
 }
 // NewItemChatGetResponse instantiates a new ItemChatGetResponse and sets the default values.
 func NewItemChatGetResponse()(*ItemChatGetResponse) {
@@ -149,12 +65,12 @@ func (m *ItemChatGetResponse) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["nextCursor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateItemChatGetResponse_ChatGetResponse_nextCursorFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetNextCursor(val.(ItemChatGetResponse_ChatGetResponse_nextCursorable))
+            m.SetNextCursor(val)
         }
         return nil
     }
@@ -176,8 +92,8 @@ func (m *ItemChatGetResponse) GetHasMore()(*bool) {
     return m.hasMore
 }
 // GetNextCursor gets the nextCursor property value. The nextCursor property
-// returns a ItemChatGetResponse_ChatGetResponse_nextCursorable when successful
-func (m *ItemChatGetResponse) GetNextCursor()(ItemChatGetResponse_ChatGetResponse_nextCursorable) {
+// returns a *string when successful
+func (m *ItemChatGetResponse) GetNextCursor()(*string) {
     return m.nextCursor
 }
 // GetTimestamp gets the timestamp property value. The timestamp property
@@ -206,7 +122,7 @@ func (m *ItemChatGetResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
-        err := writer.WriteObjectValue("nextCursor", m.GetNextCursor())
+        err := writer.WriteStringValue("nextCursor", m.GetNextCursor())
         if err != nil {
             return err
         }
@@ -228,7 +144,7 @@ func (m *ItemChatGetResponse) SetHasMore(value *bool)() {
     m.hasMore = value
 }
 // SetNextCursor sets the nextCursor property value. The nextCursor property
-func (m *ItemChatGetResponse) SetNextCursor(value ItemChatGetResponse_ChatGetResponse_nextCursorable)() {
+func (m *ItemChatGetResponse) SetNextCursor(value *string)() {
     m.nextCursor = value
 }
 // SetTimestamp sets the timestamp property value. The timestamp property
@@ -239,10 +155,10 @@ type ItemChatGetResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetData()([]i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.ChatMessageable)
     GetHasMore()(*bool)
-    GetNextCursor()(ItemChatGetResponse_ChatGetResponse_nextCursorable)
+    GetNextCursor()(*string)
     GetTimestamp()(*string)
     SetData(value []i2d9c680fd9772d4e188b4eef5833f06d8e3e2a73281435f45003417856275121.ChatMessageable)()
     SetHasMore(value *bool)()
-    SetNextCursor(value ItemChatGetResponse_ChatGetResponse_nextCursorable)()
+    SetNextCursor(value *string)()
     SetTimestamp(value *string)()
 }

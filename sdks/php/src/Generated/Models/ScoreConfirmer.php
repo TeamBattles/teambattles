@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ScoreConfirmer implements Parsable 
 {
     /**
-     * @var ScoreConfirmer_confirmedAt|null $confirmedAt Confirmation time (ISO 8601).
+     * @var string|null $confirmedAt Confirmation time (ISO 8601).
     */
-    private ?ScoreConfirmer_confirmedAt $confirmedAt = null;
+    private ?string $confirmedAt = null;
     
     /**
      * @var string|null $teamId The teamId property
@@ -37,9 +37,9 @@ class ScoreConfirmer implements Parsable
 
     /**
      * Gets the confirmedAt property value. Confirmation time (ISO 8601).
-     * @return ScoreConfirmer_confirmedAt|null
+     * @return string|null
     */
-    public function getConfirmedAt(): ?ScoreConfirmer_confirmedAt {
+    public function getConfirmedAt(): ?string {
         return $this->confirmedAt;
     }
 
@@ -50,7 +50,7 @@ class ScoreConfirmer implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'confirmedAt' => fn(ParseNode $n) => $o->setConfirmedAt($n->getObjectValue([ScoreConfirmer_confirmedAt::class, 'createFromDiscriminatorValue'])),
+            'confirmedAt' => fn(ParseNode $n) => $o->setConfirmedAt($n->getStringValue()),
             'teamId' => fn(ParseNode $n) => $o->setTeamId($n->getStringValue()),
             'userId' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
         ];
@@ -77,16 +77,16 @@ class ScoreConfirmer implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('confirmedAt', $this->getConfirmedAt());
+        $writer->writeStringValue('confirmedAt', $this->getConfirmedAt());
         $writer->writeStringValue('teamId', $this->getTeamId());
         $writer->writeStringValue('userId', $this->getUserId());
     }
 
     /**
      * Sets the confirmedAt property value. Confirmation time (ISO 8601).
-     * @param ScoreConfirmer_confirmedAt|null $value Value to set for the confirmedAt property.
+     * @param string|null $value Value to set for the confirmedAt property.
     */
-    public function setConfirmedAt(?ScoreConfirmer_confirmedAt $value): void {
+    public function setConfirmedAt(?string $value): void {
         $this->confirmedAt = $value;
     }
 

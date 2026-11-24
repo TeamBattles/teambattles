@@ -18,9 +18,9 @@ class MapScoreItem implements Parsable
     private ?ScoreConfirmer $confirmedBy = null;
     
     /**
-     * @var MapScoreItem_createdAt|null $createdAt Creation time (ISO 8601).
+     * @var string|null $createdAt Creation time (ISO 8601).
     */
-    private ?MapScoreItem_createdAt $createdAt = null;
+    private ?string $createdAt = null;
     
     /**
      * @var int|null $creatorTeamScore The creatorTeamScore property
@@ -76,9 +76,9 @@ class MapScoreItem implements Parsable
 
     /**
      * Gets the createdAt property value. Creation time (ISO 8601).
-     * @return MapScoreItem_createdAt|null
+     * @return string|null
     */
-    public function getCreatedAt(): ?MapScoreItem_createdAt {
+    public function getCreatedAt(): ?string {
         return $this->createdAt;
     }
 
@@ -98,7 +98,7 @@ class MapScoreItem implements Parsable
         $o = $this;
         return  [
             'confirmedBy' => fn(ParseNode $n) => $o->setConfirmedBy($n->getObjectValue([ScoreConfirmer::class, 'createFromDiscriminatorValue'])),
-            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([MapScoreItem_createdAt::class, 'createFromDiscriminatorValue'])),
+            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getStringValue()),
             'creatorTeamScore' => fn(ParseNode $n) => $o->setCreatorTeamScore($n->getIntegerValue()),
             'mapId' => fn(ParseNode $n) => $o->setMapId($n->getStringValue()),
             'mapIndex' => fn(ParseNode $n) => $o->setMapIndex($n->getIntegerValue()),
@@ -170,7 +170,7 @@ class MapScoreItem implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('confirmedBy', $this->getConfirmedBy());
-        $writer->writeObjectValue('createdAt', $this->getCreatedAt());
+        $writer->writeStringValue('createdAt', $this->getCreatedAt());
         $writer->writeIntegerValue('creatorTeamScore', $this->getCreatorTeamScore());
         $writer->writeStringValue('mapId', $this->getMapId());
         $writer->writeIntegerValue('mapIndex', $this->getMapIndex());
@@ -190,9 +190,9 @@ class MapScoreItem implements Parsable
 
     /**
      * Sets the createdAt property value. Creation time (ISO 8601).
-     * @param MapScoreItem_createdAt|null $value Value to set for the createdAt property.
+     * @param string|null $value Value to set for the createdAt property.
     */
-    public function setCreatedAt(?MapScoreItem_createdAt $value): void {
+    public function setCreatedAt(?string $value): void {
         $this->createdAt = $value;
     }
 

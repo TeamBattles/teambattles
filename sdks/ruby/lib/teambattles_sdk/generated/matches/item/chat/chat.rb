@@ -1,2 +1,1 @@
 require_relative 'chat_get_response'
-require_relative 'chat_get_response_next_cursor_member1'

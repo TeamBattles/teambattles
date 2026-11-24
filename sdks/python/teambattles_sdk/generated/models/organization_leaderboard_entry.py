@@ -6,7 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .api_organization_summary import ApiOrganizationSummary
-    from .organization_leaderboard_entry_game_slug import OrganizationLeaderboardEntry_gameSlug
     from .organization_leaderboard_entry_stats import OrganizationLeaderboardEntry_stats
 
 @dataclass
@@ -15,7 +14,7 @@ class OrganizationLeaderboardEntry(Parsable):
     Organization leaderboard row.
     """
     # The gameSlug property
-    game_slug: Optional[OrganizationLeaderboardEntry_gameSlug] = None
+    game_slug: Optional[str] = None
     # Organization ID.
     id: Optional[str] = None
     # Small API-safe organization summary.
@@ -42,15 +41,13 @@ class OrganizationLeaderboardEntry(Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .api_organization_summary import ApiOrganizationSummary
-        from .organization_leaderboard_entry_game_slug import OrganizationLeaderboardEntry_gameSlug
         from .organization_leaderboard_entry_stats import OrganizationLeaderboardEntry_stats
 
         from .api_organization_summary import ApiOrganizationSummary
-        from .organization_leaderboard_entry_game_slug import OrganizationLeaderboardEntry_gameSlug
         from .organization_leaderboard_entry_stats import OrganizationLeaderboardEntry_stats
 
         fields: dict[str, Callable[[Any], None]] = {
-            "gameSlug": lambda n : setattr(self, 'game_slug', n.get_object_value(OrganizationLeaderboardEntry_gameSlug)),
+            "gameSlug": lambda n : setattr(self, 'game_slug', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "organization": lambda n : setattr(self, 'organization', n.get_object_value(ApiOrganizationSummary)),
             "rank": lambda n : setattr(self, 'rank', n.get_int_value()),
@@ -66,7 +63,7 @@ class OrganizationLeaderboardEntry(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("gameSlug", self.game_slug)
+        writer.write_str_value("gameSlug", self.game_slug)
         writer.write_str_value("id", self.id)
         writer.write_object_value("organization", self.organization)
         writer.write_int_value("rank", self.rank)

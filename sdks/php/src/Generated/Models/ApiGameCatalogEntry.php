@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ApiGameCatalogEntry implements Parsable 
 {
     /**
-     * @var ApiGameCatalogEntry_bannerImage|null $bannerImage The bannerImage property
+     * @var string|null $bannerImage The bannerImage property
     */
-    private ?ApiGameCatalogEntry_bannerImage $bannerImage = null;
+    private ?string $bannerImage = null;
     
     /**
      * @var string|null $category The category property
@@ -22,14 +22,14 @@ class ApiGameCatalogEntry implements Parsable
     private ?string $category = null;
     
     /**
-     * @var ApiGameCatalogEntry_convexId|null $convexId Active Convex games-table ID, when available for match APIs.
+     * @var string|null $convexId Active Convex games-table ID, when available for match APIs.
     */
-    private ?ApiGameCatalogEntry_convexId $convexId = null;
+    private ?string $convexId = null;
     
     /**
-     * @var ApiGameCatalogEntry_coverImage|null $coverImage The coverImage property
+     * @var string|null $coverImage The coverImage property
     */
-    private ?ApiGameCatalogEntry_coverImage $coverImage = null;
+    private ?string $coverImage = null;
     
     /**
      * @var int|null $defaultTeamSize The defaultTeamSize property
@@ -37,9 +37,9 @@ class ApiGameCatalogEntry implements Parsable
     private ?int $defaultTeamSize = null;
     
     /**
-     * @var ApiGameCatalogEntry_descriptionKey|null $descriptionKey The descriptionKey property
+     * @var string|null $descriptionKey The descriptionKey property
     */
-    private ?ApiGameCatalogEntry_descriptionKey $descriptionKey = null;
+    private ?string $descriptionKey = null;
     
     /**
      * @var bool|null $hasCompetitiveMode The hasCompetitiveMode property
@@ -87,14 +87,14 @@ class ApiGameCatalogEntry implements Parsable
     private ?array $playlists = null;
     
     /**
-     * @var ApiGameCatalogEntry_rulesLink|null $rulesLink The rulesLink property
+     * @var string|null $rulesLink The rulesLink property
     */
-    private ?ApiGameCatalogEntry_rulesLink $rulesLink = null;
+    private ?string $rulesLink = null;
     
     /**
-     * @var ApiGameCatalogEntry_shortNameKey|null $shortNameKey The shortNameKey property
+     * @var string|null $shortNameKey The shortNameKey property
     */
-    private ?ApiGameCatalogEntry_shortNameKey $shortNameKey = null;
+    private ?string $shortNameKey = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -107,9 +107,9 @@ class ApiGameCatalogEntry implements Parsable
 
     /**
      * Gets the bannerImage property value. The bannerImage property
-     * @return ApiGameCatalogEntry_bannerImage|null
+     * @return string|null
     */
-    public function getBannerImage(): ?ApiGameCatalogEntry_bannerImage {
+    public function getBannerImage(): ?string {
         return $this->bannerImage;
     }
 
@@ -123,17 +123,17 @@ class ApiGameCatalogEntry implements Parsable
 
     /**
      * Gets the convexId property value. Active Convex games-table ID, when available for match APIs.
-     * @return ApiGameCatalogEntry_convexId|null
+     * @return string|null
     */
-    public function getConvexId(): ?ApiGameCatalogEntry_convexId {
+    public function getConvexId(): ?string {
         return $this->convexId;
     }
 
     /**
      * Gets the coverImage property value. The coverImage property
-     * @return ApiGameCatalogEntry_coverImage|null
+     * @return string|null
     */
-    public function getCoverImage(): ?ApiGameCatalogEntry_coverImage {
+    public function getCoverImage(): ?string {
         return $this->coverImage;
     }
 
@@ -147,9 +147,9 @@ class ApiGameCatalogEntry implements Parsable
 
     /**
      * Gets the descriptionKey property value. The descriptionKey property
-     * @return ApiGameCatalogEntry_descriptionKey|null
+     * @return string|null
     */
-    public function getDescriptionKey(): ?ApiGameCatalogEntry_descriptionKey {
+    public function getDescriptionKey(): ?string {
         return $this->descriptionKey;
     }
 
@@ -160,12 +160,12 @@ class ApiGameCatalogEntry implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'bannerImage' => fn(ParseNode $n) => $o->setBannerImage($n->getObjectValue([ApiGameCatalogEntry_bannerImage::class, 'createFromDiscriminatorValue'])),
+            'bannerImage' => fn(ParseNode $n) => $o->setBannerImage($n->getStringValue()),
             'category' => fn(ParseNode $n) => $o->setCategory($n->getStringValue()),
-            'convexId' => fn(ParseNode $n) => $o->setConvexId($n->getObjectValue([ApiGameCatalogEntry_convexId::class, 'createFromDiscriminatorValue'])),
-            'coverImage' => fn(ParseNode $n) => $o->setCoverImage($n->getObjectValue([ApiGameCatalogEntry_coverImage::class, 'createFromDiscriminatorValue'])),
+            'convexId' => fn(ParseNode $n) => $o->setConvexId($n->getStringValue()),
+            'coverImage' => fn(ParseNode $n) => $o->setCoverImage($n->getStringValue()),
             'defaultTeamSize' => fn(ParseNode $n) => $o->setDefaultTeamSize($n->getIntegerValue()),
-            'descriptionKey' => fn(ParseNode $n) => $o->setDescriptionKey($n->getObjectValue([ApiGameCatalogEntry_descriptionKey::class, 'createFromDiscriminatorValue'])),
+            'descriptionKey' => fn(ParseNode $n) => $o->setDescriptionKey($n->getStringValue()),
             'hasCompetitiveMode' => fn(ParseNode $n) => $o->setHasCompetitiveMode($n->getBooleanValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'isAvailableForMatchApi' => fn(ParseNode $n) => $o->setIsAvailableForMatchApi($n->getBooleanValue()),
@@ -175,8 +175,8 @@ class ApiGameCatalogEntry implements Parsable
             'modes' => fn(ParseNode $n) => $o->setModes($n->getCollectionOfObjectValues([ApiGameMode::class, 'createFromDiscriminatorValue'])),
             'nameKey' => fn(ParseNode $n) => $o->setNameKey($n->getStringValue()),
             'playlists' => fn(ParseNode $n) => $o->setPlaylists($n->getCollectionOfObjectValues([ApiGamePlaylist::class, 'createFromDiscriminatorValue'])),
-            'rulesLink' => fn(ParseNode $n) => $o->setRulesLink($n->getObjectValue([ApiGameCatalogEntry_rulesLink::class, 'createFromDiscriminatorValue'])),
-            'shortNameKey' => fn(ParseNode $n) => $o->setShortNameKey($n->getObjectValue([ApiGameCatalogEntry_shortNameKey::class, 'createFromDiscriminatorValue'])),
+            'rulesLink' => fn(ParseNode $n) => $o->setRulesLink($n->getStringValue()),
+            'shortNameKey' => fn(ParseNode $n) => $o->setShortNameKey($n->getStringValue()),
         ];
     }
 
@@ -254,17 +254,17 @@ class ApiGameCatalogEntry implements Parsable
 
     /**
      * Gets the rulesLink property value. The rulesLink property
-     * @return ApiGameCatalogEntry_rulesLink|null
+     * @return string|null
     */
-    public function getRulesLink(): ?ApiGameCatalogEntry_rulesLink {
+    public function getRulesLink(): ?string {
         return $this->rulesLink;
     }
 
     /**
      * Gets the shortNameKey property value. The shortNameKey property
-     * @return ApiGameCatalogEntry_shortNameKey|null
+     * @return string|null
     */
-    public function getShortNameKey(): ?ApiGameCatalogEntry_shortNameKey {
+    public function getShortNameKey(): ?string {
         return $this->shortNameKey;
     }
 
@@ -273,12 +273,12 @@ class ApiGameCatalogEntry implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('bannerImage', $this->getBannerImage());
+        $writer->writeStringValue('bannerImage', $this->getBannerImage());
         $writer->writeStringValue('category', $this->getCategory());
-        $writer->writeObjectValue('convexId', $this->getConvexId());
-        $writer->writeObjectValue('coverImage', $this->getCoverImage());
+        $writer->writeStringValue('convexId', $this->getConvexId());
+        $writer->writeStringValue('coverImage', $this->getCoverImage());
         $writer->writeIntegerValue('defaultTeamSize', $this->getDefaultTeamSize());
-        $writer->writeObjectValue('descriptionKey', $this->getDescriptionKey());
+        $writer->writeStringValue('descriptionKey', $this->getDescriptionKey());
         $writer->writeBooleanValue('hasCompetitiveMode', $this->getHasCompetitiveMode());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeBooleanValue('isAvailableForMatchApi', $this->getIsAvailableForMatchApi());
@@ -288,15 +288,15 @@ class ApiGameCatalogEntry implements Parsable
         $writer->writeCollectionOfObjectValues('modes', $this->getModes());
         $writer->writeStringValue('nameKey', $this->getNameKey());
         $writer->writeCollectionOfObjectValues('playlists', $this->getPlaylists());
-        $writer->writeObjectValue('rulesLink', $this->getRulesLink());
-        $writer->writeObjectValue('shortNameKey', $this->getShortNameKey());
+        $writer->writeStringValue('rulesLink', $this->getRulesLink());
+        $writer->writeStringValue('shortNameKey', $this->getShortNameKey());
     }
 
     /**
      * Sets the bannerImage property value. The bannerImage property
-     * @param ApiGameCatalogEntry_bannerImage|null $value Value to set for the bannerImage property.
+     * @param string|null $value Value to set for the bannerImage property.
     */
-    public function setBannerImage(?ApiGameCatalogEntry_bannerImage $value): void {
+    public function setBannerImage(?string $value): void {
         $this->bannerImage = $value;
     }
 
@@ -310,17 +310,17 @@ class ApiGameCatalogEntry implements Parsable
 
     /**
      * Sets the convexId property value. Active Convex games-table ID, when available for match APIs.
-     * @param ApiGameCatalogEntry_convexId|null $value Value to set for the convexId property.
+     * @param string|null $value Value to set for the convexId property.
     */
-    public function setConvexId(?ApiGameCatalogEntry_convexId $value): void {
+    public function setConvexId(?string $value): void {
         $this->convexId = $value;
     }
 
     /**
      * Sets the coverImage property value. The coverImage property
-     * @param ApiGameCatalogEntry_coverImage|null $value Value to set for the coverImage property.
+     * @param string|null $value Value to set for the coverImage property.
     */
-    public function setCoverImage(?ApiGameCatalogEntry_coverImage $value): void {
+    public function setCoverImage(?string $value): void {
         $this->coverImage = $value;
     }
 
@@ -334,9 +334,9 @@ class ApiGameCatalogEntry implements Parsable
 
     /**
      * Sets the descriptionKey property value. The descriptionKey property
-     * @param ApiGameCatalogEntry_descriptionKey|null $value Value to set for the descriptionKey property.
+     * @param string|null $value Value to set for the descriptionKey property.
     */
-    public function setDescriptionKey(?ApiGameCatalogEntry_descriptionKey $value): void {
+    public function setDescriptionKey(?string $value): void {
         $this->descriptionKey = $value;
     }
 
@@ -414,17 +414,17 @@ class ApiGameCatalogEntry implements Parsable
 
     /**
      * Sets the rulesLink property value. The rulesLink property
-     * @param ApiGameCatalogEntry_rulesLink|null $value Value to set for the rulesLink property.
+     * @param string|null $value Value to set for the rulesLink property.
     */
-    public function setRulesLink(?ApiGameCatalogEntry_rulesLink $value): void {
+    public function setRulesLink(?string $value): void {
         $this->rulesLink = $value;
     }
 
     /**
      * Sets the shortNameKey property value. The shortNameKey property
-     * @param ApiGameCatalogEntry_shortNameKey|null $value Value to set for the shortNameKey property.
+     * @param string|null $value Value to set for the shortNameKey property.
     */
-    public function setShortNameKey(?ApiGameCatalogEntry_shortNameKey $value): void {
+    public function setShortNameKey(?string $value): void {
         $this->shortNameKey = $value;
     }
 

@@ -12,19 +12,19 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ApiUserProfile implements Parsable 
 {
     /**
-     * @var ApiUserProfile_avatarUrl|null $avatarUrl Avatar image URL, when set.
+     * @var string|null $avatarUrl Avatar image URL, when set.
     */
-    private ?ApiUserProfile_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
-     * @var ApiUserProfile_bannerUrl|null $bannerUrl Banner image URL, when set.
+     * @var string|null $bannerUrl Banner image URL, when set.
     */
-    private ?ApiUserProfile_bannerUrl $bannerUrl = null;
+    private ?string $bannerUrl = null;
     
     /**
-     * @var ApiUserProfile_bio|null $bio Public profile bio.
+     * @var string|null $bio Public profile bio.
     */
-    private ?ApiUserProfile_bio $bio = null;
+    private ?string $bio = null;
     
     /**
      * @var ApiUserProfile_createdAt|null $createdAt The createdAt property
@@ -42,14 +42,14 @@ class ApiUserProfile implements Parsable
     private ?bool $isVerified = null;
     
     /**
-     * @var ApiUserProfile_name|null $name Display name, when set.
+     * @var string|null $name Display name, when set.
     */
-    private ?ApiUserProfile_name $name = null;
+    private ?string $name = null;
     
     /**
-     * @var ApiUserProfile_username|null $username User handle, when set.
+     * @var string|null $username User handle, when set.
     */
-    private ?ApiUserProfile_username $username = null;
+    private ?string $username = null;
     
     /**
      * @var ProfileVisibility|null $visibility Public profile visibility setting.
@@ -67,25 +67,25 @@ class ApiUserProfile implements Parsable
 
     /**
      * Gets the avatarUrl property value. Avatar image URL, when set.
-     * @return ApiUserProfile_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?ApiUserProfile_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
     /**
      * Gets the bannerUrl property value. Banner image URL, when set.
-     * @return ApiUserProfile_bannerUrl|null
+     * @return string|null
     */
-    public function getBannerUrl(): ?ApiUserProfile_bannerUrl {
+    public function getBannerUrl(): ?string {
         return $this->bannerUrl;
     }
 
     /**
      * Gets the bio property value. Public profile bio.
-     * @return ApiUserProfile_bio|null
+     * @return string|null
     */
-    public function getBio(): ?ApiUserProfile_bio {
+    public function getBio(): ?string {
         return $this->bio;
     }
 
@@ -104,14 +104,14 @@ class ApiUserProfile implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([ApiUserProfile_avatarUrl::class, 'createFromDiscriminatorValue'])),
-            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getObjectValue([ApiUserProfile_bannerUrl::class, 'createFromDiscriminatorValue'])),
-            'bio' => fn(ParseNode $n) => $o->setBio($n->getObjectValue([ApiUserProfile_bio::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
+            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getStringValue()),
+            'bio' => fn(ParseNode $n) => $o->setBio($n->getStringValue()),
             'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([ApiUserProfile_createdAt::class, 'createFromDiscriminatorValue'])),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'isVerified' => fn(ParseNode $n) => $o->setIsVerified($n->getBooleanValue()),
-            'name' => fn(ParseNode $n) => $o->setName($n->getObjectValue([ApiUserProfile_name::class, 'createFromDiscriminatorValue'])),
-            'username' => fn(ParseNode $n) => $o->setUsername($n->getObjectValue([ApiUserProfile_username::class, 'createFromDiscriminatorValue'])),
+            'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
+            'username' => fn(ParseNode $n) => $o->setUsername($n->getStringValue()),
             'visibility' => fn(ParseNode $n) => $o->setVisibility($n->getEnumValue(ProfileVisibility::class)),
         ];
     }
@@ -134,17 +134,17 @@ class ApiUserProfile implements Parsable
 
     /**
      * Gets the name property value. Display name, when set.
-     * @return ApiUserProfile_name|null
+     * @return string|null
     */
-    public function getName(): ?ApiUserProfile_name {
+    public function getName(): ?string {
         return $this->name;
     }
 
     /**
      * Gets the username property value. User handle, when set.
-     * @return ApiUserProfile_username|null
+     * @return string|null
     */
-    public function getUsername(): ?ApiUserProfile_username {
+    public function getUsername(): ?string {
         return $this->username;
     }
 
@@ -161,38 +161,38 @@ class ApiUserProfile implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
-        $writer->writeObjectValue('bannerUrl', $this->getBannerUrl());
-        $writer->writeObjectValue('bio', $this->getBio());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('bannerUrl', $this->getBannerUrl());
+        $writer->writeStringValue('bio', $this->getBio());
         $writer->writeObjectValue('createdAt', $this->getCreatedAt());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeBooleanValue('isVerified', $this->getIsVerified());
-        $writer->writeObjectValue('name', $this->getName());
-        $writer->writeObjectValue('username', $this->getUsername());
+        $writer->writeStringValue('name', $this->getName());
+        $writer->writeStringValue('username', $this->getUsername());
         $writer->writeEnumValue('visibility', $this->getVisibility());
     }
 
     /**
      * Sets the avatarUrl property value. Avatar image URL, when set.
-     * @param ApiUserProfile_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?ApiUserProfile_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 
     /**
      * Sets the bannerUrl property value. Banner image URL, when set.
-     * @param ApiUserProfile_bannerUrl|null $value Value to set for the bannerUrl property.
+     * @param string|null $value Value to set for the bannerUrl property.
     */
-    public function setBannerUrl(?ApiUserProfile_bannerUrl $value): void {
+    public function setBannerUrl(?string $value): void {
         $this->bannerUrl = $value;
     }
 
     /**
      * Sets the bio property value. Public profile bio.
-     * @param ApiUserProfile_bio|null $value Value to set for the bio property.
+     * @param string|null $value Value to set for the bio property.
     */
-    public function setBio(?ApiUserProfile_bio $value): void {
+    public function setBio(?string $value): void {
         $this->bio = $value;
     }
 
@@ -222,17 +222,17 @@ class ApiUserProfile implements Parsable
 
     /**
      * Sets the name property value. Display name, when set.
-     * @param ApiUserProfile_name|null $value Value to set for the name property.
+     * @param string|null $value Value to set for the name property.
     */
-    public function setName(?ApiUserProfile_name $value): void {
+    public function setName(?string $value): void {
         $this->name = $value;
     }
 
     /**
      * Sets the username property value. User handle, when set.
-     * @param ApiUserProfile_username|null $value Value to set for the username property.
+     * @param string|null $value Value to set for the username property.
     */
-    public function setUsername(?ApiUserProfile_username $value): void {
+    public function setUsername(?string $value): void {
         $this->username = $value;
     }
 

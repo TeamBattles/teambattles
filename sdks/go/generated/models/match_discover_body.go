@@ -12,7 +12,7 @@ type MatchDiscoverBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The cursor property
-    cursor MatchDiscoverBody_MatchDiscoverBody_cursorable
+    cursor *string
     // The gameId property
     gameId *string
     // The gameSlug property
@@ -34,90 +34,6 @@ type MatchDiscoverBody struct {
     // The scheduledBefore property
     scheduledBefore *string
 }
-// MatchDiscoverBody_MatchDiscoverBody_cursor composed type wrapper for classes MatchDiscoverBody_cursorMember1able, string
-type MatchDiscoverBody_MatchDiscoverBody_cursor struct {
-    // Composed type representation for type MatchDiscoverBody_cursorMember1able
-    matchDiscoverBody_cursorMember1 MatchDiscoverBody_cursorMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewMatchDiscoverBody_MatchDiscoverBody_cursor instantiates a new MatchDiscoverBody_MatchDiscoverBody_cursor and sets the default values.
-func NewMatchDiscoverBody_MatchDiscoverBody_cursor()(*MatchDiscoverBody_MatchDiscoverBody_cursor) {
-    m := &MatchDiscoverBody_MatchDiscoverBody_cursor{
-    }
-    return m
-}
-// CreateMatchDiscoverBody_MatchDiscoverBody_cursorFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateMatchDiscoverBody_MatchDiscoverBody_cursorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewMatchDiscoverBody_MatchDiscoverBody_cursor()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateMatchDiscoverBody_cursorMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(MatchDiscoverBody_cursorMember1able); ok {
-                result.SetMatchDiscoverBodyCursorMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *MatchDiscoverBody_MatchDiscoverBody_cursor) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *MatchDiscoverBody_MatchDiscoverBody_cursor) GetIsComposedType()(bool) {
-    return true
-}
-// GetMatchDiscoverBodyCursorMember1 gets the MatchDiscoverBody_cursorMember1 property value. Composed type representation for type MatchDiscoverBody_cursorMember1able
-// returns a MatchDiscoverBody_cursorMember1able when successful
-func (m *MatchDiscoverBody_MatchDiscoverBody_cursor) GetMatchDiscoverBodyCursorMember1()(MatchDiscoverBody_cursorMember1able) {
-    return m.matchDiscoverBody_cursorMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *MatchDiscoverBody_MatchDiscoverBody_cursor) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *MatchDiscoverBody_MatchDiscoverBody_cursor) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetMatchDiscoverBodyCursorMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetMatchDiscoverBodyCursorMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetMatchDiscoverBodyCursorMember1 sets the MatchDiscoverBody_cursorMember1 property value. Composed type representation for type MatchDiscoverBody_cursorMember1able
-func (m *MatchDiscoverBody_MatchDiscoverBody_cursor) SetMatchDiscoverBodyCursorMember1(value MatchDiscoverBody_cursorMember1able)() {
-    m.matchDiscoverBody_cursorMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *MatchDiscoverBody_MatchDiscoverBody_cursor) SetString(value *string)() {
-    m.string = value
-}
-type MatchDiscoverBody_MatchDiscoverBody_cursorable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetMatchDiscoverBodyCursorMember1()(MatchDiscoverBody_cursorMember1able)
-    GetString()(*string)
-    SetMatchDiscoverBodyCursorMember1(value MatchDiscoverBody_cursorMember1able)()
-    SetString(value *string)()
-}
 // NewMatchDiscoverBody instantiates a new MatchDiscoverBody and sets the default values.
 func NewMatchDiscoverBody()(*MatchDiscoverBody) {
     m := &MatchDiscoverBody{
@@ -138,8 +54,8 @@ func (m *MatchDiscoverBody) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetCursor gets the cursor property value. The cursor property
-// returns a MatchDiscoverBody_MatchDiscoverBody_cursorable when successful
-func (m *MatchDiscoverBody) GetCursor()(MatchDiscoverBody_MatchDiscoverBody_cursorable) {
+// returns a *string when successful
+func (m *MatchDiscoverBody) GetCursor()(*string) {
     return m.cursor
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -147,12 +63,12 @@ func (m *MatchDiscoverBody) GetCursor()(MatchDiscoverBody_MatchDiscoverBody_curs
 func (m *MatchDiscoverBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["cursor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateMatchDiscoverBody_MatchDiscoverBody_cursorFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCursor(val.(MatchDiscoverBody_MatchDiscoverBody_cursorable))
+            m.SetCursor(val)
         }
         return nil
     }
@@ -311,7 +227,7 @@ func (m *MatchDiscoverBody) GetScheduledBefore()(*string) {
 // Serialize serializes information the current object
 func (m *MatchDiscoverBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("cursor", m.GetCursor())
+        err := writer.WriteStringValue("cursor", m.GetCursor())
         if err != nil {
             return err
         }
@@ -392,7 +308,7 @@ func (m *MatchDiscoverBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetCursor sets the cursor property value. The cursor property
-func (m *MatchDiscoverBody) SetCursor(value MatchDiscoverBody_MatchDiscoverBody_cursorable)() {
+func (m *MatchDiscoverBody) SetCursor(value *string)() {
     m.cursor = value
 }
 // SetGameId sets the gameId property value. The gameId property
@@ -438,7 +354,7 @@ func (m *MatchDiscoverBody) SetScheduledBefore(value *string)() {
 type MatchDiscoverBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCursor()(MatchDiscoverBody_MatchDiscoverBody_cursorable)
+    GetCursor()(*string)
     GetGameId()(*string)
     GetGameSlug()(*string)
     GetLeagueId()(*string)
@@ -449,7 +365,7 @@ type MatchDiscoverBodyable interface {
     GetRegion()(*MatchDiscoverBody_region)
     GetScheduledAfter()(*string)
     GetScheduledBefore()(*string)
-    SetCursor(value MatchDiscoverBody_MatchDiscoverBody_cursorable)()
+    SetCursor(value *string)()
     SetGameId(value *string)()
     SetGameSlug(value *string)()
     SetLeagueId(value *string)()

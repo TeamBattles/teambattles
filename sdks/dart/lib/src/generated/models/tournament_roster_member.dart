@@ -1,12 +1,11 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './tournament_roster_member_avatar_url.dart';
 
 /// auto generated
 /// One member of a participant's roster.
 class TournamentRosterMember implements Parsable {
     ///  Avatar image URL.
-    TournamentRosterMemberAvatarUrl? avatarUrl;
+    String? avatarUrl;
     ///  User ID.
     String? id;
     ///  Display name.
@@ -24,7 +23,7 @@ class TournamentRosterMember implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getObjectValue<TournamentRosterMemberAvatarUrl>(TournamentRosterMemberAvatarUrl.createFromDiscriminatorValue);
+        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['name'] = (node) => name = node.getStringValue();
         deserializerMap['source'] = (node) => source = node.getStringValue();
@@ -35,7 +34,7 @@ class TournamentRosterMember implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<TournamentRosterMemberAvatarUrl>('avatarUrl', avatarUrl);
+        writer.writeStringValue('avatarUrl', avatarUrl);
         writer.writeStringValue('id', id);
         writer.writeStringValue('name', name);
         writer.writeStringValue('source', source);

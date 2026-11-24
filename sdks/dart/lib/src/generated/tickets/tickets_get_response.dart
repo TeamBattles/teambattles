@@ -1,7 +1,6 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../models/ticket_summary.dart';
-import './tickets_get_response_next_cursor.dart';
 
 /// auto generated
 class TicketsGetResponse implements Parsable {
@@ -10,7 +9,7 @@ class TicketsGetResponse implements Parsable {
     ///  The hasMore property
     bool? hasMore;
     ///  The nextCursor property
-    TicketsGetResponseNextCursor? nextCursor;
+    String? nextCursor;
     ///  The timestamp property
     String? timestamp;
     /// Creates a new instance of the appropriate class based on discriminator value
@@ -24,7 +23,7 @@ class TicketsGetResponse implements Parsable {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['data'] = (node) => data = node.getCollectionOfObjectValues<TicketSummary>(TicketSummary.createFromDiscriminatorValue);
         deserializerMap['hasMore'] = (node) => hasMore = node.getBoolValue();
-        deserializerMap['nextCursor'] = (node) => nextCursor = node.getObjectValue<TicketsGetResponseNextCursor>(TicketsGetResponseNextCursor.createFromDiscriminatorValue);
+        deserializerMap['nextCursor'] = (node) => nextCursor = node.getStringValue();
         deserializerMap['timestamp'] = (node) => timestamp = node.getStringValue();
         return deserializerMap;
     }
@@ -34,7 +33,7 @@ class TicketsGetResponse implements Parsable {
     void serialize(SerializationWriter writer) {
         writer.writeCollectionOfObjectValues<TicketSummary>('data', data);
         writer.writeBoolValue('hasMore', value:hasMore);
-        writer.writeObjectValue<TicketsGetResponseNextCursor>('nextCursor', nextCursor);
+        writer.writeStringValue('nextCursor', nextCursor);
         writer.writeStringValue('timestamp', timestamp);
     }
 }

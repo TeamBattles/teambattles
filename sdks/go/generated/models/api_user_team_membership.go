@@ -10,7 +10,7 @@ import (
 // ApiUserTeamMembership aPI-safe team affiliation row on a user profile.
 type ApiUserTeamMembership struct {
     // The avatarUrl property
-    avatarUrl ApiUserTeamMembership_ApiUserTeamMembership_avatarUrlable
+    avatarUrl *string
     // Team ID.
     id *string
     // The joinedAt property
@@ -22,88 +22,11 @@ type ApiUserTeamMembership struct {
     // The role property
     role *string
     // The slug property
-    slug ApiUserTeamMembership_ApiUserTeamMembership_slugable
+    slug *string
     // The tag property
-    tag ApiUserTeamMembership_ApiUserTeamMembership_tagable
+    tag *string
     // Public profile visibility setting.
     visibility *ProfileVisibility
-}
-// ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl composed type wrapper for classes ApiUserTeamMembership_avatarUrlMember1able, string
-type ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl struct {
-    // Composed type representation for type ApiUserTeamMembership_avatarUrlMember1able
-    apiUserTeamMembership_avatarUrlMember1 ApiUserTeamMembership_avatarUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserTeamMembership_ApiUserTeamMembership_avatarUrl instantiates a new ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl and sets the default values.
-func NewApiUserTeamMembership_ApiUserTeamMembership_avatarUrl()(*ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl) {
-    m := &ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl{
-    }
-    return m
-}
-// CreateApiUserTeamMembership_ApiUserTeamMembership_avatarUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserTeamMembership_ApiUserTeamMembership_avatarUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserTeamMembership_ApiUserTeamMembership_avatarUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserTeamMembership_avatarUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserTeamMembership_avatarUrlMember1able); ok {
-                result.SetApiUserTeamMembershipAvatarUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserTeamMembershipAvatarUrlMember1 gets the ApiUserTeamMembership_avatarUrlMember1 property value. Composed type representation for type ApiUserTeamMembership_avatarUrlMember1able
-// returns a ApiUserTeamMembership_avatarUrlMember1able when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl) GetApiUserTeamMembershipAvatarUrlMember1()(ApiUserTeamMembership_avatarUrlMember1able) {
-    return m.apiUserTeamMembership_avatarUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserTeamMembershipAvatarUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserTeamMembershipAvatarUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserTeamMembershipAvatarUrlMember1 sets the ApiUserTeamMembership_avatarUrlMember1 property value. Composed type representation for type ApiUserTeamMembership_avatarUrlMember1able
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl) SetApiUserTeamMembershipAvatarUrlMember1(value ApiUserTeamMembership_avatarUrlMember1able)() {
-    m.apiUserTeamMembership_avatarUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_avatarUrl) SetString(value *string)() {
-    m.string = value
 }
 // ApiUserTeamMembership_ApiUserTeamMembership_joinedAt composed type wrapper for classes ApiUserTeamMembership_joinedAtMember1able, string
 type ApiUserTeamMembership_ApiUserTeamMembership_joinedAt struct {
@@ -182,186 +105,11 @@ func (m *ApiUserTeamMembership_ApiUserTeamMembership_joinedAt) SetApiUserTeamMem
 func (m *ApiUserTeamMembership_ApiUserTeamMembership_joinedAt) SetString(value *string)() {
     m.string = value
 }
-// ApiUserTeamMembership_ApiUserTeamMembership_slug composed type wrapper for classes ApiUserTeamMembership_slugMember1able, string
-type ApiUserTeamMembership_ApiUserTeamMembership_slug struct {
-    // Composed type representation for type ApiUserTeamMembership_slugMember1able
-    apiUserTeamMembership_slugMember1 ApiUserTeamMembership_slugMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserTeamMembership_ApiUserTeamMembership_slug instantiates a new ApiUserTeamMembership_ApiUserTeamMembership_slug and sets the default values.
-func NewApiUserTeamMembership_ApiUserTeamMembership_slug()(*ApiUserTeamMembership_ApiUserTeamMembership_slug) {
-    m := &ApiUserTeamMembership_ApiUserTeamMembership_slug{
-    }
-    return m
-}
-// CreateApiUserTeamMembership_ApiUserTeamMembership_slugFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserTeamMembership_ApiUserTeamMembership_slugFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserTeamMembership_ApiUserTeamMembership_slug()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserTeamMembership_slugMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserTeamMembership_slugMember1able); ok {
-                result.SetApiUserTeamMembershipSlugMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserTeamMembershipSlugMember1 gets the ApiUserTeamMembership_slugMember1 property value. Composed type representation for type ApiUserTeamMembership_slugMember1able
-// returns a ApiUserTeamMembership_slugMember1able when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_slug) GetApiUserTeamMembershipSlugMember1()(ApiUserTeamMembership_slugMember1able) {
-    return m.apiUserTeamMembership_slugMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_slug) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_slug) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_slug) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_slug) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserTeamMembershipSlugMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserTeamMembershipSlugMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserTeamMembershipSlugMember1 sets the ApiUserTeamMembership_slugMember1 property value. Composed type representation for type ApiUserTeamMembership_slugMember1able
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_slug) SetApiUserTeamMembershipSlugMember1(value ApiUserTeamMembership_slugMember1able)() {
-    m.apiUserTeamMembership_slugMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_slug) SetString(value *string)() {
-    m.string = value
-}
-// ApiUserTeamMembership_ApiUserTeamMembership_tag composed type wrapper for classes ApiUserTeamMembership_tagMember1able, string
-type ApiUserTeamMembership_ApiUserTeamMembership_tag struct {
-    // Composed type representation for type ApiUserTeamMembership_tagMember1able
-    apiUserTeamMembership_tagMember1 ApiUserTeamMembership_tagMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserTeamMembership_ApiUserTeamMembership_tag instantiates a new ApiUserTeamMembership_ApiUserTeamMembership_tag and sets the default values.
-func NewApiUserTeamMembership_ApiUserTeamMembership_tag()(*ApiUserTeamMembership_ApiUserTeamMembership_tag) {
-    m := &ApiUserTeamMembership_ApiUserTeamMembership_tag{
-    }
-    return m
-}
-// CreateApiUserTeamMembership_ApiUserTeamMembership_tagFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserTeamMembership_ApiUserTeamMembership_tagFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserTeamMembership_ApiUserTeamMembership_tag()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserTeamMembership_tagMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserTeamMembership_tagMember1able); ok {
-                result.SetApiUserTeamMembershipTagMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserTeamMembershipTagMember1 gets the ApiUserTeamMembership_tagMember1 property value. Composed type representation for type ApiUserTeamMembership_tagMember1able
-// returns a ApiUserTeamMembership_tagMember1able when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_tag) GetApiUserTeamMembershipTagMember1()(ApiUserTeamMembership_tagMember1able) {
-    return m.apiUserTeamMembership_tagMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_tag) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_tag) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_tag) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_tag) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserTeamMembershipTagMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserTeamMembershipTagMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserTeamMembershipTagMember1 sets the ApiUserTeamMembership_tagMember1 property value. Composed type representation for type ApiUserTeamMembership_tagMember1able
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_tag) SetApiUserTeamMembershipTagMember1(value ApiUserTeamMembership_tagMember1able)() {
-    m.apiUserTeamMembership_tagMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserTeamMembership_ApiUserTeamMembership_tag) SetString(value *string)() {
-    m.string = value
-}
-type ApiUserTeamMembership_ApiUserTeamMembership_avatarUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserTeamMembershipAvatarUrlMember1()(ApiUserTeamMembership_avatarUrlMember1able)
-    GetString()(*string)
-    SetApiUserTeamMembershipAvatarUrlMember1(value ApiUserTeamMembership_avatarUrlMember1able)()
-    SetString(value *string)()
-}
 type ApiUserTeamMembership_ApiUserTeamMembership_joinedAtable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetApiUserTeamMembershipJoinedAtMember1()(ApiUserTeamMembership_joinedAtMember1able)
     GetString()(*string)
     SetApiUserTeamMembershipJoinedAtMember1(value ApiUserTeamMembership_joinedAtMember1able)()
-    SetString(value *string)()
-}
-type ApiUserTeamMembership_ApiUserTeamMembership_slugable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserTeamMembershipSlugMember1()(ApiUserTeamMembership_slugMember1able)
-    GetString()(*string)
-    SetApiUserTeamMembershipSlugMember1(value ApiUserTeamMembership_slugMember1able)()
-    SetString(value *string)()
-}
-type ApiUserTeamMembership_ApiUserTeamMembership_tagable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserTeamMembershipTagMember1()(ApiUserTeamMembership_tagMember1able)
-    GetString()(*string)
-    SetApiUserTeamMembershipTagMember1(value ApiUserTeamMembership_tagMember1able)()
     SetString(value *string)()
 }
 // NewApiUserTeamMembership instantiates a new ApiUserTeamMembership and sets the default values.
@@ -376,8 +124,8 @@ func CreateApiUserTeamMembershipFromDiscriminatorValue(parseNode i878a80d2330e89
     return NewApiUserTeamMembership(), nil
 }
 // GetAvatarUrl gets the avatarUrl property value. The avatarUrl property
-// returns a ApiUserTeamMembership_ApiUserTeamMembership_avatarUrlable when successful
-func (m *ApiUserTeamMembership) GetAvatarUrl()(ApiUserTeamMembership_ApiUserTeamMembership_avatarUrlable) {
+// returns a *string when successful
+func (m *ApiUserTeamMembership) GetAvatarUrl()(*string) {
     return m.avatarUrl
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -385,12 +133,12 @@ func (m *ApiUserTeamMembership) GetAvatarUrl()(ApiUserTeamMembership_ApiUserTeam
 func (m *ApiUserTeamMembership) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["avatarUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserTeamMembership_ApiUserTeamMembership_avatarUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetAvatarUrl(val.(ApiUserTeamMembership_ApiUserTeamMembership_avatarUrlable))
+            m.SetAvatarUrl(val)
         }
         return nil
     }
@@ -445,22 +193,22 @@ func (m *ApiUserTeamMembership) GetFieldDeserializers()(map[string]func(i878a80d
         return nil
     }
     res["slug"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserTeamMembership_ApiUserTeamMembership_slugFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSlug(val.(ApiUserTeamMembership_ApiUserTeamMembership_slugable))
+            m.SetSlug(val)
         }
         return nil
     }
     res["tag"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserTeamMembership_ApiUserTeamMembership_tagFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetTag(val.(ApiUserTeamMembership_ApiUserTeamMembership_tagable))
+            m.SetTag(val)
         }
         return nil
     }
@@ -502,13 +250,13 @@ func (m *ApiUserTeamMembership) GetRole()(*string) {
     return m.role
 }
 // GetSlug gets the slug property value. The slug property
-// returns a ApiUserTeamMembership_ApiUserTeamMembership_slugable when successful
-func (m *ApiUserTeamMembership) GetSlug()(ApiUserTeamMembership_ApiUserTeamMembership_slugable) {
+// returns a *string when successful
+func (m *ApiUserTeamMembership) GetSlug()(*string) {
     return m.slug
 }
 // GetTag gets the tag property value. The tag property
-// returns a ApiUserTeamMembership_ApiUserTeamMembership_tagable when successful
-func (m *ApiUserTeamMembership) GetTag()(ApiUserTeamMembership_ApiUserTeamMembership_tagable) {
+// returns a *string when successful
+func (m *ApiUserTeamMembership) GetTag()(*string) {
     return m.tag
 }
 // GetVisibility gets the visibility property value. Public profile visibility setting.
@@ -519,7 +267,7 @@ func (m *ApiUserTeamMembership) GetVisibility()(*ProfileVisibility) {
 // Serialize serializes information the current object
 func (m *ApiUserTeamMembership) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("avatarUrl", m.GetAvatarUrl())
+        err := writer.WriteStringValue("avatarUrl", m.GetAvatarUrl())
         if err != nil {
             return err
         }
@@ -555,13 +303,13 @@ func (m *ApiUserTeamMembership) Serialize(writer i878a80d2330e89d26896388a3f487e
         }
     }
     {
-        err := writer.WriteObjectValue("slug", m.GetSlug())
+        err := writer.WriteStringValue("slug", m.GetSlug())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("tag", m.GetTag())
+        err := writer.WriteStringValue("tag", m.GetTag())
         if err != nil {
             return err
         }
@@ -576,7 +324,7 @@ func (m *ApiUserTeamMembership) Serialize(writer i878a80d2330e89d26896388a3f487e
     return nil
 }
 // SetAvatarUrl sets the avatarUrl property value. The avatarUrl property
-func (m *ApiUserTeamMembership) SetAvatarUrl(value ApiUserTeamMembership_ApiUserTeamMembership_avatarUrlable)() {
+func (m *ApiUserTeamMembership) SetAvatarUrl(value *string)() {
     m.avatarUrl = value
 }
 // SetId sets the id property value. Team ID.
@@ -600,11 +348,11 @@ func (m *ApiUserTeamMembership) SetRole(value *string)() {
     m.role = value
 }
 // SetSlug sets the slug property value. The slug property
-func (m *ApiUserTeamMembership) SetSlug(value ApiUserTeamMembership_ApiUserTeamMembership_slugable)() {
+func (m *ApiUserTeamMembership) SetSlug(value *string)() {
     m.slug = value
 }
 // SetTag sets the tag property value. The tag property
-func (m *ApiUserTeamMembership) SetTag(value ApiUserTeamMembership_ApiUserTeamMembership_tagable)() {
+func (m *ApiUserTeamMembership) SetTag(value *string)() {
     m.tag = value
 }
 // SetVisibility sets the visibility property value. Public profile visibility setting.
@@ -613,22 +361,22 @@ func (m *ApiUserTeamMembership) SetVisibility(value *ProfileVisibility)() {
 }
 type ApiUserTeamMembershipable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAvatarUrl()(ApiUserTeamMembership_ApiUserTeamMembership_avatarUrlable)
+    GetAvatarUrl()(*string)
     GetId()(*string)
     GetJoinedAt()(ApiUserTeamMembership_ApiUserTeamMembership_joinedAtable)
     GetName()(*string)
     GetOrganization()(ApiOrganizationSummaryable)
     GetRole()(*string)
-    GetSlug()(ApiUserTeamMembership_ApiUserTeamMembership_slugable)
-    GetTag()(ApiUserTeamMembership_ApiUserTeamMembership_tagable)
+    GetSlug()(*string)
+    GetTag()(*string)
     GetVisibility()(*ProfileVisibility)
-    SetAvatarUrl(value ApiUserTeamMembership_ApiUserTeamMembership_avatarUrlable)()
+    SetAvatarUrl(value *string)()
     SetId(value *string)()
     SetJoinedAt(value ApiUserTeamMembership_ApiUserTeamMembership_joinedAtable)()
     SetName(value *string)()
     SetOrganization(value ApiOrganizationSummaryable)()
     SetRole(value *string)()
-    SetSlug(value ApiUserTeamMembership_ApiUserTeamMembership_slugable)()
-    SetTag(value ApiUserTeamMembership_ApiUserTeamMembership_tagable)()
+    SetSlug(value *string)()
+    SetTag(value *string)()
     SetVisibility(value *ProfileVisibility)()
 }

@@ -16,10 +16,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The gameSlug property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse.OrganizationLeaderboardResponse_gameSlug? GameSlug { get; set; }
+        public string? GameSlug { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse.OrganizationLeaderboardResponse_gameSlug GameSlug { get; set; }
+        public string GameSlug { get; set; }
 #endif
         /// <summary>The organizations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,7 +57,7 @@ namespace TeamBattles.Sdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "gameSlug", n => { GameSlug = n.GetObjectValue<global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse.OrganizationLeaderboardResponse_gameSlug>(global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse.OrganizationLeaderboardResponse_gameSlug.CreateFromDiscriminatorValue); } },
+                { "gameSlug", n => { GameSlug = n.GetStringValue(); } },
                 { "organizations", n => { Organizations = n.GetCollectionOfObjectValues<global::TeamBattles.Sdk.Models.OrganizationLeaderboardEntry>(global::TeamBattles.Sdk.Models.OrganizationLeaderboardEntry.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "sortBy", n => { SortBy = n.GetEnumValue<global::TeamBattles.Sdk.Models.LeaderboardSortBy>(); } },
                 { "timestamp", n => { Timestamp = n.GetStringValue(); } },
@@ -70,78 +70,10 @@ namespace TeamBattles.Sdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse.OrganizationLeaderboardResponse_gameSlug>("gameSlug", GameSlug);
+            writer.WriteStringValue("gameSlug", GameSlug);
             writer.WriteCollectionOfObjectValues<global::TeamBattles.Sdk.Models.OrganizationLeaderboardEntry>("organizations", Organizations);
             writer.WriteEnumValue<global::TeamBattles.Sdk.Models.LeaderboardSortBy>("sortBy", SortBy);
             writer.WriteStringValue("timestamp", Timestamp);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse_gameSlugMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class OrganizationLeaderboardResponse_gameSlug : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse_gameSlugMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse_gameSlugMember1? OrganizationLeaderboardResponseGameSlugMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse_gameSlugMember1 OrganizationLeaderboardResponseGameSlugMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse.OrganizationLeaderboardResponse_gameSlug"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse.OrganizationLeaderboardResponse_gameSlug CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse.OrganizationLeaderboardResponse_gameSlug();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.OrganizationLeaderboardResponseGameSlugMember1 = new global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse_gameSlugMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(OrganizationLeaderboardResponseGameSlugMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(OrganizationLeaderboardResponseGameSlugMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.OrganizationLeaderboardResponse_gameSlugMember1>(null, OrganizationLeaderboardResponseGameSlugMember1);
-                }
-            }
         }
     }
 }

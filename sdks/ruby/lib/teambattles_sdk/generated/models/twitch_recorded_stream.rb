@@ -68,7 +68,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the ended_at property value. Stream end (ISO 8601); null while it was still live at the last pass.
-                ## @return a twitch_recorded_stream_ended_at
+                ## @return a string
                 ## 
                 def ended_at
                     return @ended_at
@@ -83,7 +83,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the game property value. Category name, when Twitch reported one.
-                ## @return a twitch_recorded_stream_game
+                ## @return a string
                 ## 
                 def game
                     return @game
@@ -103,21 +103,21 @@ module TeamBattlesSdk
                 def get_field_deserializers()
                     return {
                         "duration_seconds" => lambda {|n| @duration_seconds = n.get_number_value() },
-                        "ended_at" => lambda {|n| @ended_at = n.get_object_value(lambda {|pn| TwitchRecordedStream::TwitchRecordedStreamEndedAt.create_from_discriminator_value(pn) }) },
-                        "game" => lambda {|n| @game = n.get_object_value(lambda {|pn| TwitchRecordedStream::TwitchRecordedStreamGame.create_from_discriminator_value(pn) }) },
-                        "host" => lambda {|n| @host = n.get_object_value(lambda {|pn| TwitchRecordedStream::TwitchRecordedStreamHost.create_from_discriminator_value(pn) }) },
+                        "ended_at" => lambda {|n| @ended_at = n.get_string_value() },
+                        "game" => lambda {|n| @game = n.get_string_value() },
+                        "host" => lambda {|n| @host = n.get_string_value() },
                         "login" => lambda {|n| @login = n.get_string_value() },
                         "path_timestamp" => lambda {|n| @path_timestamp = n.get_object_value(lambda {|pn| TwitchRecordedStream::TwitchRecordedStreamPathTimestamp.create_from_discriminator_value(pn) }) },
                         "recording" => lambda {|n| @recording = n.get_enum_value(TeamBattlesSdk::Generated::Models::TwitchRecordedStreamRecording) },
-                        "removed_at" => lambda {|n| @removed_at = n.get_object_value(lambda {|pn| TwitchRecordedStream::TwitchRecordedStreamRemovedAt.create_from_discriminator_value(pn) }) },
+                        "removed_at" => lambda {|n| @removed_at = n.get_string_value() },
                         "started_at" => lambda {|n| @started_at = n.get_string_value() },
                         "stream_id" => lambda {|n| @stream_id = n.get_string_value() },
-                        "title" => lambda {|n| @title = n.get_object_value(lambda {|pn| TwitchRecordedStream::TwitchRecordedStreamTitle.create_from_discriminator_value(pn) }) },
+                        "title" => lambda {|n| @title = n.get_string_value() },
                     }
                 end
                 ## 
                 ## Gets the host property value. CDN host the recording was found on; null unless recording is available.
-                ## @return a twitch_recorded_stream_host
+                ## @return a string
                 ## 
                 def host
                     return @host
@@ -177,7 +177,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the removed_at property value. When the recording was found removed (ISO 8601), else null.
-                ## @return a twitch_recorded_stream_removed_at
+                ## @return a string
                 ## 
                 def removed_at
                     return @removed_at
@@ -198,16 +198,16 @@ module TeamBattlesSdk
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
                     writer.write_number_value("duration_seconds", @duration_seconds)
-                    writer.write_object_value("ended_at", @ended_at)
-                    writer.write_object_value("game", @game)
-                    writer.write_object_value("host", @host)
+                    writer.write_string_value("ended_at", @ended_at)
+                    writer.write_string_value("game", @game)
+                    writer.write_string_value("host", @host)
                     writer.write_string_value("login", @login)
                     writer.write_object_value("path_timestamp", @path_timestamp)
                     writer.write_enum_value("recording", @recording)
-                    writer.write_object_value("removed_at", @removed_at)
+                    writer.write_string_value("removed_at", @removed_at)
                     writer.write_string_value("started_at", @started_at)
                     writer.write_string_value("stream_id", @stream_id)
-                    writer.write_object_value("title", @title)
+                    writer.write_string_value("title", @title)
                 end
                 ## 
                 ## Gets the started_at property value. Stream start (ISO 8601).
@@ -241,7 +241,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the title property value. Stream title, when Twitch reported one.
-                ## @return a twitch_recorded_stream_title
+                ## @return a string
                 ## 
                 def title
                     return @title
@@ -253,219 +253,6 @@ module TeamBattlesSdk
                 ## 
                 def title=(value)
                     @title = value
-                end
-
-                ## 
-                # Composed type wrapper for classes string, TwitchRecordedStreamEndedAtMember1
-                class TwitchRecordedStreamEndedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type TwitchRecordedStreamEndedAtMember1
-                    @twitch_recorded_stream_ended_at_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a twitch_recorded_stream_ended_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return TwitchRecordedStreamEndedAt.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "TwitchRecordedStream_ended_atMember1" => lambda {|n| @twitch_recorded_stream_ended_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::TwitchRecordedStreamEndedAtMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("TwitchRecordedStream_ended_atMember1", @twitch_recorded_stream_ended_at_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the TwitchRecordedStream_ended_atMember1 property value. Composed type representation for type TwitchRecordedStreamEndedAtMember1
-                    ## @return a twitch_recorded_stream_ended_at_member1
-                    ## 
-                    def twitch_recorded_stream_ended_at_member1
-                        return @twitch_recorded_stream_ended_at_member1
-                    end
-                    ## 
-                    ## Sets the TwitchRecordedStream_ended_atMember1 property value. Composed type representation for type TwitchRecordedStreamEndedAtMember1
-                    ## @param value Value to set for the TwitchRecordedStream_ended_atMember1 property.
-                    ## @return a void
-                    ## 
-                    def twitch_recorded_stream_ended_at_member1=(value)
-                        @twitch_recorded_stream_ended_at_member1 = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes string, TwitchRecordedStreamGameMember1
-                class TwitchRecordedStreamGame
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type TwitchRecordedStreamGameMember1
-                    @twitch_recorded_stream_game_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a twitch_recorded_stream_game
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return TwitchRecordedStreamGame.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "TwitchRecordedStream_gameMember1" => lambda {|n| @twitch_recorded_stream_game_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::TwitchRecordedStreamGameMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("TwitchRecordedStream_gameMember1", @twitch_recorded_stream_game_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the TwitchRecordedStream_gameMember1 property value. Composed type representation for type TwitchRecordedStreamGameMember1
-                    ## @return a twitch_recorded_stream_game_member1
-                    ## 
-                    def twitch_recorded_stream_game_member1
-                        return @twitch_recorded_stream_game_member1
-                    end
-                    ## 
-                    ## Sets the TwitchRecordedStream_gameMember1 property value. Composed type representation for type TwitchRecordedStreamGameMember1
-                    ## @param value Value to set for the TwitchRecordedStream_gameMember1 property.
-                    ## @return a void
-                    ## 
-                    def twitch_recorded_stream_game_member1=(value)
-                        @twitch_recorded_stream_game_member1 = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes string, TwitchRecordedStreamHostMember1
-                class TwitchRecordedStreamHost
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type TwitchRecordedStreamHostMember1
-                    @twitch_recorded_stream_host_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a twitch_recorded_stream_host
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return TwitchRecordedStreamHost.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "TwitchRecordedStream_hostMember1" => lambda {|n| @twitch_recorded_stream_host_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::TwitchRecordedStreamHostMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("TwitchRecordedStream_hostMember1", @twitch_recorded_stream_host_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the TwitchRecordedStream_hostMember1 property value. Composed type representation for type TwitchRecordedStreamHostMember1
-                    ## @return a twitch_recorded_stream_host_member1
-                    ## 
-                    def twitch_recorded_stream_host_member1
-                        return @twitch_recorded_stream_host_member1
-                    end
-                    ## 
-                    ## Sets the TwitchRecordedStream_hostMember1 property value. Composed type representation for type TwitchRecordedStreamHostMember1
-                    ## @param value Value to set for the TwitchRecordedStream_hostMember1 property.
-                    ## @return a void
-                    ## 
-                    def twitch_recorded_stream_host_member1=(value)
-                        @twitch_recorded_stream_host_member1 = value
-                    end
                 end
 
                 ## 
@@ -536,148 +323,6 @@ module TeamBattlesSdk
                     ## 
                     def twitch_recorded_stream_path_timestamp_member1=(value)
                         @twitch_recorded_stream_path_timestamp_member1 = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes string, TwitchRecordedStreamRemovedAtMember1
-                class TwitchRecordedStreamRemovedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type TwitchRecordedStreamRemovedAtMember1
-                    @twitch_recorded_stream_removed_at_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a twitch_recorded_stream_removed_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return TwitchRecordedStreamRemovedAt.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "TwitchRecordedStream_removed_atMember1" => lambda {|n| @twitch_recorded_stream_removed_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::TwitchRecordedStreamRemovedAtMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("TwitchRecordedStream_removed_atMember1", @twitch_recorded_stream_removed_at_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the TwitchRecordedStream_removed_atMember1 property value. Composed type representation for type TwitchRecordedStreamRemovedAtMember1
-                    ## @return a twitch_recorded_stream_removed_at_member1
-                    ## 
-                    def twitch_recorded_stream_removed_at_member1
-                        return @twitch_recorded_stream_removed_at_member1
-                    end
-                    ## 
-                    ## Sets the TwitchRecordedStream_removed_atMember1 property value. Composed type representation for type TwitchRecordedStreamRemovedAtMember1
-                    ## @param value Value to set for the TwitchRecordedStream_removed_atMember1 property.
-                    ## @return a void
-                    ## 
-                    def twitch_recorded_stream_removed_at_member1=(value)
-                        @twitch_recorded_stream_removed_at_member1 = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes string, TwitchRecordedStreamTitleMember1
-                class TwitchRecordedStreamTitle
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type TwitchRecordedStreamTitleMember1
-                    @twitch_recorded_stream_title_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a twitch_recorded_stream_title
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return TwitchRecordedStreamTitle.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "TwitchRecordedStream_titleMember1" => lambda {|n| @twitch_recorded_stream_title_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::TwitchRecordedStreamTitleMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("TwitchRecordedStream_titleMember1", @twitch_recorded_stream_title_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the TwitchRecordedStream_titleMember1 property value. Composed type representation for type TwitchRecordedStreamTitleMember1
-                    ## @return a twitch_recorded_stream_title_member1
-                    ## 
-                    def twitch_recorded_stream_title_member1
-                        return @twitch_recorded_stream_title_member1
-                    end
-                    ## 
-                    ## Sets the TwitchRecordedStream_titleMember1 property value. Composed type representation for type TwitchRecordedStreamTitleMember1
-                    ## @param value Value to set for the TwitchRecordedStream_titleMember1 property.
-                    ## @return a void
-                    ## 
-                    def twitch_recorded_stream_title_member1=(value)
-                        @twitch_recorded_stream_title_member1 = value
                     end
                 end
             end

@@ -44,18 +44,18 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The url property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_url? Url { get; set; }
+        public string? Url { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_url Url { get; set; }
+        public string Url { get; set; }
 #endif
         /// <summary>The username property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_username? Username { get; set; }
+        public string? Username { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_username Username { get; set; }
+        public string Username { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -80,8 +80,8 @@ namespace TeamBattles.Sdk.Models
                 { "isPrimary", n => { IsPrimary = n.GetBoolValue(); } },
                 { "isVerified", n => { IsVerified = n.GetBoolValue(); } },
                 { "platform", n => { Platform = n.GetStringValue(); } },
-                { "url", n => { Url = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_url>(global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_url.CreateFromDiscriminatorValue); } },
-                { "username", n => { Username = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_username>(global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_username.CreateFromDiscriminatorValue); } },
+                { "url", n => { Url = n.GetStringValue(); } },
+                { "username", n => { Username = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -96,8 +96,8 @@ namespace TeamBattles.Sdk.Models
             writer.WriteBoolValue("isPrimary", IsPrimary);
             writer.WriteBoolValue("isVerified", IsVerified);
             writer.WriteStringValue("platform", Platform);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_url>("url", Url);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_username>("username", Username);
+            writer.WriteStringValue("url", Url);
+            writer.WriteStringValue("username", Username);
         }
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiUserConnection_connectedAtMember1"/>, <see cref="string"/>
@@ -164,142 +164,6 @@ namespace TeamBattles.Sdk.Models
                 }
                 else {
                     writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserConnection_connectedAtMember1>(null, ApiUserConnectionConnectedAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiUserConnection_urlMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiUserConnection_url : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiUserConnection_urlMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiUserConnection_urlMember1? ApiUserConnectionUrlMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiUserConnection_urlMember1 ApiUserConnectionUrlMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_url"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_url CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_url();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiUserConnectionUrlMember1 = new global::TeamBattles.Sdk.Models.ApiUserConnection_urlMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiUserConnectionUrlMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiUserConnectionUrlMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserConnection_urlMember1>(null, ApiUserConnectionUrlMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiUserConnection_usernameMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiUserConnection_username : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiUserConnection_usernameMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiUserConnection_usernameMember1? ApiUserConnectionUsernameMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiUserConnection_usernameMember1 ApiUserConnectionUsernameMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_username"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_username CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiUserConnection.ApiUserConnection_username();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiUserConnectionUsernameMember1 = new global::TeamBattles.Sdk.Models.ApiUserConnection_usernameMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiUserConnectionUsernameMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiUserConnectionUsernameMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserConnection_usernameMember1>(null, ApiUserConnectionUsernameMember1);
                 }
             }
         }

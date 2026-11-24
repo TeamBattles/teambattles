@@ -18,9 +18,9 @@ class ApiGamePlaylist implements Parsable
     private ?array $allowedGameModeIds = null;
     
     /**
-     * @var ApiGamePlaylist_descriptionKey|null $descriptionKey The descriptionKey property
+     * @var string|null $descriptionKey The descriptionKey property
     */
-    private ?ApiGamePlaylist_descriptionKey $descriptionKey = null;
+    private ?string $descriptionKey = null;
     
     /**
      * @var string|null $id The id property
@@ -28,9 +28,9 @@ class ApiGamePlaylist implements Parsable
     private ?string $id = null;
     
     /**
-     * @var ApiGamePlaylist_image|null $image The image property
+     * @var string|null $image The image property
     */
-    private ?ApiGamePlaylist_image $image = null;
+    private ?string $image = null;
     
     /**
      * @var string|null $nameKey The nameKey property
@@ -56,9 +56,9 @@ class ApiGamePlaylist implements Parsable
 
     /**
      * Gets the descriptionKey property value. The descriptionKey property
-     * @return ApiGamePlaylist_descriptionKey|null
+     * @return string|null
     */
-    public function getDescriptionKey(): ?ApiGamePlaylist_descriptionKey {
+    public function getDescriptionKey(): ?string {
         return $this->descriptionKey;
     }
 
@@ -77,9 +77,9 @@ class ApiGamePlaylist implements Parsable
                 /** @var array<string>|null $val */
                 $this->setAllowedGameModeIds($val);
             },
-            'descriptionKey' => fn(ParseNode $n) => $o->setDescriptionKey($n->getObjectValue([ApiGamePlaylist_descriptionKey::class, 'createFromDiscriminatorValue'])),
+            'descriptionKey' => fn(ParseNode $n) => $o->setDescriptionKey($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'image' => fn(ParseNode $n) => $o->setImage($n->getObjectValue([ApiGamePlaylist_image::class, 'createFromDiscriminatorValue'])),
+            'image' => fn(ParseNode $n) => $o->setImage($n->getStringValue()),
             'nameKey' => fn(ParseNode $n) => $o->setNameKey($n->getStringValue()),
         ];
     }
@@ -94,9 +94,9 @@ class ApiGamePlaylist implements Parsable
 
     /**
      * Gets the image property value. The image property
-     * @return ApiGamePlaylist_image|null
+     * @return string|null
     */
-    public function getImage(): ?ApiGamePlaylist_image {
+    public function getImage(): ?string {
         return $this->image;
     }
 
@@ -114,9 +114,9 @@ class ApiGamePlaylist implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfPrimitiveValues('allowedGameModeIds', $this->getAllowedGameModeIds());
-        $writer->writeObjectValue('descriptionKey', $this->getDescriptionKey());
+        $writer->writeStringValue('descriptionKey', $this->getDescriptionKey());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeObjectValue('image', $this->getImage());
+        $writer->writeStringValue('image', $this->getImage());
         $writer->writeStringValue('nameKey', $this->getNameKey());
     }
 
@@ -130,9 +130,9 @@ class ApiGamePlaylist implements Parsable
 
     /**
      * Sets the descriptionKey property value. The descriptionKey property
-     * @param ApiGamePlaylist_descriptionKey|null $value Value to set for the descriptionKey property.
+     * @param string|null $value Value to set for the descriptionKey property.
     */
-    public function setDescriptionKey(?ApiGamePlaylist_descriptionKey $value): void {
+    public function setDescriptionKey(?string $value): void {
         $this->descriptionKey = $value;
     }
 
@@ -146,9 +146,9 @@ class ApiGamePlaylist implements Parsable
 
     /**
      * Sets the image property value. The image property
-     * @param ApiGamePlaylist_image|null $value Value to set for the image property.
+     * @param string|null $value Value to set for the image property.
     */
-    public function setImage(?ApiGamePlaylist_image $value): void {
+    public function setImage(?string $value): void {
         $this->image = $value;
     }
 

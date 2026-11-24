@@ -63,7 +63,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the closedAt property value. The closedAt property
-                ## @return a ticket_detail_closed_at
+                ## @return a string
                 ## 
                 def closed_at
                     return @closed_at
@@ -78,7 +78,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the createdAt property value. The createdAt property
-                ## @return a ticket_detail_created_at
+                ## @return a string
                 ## 
                 def created_at
                     return @created_at
@@ -122,18 +122,18 @@ module TeamBattlesSdk
                 def get_field_deserializers()
                     return {
                         "category" => lambda {|n| @category = n.get_string_value() },
-                        "closedAt" => lambda {|n| @closed_at = n.get_object_value(lambda {|pn| TicketDetail::TicketDetailClosedAt.create_from_discriminator_value(pn) }) },
-                        "createdAt" => lambda {|n| @created_at = n.get_object_value(lambda {|pn| TicketDetail::TicketDetailCreatedAt.create_from_discriminator_value(pn) }) },
+                        "closedAt" => lambda {|n| @closed_at = n.get_string_value() },
+                        "createdAt" => lambda {|n| @created_at = n.get_string_value() },
                         "description" => lambda {|n| @description = n.get_string_value() },
                         "id" => lambda {|n| @id = n.get_string_value() },
                         "messages" => lambda {|n| @messages = n.get_collection_of_object_values(lambda {|pn| TeamBattlesSdk::Generated::Models::TicketDetailMessages.create_from_discriminator_value(pn) }) },
                         "priority" => lambda {|n| @priority = n.get_enum_value(TeamBattlesSdk::Generated::Models::TicketDetailPriority) },
-                        "resolvedAt" => lambda {|n| @resolved_at = n.get_object_value(lambda {|pn| TicketDetail::TicketDetailResolvedAt.create_from_discriminator_value(pn) }) },
+                        "resolvedAt" => lambda {|n| @resolved_at = n.get_string_value() },
                         "status" => lambda {|n| @status = n.get_enum_value(TeamBattlesSdk::Generated::Models::TicketDetailStatus) },
                         "subject" => lambda {|n| @subject = n.get_string_value() },
                         "ticketNumber" => lambda {|n| @ticket_number = n.get_number_value() },
                         "timestamp" => lambda {|n| @timestamp = n.get_string_value() },
-                        "updatedAt" => lambda {|n| @updated_at = n.get_object_value(lambda {|pn| TicketDetail::TicketDetailUpdatedAt.create_from_discriminator_value(pn) }) },
+                        "updatedAt" => lambda {|n| @updated_at = n.get_string_value() },
                     }
                 end
                 ## 
@@ -183,7 +183,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the resolvedAt property value. The resolvedAt property
-                ## @return a ticket_detail_resolved_at
+                ## @return a string
                 ## 
                 def resolved_at
                     return @resolved_at
@@ -204,18 +204,18 @@ module TeamBattlesSdk
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
                     writer.write_string_value("category", @category)
-                    writer.write_object_value("closedAt", @closed_at)
-                    writer.write_object_value("createdAt", @created_at)
+                    writer.write_string_value("closedAt", @closed_at)
+                    writer.write_string_value("createdAt", @created_at)
                     writer.write_string_value("description", @description)
                     writer.write_string_value("id", @id)
                     writer.write_collection_of_object_values("messages", @messages)
                     writer.write_enum_value("priority", @priority)
-                    writer.write_object_value("resolvedAt", @resolved_at)
+                    writer.write_string_value("resolvedAt", @resolved_at)
                     writer.write_enum_value("status", @status)
                     writer.write_string_value("subject", @subject)
                     writer.write_number_value("ticketNumber", @ticket_number)
                     writer.write_string_value("timestamp", @timestamp)
-                    writer.write_object_value("updatedAt", @updated_at)
+                    writer.write_string_value("updatedAt", @updated_at)
                 end
                 ## 
                 ## Gets the status property value. The status property
@@ -279,7 +279,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the updatedAt property value. The updatedAt property
-                ## @return a ticket_detail_updated_at
+                ## @return a string
                 ## 
                 def updated_at
                     return @updated_at
@@ -291,290 +291,6 @@ module TeamBattlesSdk
                 ## 
                 def updated_at=(value)
                     @updated_at = value
-                end
-
-                ## 
-                # Composed type wrapper for classes string, TicketDetailClosedAtMember1
-                class TicketDetailClosedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type TicketDetailClosedAtMember1
-                    @ticket_detail_closed_at_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a ticket_detail_closed_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return TicketDetailClosedAt.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "TicketDetail_closedAtMember1" => lambda {|n| @ticket_detail_closed_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::TicketDetailClosedAtMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("TicketDetail_closedAtMember1", @ticket_detail_closed_at_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the TicketDetail_closedAtMember1 property value. Composed type representation for type TicketDetailClosedAtMember1
-                    ## @return a ticket_detail_closed_at_member1
-                    ## 
-                    def ticket_detail_closed_at_member1
-                        return @ticket_detail_closed_at_member1
-                    end
-                    ## 
-                    ## Sets the TicketDetail_closedAtMember1 property value. Composed type representation for type TicketDetailClosedAtMember1
-                    ## @param value Value to set for the TicketDetail_closedAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def ticket_detail_closed_at_member1=(value)
-                        @ticket_detail_closed_at_member1 = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes string, TicketDetailCreatedAtMember1
-                class TicketDetailCreatedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type TicketDetailCreatedAtMember1
-                    @ticket_detail_created_at_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a ticket_detail_created_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return TicketDetailCreatedAt.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "TicketDetail_createdAtMember1" => lambda {|n| @ticket_detail_created_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::TicketDetailCreatedAtMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("TicketDetail_createdAtMember1", @ticket_detail_created_at_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the TicketDetail_createdAtMember1 property value. Composed type representation for type TicketDetailCreatedAtMember1
-                    ## @return a ticket_detail_created_at_member1
-                    ## 
-                    def ticket_detail_created_at_member1
-                        return @ticket_detail_created_at_member1
-                    end
-                    ## 
-                    ## Sets the TicketDetail_createdAtMember1 property value. Composed type representation for type TicketDetailCreatedAtMember1
-                    ## @param value Value to set for the TicketDetail_createdAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def ticket_detail_created_at_member1=(value)
-                        @ticket_detail_created_at_member1 = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes string, TicketDetailResolvedAtMember1
-                class TicketDetailResolvedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type TicketDetailResolvedAtMember1
-                    @ticket_detail_resolved_at_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a ticket_detail_resolved_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return TicketDetailResolvedAt.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "TicketDetail_resolvedAtMember1" => lambda {|n| @ticket_detail_resolved_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::TicketDetailResolvedAtMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("TicketDetail_resolvedAtMember1", @ticket_detail_resolved_at_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the TicketDetail_resolvedAtMember1 property value. Composed type representation for type TicketDetailResolvedAtMember1
-                    ## @return a ticket_detail_resolved_at_member1
-                    ## 
-                    def ticket_detail_resolved_at_member1
-                        return @ticket_detail_resolved_at_member1
-                    end
-                    ## 
-                    ## Sets the TicketDetail_resolvedAtMember1 property value. Composed type representation for type TicketDetailResolvedAtMember1
-                    ## @param value Value to set for the TicketDetail_resolvedAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def ticket_detail_resolved_at_member1=(value)
-                        @ticket_detail_resolved_at_member1 = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes string, TicketDetailUpdatedAtMember1
-                class TicketDetailUpdatedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type TicketDetailUpdatedAtMember1
-                    @ticket_detail_updated_at_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a ticket_detail_updated_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return TicketDetailUpdatedAt.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "TicketDetail_updatedAtMember1" => lambda {|n| @ticket_detail_updated_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::TicketDetailUpdatedAtMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("TicketDetail_updatedAtMember1", @ticket_detail_updated_at_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the TicketDetail_updatedAtMember1 property value. Composed type representation for type TicketDetailUpdatedAtMember1
-                    ## @return a ticket_detail_updated_at_member1
-                    ## 
-                    def ticket_detail_updated_at_member1
-                        return @ticket_detail_updated_at_member1
-                    end
-                    ## 
-                    ## Sets the TicketDetail_updatedAtMember1 property value. Composed type representation for type TicketDetailUpdatedAtMember1
-                    ## @param value Value to set for the TicketDetail_updatedAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def ticket_detail_updated_at_member1=(value)
-                        @ticket_detail_updated_at_member1 = value
-                    end
                 end
             end
         end

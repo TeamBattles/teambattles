@@ -6,8 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .api_user_connection_connected_at import ApiUserConnection_connectedAt
-    from .api_user_connection_url import ApiUserConnection_url
-    from .api_user_connection_username import ApiUserConnection_username
 
 @dataclass
 class ApiUserConnection(Parsable):
@@ -25,9 +23,9 @@ class ApiUserConnection(Parsable):
     # Connected platform.
     platform: Optional[str] = None
     # The url property
-    url: Optional[ApiUserConnection_url] = None
+    url: Optional[str] = None
     # The username property
-    username: Optional[ApiUserConnection_username] = None
+    username: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiUserConnection:
@@ -46,12 +44,8 @@ class ApiUserConnection(Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .api_user_connection_connected_at import ApiUserConnection_connectedAt
-        from .api_user_connection_url import ApiUserConnection_url
-        from .api_user_connection_username import ApiUserConnection_username
 
         from .api_user_connection_connected_at import ApiUserConnection_connectedAt
-        from .api_user_connection_url import ApiUserConnection_url
-        from .api_user_connection_username import ApiUserConnection_username
 
         fields: dict[str, Callable[[Any], None]] = {
             "connectedAt": lambda n : setattr(self, 'connected_at', n.get_object_value(ApiUserConnection_connectedAt)),
@@ -59,8 +53,8 @@ class ApiUserConnection(Parsable):
             "isPrimary": lambda n : setattr(self, 'is_primary', n.get_bool_value()),
             "isVerified": lambda n : setattr(self, 'is_verified', n.get_bool_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_str_value()),
-            "url": lambda n : setattr(self, 'url', n.get_object_value(ApiUserConnection_url)),
-            "username": lambda n : setattr(self, 'username', n.get_object_value(ApiUserConnection_username)),
+            "url": lambda n : setattr(self, 'url', n.get_str_value()),
+            "username": lambda n : setattr(self, 'username', n.get_str_value()),
         }
         return fields
     
@@ -77,7 +71,7 @@ class ApiUserConnection(Parsable):
         writer.write_bool_value("isPrimary", self.is_primary)
         writer.write_bool_value("isVerified", self.is_verified)
         writer.write_str_value("platform", self.platform)
-        writer.write_object_value("url", self.url)
-        writer.write_object_value("username", self.username)
+        writer.write_str_value("url", self.url)
+        writer.write_str_value("username", self.username)
     
 

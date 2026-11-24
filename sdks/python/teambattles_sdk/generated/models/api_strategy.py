@@ -6,8 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .api_strategy_created_at import ApiStrategy_createdAt
-    from .api_strategy_description import ApiStrategy_description
-    from .api_strategy_preview_url import ApiStrategy_previewUrl
     from .api_strategy_stage import ApiStrategyStage
     from .api_strategy_updated_at import ApiStrategy_updatedAt
     from .strategy_visibility import StrategyVisibility
@@ -20,7 +18,7 @@ class ApiStrategy(Parsable):
     # The createdAt property
     created_at: Optional[ApiStrategy_createdAt] = None
     # Author description, when set.
-    description: Optional[ApiStrategy_description] = None
+    description: Optional[str] = None
     # Game slug the strategy targets.
     game: Optional[str] = None
     # Strategy ID.
@@ -36,7 +34,7 @@ class ApiStrategy(Parsable):
     # Whether frame playback wraps from the last stage to the first.
     playback_loop: Optional[bool] = None
     # Freshly signed preview image URL, when a preview has been rendered.
-    preview_url: Optional[ApiStrategy_previewUrl] = None
+    preview_url: Optional[str] = None
     # Public share slug.
     share_slug: Optional[str] = None
     # The stageCount property
@@ -65,22 +63,18 @@ class ApiStrategy(Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .api_strategy_created_at import ApiStrategy_createdAt
-        from .api_strategy_description import ApiStrategy_description
-        from .api_strategy_preview_url import ApiStrategy_previewUrl
         from .api_strategy_stage import ApiStrategyStage
         from .api_strategy_updated_at import ApiStrategy_updatedAt
         from .strategy_visibility import StrategyVisibility
 
         from .api_strategy_created_at import ApiStrategy_createdAt
-        from .api_strategy_description import ApiStrategy_description
-        from .api_strategy_preview_url import ApiStrategy_previewUrl
         from .api_strategy_stage import ApiStrategyStage
         from .api_strategy_updated_at import ApiStrategy_updatedAt
         from .strategy_visibility import StrategyVisibility
 
         fields: dict[str, Callable[[Any], None]] = {
             "createdAt": lambda n : setattr(self, 'created_at', n.get_object_value(ApiStrategy_createdAt)),
-            "description": lambda n : setattr(self, 'description', n.get_object_value(ApiStrategy_description)),
+            "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "game": lambda n : setattr(self, 'game', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "mapId": lambda n : setattr(self, 'map_id', n.get_str_value()),
@@ -88,7 +82,7 @@ class ApiStrategy(Parsable):
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "ownerId": lambda n : setattr(self, 'owner_id', n.get_str_value()),
             "playbackLoop": lambda n : setattr(self, 'playback_loop', n.get_bool_value()),
-            "previewUrl": lambda n : setattr(self, 'preview_url', n.get_object_value(ApiStrategy_previewUrl)),
+            "previewUrl": lambda n : setattr(self, 'preview_url', n.get_str_value()),
             "shareSlug": lambda n : setattr(self, 'share_slug', n.get_str_value()),
             "stageCount": lambda n : setattr(self, 'stage_count', n.get_int_value()),
             "stages": lambda n : setattr(self, 'stages', n.get_collection_of_object_values(ApiStrategyStage)),
@@ -106,7 +100,7 @@ class ApiStrategy(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("createdAt", self.created_at)
-        writer.write_object_value("description", self.description)
+        writer.write_str_value("description", self.description)
         writer.write_str_value("game", self.game)
         writer.write_str_value("id", self.id)
         writer.write_str_value("mapId", self.map_id)
@@ -114,7 +108,7 @@ class ApiStrategy(Parsable):
         writer.write_str_value("name", self.name)
         writer.write_str_value("ownerId", self.owner_id)
         writer.write_bool_value("playbackLoop", self.playback_loop)
-        writer.write_object_value("previewUrl", self.preview_url)
+        writer.write_str_value("previewUrl", self.preview_url)
         writer.write_str_value("shareSlug", self.share_slug)
         writer.write_int_value("stageCount", self.stage_count)
         writer.write_collection_of_object_values("stages", self.stages)

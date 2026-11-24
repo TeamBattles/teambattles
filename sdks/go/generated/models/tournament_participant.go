@@ -22,95 +22,11 @@ type TournamentParticipant struct {
     // PENDING, APPROVED, DENIED, WITHDRAWN, or DISQUALIFIED.
     status *string
     // Team avatar URL.
-    teamAvatarUrl TournamentParticipant_TournamentParticipant_teamAvatarUrlable
+    teamAvatarUrl *string
     // Team ID.
     teamId *string
     // Team display name.
     teamName *string
-}
-// TournamentParticipant_TournamentParticipant_teamAvatarUrl composed type wrapper for classes string, TournamentParticipant_teamAvatarUrlMember1able
-type TournamentParticipant_TournamentParticipant_teamAvatarUrl struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TournamentParticipant_teamAvatarUrlMember1able
-    tournamentParticipant_teamAvatarUrlMember1 TournamentParticipant_teamAvatarUrlMember1able
-}
-// NewTournamentParticipant_TournamentParticipant_teamAvatarUrl instantiates a new TournamentParticipant_TournamentParticipant_teamAvatarUrl and sets the default values.
-func NewTournamentParticipant_TournamentParticipant_teamAvatarUrl()(*TournamentParticipant_TournamentParticipant_teamAvatarUrl) {
-    m := &TournamentParticipant_TournamentParticipant_teamAvatarUrl{
-    }
-    return m
-}
-// CreateTournamentParticipant_TournamentParticipant_teamAvatarUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTournamentParticipant_TournamentParticipant_teamAvatarUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTournamentParticipant_TournamentParticipant_teamAvatarUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTournamentParticipant_teamAvatarUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TournamentParticipant_teamAvatarUrlMember1able); ok {
-                result.SetTournamentParticipantTeamAvatarUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TournamentParticipant_TournamentParticipant_teamAvatarUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TournamentParticipant_TournamentParticipant_teamAvatarUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TournamentParticipant_TournamentParticipant_teamAvatarUrl) GetString()(*string) {
-    return m.string
-}
-// GetTournamentParticipantTeamAvatarUrlMember1 gets the TournamentParticipant_teamAvatarUrlMember1 property value. Composed type representation for type TournamentParticipant_teamAvatarUrlMember1able
-// returns a TournamentParticipant_teamAvatarUrlMember1able when successful
-func (m *TournamentParticipant_TournamentParticipant_teamAvatarUrl) GetTournamentParticipantTeamAvatarUrlMember1()(TournamentParticipant_teamAvatarUrlMember1able) {
-    return m.tournamentParticipant_teamAvatarUrlMember1
-}
-// Serialize serializes information the current object
-func (m *TournamentParticipant_TournamentParticipant_teamAvatarUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTournamentParticipantTeamAvatarUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTournamentParticipantTeamAvatarUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TournamentParticipant_TournamentParticipant_teamAvatarUrl) SetString(value *string)() {
-    m.string = value
-}
-// SetTournamentParticipantTeamAvatarUrlMember1 sets the TournamentParticipant_teamAvatarUrlMember1 property value. Composed type representation for type TournamentParticipant_teamAvatarUrlMember1able
-func (m *TournamentParticipant_TournamentParticipant_teamAvatarUrl) SetTournamentParticipantTeamAvatarUrlMember1(value TournamentParticipant_teamAvatarUrlMember1able)() {
-    m.tournamentParticipant_teamAvatarUrlMember1 = value
-}
-type TournamentParticipant_TournamentParticipant_teamAvatarUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTournamentParticipantTeamAvatarUrlMember1()(TournamentParticipant_teamAvatarUrlMember1able)
-    SetString(value *string)()
-    SetTournamentParticipantTeamAvatarUrlMember1(value TournamentParticipant_teamAvatarUrlMember1able)()
 }
 // NewTournamentParticipant instantiates a new TournamentParticipant and sets the default values.
 func NewTournamentParticipant()(*TournamentParticipant) {
@@ -199,12 +115,12 @@ func (m *TournamentParticipant) GetFieldDeserializers()(map[string]func(i878a80d
         return nil
     }
     res["teamAvatarUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTournamentParticipant_TournamentParticipant_teamAvatarUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetTeamAvatarUrl(val.(TournamentParticipant_TournamentParticipant_teamAvatarUrlable))
+            m.SetTeamAvatarUrl(val)
         }
         return nil
     }
@@ -256,8 +172,8 @@ func (m *TournamentParticipant) GetStatus()(*string) {
     return m.status
 }
 // GetTeamAvatarUrl gets the teamAvatarUrl property value. Team avatar URL.
-// returns a TournamentParticipant_TournamentParticipant_teamAvatarUrlable when successful
-func (m *TournamentParticipant) GetTeamAvatarUrl()(TournamentParticipant_TournamentParticipant_teamAvatarUrlable) {
+// returns a *string when successful
+func (m *TournamentParticipant) GetTeamAvatarUrl()(*string) {
     return m.teamAvatarUrl
 }
 // GetTeamId gets the teamId property value. Team ID.
@@ -315,7 +231,7 @@ func (m *TournamentParticipant) Serialize(writer i878a80d2330e89d26896388a3f487e
         }
     }
     {
-        err := writer.WriteObjectValue("teamAvatarUrl", m.GetTeamAvatarUrl())
+        err := writer.WriteStringValue("teamAvatarUrl", m.GetTeamAvatarUrl())
         if err != nil {
             return err
         }
@@ -359,7 +275,7 @@ func (m *TournamentParticipant) SetStatus(value *string)() {
     m.status = value
 }
 // SetTeamAvatarUrl sets the teamAvatarUrl property value. Team avatar URL.
-func (m *TournamentParticipant) SetTeamAvatarUrl(value TournamentParticipant_TournamentParticipant_teamAvatarUrlable)() {
+func (m *TournamentParticipant) SetTeamAvatarUrl(value *string)() {
     m.teamAvatarUrl = value
 }
 // SetTeamId sets the teamId property value. Team ID.
@@ -378,7 +294,7 @@ type TournamentParticipantable interface {
     GetRoster()([]TournamentRosterMemberable)
     GetSeed()(*int32)
     GetStatus()(*string)
-    GetTeamAvatarUrl()(TournamentParticipant_TournamentParticipant_teamAvatarUrlable)
+    GetTeamAvatarUrl()(*string)
     GetTeamId()(*string)
     GetTeamName()(*string)
     SetCheckedInAt(value *float64)()
@@ -387,7 +303,7 @@ type TournamentParticipantable interface {
     SetRoster(value []TournamentRosterMemberable)()
     SetSeed(value *int32)()
     SetStatus(value *string)()
-    SetTeamAvatarUrl(value TournamentParticipant_TournamentParticipant_teamAvatarUrlable)()
+    SetTeamAvatarUrl(value *string)()
     SetTeamId(value *string)()
     SetTeamName(value *string)()
 }

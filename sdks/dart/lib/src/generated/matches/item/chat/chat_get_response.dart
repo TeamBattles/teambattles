@@ -1,7 +1,6 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import '../../../models/chat_message.dart';
-import './chat_get_response_next_cursor.dart';
 
 /// auto generated
 class ChatGetResponse implements Parsable {
@@ -10,7 +9,7 @@ class ChatGetResponse implements Parsable {
     ///  The hasMore property
     bool? hasMore;
     ///  The nextCursor property
-    ChatGetResponseNextCursor? nextCursor;
+    String? nextCursor;
     ///  The timestamp property
     String? timestamp;
     /// Creates a new instance of the appropriate class based on discriminator value
@@ -24,7 +23,7 @@ class ChatGetResponse implements Parsable {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['data'] = (node) => data = node.getCollectionOfObjectValues<ChatMessage>(ChatMessage.createFromDiscriminatorValue);
         deserializerMap['hasMore'] = (node) => hasMore = node.getBoolValue();
-        deserializerMap['nextCursor'] = (node) => nextCursor = node.getObjectValue<ChatGetResponseNextCursor>(ChatGetResponseNextCursor.createFromDiscriminatorValue);
+        deserializerMap['nextCursor'] = (node) => nextCursor = node.getStringValue();
         deserializerMap['timestamp'] = (node) => timestamp = node.getStringValue();
         return deserializerMap;
     }
@@ -34,7 +33,7 @@ class ChatGetResponse implements Parsable {
     void serialize(SerializationWriter writer) {
         writer.writeCollectionOfObjectValues<ChatMessage>('data', data);
         writer.writeBoolValue('hasMore', value:hasMore);
-        writer.writeObjectValue<ChatGetResponseNextCursor>('nextCursor', nextCursor);
+        writer.writeStringValue('nextCursor', nextCursor);
         writer.writeStringValue('timestamp', timestamp);
     }
 }

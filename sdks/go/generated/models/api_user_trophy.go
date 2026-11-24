@@ -12,15 +12,15 @@ type ApiUserTrophy struct {
     // The awardedAt property
     awardedAt ApiUserTrophy_ApiUserTrophy_awardedAtable
     // The description property
-    description ApiUserTrophy_ApiUserTrophy_descriptionable
+    description *string
     // The iconUrl property
-    iconUrl ApiUserTrophy_ApiUserTrophy_iconUrlable
+    iconUrl *string
     // Trophy award ID.
     id *string
     // The rarity property
-    rarity ApiUserTrophy_ApiUserTrophy_rarityable
+    rarity *string
     // The title property
-    title ApiUserTrophy_ApiUserTrophy_titleable
+    title *string
     // Trophy definition ID.
     trophyId *string
 }
@@ -101,347 +101,11 @@ func (m *ApiUserTrophy_ApiUserTrophy_awardedAt) SetApiUserTrophyAwardedAtMember1
 func (m *ApiUserTrophy_ApiUserTrophy_awardedAt) SetString(value *string)() {
     m.string = value
 }
-// ApiUserTrophy_ApiUserTrophy_description composed type wrapper for classes ApiUserTrophy_descriptionMember1able, string
-type ApiUserTrophy_ApiUserTrophy_description struct {
-    // Composed type representation for type ApiUserTrophy_descriptionMember1able
-    apiUserTrophy_descriptionMember1 ApiUserTrophy_descriptionMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserTrophy_ApiUserTrophy_description instantiates a new ApiUserTrophy_ApiUserTrophy_description and sets the default values.
-func NewApiUserTrophy_ApiUserTrophy_description()(*ApiUserTrophy_ApiUserTrophy_description) {
-    m := &ApiUserTrophy_ApiUserTrophy_description{
-    }
-    return m
-}
-// CreateApiUserTrophy_ApiUserTrophy_descriptionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserTrophy_ApiUserTrophy_descriptionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserTrophy_ApiUserTrophy_description()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserTrophy_descriptionMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserTrophy_descriptionMember1able); ok {
-                result.SetApiUserTrophyDescriptionMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserTrophyDescriptionMember1 gets the ApiUserTrophy_descriptionMember1 property value. Composed type representation for type ApiUserTrophy_descriptionMember1able
-// returns a ApiUserTrophy_descriptionMember1able when successful
-func (m *ApiUserTrophy_ApiUserTrophy_description) GetApiUserTrophyDescriptionMember1()(ApiUserTrophy_descriptionMember1able) {
-    return m.apiUserTrophy_descriptionMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserTrophy_ApiUserTrophy_description) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserTrophy_ApiUserTrophy_description) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserTrophy_ApiUserTrophy_description) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserTrophy_ApiUserTrophy_description) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserTrophyDescriptionMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserTrophyDescriptionMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserTrophyDescriptionMember1 sets the ApiUserTrophy_descriptionMember1 property value. Composed type representation for type ApiUserTrophy_descriptionMember1able
-func (m *ApiUserTrophy_ApiUserTrophy_description) SetApiUserTrophyDescriptionMember1(value ApiUserTrophy_descriptionMember1able)() {
-    m.apiUserTrophy_descriptionMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserTrophy_ApiUserTrophy_description) SetString(value *string)() {
-    m.string = value
-}
-// ApiUserTrophy_ApiUserTrophy_iconUrl composed type wrapper for classes ApiUserTrophy_iconUrlMember1able, string
-type ApiUserTrophy_ApiUserTrophy_iconUrl struct {
-    // Composed type representation for type ApiUserTrophy_iconUrlMember1able
-    apiUserTrophy_iconUrlMember1 ApiUserTrophy_iconUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserTrophy_ApiUserTrophy_iconUrl instantiates a new ApiUserTrophy_ApiUserTrophy_iconUrl and sets the default values.
-func NewApiUserTrophy_ApiUserTrophy_iconUrl()(*ApiUserTrophy_ApiUserTrophy_iconUrl) {
-    m := &ApiUserTrophy_ApiUserTrophy_iconUrl{
-    }
-    return m
-}
-// CreateApiUserTrophy_ApiUserTrophy_iconUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserTrophy_ApiUserTrophy_iconUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserTrophy_ApiUserTrophy_iconUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserTrophy_iconUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserTrophy_iconUrlMember1able); ok {
-                result.SetApiUserTrophyIconUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserTrophyIconUrlMember1 gets the ApiUserTrophy_iconUrlMember1 property value. Composed type representation for type ApiUserTrophy_iconUrlMember1able
-// returns a ApiUserTrophy_iconUrlMember1able when successful
-func (m *ApiUserTrophy_ApiUserTrophy_iconUrl) GetApiUserTrophyIconUrlMember1()(ApiUserTrophy_iconUrlMember1able) {
-    return m.apiUserTrophy_iconUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserTrophy_ApiUserTrophy_iconUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserTrophy_ApiUserTrophy_iconUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserTrophy_ApiUserTrophy_iconUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserTrophy_ApiUserTrophy_iconUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserTrophyIconUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserTrophyIconUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserTrophyIconUrlMember1 sets the ApiUserTrophy_iconUrlMember1 property value. Composed type representation for type ApiUserTrophy_iconUrlMember1able
-func (m *ApiUserTrophy_ApiUserTrophy_iconUrl) SetApiUserTrophyIconUrlMember1(value ApiUserTrophy_iconUrlMember1able)() {
-    m.apiUserTrophy_iconUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserTrophy_ApiUserTrophy_iconUrl) SetString(value *string)() {
-    m.string = value
-}
-// ApiUserTrophy_ApiUserTrophy_rarity composed type wrapper for classes ApiUserTrophy_rarityMember1able, string
-type ApiUserTrophy_ApiUserTrophy_rarity struct {
-    // Composed type representation for type ApiUserTrophy_rarityMember1able
-    apiUserTrophy_rarityMember1 ApiUserTrophy_rarityMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserTrophy_ApiUserTrophy_rarity instantiates a new ApiUserTrophy_ApiUserTrophy_rarity and sets the default values.
-func NewApiUserTrophy_ApiUserTrophy_rarity()(*ApiUserTrophy_ApiUserTrophy_rarity) {
-    m := &ApiUserTrophy_ApiUserTrophy_rarity{
-    }
-    return m
-}
-// CreateApiUserTrophy_ApiUserTrophy_rarityFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserTrophy_ApiUserTrophy_rarityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserTrophy_ApiUserTrophy_rarity()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserTrophy_rarityMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserTrophy_rarityMember1able); ok {
-                result.SetApiUserTrophyRarityMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserTrophyRarityMember1 gets the ApiUserTrophy_rarityMember1 property value. Composed type representation for type ApiUserTrophy_rarityMember1able
-// returns a ApiUserTrophy_rarityMember1able when successful
-func (m *ApiUserTrophy_ApiUserTrophy_rarity) GetApiUserTrophyRarityMember1()(ApiUserTrophy_rarityMember1able) {
-    return m.apiUserTrophy_rarityMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserTrophy_ApiUserTrophy_rarity) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserTrophy_ApiUserTrophy_rarity) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserTrophy_ApiUserTrophy_rarity) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserTrophy_ApiUserTrophy_rarity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserTrophyRarityMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserTrophyRarityMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserTrophyRarityMember1 sets the ApiUserTrophy_rarityMember1 property value. Composed type representation for type ApiUserTrophy_rarityMember1able
-func (m *ApiUserTrophy_ApiUserTrophy_rarity) SetApiUserTrophyRarityMember1(value ApiUserTrophy_rarityMember1able)() {
-    m.apiUserTrophy_rarityMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserTrophy_ApiUserTrophy_rarity) SetString(value *string)() {
-    m.string = value
-}
-// ApiUserTrophy_ApiUserTrophy_title composed type wrapper for classes ApiUserTrophy_titleMember1able, string
-type ApiUserTrophy_ApiUserTrophy_title struct {
-    // Composed type representation for type ApiUserTrophy_titleMember1able
-    apiUserTrophy_titleMember1 ApiUserTrophy_titleMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserTrophy_ApiUserTrophy_title instantiates a new ApiUserTrophy_ApiUserTrophy_title and sets the default values.
-func NewApiUserTrophy_ApiUserTrophy_title()(*ApiUserTrophy_ApiUserTrophy_title) {
-    m := &ApiUserTrophy_ApiUserTrophy_title{
-    }
-    return m
-}
-// CreateApiUserTrophy_ApiUserTrophy_titleFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserTrophy_ApiUserTrophy_titleFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserTrophy_ApiUserTrophy_title()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserTrophy_titleMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserTrophy_titleMember1able); ok {
-                result.SetApiUserTrophyTitleMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserTrophyTitleMember1 gets the ApiUserTrophy_titleMember1 property value. Composed type representation for type ApiUserTrophy_titleMember1able
-// returns a ApiUserTrophy_titleMember1able when successful
-func (m *ApiUserTrophy_ApiUserTrophy_title) GetApiUserTrophyTitleMember1()(ApiUserTrophy_titleMember1able) {
-    return m.apiUserTrophy_titleMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserTrophy_ApiUserTrophy_title) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserTrophy_ApiUserTrophy_title) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserTrophy_ApiUserTrophy_title) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserTrophy_ApiUserTrophy_title) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserTrophyTitleMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserTrophyTitleMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserTrophyTitleMember1 sets the ApiUserTrophy_titleMember1 property value. Composed type representation for type ApiUserTrophy_titleMember1able
-func (m *ApiUserTrophy_ApiUserTrophy_title) SetApiUserTrophyTitleMember1(value ApiUserTrophy_titleMember1able)() {
-    m.apiUserTrophy_titleMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserTrophy_ApiUserTrophy_title) SetString(value *string)() {
-    m.string = value
-}
 type ApiUserTrophy_ApiUserTrophy_awardedAtable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetApiUserTrophyAwardedAtMember1()(ApiUserTrophy_awardedAtMember1able)
     GetString()(*string)
     SetApiUserTrophyAwardedAtMember1(value ApiUserTrophy_awardedAtMember1able)()
-    SetString(value *string)()
-}
-type ApiUserTrophy_ApiUserTrophy_descriptionable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserTrophyDescriptionMember1()(ApiUserTrophy_descriptionMember1able)
-    GetString()(*string)
-    SetApiUserTrophyDescriptionMember1(value ApiUserTrophy_descriptionMember1able)()
-    SetString(value *string)()
-}
-type ApiUserTrophy_ApiUserTrophy_iconUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserTrophyIconUrlMember1()(ApiUserTrophy_iconUrlMember1able)
-    GetString()(*string)
-    SetApiUserTrophyIconUrlMember1(value ApiUserTrophy_iconUrlMember1able)()
-    SetString(value *string)()
-}
-type ApiUserTrophy_ApiUserTrophy_rarityable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserTrophyRarityMember1()(ApiUserTrophy_rarityMember1able)
-    GetString()(*string)
-    SetApiUserTrophyRarityMember1(value ApiUserTrophy_rarityMember1able)()
-    SetString(value *string)()
-}
-type ApiUserTrophy_ApiUserTrophy_titleable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserTrophyTitleMember1()(ApiUserTrophy_titleMember1able)
-    GetString()(*string)
-    SetApiUserTrophyTitleMember1(value ApiUserTrophy_titleMember1able)()
     SetString(value *string)()
 }
 // NewApiUserTrophy instantiates a new ApiUserTrophy and sets the default values.
@@ -461,8 +125,8 @@ func (m *ApiUserTrophy) GetAwardedAt()(ApiUserTrophy_ApiUserTrophy_awardedAtable
     return m.awardedAt
 }
 // GetDescription gets the description property value. The description property
-// returns a ApiUserTrophy_ApiUserTrophy_descriptionable when successful
-func (m *ApiUserTrophy) GetDescription()(ApiUserTrophy_ApiUserTrophy_descriptionable) {
+// returns a *string when successful
+func (m *ApiUserTrophy) GetDescription()(*string) {
     return m.description
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -480,22 +144,22 @@ func (m *ApiUserTrophy) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         return nil
     }
     res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserTrophy_ApiUserTrophy_descriptionFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDescription(val.(ApiUserTrophy_ApiUserTrophy_descriptionable))
+            m.SetDescription(val)
         }
         return nil
     }
     res["iconUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserTrophy_ApiUserTrophy_iconUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetIconUrl(val.(ApiUserTrophy_ApiUserTrophy_iconUrlable))
+            m.SetIconUrl(val)
         }
         return nil
     }
@@ -510,22 +174,22 @@ func (m *ApiUserTrophy) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         return nil
     }
     res["rarity"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserTrophy_ApiUserTrophy_rarityFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetRarity(val.(ApiUserTrophy_ApiUserTrophy_rarityable))
+            m.SetRarity(val)
         }
         return nil
     }
     res["title"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserTrophy_ApiUserTrophy_titleFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetTitle(val.(ApiUserTrophy_ApiUserTrophy_titleable))
+            m.SetTitle(val)
         }
         return nil
     }
@@ -542,8 +206,8 @@ func (m *ApiUserTrophy) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
     return res
 }
 // GetIconUrl gets the iconUrl property value. The iconUrl property
-// returns a ApiUserTrophy_ApiUserTrophy_iconUrlable when successful
-func (m *ApiUserTrophy) GetIconUrl()(ApiUserTrophy_ApiUserTrophy_iconUrlable) {
+// returns a *string when successful
+func (m *ApiUserTrophy) GetIconUrl()(*string) {
     return m.iconUrl
 }
 // GetId gets the id property value. Trophy award ID.
@@ -552,13 +216,13 @@ func (m *ApiUserTrophy) GetId()(*string) {
     return m.id
 }
 // GetRarity gets the rarity property value. The rarity property
-// returns a ApiUserTrophy_ApiUserTrophy_rarityable when successful
-func (m *ApiUserTrophy) GetRarity()(ApiUserTrophy_ApiUserTrophy_rarityable) {
+// returns a *string when successful
+func (m *ApiUserTrophy) GetRarity()(*string) {
     return m.rarity
 }
 // GetTitle gets the title property value. The title property
-// returns a ApiUserTrophy_ApiUserTrophy_titleable when successful
-func (m *ApiUserTrophy) GetTitle()(ApiUserTrophy_ApiUserTrophy_titleable) {
+// returns a *string when successful
+func (m *ApiUserTrophy) GetTitle()(*string) {
     return m.title
 }
 // GetTrophyId gets the trophyId property value. Trophy definition ID.
@@ -575,13 +239,13 @@ func (m *ApiUserTrophy) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
         }
     }
     {
-        err := writer.WriteObjectValue("description", m.GetDescription())
+        err := writer.WriteStringValue("description", m.GetDescription())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("iconUrl", m.GetIconUrl())
+        err := writer.WriteStringValue("iconUrl", m.GetIconUrl())
         if err != nil {
             return err
         }
@@ -593,13 +257,13 @@ func (m *ApiUserTrophy) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
         }
     }
     {
-        err := writer.WriteObjectValue("rarity", m.GetRarity())
+        err := writer.WriteStringValue("rarity", m.GetRarity())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("title", m.GetTitle())
+        err := writer.WriteStringValue("title", m.GetTitle())
         if err != nil {
             return err
         }
@@ -617,11 +281,11 @@ func (m *ApiUserTrophy) SetAwardedAt(value ApiUserTrophy_ApiUserTrophy_awardedAt
     m.awardedAt = value
 }
 // SetDescription sets the description property value. The description property
-func (m *ApiUserTrophy) SetDescription(value ApiUserTrophy_ApiUserTrophy_descriptionable)() {
+func (m *ApiUserTrophy) SetDescription(value *string)() {
     m.description = value
 }
 // SetIconUrl sets the iconUrl property value. The iconUrl property
-func (m *ApiUserTrophy) SetIconUrl(value ApiUserTrophy_ApiUserTrophy_iconUrlable)() {
+func (m *ApiUserTrophy) SetIconUrl(value *string)() {
     m.iconUrl = value
 }
 // SetId sets the id property value. Trophy award ID.
@@ -629,11 +293,11 @@ func (m *ApiUserTrophy) SetId(value *string)() {
     m.id = value
 }
 // SetRarity sets the rarity property value. The rarity property
-func (m *ApiUserTrophy) SetRarity(value ApiUserTrophy_ApiUserTrophy_rarityable)() {
+func (m *ApiUserTrophy) SetRarity(value *string)() {
     m.rarity = value
 }
 // SetTitle sets the title property value. The title property
-func (m *ApiUserTrophy) SetTitle(value ApiUserTrophy_ApiUserTrophy_titleable)() {
+func (m *ApiUserTrophy) SetTitle(value *string)() {
     m.title = value
 }
 // SetTrophyId sets the trophyId property value. Trophy definition ID.
@@ -643,17 +307,17 @@ func (m *ApiUserTrophy) SetTrophyId(value *string)() {
 type ApiUserTrophyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAwardedAt()(ApiUserTrophy_ApiUserTrophy_awardedAtable)
-    GetDescription()(ApiUserTrophy_ApiUserTrophy_descriptionable)
-    GetIconUrl()(ApiUserTrophy_ApiUserTrophy_iconUrlable)
+    GetDescription()(*string)
+    GetIconUrl()(*string)
     GetId()(*string)
-    GetRarity()(ApiUserTrophy_ApiUserTrophy_rarityable)
-    GetTitle()(ApiUserTrophy_ApiUserTrophy_titleable)
+    GetRarity()(*string)
+    GetTitle()(*string)
     GetTrophyId()(*string)
     SetAwardedAt(value ApiUserTrophy_ApiUserTrophy_awardedAtable)()
-    SetDescription(value ApiUserTrophy_ApiUserTrophy_descriptionable)()
-    SetIconUrl(value ApiUserTrophy_ApiUserTrophy_iconUrlable)()
+    SetDescription(value *string)()
+    SetIconUrl(value *string)()
     SetId(value *string)()
-    SetRarity(value ApiUserTrophy_ApiUserTrophy_rarityable)()
-    SetTitle(value ApiUserTrophy_ApiUserTrophy_titleable)()
+    SetRarity(value *string)()
+    SetTitle(value *string)()
     SetTrophyId(value *string)()
 }

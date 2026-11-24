@@ -34,18 +34,18 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Completion time (ISO 8601).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_completedAt? CompletedAt { get; set; }
+        public string? CompletedAt { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_completedAt CompletedAt { get; set; }
+        public string CompletedAt { get; set; }
 #endif
         /// <summary>Creation time (ISO 8601).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_createdAt? CreatedAt { get; set; }
+        public string? CreatedAt { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_createdAt CreatedAt { get; set; }
+        public string CreatedAt { get; set; }
 #endif
         /// <summary>The creatorTeam property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -90,52 +90,52 @@ namespace TeamBattles.Sdk.Models
         /// <summary>League this match belongs to, if any (SP-7 league wave).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueId? LeagueId { get; set; }
+        public string? LeagueId { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueId LeagueId { get; set; }
+        public string LeagueId { get; set; }
 #endif
         /// <summary>League season this match belongs to, if any.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueSeasonId? LeagueSeasonId { get; set; }
+        public string? LeagueSeasonId { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueSeasonId LeagueSeasonId { get; set; }
+        public string LeagueSeasonId { get; set; }
 #endif
         /// <summary>Losing team ID once the match completes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_loserTeamId? LoserTeamId { get; set; }
+        public string? LoserTeamId { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_loserTeamId LoserTeamId { get; set; }
+        public string LoserTeamId { get; set; }
 #endif
         /// <summary>Scheduled start time (ISO 8601).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_scheduledAt? ScheduledAt { get; set; }
+        public string? ScheduledAt { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_scheduledAt ScheduledAt { get; set; }
+        public string ScheduledAt { get; set; }
 #endif
         /// <summary>Actual start time (ISO 8601).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_startedAt? StartedAt { get; set; }
+        public string? StartedAt { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_startedAt StartedAt { get; set; }
+        public string StartedAt { get; set; }
 #endif
         /// <summary>Lifecycle status of a match.</summary>
         public global::TeamBattles.Sdk.Models.MatchStatus? Status { get; set; }
         /// <summary>Winning team ID once the match completes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_winnerTeamId? WinnerTeamId { get; set; }
+        public string? WinnerTeamId { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_winnerTeamId WinnerTeamId { get; set; }
+        public string WinnerTeamId { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -158,20 +158,20 @@ namespace TeamBattles.Sdk.Models
                 { "acceptedTeam", n => { AcceptedTeam = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameDetailTeam>(global::TeamBattles.Sdk.Models.GameDetailTeam.CreateFromDiscriminatorValue); } },
                 { "acceptedTeamScore", n => { AcceptedTeamScore = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_acceptedTeamScore>(global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_acceptedTeamScore.CreateFromDiscriminatorValue); } },
                 { "bestOf", n => { BestOf = n.GetIntValue(); } },
-                { "completedAt", n => { CompletedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_completedAt>(global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_completedAt.CreateFromDiscriminatorValue); } },
-                { "createdAt", n => { CreatedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_createdAt>(global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_createdAt.CreateFromDiscriminatorValue); } },
+                { "completedAt", n => { CompletedAt = n.GetStringValue(); } },
+                { "createdAt", n => { CreatedAt = n.GetStringValue(); } },
                 { "creatorTeam", n => { CreatorTeam = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameDetailTeam>(global::TeamBattles.Sdk.Models.GameDetailTeam.CreateFromDiscriminatorValue); } },
                 { "creatorTeamScore", n => { CreatorTeamScore = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_creatorTeamScore>(global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_creatorTeamScore.CreateFromDiscriminatorValue); } },
                 { "gameId", n => { GameId = n.GetStringValue(); } },
                 { "gameMode", n => { GameMode = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "leagueId", n => { LeagueId = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueId>(global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueId.CreateFromDiscriminatorValue); } },
-                { "leagueSeasonId", n => { LeagueSeasonId = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueSeasonId>(global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueSeasonId.CreateFromDiscriminatorValue); } },
-                { "loserTeamId", n => { LoserTeamId = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_loserTeamId>(global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_loserTeamId.CreateFromDiscriminatorValue); } },
-                { "scheduledAt", n => { ScheduledAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_scheduledAt>(global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_scheduledAt.CreateFromDiscriminatorValue); } },
-                { "startedAt", n => { StartedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_startedAt>(global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_startedAt.CreateFromDiscriminatorValue); } },
+                { "leagueId", n => { LeagueId = n.GetStringValue(); } },
+                { "leagueSeasonId", n => { LeagueSeasonId = n.GetStringValue(); } },
+                { "loserTeamId", n => { LoserTeamId = n.GetStringValue(); } },
+                { "scheduledAt", n => { ScheduledAt = n.GetStringValue(); } },
+                { "startedAt", n => { StartedAt = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::TeamBattles.Sdk.Models.MatchStatus>(); } },
-                { "winnerTeamId", n => { WinnerTeamId = n.GetObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_winnerTeamId>(global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_winnerTeamId.CreateFromDiscriminatorValue); } },
+                { "winnerTeamId", n => { WinnerTeamId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -184,20 +184,20 @@ namespace TeamBattles.Sdk.Models
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameDetailTeam>("acceptedTeam", AcceptedTeam);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_acceptedTeamScore>("acceptedTeamScore", AcceptedTeamScore);
             writer.WriteIntValue("bestOf", BestOf);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_completedAt>("completedAt", CompletedAt);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_createdAt>("createdAt", CreatedAt);
+            writer.WriteStringValue("completedAt", CompletedAt);
+            writer.WriteStringValue("createdAt", CreatedAt);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameDetailTeam>("creatorTeam", CreatorTeam);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_creatorTeamScore>("creatorTeamScore", CreatorTeamScore);
             writer.WriteStringValue("gameId", GameId);
             writer.WriteStringValue("gameMode", GameMode);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueId>("leagueId", LeagueId);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueSeasonId>("leagueSeasonId", LeagueSeasonId);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_loserTeamId>("loserTeamId", LoserTeamId);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_scheduledAt>("scheduledAt", ScheduledAt);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_startedAt>("startedAt", StartedAt);
+            writer.WriteStringValue("leagueId", LeagueId);
+            writer.WriteStringValue("leagueSeasonId", LeagueSeasonId);
+            writer.WriteStringValue("loserTeamId", LoserTeamId);
+            writer.WriteStringValue("scheduledAt", ScheduledAt);
+            writer.WriteStringValue("startedAt", StartedAt);
             writer.WriteEnumValue<global::TeamBattles.Sdk.Models.MatchStatus>("status", Status);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_winnerTeamId>("winnerTeamId", WinnerTeamId);
+            writer.WriteStringValue("winnerTeamId", WinnerTeamId);
         }
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_acceptedTeamScoreMember1"/>, <see cref="int"/>
@@ -262,142 +262,6 @@ namespace TeamBattles.Sdk.Models
             }
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_completedAtMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class GameMatchDetail_completedAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_completedAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_completedAtMember1? GameMatchDetailCompletedAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_completedAtMember1 GameMatchDetailCompletedAtMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_completedAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_completedAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_completedAt();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.GameMatchDetailCompletedAtMember1 = new global::TeamBattles.Sdk.Models.GameMatchDetail_completedAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(GameMatchDetailCompletedAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GameMatchDetailCompletedAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail_completedAtMember1>(null, GameMatchDetailCompletedAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_createdAtMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class GameMatchDetail_createdAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_createdAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_createdAtMember1? GameMatchDetailCreatedAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_createdAtMember1 GameMatchDetailCreatedAtMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_createdAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_createdAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_createdAt();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.GameMatchDetailCreatedAtMember1 = new global::TeamBattles.Sdk.Models.GameMatchDetail_createdAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(GameMatchDetailCreatedAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GameMatchDetailCreatedAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail_createdAtMember1>(null, GameMatchDetailCreatedAtMember1);
-                }
-            }
-        }
-        /// <summary>
         /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_creatorTeamScoreMember1"/>, <see cref="int"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -456,414 +320,6 @@ namespace TeamBattles.Sdk.Models
                 }
                 else {
                     writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail_creatorTeamScoreMember1>(null, GameMatchDetailCreatorTeamScoreMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_leagueIdMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class GameMatchDetail_leagueId : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_leagueIdMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_leagueIdMember1? GameMatchDetailLeagueIdMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_leagueIdMember1 GameMatchDetailLeagueIdMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueId"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueId CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueId();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.GameMatchDetailLeagueIdMember1 = new global::TeamBattles.Sdk.Models.GameMatchDetail_leagueIdMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(GameMatchDetailLeagueIdMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GameMatchDetailLeagueIdMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail_leagueIdMember1>(null, GameMatchDetailLeagueIdMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_leagueSeasonIdMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class GameMatchDetail_leagueSeasonId : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_leagueSeasonIdMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_leagueSeasonIdMember1? GameMatchDetailLeagueSeasonIdMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_leagueSeasonIdMember1 GameMatchDetailLeagueSeasonIdMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueSeasonId"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueSeasonId CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_leagueSeasonId();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.GameMatchDetailLeagueSeasonIdMember1 = new global::TeamBattles.Sdk.Models.GameMatchDetail_leagueSeasonIdMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(GameMatchDetailLeagueSeasonIdMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GameMatchDetailLeagueSeasonIdMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail_leagueSeasonIdMember1>(null, GameMatchDetailLeagueSeasonIdMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_loserTeamIdMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class GameMatchDetail_loserTeamId : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_loserTeamIdMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_loserTeamIdMember1? GameMatchDetailLoserTeamIdMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_loserTeamIdMember1 GameMatchDetailLoserTeamIdMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_loserTeamId"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_loserTeamId CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_loserTeamId();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.GameMatchDetailLoserTeamIdMember1 = new global::TeamBattles.Sdk.Models.GameMatchDetail_loserTeamIdMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(GameMatchDetailLoserTeamIdMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GameMatchDetailLoserTeamIdMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail_loserTeamIdMember1>(null, GameMatchDetailLoserTeamIdMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_scheduledAtMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class GameMatchDetail_scheduledAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_scheduledAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_scheduledAtMember1? GameMatchDetailScheduledAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_scheduledAtMember1 GameMatchDetailScheduledAtMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_scheduledAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_scheduledAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_scheduledAt();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.GameMatchDetailScheduledAtMember1 = new global::TeamBattles.Sdk.Models.GameMatchDetail_scheduledAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(GameMatchDetailScheduledAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GameMatchDetailScheduledAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail_scheduledAtMember1>(null, GameMatchDetailScheduledAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_startedAtMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class GameMatchDetail_startedAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_startedAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_startedAtMember1? GameMatchDetailStartedAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_startedAtMember1 GameMatchDetailStartedAtMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_startedAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_startedAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_startedAt();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.GameMatchDetailStartedAtMember1 = new global::TeamBattles.Sdk.Models.GameMatchDetail_startedAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(GameMatchDetailStartedAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GameMatchDetailStartedAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail_startedAtMember1>(null, GameMatchDetailStartedAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_winnerTeamIdMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class GameMatchDetail_winnerTeamId : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail_winnerTeamIdMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_winnerTeamIdMember1? GameMatchDetailWinnerTeamIdMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.GameMatchDetail_winnerTeamIdMember1 GameMatchDetailWinnerTeamIdMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_winnerTeamId"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_winnerTeamId CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.GameMatchDetail.GameMatchDetail_winnerTeamId();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.GameMatchDetailWinnerTeamIdMember1 = new global::TeamBattles.Sdk.Models.GameMatchDetail_winnerTeamIdMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(GameMatchDetailWinnerTeamIdMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GameMatchDetailWinnerTeamIdMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.GameMatchDetail_winnerTeamIdMember1>(null, GameMatchDetailWinnerTeamIdMember1);
                 }
             }
         }

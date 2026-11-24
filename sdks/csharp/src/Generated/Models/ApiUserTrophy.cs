@@ -24,18 +24,18 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_description? Description { get; set; }
+        public string? Description { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_description Description { get; set; }
+        public string Description { get; set; }
 #endif
         /// <summary>The iconUrl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_iconUrl? IconUrl { get; set; }
+        public string? IconUrl { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_iconUrl IconUrl { get; set; }
+        public string IconUrl { get; set; }
 #endif
         /// <summary>Trophy award ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,18 +48,18 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The rarity property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_rarity? Rarity { get; set; }
+        public string? Rarity { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_rarity Rarity { get; set; }
+        public string Rarity { get; set; }
 #endif
         /// <summary>The title property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_title? Title { get; set; }
+        public string? Title { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_title Title { get; set; }
+        public string Title { get; set; }
 #endif
         /// <summary>Trophy definition ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -88,11 +88,11 @@ namespace TeamBattles.Sdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "awardedAt", n => { AwardedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_awardedAt>(global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_awardedAt.CreateFromDiscriminatorValue); } },
-                { "description", n => { Description = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_description>(global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_description.CreateFromDiscriminatorValue); } },
-                { "iconUrl", n => { IconUrl = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_iconUrl>(global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_iconUrl.CreateFromDiscriminatorValue); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "iconUrl", n => { IconUrl = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "rarity", n => { Rarity = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_rarity>(global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_rarity.CreateFromDiscriminatorValue); } },
-                { "title", n => { Title = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_title>(global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_title.CreateFromDiscriminatorValue); } },
+                { "rarity", n => { Rarity = n.GetStringValue(); } },
+                { "title", n => { Title = n.GetStringValue(); } },
                 { "trophyId", n => { TrophyId = n.GetStringValue(); } },
             };
         }
@@ -104,11 +104,11 @@ namespace TeamBattles.Sdk.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_awardedAt>("awardedAt", AwardedAt);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_description>("description", Description);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_iconUrl>("iconUrl", IconUrl);
+            writer.WriteStringValue("description", Description);
+            writer.WriteStringValue("iconUrl", IconUrl);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_rarity>("rarity", Rarity);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_title>("title", Title);
+            writer.WriteStringValue("rarity", Rarity);
+            writer.WriteStringValue("title", Title);
             writer.WriteStringValue("trophyId", TrophyId);
         }
         /// <summary>
@@ -176,278 +176,6 @@ namespace TeamBattles.Sdk.Models
                 }
                 else {
                     writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy_awardedAtMember1>(null, ApiUserTrophyAwardedAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy_descriptionMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiUserTrophy_description : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy_descriptionMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiUserTrophy_descriptionMember1? ApiUserTrophyDescriptionMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiUserTrophy_descriptionMember1 ApiUserTrophyDescriptionMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_description"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_description CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_description();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiUserTrophyDescriptionMember1 = new global::TeamBattles.Sdk.Models.ApiUserTrophy_descriptionMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiUserTrophyDescriptionMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiUserTrophyDescriptionMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy_descriptionMember1>(null, ApiUserTrophyDescriptionMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy_iconUrlMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiUserTrophy_iconUrl : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy_iconUrlMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiUserTrophy_iconUrlMember1? ApiUserTrophyIconUrlMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiUserTrophy_iconUrlMember1 ApiUserTrophyIconUrlMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_iconUrl"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_iconUrl CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_iconUrl();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiUserTrophyIconUrlMember1 = new global::TeamBattles.Sdk.Models.ApiUserTrophy_iconUrlMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiUserTrophyIconUrlMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiUserTrophyIconUrlMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy_iconUrlMember1>(null, ApiUserTrophyIconUrlMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy_rarityMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiUserTrophy_rarity : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy_rarityMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiUserTrophy_rarityMember1? ApiUserTrophyRarityMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiUserTrophy_rarityMember1 ApiUserTrophyRarityMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_rarity"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_rarity CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_rarity();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiUserTrophyRarityMember1 = new global::TeamBattles.Sdk.Models.ApiUserTrophy_rarityMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiUserTrophyRarityMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiUserTrophyRarityMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy_rarityMember1>(null, ApiUserTrophyRarityMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy_titleMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiUserTrophy_title : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy_titleMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiUserTrophy_titleMember1? ApiUserTrophyTitleMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiUserTrophy_titleMember1 ApiUserTrophyTitleMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_title"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_title CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiUserTrophy.ApiUserTrophy_title();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiUserTrophyTitleMember1 = new global::TeamBattles.Sdk.Models.ApiUserTrophy_titleMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiUserTrophyTitleMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiUserTrophyTitleMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTrophy_titleMember1>(null, ApiUserTrophyTitleMember1);
                 }
             }
         }

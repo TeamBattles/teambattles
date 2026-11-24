@@ -12,14 +12,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ApiTeamProfile implements Parsable 
 {
     /**
-     * @var ApiTeamProfile_avatarUrl|null $avatarUrl The avatarUrl property
+     * @var string|null $avatarUrl The avatarUrl property
     */
-    private ?ApiTeamProfile_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
-     * @var ApiTeamProfile_bannerUrl|null $bannerUrl The bannerUrl property
+     * @var string|null $bannerUrl The bannerUrl property
     */
-    private ?ApiTeamProfile_bannerUrl $bannerUrl = null;
+    private ?string $bannerUrl = null;
     
     /**
      * @var ApiTeamProfile_createdAt|null $createdAt The createdAt property
@@ -27,9 +27,9 @@ class ApiTeamProfile implements Parsable
     private ?ApiTeamProfile_createdAt $createdAt = null;
     
     /**
-     * @var ApiTeamProfile_description|null $description The description property
+     * @var string|null $description The description property
     */
-    private ?ApiTeamProfile_description $description = null;
+    private ?string $description = null;
     
     /**
      * @var int|null $draws The draws property
@@ -42,9 +42,9 @@ class ApiTeamProfile implements Parsable
     private ?float $experience = null;
     
     /**
-     * @var ApiTeamProfile_gameId|null $gameId The gameId property
+     * @var string|null $gameId The gameId property
     */
-    private ?ApiTeamProfile_gameId $gameId = null;
+    private ?string $gameId = null;
     
     /**
      * @var string|null $id Team ID.
@@ -77,19 +77,19 @@ class ApiTeamProfile implements Parsable
     private ?string $name = null;
     
     /**
-     * @var ApiTeamProfile_organizationId|null $organizationId The organizationId property
+     * @var string|null $organizationId The organizationId property
     */
-    private ?ApiTeamProfile_organizationId $organizationId = null;
+    private ?string $organizationId = null;
     
     /**
-     * @var ApiTeamProfile_slug|null $slug The slug property
+     * @var string|null $slug The slug property
     */
-    private ?ApiTeamProfile_slug $slug = null;
+    private ?string $slug = null;
     
     /**
-     * @var ApiTeamProfile_tag|null $tag The tag property
+     * @var string|null $tag The tag property
     */
-    private ?ApiTeamProfile_tag $tag = null;
+    private ?string $tag = null;
     
     /**
      * @var ProfileVisibility|null $visibility Public profile visibility setting.
@@ -112,17 +112,17 @@ class ApiTeamProfile implements Parsable
 
     /**
      * Gets the avatarUrl property value. The avatarUrl property
-     * @return ApiTeamProfile_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?ApiTeamProfile_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
     /**
      * Gets the bannerUrl property value. The bannerUrl property
-     * @return ApiTeamProfile_bannerUrl|null
+     * @return string|null
     */
-    public function getBannerUrl(): ?ApiTeamProfile_bannerUrl {
+    public function getBannerUrl(): ?string {
         return $this->bannerUrl;
     }
 
@@ -136,9 +136,9 @@ class ApiTeamProfile implements Parsable
 
     /**
      * Gets the description property value. The description property
-     * @return ApiTeamProfile_description|null
+     * @return string|null
     */
-    public function getDescription(): ?ApiTeamProfile_description {
+    public function getDescription(): ?string {
         return $this->description;
     }
 
@@ -165,22 +165,22 @@ class ApiTeamProfile implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([ApiTeamProfile_avatarUrl::class, 'createFromDiscriminatorValue'])),
-            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getObjectValue([ApiTeamProfile_bannerUrl::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
+            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getStringValue()),
             'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([ApiTeamProfile_createdAt::class, 'createFromDiscriminatorValue'])),
-            'description' => fn(ParseNode $n) => $o->setDescription($n->getObjectValue([ApiTeamProfile_description::class, 'createFromDiscriminatorValue'])),
+            'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
             'draws' => fn(ParseNode $n) => $o->setDraws($n->getIntegerValue()),
             'experience' => fn(ParseNode $n) => $o->setExperience($n->getFloatValue()),
-            'gameId' => fn(ParseNode $n) => $o->setGameId($n->getObjectValue([ApiTeamProfile_gameId::class, 'createFromDiscriminatorValue'])),
+            'gameId' => fn(ParseNode $n) => $o->setGameId($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'isMember' => fn(ParseNode $n) => $o->setIsMember($n->getBooleanValue()),
             'losses' => fn(ParseNode $n) => $o->setLosses($n->getIntegerValue()),
             'matchesPlayed' => fn(ParseNode $n) => $o->setMatchesPlayed($n->getIntegerValue()),
             'memberCount' => fn(ParseNode $n) => $o->setMemberCount($n->getIntegerValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'organizationId' => fn(ParseNode $n) => $o->setOrganizationId($n->getObjectValue([ApiTeamProfile_organizationId::class, 'createFromDiscriminatorValue'])),
-            'slug' => fn(ParseNode $n) => $o->setSlug($n->getObjectValue([ApiTeamProfile_slug::class, 'createFromDiscriminatorValue'])),
-            'tag' => fn(ParseNode $n) => $o->setTag($n->getObjectValue([ApiTeamProfile_tag::class, 'createFromDiscriminatorValue'])),
+            'organizationId' => fn(ParseNode $n) => $o->setOrganizationId($n->getStringValue()),
+            'slug' => fn(ParseNode $n) => $o->setSlug($n->getStringValue()),
+            'tag' => fn(ParseNode $n) => $o->setTag($n->getStringValue()),
             'visibility' => fn(ParseNode $n) => $o->setVisibility($n->getEnumValue(ProfileVisibility::class)),
             'wins' => fn(ParseNode $n) => $o->setWins($n->getIntegerValue()),
         ];
@@ -188,9 +188,9 @@ class ApiTeamProfile implements Parsable
 
     /**
      * Gets the gameId property value. The gameId property
-     * @return ApiTeamProfile_gameId|null
+     * @return string|null
     */
-    public function getGameId(): ?ApiTeamProfile_gameId {
+    public function getGameId(): ?string {
         return $this->gameId;
     }
 
@@ -244,25 +244,25 @@ class ApiTeamProfile implements Parsable
 
     /**
      * Gets the organizationId property value. The organizationId property
-     * @return ApiTeamProfile_organizationId|null
+     * @return string|null
     */
-    public function getOrganizationId(): ?ApiTeamProfile_organizationId {
+    public function getOrganizationId(): ?string {
         return $this->organizationId;
     }
 
     /**
      * Gets the slug property value. The slug property
-     * @return ApiTeamProfile_slug|null
+     * @return string|null
     */
-    public function getSlug(): ?ApiTeamProfile_slug {
+    public function getSlug(): ?string {
         return $this->slug;
     }
 
     /**
      * Gets the tag property value. The tag property
-     * @return ApiTeamProfile_tag|null
+     * @return string|null
     */
-    public function getTag(): ?ApiTeamProfile_tag {
+    public function getTag(): ?string {
         return $this->tag;
     }
 
@@ -287,39 +287,39 @@ class ApiTeamProfile implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
-        $writer->writeObjectValue('bannerUrl', $this->getBannerUrl());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('bannerUrl', $this->getBannerUrl());
         $writer->writeObjectValue('createdAt', $this->getCreatedAt());
-        $writer->writeObjectValue('description', $this->getDescription());
+        $writer->writeStringValue('description', $this->getDescription());
         $writer->writeIntegerValue('draws', $this->getDraws());
         $writer->writeFloatValue('experience', $this->getExperience());
-        $writer->writeObjectValue('gameId', $this->getGameId());
+        $writer->writeStringValue('gameId', $this->getGameId());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeBooleanValue('isMember', $this->getIsMember());
         $writer->writeIntegerValue('losses', $this->getLosses());
         $writer->writeIntegerValue('matchesPlayed', $this->getMatchesPlayed());
         $writer->writeIntegerValue('memberCount', $this->getMemberCount());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeObjectValue('organizationId', $this->getOrganizationId());
-        $writer->writeObjectValue('slug', $this->getSlug());
-        $writer->writeObjectValue('tag', $this->getTag());
+        $writer->writeStringValue('organizationId', $this->getOrganizationId());
+        $writer->writeStringValue('slug', $this->getSlug());
+        $writer->writeStringValue('tag', $this->getTag());
         $writer->writeEnumValue('visibility', $this->getVisibility());
         $writer->writeIntegerValue('wins', $this->getWins());
     }
 
     /**
      * Sets the avatarUrl property value. The avatarUrl property
-     * @param ApiTeamProfile_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?ApiTeamProfile_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 
     /**
      * Sets the bannerUrl property value. The bannerUrl property
-     * @param ApiTeamProfile_bannerUrl|null $value Value to set for the bannerUrl property.
+     * @param string|null $value Value to set for the bannerUrl property.
     */
-    public function setBannerUrl(?ApiTeamProfile_bannerUrl $value): void {
+    public function setBannerUrl(?string $value): void {
         $this->bannerUrl = $value;
     }
 
@@ -333,9 +333,9 @@ class ApiTeamProfile implements Parsable
 
     /**
      * Sets the description property value. The description property
-     * @param ApiTeamProfile_description|null $value Value to set for the description property.
+     * @param string|null $value Value to set for the description property.
     */
-    public function setDescription(?ApiTeamProfile_description $value): void {
+    public function setDescription(?string $value): void {
         $this->description = $value;
     }
 
@@ -357,9 +357,9 @@ class ApiTeamProfile implements Parsable
 
     /**
      * Sets the gameId property value. The gameId property
-     * @param ApiTeamProfile_gameId|null $value Value to set for the gameId property.
+     * @param string|null $value Value to set for the gameId property.
     */
-    public function setGameId(?ApiTeamProfile_gameId $value): void {
+    public function setGameId(?string $value): void {
         $this->gameId = $value;
     }
 
@@ -413,25 +413,25 @@ class ApiTeamProfile implements Parsable
 
     /**
      * Sets the organizationId property value. The organizationId property
-     * @param ApiTeamProfile_organizationId|null $value Value to set for the organizationId property.
+     * @param string|null $value Value to set for the organizationId property.
     */
-    public function setOrganizationId(?ApiTeamProfile_organizationId $value): void {
+    public function setOrganizationId(?string $value): void {
         $this->organizationId = $value;
     }
 
     /**
      * Sets the slug property value. The slug property
-     * @param ApiTeamProfile_slug|null $value Value to set for the slug property.
+     * @param string|null $value Value to set for the slug property.
     */
-    public function setSlug(?ApiTeamProfile_slug $value): void {
+    public function setSlug(?string $value): void {
         $this->slug = $value;
     }
 
     /**
      * Sets the tag property value. The tag property
-     * @param ApiTeamProfile_tag|null $value Value to set for the tag property.
+     * @param string|null $value Value to set for the tag property.
     */
-    public function setTag(?ApiTeamProfile_tag $value): void {
+    public function setTag(?string $value): void {
         $this->tag = $value;
     }
 

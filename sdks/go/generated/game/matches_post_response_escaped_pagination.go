@@ -9,93 +9,9 @@ import (
 
 type MatchesPostResponse_pagination struct {
     // The cursor property
-    cursor MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursorable
+    cursor *string
     // The hasMore property
     hasMore *bool
-}
-// MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor composed type wrapper for classes MatchesPostResponse_pagination_cursorMember1able, string
-type MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor struct {
-    // Composed type representation for type MatchesPostResponse_pagination_cursorMember1able
-    matchesPostResponse_pagination_cursorMember1 MatchesPostResponse_pagination_cursorMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewMatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor instantiates a new MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor and sets the default values.
-func NewMatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor()(*MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor) {
-    m := &MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor{
-    }
-    return m
-}
-// CreateMatchesPostResponse_pagination_MatchesPostResponse_pagination_cursorFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateMatchesPostResponse_pagination_MatchesPostResponse_pagination_cursorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewMatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateMatchesPostResponse_pagination_cursorMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(MatchesPostResponse_pagination_cursorMember1able); ok {
-                result.SetMatchesPostResponsePaginationCursorMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor) GetIsComposedType()(bool) {
-    return true
-}
-// GetMatchesPostResponsePaginationCursorMember1 gets the MatchesPostResponse_pagination_cursorMember1 property value. Composed type representation for type MatchesPostResponse_pagination_cursorMember1able
-// returns a MatchesPostResponse_pagination_cursorMember1able when successful
-func (m *MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor) GetMatchesPostResponsePaginationCursorMember1()(MatchesPostResponse_pagination_cursorMember1able) {
-    return m.matchesPostResponse_pagination_cursorMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetMatchesPostResponsePaginationCursorMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetMatchesPostResponsePaginationCursorMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetMatchesPostResponsePaginationCursorMember1 sets the MatchesPostResponse_pagination_cursorMember1 property value. Composed type representation for type MatchesPostResponse_pagination_cursorMember1able
-func (m *MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor) SetMatchesPostResponsePaginationCursorMember1(value MatchesPostResponse_pagination_cursorMember1able)() {
-    m.matchesPostResponse_pagination_cursorMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursor) SetString(value *string)() {
-    m.string = value
-}
-type MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursorable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetMatchesPostResponsePaginationCursorMember1()(MatchesPostResponse_pagination_cursorMember1able)
-    GetString()(*string)
-    SetMatchesPostResponsePaginationCursorMember1(value MatchesPostResponse_pagination_cursorMember1able)()
-    SetString(value *string)()
 }
 // NewMatchesPostResponse_pagination instantiates a new MatchesPostResponse_pagination and sets the default values.
 func NewMatchesPostResponse_pagination()(*MatchesPostResponse_pagination) {
@@ -109,8 +25,8 @@ func CreateMatchesPostResponse_paginationFromDiscriminatorValue(parseNode i878a8
     return NewMatchesPostResponse_pagination(), nil
 }
 // GetCursor gets the cursor property value. The cursor property
-// returns a MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursorable when successful
-func (m *MatchesPostResponse_pagination) GetCursor()(MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursorable) {
+// returns a *string when successful
+func (m *MatchesPostResponse_pagination) GetCursor()(*string) {
     return m.cursor
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -118,12 +34,12 @@ func (m *MatchesPostResponse_pagination) GetCursor()(MatchesPostResponse_paginat
 func (m *MatchesPostResponse_pagination) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["cursor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateMatchesPostResponse_pagination_MatchesPostResponse_pagination_cursorFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCursor(val.(MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursorable))
+            m.SetCursor(val)
         }
         return nil
     }
@@ -147,7 +63,7 @@ func (m *MatchesPostResponse_pagination) GetHasMore()(*bool) {
 // Serialize serializes information the current object
 func (m *MatchesPostResponse_pagination) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("cursor", m.GetCursor())
+        err := writer.WriteStringValue("cursor", m.GetCursor())
         if err != nil {
             return err
         }
@@ -161,7 +77,7 @@ func (m *MatchesPostResponse_pagination) Serialize(writer i878a80d2330e89d268963
     return nil
 }
 // SetCursor sets the cursor property value. The cursor property
-func (m *MatchesPostResponse_pagination) SetCursor(value MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursorable)() {
+func (m *MatchesPostResponse_pagination) SetCursor(value *string)() {
     m.cursor = value
 }
 // SetHasMore sets the hasMore property value. The hasMore property
@@ -170,8 +86,8 @@ func (m *MatchesPostResponse_pagination) SetHasMore(value *bool)() {
 }
 type MatchesPostResponse_paginationable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCursor()(MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursorable)
+    GetCursor()(*string)
     GetHasMore()(*bool)
-    SetCursor(value MatchesPostResponse_pagination_MatchesPostResponse_pagination_cursorable)()
+    SetCursor(value *string)()
     SetHasMore(value *bool)()
 }

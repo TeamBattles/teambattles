@@ -10,183 +10,15 @@ import (
 // ApiGameMap static game map definition.
 type ApiGameMap struct {
     // The coverImage property
-    coverImage ApiGameMap_ApiGameMap_coverImageable
+    coverImage *string
     // The id property
     id *string
     // The isReleased property
     isReleased *bool
     // The minimapImage property
-    minimapImage ApiGameMap_ApiGameMap_minimapImageable
+    minimapImage *string
     // The nameKey property
     nameKey *string
-}
-// ApiGameMap_ApiGameMap_coverImage composed type wrapper for classes ApiGameMap_coverImageMember1able, string
-type ApiGameMap_ApiGameMap_coverImage struct {
-    // Composed type representation for type ApiGameMap_coverImageMember1able
-    apiGameMap_coverImageMember1 ApiGameMap_coverImageMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGameMap_ApiGameMap_coverImage instantiates a new ApiGameMap_ApiGameMap_coverImage and sets the default values.
-func NewApiGameMap_ApiGameMap_coverImage()(*ApiGameMap_ApiGameMap_coverImage) {
-    m := &ApiGameMap_ApiGameMap_coverImage{
-    }
-    return m
-}
-// CreateApiGameMap_ApiGameMap_coverImageFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameMap_ApiGameMap_coverImageFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameMap_ApiGameMap_coverImage()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameMap_coverImageMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameMap_coverImageMember1able); ok {
-                result.SetApiGameMapCoverImageMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameMapCoverImageMember1 gets the ApiGameMap_coverImageMember1 property value. Composed type representation for type ApiGameMap_coverImageMember1able
-// returns a ApiGameMap_coverImageMember1able when successful
-func (m *ApiGameMap_ApiGameMap_coverImage) GetApiGameMapCoverImageMember1()(ApiGameMap_coverImageMember1able) {
-    return m.apiGameMap_coverImageMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameMap_ApiGameMap_coverImage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameMap_ApiGameMap_coverImage) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGameMap_ApiGameMap_coverImage) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGameMap_ApiGameMap_coverImage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameMapCoverImageMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameMapCoverImageMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameMapCoverImageMember1 sets the ApiGameMap_coverImageMember1 property value. Composed type representation for type ApiGameMap_coverImageMember1able
-func (m *ApiGameMap_ApiGameMap_coverImage) SetApiGameMapCoverImageMember1(value ApiGameMap_coverImageMember1able)() {
-    m.apiGameMap_coverImageMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGameMap_ApiGameMap_coverImage) SetString(value *string)() {
-    m.string = value
-}
-// ApiGameMap_ApiGameMap_minimapImage composed type wrapper for classes ApiGameMap_minimapImageMember1able, string
-type ApiGameMap_ApiGameMap_minimapImage struct {
-    // Composed type representation for type ApiGameMap_minimapImageMember1able
-    apiGameMap_minimapImageMember1 ApiGameMap_minimapImageMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGameMap_ApiGameMap_minimapImage instantiates a new ApiGameMap_ApiGameMap_minimapImage and sets the default values.
-func NewApiGameMap_ApiGameMap_minimapImage()(*ApiGameMap_ApiGameMap_minimapImage) {
-    m := &ApiGameMap_ApiGameMap_minimapImage{
-    }
-    return m
-}
-// CreateApiGameMap_ApiGameMap_minimapImageFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGameMap_ApiGameMap_minimapImageFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGameMap_ApiGameMap_minimapImage()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGameMap_minimapImageMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGameMap_minimapImageMember1able); ok {
-                result.SetApiGameMapMinimapImageMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGameMapMinimapImageMember1 gets the ApiGameMap_minimapImageMember1 property value. Composed type representation for type ApiGameMap_minimapImageMember1able
-// returns a ApiGameMap_minimapImageMember1able when successful
-func (m *ApiGameMap_ApiGameMap_minimapImage) GetApiGameMapMinimapImageMember1()(ApiGameMap_minimapImageMember1able) {
-    return m.apiGameMap_minimapImageMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGameMap_ApiGameMap_minimapImage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGameMap_ApiGameMap_minimapImage) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGameMap_ApiGameMap_minimapImage) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGameMap_ApiGameMap_minimapImage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGameMapMinimapImageMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGameMapMinimapImageMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGameMapMinimapImageMember1 sets the ApiGameMap_minimapImageMember1 property value. Composed type representation for type ApiGameMap_minimapImageMember1able
-func (m *ApiGameMap_ApiGameMap_minimapImage) SetApiGameMapMinimapImageMember1(value ApiGameMap_minimapImageMember1able)() {
-    m.apiGameMap_minimapImageMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGameMap_ApiGameMap_minimapImage) SetString(value *string)() {
-    m.string = value
-}
-type ApiGameMap_ApiGameMap_coverImageable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameMapCoverImageMember1()(ApiGameMap_coverImageMember1able)
-    GetString()(*string)
-    SetApiGameMapCoverImageMember1(value ApiGameMap_coverImageMember1able)()
-    SetString(value *string)()
-}
-type ApiGameMap_ApiGameMap_minimapImageable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGameMapMinimapImageMember1()(ApiGameMap_minimapImageMember1able)
-    GetString()(*string)
-    SetApiGameMapMinimapImageMember1(value ApiGameMap_minimapImageMember1able)()
-    SetString(value *string)()
 }
 // NewApiGameMap instantiates a new ApiGameMap and sets the default values.
 func NewApiGameMap()(*ApiGameMap) {
@@ -200,8 +32,8 @@ func CreateApiGameMapFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
     return NewApiGameMap(), nil
 }
 // GetCoverImage gets the coverImage property value. The coverImage property
-// returns a ApiGameMap_ApiGameMap_coverImageable when successful
-func (m *ApiGameMap) GetCoverImage()(ApiGameMap_ApiGameMap_coverImageable) {
+// returns a *string when successful
+func (m *ApiGameMap) GetCoverImage()(*string) {
     return m.coverImage
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -209,12 +41,12 @@ func (m *ApiGameMap) GetCoverImage()(ApiGameMap_ApiGameMap_coverImageable) {
 func (m *ApiGameMap) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["coverImage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameMap_ApiGameMap_coverImageFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCoverImage(val.(ApiGameMap_ApiGameMap_coverImageable))
+            m.SetCoverImage(val)
         }
         return nil
     }
@@ -239,12 +71,12 @@ func (m *ApiGameMap) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         return nil
     }
     res["minimapImage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGameMap_ApiGameMap_minimapImageFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetMinimapImage(val.(ApiGameMap_ApiGameMap_minimapImageable))
+            m.SetMinimapImage(val)
         }
         return nil
     }
@@ -271,8 +103,8 @@ func (m *ApiGameMap) GetIsReleased()(*bool) {
     return m.isReleased
 }
 // GetMinimapImage gets the minimapImage property value. The minimapImage property
-// returns a ApiGameMap_ApiGameMap_minimapImageable when successful
-func (m *ApiGameMap) GetMinimapImage()(ApiGameMap_ApiGameMap_minimapImageable) {
+// returns a *string when successful
+func (m *ApiGameMap) GetMinimapImage()(*string) {
     return m.minimapImage
 }
 // GetNameKey gets the nameKey property value. The nameKey property
@@ -283,7 +115,7 @@ func (m *ApiGameMap) GetNameKey()(*string) {
 // Serialize serializes information the current object
 func (m *ApiGameMap) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("coverImage", m.GetCoverImage())
+        err := writer.WriteStringValue("coverImage", m.GetCoverImage())
         if err != nil {
             return err
         }
@@ -301,7 +133,7 @@ func (m *ApiGameMap) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
         }
     }
     {
-        err := writer.WriteObjectValue("minimapImage", m.GetMinimapImage())
+        err := writer.WriteStringValue("minimapImage", m.GetMinimapImage())
         if err != nil {
             return err
         }
@@ -315,7 +147,7 @@ func (m *ApiGameMap) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     return nil
 }
 // SetCoverImage sets the coverImage property value. The coverImage property
-func (m *ApiGameMap) SetCoverImage(value ApiGameMap_ApiGameMap_coverImageable)() {
+func (m *ApiGameMap) SetCoverImage(value *string)() {
     m.coverImage = value
 }
 // SetId sets the id property value. The id property
@@ -327,7 +159,7 @@ func (m *ApiGameMap) SetIsReleased(value *bool)() {
     m.isReleased = value
 }
 // SetMinimapImage sets the minimapImage property value. The minimapImage property
-func (m *ApiGameMap) SetMinimapImage(value ApiGameMap_ApiGameMap_minimapImageable)() {
+func (m *ApiGameMap) SetMinimapImage(value *string)() {
     m.minimapImage = value
 }
 // SetNameKey sets the nameKey property value. The nameKey property
@@ -336,14 +168,14 @@ func (m *ApiGameMap) SetNameKey(value *string)() {
 }
 type ApiGameMapable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCoverImage()(ApiGameMap_ApiGameMap_coverImageable)
+    GetCoverImage()(*string)
     GetId()(*string)
     GetIsReleased()(*bool)
-    GetMinimapImage()(ApiGameMap_ApiGameMap_minimapImageable)
+    GetMinimapImage()(*string)
     GetNameKey()(*string)
-    SetCoverImage(value ApiGameMap_ApiGameMap_coverImageable)()
+    SetCoverImage(value *string)()
     SetId(value *string)()
     SetIsReleased(value *bool)()
-    SetMinimapImage(value ApiGameMap_ApiGameMap_minimapImageable)()
+    SetMinimapImage(value *string)()
     SetNameKey(value *string)()
 }

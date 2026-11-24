@@ -20,9 +20,9 @@ type ApiUserConnection struct {
     // Connected platform.
     platform *string
     // The url property
-    url ApiUserConnection_ApiUserConnection_urlable
+    url *string
     // The username property
-    username ApiUserConnection_ApiUserConnection_usernameable
+    username *string
 }
 // ApiUserConnection_ApiUserConnection_connectedAt composed type wrapper for classes ApiUserConnection_connectedAtMember1able, string
 type ApiUserConnection_ApiUserConnection_connectedAt struct {
@@ -101,179 +101,11 @@ func (m *ApiUserConnection_ApiUserConnection_connectedAt) SetApiUserConnectionCo
 func (m *ApiUserConnection_ApiUserConnection_connectedAt) SetString(value *string)() {
     m.string = value
 }
-// ApiUserConnection_ApiUserConnection_url composed type wrapper for classes ApiUserConnection_urlMember1able, string
-type ApiUserConnection_ApiUserConnection_url struct {
-    // Composed type representation for type ApiUserConnection_urlMember1able
-    apiUserConnection_urlMember1 ApiUserConnection_urlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserConnection_ApiUserConnection_url instantiates a new ApiUserConnection_ApiUserConnection_url and sets the default values.
-func NewApiUserConnection_ApiUserConnection_url()(*ApiUserConnection_ApiUserConnection_url) {
-    m := &ApiUserConnection_ApiUserConnection_url{
-    }
-    return m
-}
-// CreateApiUserConnection_ApiUserConnection_urlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserConnection_ApiUserConnection_urlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserConnection_ApiUserConnection_url()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserConnection_urlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserConnection_urlMember1able); ok {
-                result.SetApiUserConnectionUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserConnectionUrlMember1 gets the ApiUserConnection_urlMember1 property value. Composed type representation for type ApiUserConnection_urlMember1able
-// returns a ApiUserConnection_urlMember1able when successful
-func (m *ApiUserConnection_ApiUserConnection_url) GetApiUserConnectionUrlMember1()(ApiUserConnection_urlMember1able) {
-    return m.apiUserConnection_urlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserConnection_ApiUserConnection_url) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserConnection_ApiUserConnection_url) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserConnection_ApiUserConnection_url) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserConnection_ApiUserConnection_url) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserConnectionUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserConnectionUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserConnectionUrlMember1 sets the ApiUserConnection_urlMember1 property value. Composed type representation for type ApiUserConnection_urlMember1able
-func (m *ApiUserConnection_ApiUserConnection_url) SetApiUserConnectionUrlMember1(value ApiUserConnection_urlMember1able)() {
-    m.apiUserConnection_urlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserConnection_ApiUserConnection_url) SetString(value *string)() {
-    m.string = value
-}
-// ApiUserConnection_ApiUserConnection_username composed type wrapper for classes ApiUserConnection_usernameMember1able, string
-type ApiUserConnection_ApiUserConnection_username struct {
-    // Composed type representation for type ApiUserConnection_usernameMember1able
-    apiUserConnection_usernameMember1 ApiUserConnection_usernameMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserConnection_ApiUserConnection_username instantiates a new ApiUserConnection_ApiUserConnection_username and sets the default values.
-func NewApiUserConnection_ApiUserConnection_username()(*ApiUserConnection_ApiUserConnection_username) {
-    m := &ApiUserConnection_ApiUserConnection_username{
-    }
-    return m
-}
-// CreateApiUserConnection_ApiUserConnection_usernameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserConnection_ApiUserConnection_usernameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserConnection_ApiUserConnection_username()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserConnection_usernameMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserConnection_usernameMember1able); ok {
-                result.SetApiUserConnectionUsernameMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserConnectionUsernameMember1 gets the ApiUserConnection_usernameMember1 property value. Composed type representation for type ApiUserConnection_usernameMember1able
-// returns a ApiUserConnection_usernameMember1able when successful
-func (m *ApiUserConnection_ApiUserConnection_username) GetApiUserConnectionUsernameMember1()(ApiUserConnection_usernameMember1able) {
-    return m.apiUserConnection_usernameMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserConnection_ApiUserConnection_username) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserConnection_ApiUserConnection_username) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserConnection_ApiUserConnection_username) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserConnection_ApiUserConnection_username) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserConnectionUsernameMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserConnectionUsernameMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserConnectionUsernameMember1 sets the ApiUserConnection_usernameMember1 property value. Composed type representation for type ApiUserConnection_usernameMember1able
-func (m *ApiUserConnection_ApiUserConnection_username) SetApiUserConnectionUsernameMember1(value ApiUserConnection_usernameMember1able)() {
-    m.apiUserConnection_usernameMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserConnection_ApiUserConnection_username) SetString(value *string)() {
-    m.string = value
-}
 type ApiUserConnection_ApiUserConnection_connectedAtable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetApiUserConnectionConnectedAtMember1()(ApiUserConnection_connectedAtMember1able)
     GetString()(*string)
     SetApiUserConnectionConnectedAtMember1(value ApiUserConnection_connectedAtMember1able)()
-    SetString(value *string)()
-}
-type ApiUserConnection_ApiUserConnection_urlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserConnectionUrlMember1()(ApiUserConnection_urlMember1able)
-    GetString()(*string)
-    SetApiUserConnectionUrlMember1(value ApiUserConnection_urlMember1able)()
-    SetString(value *string)()
-}
-type ApiUserConnection_ApiUserConnection_usernameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserConnectionUsernameMember1()(ApiUserConnection_usernameMember1able)
-    GetString()(*string)
-    SetApiUserConnectionUsernameMember1(value ApiUserConnection_usernameMember1able)()
     SetString(value *string)()
 }
 // NewApiUserConnection instantiates a new ApiUserConnection and sets the default values.
@@ -347,22 +179,22 @@ func (m *ApiUserConnection) GetFieldDeserializers()(map[string]func(i878a80d2330
         return nil
     }
     res["url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserConnection_ApiUserConnection_urlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetUrl(val.(ApiUserConnection_ApiUserConnection_urlable))
+            m.SetUrl(val)
         }
         return nil
     }
     res["username"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserConnection_ApiUserConnection_usernameFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetUsername(val.(ApiUserConnection_ApiUserConnection_usernameable))
+            m.SetUsername(val)
         }
         return nil
     }
@@ -389,13 +221,13 @@ func (m *ApiUserConnection) GetPlatform()(*string) {
     return m.platform
 }
 // GetUrl gets the url property value. The url property
-// returns a ApiUserConnection_ApiUserConnection_urlable when successful
-func (m *ApiUserConnection) GetUrl()(ApiUserConnection_ApiUserConnection_urlable) {
+// returns a *string when successful
+func (m *ApiUserConnection) GetUrl()(*string) {
     return m.url
 }
 // GetUsername gets the username property value. The username property
-// returns a ApiUserConnection_ApiUserConnection_usernameable when successful
-func (m *ApiUserConnection) GetUsername()(ApiUserConnection_ApiUserConnection_usernameable) {
+// returns a *string when successful
+func (m *ApiUserConnection) GetUsername()(*string) {
     return m.username
 }
 // Serialize serializes information the current object
@@ -431,13 +263,13 @@ func (m *ApiUserConnection) Serialize(writer i878a80d2330e89d26896388a3f487eef27
         }
     }
     {
-        err := writer.WriteObjectValue("url", m.GetUrl())
+        err := writer.WriteStringValue("url", m.GetUrl())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("username", m.GetUsername())
+        err := writer.WriteStringValue("username", m.GetUsername())
         if err != nil {
             return err
         }
@@ -465,11 +297,11 @@ func (m *ApiUserConnection) SetPlatform(value *string)() {
     m.platform = value
 }
 // SetUrl sets the url property value. The url property
-func (m *ApiUserConnection) SetUrl(value ApiUserConnection_ApiUserConnection_urlable)() {
+func (m *ApiUserConnection) SetUrl(value *string)() {
     m.url = value
 }
 // SetUsername sets the username property value. The username property
-func (m *ApiUserConnection) SetUsername(value ApiUserConnection_ApiUserConnection_usernameable)() {
+func (m *ApiUserConnection) SetUsername(value *string)() {
     m.username = value
 }
 type ApiUserConnectionable interface {
@@ -479,13 +311,13 @@ type ApiUserConnectionable interface {
     GetIsPrimary()(*bool)
     GetIsVerified()(*bool)
     GetPlatform()(*string)
-    GetUrl()(ApiUserConnection_ApiUserConnection_urlable)
-    GetUsername()(ApiUserConnection_ApiUserConnection_usernameable)
+    GetUrl()(*string)
+    GetUsername()(*string)
     SetConnectedAt(value ApiUserConnection_ApiUserConnection_connectedAtable)()
     SetId(value *string)()
     SetIsPrimary(value *bool)()
     SetIsVerified(value *bool)()
     SetPlatform(value *string)()
-    SetUrl(value ApiUserConnection_ApiUserConnection_urlable)()
-    SetUsername(value ApiUserConnection_ApiUserConnection_usernameable)()
+    SetUrl(value *string)()
+    SetUsername(value *string)()
 }

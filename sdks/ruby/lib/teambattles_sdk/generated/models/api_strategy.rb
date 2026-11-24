@@ -80,7 +80,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the description property value. Author description, when set.
-                ## @return a api_strategy_description
+                ## @return a string
                 ## 
                 def description
                     return @description
@@ -115,7 +115,7 @@ module TeamBattlesSdk
                 def get_field_deserializers()
                     return {
                         "createdAt" => lambda {|n| @created_at = n.get_object_value(lambda {|pn| ApiStrategy::ApiStrategyCreatedAt.create_from_discriminator_value(pn) }) },
-                        "description" => lambda {|n| @description = n.get_object_value(lambda {|pn| ApiStrategy::ApiStrategyDescription.create_from_discriminator_value(pn) }) },
+                        "description" => lambda {|n| @description = n.get_string_value() },
                         "game" => lambda {|n| @game = n.get_string_value() },
                         "id" => lambda {|n| @id = n.get_string_value() },
                         "mapId" => lambda {|n| @map_id = n.get_string_value() },
@@ -123,7 +123,7 @@ module TeamBattlesSdk
                         "name" => lambda {|n| @name = n.get_string_value() },
                         "ownerId" => lambda {|n| @owner_id = n.get_string_value() },
                         "playbackLoop" => lambda {|n| @playback_loop = n.get_boolean_value() },
-                        "previewUrl" => lambda {|n| @preview_url = n.get_object_value(lambda {|pn| ApiStrategy::ApiStrategyPreviewUrl.create_from_discriminator_value(pn) }) },
+                        "previewUrl" => lambda {|n| @preview_url = n.get_string_value() },
                         "shareSlug" => lambda {|n| @share_slug = n.get_string_value() },
                         "stageCount" => lambda {|n| @stage_count = n.get_number_value() },
                         "stages" => lambda {|n| @stages = n.get_collection_of_object_values(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiStrategyStage.create_from_discriminator_value(pn) }) },
@@ -223,7 +223,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the previewUrl property value. Freshly signed preview image URL, when a preview has been rendered.
-                ## @return a api_strategy_preview_url
+                ## @return a string
                 ## 
                 def preview_url
                     return @preview_url
@@ -244,7 +244,7 @@ module TeamBattlesSdk
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
                     writer.write_object_value("createdAt", @created_at)
-                    writer.write_object_value("description", @description)
+                    writer.write_string_value("description", @description)
                     writer.write_string_value("game", @game)
                     writer.write_string_value("id", @id)
                     writer.write_string_value("mapId", @map_id)
@@ -252,7 +252,7 @@ module TeamBattlesSdk
                     writer.write_string_value("name", @name)
                     writer.write_string_value("ownerId", @owner_id)
                     writer.write_boolean_value("playbackLoop", @playback_loop)
-                    writer.write_object_value("previewUrl", @preview_url)
+                    writer.write_string_value("previewUrl", @preview_url)
                     writer.write_string_value("shareSlug", @share_slug)
                     writer.write_number_value("stageCount", @stage_count)
                     writer.write_collection_of_object_values("stages", @stages)
@@ -387,148 +387,6 @@ module TeamBattlesSdk
                     def serialize(writer)
                         raise StandardError, 'writer cannot be null' if writer.nil?
                         writer.write_object_value("ApiStrategy_createdAtMember1", @api_strategy_created_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiStrategyDescriptionMember1, string
-                class ApiStrategyDescription
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiStrategyDescriptionMember1
-                    @api_strategy_description_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiStrategy_descriptionMember1 property value. Composed type representation for type ApiStrategyDescriptionMember1
-                    ## @return a api_strategy_description_member1
-                    ## 
-                    def api_strategy_description_member1
-                        return @api_strategy_description_member1
-                    end
-                    ## 
-                    ## Sets the ApiStrategy_descriptionMember1 property value. Composed type representation for type ApiStrategyDescriptionMember1
-                    ## @param value Value to set for the ApiStrategy_descriptionMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_strategy_description_member1=(value)
-                        @api_strategy_description_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_strategy_description
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiStrategyDescription.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiStrategy_descriptionMember1" => lambda {|n| @api_strategy_description_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiStrategyDescriptionMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiStrategy_descriptionMember1", @api_strategy_description_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiStrategyPreviewUrlMember1, string
-                class ApiStrategyPreviewUrl
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiStrategyPreviewUrlMember1
-                    @api_strategy_preview_url_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiStrategy_previewUrlMember1 property value. Composed type representation for type ApiStrategyPreviewUrlMember1
-                    ## @return a api_strategy_preview_url_member1
-                    ## 
-                    def api_strategy_preview_url_member1
-                        return @api_strategy_preview_url_member1
-                    end
-                    ## 
-                    ## Sets the ApiStrategy_previewUrlMember1 property value. Composed type representation for type ApiStrategyPreviewUrlMember1
-                    ## @param value Value to set for the ApiStrategy_previewUrlMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_strategy_preview_url_member1=(value)
-                        @api_strategy_preview_url_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_strategy_preview_url
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiStrategyPreviewUrl.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiStrategy_previewUrlMember1" => lambda {|n| @api_strategy_preview_url_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiStrategyPreviewUrlMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiStrategy_previewUrlMember1", @api_strategy_preview_url_member1)
                         writer.write_string_value("string", @string)
                     end
                     ## 

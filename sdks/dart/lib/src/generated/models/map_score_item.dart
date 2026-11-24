@@ -1,6 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './map_score_item_created_at.dart';
 import './score_confirmer.dart';
 import './score_submitter.dart';
 
@@ -10,7 +9,7 @@ class MapScoreItem implements Parsable {
     ///  The confirmedBy property
     ScoreConfirmer? confirmedBy;
     ///  Creation time (ISO 8601).
-    MapScoreItemCreatedAt? createdAt;
+    String? createdAt;
     ///  The creatorTeamScore property
     int? creatorTeamScore;
     ///  The mapId property
@@ -35,7 +34,7 @@ class MapScoreItem implements Parsable {
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['confirmedBy'] = (node) => confirmedBy = node.getObjectValue<ScoreConfirmer>(ScoreConfirmer.createFromDiscriminatorValue);
-        deserializerMap['createdAt'] = (node) => createdAt = node.getObjectValue<MapScoreItemCreatedAt>(MapScoreItemCreatedAt.createFromDiscriminatorValue);
+        deserializerMap['createdAt'] = (node) => createdAt = node.getStringValue();
         deserializerMap['creatorTeamScore'] = (node) => creatorTeamScore = node.getIntValue();
         deserializerMap['mapId'] = (node) => mapId = node.getStringValue();
         deserializerMap['mapIndex'] = (node) => mapIndex = node.getIntValue();
@@ -50,7 +49,7 @@ class MapScoreItem implements Parsable {
     @override
     void serialize(SerializationWriter writer) {
         writer.writeObjectValue<ScoreConfirmer>('confirmedBy', confirmedBy);
-        writer.writeObjectValue<MapScoreItemCreatedAt>('createdAt', createdAt);
+        writer.writeStringValue('createdAt', createdAt);
         writer.writeIntValue('creatorTeamScore', creatorTeamScore);
         writer.writeStringValue('mapId', mapId);
         writer.writeIntValue('mapIndex', mapIndex);

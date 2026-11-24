@@ -447,13 +447,9 @@
                       "type": "object",
                       "properties": {
                         "cursor": {
-                          "anyOf": [
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "null"
-                            }
+                          "type": [
+                            "string",
+                            "null"
                           ]
                         },
                         "hasMore": {
@@ -9208,13 +9204,9 @@
                       }
                     },
                     "nextCursor": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "null"
-                        }
+                      "type": [
+                        "string",
+                        "null"
                       ]
                     },
                     "hasMore": {
@@ -13142,13 +13134,9 @@
                       }
                     },
                     "nextCursor": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "null"
-                        }
+                      "type": [
+                        "string",
+                        "null"
                       ]
                     },
                     "hasMore": {
@@ -25766,13 +25754,9 @@
           },
           "cursor": {
             "default": null,
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -27193,16 +27177,10 @@
               "type": "string"
             },
             "additionalProperties": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "boolean"
-                }
+              "type": [
+                "string",
+                "number",
+                "boolean"
               ]
             }
           },
@@ -27347,13 +27325,9 @@
             "maximum": 100
           },
           "cursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -27423,13 +27397,9 @@
           },
           "cursor": {
             "description": "Opaque continuation cursor from a prior page's continueCursor.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "includeStatuses": {
@@ -27999,16 +27969,10 @@
               "type": "string"
             },
             "additionalProperties": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "boolean"
-                }
+              "type": [
+                "string",
+                "number",
+                "boolean"
               ]
             }
           },
@@ -30517,16 +30481,10 @@
               "type": "string"
             },
             "additionalProperties": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "boolean"
-                }
+              "type": [
+                "string",
+                "number",
+                "boolean"
               ]
             }
           }
@@ -31640,48 +31598,32 @@
             ]
           },
           "scheduledAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Scheduled start time (ISO 8601)."
+            "description": "Scheduled start time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "startedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Actual start time (ISO 8601)."
+            "description": "Actual start time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "completedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Completion time (ISO 8601)."
+            "description": "Completion time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "createdAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Creation time (ISO 8601)."
+            "description": "Creation time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [
@@ -31732,13 +31674,9 @@
           },
           "avatarUrl": {
             "description": "Team avatar URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -31837,90 +31775,58 @@
           },
           "winnerTeamId": {
             "description": "Winning team ID once the match completes.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "loserTeamId": {
             "description": "Losing team ID once the match completes.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "scheduledAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Scheduled start time (ISO 8601)."
+            "description": "Scheduled start time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "startedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Actual start time (ISO 8601)."
+            "description": "Actual start time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "completedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Completion time (ISO 8601)."
+            "description": "Completion time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "createdAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Creation time (ISO 8601)."
+            "description": "Creation time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "leagueId": {
             "description": "League this match belongs to, if any (SP-7 league wave).",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "leagueSeasonId": {
             "description": "League season this match belongs to, if any.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -32029,15 +31935,11 @@
             "description": "ID of the team that created the match."
           },
           "acceptedTeamId": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "ID of the team that accepted the match, or null if unaccepted."
+            "description": "ID of the team that accepted the match, or null if unaccepted.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "creatorRoster": {
             "type": "array",
@@ -32080,26 +31982,18 @@
             "description": "ID of the team the player belongs to."
           },
           "username": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Player's username, or null if unset."
+            "description": "Player's username, or null if unset.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Player's display name, or null if unset."
+            "description": "Player's display name, or null if unset.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "isCheckedIn": {
             "type": "boolean",
@@ -32187,26 +32081,18 @@
             "description": "Per-player stats keyed by user ID, or null when none recorded."
           },
           "submittedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When the score was submitted (ISO 8601)."
+            "description": "When the score was submitted (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "confirmedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When the score was confirmed (ISO 8601)."
+            "description": "When the score was confirmed (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [
@@ -32477,70 +32363,46 @@
             "description": "Static public game ID/slug."
           },
           "convexId": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Active Convex games-table ID, when available for match APIs."
+            "description": "Active Convex games-table ID, when available for match APIs.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "nameKey": {
             "type": "string"
           },
           "shortNameKey": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "descriptionKey": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "category": {
             "type": "string"
           },
           "rulesLink": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "coverImage": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "bannerImage": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "defaultTeamSize": {
@@ -32614,43 +32476,27 @@
             "type": "string"
           },
           "descriptionKey": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "image": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "shortName": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "rewardBonus": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "number",
+              "null"
             ]
           },
           "supportsDraftToggle": {
@@ -32686,23 +32532,15 @@
             "type": "string"
           },
           "coverImage": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "minimapImage": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "isReleased": {
@@ -32729,23 +32567,15 @@
             "type": "string"
           },
           "descriptionKey": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "image": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "allowedGameModeIds": {
@@ -32862,13 +32692,9 @@
             "$ref": "#/components/schemas/LeaderboardSortBy"
           },
           "gameSlug": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "timestamp": {
@@ -32943,13 +32769,9 @@
             "additionalProperties": false
           },
           "gameSlug": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -32970,13 +32792,9 @@
             "description": "Organization ID."
           },
           "slug": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "name": {
@@ -32984,23 +32802,15 @@
             "description": "Organization name."
           },
           "tag": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "avatarUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "visibility": {
@@ -33046,13 +32856,9 @@
             "$ref": "#/components/schemas/LeaderboardSortBy"
           },
           "gameSlug": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "timestamp": {
@@ -33128,47 +32934,31 @@
             "description": "User ID."
           },
           "username": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "User handle, when set."
+            "description": "User handle, when set.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Display name, when set."
+            "description": "Display name, when set.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "avatarUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Avatar image URL, when set."
+            "description": "Avatar image URL, when set.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "bannerUrl": {
             "description": "Banner image URL, when set.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "isVerified": {
@@ -33176,13 +32966,9 @@
           },
           "bio": {
             "description": "Public profile bio.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "visibility": {
@@ -33262,13 +33048,9 @@
             "$ref": "#/components/schemas/LeaderboardSortBy"
           },
           "gameSlug": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "timestamp": {
@@ -33303,13 +33085,9 @@
             "$ref": "#/components/schemas/LeaderboardStats"
           },
           "gameSlug": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -33330,13 +33108,9 @@
             "description": "Team ID."
           },
           "slug": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "name": {
@@ -33344,23 +33118,15 @@
             "description": "Team name."
           },
           "tag": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "avatarUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "visibility": {
@@ -33394,26 +33160,18 @@
             "description": "League description."
           },
           "avatarUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "League avatar image URL."
+            "description": "League avatar image URL.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "bannerUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "League banner image URL."
+            "description": "League banner image URL.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "isVerified": {
             "type": "boolean",
@@ -33511,26 +33269,18 @@
             "description": "League description."
           },
           "avatarUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "League avatar image URL."
+            "description": "League avatar image URL.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "bannerUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "League banner image URL."
+            "description": "League banner image URL.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "status": {
             "type": "string",
@@ -34357,15 +34107,11 @@
             "description": "Season selector options for a league game."
           },
           "defaultSeasonId": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Recommended default option."
+            "description": "Recommended default option.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "timestamp": {
             "type": "string",
@@ -34798,33 +34544,21 @@
             "type": "string"
           },
           "matchType": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "platform": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "region": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "creatorTeam": {
@@ -34880,73 +34614,45 @@
             }
           },
           "winnerTeamId": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "scheduledAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "startedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "completedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "createdAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "leagueId": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "leagueSeasonId": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -35007,13 +34713,9 @@
           },
           "avatarUrl": {
             "description": "Team avatar URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "score": {
@@ -35189,36 +34891,24 @@
             "type": "string"
           },
           "senderUsername": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "teamId": {
             "type": "string"
           },
           "replyToId": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "createdAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -35339,33 +35029,21 @@
             "type": "string"
           },
           "username": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "avatarUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "rosterType": {
@@ -35387,13 +35065,9 @@
             "type": "boolean"
           },
           "checkedInAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -35544,15 +35218,11 @@
             ]
           },
           "createdAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Creation time (ISO 8601)."
+            "description": "Creation time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [
@@ -35579,13 +35249,9 @@
             "type": "string"
           },
           "name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -35607,15 +35273,11 @@
             "type": "string"
           },
           "confirmedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Confirmation time (ISO 8601)."
+            "description": "Confirmation time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [
@@ -35705,13 +35367,9 @@
             }
           },
           "nextCursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "hasMore": {
@@ -35784,13 +35442,9 @@
             "description": "Organization ID."
           },
           "slug": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "name": {
@@ -35798,46 +35452,30 @@
             "description": "Organization name."
           },
           "tag": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "avatarUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "visibility": {
             "$ref": "#/components/schemas/ProfileVisibility"
           },
           "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "bannerUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "isVerified": {
@@ -35952,37 +35590,25 @@
             ]
           },
           "scheduledAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Scheduled start time (ISO 8601)."
+            "description": "Scheduled start time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "startedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Actual start time (ISO 8601)."
+            "description": "Actual start time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "completedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Completion time (ISO 8601)."
+            "description": "Completion time (ISO 8601).",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "bestOf": {
             "type": "integer",
@@ -36196,15 +35822,11 @@
             "description": "Strategy name."
           },
           "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Author description, when set."
+            "description": "Author description, when set.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "game": {
             "type": "string",
@@ -36241,15 +35863,11 @@
             "maximum": 9007199254740991
           },
           "previewUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Freshly signed preview image URL, when a preview has been rendered."
+            "description": "Freshly signed preview image URL, when a preview has been rendered.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "createdAt": {
             "anyOf": [
@@ -36311,15 +35929,11 @@
             "description": "Stable stage id within the strategy."
           },
           "label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Author stage label, when set."
+            "description": "Author stage label, when set.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "durationMs": {
             "type": "integer",
@@ -36552,13 +36166,9 @@
             "description": "Team ID."
           },
           "slug": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "name": {
@@ -36566,66 +36176,42 @@
             "description": "Team name."
           },
           "tag": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "avatarUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "visibility": {
             "$ref": "#/components/schemas/ProfileVisibility"
           },
           "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "bannerUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "gameId": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "organizationId": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "isMember": {
@@ -36790,23 +36376,15 @@
             ]
           },
           "createdAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "updatedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -36892,43 +36470,27 @@
             ]
           },
           "createdAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "updatedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "resolvedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "closedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "messages": {
@@ -36949,13 +36511,9 @@
                   "type": "boolean"
                 },
                 "createdAt": {
-                  "anyOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "type": "null"
-                    }
+                  "type": [
+                    "string",
+                    "null"
                   ]
                 }
               },
@@ -37123,24 +36681,16 @@
           },
           "bannerUrl": {
             "description": "Banner image URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "logoUrl": {
             "description": "Logo image URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "game": {
@@ -37354,13 +36904,9 @@
           },
           "teamAvatarUrl": {
             "description": "Applying team's avatar URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "appliedByUserId": {
@@ -37601,13 +37147,9 @@
           },
           "avatarUrl": {
             "description": "Avatar image URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "note": {
@@ -37686,13 +37228,9 @@
           },
           "teamAvatarUrl": {
             "description": "Invited team's avatar URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "status": {
@@ -38245,13 +37783,9 @@
           },
           "teamAvatarUrl": {
             "description": "Team avatar URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "status": {
@@ -38313,13 +37847,9 @@
           },
           "avatarUrl": {
             "description": "Avatar image URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -38484,13 +38014,9 @@
           },
           "avatarUrl": {
             "description": "Avatar image URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "role": {
@@ -38771,24 +38297,16 @@
           },
           "bannerUrl": {
             "description": "Banner image URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "logoUrl": {
             "description": "Logo image URL.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "game": {
@@ -38823,26 +38341,18 @@
         "type": "object",
         "properties": {
           "broadcaster_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Resolved broadcaster (channel) id."
+            "description": "Resolved broadcaster (channel) id.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "broadcaster_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Resolved broadcaster display name or login."
+            "description": "Resolved broadcaster display name or login.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "badges": {
             "type": "array",
@@ -39017,15 +38527,11 @@
             "description": "Stream start (ISO 8601)."
           },
           "ended_at": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Stream end (ISO 8601); null while it was still live at the last pass."
+            "description": "Stream end (ISO 8601); null while it was still live at the last pass.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "duration_seconds": {
             "type": "integer",
@@ -39034,26 +38540,18 @@
             "description": "Seconds from the start to the end, or to when it was last seen live."
           },
           "title": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Stream title, when Twitch reported one."
+            "description": "Stream title, when Twitch reported one.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "game": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Category name, when Twitch reported one."
+            "description": "Category name, when Twitch reported one.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "recording": {
             "type": "string",
@@ -39065,15 +38563,11 @@
             "description": "available: found on Twitch's video CDN. unverified: not checked yet, or not found. removed: Twitch deleted it (only sent when the index keeps removed recordings)."
           },
           "host": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "CDN host the recording was found on; null unless recording is available."
+            "description": "CDN host the recording was found on; null unless recording is available.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "path_timestamp": {
             "anyOf": [
@@ -39089,15 +38583,11 @@
             "description": "Unix second used in the recording path; null unless recording is available."
           },
           "removed_at": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When the recording was found removed (ISO 8601), else null."
+            "description": "When the recording was found removed (ISO 8601), else null.",
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [
@@ -39221,23 +38711,15 @@
             "description": "Connected platform."
           },
           "username": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "url": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "isPrimary": {
@@ -39267,24 +38749,16 @@
           },
           "region": {
             "description": "Connection region, when set.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "gamingPlatform": {
             "description": "Gaming platform (e.g. pc / console), when set.",
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -39348,15 +38822,11 @@
             "description": "Origin of the rank: manual entry or an API push."
           },
           "sr": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Skill rating, when set."
+            "description": "Skill rating, when set.",
+            "type": [
+              "number",
+              "null"
+            ]
           },
           "isTop250": {
             "type": "boolean",
@@ -39653,23 +39123,15 @@
             "description": "Connected platform."
           },
           "username": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "url": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "isPrimary": {
@@ -39705,13 +39167,9 @@
             "description": "Organization ID."
           },
           "slug": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "name": {
@@ -39719,23 +39177,15 @@
             "description": "Organization name."
           },
           "tag": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "avatarUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "visibility": {
@@ -39887,37 +39337,25 @@
             "$ref": "#/components/schemas/StreamPlatform"
           },
           "streamUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Watch URL, when known."
+            "description": "Watch URL, when known.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "title": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Stream title, when known."
+            "description": "Stream title, when known.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "gameName": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Game/category being streamed, when known."
+            "description": "Game/category being streamed, when known.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "viewerCount": {
             "anyOf": [
@@ -39933,37 +39371,25 @@
             "description": "Current viewer count, when known."
           },
           "thumbnailUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Stream thumbnail URL, when known."
+            "description": "Stream thumbnail URL, when known.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "startedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Stream start time (platform-provided ISO timestamp), when known."
+            "description": "Stream start time (platform-provided ISO timestamp), when known.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "lastLiveAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "ISO timestamp the user was last observed live, when known."
+            "description": "ISO timestamp the user was last observed live, when known.",
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [
@@ -39987,13 +39413,9 @@
             "description": "Team ID."
           },
           "slug": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "name": {
@@ -40001,23 +39423,15 @@
             "description": "Team name."
           },
           "tag": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "avatarUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "visibility": {
@@ -40069,43 +39483,27 @@
             "description": "Trophy definition ID."
           },
           "title": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "iconUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "rarity": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "awardedAt": {
@@ -40196,15 +39594,11 @@
             "description": "Whether the endpoint receives deliveries."
           },
           "label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Human label, or null."
+            "description": "Human label, or null.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "failureCount": {
             "type": "integer",
@@ -40213,26 +39607,18 @@
             "description": "Consecutive dead-lettered deliveries (auto-disables at 50)."
           },
           "lastDeliveredAt": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Epoch ms of the last successful delivery, or null."
+            "description": "Epoch ms of the last successful delivery, or null.",
+            "type": [
+              "number",
+              "null"
+            ]
           },
           "lastFailedAt": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Epoch ms of the last failed delivery, or null."
+            "description": "Epoch ms of the last failed delivery, or null.",
+            "type": [
+              "number",
+              "null"
+            ]
           },
           "createdAt": {
             "type": "number",
@@ -40344,26 +39730,18 @@
             "description": "Last HTTP response status, or null."
           },
           "errorMessage": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Last error message, or null."
+            "description": "Last error message, or null.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "nextAttemptAt": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Epoch ms of the next scheduled retry, or null."
+            "description": "Epoch ms of the next scheduled retry, or null.",
+            "type": [
+              "number",
+              "null"
+            ]
           },
           "isTest": {
             "type": "boolean",
@@ -40378,15 +39756,11 @@
             "description": "Last update epoch ms."
           },
           "deliveredAt": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Epoch ms of successful delivery, or null."
+            "description": "Epoch ms of successful delivery, or null.",
+            "type": [
+              "number",
+              "null"
+            ]
           }
         },
         "required": [

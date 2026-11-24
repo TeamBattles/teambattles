@@ -16,7 +16,7 @@ public class LeaderboardRankResponse implements Parsable {
     /**
      * The gameSlug property
      */
-    private LeaderboardRankResponseGameSlug gameSlug;
+    private String gameSlug;
     /**
      * Resolved entity ID.
      */
@@ -50,7 +50,7 @@ public class LeaderboardRankResponse implements Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(5);
-        deserializerMap.put("gameSlug", (n) -> { this.setGameSlug(n.getObjectValue(LeaderboardRankResponseGameSlug::createFromDiscriminatorValue)); });
+        deserializerMap.put("gameSlug", (n) -> { this.setGameSlug(n.getStringValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
         deserializerMap.put("rank", (n) -> { this.setRank(n.getObjectValue(LeaderboardRankResponseRank::createFromDiscriminatorValue)); });
         deserializerMap.put("sortBy", (n) -> { this.setSortBy(n.getEnumValue(LeaderboardSortBy::forValue)); });
@@ -59,10 +59,10 @@ public class LeaderboardRankResponse implements Parsable {
     }
     /**
      * Gets the gameSlug property value. The gameSlug property
-     * @return a {@link LeaderboardRankResponseGameSlug}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public LeaderboardRankResponseGameSlug getGameSlug() {
+    public String getGameSlug() {
         return this.gameSlug;
     }
     /**
@@ -103,7 +103,7 @@ public class LeaderboardRankResponse implements Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeObjectValue("gameSlug", this.getGameSlug());
+        writer.writeStringValue("gameSlug", this.getGameSlug());
         writer.writeStringValue("id", this.getId());
         writer.writeObjectValue("rank", this.getRank());
         writer.writeEnumValue("sortBy", this.getSortBy());
@@ -113,7 +113,7 @@ public class LeaderboardRankResponse implements Parsable {
      * Sets the gameSlug property value. The gameSlug property
      * @param value Value to set for the gameSlug property.
      */
-    public void setGameSlug(@jakarta.annotation.Nullable final LeaderboardRankResponseGameSlug value) {
+    public void setGameSlug(@jakarta.annotation.Nullable final String value) {
         this.gameSlug = value;
     }
     /**
@@ -143,89 +143,6 @@ public class LeaderboardRankResponse implements Parsable {
      */
     public void setTimestamp(@jakarta.annotation.Nullable final String value) {
         this.timestamp = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link LeaderboardRankResponseGameSlugMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class LeaderboardRankResponseGameSlug implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link LeaderboardRankResponseGameSlugMember1}
-         */
-        private LeaderboardRankResponseGameSlugMember1 leaderboardRankResponseGameSlugMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link LeaderboardRankResponseGameSlug}
-         */
-        @jakarta.annotation.Nonnull
-        public static LeaderboardRankResponseGameSlug createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final LeaderboardRankResponseGameSlug result = new LeaderboardRankResponseGameSlug();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setLeaderboardRankResponseGameSlugMember1(new LeaderboardRankResponseGameSlugMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getLeaderboardRankResponseGameSlugMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getLeaderboardRankResponseGameSlugMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the LeaderboardRankResponse_gameSlugMember1 property value. Composed type representation for type {@link LeaderboardRankResponseGameSlugMember1}
-         * @return a {@link LeaderboardRankResponseGameSlugMember1}
-         */
-        @jakarta.annotation.Nullable
-        public LeaderboardRankResponseGameSlugMember1 getLeaderboardRankResponseGameSlugMember1() {
-            return this.leaderboardRankResponseGameSlugMember1;
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getLeaderboardRankResponseGameSlugMember1());
-            }
-        }
-        /**
-         * Sets the LeaderboardRankResponse_gameSlugMember1 property value. Composed type representation for type {@link LeaderboardRankResponseGameSlugMember1}
-         * @param value Value to set for the LeaderboardRankResponse_gameSlugMember1 property.
-         */
-        public void setLeaderboardRankResponseGameSlugMember1(@jakarta.annotation.Nullable final LeaderboardRankResponseGameSlugMember1 value) {
-            this.leaderboardRankResponseGameSlugMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
     }
     /**
      * Composed type wrapper for classes {@link Integer}, {@link LeaderboardRankResponseRankMember1}

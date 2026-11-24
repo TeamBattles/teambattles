@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ApiOrganizationSummary implements Parsable 
 {
     /**
-     * @var ApiOrganizationSummary_avatarUrl|null $avatarUrl The avatarUrl property
+     * @var string|null $avatarUrl The avatarUrl property
     */
-    private ?ApiOrganizationSummary_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
      * @var string|null $id Organization ID.
@@ -27,14 +27,14 @@ class ApiOrganizationSummary implements Parsable
     private ?string $name = null;
     
     /**
-     * @var ApiOrganizationSummary_slug|null $slug The slug property
+     * @var string|null $slug The slug property
     */
-    private ?ApiOrganizationSummary_slug $slug = null;
+    private ?string $slug = null;
     
     /**
-     * @var ApiOrganizationSummary_tag|null $tag The tag property
+     * @var string|null $tag The tag property
     */
-    private ?ApiOrganizationSummary_tag $tag = null;
+    private ?string $tag = null;
     
     /**
      * @var ProfileVisibility|null $visibility Public profile visibility setting.
@@ -52,9 +52,9 @@ class ApiOrganizationSummary implements Parsable
 
     /**
      * Gets the avatarUrl property value. The avatarUrl property
-     * @return ApiOrganizationSummary_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?ApiOrganizationSummary_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
@@ -65,11 +65,11 @@ class ApiOrganizationSummary implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([ApiOrganizationSummary_avatarUrl::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'slug' => fn(ParseNode $n) => $o->setSlug($n->getObjectValue([ApiOrganizationSummary_slug::class, 'createFromDiscriminatorValue'])),
-            'tag' => fn(ParseNode $n) => $o->setTag($n->getObjectValue([ApiOrganizationSummary_tag::class, 'createFromDiscriminatorValue'])),
+            'slug' => fn(ParseNode $n) => $o->setSlug($n->getStringValue()),
+            'tag' => fn(ParseNode $n) => $o->setTag($n->getStringValue()),
             'visibility' => fn(ParseNode $n) => $o->setVisibility($n->getEnumValue(ProfileVisibility::class)),
         ];
     }
@@ -92,17 +92,17 @@ class ApiOrganizationSummary implements Parsable
 
     /**
      * Gets the slug property value. The slug property
-     * @return ApiOrganizationSummary_slug|null
+     * @return string|null
     */
-    public function getSlug(): ?ApiOrganizationSummary_slug {
+    public function getSlug(): ?string {
         return $this->slug;
     }
 
     /**
      * Gets the tag property value. The tag property
-     * @return ApiOrganizationSummary_tag|null
+     * @return string|null
     */
-    public function getTag(): ?ApiOrganizationSummary_tag {
+    public function getTag(): ?string {
         return $this->tag;
     }
 
@@ -119,19 +119,19 @@ class ApiOrganizationSummary implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeObjectValue('slug', $this->getSlug());
-        $writer->writeObjectValue('tag', $this->getTag());
+        $writer->writeStringValue('slug', $this->getSlug());
+        $writer->writeStringValue('tag', $this->getTag());
         $writer->writeEnumValue('visibility', $this->getVisibility());
     }
 
     /**
      * Sets the avatarUrl property value. The avatarUrl property
-     * @param ApiOrganizationSummary_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?ApiOrganizationSummary_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 
@@ -153,17 +153,17 @@ class ApiOrganizationSummary implements Parsable
 
     /**
      * Sets the slug property value. The slug property
-     * @param ApiOrganizationSummary_slug|null $value Value to set for the slug property.
+     * @param string|null $value Value to set for the slug property.
     */
-    public function setSlug(?ApiOrganizationSummary_slug $value): void {
+    public function setSlug(?string $value): void {
         $this->slug = $value;
     }
 
     /**
      * Sets the tag property value. The tag property
-     * @param ApiOrganizationSummary_tag|null $value Value to set for the tag property.
+     * @param string|null $value Value to set for the tag property.
     */
-    public function setTag(?ApiOrganizationSummary_tag $value): void {
+    public function setTag(?string $value): void {
         $this->tag = $value;
     }
 

@@ -29,7 +29,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the defaultSeasonId property value. Recommended default option.
-                ## @return a league_season_options_default_season_id
+                ## @return a string
                 ## 
                 def default_season_id
                     return @default_season_id
@@ -48,7 +48,7 @@ module TeamBattlesSdk
                 ## 
                 def get_field_deserializers()
                     return {
-                        "defaultSeasonId" => lambda {|n| @default_season_id = n.get_object_value(lambda {|pn| LeagueSeasonOptions::LeagueSeasonOptionsDefaultSeasonId.create_from_discriminator_value(pn) }) },
+                        "defaultSeasonId" => lambda {|n| @default_season_id = n.get_string_value() },
                         "seasons" => lambda {|n| @seasons = n.get_collection_of_object_values(lambda {|pn| TeamBattlesSdk::Generated::Models::LeagueSeasonOptionsSeasons.create_from_discriminator_value(pn) }) },
                         "timestamp" => lambda {|n| @timestamp = n.get_string_value() },
                     }
@@ -75,7 +75,7 @@ module TeamBattlesSdk
                 ## 
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
-                    writer.write_object_value("defaultSeasonId", @default_season_id)
+                    writer.write_string_value("defaultSeasonId", @default_season_id)
                     writer.write_collection_of_object_values("seasons", @seasons)
                     writer.write_string_value("timestamp", @timestamp)
                 end
@@ -93,77 +93,6 @@ module TeamBattlesSdk
                 ## 
                 def timestamp=(value)
                     @timestamp = value
-                end
-
-                ## 
-                # Composed type wrapper for classes LeagueSeasonOptionsDefaultSeasonIdMember1, string
-                class LeagueSeasonOptionsDefaultSeasonId
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type LeagueSeasonOptionsDefaultSeasonIdMember1
-                    @league_season_options_default_season_id_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a league_season_options_default_season_id
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return LeagueSeasonOptionsDefaultSeasonId.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "LeagueSeasonOptions_defaultSeasonIdMember1" => lambda {|n| @league_season_options_default_season_id_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::LeagueSeasonOptionsDefaultSeasonIdMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Gets the LeagueSeasonOptions_defaultSeasonIdMember1 property value. Composed type representation for type LeagueSeasonOptionsDefaultSeasonIdMember1
-                    ## @return a league_season_options_default_season_id_member1
-                    ## 
-                    def league_season_options_default_season_id_member1
-                        return @league_season_options_default_season_id_member1
-                    end
-                    ## 
-                    ## Sets the LeagueSeasonOptions_defaultSeasonIdMember1 property value. Composed type representation for type LeagueSeasonOptionsDefaultSeasonIdMember1
-                    ## @param value Value to set for the LeagueSeasonOptions_defaultSeasonIdMember1 property.
-                    ## @return a void
-                    ## 
-                    def league_season_options_default_season_id_member1=(value)
-                        @league_season_options_default_season_id_member1 = value
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("LeagueSeasonOptions_defaultSeasonIdMember1", @league_season_options_default_season_id_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
                 end
             end
         end

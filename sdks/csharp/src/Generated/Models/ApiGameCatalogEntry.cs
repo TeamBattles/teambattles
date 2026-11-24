@@ -16,10 +16,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The bannerImage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_bannerImage? BannerImage { get; set; }
+        public string? BannerImage { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_bannerImage BannerImage { get; set; }
+        public string BannerImage { get; set; }
 #endif
         /// <summary>The category property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -32,28 +32,28 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Active Convex games-table ID, when available for match APIs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_convexId? ConvexId { get; set; }
+        public string? ConvexId { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_convexId ConvexId { get; set; }
+        public string ConvexId { get; set; }
 #endif
         /// <summary>The coverImage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_coverImage? CoverImage { get; set; }
+        public string? CoverImage { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_coverImage CoverImage { get; set; }
+        public string CoverImage { get; set; }
 #endif
         /// <summary>The defaultTeamSize property</summary>
         public int? DefaultTeamSize { get; set; }
         /// <summary>The descriptionKey property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_descriptionKey? DescriptionKey { get; set; }
+        public string? DescriptionKey { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_descriptionKey DescriptionKey { get; set; }
+        public string DescriptionKey { get; set; }
 #endif
         /// <summary>The hasCompetitiveMode property</summary>
         public bool? HasCompetitiveMode { get; set; }
@@ -112,18 +112,18 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The rulesLink property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_rulesLink? RulesLink { get; set; }
+        public string? RulesLink { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_rulesLink RulesLink { get; set; }
+        public string RulesLink { get; set; }
 #endif
         /// <summary>The shortNameKey property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_shortNameKey? ShortNameKey { get; set; }
+        public string? ShortNameKey { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_shortNameKey ShortNameKey { get; set; }
+        public string ShortNameKey { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -143,12 +143,12 @@ namespace TeamBattles.Sdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "bannerImage", n => { BannerImage = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_bannerImage>(global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_bannerImage.CreateFromDiscriminatorValue); } },
+                { "bannerImage", n => { BannerImage = n.GetStringValue(); } },
                 { "category", n => { Category = n.GetStringValue(); } },
-                { "convexId", n => { ConvexId = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_convexId>(global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_convexId.CreateFromDiscriminatorValue); } },
-                { "coverImage", n => { CoverImage = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_coverImage>(global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_coverImage.CreateFromDiscriminatorValue); } },
+                { "convexId", n => { ConvexId = n.GetStringValue(); } },
+                { "coverImage", n => { CoverImage = n.GetStringValue(); } },
                 { "defaultTeamSize", n => { DefaultTeamSize = n.GetIntValue(); } },
-                { "descriptionKey", n => { DescriptionKey = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_descriptionKey>(global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_descriptionKey.CreateFromDiscriminatorValue); } },
+                { "descriptionKey", n => { DescriptionKey = n.GetStringValue(); } },
                 { "hasCompetitiveMode", n => { HasCompetitiveMode = n.GetBoolValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isAvailableForMatchApi", n => { IsAvailableForMatchApi = n.GetBoolValue(); } },
@@ -158,8 +158,8 @@ namespace TeamBattles.Sdk.Models
                 { "modes", n => { Modes = n.GetCollectionOfObjectValues<global::TeamBattles.Sdk.Models.ApiGameMode>(global::TeamBattles.Sdk.Models.ApiGameMode.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "nameKey", n => { NameKey = n.GetStringValue(); } },
                 { "playlists", n => { Playlists = n.GetCollectionOfObjectValues<global::TeamBattles.Sdk.Models.ApiGamePlaylist>(global::TeamBattles.Sdk.Models.ApiGamePlaylist.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "rulesLink", n => { RulesLink = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_rulesLink>(global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_rulesLink.CreateFromDiscriminatorValue); } },
-                { "shortNameKey", n => { ShortNameKey = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_shortNameKey>(global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_shortNameKey.CreateFromDiscriminatorValue); } },
+                { "rulesLink", n => { RulesLink = n.GetStringValue(); } },
+                { "shortNameKey", n => { ShortNameKey = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -169,12 +169,12 @@ namespace TeamBattles.Sdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_bannerImage>("bannerImage", BannerImage);
+            writer.WriteStringValue("bannerImage", BannerImage);
             writer.WriteStringValue("category", Category);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_convexId>("convexId", ConvexId);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_coverImage>("coverImage", CoverImage);
+            writer.WriteStringValue("convexId", ConvexId);
+            writer.WriteStringValue("coverImage", CoverImage);
             writer.WriteIntValue("defaultTeamSize", DefaultTeamSize);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_descriptionKey>("descriptionKey", DescriptionKey);
+            writer.WriteStringValue("descriptionKey", DescriptionKey);
             writer.WriteBoolValue("hasCompetitiveMode", HasCompetitiveMode);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("isAvailableForMatchApi", IsAvailableForMatchApi);
@@ -184,416 +184,8 @@ namespace TeamBattles.Sdk.Models
             writer.WriteCollectionOfObjectValues<global::TeamBattles.Sdk.Models.ApiGameMode>("modes", Modes);
             writer.WriteStringValue("nameKey", NameKey);
             writer.WriteCollectionOfObjectValues<global::TeamBattles.Sdk.Models.ApiGamePlaylist>("playlists", Playlists);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_rulesLink>("rulesLink", RulesLink);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_shortNameKey>("shortNameKey", ShortNameKey);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_bannerImageMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiGameCatalogEntry_bannerImage : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_bannerImageMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_bannerImageMember1? ApiGameCatalogEntryBannerImageMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_bannerImageMember1 ApiGameCatalogEntryBannerImageMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_bannerImage"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_bannerImage CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_bannerImage();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiGameCatalogEntryBannerImageMember1 = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_bannerImageMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiGameCatalogEntryBannerImageMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiGameCatalogEntryBannerImageMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_bannerImageMember1>(null, ApiGameCatalogEntryBannerImageMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_convexIdMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiGameCatalogEntry_convexId : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_convexIdMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_convexIdMember1? ApiGameCatalogEntryConvexIdMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_convexIdMember1 ApiGameCatalogEntryConvexIdMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_convexId"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_convexId CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_convexId();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiGameCatalogEntryConvexIdMember1 = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_convexIdMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiGameCatalogEntryConvexIdMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiGameCatalogEntryConvexIdMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_convexIdMember1>(null, ApiGameCatalogEntryConvexIdMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_coverImageMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiGameCatalogEntry_coverImage : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_coverImageMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_coverImageMember1? ApiGameCatalogEntryCoverImageMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_coverImageMember1 ApiGameCatalogEntryCoverImageMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_coverImage"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_coverImage CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_coverImage();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiGameCatalogEntryCoverImageMember1 = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_coverImageMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiGameCatalogEntryCoverImageMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiGameCatalogEntryCoverImageMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_coverImageMember1>(null, ApiGameCatalogEntryCoverImageMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_descriptionKeyMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiGameCatalogEntry_descriptionKey : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_descriptionKeyMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_descriptionKeyMember1? ApiGameCatalogEntryDescriptionKeyMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_descriptionKeyMember1 ApiGameCatalogEntryDescriptionKeyMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_descriptionKey"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_descriptionKey CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_descriptionKey();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiGameCatalogEntryDescriptionKeyMember1 = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_descriptionKeyMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiGameCatalogEntryDescriptionKeyMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiGameCatalogEntryDescriptionKeyMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_descriptionKeyMember1>(null, ApiGameCatalogEntryDescriptionKeyMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_rulesLinkMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiGameCatalogEntry_rulesLink : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_rulesLinkMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_rulesLinkMember1? ApiGameCatalogEntryRulesLinkMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_rulesLinkMember1 ApiGameCatalogEntryRulesLinkMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_rulesLink"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_rulesLink CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_rulesLink();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiGameCatalogEntryRulesLinkMember1 = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_rulesLinkMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiGameCatalogEntryRulesLinkMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiGameCatalogEntryRulesLinkMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_rulesLinkMember1>(null, ApiGameCatalogEntryRulesLinkMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_shortNameKeyMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiGameCatalogEntry_shortNameKey : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_shortNameKeyMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_shortNameKeyMember1? ApiGameCatalogEntryShortNameKeyMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_shortNameKeyMember1 ApiGameCatalogEntryShortNameKeyMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_shortNameKey"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_shortNameKey CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry.ApiGameCatalogEntry_shortNameKey();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiGameCatalogEntryShortNameKeyMember1 = new global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_shortNameKeyMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiGameCatalogEntryShortNameKeyMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiGameCatalogEntryShortNameKeyMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameCatalogEntry_shortNameKeyMember1>(null, ApiGameCatalogEntryShortNameKeyMember1);
-                }
-            }
+            writer.WriteStringValue("rulesLink", RulesLink);
+            writer.WriteStringValue("shortNameKey", ShortNameKey);
         }
     }
 }

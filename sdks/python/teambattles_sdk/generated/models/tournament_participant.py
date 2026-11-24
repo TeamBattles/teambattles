@@ -5,7 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .tournament_participant_team_avatar_url import TournamentParticipant_teamAvatarUrl
     from .tournament_roster_member import TournamentRosterMember
 
 @dataclass
@@ -26,7 +25,7 @@ class TournamentParticipant(Parsable):
     # PENDING, APPROVED, DENIED, WITHDRAWN, or DISQUALIFIED.
     status: Optional[str] = None
     # Team avatar URL.
-    team_avatar_url: Optional[TournamentParticipant_teamAvatarUrl] = None
+    team_avatar_url: Optional[str] = None
     # Team ID.
     team_id: Optional[str] = None
     # Team display name.
@@ -48,10 +47,8 @@ class TournamentParticipant(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .tournament_participant_team_avatar_url import TournamentParticipant_teamAvatarUrl
         from .tournament_roster_member import TournamentRosterMember
 
-        from .tournament_participant_team_avatar_url import TournamentParticipant_teamAvatarUrl
         from .tournament_roster_member import TournamentRosterMember
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -61,7 +58,7 @@ class TournamentParticipant(Parsable):
             "roster": lambda n : setattr(self, 'roster', n.get_collection_of_object_values(TournamentRosterMember)),
             "seed": lambda n : setattr(self, 'seed', n.get_int_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
-            "teamAvatarUrl": lambda n : setattr(self, 'team_avatar_url', n.get_object_value(TournamentParticipant_teamAvatarUrl)),
+            "teamAvatarUrl": lambda n : setattr(self, 'team_avatar_url', n.get_str_value()),
             "teamId": lambda n : setattr(self, 'team_id', n.get_str_value()),
             "teamName": lambda n : setattr(self, 'team_name', n.get_str_value()),
         }
@@ -81,7 +78,7 @@ class TournamentParticipant(Parsable):
         writer.write_collection_of_object_values("roster", self.roster)
         writer.write_int_value("seed", self.seed)
         writer.write_str_value("status", self.status)
-        writer.write_object_value("teamAvatarUrl", self.team_avatar_url)
+        writer.write_str_value("teamAvatarUrl", self.team_avatar_url)
         writer.write_str_value("teamId", self.team_id)
         writer.write_str_value("teamName", self.team_name)
     

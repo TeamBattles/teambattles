@@ -1,8 +1,6 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './api_strategy_created_at.dart';
-import './api_strategy_description.dart';
-import './api_strategy_preview_url.dart';
 import './api_strategy_stage.dart';
 import './api_strategy_updated_at.dart';
 import './strategy_visibility.dart';
@@ -13,7 +11,7 @@ class ApiStrategy implements Parsable {
     ///  The createdAt property
     ApiStrategyCreatedAt? createdAt;
     ///  Author description, when set.
-    ApiStrategyDescription? description;
+    String? description;
     ///  Game slug the strategy targets.
     String? game;
     ///  Strategy ID.
@@ -29,7 +27,7 @@ class ApiStrategy implements Parsable {
     ///  Whether frame playback wraps from the last stage to the first.
     bool? playbackLoop;
     ///  Freshly signed preview image URL, when a preview has been rendered.
-    ApiStrategyPreviewUrl? previewUrl;
+    String? previewUrl;
     ///  Public share slug.
     String? shareSlug;
     ///  The stageCount property
@@ -50,7 +48,7 @@ class ApiStrategy implements Parsable {
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['createdAt'] = (node) => createdAt = node.getObjectValue<ApiStrategyCreatedAt>(ApiStrategyCreatedAt.createFromDiscriminatorValue);
-        deserializerMap['description'] = (node) => description = node.getObjectValue<ApiStrategyDescription>(ApiStrategyDescription.createFromDiscriminatorValue);
+        deserializerMap['description'] = (node) => description = node.getStringValue();
         deserializerMap['game'] = (node) => game = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['mapId'] = (node) => mapId = node.getStringValue();
@@ -58,7 +56,7 @@ class ApiStrategy implements Parsable {
         deserializerMap['name'] = (node) => name = node.getStringValue();
         deserializerMap['ownerId'] = (node) => ownerId = node.getStringValue();
         deserializerMap['playbackLoop'] = (node) => playbackLoop = node.getBoolValue();
-        deserializerMap['previewUrl'] = (node) => previewUrl = node.getObjectValue<ApiStrategyPreviewUrl>(ApiStrategyPreviewUrl.createFromDiscriminatorValue);
+        deserializerMap['previewUrl'] = (node) => previewUrl = node.getStringValue();
         deserializerMap['shareSlug'] = (node) => shareSlug = node.getStringValue();
         deserializerMap['stageCount'] = (node) => stageCount = node.getIntValue();
         deserializerMap['stages'] = (node) => stages = node.getCollectionOfObjectValues<ApiStrategyStage>(ApiStrategyStage.createFromDiscriminatorValue);
@@ -71,7 +69,7 @@ class ApiStrategy implements Parsable {
     @override
     void serialize(SerializationWriter writer) {
         writer.writeObjectValue<ApiStrategyCreatedAt>('createdAt', createdAt);
-        writer.writeObjectValue<ApiStrategyDescription>('description', description);
+        writer.writeStringValue('description', description);
         writer.writeStringValue('game', game);
         writer.writeStringValue('id', id);
         writer.writeStringValue('mapId', mapId);
@@ -79,7 +77,7 @@ class ApiStrategy implements Parsable {
         writer.writeStringValue('name', name);
         writer.writeStringValue('ownerId', ownerId);
         writer.writeBoolValue('playbackLoop', value:playbackLoop);
-        writer.writeObjectValue<ApiStrategyPreviewUrl>('previewUrl', previewUrl);
+        writer.writeStringValue('previewUrl', previewUrl);
         writer.writeStringValue('shareSlug', shareSlug);
         writer.writeIntValue('stageCount', stageCount);
         writer.writeCollectionOfObjectValues<ApiStrategyStage>('stages', stages);

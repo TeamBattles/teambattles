@@ -7,7 +7,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .api_team_summary import ApiTeamSummary
     from .leaderboard_stats import LeaderboardStats
-    from .team_leaderboard_entry_game_slug import TeamLeaderboardEntry_gameSlug
 
 @dataclass
 class TeamLeaderboardEntry(Parsable):
@@ -15,7 +14,7 @@ class TeamLeaderboardEntry(Parsable):
     Team leaderboard row.
     """
     # The gameSlug property
-    game_slug: Optional[TeamLeaderboardEntry_gameSlug] = None
+    game_slug: Optional[str] = None
     # Team ID.
     id: Optional[str] = None
     # The rank property
@@ -43,14 +42,12 @@ class TeamLeaderboardEntry(Parsable):
         """
         from .api_team_summary import ApiTeamSummary
         from .leaderboard_stats import LeaderboardStats
-        from .team_leaderboard_entry_game_slug import TeamLeaderboardEntry_gameSlug
 
         from .api_team_summary import ApiTeamSummary
         from .leaderboard_stats import LeaderboardStats
-        from .team_leaderboard_entry_game_slug import TeamLeaderboardEntry_gameSlug
 
         fields: dict[str, Callable[[Any], None]] = {
-            "gameSlug": lambda n : setattr(self, 'game_slug', n.get_object_value(TeamLeaderboardEntry_gameSlug)),
+            "gameSlug": lambda n : setattr(self, 'game_slug', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "rank": lambda n : setattr(self, 'rank', n.get_int_value()),
             "stats": lambda n : setattr(self, 'stats', n.get_object_value(LeaderboardStats)),
@@ -66,7 +63,7 @@ class TeamLeaderboardEntry(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("gameSlug", self.game_slug)
+        writer.write_str_value("gameSlug", self.game_slug)
         writer.write_str_value("id", self.id)
         writer.write_int_value("rank", self.rank)
         writer.write_object_value("stats", self.stats)

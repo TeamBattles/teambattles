@@ -50,13 +50,7 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Origin of the rank: manual entry or an API push.</summary>
         public global::TeamBattles.Sdk.Models.ApiGameRank_source? Source { get; set; }
         /// <summary>Skill rating, when set.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::TeamBattles.Sdk.Models.ApiGameRank.ApiGameRank_sr? Sr { get; set; }
-#nullable restore
-#else
-        public global::TeamBattles.Sdk.Models.ApiGameRank.ApiGameRank_sr Sr { get; set; }
-#endif
+        public double? Sr { get; set; }
         /// <summary>Top 250 ladder position (1-250), when applicable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -99,7 +93,7 @@ namespace TeamBattles.Sdk.Models
                 { "isTop250", n => { IsTop250 = n.GetBoolValue(); } },
                 { "mode", n => { Mode = n.GetStringValue(); } },
                 { "source", n => { Source = n.GetEnumValue<global::TeamBattles.Sdk.Models.ApiGameRank_source>(); } },
-                { "sr", n => { Sr = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiGameRank.ApiGameRank_sr>(global::TeamBattles.Sdk.Models.ApiGameRank.ApiGameRank_sr.CreateFromDiscriminatorValue); } },
+                { "sr", n => { Sr = n.GetDoubleValue(); } },
                 { "top250Rank", n => { Top250Rank = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiGameRank.ApiGameRank_top250Rank>(global::TeamBattles.Sdk.Models.ApiGameRank.ApiGameRank_top250Rank.CreateFromDiscriminatorValue); } },
                 { "updatedAt", n => { UpdatedAt = n.GetStringValue(); } },
                 { "winstreak", n => { Winstreak = n.GetIntValue(); } },
@@ -118,72 +112,10 @@ namespace TeamBattles.Sdk.Models
             writer.WriteBoolValue("isTop250", IsTop250);
             writer.WriteStringValue("mode", Mode);
             writer.WriteEnumValue<global::TeamBattles.Sdk.Models.ApiGameRank_source>("source", Source);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameRank.ApiGameRank_sr>("sr", Sr);
+            writer.WriteDoubleValue("sr", Sr);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameRank.ApiGameRank_top250Rank>("top250Rank", Top250Rank);
             writer.WriteStringValue("updatedAt", UpdatedAt);
             writer.WriteIntValue("winstreak", Winstreak);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="double"/>, <see cref="global::TeamBattles.Sdk.Models.ApiGameRank_srMember1"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiGameRank_sr : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiGameRank_srMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiGameRank_srMember1? ApiGameRankSrMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiGameRank_srMember1 ApiGameRankSrMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="double"/></summary>
-            public double? Double { get; set; }
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiGameRank.ApiGameRank_sr"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiGameRank.ApiGameRank_sr CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiGameRank.ApiGameRank_sr();
-                if(parseNode.GetDoubleValue() is double doubleValue)
-                {
-                    result.Double = doubleValue;
-                }
-                else {
-                    result.ApiGameRankSrMember1 = new global::TeamBattles.Sdk.Models.ApiGameRank_srMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiGameRankSrMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiGameRankSrMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Double != null)
-                {
-                    writer.WriteDoubleValue(null, Double);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiGameRank_srMember1>(null, ApiGameRankSrMember1);
-                }
-            }
         }
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiGameRank_top250RankMember1"/>, <see cref="int"/>

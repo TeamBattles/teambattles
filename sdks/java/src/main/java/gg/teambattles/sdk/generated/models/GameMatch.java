@@ -28,11 +28,11 @@ public class GameMatch implements Parsable {
     /**
      * Completion time (ISO 8601).
      */
-    private GameMatchCompletedAt completedAt;
+    private String completedAt;
     /**
      * Creation time (ISO 8601).
      */
-    private GameMatchCreatedAt createdAt;
+    private String createdAt;
     /**
      * The creatorTeam property
      */
@@ -52,11 +52,11 @@ public class GameMatch implements Parsable {
     /**
      * Scheduled start time (ISO 8601).
      */
-    private GameMatchScheduledAt scheduledAt;
+    private String scheduledAt;
     /**
      * Actual start time (ISO 8601).
      */
-    private GameMatchStartedAt startedAt;
+    private String startedAt;
     /**
      * Lifecycle status of a match.
      */
@@ -97,18 +97,18 @@ public class GameMatch implements Parsable {
     }
     /**
      * Gets the completedAt property value. Completion time (ISO 8601).
-     * @return a {@link GameMatchCompletedAt}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public GameMatchCompletedAt getCompletedAt() {
+    public String getCompletedAt() {
         return this.completedAt;
     }
     /**
      * Gets the createdAt property value. Creation time (ISO 8601).
-     * @return a {@link GameMatchCreatedAt}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public GameMatchCreatedAt getCreatedAt() {
+    public String getCreatedAt() {
         return this.createdAt;
     }
     /**
@@ -137,14 +137,14 @@ public class GameMatch implements Parsable {
         deserializerMap.put("acceptedTeam", (n) -> { this.setAcceptedTeam(n.getObjectValue(Team::createFromDiscriminatorValue)); });
         deserializerMap.put("acceptedTeamScore", (n) -> { this.setAcceptedTeamScore(n.getObjectValue(GameMatchAcceptedTeamScore::createFromDiscriminatorValue)); });
         deserializerMap.put("bestOf", (n) -> { this.setBestOf(n.getIntegerValue()); });
-        deserializerMap.put("completedAt", (n) -> { this.setCompletedAt(n.getObjectValue(GameMatchCompletedAt::createFromDiscriminatorValue)); });
-        deserializerMap.put("createdAt", (n) -> { this.setCreatedAt(n.getObjectValue(GameMatchCreatedAt::createFromDiscriminatorValue)); });
+        deserializerMap.put("completedAt", (n) -> { this.setCompletedAt(n.getStringValue()); });
+        deserializerMap.put("createdAt", (n) -> { this.setCreatedAt(n.getStringValue()); });
         deserializerMap.put("creatorTeam", (n) -> { this.setCreatorTeam(n.getObjectValue(Team::createFromDiscriminatorValue)); });
         deserializerMap.put("creatorTeamScore", (n) -> { this.setCreatorTeamScore(n.getObjectValue(GameMatchCreatorTeamScore::createFromDiscriminatorValue)); });
         deserializerMap.put("gameMode", (n) -> { this.setGameMode(n.getStringValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
-        deserializerMap.put("scheduledAt", (n) -> { this.setScheduledAt(n.getObjectValue(GameMatchScheduledAt::createFromDiscriminatorValue)); });
-        deserializerMap.put("startedAt", (n) -> { this.setStartedAt(n.getObjectValue(GameMatchStartedAt::createFromDiscriminatorValue)); });
+        deserializerMap.put("scheduledAt", (n) -> { this.setScheduledAt(n.getStringValue()); });
+        deserializerMap.put("startedAt", (n) -> { this.setStartedAt(n.getStringValue()); });
         deserializerMap.put("status", (n) -> { this.setStatus(n.getEnumValue(MatchStatus::forValue)); });
         return deserializerMap;
     }
@@ -166,18 +166,18 @@ public class GameMatch implements Parsable {
     }
     /**
      * Gets the scheduledAt property value. Scheduled start time (ISO 8601).
-     * @return a {@link GameMatchScheduledAt}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public GameMatchScheduledAt getScheduledAt() {
+    public String getScheduledAt() {
         return this.scheduledAt;
     }
     /**
      * Gets the startedAt property value. Actual start time (ISO 8601).
-     * @return a {@link GameMatchStartedAt}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public GameMatchStartedAt getStartedAt() {
+    public String getStartedAt() {
         return this.startedAt;
     }
     /**
@@ -197,14 +197,14 @@ public class GameMatch implements Parsable {
         writer.writeObjectValue("acceptedTeam", this.getAcceptedTeam());
         writer.writeObjectValue("acceptedTeamScore", this.getAcceptedTeamScore());
         writer.writeIntegerValue("bestOf", this.getBestOf());
-        writer.writeObjectValue("completedAt", this.getCompletedAt());
-        writer.writeObjectValue("createdAt", this.getCreatedAt());
+        writer.writeStringValue("completedAt", this.getCompletedAt());
+        writer.writeStringValue("createdAt", this.getCreatedAt());
         writer.writeObjectValue("creatorTeam", this.getCreatorTeam());
         writer.writeObjectValue("creatorTeamScore", this.getCreatorTeamScore());
         writer.writeStringValue("gameMode", this.getGameMode());
         writer.writeStringValue("id", this.getId());
-        writer.writeObjectValue("scheduledAt", this.getScheduledAt());
-        writer.writeObjectValue("startedAt", this.getStartedAt());
+        writer.writeStringValue("scheduledAt", this.getScheduledAt());
+        writer.writeStringValue("startedAt", this.getStartedAt());
         writer.writeEnumValue("status", this.getStatus());
     }
     /**
@@ -232,14 +232,14 @@ public class GameMatch implements Parsable {
      * Sets the completedAt property value. Completion time (ISO 8601).
      * @param value Value to set for the completedAt property.
      */
-    public void setCompletedAt(@jakarta.annotation.Nullable final GameMatchCompletedAt value) {
+    public void setCompletedAt(@jakarta.annotation.Nullable final String value) {
         this.completedAt = value;
     }
     /**
      * Sets the createdAt property value. Creation time (ISO 8601).
      * @param value Value to set for the createdAt property.
      */
-    public void setCreatedAt(@jakarta.annotation.Nullable final GameMatchCreatedAt value) {
+    public void setCreatedAt(@jakarta.annotation.Nullable final String value) {
         this.createdAt = value;
     }
     /**
@@ -274,14 +274,14 @@ public class GameMatch implements Parsable {
      * Sets the scheduledAt property value. Scheduled start time (ISO 8601).
      * @param value Value to set for the scheduledAt property.
      */
-    public void setScheduledAt(@jakarta.annotation.Nullable final GameMatchScheduledAt value) {
+    public void setScheduledAt(@jakarta.annotation.Nullable final String value) {
         this.scheduledAt = value;
     }
     /**
      * Sets the startedAt property value. Actual start time (ISO 8601).
      * @param value Value to set for the startedAt property.
      */
-    public void setStartedAt(@jakarta.annotation.Nullable final GameMatchStartedAt value) {
+    public void setStartedAt(@jakarta.annotation.Nullable final String value) {
         this.startedAt = value;
     }
     /**
@@ -375,172 +375,6 @@ public class GameMatch implements Parsable {
         }
     }
     /**
-     * Composed type wrapper for classes {@link GameMatchCompletedAtMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class GameMatchCompletedAt implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link GameMatchCompletedAtMember1}
-         */
-        private GameMatchCompletedAtMember1 gameMatchCompletedAtMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link GameMatchCompletedAt}
-         */
-        @jakarta.annotation.Nonnull
-        public static GameMatchCompletedAt createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final GameMatchCompletedAt result = new GameMatchCompletedAt();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setGameMatchCompletedAtMember1(new GameMatchCompletedAtMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getGameMatchCompletedAtMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getGameMatchCompletedAtMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the GameMatch_completedAtMember1 property value. Composed type representation for type {@link GameMatchCompletedAtMember1}
-         * @return a {@link GameMatchCompletedAtMember1}
-         */
-        @jakarta.annotation.Nullable
-        public GameMatchCompletedAtMember1 getGameMatchCompletedAtMember1() {
-            return this.gameMatchCompletedAtMember1;
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getGameMatchCompletedAtMember1());
-            }
-        }
-        /**
-         * Sets the GameMatch_completedAtMember1 property value. Composed type representation for type {@link GameMatchCompletedAtMember1}
-         * @param value Value to set for the GameMatch_completedAtMember1 property.
-         */
-        public void setGameMatchCompletedAtMember1(@jakarta.annotation.Nullable final GameMatchCompletedAtMember1 value) {
-            this.gameMatchCompletedAtMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link GameMatchCreatedAtMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class GameMatchCreatedAt implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link GameMatchCreatedAtMember1}
-         */
-        private GameMatchCreatedAtMember1 gameMatchCreatedAtMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link GameMatchCreatedAt}
-         */
-        @jakarta.annotation.Nonnull
-        public static GameMatchCreatedAt createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final GameMatchCreatedAt result = new GameMatchCreatedAt();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setGameMatchCreatedAtMember1(new GameMatchCreatedAtMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getGameMatchCreatedAtMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getGameMatchCreatedAtMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the GameMatch_createdAtMember1 property value. Composed type representation for type {@link GameMatchCreatedAtMember1}
-         * @return a {@link GameMatchCreatedAtMember1}
-         */
-        @jakarta.annotation.Nullable
-        public GameMatchCreatedAtMember1 getGameMatchCreatedAtMember1() {
-            return this.gameMatchCreatedAtMember1;
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getGameMatchCreatedAtMember1());
-            }
-        }
-        /**
-         * Sets the GameMatch_createdAtMember1 property value. Composed type representation for type {@link GameMatchCreatedAtMember1}
-         * @param value Value to set for the GameMatch_createdAtMember1 property.
-         */
-        public void setGameMatchCreatedAtMember1(@jakarta.annotation.Nullable final GameMatchCreatedAtMember1 value) {
-            this.gameMatchCreatedAtMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
      * Composed type wrapper for classes {@link GameMatchCreatorTeamScoreMember1}, {@link Integer}
      */
     @jakarta.annotation.Generated("com.microsoft.kiota")
@@ -621,172 +455,6 @@ public class GameMatch implements Parsable {
          */
         public void setInteger(@jakarta.annotation.Nullable final Integer value) {
             this.integer = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link GameMatchScheduledAtMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class GameMatchScheduledAt implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link GameMatchScheduledAtMember1}
-         */
-        private GameMatchScheduledAtMember1 gameMatchScheduledAtMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link GameMatchScheduledAt}
-         */
-        @jakarta.annotation.Nonnull
-        public static GameMatchScheduledAt createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final GameMatchScheduledAt result = new GameMatchScheduledAt();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setGameMatchScheduledAtMember1(new GameMatchScheduledAtMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getGameMatchScheduledAtMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getGameMatchScheduledAtMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the GameMatch_scheduledAtMember1 property value. Composed type representation for type {@link GameMatchScheduledAtMember1}
-         * @return a {@link GameMatchScheduledAtMember1}
-         */
-        @jakarta.annotation.Nullable
-        public GameMatchScheduledAtMember1 getGameMatchScheduledAtMember1() {
-            return this.gameMatchScheduledAtMember1;
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getGameMatchScheduledAtMember1());
-            }
-        }
-        /**
-         * Sets the GameMatch_scheduledAtMember1 property value. Composed type representation for type {@link GameMatchScheduledAtMember1}
-         * @param value Value to set for the GameMatch_scheduledAtMember1 property.
-         */
-        public void setGameMatchScheduledAtMember1(@jakarta.annotation.Nullable final GameMatchScheduledAtMember1 value) {
-            this.gameMatchScheduledAtMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link GameMatchStartedAtMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class GameMatchStartedAt implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link GameMatchStartedAtMember1}
-         */
-        private GameMatchStartedAtMember1 gameMatchStartedAtMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link GameMatchStartedAt}
-         */
-        @jakarta.annotation.Nonnull
-        public static GameMatchStartedAt createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final GameMatchStartedAt result = new GameMatchStartedAt();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setGameMatchStartedAtMember1(new GameMatchStartedAtMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getGameMatchStartedAtMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getGameMatchStartedAtMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the GameMatch_startedAtMember1 property value. Composed type representation for type {@link GameMatchStartedAtMember1}
-         * @return a {@link GameMatchStartedAtMember1}
-         */
-        @jakarta.annotation.Nullable
-        public GameMatchStartedAtMember1 getGameMatchStartedAtMember1() {
-            return this.gameMatchStartedAtMember1;
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getGameMatchStartedAtMember1());
-            }
-        }
-        /**
-         * Sets the GameMatch_startedAtMember1 property value. Composed type representation for type {@link GameMatchStartedAtMember1}
-         * @param value Value to set for the GameMatch_startedAtMember1 property.
-         */
-        public void setGameMatchStartedAtMember1(@jakarta.annotation.Nullable final GameMatchStartedAtMember1 value) {
-            this.gameMatchStartedAtMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
         }
     }
 }

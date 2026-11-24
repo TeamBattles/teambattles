@@ -1,6 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './tournament_participant_team_avatar_url.dart';
 import './tournament_roster_member.dart';
 
 /// auto generated
@@ -19,7 +18,7 @@ class TournamentParticipant implements Parsable {
     ///  PENDING, APPROVED, DENIED, WITHDRAWN, or DISQUALIFIED.
     String? status;
     ///  Team avatar URL.
-    TournamentParticipantTeamAvatarUrl? teamAvatarUrl;
+    String? teamAvatarUrl;
     ///  Team ID.
     String? teamId;
     ///  Team display name.
@@ -39,7 +38,7 @@ class TournamentParticipant implements Parsable {
         deserializerMap['roster'] = (node) => roster = node.getCollectionOfObjectValues<TournamentRosterMember>(TournamentRosterMember.createFromDiscriminatorValue);
         deserializerMap['seed'] = (node) => seed = node.getIntValue();
         deserializerMap['status'] = (node) => status = node.getStringValue();
-        deserializerMap['teamAvatarUrl'] = (node) => teamAvatarUrl = node.getObjectValue<TournamentParticipantTeamAvatarUrl>(TournamentParticipantTeamAvatarUrl.createFromDiscriminatorValue);
+        deserializerMap['teamAvatarUrl'] = (node) => teamAvatarUrl = node.getStringValue();
         deserializerMap['teamId'] = (node) => teamId = node.getStringValue();
         deserializerMap['teamName'] = (node) => teamName = node.getStringValue();
         return deserializerMap;
@@ -54,7 +53,7 @@ class TournamentParticipant implements Parsable {
         writer.writeCollectionOfObjectValues<TournamentRosterMember>('roster', roster);
         writer.writeIntValue('seed', seed);
         writer.writeStringValue('status', status);
-        writer.writeObjectValue<TournamentParticipantTeamAvatarUrl>('teamAvatarUrl', teamAvatarUrl);
+        writer.writeStringValue('teamAvatarUrl', teamAvatarUrl);
         writer.writeStringValue('teamId', teamId);
         writer.writeStringValue('teamName', teamName);
     }

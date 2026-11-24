@@ -38,19 +38,19 @@ class WebhookEndpoint implements Parsable
     private ?bool $isActive = null;
     
     /**
-     * @var WebhookEndpoint_label|null $label Human label, or null.
+     * @var string|null $label Human label, or null.
     */
-    private ?WebhookEndpoint_label $label = null;
+    private ?string $label = null;
     
     /**
-     * @var WebhookEndpoint_lastDeliveredAt|null $lastDeliveredAt Epoch ms of the last successful delivery, or null.
+     * @var float|null $lastDeliveredAt Epoch ms of the last successful delivery, or null.
     */
-    private ?WebhookEndpoint_lastDeliveredAt $lastDeliveredAt = null;
+    private ?float $lastDeliveredAt = null;
     
     /**
-     * @var WebhookEndpoint_lastFailedAt|null $lastFailedAt Epoch ms of the last failed delivery, or null.
+     * @var float|null $lastFailedAt Epoch ms of the last failed delivery, or null.
     */
-    private ?WebhookEndpoint_lastFailedAt $lastFailedAt = null;
+    private ?float $lastFailedAt = null;
     
     /**
      * @var string|null $scopeId Stringified bound scope id.
@@ -129,9 +129,9 @@ class WebhookEndpoint implements Parsable
             'failureCount' => fn(ParseNode $n) => $o->setFailureCount($n->getIntegerValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'isActive' => fn(ParseNode $n) => $o->setIsActive($n->getBooleanValue()),
-            'label' => fn(ParseNode $n) => $o->setLabel($n->getObjectValue([WebhookEndpoint_label::class, 'createFromDiscriminatorValue'])),
-            'lastDeliveredAt' => fn(ParseNode $n) => $o->setLastDeliveredAt($n->getObjectValue([WebhookEndpoint_lastDeliveredAt::class, 'createFromDiscriminatorValue'])),
-            'lastFailedAt' => fn(ParseNode $n) => $o->setLastFailedAt($n->getObjectValue([WebhookEndpoint_lastFailedAt::class, 'createFromDiscriminatorValue'])),
+            'label' => fn(ParseNode $n) => $o->setLabel($n->getStringValue()),
+            'lastDeliveredAt' => fn(ParseNode $n) => $o->setLastDeliveredAt($n->getFloatValue()),
+            'lastFailedAt' => fn(ParseNode $n) => $o->setLastFailedAt($n->getFloatValue()),
             'scopeId' => fn(ParseNode $n) => $o->setScopeId($n->getStringValue()),
             'scopeType' => fn(ParseNode $n) => $o->setScopeType($n->getEnumValue(WebhookEndpoint_scopeType::class)),
             'secretPrefix' => fn(ParseNode $n) => $o->setSecretPrefix($n->getStringValue()),
@@ -158,25 +158,25 @@ class WebhookEndpoint implements Parsable
 
     /**
      * Gets the label property value. Human label, or null.
-     * @return WebhookEndpoint_label|null
+     * @return string|null
     */
-    public function getLabel(): ?WebhookEndpoint_label {
+    public function getLabel(): ?string {
         return $this->label;
     }
 
     /**
      * Gets the lastDeliveredAt property value. Epoch ms of the last successful delivery, or null.
-     * @return WebhookEndpoint_lastDeliveredAt|null
+     * @return float|null
     */
-    public function getLastDeliveredAt(): ?WebhookEndpoint_lastDeliveredAt {
+    public function getLastDeliveredAt(): ?float {
         return $this->lastDeliveredAt;
     }
 
     /**
      * Gets the lastFailedAt property value. Epoch ms of the last failed delivery, or null.
-     * @return WebhookEndpoint_lastFailedAt|null
+     * @return float|null
     */
-    public function getLastFailedAt(): ?WebhookEndpoint_lastFailedAt {
+    public function getLastFailedAt(): ?float {
         return $this->lastFailedAt;
     }
 
@@ -230,9 +230,9 @@ class WebhookEndpoint implements Parsable
         $writer->writeIntegerValue('failureCount', $this->getFailureCount());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeBooleanValue('isActive', $this->getIsActive());
-        $writer->writeObjectValue('label', $this->getLabel());
-        $writer->writeObjectValue('lastDeliveredAt', $this->getLastDeliveredAt());
-        $writer->writeObjectValue('lastFailedAt', $this->getLastFailedAt());
+        $writer->writeStringValue('label', $this->getLabel());
+        $writer->writeFloatValue('lastDeliveredAt', $this->getLastDeliveredAt());
+        $writer->writeFloatValue('lastFailedAt', $this->getLastFailedAt());
         $writer->writeStringValue('scopeId', $this->getScopeId());
         $writer->writeEnumValue('scopeType', $this->getScopeType());
         $writer->writeStringValue('secretPrefix', $this->getSecretPrefix());
@@ -282,25 +282,25 @@ class WebhookEndpoint implements Parsable
 
     /**
      * Sets the label property value. Human label, or null.
-     * @param WebhookEndpoint_label|null $value Value to set for the label property.
+     * @param string|null $value Value to set for the label property.
     */
-    public function setLabel(?WebhookEndpoint_label $value): void {
+    public function setLabel(?string $value): void {
         $this->label = $value;
     }
 
     /**
      * Sets the lastDeliveredAt property value. Epoch ms of the last successful delivery, or null.
-     * @param WebhookEndpoint_lastDeliveredAt|null $value Value to set for the lastDeliveredAt property.
+     * @param float|null $value Value to set for the lastDeliveredAt property.
     */
-    public function setLastDeliveredAt(?WebhookEndpoint_lastDeliveredAt $value): void {
+    public function setLastDeliveredAt(?float $value): void {
         $this->lastDeliveredAt = $value;
     }
 
     /**
      * Sets the lastFailedAt property value. Epoch ms of the last failed delivery, or null.
-     * @param WebhookEndpoint_lastFailedAt|null $value Value to set for the lastFailedAt property.
+     * @param float|null $value Value to set for the lastFailedAt property.
     */
-    public function setLastFailedAt(?WebhookEndpoint_lastFailedAt $value): void {
+    public function setLastFailedAt(?float $value): void {
         $this->lastFailedAt = $value;
     }
 

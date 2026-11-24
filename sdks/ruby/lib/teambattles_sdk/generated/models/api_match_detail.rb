@@ -122,7 +122,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the completedAt property value. The completedAt property
-                ## @return a api_match_detail_completed_at
+                ## @return a string
                 ## 
                 def completed_at
                     return @completed_at
@@ -137,7 +137,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the createdAt property value. The createdAt property
-                ## @return a api_match_detail_created_at
+                ## @return a string
                 ## 
                 def created_at
                     return @created_at
@@ -213,25 +213,25 @@ module TeamBattlesSdk
                         "acceptedTeam" => lambda {|n| @accepted_team = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchTeam.create_from_discriminator_value(pn) }) },
                         "bestOf" => lambda {|n| @best_of = n.get_number_value() },
                         "challengedTeam" => lambda {|n| @challenged_team = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchTeam.create_from_discriminator_value(pn) }) },
-                        "completedAt" => lambda {|n| @completed_at = n.get_object_value(lambda {|pn| ApiMatchDetail::ApiMatchDetailCompletedAt.create_from_discriminator_value(pn) }) },
-                        "createdAt" => lambda {|n| @created_at = n.get_object_value(lambda {|pn| ApiMatchDetail::ApiMatchDetailCreatedAt.create_from_discriminator_value(pn) }) },
+                        "completedAt" => lambda {|n| @completed_at = n.get_string_value() },
+                        "createdAt" => lambda {|n| @created_at = n.get_string_value() },
                         "creatorTeam" => lambda {|n| @creator_team = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchTeam.create_from_discriminator_value(pn) }) },
                         "game" => lambda {|n| @game = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::Game.create_from_discriminator_value(pn) }) },
                         "gameMode" => lambda {|n| @game_mode = n.get_string_value() },
                         "id" => lambda {|n| @id = n.get_string_value() },
-                        "leagueId" => lambda {|n| @league_id = n.get_object_value(lambda {|pn| ApiMatchDetail::ApiMatchDetailLeagueId.create_from_discriminator_value(pn) }) },
-                        "leagueSeasonId" => lambda {|n| @league_season_id = n.get_object_value(lambda {|pn| ApiMatchDetail::ApiMatchDetailLeagueSeasonId.create_from_discriminator_value(pn) }) },
-                        "matchType" => lambda {|n| @match_type = n.get_object_value(lambda {|pn| ApiMatchDetail::ApiMatchDetailMatchType.create_from_discriminator_value(pn) }) },
-                        "platform" => lambda {|n| @platform = n.get_object_value(lambda {|pn| ApiMatchDetail::ApiMatchDetailPlatform.create_from_discriminator_value(pn) }) },
+                        "leagueId" => lambda {|n| @league_id = n.get_string_value() },
+                        "leagueSeasonId" => lambda {|n| @league_season_id = n.get_string_value() },
+                        "matchType" => lambda {|n| @match_type = n.get_string_value() },
+                        "platform" => lambda {|n| @platform = n.get_string_value() },
                         "publishStatus" => lambda {|n| @publish_status = n.get_string_value() },
-                        "region" => lambda {|n| @region = n.get_object_value(lambda {|pn| ApiMatchDetail::ApiMatchDetailRegion.create_from_discriminator_value(pn) }) },
-                        "scheduledAt" => lambda {|n| @scheduled_at = n.get_object_value(lambda {|pn| ApiMatchDetail::ApiMatchDetailScheduledAt.create_from_discriminator_value(pn) }) },
+                        "region" => lambda {|n| @region = n.get_string_value() },
+                        "scheduledAt" => lambda {|n| @scheduled_at = n.get_string_value() },
                         "selectedMaps" => lambda {|n| @selected_maps = n.get_collection_of_primitive_values(String) },
                         "selectedObjectives" => lambda {|n| @selected_objectives = n.get_collection_of_primitive_values(String) },
-                        "startedAt" => lambda {|n| @started_at = n.get_object_value(lambda {|pn| ApiMatchDetail::ApiMatchDetailStartedAt.create_from_discriminator_value(pn) }) },
+                        "startedAt" => lambda {|n| @started_at = n.get_string_value() },
                         "status" => lambda {|n| @status = n.get_enum_value(TeamBattlesSdk::Generated::Models::MatchStatus) },
                         "teamSize" => lambda {|n| @team_size = n.get_number_value() },
-                        "winnerTeamId" => lambda {|n| @winner_team_id = n.get_object_value(lambda {|pn| ApiMatchDetail::ApiMatchDetailWinnerTeamId.create_from_discriminator_value(pn) }) },
+                        "winnerTeamId" => lambda {|n| @winner_team_id = n.get_string_value() },
                     }
                 end
                 ## 
@@ -251,7 +251,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the leagueId property value. The leagueId property
-                ## @return a api_match_detail_league_id
+                ## @return a string
                 ## 
                 def league_id
                     return @league_id
@@ -266,7 +266,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the leagueSeasonId property value. The leagueSeasonId property
-                ## @return a api_match_detail_league_season_id
+                ## @return a string
                 ## 
                 def league_season_id
                     return @league_season_id
@@ -281,7 +281,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the matchType property value. The matchType property
-                ## @return a api_match_detail_match_type
+                ## @return a string
                 ## 
                 def match_type
                     return @match_type
@@ -296,7 +296,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the platform property value. The platform property
-                ## @return a api_match_detail_platform
+                ## @return a string
                 ## 
                 def platform
                     return @platform
@@ -326,7 +326,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the region property value. The region property
-                ## @return a api_match_detail_region
+                ## @return a string
                 ## 
                 def region
                     return @region
@@ -341,7 +341,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the scheduledAt property value. The scheduledAt property
-                ## @return a api_match_detail_scheduled_at
+                ## @return a string
                 ## 
                 def scheduled_at
                     return @scheduled_at
@@ -394,29 +394,29 @@ module TeamBattlesSdk
                     writer.write_object_value("acceptedTeam", @accepted_team)
                     writer.write_number_value("bestOf", @best_of)
                     writer.write_object_value("challengedTeam", @challenged_team)
-                    writer.write_object_value("completedAt", @completed_at)
-                    writer.write_object_value("createdAt", @created_at)
+                    writer.write_string_value("completedAt", @completed_at)
+                    writer.write_string_value("createdAt", @created_at)
                     writer.write_object_value("creatorTeam", @creator_team)
                     writer.write_object_value("game", @game)
                     writer.write_string_value("gameMode", @game_mode)
                     writer.write_string_value("id", @id)
-                    writer.write_object_value("leagueId", @league_id)
-                    writer.write_object_value("leagueSeasonId", @league_season_id)
-                    writer.write_object_value("matchType", @match_type)
-                    writer.write_object_value("platform", @platform)
+                    writer.write_string_value("leagueId", @league_id)
+                    writer.write_string_value("leagueSeasonId", @league_season_id)
+                    writer.write_string_value("matchType", @match_type)
+                    writer.write_string_value("platform", @platform)
                     writer.write_string_value("publishStatus", @publish_status)
-                    writer.write_object_value("region", @region)
-                    writer.write_object_value("scheduledAt", @scheduled_at)
+                    writer.write_string_value("region", @region)
+                    writer.write_string_value("scheduledAt", @scheduled_at)
                     writer.write_collection_of_primitive_values("selectedMaps", @selected_maps)
                     writer.write_collection_of_primitive_values("selectedObjectives", @selected_objectives)
-                    writer.write_object_value("startedAt", @started_at)
+                    writer.write_string_value("startedAt", @started_at)
                     writer.write_enum_value("status", @status)
                     writer.write_number_value("teamSize", @team_size)
-                    writer.write_object_value("winnerTeamId", @winner_team_id)
+                    writer.write_string_value("winnerTeamId", @winner_team_id)
                 end
                 ## 
                 ## Gets the startedAt property value. The startedAt property
-                ## @return a api_match_detail_started_at
+                ## @return a string
                 ## 
                 def started_at
                     return @started_at
@@ -461,7 +461,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the winnerTeamId property value. The winnerTeamId property
-                ## @return a api_match_detail_winner_team_id
+                ## @return a string
                 ## 
                 def winner_team_id
                     return @winner_team_id
@@ -473,716 +473,6 @@ module TeamBattlesSdk
                 ## 
                 def winner_team_id=(value)
                     @winner_team_id = value
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiMatchDetailCompletedAtMember1, string
-                class ApiMatchDetailCompletedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiMatchDetailCompletedAtMember1
-                    @api_match_detail_completed_at_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiMatchDetail_completedAtMember1 property value. Composed type representation for type ApiMatchDetailCompletedAtMember1
-                    ## @return a api_match_detail_completed_at_member1
-                    ## 
-                    def api_match_detail_completed_at_member1
-                        return @api_match_detail_completed_at_member1
-                    end
-                    ## 
-                    ## Sets the ApiMatchDetail_completedAtMember1 property value. Composed type representation for type ApiMatchDetailCompletedAtMember1
-                    ## @param value Value to set for the ApiMatchDetail_completedAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_match_detail_completed_at_member1=(value)
-                        @api_match_detail_completed_at_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_match_detail_completed_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiMatchDetailCompletedAt.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiMatchDetail_completedAtMember1" => lambda {|n| @api_match_detail_completed_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchDetailCompletedAtMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiMatchDetail_completedAtMember1", @api_match_detail_completed_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiMatchDetailCreatedAtMember1, string
-                class ApiMatchDetailCreatedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiMatchDetailCreatedAtMember1
-                    @api_match_detail_created_at_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiMatchDetail_createdAtMember1 property value. Composed type representation for type ApiMatchDetailCreatedAtMember1
-                    ## @return a api_match_detail_created_at_member1
-                    ## 
-                    def api_match_detail_created_at_member1
-                        return @api_match_detail_created_at_member1
-                    end
-                    ## 
-                    ## Sets the ApiMatchDetail_createdAtMember1 property value. Composed type representation for type ApiMatchDetailCreatedAtMember1
-                    ## @param value Value to set for the ApiMatchDetail_createdAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_match_detail_created_at_member1=(value)
-                        @api_match_detail_created_at_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_match_detail_created_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiMatchDetailCreatedAt.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiMatchDetail_createdAtMember1" => lambda {|n| @api_match_detail_created_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchDetailCreatedAtMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiMatchDetail_createdAtMember1", @api_match_detail_created_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiMatchDetailLeagueIdMember1, string
-                class ApiMatchDetailLeagueId
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiMatchDetailLeagueIdMember1
-                    @api_match_detail_league_id_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiMatchDetail_leagueIdMember1 property value. Composed type representation for type ApiMatchDetailLeagueIdMember1
-                    ## @return a api_match_detail_league_id_member1
-                    ## 
-                    def api_match_detail_league_id_member1
-                        return @api_match_detail_league_id_member1
-                    end
-                    ## 
-                    ## Sets the ApiMatchDetail_leagueIdMember1 property value. Composed type representation for type ApiMatchDetailLeagueIdMember1
-                    ## @param value Value to set for the ApiMatchDetail_leagueIdMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_match_detail_league_id_member1=(value)
-                        @api_match_detail_league_id_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_match_detail_league_id
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiMatchDetailLeagueId.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiMatchDetail_leagueIdMember1" => lambda {|n| @api_match_detail_league_id_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchDetailLeagueIdMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiMatchDetail_leagueIdMember1", @api_match_detail_league_id_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiMatchDetailLeagueSeasonIdMember1, string
-                class ApiMatchDetailLeagueSeasonId
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiMatchDetailLeagueSeasonIdMember1
-                    @api_match_detail_league_season_id_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiMatchDetail_leagueSeasonIdMember1 property value. Composed type representation for type ApiMatchDetailLeagueSeasonIdMember1
-                    ## @return a api_match_detail_league_season_id_member1
-                    ## 
-                    def api_match_detail_league_season_id_member1
-                        return @api_match_detail_league_season_id_member1
-                    end
-                    ## 
-                    ## Sets the ApiMatchDetail_leagueSeasonIdMember1 property value. Composed type representation for type ApiMatchDetailLeagueSeasonIdMember1
-                    ## @param value Value to set for the ApiMatchDetail_leagueSeasonIdMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_match_detail_league_season_id_member1=(value)
-                        @api_match_detail_league_season_id_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_match_detail_league_season_id
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiMatchDetailLeagueSeasonId.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiMatchDetail_leagueSeasonIdMember1" => lambda {|n| @api_match_detail_league_season_id_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchDetailLeagueSeasonIdMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiMatchDetail_leagueSeasonIdMember1", @api_match_detail_league_season_id_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiMatchDetailMatchTypeMember1, string
-                class ApiMatchDetailMatchType
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiMatchDetailMatchTypeMember1
-                    @api_match_detail_match_type_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiMatchDetail_matchTypeMember1 property value. Composed type representation for type ApiMatchDetailMatchTypeMember1
-                    ## @return a api_match_detail_match_type_member1
-                    ## 
-                    def api_match_detail_match_type_member1
-                        return @api_match_detail_match_type_member1
-                    end
-                    ## 
-                    ## Sets the ApiMatchDetail_matchTypeMember1 property value. Composed type representation for type ApiMatchDetailMatchTypeMember1
-                    ## @param value Value to set for the ApiMatchDetail_matchTypeMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_match_detail_match_type_member1=(value)
-                        @api_match_detail_match_type_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_match_detail_match_type
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiMatchDetailMatchType.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiMatchDetail_matchTypeMember1" => lambda {|n| @api_match_detail_match_type_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchDetailMatchTypeMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiMatchDetail_matchTypeMember1", @api_match_detail_match_type_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiMatchDetailPlatformMember1, string
-                class ApiMatchDetailPlatform
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiMatchDetailPlatformMember1
-                    @api_match_detail_platform_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiMatchDetail_platformMember1 property value. Composed type representation for type ApiMatchDetailPlatformMember1
-                    ## @return a api_match_detail_platform_member1
-                    ## 
-                    def api_match_detail_platform_member1
-                        return @api_match_detail_platform_member1
-                    end
-                    ## 
-                    ## Sets the ApiMatchDetail_platformMember1 property value. Composed type representation for type ApiMatchDetailPlatformMember1
-                    ## @param value Value to set for the ApiMatchDetail_platformMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_match_detail_platform_member1=(value)
-                        @api_match_detail_platform_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_match_detail_platform
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiMatchDetailPlatform.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiMatchDetail_platformMember1" => lambda {|n| @api_match_detail_platform_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchDetailPlatformMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiMatchDetail_platformMember1", @api_match_detail_platform_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiMatchDetailRegionMember1, string
-                class ApiMatchDetailRegion
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiMatchDetailRegionMember1
-                    @api_match_detail_region_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiMatchDetail_regionMember1 property value. Composed type representation for type ApiMatchDetailRegionMember1
-                    ## @return a api_match_detail_region_member1
-                    ## 
-                    def api_match_detail_region_member1
-                        return @api_match_detail_region_member1
-                    end
-                    ## 
-                    ## Sets the ApiMatchDetail_regionMember1 property value. Composed type representation for type ApiMatchDetailRegionMember1
-                    ## @param value Value to set for the ApiMatchDetail_regionMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_match_detail_region_member1=(value)
-                        @api_match_detail_region_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_match_detail_region
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiMatchDetailRegion.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiMatchDetail_regionMember1" => lambda {|n| @api_match_detail_region_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchDetailRegionMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiMatchDetail_regionMember1", @api_match_detail_region_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiMatchDetailScheduledAtMember1, string
-                class ApiMatchDetailScheduledAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiMatchDetailScheduledAtMember1
-                    @api_match_detail_scheduled_at_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiMatchDetail_scheduledAtMember1 property value. Composed type representation for type ApiMatchDetailScheduledAtMember1
-                    ## @return a api_match_detail_scheduled_at_member1
-                    ## 
-                    def api_match_detail_scheduled_at_member1
-                        return @api_match_detail_scheduled_at_member1
-                    end
-                    ## 
-                    ## Sets the ApiMatchDetail_scheduledAtMember1 property value. Composed type representation for type ApiMatchDetailScheduledAtMember1
-                    ## @param value Value to set for the ApiMatchDetail_scheduledAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_match_detail_scheduled_at_member1=(value)
-                        @api_match_detail_scheduled_at_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_match_detail_scheduled_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiMatchDetailScheduledAt.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiMatchDetail_scheduledAtMember1" => lambda {|n| @api_match_detail_scheduled_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchDetailScheduledAtMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiMatchDetail_scheduledAtMember1", @api_match_detail_scheduled_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiMatchDetailStartedAtMember1, string
-                class ApiMatchDetailStartedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiMatchDetailStartedAtMember1
-                    @api_match_detail_started_at_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiMatchDetail_startedAtMember1 property value. Composed type representation for type ApiMatchDetailStartedAtMember1
-                    ## @return a api_match_detail_started_at_member1
-                    ## 
-                    def api_match_detail_started_at_member1
-                        return @api_match_detail_started_at_member1
-                    end
-                    ## 
-                    ## Sets the ApiMatchDetail_startedAtMember1 property value. Composed type representation for type ApiMatchDetailStartedAtMember1
-                    ## @param value Value to set for the ApiMatchDetail_startedAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_match_detail_started_at_member1=(value)
-                        @api_match_detail_started_at_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_match_detail_started_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiMatchDetailStartedAt.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiMatchDetail_startedAtMember1" => lambda {|n| @api_match_detail_started_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchDetailStartedAtMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiMatchDetail_startedAtMember1", @api_match_detail_started_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiMatchDetailWinnerTeamIdMember1, string
-                class ApiMatchDetailWinnerTeamId
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiMatchDetailWinnerTeamIdMember1
-                    @api_match_detail_winner_team_id_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiMatchDetail_winnerTeamIdMember1 property value. Composed type representation for type ApiMatchDetailWinnerTeamIdMember1
-                    ## @return a api_match_detail_winner_team_id_member1
-                    ## 
-                    def api_match_detail_winner_team_id_member1
-                        return @api_match_detail_winner_team_id_member1
-                    end
-                    ## 
-                    ## Sets the ApiMatchDetail_winnerTeamIdMember1 property value. Composed type representation for type ApiMatchDetailWinnerTeamIdMember1
-                    ## @param value Value to set for the ApiMatchDetail_winnerTeamIdMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_match_detail_winner_team_id_member1=(value)
-                        @api_match_detail_winner_team_id_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_match_detail_winner_team_id
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiMatchDetailWinnerTeamId.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiMatchDetail_winnerTeamIdMember1" => lambda {|n| @api_match_detail_winner_team_id_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchDetailWinnerTeamIdMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiMatchDetail_winnerTeamIdMember1", @api_match_detail_winner_team_id_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
                 end
             end
         end

@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ApiGameMap implements Parsable 
 {
     /**
-     * @var ApiGameMap_coverImage|null $coverImage The coverImage property
+     * @var string|null $coverImage The coverImage property
     */
-    private ?ApiGameMap_coverImage $coverImage = null;
+    private ?string $coverImage = null;
     
     /**
      * @var string|null $id The id property
@@ -27,9 +27,9 @@ class ApiGameMap implements Parsable
     private ?bool $isReleased = null;
     
     /**
-     * @var ApiGameMap_minimapImage|null $minimapImage The minimapImage property
+     * @var string|null $minimapImage The minimapImage property
     */
-    private ?ApiGameMap_minimapImage $minimapImage = null;
+    private ?string $minimapImage = null;
     
     /**
      * @var string|null $nameKey The nameKey property
@@ -47,9 +47,9 @@ class ApiGameMap implements Parsable
 
     /**
      * Gets the coverImage property value. The coverImage property
-     * @return ApiGameMap_coverImage|null
+     * @return string|null
     */
-    public function getCoverImage(): ?ApiGameMap_coverImage {
+    public function getCoverImage(): ?string {
         return $this->coverImage;
     }
 
@@ -60,10 +60,10 @@ class ApiGameMap implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'coverImage' => fn(ParseNode $n) => $o->setCoverImage($n->getObjectValue([ApiGameMap_coverImage::class, 'createFromDiscriminatorValue'])),
+            'coverImage' => fn(ParseNode $n) => $o->setCoverImage($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'isReleased' => fn(ParseNode $n) => $o->setIsReleased($n->getBooleanValue()),
-            'minimapImage' => fn(ParseNode $n) => $o->setMinimapImage($n->getObjectValue([ApiGameMap_minimapImage::class, 'createFromDiscriminatorValue'])),
+            'minimapImage' => fn(ParseNode $n) => $o->setMinimapImage($n->getStringValue()),
             'nameKey' => fn(ParseNode $n) => $o->setNameKey($n->getStringValue()),
         ];
     }
@@ -86,9 +86,9 @@ class ApiGameMap implements Parsable
 
     /**
      * Gets the minimapImage property value. The minimapImage property
-     * @return ApiGameMap_minimapImage|null
+     * @return string|null
     */
-    public function getMinimapImage(): ?ApiGameMap_minimapImage {
+    public function getMinimapImage(): ?string {
         return $this->minimapImage;
     }
 
@@ -105,18 +105,18 @@ class ApiGameMap implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('coverImage', $this->getCoverImage());
+        $writer->writeStringValue('coverImage', $this->getCoverImage());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeBooleanValue('isReleased', $this->getIsReleased());
-        $writer->writeObjectValue('minimapImage', $this->getMinimapImage());
+        $writer->writeStringValue('minimapImage', $this->getMinimapImage());
         $writer->writeStringValue('nameKey', $this->getNameKey());
     }
 
     /**
      * Sets the coverImage property value. The coverImage property
-     * @param ApiGameMap_coverImage|null $value Value to set for the coverImage property.
+     * @param string|null $value Value to set for the coverImage property.
     */
-    public function setCoverImage(?ApiGameMap_coverImage $value): void {
+    public function setCoverImage(?string $value): void {
         $this->coverImage = $value;
     }
 
@@ -138,9 +138,9 @@ class ApiGameMap implements Parsable
 
     /**
      * Sets the minimapImage property value. The minimapImage property
-     * @param ApiGameMap_minimapImage|null $value Value to set for the minimapImage property.
+     * @param string|null $value Value to set for the minimapImage property.
     */
-    public function setMinimapImage(?ApiGameMap_minimapImage $value): void {
+    public function setMinimapImage(?string $value): void {
         $this->minimapImage = $value;
     }
 

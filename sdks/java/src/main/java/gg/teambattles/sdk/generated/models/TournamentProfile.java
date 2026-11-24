@@ -1,10 +1,8 @@
 package gg.teambattles.sdk.generated.models;
 
 import com.microsoft.kiota.serialization.AdditionalDataHolder;
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import com.microsoft.kiota.serialization.UntypedNode;
 import java.util.HashMap;
@@ -26,7 +24,7 @@ public class TournamentProfile implements AdditionalDataHolder, Parsable {
     /**
      * Banner image URL.
      */
-    private TournamentProfileBannerUrl bannerUrl;
+    private String bannerUrl;
     /**
      * Bracket format of a tournament.
      */
@@ -50,7 +48,7 @@ public class TournamentProfile implements AdditionalDataHolder, Parsable {
     /**
      * Logo image URL.
      */
-    private TournamentProfileLogoUrl logoUrl;
+    private String logoUrl;
     /**
      * Participant cap.
      */
@@ -121,10 +119,10 @@ public class TournamentProfile implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the bannerUrl property value. Banner image URL.
-     * @return a {@link TournamentProfileBannerUrl}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public TournamentProfileBannerUrl getBannerUrl() {
+    public String getBannerUrl() {
         return this.bannerUrl;
     }
     /**
@@ -135,13 +133,13 @@ public class TournamentProfile implements AdditionalDataHolder, Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(17);
         deserializerMap.put("approvalStatus", (n) -> { this.setApprovalStatus(n.getStringValue()); });
-        deserializerMap.put("bannerUrl", (n) -> { this.setBannerUrl(n.getObjectValue(TournamentProfileBannerUrl::createFromDiscriminatorValue)); });
+        deserializerMap.put("bannerUrl", (n) -> { this.setBannerUrl(n.getStringValue()); });
         deserializerMap.put("format", (n) -> { this.setFormat(n.getEnumValue(TournamentFormat::forValue)); });
         deserializerMap.put("game", (n) -> { this.setGame(n.getObjectValue(UntypedNode::createFromDiscriminatorValue)); });
         deserializerMap.put("host", (n) -> { this.setHost(n.getObjectValue(UntypedNode::createFromDiscriminatorValue)); });
         deserializerMap.put("_id", (n) -> { this.setId(n.getStringValue()); });
         deserializerMap.put("isPubliclyListed", (n) -> { this.setIsPubliclyListed(n.getBooleanValue()); });
-        deserializerMap.put("logoUrl", (n) -> { this.setLogoUrl(n.getObjectValue(TournamentProfileLogoUrl::createFromDiscriminatorValue)); });
+        deserializerMap.put("logoUrl", (n) -> { this.setLogoUrl(n.getStringValue()); });
         deserializerMap.put("maxParticipants", (n) -> { this.setMaxParticipants(n.getIntegerValue()); });
         deserializerMap.put("name", (n) -> { this.setName(n.getStringValue()); });
         deserializerMap.put("needsAttention", (n) -> { this.setNeedsAttention(n.getBooleanValue()); });
@@ -195,10 +193,10 @@ public class TournamentProfile implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the logoUrl property value. Logo image URL.
-     * @return a {@link TournamentProfileLogoUrl}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public TournamentProfileLogoUrl getLogoUrl() {
+    public String getLogoUrl() {
         return this.logoUrl;
     }
     /**
@@ -280,13 +278,13 @@ public class TournamentProfile implements AdditionalDataHolder, Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeStringValue("approvalStatus", this.getApprovalStatus());
-        writer.writeObjectValue("bannerUrl", this.getBannerUrl());
+        writer.writeStringValue("bannerUrl", this.getBannerUrl());
         writer.writeEnumValue("format", this.getFormat());
         writer.writeObjectValue("game", this.getGame());
         writer.writeObjectValue("host", this.getHost());
         writer.writeStringValue("_id", this.getId());
         writer.writeBooleanValue("isPubliclyListed", this.getIsPubliclyListed());
-        writer.writeObjectValue("logoUrl", this.getLogoUrl());
+        writer.writeStringValue("logoUrl", this.getLogoUrl());
         writer.writeIntegerValue("maxParticipants", this.getMaxParticipants());
         writer.writeStringValue("name", this.getName());
         writer.writeBooleanValue("needsAttention", this.getNeedsAttention());
@@ -316,7 +314,7 @@ public class TournamentProfile implements AdditionalDataHolder, Parsable {
      * Sets the bannerUrl property value. Banner image URL.
      * @param value Value to set for the bannerUrl property.
      */
-    public void setBannerUrl(@jakarta.annotation.Nullable final TournamentProfileBannerUrl value) {
+    public void setBannerUrl(@jakarta.annotation.Nullable final String value) {
         this.bannerUrl = value;
     }
     /**
@@ -358,7 +356,7 @@ public class TournamentProfile implements AdditionalDataHolder, Parsable {
      * Sets the logoUrl property value. Logo image URL.
      * @param value Value to set for the logoUrl property.
      */
-    public void setLogoUrl(@jakarta.annotation.Nullable final TournamentProfileLogoUrl value) {
+    public void setLogoUrl(@jakarta.annotation.Nullable final String value) {
         this.logoUrl = value;
     }
     /**
@@ -423,171 +421,5 @@ public class TournamentProfile implements AdditionalDataHolder, Parsable {
      */
     public void setVisibility(@jakarta.annotation.Nullable final String value) {
         this.visibility = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link String}, {@link TournamentProfileBannerUrlMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class TournamentProfileBannerUrl implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Composed type representation for type {@link TournamentProfileBannerUrlMember1}
-         */
-        private TournamentProfileBannerUrlMember1 tournamentProfileBannerUrlMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link TournamentProfileBannerUrl}
-         */
-        @jakarta.annotation.Nonnull
-        public static TournamentProfileBannerUrl createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final TournamentProfileBannerUrl result = new TournamentProfileBannerUrl();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setTournamentProfileBannerUrlMember1(new TournamentProfileBannerUrlMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getTournamentProfileBannerUrlMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getTournamentProfileBannerUrlMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Gets the TournamentProfile_bannerUrlMember1 property value. Composed type representation for type {@link TournamentProfileBannerUrlMember1}
-         * @return a {@link TournamentProfileBannerUrlMember1}
-         */
-        @jakarta.annotation.Nullable
-        public TournamentProfileBannerUrlMember1 getTournamentProfileBannerUrlMember1() {
-            return this.tournamentProfileBannerUrlMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getTournamentProfileBannerUrlMember1());
-            }
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-        /**
-         * Sets the TournamentProfile_bannerUrlMember1 property value. Composed type representation for type {@link TournamentProfileBannerUrlMember1}
-         * @param value Value to set for the TournamentProfile_bannerUrlMember1 property.
-         */
-        public void setTournamentProfileBannerUrlMember1(@jakarta.annotation.Nullable final TournamentProfileBannerUrlMember1 value) {
-            this.tournamentProfileBannerUrlMember1 = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link String}, {@link TournamentProfileLogoUrlMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class TournamentProfileLogoUrl implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Composed type representation for type {@link TournamentProfileLogoUrlMember1}
-         */
-        private TournamentProfileLogoUrlMember1 tournamentProfileLogoUrlMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link TournamentProfileLogoUrl}
-         */
-        @jakarta.annotation.Nonnull
-        public static TournamentProfileLogoUrl createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final TournamentProfileLogoUrl result = new TournamentProfileLogoUrl();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setTournamentProfileLogoUrlMember1(new TournamentProfileLogoUrlMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getTournamentProfileLogoUrlMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getTournamentProfileLogoUrlMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Gets the TournamentProfile_logoUrlMember1 property value. Composed type representation for type {@link TournamentProfileLogoUrlMember1}
-         * @return a {@link TournamentProfileLogoUrlMember1}
-         */
-        @jakarta.annotation.Nullable
-        public TournamentProfileLogoUrlMember1 getTournamentProfileLogoUrlMember1() {
-            return this.tournamentProfileLogoUrlMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getTournamentProfileLogoUrlMember1());
-            }
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-        /**
-         * Sets the TournamentProfile_logoUrlMember1 property value. Composed type representation for type {@link TournamentProfileLogoUrlMember1}
-         * @param value Value to set for the TournamentProfile_logoUrlMember1 property.
-         */
-        public void setTournamentProfileLogoUrlMember1(@jakarta.annotation.Nullable final TournamentProfileLogoUrlMember1 value) {
-            this.tournamentProfileLogoUrlMember1 = value;
-        }
     }
 }

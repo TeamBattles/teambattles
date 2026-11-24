@@ -14,9 +14,9 @@ class TicketSummary implements Parsable
     private ?string $category = null;
     
     /**
-     * @var TicketSummary_createdAt|null $createdAt The createdAt property
+     * @var string|null $createdAt The createdAt property
     */
-    private ?TicketSummary_createdAt $createdAt = null;
+    private ?string $createdAt = null;
     
     /**
      * @var string|null $id The id property
@@ -44,9 +44,9 @@ class TicketSummary implements Parsable
     private ?int $ticketNumber = null;
     
     /**
-     * @var TicketSummary_updatedAt|null $updatedAt The updatedAt property
+     * @var string|null $updatedAt The updatedAt property
     */
-    private ?TicketSummary_updatedAt $updatedAt = null;
+    private ?string $updatedAt = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -67,9 +67,9 @@ class TicketSummary implements Parsable
 
     /**
      * Gets the createdAt property value. The createdAt property
-     * @return TicketSummary_createdAt|null
+     * @return string|null
     */
-    public function getCreatedAt(): ?TicketSummary_createdAt {
+    public function getCreatedAt(): ?string {
         return $this->createdAt;
     }
 
@@ -81,13 +81,13 @@ class TicketSummary implements Parsable
         $o = $this;
         return  [
             'category' => fn(ParseNode $n) => $o->setCategory($n->getStringValue()),
-            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([TicketSummary_createdAt::class, 'createFromDiscriminatorValue'])),
+            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'priority' => fn(ParseNode $n) => $o->setPriority($n->getEnumValue(TicketSummary_priority::class)),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(TicketSummary_status::class)),
             'subject' => fn(ParseNode $n) => $o->setSubject($n->getStringValue()),
             'ticketNumber' => fn(ParseNode $n) => $o->setTicketNumber($n->getIntegerValue()),
-            'updatedAt' => fn(ParseNode $n) => $o->setUpdatedAt($n->getObjectValue([TicketSummary_updatedAt::class, 'createFromDiscriminatorValue'])),
+            'updatedAt' => fn(ParseNode $n) => $o->setUpdatedAt($n->getStringValue()),
         ];
     }
 
@@ -133,9 +133,9 @@ class TicketSummary implements Parsable
 
     /**
      * Gets the updatedAt property value. The updatedAt property
-     * @return TicketSummary_updatedAt|null
+     * @return string|null
     */
-    public function getUpdatedAt(): ?TicketSummary_updatedAt {
+    public function getUpdatedAt(): ?string {
         return $this->updatedAt;
     }
 
@@ -145,13 +145,13 @@ class TicketSummary implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('category', $this->getCategory());
-        $writer->writeObjectValue('createdAt', $this->getCreatedAt());
+        $writer->writeStringValue('createdAt', $this->getCreatedAt());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeEnumValue('priority', $this->getPriority());
         $writer->writeEnumValue('status', $this->getStatus());
         $writer->writeStringValue('subject', $this->getSubject());
         $writer->writeIntegerValue('ticketNumber', $this->getTicketNumber());
-        $writer->writeObjectValue('updatedAt', $this->getUpdatedAt());
+        $writer->writeStringValue('updatedAt', $this->getUpdatedAt());
     }
 
     /**
@@ -164,9 +164,9 @@ class TicketSummary implements Parsable
 
     /**
      * Sets the createdAt property value. The createdAt property
-     * @param TicketSummary_createdAt|null $value Value to set for the createdAt property.
+     * @param string|null $value Value to set for the createdAt property.
     */
-    public function setCreatedAt(?TicketSummary_createdAt $value): void {
+    public function setCreatedAt(?string $value): void {
         $this->createdAt = $value;
     }
 
@@ -212,9 +212,9 @@ class TicketSummary implements Parsable
 
     /**
      * Sets the updatedAt property value. The updatedAt property
-     * @param TicketSummary_updatedAt|null $value Value to set for the updatedAt property.
+     * @param string|null $value Value to set for the updatedAt property.
     */
-    public function setUpdatedAt(?TicketSummary_updatedAt $value): void {
+    public function setUpdatedAt(?string $value): void {
         $this->updatedAt = $value;
     }
 

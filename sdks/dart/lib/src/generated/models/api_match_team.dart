@@ -1,13 +1,12 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './api_match_team_avatar_url.dart';
 import './api_match_team_score.dart';
 
 /// auto generated
 /// Team summary embedded in SP-2 match reads.
 class ApiMatchTeam implements Parsable {
     ///  Team avatar URL.
-    ApiMatchTeamAvatarUrl? avatarUrl;
+    String? avatarUrl;
     ///  Team ID.
     String? id;
     ///  Team name.
@@ -25,7 +24,7 @@ class ApiMatchTeam implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getObjectValue<ApiMatchTeamAvatarUrl>(ApiMatchTeamAvatarUrl.createFromDiscriminatorValue);
+        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['name'] = (node) => name = node.getStringValue();
         deserializerMap['score'] = (node) => score = node.getObjectValue<ApiMatchTeamScore>(ApiMatchTeamScore.createFromDiscriminatorValue);
@@ -36,7 +35,7 @@ class ApiMatchTeam implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<ApiMatchTeamAvatarUrl>('avatarUrl', avatarUrl);
+        writer.writeStringValue('avatarUrl', avatarUrl);
         writer.writeStringValue('id', id);
         writer.writeStringValue('name', name);
         writer.writeObjectValue<ApiMatchTeamScore>('score', score);

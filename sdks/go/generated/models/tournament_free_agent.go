@@ -10,7 +10,7 @@ import (
 // TournamentFreeAgent an available free agent.
 type TournamentFreeAgent struct {
     // Avatar image URL.
-    avatarUrl TournamentFreeAgent_TournamentFreeAgent_avatarUrlable
+    avatarUrl *string
     // Pool join time (epoch milliseconds).
     createdAt *float64
     // Free-agent row ID.
@@ -25,83 +25,6 @@ type TournamentFreeAgent struct {
     username *string
     // PENDING when `viewerParticipantId` was supplied AND authorized AND that participant has an open offer to this agent; null otherwise. An unauthorized or stale `viewerParticipantId` fails soft to null rather than erroring.
     viewerOfferStatus TournamentFreeAgent_TournamentFreeAgent_viewerOfferStatusable
-}
-// TournamentFreeAgent_TournamentFreeAgent_avatarUrl composed type wrapper for classes string, TournamentFreeAgent_avatarUrlMember1able
-type TournamentFreeAgent_TournamentFreeAgent_avatarUrl struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TournamentFreeAgent_avatarUrlMember1able
-    tournamentFreeAgent_avatarUrlMember1 TournamentFreeAgent_avatarUrlMember1able
-}
-// NewTournamentFreeAgent_TournamentFreeAgent_avatarUrl instantiates a new TournamentFreeAgent_TournamentFreeAgent_avatarUrl and sets the default values.
-func NewTournamentFreeAgent_TournamentFreeAgent_avatarUrl()(*TournamentFreeAgent_TournamentFreeAgent_avatarUrl) {
-    m := &TournamentFreeAgent_TournamentFreeAgent_avatarUrl{
-    }
-    return m
-}
-// CreateTournamentFreeAgent_TournamentFreeAgent_avatarUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTournamentFreeAgent_TournamentFreeAgent_avatarUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTournamentFreeAgent_TournamentFreeAgent_avatarUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTournamentFreeAgent_avatarUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TournamentFreeAgent_avatarUrlMember1able); ok {
-                result.SetTournamentFreeAgentAvatarUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TournamentFreeAgent_TournamentFreeAgent_avatarUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TournamentFreeAgent_TournamentFreeAgent_avatarUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TournamentFreeAgent_TournamentFreeAgent_avatarUrl) GetString()(*string) {
-    return m.string
-}
-// GetTournamentFreeAgentAvatarUrlMember1 gets the TournamentFreeAgent_avatarUrlMember1 property value. Composed type representation for type TournamentFreeAgent_avatarUrlMember1able
-// returns a TournamentFreeAgent_avatarUrlMember1able when successful
-func (m *TournamentFreeAgent_TournamentFreeAgent_avatarUrl) GetTournamentFreeAgentAvatarUrlMember1()(TournamentFreeAgent_avatarUrlMember1able) {
-    return m.tournamentFreeAgent_avatarUrlMember1
-}
-// Serialize serializes information the current object
-func (m *TournamentFreeAgent_TournamentFreeAgent_avatarUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTournamentFreeAgentAvatarUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTournamentFreeAgentAvatarUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TournamentFreeAgent_TournamentFreeAgent_avatarUrl) SetString(value *string)() {
-    m.string = value
-}
-// SetTournamentFreeAgentAvatarUrlMember1 sets the TournamentFreeAgent_avatarUrlMember1 property value. Composed type representation for type TournamentFreeAgent_avatarUrlMember1able
-func (m *TournamentFreeAgent_TournamentFreeAgent_avatarUrl) SetTournamentFreeAgentAvatarUrlMember1(value TournamentFreeAgent_avatarUrlMember1able)() {
-    m.tournamentFreeAgent_avatarUrlMember1 = value
 }
 // TournamentFreeAgent_TournamentFreeAgent_viewerOfferStatus composed type wrapper for classes string, TournamentFreeAgent_viewerOfferStatusMember1able
 type TournamentFreeAgent_TournamentFreeAgent_viewerOfferStatus struct {
@@ -180,13 +103,6 @@ func (m *TournamentFreeAgent_TournamentFreeAgent_viewerOfferStatus) SetString(va
 func (m *TournamentFreeAgent_TournamentFreeAgent_viewerOfferStatus) SetTournamentFreeAgentViewerOfferStatusMember1(value TournamentFreeAgent_viewerOfferStatusMember1able)() {
     m.tournamentFreeAgent_viewerOfferStatusMember1 = value
 }
-type TournamentFreeAgent_TournamentFreeAgent_avatarUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTournamentFreeAgentAvatarUrlMember1()(TournamentFreeAgent_avatarUrlMember1able)
-    SetString(value *string)()
-    SetTournamentFreeAgentAvatarUrlMember1(value TournamentFreeAgent_avatarUrlMember1able)()
-}
 type TournamentFreeAgent_TournamentFreeAgent_viewerOfferStatusable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetString()(*string)
@@ -206,8 +122,8 @@ func CreateTournamentFreeAgentFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewTournamentFreeAgent(), nil
 }
 // GetAvatarUrl gets the avatarUrl property value. Avatar image URL.
-// returns a TournamentFreeAgent_TournamentFreeAgent_avatarUrlable when successful
-func (m *TournamentFreeAgent) GetAvatarUrl()(TournamentFreeAgent_TournamentFreeAgent_avatarUrlable) {
+// returns a *string when successful
+func (m *TournamentFreeAgent) GetAvatarUrl()(*string) {
     return m.avatarUrl
 }
 // GetCreatedAt gets the createdAt property value. Pool join time (epoch milliseconds).
@@ -220,12 +136,12 @@ func (m *TournamentFreeAgent) GetCreatedAt()(*float64) {
 func (m *TournamentFreeAgent) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["avatarUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTournamentFreeAgent_TournamentFreeAgent_avatarUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetAvatarUrl(val.(TournamentFreeAgent_TournamentFreeAgent_avatarUrlable))
+            m.SetAvatarUrl(val)
         }
         return nil
     }
@@ -334,7 +250,7 @@ func (m *TournamentFreeAgent) GetViewerOfferStatus()(TournamentFreeAgent_Tournam
 // Serialize serializes information the current object
 func (m *TournamentFreeAgent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("avatarUrl", m.GetAvatarUrl())
+        err := writer.WriteStringValue("avatarUrl", m.GetAvatarUrl())
         if err != nil {
             return err
         }
@@ -384,7 +300,7 @@ func (m *TournamentFreeAgent) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetAvatarUrl sets the avatarUrl property value. Avatar image URL.
-func (m *TournamentFreeAgent) SetAvatarUrl(value TournamentFreeAgent_TournamentFreeAgent_avatarUrlable)() {
+func (m *TournamentFreeAgent) SetAvatarUrl(value *string)() {
     m.avatarUrl = value
 }
 // SetCreatedAt sets the createdAt property value. Pool join time (epoch milliseconds).
@@ -417,7 +333,7 @@ func (m *TournamentFreeAgent) SetViewerOfferStatus(value TournamentFreeAgent_Tou
 }
 type TournamentFreeAgentable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAvatarUrl()(TournamentFreeAgent_TournamentFreeAgent_avatarUrlable)
+    GetAvatarUrl()(*string)
     GetCreatedAt()(*float64)
     GetId()(*string)
     GetName()(*string)
@@ -425,7 +341,7 @@ type TournamentFreeAgentable interface {
     GetUserId()(*string)
     GetUsername()(*string)
     GetViewerOfferStatus()(TournamentFreeAgent_TournamentFreeAgent_viewerOfferStatusable)
-    SetAvatarUrl(value TournamentFreeAgent_TournamentFreeAgent_avatarUrlable)()
+    SetAvatarUrl(value *string)()
     SetCreatedAt(value *float64)()
     SetId(value *string)()
     SetName(value *string)()

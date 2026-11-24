@@ -53,7 +53,7 @@ module TeamBattlesSdk
                     return {
                         "data" => lambda {|n| @data = n.get_collection_of_object_values(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiMatchDetail.create_from_discriminator_value(pn) }) },
                         "hasMore" => lambda {|n| @has_more = n.get_boolean_value() },
-                        "nextCursor" => lambda {|n| @next_cursor = n.get_object_value(lambda {|pn| MatchDiscoverPage::MatchDiscoverPageNextCursor.create_from_discriminator_value(pn) }) },
+                        "nextCursor" => lambda {|n| @next_cursor = n.get_string_value() },
                         "timestamp" => lambda {|n| @timestamp = n.get_string_value() },
                     }
                 end
@@ -74,7 +74,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the nextCursor property value. The nextCursor property
-                ## @return a match_discover_page_next_cursor
+                ## @return a string
                 ## 
                 def next_cursor
                     return @next_cursor
@@ -96,7 +96,7 @@ module TeamBattlesSdk
                     raise StandardError, 'writer cannot be null' if writer.nil?
                     writer.write_collection_of_object_values("data", @data)
                     writer.write_boolean_value("hasMore", @has_more)
-                    writer.write_object_value("nextCursor", @next_cursor)
+                    writer.write_string_value("nextCursor", @next_cursor)
                     writer.write_string_value("timestamp", @timestamp)
                 end
                 ## 
@@ -113,77 +113,6 @@ module TeamBattlesSdk
                 ## 
                 def timestamp=(value)
                     @timestamp = value
-                end
-
-                ## 
-                # Composed type wrapper for classes MatchDiscoverPageNextCursorMember1, string
-                class MatchDiscoverPageNextCursor
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type MatchDiscoverPageNextCursorMember1
-                    @match_discover_page_next_cursor_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a match_discover_page_next_cursor
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return MatchDiscoverPageNextCursor.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "MatchDiscoverPage_nextCursorMember1" => lambda {|n| @match_discover_page_next_cursor_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::MatchDiscoverPageNextCursorMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Gets the MatchDiscoverPage_nextCursorMember1 property value. Composed type representation for type MatchDiscoverPageNextCursorMember1
-                    ## @return a match_discover_page_next_cursor_member1
-                    ## 
-                    def match_discover_page_next_cursor_member1
-                        return @match_discover_page_next_cursor_member1
-                    end
-                    ## 
-                    ## Sets the MatchDiscoverPage_nextCursorMember1 property value. Composed type representation for type MatchDiscoverPageNextCursorMember1
-                    ## @param value Value to set for the MatchDiscoverPage_nextCursorMember1 property.
-                    ## @return a void
-                    ## 
-                    def match_discover_page_next_cursor_member1=(value)
-                        @match_discover_page_next_cursor_member1 = value
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("MatchDiscoverPage_nextCursorMember1", @match_discover_page_next_cursor_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
                 end
             end
         end

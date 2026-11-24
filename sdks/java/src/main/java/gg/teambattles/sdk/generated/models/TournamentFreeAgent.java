@@ -16,7 +16,7 @@ public class TournamentFreeAgent implements Parsable {
     /**
      * Avatar image URL.
      */
-    private TournamentFreeAgentAvatarUrl avatarUrl;
+    private String avatarUrl;
     /**
      * Pool join time (epoch milliseconds).
      */
@@ -57,10 +57,10 @@ public class TournamentFreeAgent implements Parsable {
     }
     /**
      * Gets the avatarUrl property value. Avatar image URL.
-     * @return a {@link TournamentFreeAgentAvatarUrl}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public TournamentFreeAgentAvatarUrl getAvatarUrl() {
+    public String getAvatarUrl() {
         return this.avatarUrl;
     }
     /**
@@ -78,7 +78,7 @@ public class TournamentFreeAgent implements Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(8);
-        deserializerMap.put("avatarUrl", (n) -> { this.setAvatarUrl(n.getObjectValue(TournamentFreeAgentAvatarUrl::createFromDiscriminatorValue)); });
+        deserializerMap.put("avatarUrl", (n) -> { this.setAvatarUrl(n.getStringValue()); });
         deserializerMap.put("createdAt", (n) -> { this.setCreatedAt(n.getDoubleValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
         deserializerMap.put("name", (n) -> { this.setName(n.getStringValue()); });
@@ -142,7 +142,7 @@ public class TournamentFreeAgent implements Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeObjectValue("avatarUrl", this.getAvatarUrl());
+        writer.writeStringValue("avatarUrl", this.getAvatarUrl());
         writer.writeDoubleValue("createdAt", this.getCreatedAt());
         writer.writeStringValue("id", this.getId());
         writer.writeStringValue("name", this.getName());
@@ -155,7 +155,7 @@ public class TournamentFreeAgent implements Parsable {
      * Sets the avatarUrl property value. Avatar image URL.
      * @param value Value to set for the avatarUrl property.
      */
-    public void setAvatarUrl(@jakarta.annotation.Nullable final TournamentFreeAgentAvatarUrl value) {
+    public void setAvatarUrl(@jakarta.annotation.Nullable final String value) {
         this.avatarUrl = value;
     }
     /**
@@ -206,89 +206,6 @@ public class TournamentFreeAgent implements Parsable {
      */
     public void setViewerOfferStatus(@jakarta.annotation.Nullable final TournamentFreeAgentViewerOfferStatus value) {
         this.viewerOfferStatus = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link String}, {@link TournamentFreeAgentAvatarUrlMember1}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class TournamentFreeAgentAvatarUrl implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Composed type representation for type {@link TournamentFreeAgentAvatarUrlMember1}
-         */
-        private TournamentFreeAgentAvatarUrlMember1 tournamentFreeAgentAvatarUrlMember1;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link TournamentFreeAgentAvatarUrl}
-         */
-        @jakarta.annotation.Nonnull
-        public static TournamentFreeAgentAvatarUrl createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final TournamentFreeAgentAvatarUrl result = new TournamentFreeAgentAvatarUrl();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setTournamentFreeAgentAvatarUrlMember1(new TournamentFreeAgentAvatarUrlMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getTournamentFreeAgentAvatarUrlMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getTournamentFreeAgentAvatarUrlMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Gets the TournamentFreeAgent_avatarUrlMember1 property value. Composed type representation for type {@link TournamentFreeAgentAvatarUrlMember1}
-         * @return a {@link TournamentFreeAgentAvatarUrlMember1}
-         */
-        @jakarta.annotation.Nullable
-        public TournamentFreeAgentAvatarUrlMember1 getTournamentFreeAgentAvatarUrlMember1() {
-            return this.tournamentFreeAgentAvatarUrlMember1;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getTournamentFreeAgentAvatarUrlMember1());
-            }
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-        /**
-         * Sets the TournamentFreeAgent_avatarUrlMember1 property value. Composed type representation for type {@link TournamentFreeAgentAvatarUrlMember1}
-         * @param value Value to set for the TournamentFreeAgent_avatarUrlMember1 property.
-         */
-        public void setTournamentFreeAgentAvatarUrlMember1(@jakarta.annotation.Nullable final TournamentFreeAgentAvatarUrlMember1 value) {
-            this.tournamentFreeAgentAvatarUrlMember1 = value;
-        }
     }
     /**
      * Composed type wrapper for classes {@link String}, {@link TournamentFreeAgentViewerOfferStatusMember1}

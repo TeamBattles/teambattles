@@ -42,9 +42,9 @@ class ApiGameRank implements Parsable
     private ?ApiGameRank_source $source = null;
     
     /**
-     * @var ApiGameRank_sr|null $sr Skill rating, when set.
+     * @var float|null $sr Skill rating, when set.
     */
-    private ?ApiGameRank_sr $sr = null;
+    private ?float $sr = null;
     
     /**
      * @var ApiGameRank_top250Rank|null $top250Rank Top 250 ladder position (1-250), when applicable.
@@ -91,7 +91,7 @@ class ApiGameRank implements Parsable
             'isTop250' => fn(ParseNode $n) => $o->setIsTop250($n->getBooleanValue()),
             'mode' => fn(ParseNode $n) => $o->setMode($n->getStringValue()),
             'source' => fn(ParseNode $n) => $o->setSource($n->getEnumValue(ApiGameRank_source::class)),
-            'sr' => fn(ParseNode $n) => $o->setSr($n->getObjectValue([ApiGameRank_sr::class, 'createFromDiscriminatorValue'])),
+            'sr' => fn(ParseNode $n) => $o->setSr($n->getFloatValue()),
             'top250Rank' => fn(ParseNode $n) => $o->setTop250Rank($n->getObjectValue([ApiGameRank_top250Rank::class, 'createFromDiscriminatorValue'])),
             'updatedAt' => fn(ParseNode $n) => $o->setUpdatedAt($n->getStringValue()),
             'winstreak' => fn(ParseNode $n) => $o->setWinstreak($n->getIntegerValue()),
@@ -140,9 +140,9 @@ class ApiGameRank implements Parsable
 
     /**
      * Gets the sr property value. Skill rating, when set.
-     * @return ApiGameRank_sr|null
+     * @return float|null
     */
-    public function getSr(): ?ApiGameRank_sr {
+    public function getSr(): ?float {
         return $this->sr;
     }
 
@@ -181,7 +181,7 @@ class ApiGameRank implements Parsable
         $writer->writeBooleanValue('isTop250', $this->getIsTop250());
         $writer->writeStringValue('mode', $this->getMode());
         $writer->writeEnumValue('source', $this->getSource());
-        $writer->writeObjectValue('sr', $this->getSr());
+        $writer->writeFloatValue('sr', $this->getSr());
         $writer->writeObjectValue('top250Rank', $this->getTop250Rank());
         $writer->writeStringValue('updatedAt', $this->getUpdatedAt());
         $writer->writeIntegerValue('winstreak', $this->getWinstreak());
@@ -237,9 +237,9 @@ class ApiGameRank implements Parsable
 
     /**
      * Sets the sr property value. Skill rating, when set.
-     * @param ApiGameRank_sr|null $value Value to set for the sr property.
+     * @param float|null $value Value to set for the sr property.
     */
-    public function setSr(?ApiGameRank_sr $value): void {
+    public function setSr(?float $value): void {
         $this->sr = $value;
     }
 

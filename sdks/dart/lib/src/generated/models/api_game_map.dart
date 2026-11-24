@@ -1,19 +1,17 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './api_game_map_cover_image.dart';
-import './api_game_map_minimap_image.dart';
 
 /// auto generated
 /// Static game map definition.
 class ApiGameMap implements Parsable {
     ///  The coverImage property
-    ApiGameMapCoverImage? coverImage;
+    String? coverImage;
     ///  The id property
     String? id;
     ///  The isReleased property
     bool? isReleased;
     ///  The minimapImage property
-    ApiGameMapMinimapImage? minimapImage;
+    String? minimapImage;
     ///  The nameKey property
     String? nameKey;
     /// Creates a new instance of the appropriate class based on discriminator value
@@ -25,10 +23,10 @@ class ApiGameMap implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['coverImage'] = (node) => coverImage = node.getObjectValue<ApiGameMapCoverImage>(ApiGameMapCoverImage.createFromDiscriminatorValue);
+        deserializerMap['coverImage'] = (node) => coverImage = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['isReleased'] = (node) => isReleased = node.getBoolValue();
-        deserializerMap['minimapImage'] = (node) => minimapImage = node.getObjectValue<ApiGameMapMinimapImage>(ApiGameMapMinimapImage.createFromDiscriminatorValue);
+        deserializerMap['minimapImage'] = (node) => minimapImage = node.getStringValue();
         deserializerMap['nameKey'] = (node) => nameKey = node.getStringValue();
         return deserializerMap;
     }
@@ -36,10 +34,10 @@ class ApiGameMap implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<ApiGameMapCoverImage>('coverImage', coverImage);
+        writer.writeStringValue('coverImage', coverImage);
         writer.writeStringValue('id', id);
         writer.writeBoolValue('isReleased', value:isReleased);
-        writer.writeObjectValue<ApiGameMapMinimapImage>('minimapImage', minimapImage);
+        writer.writeStringValue('minimapImage', minimapImage);
         writer.writeStringValue('nameKey', nameKey);
     }
 }

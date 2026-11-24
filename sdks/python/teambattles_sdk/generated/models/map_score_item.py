@@ -5,7 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .map_score_item_created_at import MapScoreItem_createdAt
     from .score_confirmer import ScoreConfirmer
     from .score_submitter import ScoreSubmitter
 
@@ -17,7 +16,7 @@ class MapScoreItem(Parsable):
     # The confirmedBy property
     confirmed_by: Optional[ScoreConfirmer] = None
     # Creation time (ISO 8601).
-    created_at: Optional[MapScoreItem_createdAt] = None
+    created_at: Optional[str] = None
     # The creatorTeamScore property
     creator_team_score: Optional[int] = None
     # The mapId property
@@ -49,17 +48,15 @@ class MapScoreItem(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .map_score_item_created_at import MapScoreItem_createdAt
         from .score_confirmer import ScoreConfirmer
         from .score_submitter import ScoreSubmitter
 
-        from .map_score_item_created_at import MapScoreItem_createdAt
         from .score_confirmer import ScoreConfirmer
         from .score_submitter import ScoreSubmitter
 
         fields: dict[str, Callable[[Any], None]] = {
             "confirmedBy": lambda n : setattr(self, 'confirmed_by', n.get_object_value(ScoreConfirmer)),
-            "createdAt": lambda n : setattr(self, 'created_at', n.get_object_value(MapScoreItem_createdAt)),
+            "createdAt": lambda n : setattr(self, 'created_at', n.get_str_value()),
             "creatorTeamScore": lambda n : setattr(self, 'creator_team_score', n.get_int_value()),
             "mapId": lambda n : setattr(self, 'map_id', n.get_str_value()),
             "mapIndex": lambda n : setattr(self, 'map_index', n.get_int_value()),
@@ -79,7 +76,7 @@ class MapScoreItem(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("confirmedBy", self.confirmed_by)
-        writer.write_object_value("createdAt", self.created_at)
+        writer.write_str_value("createdAt", self.created_at)
         writer.write_int_value("creatorTeamScore", self.creator_team_score)
         writer.write_str_value("mapId", self.map_id)
         writer.write_int_value("mapIndex", self.map_index)

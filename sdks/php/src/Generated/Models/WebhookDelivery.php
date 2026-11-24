@@ -22,14 +22,14 @@ class WebhookDelivery implements Parsable
     private ?float $createdAt = null;
     
     /**
-     * @var WebhookDelivery_deliveredAt|null $deliveredAt Epoch ms of successful delivery, or null.
+     * @var float|null $deliveredAt Epoch ms of successful delivery, or null.
     */
-    private ?WebhookDelivery_deliveredAt $deliveredAt = null;
+    private ?float $deliveredAt = null;
     
     /**
-     * @var WebhookDelivery_errorMessage|null $errorMessage Last error message, or null.
+     * @var string|null $errorMessage Last error message, or null.
     */
-    private ?WebhookDelivery_errorMessage $errorMessage = null;
+    private ?string $errorMessage = null;
     
     /**
      * @var string|null $event The delivered event name.
@@ -52,9 +52,9 @@ class WebhookDelivery implements Parsable
     private ?bool $isTest = null;
     
     /**
-     * @var WebhookDelivery_nextAttemptAt|null $nextAttemptAt Epoch ms of the next scheduled retry, or null.
+     * @var float|null $nextAttemptAt Epoch ms of the next scheduled retry, or null.
     */
-    private ?WebhookDelivery_nextAttemptAt $nextAttemptAt = null;
+    private ?float $nextAttemptAt = null;
     
     /**
      * @var WebhookDelivery_status|null $status Lifecycle status of one logical delivery (endpoint x idempotency id).
@@ -98,17 +98,17 @@ class WebhookDelivery implements Parsable
 
     /**
      * Gets the deliveredAt property value. Epoch ms of successful delivery, or null.
-     * @return WebhookDelivery_deliveredAt|null
+     * @return float|null
     */
-    public function getDeliveredAt(): ?WebhookDelivery_deliveredAt {
+    public function getDeliveredAt(): ?float {
         return $this->deliveredAt;
     }
 
     /**
      * Gets the errorMessage property value. Last error message, or null.
-     * @return WebhookDelivery_errorMessage|null
+     * @return string|null
     */
-    public function getErrorMessage(): ?WebhookDelivery_errorMessage {
+    public function getErrorMessage(): ?string {
         return $this->errorMessage;
     }
 
@@ -129,13 +129,13 @@ class WebhookDelivery implements Parsable
         return  [
             'attemptCount' => fn(ParseNode $n) => $o->setAttemptCount($n->getIntegerValue()),
             'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getFloatValue()),
-            'deliveredAt' => fn(ParseNode $n) => $o->setDeliveredAt($n->getObjectValue([WebhookDelivery_deliveredAt::class, 'createFromDiscriminatorValue'])),
-            'errorMessage' => fn(ParseNode $n) => $o->setErrorMessage($n->getObjectValue([WebhookDelivery_errorMessage::class, 'createFromDiscriminatorValue'])),
+            'deliveredAt' => fn(ParseNode $n) => $o->setDeliveredAt($n->getFloatValue()),
+            'errorMessage' => fn(ParseNode $n) => $o->setErrorMessage($n->getStringValue()),
             'event' => fn(ParseNode $n) => $o->setEvent($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'idempotencyId' => fn(ParseNode $n) => $o->setIdempotencyId($n->getStringValue()),
             'isTest' => fn(ParseNode $n) => $o->setIsTest($n->getBooleanValue()),
-            'nextAttemptAt' => fn(ParseNode $n) => $o->setNextAttemptAt($n->getObjectValue([WebhookDelivery_nextAttemptAt::class, 'createFromDiscriminatorValue'])),
+            'nextAttemptAt' => fn(ParseNode $n) => $o->setNextAttemptAt($n->getFloatValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(WebhookDelivery_status::class)),
             'statusCode' => fn(ParseNode $n) => $o->setStatusCode($n->getObjectValue([WebhookDelivery_statusCode::class, 'createFromDiscriminatorValue'])),
             'updatedAt' => fn(ParseNode $n) => $o->setUpdatedAt($n->getFloatValue()),
@@ -168,9 +168,9 @@ class WebhookDelivery implements Parsable
 
     /**
      * Gets the nextAttemptAt property value. Epoch ms of the next scheduled retry, or null.
-     * @return WebhookDelivery_nextAttemptAt|null
+     * @return float|null
     */
-    public function getNextAttemptAt(): ?WebhookDelivery_nextAttemptAt {
+    public function getNextAttemptAt(): ?float {
         return $this->nextAttemptAt;
     }
 
@@ -205,13 +205,13 @@ class WebhookDelivery implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeIntegerValue('attemptCount', $this->getAttemptCount());
         $writer->writeFloatValue('createdAt', $this->getCreatedAt());
-        $writer->writeObjectValue('deliveredAt', $this->getDeliveredAt());
-        $writer->writeObjectValue('errorMessage', $this->getErrorMessage());
+        $writer->writeFloatValue('deliveredAt', $this->getDeliveredAt());
+        $writer->writeStringValue('errorMessage', $this->getErrorMessage());
         $writer->writeStringValue('event', $this->getEvent());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('idempotencyId', $this->getIdempotencyId());
         $writer->writeBooleanValue('isTest', $this->getIsTest());
-        $writer->writeObjectValue('nextAttemptAt', $this->getNextAttemptAt());
+        $writer->writeFloatValue('nextAttemptAt', $this->getNextAttemptAt());
         $writer->writeEnumValue('status', $this->getStatus());
         $writer->writeObjectValue('statusCode', $this->getStatusCode());
         $writer->writeFloatValue('updatedAt', $this->getUpdatedAt());
@@ -235,17 +235,17 @@ class WebhookDelivery implements Parsable
 
     /**
      * Sets the deliveredAt property value. Epoch ms of successful delivery, or null.
-     * @param WebhookDelivery_deliveredAt|null $value Value to set for the deliveredAt property.
+     * @param float|null $value Value to set for the deliveredAt property.
     */
-    public function setDeliveredAt(?WebhookDelivery_deliveredAt $value): void {
+    public function setDeliveredAt(?float $value): void {
         $this->deliveredAt = $value;
     }
 
     /**
      * Sets the errorMessage property value. Last error message, or null.
-     * @param WebhookDelivery_errorMessage|null $value Value to set for the errorMessage property.
+     * @param string|null $value Value to set for the errorMessage property.
     */
-    public function setErrorMessage(?WebhookDelivery_errorMessage $value): void {
+    public function setErrorMessage(?string $value): void {
         $this->errorMessage = $value;
     }
 
@@ -283,9 +283,9 @@ class WebhookDelivery implements Parsable
 
     /**
      * Sets the nextAttemptAt property value. Epoch ms of the next scheduled retry, or null.
-     * @param WebhookDelivery_nextAttemptAt|null $value Value to set for the nextAttemptAt property.
+     * @param float|null $value Value to set for the nextAttemptAt property.
     */
-    public function setNextAttemptAt(?WebhookDelivery_nextAttemptAt $value): void {
+    public function setNextAttemptAt(?float $value): void {
         $this->nextAttemptAt = $value;
     }
 

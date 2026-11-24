@@ -65,8 +65,8 @@ module TeamBattlesSdk
                         "isPrimary" => lambda {|n| @is_primary = n.get_boolean_value() },
                         "isVerified" => lambda {|n| @is_verified = n.get_boolean_value() },
                         "platform" => lambda {|n| @platform = n.get_string_value() },
-                        "url" => lambda {|n| @url = n.get_object_value(lambda {|pn| ApiUserConnection::ApiUserConnectionUrl.create_from_discriminator_value(pn) }) },
-                        "username" => lambda {|n| @username = n.get_object_value(lambda {|pn| ApiUserConnection::ApiUserConnectionUsername.create_from_discriminator_value(pn) }) },
+                        "url" => lambda {|n| @url = n.get_string_value() },
+                        "username" => lambda {|n| @username = n.get_string_value() },
                     }
                 end
                 ## 
@@ -141,12 +141,12 @@ module TeamBattlesSdk
                     writer.write_boolean_value("isPrimary", @is_primary)
                     writer.write_boolean_value("isVerified", @is_verified)
                     writer.write_string_value("platform", @platform)
-                    writer.write_object_value("url", @url)
-                    writer.write_object_value("username", @username)
+                    writer.write_string_value("url", @url)
+                    writer.write_string_value("username", @username)
                 end
                 ## 
                 ## Gets the url property value. The url property
-                ## @return a api_user_connection_url
+                ## @return a string
                 ## 
                 def url
                     return @url
@@ -161,7 +161,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the username property value. The username property
-                ## @return a api_user_connection_username
+                ## @return a string
                 ## 
                 def username
                     return @username
@@ -227,148 +227,6 @@ module TeamBattlesSdk
                     def serialize(writer)
                         raise StandardError, 'writer cannot be null' if writer.nil?
                         writer.write_object_value("ApiUserConnection_connectedAtMember1", @api_user_connection_connected_at_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiUserConnectionUrlMember1, string
-                class ApiUserConnectionUrl
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiUserConnectionUrlMember1
-                    @api_user_connection_url_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiUserConnection_urlMember1 property value. Composed type representation for type ApiUserConnectionUrlMember1
-                    ## @return a api_user_connection_url_member1
-                    ## 
-                    def api_user_connection_url_member1
-                        return @api_user_connection_url_member1
-                    end
-                    ## 
-                    ## Sets the ApiUserConnection_urlMember1 property value. Composed type representation for type ApiUserConnectionUrlMember1
-                    ## @param value Value to set for the ApiUserConnection_urlMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_user_connection_url_member1=(value)
-                        @api_user_connection_url_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_user_connection_url
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiUserConnectionUrl.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiUserConnection_urlMember1" => lambda {|n| @api_user_connection_url_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiUserConnectionUrlMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiUserConnection_urlMember1", @api_user_connection_url_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiUserConnectionUsernameMember1, string
-                class ApiUserConnectionUsername
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiUserConnectionUsernameMember1
-                    @api_user_connection_username_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiUserConnection_usernameMember1 property value. Composed type representation for type ApiUserConnectionUsernameMember1
-                    ## @return a api_user_connection_username_member1
-                    ## 
-                    def api_user_connection_username_member1
-                        return @api_user_connection_username_member1
-                    end
-                    ## 
-                    ## Sets the ApiUserConnection_usernameMember1 property value. Composed type representation for type ApiUserConnectionUsernameMember1
-                    ## @param value Value to set for the ApiUserConnection_usernameMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_user_connection_username_member1=(value)
-                        @api_user_connection_username_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_user_connection_username
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiUserConnectionUsername.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiUserConnection_usernameMember1" => lambda {|n| @api_user_connection_username_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiUserConnectionUsernameMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiUserConnection_usernameMember1", @api_user_connection_username_member1)
                         writer.write_string_value("string", @string)
                     end
                     ## 

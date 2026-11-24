@@ -23,9 +23,9 @@ class TournamentProfile implements AdditionalDataHolder, Parsable
     private ?string $approvalStatus = null;
     
     /**
-     * @var TournamentProfile_bannerUrl|null $bannerUrl Banner image URL.
+     * @var string|null $bannerUrl Banner image URL.
     */
-    private ?TournamentProfile_bannerUrl $bannerUrl = null;
+    private ?string $bannerUrl = null;
     
     /**
      * @var TournamentFormat|null $format Bracket format of a tournament.
@@ -43,9 +43,9 @@ class TournamentProfile implements AdditionalDataHolder, Parsable
     private ?bool $isPubliclyListed = null;
     
     /**
-     * @var TournamentProfile_logoUrl|null $logoUrl Logo image URL.
+     * @var string|null $logoUrl Logo image URL.
     */
-    private ?TournamentProfile_logoUrl $logoUrl = null;
+    private ?string $logoUrl = null;
     
     /**
      * @var int|null $maxParticipants Participant cap.
@@ -126,9 +126,9 @@ class TournamentProfile implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the bannerUrl property value. Banner image URL.
-     * @return TournamentProfile_bannerUrl|null
+     * @return string|null
     */
-    public function getBannerUrl(): ?TournamentProfile_bannerUrl {
+    public function getBannerUrl(): ?string {
         return $this->bannerUrl;
     }
 
@@ -140,11 +140,11 @@ class TournamentProfile implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'approvalStatus' => fn(ParseNode $n) => $o->setApprovalStatus($n->getStringValue()),
-            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getObjectValue([TournamentProfile_bannerUrl::class, 'createFromDiscriminatorValue'])),
+            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getStringValue()),
             'format' => fn(ParseNode $n) => $o->setFormat($n->getEnumValue(TournamentFormat::class)),
             '_id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'isPubliclyListed' => fn(ParseNode $n) => $o->setIsPubliclyListed($n->getBooleanValue()),
-            'logoUrl' => fn(ParseNode $n) => $o->setLogoUrl($n->getObjectValue([TournamentProfile_logoUrl::class, 'createFromDiscriminatorValue'])),
+            'logoUrl' => fn(ParseNode $n) => $o->setLogoUrl($n->getStringValue()),
             'maxParticipants' => fn(ParseNode $n) => $o->setMaxParticipants($n->getIntegerValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'needsAttention' => fn(ParseNode $n) => $o->setNeedsAttention($n->getBooleanValue()),
@@ -183,9 +183,9 @@ class TournamentProfile implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the logoUrl property value. Logo image URL.
-     * @return TournamentProfile_logoUrl|null
+     * @return string|null
     */
-    public function getLogoUrl(): ?TournamentProfile_logoUrl {
+    public function getLogoUrl(): ?string {
         return $this->logoUrl;
     }
 
@@ -267,11 +267,11 @@ class TournamentProfile implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('approvalStatus', $this->getApprovalStatus());
-        $writer->writeObjectValue('bannerUrl', $this->getBannerUrl());
+        $writer->writeStringValue('bannerUrl', $this->getBannerUrl());
         $writer->writeEnumValue('format', $this->getFormat());
         $writer->writeStringValue('_id', $this->getId());
         $writer->writeBooleanValue('isPubliclyListed', $this->getIsPubliclyListed());
-        $writer->writeObjectValue('logoUrl', $this->getLogoUrl());
+        $writer->writeStringValue('logoUrl', $this->getLogoUrl());
         $writer->writeIntegerValue('maxParticipants', $this->getMaxParticipants());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeBooleanValue('needsAttention', $this->getNeedsAttention());
@@ -302,9 +302,9 @@ class TournamentProfile implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the bannerUrl property value. Banner image URL.
-     * @param TournamentProfile_bannerUrl|null $value Value to set for the bannerUrl property.
+     * @param string|null $value Value to set for the bannerUrl property.
     */
-    public function setBannerUrl(?TournamentProfile_bannerUrl $value): void {
+    public function setBannerUrl(?string $value): void {
         $this->bannerUrl = $value;
     }
 
@@ -334,9 +334,9 @@ class TournamentProfile implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the logoUrl property value. Logo image URL.
-     * @param TournamentProfile_logoUrl|null $value Value to set for the logoUrl property.
+     * @param string|null $value Value to set for the logoUrl property.
     */
-    public function setLogoUrl(?TournamentProfile_logoUrl $value): void {
+    public function setLogoUrl(?string $value): void {
         $this->logoUrl = $value;
     }
 

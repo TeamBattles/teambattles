@@ -1,7 +1,6 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './tournament_invite_status.dart';
-import './tournament_invite_team_avatar_url.dart';
 
 /// auto generated
 /// A team invite issued by the organizer.
@@ -17,7 +16,7 @@ class TournamentInvite implements Parsable {
     ///  State of a tournament team invite.
     TournamentInviteStatus? status;
     ///  Invited team's avatar URL.
-    TournamentInviteTeamAvatarUrl? teamAvatarUrl;
+    String? teamAvatarUrl;
     ///  Invited team's ID.
     String? teamId;
     ///  Invited team's display name.
@@ -36,7 +35,7 @@ class TournamentInvite implements Parsable {
         deserializerMap['invitedByUserId'] = (node) => invitedByUserId = node.getStringValue();
         deserializerMap['respondedAt'] = (node) => respondedAt = node.getDoubleValue();
         deserializerMap['status'] = (node) => status = node.getEnumValue<TournamentInviteStatus>((stringValue) => TournamentInviteStatus.values.where((enumVal) => enumVal.value == stringValue).firstOrNull);
-        deserializerMap['teamAvatarUrl'] = (node) => teamAvatarUrl = node.getObjectValue<TournamentInviteTeamAvatarUrl>(TournamentInviteTeamAvatarUrl.createFromDiscriminatorValue);
+        deserializerMap['teamAvatarUrl'] = (node) => teamAvatarUrl = node.getStringValue();
         deserializerMap['teamId'] = (node) => teamId = node.getStringValue();
         deserializerMap['teamName'] = (node) => teamName = node.getStringValue();
         return deserializerMap;
@@ -50,7 +49,7 @@ class TournamentInvite implements Parsable {
         writer.writeStringValue('invitedByUserId', invitedByUserId);
         writer.writeDoubleValue('respondedAt', respondedAt);
         writer.writeEnumValue<TournamentInviteStatus>('status', status, (e) => e?.value);
-        writer.writeObjectValue<TournamentInviteTeamAvatarUrl>('teamAvatarUrl', teamAvatarUrl);
+        writer.writeStringValue('teamAvatarUrl', teamAvatarUrl);
         writer.writeStringValue('teamId', teamId);
         writer.writeStringValue('teamName', teamName);
     }

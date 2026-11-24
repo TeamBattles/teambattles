@@ -4,9 +4,6 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .matches_request_body_cursor import MatchesRequestBody_cursor
-
 @dataclass
 class MatchesRequestBody(AdditionalDataHolder, Parsable):
     """
@@ -22,7 +19,7 @@ class MatchesRequestBody(AdditionalDataHolder, Parsable):
     # ISO 8601; only matches created at or before this time.
     created_before: Optional[str] = None
     # Opaque continuation cursor from a prior page's continueCursor.
-    cursor: Optional[MatchesRequestBody_cursor] = None
+    cursor: Optional[str] = None
     # Exclude matches with these MatchStatus codes; unknown values are ignored.
     exclude_statuses: Optional[list[str]] = None
     # Filter to a single game by id.
@@ -52,14 +49,10 @@ class MatchesRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .matches_request_body_cursor import MatchesRequestBody_cursor
-
-        from .matches_request_body_cursor import MatchesRequestBody_cursor
-
         fields: dict[str, Callable[[Any], None]] = {
             "createdAfter": lambda n : setattr(self, 'created_after', n.get_str_value()),
             "createdBefore": lambda n : setattr(self, 'created_before', n.get_str_value()),
-            "cursor": lambda n : setattr(self, 'cursor', n.get_object_value(MatchesRequestBody_cursor)),
+            "cursor": lambda n : setattr(self, 'cursor', n.get_str_value()),
             "excludeStatuses": lambda n : setattr(self, 'exclude_statuses', n.get_collection_of_primitive_values(str)),
             "gameId": lambda n : setattr(self, 'game_id', n.get_str_value()),
             "includeStatuses": lambda n : setattr(self, 'include_statuses', n.get_collection_of_primitive_values(str)),
@@ -80,7 +73,7 @@ class MatchesRequestBody(AdditionalDataHolder, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("createdAfter", self.created_after)
         writer.write_str_value("createdBefore", self.created_before)
-        writer.write_object_value("cursor", self.cursor)
+        writer.write_str_value("cursor", self.cursor)
         writer.write_collection_of_primitive_values("excludeStatuses", self.exclude_statuses)
         writer.write_str_value("gameId", self.game_id)
         writer.write_collection_of_primitive_values("includeStatuses", self.include_statuses)

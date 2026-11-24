@@ -6,10 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .api_own_connection_connected_at import ApiOwnConnection_connectedAt
-    from .api_own_connection_gaming_platform import ApiOwnConnection_gamingPlatform
-    from .api_own_connection_region import ApiOwnConnection_region
-    from .api_own_connection_url import ApiOwnConnection_url
-    from .api_own_connection_username import ApiOwnConnection_username
 
 @dataclass
 class ApiOwnConnection(Parsable):
@@ -19,7 +15,7 @@ class ApiOwnConnection(Parsable):
     # The connectedAt property
     connected_at: Optional[ApiOwnConnection_connectedAt] = None
     # Gaming platform (e.g. pc / console), when set.
-    gaming_platform: Optional[ApiOwnConnection_gamingPlatform] = None
+    gaming_platform: Optional[str] = None
     # Connection ID.
     id: Optional[str] = None
     # The isPrimary property
@@ -31,13 +27,13 @@ class ApiOwnConnection(Parsable):
     # Connected platform.
     platform: Optional[str] = None
     # Connection region, when set.
-    region: Optional[ApiOwnConnection_region] = None
+    region: Optional[str] = None
     # Whether the owner has chosen to show this connection on their profile.
     show_on_profile: Optional[bool] = None
     # The url property
-    url: Optional[ApiOwnConnection_url] = None
+    url: Optional[str] = None
     # The username property
-    username: Optional[ApiOwnConnection_username] = None
+    username: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApiOwnConnection:
@@ -56,29 +52,21 @@ class ApiOwnConnection(Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .api_own_connection_connected_at import ApiOwnConnection_connectedAt
-        from .api_own_connection_gaming_platform import ApiOwnConnection_gamingPlatform
-        from .api_own_connection_region import ApiOwnConnection_region
-        from .api_own_connection_url import ApiOwnConnection_url
-        from .api_own_connection_username import ApiOwnConnection_username
 
         from .api_own_connection_connected_at import ApiOwnConnection_connectedAt
-        from .api_own_connection_gaming_platform import ApiOwnConnection_gamingPlatform
-        from .api_own_connection_region import ApiOwnConnection_region
-        from .api_own_connection_url import ApiOwnConnection_url
-        from .api_own_connection_username import ApiOwnConnection_username
 
         fields: dict[str, Callable[[Any], None]] = {
             "connectedAt": lambda n : setattr(self, 'connected_at', n.get_object_value(ApiOwnConnection_connectedAt)),
-            "gamingPlatform": lambda n : setattr(self, 'gaming_platform', n.get_object_value(ApiOwnConnection_gamingPlatform)),
+            "gamingPlatform": lambda n : setattr(self, 'gaming_platform', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isPrimary": lambda n : setattr(self, 'is_primary', n.get_bool_value()),
             "isSelfReported": lambda n : setattr(self, 'is_self_reported', n.get_bool_value()),
             "isVerified": lambda n : setattr(self, 'is_verified', n.get_bool_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_str_value()),
-            "region": lambda n : setattr(self, 'region', n.get_object_value(ApiOwnConnection_region)),
+            "region": lambda n : setattr(self, 'region', n.get_str_value()),
             "showOnProfile": lambda n : setattr(self, 'show_on_profile', n.get_bool_value()),
-            "url": lambda n : setattr(self, 'url', n.get_object_value(ApiOwnConnection_url)),
-            "username": lambda n : setattr(self, 'username', n.get_object_value(ApiOwnConnection_username)),
+            "url": lambda n : setattr(self, 'url', n.get_str_value()),
+            "username": lambda n : setattr(self, 'username', n.get_str_value()),
         }
         return fields
     
@@ -91,15 +79,15 @@ class ApiOwnConnection(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("connectedAt", self.connected_at)
-        writer.write_object_value("gamingPlatform", self.gaming_platform)
+        writer.write_str_value("gamingPlatform", self.gaming_platform)
         writer.write_str_value("id", self.id)
         writer.write_bool_value("isPrimary", self.is_primary)
         writer.write_bool_value("isSelfReported", self.is_self_reported)
         writer.write_bool_value("isVerified", self.is_verified)
         writer.write_str_value("platform", self.platform)
-        writer.write_object_value("region", self.region)
+        writer.write_str_value("region", self.region)
         writer.write_bool_value("showOnProfile", self.show_on_profile)
-        writer.write_object_value("url", self.url)
-        writer.write_object_value("username", self.username)
+        writer.write_str_value("url", self.url)
+        writer.write_str_value("username", self.username)
     
 

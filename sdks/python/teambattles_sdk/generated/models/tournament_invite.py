@@ -6,7 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .tournament_invite_status import TournamentInviteStatus
-    from .tournament_invite_team_avatar_url import TournamentInvite_teamAvatarUrl
 
 @dataclass
 class TournamentInvite(Parsable):
@@ -24,7 +23,7 @@ class TournamentInvite(Parsable):
     # State of a tournament team invite.
     status: Optional[TournamentInviteStatus] = None
     # Invited team's avatar URL.
-    team_avatar_url: Optional[TournamentInvite_teamAvatarUrl] = None
+    team_avatar_url: Optional[str] = None
     # Invited team's ID.
     team_id: Optional[str] = None
     # Invited team's display name.
@@ -47,10 +46,8 @@ class TournamentInvite(Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .tournament_invite_status import TournamentInviteStatus
-        from .tournament_invite_team_avatar_url import TournamentInvite_teamAvatarUrl
 
         from .tournament_invite_status import TournamentInviteStatus
-        from .tournament_invite_team_avatar_url import TournamentInvite_teamAvatarUrl
 
         fields: dict[str, Callable[[Any], None]] = {
             "createdAt": lambda n : setattr(self, 'created_at', n.get_float_value()),
@@ -58,7 +55,7 @@ class TournamentInvite(Parsable):
             "invitedByUserId": lambda n : setattr(self, 'invited_by_user_id', n.get_str_value()),
             "respondedAt": lambda n : setattr(self, 'responded_at', n.get_float_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(TournamentInviteStatus)),
-            "teamAvatarUrl": lambda n : setattr(self, 'team_avatar_url', n.get_object_value(TournamentInvite_teamAvatarUrl)),
+            "teamAvatarUrl": lambda n : setattr(self, 'team_avatar_url', n.get_str_value()),
             "teamId": lambda n : setattr(self, 'team_id', n.get_str_value()),
             "teamName": lambda n : setattr(self, 'team_name', n.get_str_value()),
         }
@@ -77,7 +74,7 @@ class TournamentInvite(Parsable):
         writer.write_str_value("invitedByUserId", self.invited_by_user_id)
         writer.write_float_value("respondedAt", self.responded_at)
         writer.write_enum_value("status", self.status)
-        writer.write_object_value("teamAvatarUrl", self.team_avatar_url)
+        writer.write_str_value("teamAvatarUrl", self.team_avatar_url)
         writer.write_str_value("teamId", self.team_id)
         writer.write_str_value("teamName", self.team_name)
     

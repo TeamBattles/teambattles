@@ -4,15 +4,12 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .ticket_detail_messages_created_at import TicketDetail_messages_createdAt
-
 @dataclass
 class TicketDetail_messages(Parsable):
     # The content property
     content: Optional[str] = None
     # The createdAt property
-    created_at: Optional[TicketDetail_messages_createdAt] = None
+    created_at: Optional[str] = None
     # The id property
     id: Optional[str] = None
     # The isOwnMessage property
@@ -36,13 +33,9 @@ class TicketDetail_messages(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .ticket_detail_messages_created_at import TicketDetail_messages_createdAt
-
-        from .ticket_detail_messages_created_at import TicketDetail_messages_createdAt
-
         fields: dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_str_value()),
-            "createdAt": lambda n : setattr(self, 'created_at', n.get_object_value(TicketDetail_messages_createdAt)),
+            "createdAt": lambda n : setattr(self, 'created_at', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isOwnMessage": lambda n : setattr(self, 'is_own_message', n.get_bool_value()),
             "isSystem": lambda n : setattr(self, 'is_system', n.get_bool_value()),
@@ -58,7 +51,7 @@ class TicketDetail_messages(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("content", self.content)
-        writer.write_object_value("createdAt", self.created_at)
+        writer.write_str_value("createdAt", self.created_at)
         writer.write_str_value("id", self.id)
         writer.write_bool_value("isOwnMessage", self.is_own_message)
         writer.write_bool_value("isSystem", self.is_system)

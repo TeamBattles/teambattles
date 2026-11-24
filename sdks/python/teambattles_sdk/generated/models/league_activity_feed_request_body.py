@@ -4,9 +4,6 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .league_activity_feed_request_body_cursor import LeagueActivityFeedRequestBody_cursor
-
 @dataclass
 class LeagueActivityFeedRequestBody(AdditionalDataHolder, Parsable):
     """
@@ -18,7 +15,7 @@ class LeagueActivityFeedRequestBody(AdditionalDataHolder, Parsable):
     # The limit property
     limit: Optional[int] = 25
     # The cursor property
-    cursor: Optional[LeagueActivityFeedRequestBody_cursor] = None
+    cursor: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> LeagueActivityFeedRequestBody:
@@ -36,12 +33,8 @@ class LeagueActivityFeedRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .league_activity_feed_request_body_cursor import LeagueActivityFeedRequestBody_cursor
-
-        from .league_activity_feed_request_body_cursor import LeagueActivityFeedRequestBody_cursor
-
         fields: dict[str, Callable[[Any], None]] = {
-            "cursor": lambda n : setattr(self, 'cursor', n.get_object_value(LeagueActivityFeedRequestBody_cursor)),
+            "cursor": lambda n : setattr(self, 'cursor', n.get_str_value()),
             "limit": lambda n : setattr(self, 'limit', n.get_int_value()),
         }
         return fields
@@ -54,7 +47,7 @@ class LeagueActivityFeedRequestBody(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("cursor", self.cursor)
+        writer.write_str_value("cursor", self.cursor)
         writer.write_int_value("limit", self.limit)
         writer.write_additional_data_value(self.additional_data)
     

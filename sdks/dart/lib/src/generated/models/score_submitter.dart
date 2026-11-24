@@ -1,12 +1,11 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './score_submitter_name.dart';
 
 /// auto generated
 /// Identity of the captain who submitted a score.
 class ScoreSubmitter implements Parsable {
     ///  The name property
-    ScoreSubmitterName? name;
+    String? name;
     ///  The teamId property
     String? teamId;
     ///  The userId property
@@ -20,7 +19,7 @@ class ScoreSubmitter implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['name'] = (node) => name = node.getObjectValue<ScoreSubmitterName>(ScoreSubmitterName.createFromDiscriminatorValue);
+        deserializerMap['name'] = (node) => name = node.getStringValue();
         deserializerMap['teamId'] = (node) => teamId = node.getStringValue();
         deserializerMap['userId'] = (node) => userId = node.getStringValue();
         return deserializerMap;
@@ -29,7 +28,7 @@ class ScoreSubmitter implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<ScoreSubmitterName>('name', name);
+        writer.writeStringValue('name', name);
         writer.writeStringValue('teamId', teamId);
         writer.writeStringValue('userId', userId);
     }

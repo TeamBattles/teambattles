@@ -6,10 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .api_user_trophy_awarded_at import ApiUserTrophy_awardedAt
-    from .api_user_trophy_description import ApiUserTrophy_description
-    from .api_user_trophy_icon_url import ApiUserTrophy_iconUrl
-    from .api_user_trophy_rarity import ApiUserTrophy_rarity
-    from .api_user_trophy_title import ApiUserTrophy_title
 
 @dataclass
 class ApiUserTrophy(Parsable):
@@ -19,15 +15,15 @@ class ApiUserTrophy(Parsable):
     # The awardedAt property
     awarded_at: Optional[ApiUserTrophy_awardedAt] = None
     # The description property
-    description: Optional[ApiUserTrophy_description] = None
+    description: Optional[str] = None
     # The iconUrl property
-    icon_url: Optional[ApiUserTrophy_iconUrl] = None
+    icon_url: Optional[str] = None
     # Trophy award ID.
     id: Optional[str] = None
     # The rarity property
-    rarity: Optional[ApiUserTrophy_rarity] = None
+    rarity: Optional[str] = None
     # The title property
-    title: Optional[ApiUserTrophy_title] = None
+    title: Optional[str] = None
     # Trophy definition ID.
     trophy_id: Optional[str] = None
     
@@ -48,24 +44,16 @@ class ApiUserTrophy(Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .api_user_trophy_awarded_at import ApiUserTrophy_awardedAt
-        from .api_user_trophy_description import ApiUserTrophy_description
-        from .api_user_trophy_icon_url import ApiUserTrophy_iconUrl
-        from .api_user_trophy_rarity import ApiUserTrophy_rarity
-        from .api_user_trophy_title import ApiUserTrophy_title
 
         from .api_user_trophy_awarded_at import ApiUserTrophy_awardedAt
-        from .api_user_trophy_description import ApiUserTrophy_description
-        from .api_user_trophy_icon_url import ApiUserTrophy_iconUrl
-        from .api_user_trophy_rarity import ApiUserTrophy_rarity
-        from .api_user_trophy_title import ApiUserTrophy_title
 
         fields: dict[str, Callable[[Any], None]] = {
             "awardedAt": lambda n : setattr(self, 'awarded_at', n.get_object_value(ApiUserTrophy_awardedAt)),
-            "description": lambda n : setattr(self, 'description', n.get_object_value(ApiUserTrophy_description)),
-            "iconUrl": lambda n : setattr(self, 'icon_url', n.get_object_value(ApiUserTrophy_iconUrl)),
+            "description": lambda n : setattr(self, 'description', n.get_str_value()),
+            "iconUrl": lambda n : setattr(self, 'icon_url', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "rarity": lambda n : setattr(self, 'rarity', n.get_object_value(ApiUserTrophy_rarity)),
-            "title": lambda n : setattr(self, 'title', n.get_object_value(ApiUserTrophy_title)),
+            "rarity": lambda n : setattr(self, 'rarity', n.get_str_value()),
+            "title": lambda n : setattr(self, 'title', n.get_str_value()),
             "trophyId": lambda n : setattr(self, 'trophy_id', n.get_str_value()),
         }
         return fields
@@ -79,11 +67,11 @@ class ApiUserTrophy(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("awardedAt", self.awarded_at)
-        writer.write_object_value("description", self.description)
-        writer.write_object_value("iconUrl", self.icon_url)
+        writer.write_str_value("description", self.description)
+        writer.write_str_value("iconUrl", self.icon_url)
         writer.write_str_value("id", self.id)
-        writer.write_object_value("rarity", self.rarity)
-        writer.write_object_value("title", self.title)
+        writer.write_str_value("rarity", self.rarity)
+        writer.write_str_value("title", self.title)
         writer.write_str_value("trophyId", self.trophy_id)
     
 

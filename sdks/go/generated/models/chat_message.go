@@ -11,269 +11,17 @@ type ChatMessage struct {
     // The content property
     content *string
     // The createdAt property
-    createdAt ChatMessage_ChatMessage_createdAtable
+    createdAt *string
     // The id property
     id *string
     // The replyToId property
-    replyToId ChatMessage_ChatMessage_replyToIdable
+    replyToId *string
     // The senderUserId property
     senderUserId *string
     // The senderUsername property
-    senderUsername ChatMessage_ChatMessage_senderUsernameable
+    senderUsername *string
     // The teamId property
     teamId *string
-}
-// ChatMessage_ChatMessage_createdAt composed type wrapper for classes ChatMessage_createdAtMember1able, string
-type ChatMessage_ChatMessage_createdAt struct {
-    // Composed type representation for type ChatMessage_createdAtMember1able
-    chatMessage_createdAtMember1 ChatMessage_createdAtMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewChatMessage_ChatMessage_createdAt instantiates a new ChatMessage_ChatMessage_createdAt and sets the default values.
-func NewChatMessage_ChatMessage_createdAt()(*ChatMessage_ChatMessage_createdAt) {
-    m := &ChatMessage_ChatMessage_createdAt{
-    }
-    return m
-}
-// CreateChatMessage_ChatMessage_createdAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateChatMessage_ChatMessage_createdAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewChatMessage_ChatMessage_createdAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateChatMessage_createdAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ChatMessage_createdAtMember1able); ok {
-                result.SetChatMessageCreatedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetChatMessageCreatedAtMember1 gets the ChatMessage_createdAtMember1 property value. Composed type representation for type ChatMessage_createdAtMember1able
-// returns a ChatMessage_createdAtMember1able when successful
-func (m *ChatMessage_ChatMessage_createdAt) GetChatMessageCreatedAtMember1()(ChatMessage_createdAtMember1able) {
-    return m.chatMessage_createdAtMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ChatMessage_ChatMessage_createdAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ChatMessage_ChatMessage_createdAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ChatMessage_ChatMessage_createdAt) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ChatMessage_ChatMessage_createdAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetChatMessageCreatedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetChatMessageCreatedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetChatMessageCreatedAtMember1 sets the ChatMessage_createdAtMember1 property value. Composed type representation for type ChatMessage_createdAtMember1able
-func (m *ChatMessage_ChatMessage_createdAt) SetChatMessageCreatedAtMember1(value ChatMessage_createdAtMember1able)() {
-    m.chatMessage_createdAtMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ChatMessage_ChatMessage_createdAt) SetString(value *string)() {
-    m.string = value
-}
-// ChatMessage_ChatMessage_replyToId composed type wrapper for classes ChatMessage_replyToIdMember1able, string
-type ChatMessage_ChatMessage_replyToId struct {
-    // Composed type representation for type ChatMessage_replyToIdMember1able
-    chatMessage_replyToIdMember1 ChatMessage_replyToIdMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewChatMessage_ChatMessage_replyToId instantiates a new ChatMessage_ChatMessage_replyToId and sets the default values.
-func NewChatMessage_ChatMessage_replyToId()(*ChatMessage_ChatMessage_replyToId) {
-    m := &ChatMessage_ChatMessage_replyToId{
-    }
-    return m
-}
-// CreateChatMessage_ChatMessage_replyToIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateChatMessage_ChatMessage_replyToIdFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewChatMessage_ChatMessage_replyToId()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateChatMessage_replyToIdMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ChatMessage_replyToIdMember1able); ok {
-                result.SetChatMessageReplyToIdMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetChatMessageReplyToIdMember1 gets the ChatMessage_replyToIdMember1 property value. Composed type representation for type ChatMessage_replyToIdMember1able
-// returns a ChatMessage_replyToIdMember1able when successful
-func (m *ChatMessage_ChatMessage_replyToId) GetChatMessageReplyToIdMember1()(ChatMessage_replyToIdMember1able) {
-    return m.chatMessage_replyToIdMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ChatMessage_ChatMessage_replyToId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ChatMessage_ChatMessage_replyToId) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ChatMessage_ChatMessage_replyToId) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ChatMessage_ChatMessage_replyToId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetChatMessageReplyToIdMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetChatMessageReplyToIdMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetChatMessageReplyToIdMember1 sets the ChatMessage_replyToIdMember1 property value. Composed type representation for type ChatMessage_replyToIdMember1able
-func (m *ChatMessage_ChatMessage_replyToId) SetChatMessageReplyToIdMember1(value ChatMessage_replyToIdMember1able)() {
-    m.chatMessage_replyToIdMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ChatMessage_ChatMessage_replyToId) SetString(value *string)() {
-    m.string = value
-}
-// ChatMessage_ChatMessage_senderUsername composed type wrapper for classes ChatMessage_senderUsernameMember1able, string
-type ChatMessage_ChatMessage_senderUsername struct {
-    // Composed type representation for type ChatMessage_senderUsernameMember1able
-    chatMessage_senderUsernameMember1 ChatMessage_senderUsernameMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewChatMessage_ChatMessage_senderUsername instantiates a new ChatMessage_ChatMessage_senderUsername and sets the default values.
-func NewChatMessage_ChatMessage_senderUsername()(*ChatMessage_ChatMessage_senderUsername) {
-    m := &ChatMessage_ChatMessage_senderUsername{
-    }
-    return m
-}
-// CreateChatMessage_ChatMessage_senderUsernameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateChatMessage_ChatMessage_senderUsernameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewChatMessage_ChatMessage_senderUsername()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateChatMessage_senderUsernameMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ChatMessage_senderUsernameMember1able); ok {
-                result.SetChatMessageSenderUsernameMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetChatMessageSenderUsernameMember1 gets the ChatMessage_senderUsernameMember1 property value. Composed type representation for type ChatMessage_senderUsernameMember1able
-// returns a ChatMessage_senderUsernameMember1able when successful
-func (m *ChatMessage_ChatMessage_senderUsername) GetChatMessageSenderUsernameMember1()(ChatMessage_senderUsernameMember1able) {
-    return m.chatMessage_senderUsernameMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ChatMessage_ChatMessage_senderUsername) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ChatMessage_ChatMessage_senderUsername) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ChatMessage_ChatMessage_senderUsername) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ChatMessage_ChatMessage_senderUsername) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetChatMessageSenderUsernameMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetChatMessageSenderUsernameMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetChatMessageSenderUsernameMember1 sets the ChatMessage_senderUsernameMember1 property value. Composed type representation for type ChatMessage_senderUsernameMember1able
-func (m *ChatMessage_ChatMessage_senderUsername) SetChatMessageSenderUsernameMember1(value ChatMessage_senderUsernameMember1able)() {
-    m.chatMessage_senderUsernameMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ChatMessage_ChatMessage_senderUsername) SetString(value *string)() {
-    m.string = value
-}
-type ChatMessage_ChatMessage_createdAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetChatMessageCreatedAtMember1()(ChatMessage_createdAtMember1able)
-    GetString()(*string)
-    SetChatMessageCreatedAtMember1(value ChatMessage_createdAtMember1able)()
-    SetString(value *string)()
-}
-type ChatMessage_ChatMessage_replyToIdable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetChatMessageReplyToIdMember1()(ChatMessage_replyToIdMember1able)
-    GetString()(*string)
-    SetChatMessageReplyToIdMember1(value ChatMessage_replyToIdMember1able)()
-    SetString(value *string)()
-}
-type ChatMessage_ChatMessage_senderUsernameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetChatMessageSenderUsernameMember1()(ChatMessage_senderUsernameMember1able)
-    GetString()(*string)
-    SetChatMessageSenderUsernameMember1(value ChatMessage_senderUsernameMember1able)()
-    SetString(value *string)()
 }
 // NewChatMessage instantiates a new ChatMessage and sets the default values.
 func NewChatMessage()(*ChatMessage) {
@@ -292,8 +40,8 @@ func (m *ChatMessage) GetContent()(*string) {
     return m.content
 }
 // GetCreatedAt gets the createdAt property value. The createdAt property
-// returns a ChatMessage_ChatMessage_createdAtable when successful
-func (m *ChatMessage) GetCreatedAt()(ChatMessage_ChatMessage_createdAtable) {
+// returns a *string when successful
+func (m *ChatMessage) GetCreatedAt()(*string) {
     return m.createdAt
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -311,12 +59,12 @@ func (m *ChatMessage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["createdAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateChatMessage_ChatMessage_createdAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCreatedAt(val.(ChatMessage_ChatMessage_createdAtable))
+            m.SetCreatedAt(val)
         }
         return nil
     }
@@ -331,12 +79,12 @@ func (m *ChatMessage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["replyToId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateChatMessage_ChatMessage_replyToIdFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetReplyToId(val.(ChatMessage_ChatMessage_replyToIdable))
+            m.SetReplyToId(val)
         }
         return nil
     }
@@ -351,12 +99,12 @@ func (m *ChatMessage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["senderUsername"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateChatMessage_ChatMessage_senderUsernameFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSenderUsername(val.(ChatMessage_ChatMessage_senderUsernameable))
+            m.SetSenderUsername(val)
         }
         return nil
     }
@@ -378,8 +126,8 @@ func (m *ChatMessage) GetId()(*string) {
     return m.id
 }
 // GetReplyToId gets the replyToId property value. The replyToId property
-// returns a ChatMessage_ChatMessage_replyToIdable when successful
-func (m *ChatMessage) GetReplyToId()(ChatMessage_ChatMessage_replyToIdable) {
+// returns a *string when successful
+func (m *ChatMessage) GetReplyToId()(*string) {
     return m.replyToId
 }
 // GetSenderUserId gets the senderUserId property value. The senderUserId property
@@ -388,8 +136,8 @@ func (m *ChatMessage) GetSenderUserId()(*string) {
     return m.senderUserId
 }
 // GetSenderUsername gets the senderUsername property value. The senderUsername property
-// returns a ChatMessage_ChatMessage_senderUsernameable when successful
-func (m *ChatMessage) GetSenderUsername()(ChatMessage_ChatMessage_senderUsernameable) {
+// returns a *string when successful
+func (m *ChatMessage) GetSenderUsername()(*string) {
     return m.senderUsername
 }
 // GetTeamId gets the teamId property value. The teamId property
@@ -406,7 +154,7 @@ func (m *ChatMessage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteObjectValue("createdAt", m.GetCreatedAt())
+        err := writer.WriteStringValue("createdAt", m.GetCreatedAt())
         if err != nil {
             return err
         }
@@ -418,7 +166,7 @@ func (m *ChatMessage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteObjectValue("replyToId", m.GetReplyToId())
+        err := writer.WriteStringValue("replyToId", m.GetReplyToId())
         if err != nil {
             return err
         }
@@ -430,7 +178,7 @@ func (m *ChatMessage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteObjectValue("senderUsername", m.GetSenderUsername())
+        err := writer.WriteStringValue("senderUsername", m.GetSenderUsername())
         if err != nil {
             return err
         }
@@ -448,7 +196,7 @@ func (m *ChatMessage) SetContent(value *string)() {
     m.content = value
 }
 // SetCreatedAt sets the createdAt property value. The createdAt property
-func (m *ChatMessage) SetCreatedAt(value ChatMessage_ChatMessage_createdAtable)() {
+func (m *ChatMessage) SetCreatedAt(value *string)() {
     m.createdAt = value
 }
 // SetId sets the id property value. The id property
@@ -456,7 +204,7 @@ func (m *ChatMessage) SetId(value *string)() {
     m.id = value
 }
 // SetReplyToId sets the replyToId property value. The replyToId property
-func (m *ChatMessage) SetReplyToId(value ChatMessage_ChatMessage_replyToIdable)() {
+func (m *ChatMessage) SetReplyToId(value *string)() {
     m.replyToId = value
 }
 // SetSenderUserId sets the senderUserId property value. The senderUserId property
@@ -464,7 +212,7 @@ func (m *ChatMessage) SetSenderUserId(value *string)() {
     m.senderUserId = value
 }
 // SetSenderUsername sets the senderUsername property value. The senderUsername property
-func (m *ChatMessage) SetSenderUsername(value ChatMessage_ChatMessage_senderUsernameable)() {
+func (m *ChatMessage) SetSenderUsername(value *string)() {
     m.senderUsername = value
 }
 // SetTeamId sets the teamId property value. The teamId property
@@ -474,17 +222,17 @@ func (m *ChatMessage) SetTeamId(value *string)() {
 type ChatMessageable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetContent()(*string)
-    GetCreatedAt()(ChatMessage_ChatMessage_createdAtable)
+    GetCreatedAt()(*string)
     GetId()(*string)
-    GetReplyToId()(ChatMessage_ChatMessage_replyToIdable)
+    GetReplyToId()(*string)
     GetSenderUserId()(*string)
-    GetSenderUsername()(ChatMessage_ChatMessage_senderUsernameable)
+    GetSenderUsername()(*string)
     GetTeamId()(*string)
     SetContent(value *string)()
-    SetCreatedAt(value ChatMessage_ChatMessage_createdAtable)()
+    SetCreatedAt(value *string)()
     SetId(value *string)()
-    SetReplyToId(value ChatMessage_ChatMessage_replyToIdable)()
+    SetReplyToId(value *string)()
     SetSenderUserId(value *string)()
-    SetSenderUsername(value ChatMessage_ChatMessage_senderUsernameable)()
+    SetSenderUsername(value *string)()
     SetTeamId(value *string)()
 }

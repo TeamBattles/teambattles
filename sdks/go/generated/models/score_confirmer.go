@@ -10,95 +10,11 @@ import (
 // ScoreConfirmer identity of the captain who confirmed a score.
 type ScoreConfirmer struct {
     // Confirmation time (ISO 8601).
-    confirmedAt ScoreConfirmer_ScoreConfirmer_confirmedAtable
+    confirmedAt *string
     // The teamId property
     teamId *string
     // The userId property
     userId *string
-}
-// ScoreConfirmer_ScoreConfirmer_confirmedAt composed type wrapper for classes ScoreConfirmer_confirmedAtMember1able, string
-type ScoreConfirmer_ScoreConfirmer_confirmedAt struct {
-    // Composed type representation for type ScoreConfirmer_confirmedAtMember1able
-    scoreConfirmer_confirmedAtMember1 ScoreConfirmer_confirmedAtMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewScoreConfirmer_ScoreConfirmer_confirmedAt instantiates a new ScoreConfirmer_ScoreConfirmer_confirmedAt and sets the default values.
-func NewScoreConfirmer_ScoreConfirmer_confirmedAt()(*ScoreConfirmer_ScoreConfirmer_confirmedAt) {
-    m := &ScoreConfirmer_ScoreConfirmer_confirmedAt{
-    }
-    return m
-}
-// CreateScoreConfirmer_ScoreConfirmer_confirmedAtFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateScoreConfirmer_ScoreConfirmer_confirmedAtFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewScoreConfirmer_ScoreConfirmer_confirmedAt()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateScoreConfirmer_confirmedAtMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ScoreConfirmer_confirmedAtMember1able); ok {
-                result.SetScoreConfirmerConfirmedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ScoreConfirmer_ScoreConfirmer_confirmedAt) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ScoreConfirmer_ScoreConfirmer_confirmedAt) GetIsComposedType()(bool) {
-    return true
-}
-// GetScoreConfirmerConfirmedAtMember1 gets the ScoreConfirmer_confirmedAtMember1 property value. Composed type representation for type ScoreConfirmer_confirmedAtMember1able
-// returns a ScoreConfirmer_confirmedAtMember1able when successful
-func (m *ScoreConfirmer_ScoreConfirmer_confirmedAt) GetScoreConfirmerConfirmedAtMember1()(ScoreConfirmer_confirmedAtMember1able) {
-    return m.scoreConfirmer_confirmedAtMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ScoreConfirmer_ScoreConfirmer_confirmedAt) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ScoreConfirmer_ScoreConfirmer_confirmedAt) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetScoreConfirmerConfirmedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetScoreConfirmerConfirmedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetScoreConfirmerConfirmedAtMember1 sets the ScoreConfirmer_confirmedAtMember1 property value. Composed type representation for type ScoreConfirmer_confirmedAtMember1able
-func (m *ScoreConfirmer_ScoreConfirmer_confirmedAt) SetScoreConfirmerConfirmedAtMember1(value ScoreConfirmer_confirmedAtMember1able)() {
-    m.scoreConfirmer_confirmedAtMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ScoreConfirmer_ScoreConfirmer_confirmedAt) SetString(value *string)() {
-    m.string = value
-}
-type ScoreConfirmer_ScoreConfirmer_confirmedAtable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetScoreConfirmerConfirmedAtMember1()(ScoreConfirmer_confirmedAtMember1able)
-    GetString()(*string)
-    SetScoreConfirmerConfirmedAtMember1(value ScoreConfirmer_confirmedAtMember1able)()
-    SetString(value *string)()
 }
 // NewScoreConfirmer instantiates a new ScoreConfirmer and sets the default values.
 func NewScoreConfirmer()(*ScoreConfirmer) {
@@ -112,8 +28,8 @@ func CreateScoreConfirmerFromDiscriminatorValue(parseNode i878a80d2330e89d268963
     return NewScoreConfirmer(), nil
 }
 // GetConfirmedAt gets the confirmedAt property value. Confirmation time (ISO 8601).
-// returns a ScoreConfirmer_ScoreConfirmer_confirmedAtable when successful
-func (m *ScoreConfirmer) GetConfirmedAt()(ScoreConfirmer_ScoreConfirmer_confirmedAtable) {
+// returns a *string when successful
+func (m *ScoreConfirmer) GetConfirmedAt()(*string) {
     return m.confirmedAt
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -121,12 +37,12 @@ func (m *ScoreConfirmer) GetConfirmedAt()(ScoreConfirmer_ScoreConfirmer_confirme
 func (m *ScoreConfirmer) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["confirmedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateScoreConfirmer_ScoreConfirmer_confirmedAtFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetConfirmedAt(val.(ScoreConfirmer_ScoreConfirmer_confirmedAtable))
+            m.SetConfirmedAt(val)
         }
         return nil
     }
@@ -165,7 +81,7 @@ func (m *ScoreConfirmer) GetUserId()(*string) {
 // Serialize serializes information the current object
 func (m *ScoreConfirmer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("confirmedAt", m.GetConfirmedAt())
+        err := writer.WriteStringValue("confirmedAt", m.GetConfirmedAt())
         if err != nil {
             return err
         }
@@ -185,7 +101,7 @@ func (m *ScoreConfirmer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     return nil
 }
 // SetConfirmedAt sets the confirmedAt property value. Confirmation time (ISO 8601).
-func (m *ScoreConfirmer) SetConfirmedAt(value ScoreConfirmer_ScoreConfirmer_confirmedAtable)() {
+func (m *ScoreConfirmer) SetConfirmedAt(value *string)() {
     m.confirmedAt = value
 }
 // SetTeamId sets the teamId property value. The teamId property
@@ -198,10 +114,10 @@ func (m *ScoreConfirmer) SetUserId(value *string)() {
 }
 type ScoreConfirmerable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetConfirmedAt()(ScoreConfirmer_ScoreConfirmer_confirmedAtable)
+    GetConfirmedAt()(*string)
     GetTeamId()(*string)
     GetUserId()(*string)
-    SetConfirmedAt(value ScoreConfirmer_ScoreConfirmer_confirmedAtable)()
+    SetConfirmedAt(value *string)()
     SetTeamId(value *string)()
     SetUserId(value *string)()
 }

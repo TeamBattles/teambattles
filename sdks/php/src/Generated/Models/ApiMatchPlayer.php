@@ -17,14 +17,14 @@ class ApiMatchPlayer implements Parsable
     private ?ApiMatchPlayer_attendanceStatus $attendanceStatus = null;
     
     /**
-     * @var ApiMatchPlayer_avatarUrl|null $avatarUrl The avatarUrl property
+     * @var string|null $avatarUrl The avatarUrl property
     */
-    private ?ApiMatchPlayer_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
-     * @var ApiMatchPlayer_checkedInAt|null $checkedInAt The checkedInAt property
+     * @var string|null $checkedInAt The checkedInAt property
     */
-    private ?ApiMatchPlayer_checkedInAt $checkedInAt = null;
+    private ?string $checkedInAt = null;
     
     /**
      * @var string|null $id The id property
@@ -37,9 +37,9 @@ class ApiMatchPlayer implements Parsable
     private ?bool $isCheckedIn = null;
     
     /**
-     * @var ApiMatchPlayer_name|null $name The name property
+     * @var string|null $name The name property
     */
-    private ?ApiMatchPlayer_name $name = null;
+    private ?string $name = null;
     
     /**
      * @var ApiMatchPlayer_rosterType|null $rosterType The rosterType property
@@ -57,9 +57,9 @@ class ApiMatchPlayer implements Parsable
     private ?string $userId = null;
     
     /**
-     * @var ApiMatchPlayer_username|null $username The username property
+     * @var string|null $username The username property
     */
-    private ?ApiMatchPlayer_username $username = null;
+    private ?string $username = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -80,17 +80,17 @@ class ApiMatchPlayer implements Parsable
 
     /**
      * Gets the avatarUrl property value. The avatarUrl property
-     * @return ApiMatchPlayer_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?ApiMatchPlayer_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
     /**
      * Gets the checkedInAt property value. The checkedInAt property
-     * @return ApiMatchPlayer_checkedInAt|null
+     * @return string|null
     */
-    public function getCheckedInAt(): ?ApiMatchPlayer_checkedInAt {
+    public function getCheckedInAt(): ?string {
         return $this->checkedInAt;
     }
 
@@ -102,15 +102,15 @@ class ApiMatchPlayer implements Parsable
         $o = $this;
         return  [
             'attendanceStatus' => fn(ParseNode $n) => $o->setAttendanceStatus($n->getEnumValue(ApiMatchPlayer_attendanceStatus::class)),
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([ApiMatchPlayer_avatarUrl::class, 'createFromDiscriminatorValue'])),
-            'checkedInAt' => fn(ParseNode $n) => $o->setCheckedInAt($n->getObjectValue([ApiMatchPlayer_checkedInAt::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
+            'checkedInAt' => fn(ParseNode $n) => $o->setCheckedInAt($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'isCheckedIn' => fn(ParseNode $n) => $o->setIsCheckedIn($n->getBooleanValue()),
-            'name' => fn(ParseNode $n) => $o->setName($n->getObjectValue([ApiMatchPlayer_name::class, 'createFromDiscriminatorValue'])),
+            'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'rosterType' => fn(ParseNode $n) => $o->setRosterType($n->getEnumValue(ApiMatchPlayer_rosterType::class)),
             'teamId' => fn(ParseNode $n) => $o->setTeamId($n->getStringValue()),
             'userId' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
-            'username' => fn(ParseNode $n) => $o->setUsername($n->getObjectValue([ApiMatchPlayer_username::class, 'createFromDiscriminatorValue'])),
+            'username' => fn(ParseNode $n) => $o->setUsername($n->getStringValue()),
         ];
     }
 
@@ -132,9 +132,9 @@ class ApiMatchPlayer implements Parsable
 
     /**
      * Gets the name property value. The name property
-     * @return ApiMatchPlayer_name|null
+     * @return string|null
     */
-    public function getName(): ?ApiMatchPlayer_name {
+    public function getName(): ?string {
         return $this->name;
     }
 
@@ -164,9 +164,9 @@ class ApiMatchPlayer implements Parsable
 
     /**
      * Gets the username property value. The username property
-     * @return ApiMatchPlayer_username|null
+     * @return string|null
     */
-    public function getUsername(): ?ApiMatchPlayer_username {
+    public function getUsername(): ?string {
         return $this->username;
     }
 
@@ -176,15 +176,15 @@ class ApiMatchPlayer implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeEnumValue('attendanceStatus', $this->getAttendanceStatus());
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
-        $writer->writeObjectValue('checkedInAt', $this->getCheckedInAt());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('checkedInAt', $this->getCheckedInAt());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeBooleanValue('isCheckedIn', $this->getIsCheckedIn());
-        $writer->writeObjectValue('name', $this->getName());
+        $writer->writeStringValue('name', $this->getName());
         $writer->writeEnumValue('rosterType', $this->getRosterType());
         $writer->writeStringValue('teamId', $this->getTeamId());
         $writer->writeStringValue('userId', $this->getUserId());
-        $writer->writeObjectValue('username', $this->getUsername());
+        $writer->writeStringValue('username', $this->getUsername());
     }
 
     /**
@@ -197,17 +197,17 @@ class ApiMatchPlayer implements Parsable
 
     /**
      * Sets the avatarUrl property value. The avatarUrl property
-     * @param ApiMatchPlayer_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?ApiMatchPlayer_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 
     /**
      * Sets the checkedInAt property value. The checkedInAt property
-     * @param ApiMatchPlayer_checkedInAt|null $value Value to set for the checkedInAt property.
+     * @param string|null $value Value to set for the checkedInAt property.
     */
-    public function setCheckedInAt(?ApiMatchPlayer_checkedInAt $value): void {
+    public function setCheckedInAt(?string $value): void {
         $this->checkedInAt = $value;
     }
 
@@ -229,9 +229,9 @@ class ApiMatchPlayer implements Parsable
 
     /**
      * Sets the name property value. The name property
-     * @param ApiMatchPlayer_name|null $value Value to set for the name property.
+     * @param string|null $value Value to set for the name property.
     */
-    public function setName(?ApiMatchPlayer_name $value): void {
+    public function setName(?string $value): void {
         $this->name = $value;
     }
 
@@ -261,9 +261,9 @@ class ApiMatchPlayer implements Parsable
 
     /**
      * Sets the username property value. The username property
-     * @param ApiMatchPlayer_username|null $value Value to set for the username property.
+     * @param string|null $value Value to set for the username property.
     */
-    public function setUsername(?ApiMatchPlayer_username $value): void {
+    public function setUsername(?string $value): void {
         $this->username = $value;
     }
 

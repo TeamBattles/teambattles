@@ -24,18 +24,18 @@ namespace TeamBattles.Sdk.Models
         /// <summary>League avatar image URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_avatarUrl? AvatarUrl { get; set; }
+        public string? AvatarUrl { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_avatarUrl AvatarUrl { get; set; }
+        public string AvatarUrl { get; set; }
 #endif
         /// <summary>League banner image URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_bannerUrl? BannerUrl { get; set; }
+        public string? BannerUrl { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_bannerUrl BannerUrl { get; set; }
+        public string BannerUrl { get; set; }
 #endif
         /// <summary>Creation timestamp (epoch milliseconds).</summary>
         public double? CreatedAt { get; set; }
@@ -122,8 +122,8 @@ namespace TeamBattles.Sdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "activeSeasons", n => { ActiveSeasons = n.GetCollectionOfObjectValues<global::TeamBattles.Sdk.Models.LeagueProfile_activeSeasons>(global::TeamBattles.Sdk.Models.LeagueProfile_activeSeasons.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "avatarUrl", n => { AvatarUrl = n.GetObjectValue<global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_avatarUrl>(global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_avatarUrl.CreateFromDiscriminatorValue); } },
-                { "bannerUrl", n => { BannerUrl = n.GetObjectValue<global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_bannerUrl>(global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_bannerUrl.CreateFromDiscriminatorValue); } },
+                { "avatarUrl", n => { AvatarUrl = n.GetStringValue(); } },
+                { "bannerUrl", n => { BannerUrl = n.GetStringValue(); } },
                 { "createdAt", n => { CreatedAt = n.GetDoubleValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "games", n => { Games = n.GetCollectionOfObjectValues<global::TeamBattles.Sdk.Models.LeagueProfile_games>(global::TeamBattles.Sdk.Models.LeagueProfile_games.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -146,8 +146,8 @@ namespace TeamBattles.Sdk.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::TeamBattles.Sdk.Models.LeagueProfile_activeSeasons>("activeSeasons", ActiveSeasons);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_avatarUrl>("avatarUrl", AvatarUrl);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_bannerUrl>("bannerUrl", BannerUrl);
+            writer.WriteStringValue("avatarUrl", AvatarUrl);
+            writer.WriteStringValue("bannerUrl", BannerUrl);
             writer.WriteDoubleValue("createdAt", CreatedAt);
             writer.WriteStringValue("description", Description);
             writer.WriteCollectionOfObjectValues<global::TeamBattles.Sdk.Models.LeagueProfile_games>("games", Games);
@@ -160,142 +160,6 @@ namespace TeamBattles.Sdk.Models
             writer.WriteIntValue("staffCount", StaffCount);
             writer.WriteStringValue("status", Status);
             writer.WriteIntValue("teamCount", TeamCount);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.LeagueProfile_avatarUrlMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class LeagueProfile_avatarUrl : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.LeagueProfile_avatarUrlMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.LeagueProfile_avatarUrlMember1? LeagueProfileAvatarUrlMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.LeagueProfile_avatarUrlMember1 LeagueProfileAvatarUrlMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_avatarUrl"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_avatarUrl CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_avatarUrl();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.LeagueProfileAvatarUrlMember1 = new global::TeamBattles.Sdk.Models.LeagueProfile_avatarUrlMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(LeagueProfileAvatarUrlMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(LeagueProfileAvatarUrlMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.LeagueProfile_avatarUrlMember1>(null, LeagueProfileAvatarUrlMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.LeagueProfile_bannerUrlMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class LeagueProfile_bannerUrl : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.LeagueProfile_bannerUrlMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.LeagueProfile_bannerUrlMember1? LeagueProfileBannerUrlMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.LeagueProfile_bannerUrlMember1 LeagueProfileBannerUrlMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_bannerUrl"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_bannerUrl CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.LeagueProfile.LeagueProfile_bannerUrl();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.LeagueProfileBannerUrlMember1 = new global::TeamBattles.Sdk.Models.LeagueProfile_bannerUrlMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(LeagueProfileBannerUrlMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(LeagueProfileBannerUrlMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.LeagueProfile_bannerUrlMember1>(null, LeagueProfileBannerUrlMember1);
-                }
-            }
         }
     }
 }

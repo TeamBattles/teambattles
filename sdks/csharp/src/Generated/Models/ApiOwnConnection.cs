@@ -24,10 +24,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Gaming platform (e.g. pc / console), when set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_gamingPlatform? GamingPlatform { get; set; }
+        public string? GamingPlatform { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_gamingPlatform GamingPlatform { get; set; }
+        public string GamingPlatform { get; set; }
 #endif
         /// <summary>Connection ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -54,28 +54,28 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Connection region, when set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_region? Region { get; set; }
+        public string? Region { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_region Region { get; set; }
+        public string Region { get; set; }
 #endif
         /// <summary>Whether the owner has chosen to show this connection on their profile.</summary>
         public bool? ShowOnProfile { get; set; }
         /// <summary>The url property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_url? Url { get; set; }
+        public string? Url { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_url Url { get; set; }
+        public string Url { get; set; }
 #endif
         /// <summary>The username property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_username? Username { get; set; }
+        public string? Username { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_username Username { get; set; }
+        public string Username { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -96,16 +96,16 @@ namespace TeamBattles.Sdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "connectedAt", n => { ConnectedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_connectedAt>(global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_connectedAt.CreateFromDiscriminatorValue); } },
-                { "gamingPlatform", n => { GamingPlatform = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_gamingPlatform>(global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_gamingPlatform.CreateFromDiscriminatorValue); } },
+                { "gamingPlatform", n => { GamingPlatform = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isPrimary", n => { IsPrimary = n.GetBoolValue(); } },
                 { "isSelfReported", n => { IsSelfReported = n.GetBoolValue(); } },
                 { "isVerified", n => { IsVerified = n.GetBoolValue(); } },
                 { "platform", n => { Platform = n.GetStringValue(); } },
-                { "region", n => { Region = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_region>(global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_region.CreateFromDiscriminatorValue); } },
+                { "region", n => { Region = n.GetStringValue(); } },
                 { "showOnProfile", n => { ShowOnProfile = n.GetBoolValue(); } },
-                { "url", n => { Url = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_url>(global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_url.CreateFromDiscriminatorValue); } },
-                { "username", n => { Username = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_username>(global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_username.CreateFromDiscriminatorValue); } },
+                { "url", n => { Url = n.GetStringValue(); } },
+                { "username", n => { Username = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -116,16 +116,16 @@ namespace TeamBattles.Sdk.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_connectedAt>("connectedAt", ConnectedAt);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_gamingPlatform>("gamingPlatform", GamingPlatform);
+            writer.WriteStringValue("gamingPlatform", GamingPlatform);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("isPrimary", IsPrimary);
             writer.WriteBoolValue("isSelfReported", IsSelfReported);
             writer.WriteBoolValue("isVerified", IsVerified);
             writer.WriteStringValue("platform", Platform);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_region>("region", Region);
+            writer.WriteStringValue("region", Region);
             writer.WriteBoolValue("showOnProfile", ShowOnProfile);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_url>("url", Url);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_username>("username", Username);
+            writer.WriteStringValue("url", Url);
+            writer.WriteStringValue("username", Username);
         }
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection_connectedAtMember1"/>, <see cref="string"/>
@@ -192,278 +192,6 @@ namespace TeamBattles.Sdk.Models
                 }
                 else {
                     writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection_connectedAtMember1>(null, ApiOwnConnectionConnectedAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection_gamingPlatformMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiOwnConnection_gamingPlatform : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection_gamingPlatformMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiOwnConnection_gamingPlatformMember1? ApiOwnConnectionGamingPlatformMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiOwnConnection_gamingPlatformMember1 ApiOwnConnectionGamingPlatformMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_gamingPlatform"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_gamingPlatform CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_gamingPlatform();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiOwnConnectionGamingPlatformMember1 = new global::TeamBattles.Sdk.Models.ApiOwnConnection_gamingPlatformMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiOwnConnectionGamingPlatformMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiOwnConnectionGamingPlatformMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection_gamingPlatformMember1>(null, ApiOwnConnectionGamingPlatformMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection_regionMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiOwnConnection_region : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection_regionMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiOwnConnection_regionMember1? ApiOwnConnectionRegionMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiOwnConnection_regionMember1 ApiOwnConnectionRegionMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_region"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_region CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_region();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiOwnConnectionRegionMember1 = new global::TeamBattles.Sdk.Models.ApiOwnConnection_regionMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiOwnConnectionRegionMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiOwnConnectionRegionMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection_regionMember1>(null, ApiOwnConnectionRegionMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection_urlMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiOwnConnection_url : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection_urlMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiOwnConnection_urlMember1? ApiOwnConnectionUrlMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiOwnConnection_urlMember1 ApiOwnConnectionUrlMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_url"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_url CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_url();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiOwnConnectionUrlMember1 = new global::TeamBattles.Sdk.Models.ApiOwnConnection_urlMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiOwnConnectionUrlMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiOwnConnectionUrlMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection_urlMember1>(null, ApiOwnConnectionUrlMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection_usernameMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiOwnConnection_username : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection_usernameMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiOwnConnection_usernameMember1? ApiOwnConnectionUsernameMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiOwnConnection_usernameMember1 ApiOwnConnectionUsernameMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_username"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_username CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiOwnConnection.ApiOwnConnection_username();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiOwnConnectionUsernameMember1 = new global::TeamBattles.Sdk.Models.ApiOwnConnection_usernameMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiOwnConnectionUsernameMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiOwnConnectionUsernameMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiOwnConnection_usernameMember1>(null, ApiOwnConnectionUsernameMember1);
                 }
             }
         }

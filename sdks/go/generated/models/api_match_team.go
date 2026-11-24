@@ -10,7 +10,7 @@ import (
 // ApiMatchTeam team summary embedded in SP-2 match reads.
 type ApiMatchTeam struct {
     // Team avatar URL.
-    avatarUrl ApiMatchTeam_ApiMatchTeam_avatarUrlable
+    avatarUrl *string
     // Team ID.
     id *string
     // Team name.
@@ -19,83 +19,6 @@ type ApiMatchTeam struct {
     score ApiMatchTeam_ApiMatchTeam_scoreable
     // Team tag (short identifier).
     tag *string
-}
-// ApiMatchTeam_ApiMatchTeam_avatarUrl composed type wrapper for classes ApiMatchTeam_avatarUrlMember1able, string
-type ApiMatchTeam_ApiMatchTeam_avatarUrl struct {
-    // Composed type representation for type ApiMatchTeam_avatarUrlMember1able
-    apiMatchTeam_avatarUrlMember1 ApiMatchTeam_avatarUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiMatchTeam_ApiMatchTeam_avatarUrl instantiates a new ApiMatchTeam_ApiMatchTeam_avatarUrl and sets the default values.
-func NewApiMatchTeam_ApiMatchTeam_avatarUrl()(*ApiMatchTeam_ApiMatchTeam_avatarUrl) {
-    m := &ApiMatchTeam_ApiMatchTeam_avatarUrl{
-    }
-    return m
-}
-// CreateApiMatchTeam_ApiMatchTeam_avatarUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiMatchTeam_ApiMatchTeam_avatarUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiMatchTeam_ApiMatchTeam_avatarUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiMatchTeam_avatarUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiMatchTeam_avatarUrlMember1able); ok {
-                result.SetApiMatchTeamAvatarUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiMatchTeamAvatarUrlMember1 gets the ApiMatchTeam_avatarUrlMember1 property value. Composed type representation for type ApiMatchTeam_avatarUrlMember1able
-// returns a ApiMatchTeam_avatarUrlMember1able when successful
-func (m *ApiMatchTeam_ApiMatchTeam_avatarUrl) GetApiMatchTeamAvatarUrlMember1()(ApiMatchTeam_avatarUrlMember1able) {
-    return m.apiMatchTeam_avatarUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiMatchTeam_ApiMatchTeam_avatarUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiMatchTeam_ApiMatchTeam_avatarUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiMatchTeam_ApiMatchTeam_avatarUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiMatchTeam_ApiMatchTeam_avatarUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiMatchTeamAvatarUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiMatchTeamAvatarUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiMatchTeamAvatarUrlMember1 sets the ApiMatchTeam_avatarUrlMember1 property value. Composed type representation for type ApiMatchTeam_avatarUrlMember1able
-func (m *ApiMatchTeam_ApiMatchTeam_avatarUrl) SetApiMatchTeamAvatarUrlMember1(value ApiMatchTeam_avatarUrlMember1able)() {
-    m.apiMatchTeam_avatarUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiMatchTeam_ApiMatchTeam_avatarUrl) SetString(value *string)() {
-    m.string = value
 }
 // ApiMatchTeam_ApiMatchTeam_score composed type wrapper for classes ApiMatchTeam_scoreMember1able, int32
 type ApiMatchTeam_ApiMatchTeam_score struct {
@@ -174,13 +97,6 @@ func (m *ApiMatchTeam_ApiMatchTeam_score) SetApiMatchTeamScoreMember1(value ApiM
 func (m *ApiMatchTeam_ApiMatchTeam_score) SetInteger(value *int32)() {
     m.integer = value
 }
-type ApiMatchTeam_ApiMatchTeam_avatarUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiMatchTeamAvatarUrlMember1()(ApiMatchTeam_avatarUrlMember1able)
-    GetString()(*string)
-    SetApiMatchTeamAvatarUrlMember1(value ApiMatchTeam_avatarUrlMember1able)()
-    SetString(value *string)()
-}
 type ApiMatchTeam_ApiMatchTeam_scoreable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetApiMatchTeamScoreMember1()(ApiMatchTeam_scoreMember1able)
@@ -200,8 +116,8 @@ func CreateApiMatchTeamFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
     return NewApiMatchTeam(), nil
 }
 // GetAvatarUrl gets the avatarUrl property value. Team avatar URL.
-// returns a ApiMatchTeam_ApiMatchTeam_avatarUrlable when successful
-func (m *ApiMatchTeam) GetAvatarUrl()(ApiMatchTeam_ApiMatchTeam_avatarUrlable) {
+// returns a *string when successful
+func (m *ApiMatchTeam) GetAvatarUrl()(*string) {
     return m.avatarUrl
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -209,12 +125,12 @@ func (m *ApiMatchTeam) GetAvatarUrl()(ApiMatchTeam_ApiMatchTeam_avatarUrlable) {
 func (m *ApiMatchTeam) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["avatarUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiMatchTeam_ApiMatchTeam_avatarUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetAvatarUrl(val.(ApiMatchTeam_ApiMatchTeam_avatarUrlable))
+            m.SetAvatarUrl(val)
         }
         return nil
     }
@@ -283,7 +199,7 @@ func (m *ApiMatchTeam) GetTag()(*string) {
 // Serialize serializes information the current object
 func (m *ApiMatchTeam) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("avatarUrl", m.GetAvatarUrl())
+        err := writer.WriteStringValue("avatarUrl", m.GetAvatarUrl())
         if err != nil {
             return err
         }
@@ -315,7 +231,7 @@ func (m *ApiMatchTeam) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     return nil
 }
 // SetAvatarUrl sets the avatarUrl property value. Team avatar URL.
-func (m *ApiMatchTeam) SetAvatarUrl(value ApiMatchTeam_ApiMatchTeam_avatarUrlable)() {
+func (m *ApiMatchTeam) SetAvatarUrl(value *string)() {
     m.avatarUrl = value
 }
 // SetId sets the id property value. Team ID.
@@ -336,12 +252,12 @@ func (m *ApiMatchTeam) SetTag(value *string)() {
 }
 type ApiMatchTeamable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAvatarUrl()(ApiMatchTeam_ApiMatchTeam_avatarUrlable)
+    GetAvatarUrl()(*string)
     GetId()(*string)
     GetName()(*string)
     GetScore()(ApiMatchTeam_ApiMatchTeam_scoreable)
     GetTag()(*string)
-    SetAvatarUrl(value ApiMatchTeam_ApiMatchTeam_avatarUrlable)()
+    SetAvatarUrl(value *string)()
     SetId(value *string)()
     SetName(value *string)()
     SetScore(value ApiMatchTeam_ApiMatchTeam_scoreable)()

@@ -17,14 +17,14 @@ class TwitchChannelBadges implements Parsable
     private ?array $badges = null;
     
     /**
-     * @var TwitchChannelBadges_broadcaster_id|null $broadcaster_id Resolved broadcaster (channel) id.
+     * @var string|null $broadcaster_id Resolved broadcaster (channel) id.
     */
-    private ?TwitchChannelBadges_broadcaster_id $broadcaster_id = null;
+    private ?string $broadcaster_id = null;
     
     /**
-     * @var TwitchChannelBadges_broadcaster_name|null $broadcaster_name Resolved broadcaster display name or login.
+     * @var string|null $broadcaster_name Resolved broadcaster display name or login.
     */
-    private ?TwitchChannelBadges_broadcaster_name $broadcaster_name = null;
+    private ?string $broadcaster_name = null;
     
     /**
      * @var string|null $timestamp Response generation time (ISO 8601).
@@ -50,17 +50,17 @@ class TwitchChannelBadges implements Parsable
 
     /**
      * Gets the broadcaster_id property value. Resolved broadcaster (channel) id.
-     * @return TwitchChannelBadges_broadcaster_id|null
+     * @return string|null
     */
-    public function getBroadcasterId(): ?TwitchChannelBadges_broadcaster_id {
+    public function getBroadcasterId(): ?string {
         return $this->broadcaster_id;
     }
 
     /**
      * Gets the broadcaster_name property value. Resolved broadcaster display name or login.
-     * @return TwitchChannelBadges_broadcaster_name|null
+     * @return string|null
     */
-    public function getBroadcasterName(): ?TwitchChannelBadges_broadcaster_name {
+    public function getBroadcasterName(): ?string {
         return $this->broadcaster_name;
     }
 
@@ -72,8 +72,8 @@ class TwitchChannelBadges implements Parsable
         $o = $this;
         return  [
             'badges' => fn(ParseNode $n) => $o->setBadges($n->getCollectionOfObjectValues([TwitchBadgeSet::class, 'createFromDiscriminatorValue'])),
-            'broadcaster_id' => fn(ParseNode $n) => $o->setBroadcasterId($n->getObjectValue([TwitchChannelBadges_broadcaster_id::class, 'createFromDiscriminatorValue'])),
-            'broadcaster_name' => fn(ParseNode $n) => $o->setBroadcasterName($n->getObjectValue([TwitchChannelBadges_broadcaster_name::class, 'createFromDiscriminatorValue'])),
+            'broadcaster_id' => fn(ParseNode $n) => $o->setBroadcasterId($n->getStringValue()),
+            'broadcaster_name' => fn(ParseNode $n) => $o->setBroadcasterName($n->getStringValue()),
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
         ];
     }
@@ -92,8 +92,8 @@ class TwitchChannelBadges implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('badges', $this->getBadges());
-        $writer->writeObjectValue('broadcaster_id', $this->getBroadcasterId());
-        $writer->writeObjectValue('broadcaster_name', $this->getBroadcasterName());
+        $writer->writeStringValue('broadcaster_id', $this->getBroadcasterId());
+        $writer->writeStringValue('broadcaster_name', $this->getBroadcasterName());
         $writer->writeStringValue('timestamp', $this->getTimestamp());
     }
 
@@ -107,17 +107,17 @@ class TwitchChannelBadges implements Parsable
 
     /**
      * Sets the broadcaster_id property value. Resolved broadcaster (channel) id.
-     * @param TwitchChannelBadges_broadcaster_id|null $value Value to set for the broadcaster_id property.
+     * @param string|null $value Value to set for the broadcaster_id property.
     */
-    public function setBroadcasterId(?TwitchChannelBadges_broadcaster_id $value): void {
+    public function setBroadcasterId(?string $value): void {
         $this->broadcaster_id = $value;
     }
 
     /**
      * Sets the broadcaster_name property value. Resolved broadcaster display name or login.
-     * @param TwitchChannelBadges_broadcaster_name|null $value Value to set for the broadcaster_name property.
+     * @param string|null $value Value to set for the broadcaster_name property.
     */
-    public function setBroadcasterName(?TwitchChannelBadges_broadcaster_name $value): void {
+    public function setBroadcasterName(?string $value): void {
         $this->broadcaster_name = $value;
     }
 

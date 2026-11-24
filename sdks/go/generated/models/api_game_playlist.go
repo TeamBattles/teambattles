@@ -12,181 +12,13 @@ type ApiGamePlaylist struct {
     // The allowedGameModeIds property
     allowedGameModeIds []string
     // The descriptionKey property
-    descriptionKey ApiGamePlaylist_ApiGamePlaylist_descriptionKeyable
+    descriptionKey *string
     // The id property
     id *string
     // The image property
-    image ApiGamePlaylist_ApiGamePlaylist_imageable
+    image *string
     // The nameKey property
     nameKey *string
-}
-// ApiGamePlaylist_ApiGamePlaylist_descriptionKey composed type wrapper for classes ApiGamePlaylist_descriptionKeyMember1able, string
-type ApiGamePlaylist_ApiGamePlaylist_descriptionKey struct {
-    // Composed type representation for type ApiGamePlaylist_descriptionKeyMember1able
-    apiGamePlaylist_descriptionKeyMember1 ApiGamePlaylist_descriptionKeyMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGamePlaylist_ApiGamePlaylist_descriptionKey instantiates a new ApiGamePlaylist_ApiGamePlaylist_descriptionKey and sets the default values.
-func NewApiGamePlaylist_ApiGamePlaylist_descriptionKey()(*ApiGamePlaylist_ApiGamePlaylist_descriptionKey) {
-    m := &ApiGamePlaylist_ApiGamePlaylist_descriptionKey{
-    }
-    return m
-}
-// CreateApiGamePlaylist_ApiGamePlaylist_descriptionKeyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGamePlaylist_ApiGamePlaylist_descriptionKeyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGamePlaylist_ApiGamePlaylist_descriptionKey()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGamePlaylist_descriptionKeyMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGamePlaylist_descriptionKeyMember1able); ok {
-                result.SetApiGamePlaylistDescriptionKeyMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGamePlaylistDescriptionKeyMember1 gets the ApiGamePlaylist_descriptionKeyMember1 property value. Composed type representation for type ApiGamePlaylist_descriptionKeyMember1able
-// returns a ApiGamePlaylist_descriptionKeyMember1able when successful
-func (m *ApiGamePlaylist_ApiGamePlaylist_descriptionKey) GetApiGamePlaylistDescriptionKeyMember1()(ApiGamePlaylist_descriptionKeyMember1able) {
-    return m.apiGamePlaylist_descriptionKeyMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGamePlaylist_ApiGamePlaylist_descriptionKey) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGamePlaylist_ApiGamePlaylist_descriptionKey) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGamePlaylist_ApiGamePlaylist_descriptionKey) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGamePlaylist_ApiGamePlaylist_descriptionKey) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGamePlaylistDescriptionKeyMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGamePlaylistDescriptionKeyMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGamePlaylistDescriptionKeyMember1 sets the ApiGamePlaylist_descriptionKeyMember1 property value. Composed type representation for type ApiGamePlaylist_descriptionKeyMember1able
-func (m *ApiGamePlaylist_ApiGamePlaylist_descriptionKey) SetApiGamePlaylistDescriptionKeyMember1(value ApiGamePlaylist_descriptionKeyMember1able)() {
-    m.apiGamePlaylist_descriptionKeyMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGamePlaylist_ApiGamePlaylist_descriptionKey) SetString(value *string)() {
-    m.string = value
-}
-// ApiGamePlaylist_ApiGamePlaylist_image composed type wrapper for classes ApiGamePlaylist_imageMember1able, string
-type ApiGamePlaylist_ApiGamePlaylist_image struct {
-    // Composed type representation for type ApiGamePlaylist_imageMember1able
-    apiGamePlaylist_imageMember1 ApiGamePlaylist_imageMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiGamePlaylist_ApiGamePlaylist_image instantiates a new ApiGamePlaylist_ApiGamePlaylist_image and sets the default values.
-func NewApiGamePlaylist_ApiGamePlaylist_image()(*ApiGamePlaylist_ApiGamePlaylist_image) {
-    m := &ApiGamePlaylist_ApiGamePlaylist_image{
-    }
-    return m
-}
-// CreateApiGamePlaylist_ApiGamePlaylist_imageFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiGamePlaylist_ApiGamePlaylist_imageFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiGamePlaylist_ApiGamePlaylist_image()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiGamePlaylist_imageMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiGamePlaylist_imageMember1able); ok {
-                result.SetApiGamePlaylistImageMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiGamePlaylistImageMember1 gets the ApiGamePlaylist_imageMember1 property value. Composed type representation for type ApiGamePlaylist_imageMember1able
-// returns a ApiGamePlaylist_imageMember1able when successful
-func (m *ApiGamePlaylist_ApiGamePlaylist_image) GetApiGamePlaylistImageMember1()(ApiGamePlaylist_imageMember1able) {
-    return m.apiGamePlaylist_imageMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiGamePlaylist_ApiGamePlaylist_image) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiGamePlaylist_ApiGamePlaylist_image) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiGamePlaylist_ApiGamePlaylist_image) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiGamePlaylist_ApiGamePlaylist_image) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiGamePlaylistImageMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiGamePlaylistImageMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiGamePlaylistImageMember1 sets the ApiGamePlaylist_imageMember1 property value. Composed type representation for type ApiGamePlaylist_imageMember1able
-func (m *ApiGamePlaylist_ApiGamePlaylist_image) SetApiGamePlaylistImageMember1(value ApiGamePlaylist_imageMember1able)() {
-    m.apiGamePlaylist_imageMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiGamePlaylist_ApiGamePlaylist_image) SetString(value *string)() {
-    m.string = value
-}
-type ApiGamePlaylist_ApiGamePlaylist_descriptionKeyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGamePlaylistDescriptionKeyMember1()(ApiGamePlaylist_descriptionKeyMember1able)
-    GetString()(*string)
-    SetApiGamePlaylistDescriptionKeyMember1(value ApiGamePlaylist_descriptionKeyMember1able)()
-    SetString(value *string)()
-}
-type ApiGamePlaylist_ApiGamePlaylist_imageable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiGamePlaylistImageMember1()(ApiGamePlaylist_imageMember1able)
-    GetString()(*string)
-    SetApiGamePlaylistImageMember1(value ApiGamePlaylist_imageMember1able)()
-    SetString(value *string)()
 }
 // NewApiGamePlaylist instantiates a new ApiGamePlaylist and sets the default values.
 func NewApiGamePlaylist()(*ApiGamePlaylist) {
@@ -205,8 +37,8 @@ func (m *ApiGamePlaylist) GetAllowedGameModeIds()([]string) {
     return m.allowedGameModeIds
 }
 // GetDescriptionKey gets the descriptionKey property value. The descriptionKey property
-// returns a ApiGamePlaylist_ApiGamePlaylist_descriptionKeyable when successful
-func (m *ApiGamePlaylist) GetDescriptionKey()(ApiGamePlaylist_ApiGamePlaylist_descriptionKeyable) {
+// returns a *string when successful
+func (m *ApiGamePlaylist) GetDescriptionKey()(*string) {
     return m.descriptionKey
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -230,12 +62,12 @@ func (m *ApiGamePlaylist) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         return nil
     }
     res["descriptionKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGamePlaylist_ApiGamePlaylist_descriptionKeyFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDescriptionKey(val.(ApiGamePlaylist_ApiGamePlaylist_descriptionKeyable))
+            m.SetDescriptionKey(val)
         }
         return nil
     }
@@ -250,12 +82,12 @@ func (m *ApiGamePlaylist) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         return nil
     }
     res["image"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiGamePlaylist_ApiGamePlaylist_imageFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetImage(val.(ApiGamePlaylist_ApiGamePlaylist_imageable))
+            m.SetImage(val)
         }
         return nil
     }
@@ -277,8 +109,8 @@ func (m *ApiGamePlaylist) GetId()(*string) {
     return m.id
 }
 // GetImage gets the image property value. The image property
-// returns a ApiGamePlaylist_ApiGamePlaylist_imageable when successful
-func (m *ApiGamePlaylist) GetImage()(ApiGamePlaylist_ApiGamePlaylist_imageable) {
+// returns a *string when successful
+func (m *ApiGamePlaylist) GetImage()(*string) {
     return m.image
 }
 // GetNameKey gets the nameKey property value. The nameKey property
@@ -295,7 +127,7 @@ func (m *ApiGamePlaylist) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
         }
     }
     {
-        err := writer.WriteObjectValue("descriptionKey", m.GetDescriptionKey())
+        err := writer.WriteStringValue("descriptionKey", m.GetDescriptionKey())
         if err != nil {
             return err
         }
@@ -307,7 +139,7 @@ func (m *ApiGamePlaylist) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
         }
     }
     {
-        err := writer.WriteObjectValue("image", m.GetImage())
+        err := writer.WriteStringValue("image", m.GetImage())
         if err != nil {
             return err
         }
@@ -325,7 +157,7 @@ func (m *ApiGamePlaylist) SetAllowedGameModeIds(value []string)() {
     m.allowedGameModeIds = value
 }
 // SetDescriptionKey sets the descriptionKey property value. The descriptionKey property
-func (m *ApiGamePlaylist) SetDescriptionKey(value ApiGamePlaylist_ApiGamePlaylist_descriptionKeyable)() {
+func (m *ApiGamePlaylist) SetDescriptionKey(value *string)() {
     m.descriptionKey = value
 }
 // SetId sets the id property value. The id property
@@ -333,7 +165,7 @@ func (m *ApiGamePlaylist) SetId(value *string)() {
     m.id = value
 }
 // SetImage sets the image property value. The image property
-func (m *ApiGamePlaylist) SetImage(value ApiGamePlaylist_ApiGamePlaylist_imageable)() {
+func (m *ApiGamePlaylist) SetImage(value *string)() {
     m.image = value
 }
 // SetNameKey sets the nameKey property value. The nameKey property
@@ -343,13 +175,13 @@ func (m *ApiGamePlaylist) SetNameKey(value *string)() {
 type ApiGamePlaylistable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAllowedGameModeIds()([]string)
-    GetDescriptionKey()(ApiGamePlaylist_ApiGamePlaylist_descriptionKeyable)
+    GetDescriptionKey()(*string)
     GetId()(*string)
-    GetImage()(ApiGamePlaylist_ApiGamePlaylist_imageable)
+    GetImage()(*string)
     GetNameKey()(*string)
     SetAllowedGameModeIds(value []string)()
-    SetDescriptionKey(value ApiGamePlaylist_ApiGamePlaylist_descriptionKeyable)()
+    SetDescriptionKey(value *string)()
     SetId(value *string)()
-    SetImage(value ApiGamePlaylist_ApiGamePlaylist_imageable)()
+    SetImage(value *string)()
     SetNameKey(value *string)()
 }

@@ -4,10 +4,6 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .game_roster_player_name import GameRosterPlayer_name
-    from .game_roster_player_username import GameRosterPlayer_username
-
 @dataclass
 class GameRosterPlayer(Parsable):
     """
@@ -16,13 +12,13 @@ class GameRosterPlayer(Parsable):
     # Whether the player has checked in for the match.
     is_checked_in: Optional[bool] = None
     # Player's display name, or null if unset.
-    name: Optional[GameRosterPlayer_name] = None
+    name: Optional[str] = None
     # ID of the team the player belongs to.
     team_id: Optional[str] = None
     # Player's user ID.
     user_id: Optional[str] = None
     # Player's username, or null if unset.
-    username: Optional[GameRosterPlayer_username] = None
+    username: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GameRosterPlayer:
@@ -40,18 +36,12 @@ class GameRosterPlayer(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .game_roster_player_name import GameRosterPlayer_name
-        from .game_roster_player_username import GameRosterPlayer_username
-
-        from .game_roster_player_name import GameRosterPlayer_name
-        from .game_roster_player_username import GameRosterPlayer_username
-
         fields: dict[str, Callable[[Any], None]] = {
             "isCheckedIn": lambda n : setattr(self, 'is_checked_in', n.get_bool_value()),
-            "name": lambda n : setattr(self, 'name', n.get_object_value(GameRosterPlayer_name)),
+            "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "teamId": lambda n : setattr(self, 'team_id', n.get_str_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "username": lambda n : setattr(self, 'username', n.get_object_value(GameRosterPlayer_username)),
+            "username": lambda n : setattr(self, 'username', n.get_str_value()),
         }
         return fields
     
@@ -64,9 +54,9 @@ class GameRosterPlayer(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("isCheckedIn", self.is_checked_in)
-        writer.write_object_value("name", self.name)
+        writer.write_str_value("name", self.name)
         writer.write_str_value("teamId", self.team_id)
         writer.write_str_value("userId", self.user_id)
-        writer.write_object_value("username", self.username)
+        writer.write_str_value("username", self.username)
     
 

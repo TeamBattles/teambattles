@@ -1,11 +1,10 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './matches_post_response_pagination_cursor.dart';
 
 /// auto generated
 class MatchesPostResponsePagination implements Parsable {
     ///  The cursor property
-    MatchesPostResponsePaginationCursor? cursor;
+    String? cursor;
     ///  The hasMore property
     bool? hasMore;
     /// Creates a new instance of the appropriate class based on discriminator value
@@ -17,7 +16,7 @@ class MatchesPostResponsePagination implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['cursor'] = (node) => cursor = node.getObjectValue<MatchesPostResponsePaginationCursor>(MatchesPostResponsePaginationCursor.createFromDiscriminatorValue);
+        deserializerMap['cursor'] = (node) => cursor = node.getStringValue();
         deserializerMap['hasMore'] = (node) => hasMore = node.getBoolValue();
         return deserializerMap;
     }
@@ -25,7 +24,7 @@ class MatchesPostResponsePagination implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<MatchesPostResponsePaginationCursor>('cursor', cursor);
+        writer.writeStringValue('cursor', cursor);
         writer.writeBoolValue('hasMore', value:hasMore);
     }
 }

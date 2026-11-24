@@ -12,97 +12,13 @@ type GameMatchRostersResponse struct {
     // Players on the accepted team (empty when unaccepted).
     acceptedRoster []GameRosterPlayerable
     // ID of the team that accepted the match, or null if unaccepted.
-    acceptedTeamId GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamIdable
+    acceptedTeamId *string
     // Players on the creator team.
     creatorRoster []GameRosterPlayerable
     // ID of the team that created the match.
     creatorTeamId *string
     // Server response time (ISO 8601).
     timestamp *string
-}
-// GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId composed type wrapper for classes GameMatchRostersResponse_acceptedTeamIdMember1able, string
-type GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId struct {
-    // Composed type representation for type GameMatchRostersResponse_acceptedTeamIdMember1able
-    gameMatchRostersResponse_acceptedTeamIdMember1 GameMatchRostersResponse_acceptedTeamIdMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewGameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId instantiates a new GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId and sets the default values.
-func NewGameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId()(*GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId) {
-    m := &GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId{
-    }
-    return m
-}
-// CreateGameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateGameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamIdFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewGameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateGameMatchRostersResponse_acceptedTeamIdMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(GameMatchRostersResponse_acceptedTeamIdMember1able); ok {
-                result.SetGameMatchRostersResponseAcceptedTeamIdMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetGameMatchRostersResponseAcceptedTeamIdMember1 gets the GameMatchRostersResponse_acceptedTeamIdMember1 property value. Composed type representation for type GameMatchRostersResponse_acceptedTeamIdMember1able
-// returns a GameMatchRostersResponse_acceptedTeamIdMember1able when successful
-func (m *GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId) GetGameMatchRostersResponseAcceptedTeamIdMember1()(GameMatchRostersResponse_acceptedTeamIdMember1able) {
-    return m.gameMatchRostersResponse_acceptedTeamIdMember1
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetGameMatchRostersResponseAcceptedTeamIdMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetGameMatchRostersResponseAcceptedTeamIdMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetGameMatchRostersResponseAcceptedTeamIdMember1 sets the GameMatchRostersResponse_acceptedTeamIdMember1 property value. Composed type representation for type GameMatchRostersResponse_acceptedTeamIdMember1able
-func (m *GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId) SetGameMatchRostersResponseAcceptedTeamIdMember1(value GameMatchRostersResponse_acceptedTeamIdMember1able)() {
-    m.gameMatchRostersResponse_acceptedTeamIdMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamId) SetString(value *string)() {
-    m.string = value
-}
-type GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamIdable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameMatchRostersResponseAcceptedTeamIdMember1()(GameMatchRostersResponse_acceptedTeamIdMember1able)
-    GetString()(*string)
-    SetGameMatchRostersResponseAcceptedTeamIdMember1(value GameMatchRostersResponse_acceptedTeamIdMember1able)()
-    SetString(value *string)()
 }
 // NewGameMatchRostersResponse instantiates a new GameMatchRostersResponse and sets the default values.
 func NewGameMatchRostersResponse()(*GameMatchRostersResponse) {
@@ -121,8 +37,8 @@ func (m *GameMatchRostersResponse) GetAcceptedRoster()([]GameRosterPlayerable) {
     return m.acceptedRoster
 }
 // GetAcceptedTeamId gets the acceptedTeamId property value. ID of the team that accepted the match, or null if unaccepted.
-// returns a GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamIdable when successful
-func (m *GameMatchRostersResponse) GetAcceptedTeamId()(GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamIdable) {
+// returns a *string when successful
+func (m *GameMatchRostersResponse) GetAcceptedTeamId()(*string) {
     return m.acceptedTeamId
 }
 // GetCreatorRoster gets the creatorRoster property value. Players on the creator team.
@@ -156,12 +72,12 @@ func (m *GameMatchRostersResponse) GetFieldDeserializers()(map[string]func(i878a
         return nil
     }
     res["acceptedTeamId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamIdFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetAcceptedTeamId(val.(GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamIdable))
+            m.SetAcceptedTeamId(val)
         }
         return nil
     }
@@ -223,7 +139,7 @@ func (m *GameMatchRostersResponse) Serialize(writer i878a80d2330e89d26896388a3f4
         }
     }
     {
-        err := writer.WriteObjectValue("acceptedTeamId", m.GetAcceptedTeamId())
+        err := writer.WriteStringValue("acceptedTeamId", m.GetAcceptedTeamId())
         if err != nil {
             return err
         }
@@ -259,7 +175,7 @@ func (m *GameMatchRostersResponse) SetAcceptedRoster(value []GameRosterPlayerabl
     m.acceptedRoster = value
 }
 // SetAcceptedTeamId sets the acceptedTeamId property value. ID of the team that accepted the match, or null if unaccepted.
-func (m *GameMatchRostersResponse) SetAcceptedTeamId(value GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamIdable)() {
+func (m *GameMatchRostersResponse) SetAcceptedTeamId(value *string)() {
     m.acceptedTeamId = value
 }
 // SetCreatorRoster sets the creatorRoster property value. Players on the creator team.
@@ -277,12 +193,12 @@ func (m *GameMatchRostersResponse) SetTimestamp(value *string)() {
 type GameMatchRostersResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAcceptedRoster()([]GameRosterPlayerable)
-    GetAcceptedTeamId()(GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamIdable)
+    GetAcceptedTeamId()(*string)
     GetCreatorRoster()([]GameRosterPlayerable)
     GetCreatorTeamId()(*string)
     GetTimestamp()(*string)
     SetAcceptedRoster(value []GameRosterPlayerable)()
-    SetAcceptedTeamId(value GameMatchRostersResponse_GameMatchRostersResponse_acceptedTeamIdable)()
+    SetAcceptedTeamId(value *string)()
     SetCreatorRoster(value []GameRosterPlayerable)()
     SetCreatorTeamId(value *string)()
     SetTimestamp(value *string)()

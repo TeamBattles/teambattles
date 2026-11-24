@@ -16,7 +16,7 @@ type MatchesRequestBody struct {
     // ISO 8601; only matches created at or before this time.
     createdBefore *string
     // Opaque continuation cursor from a prior page's continueCursor.
-    cursor MatchesRequestBody_MatchesRequestBody_cursorable
+    cursor *string
     // Exclude matches with these MatchStatus codes; unknown values are ignored.
     excludeStatuses []string
     // Filter to a single game by id.
@@ -31,90 +31,6 @@ type MatchesRequestBody struct {
     scheduledAfter *string
     // ISO 8601; only matches scheduled at or before this time.
     scheduledBefore *string
-}
-// MatchesRequestBody_MatchesRequestBody_cursor composed type wrapper for classes MatchesRequestBody_cursorMember1able, string
-type MatchesRequestBody_MatchesRequestBody_cursor struct {
-    // Composed type representation for type MatchesRequestBody_cursorMember1able
-    matchesRequestBody_cursorMember1 MatchesRequestBody_cursorMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewMatchesRequestBody_MatchesRequestBody_cursor instantiates a new MatchesRequestBody_MatchesRequestBody_cursor and sets the default values.
-func NewMatchesRequestBody_MatchesRequestBody_cursor()(*MatchesRequestBody_MatchesRequestBody_cursor) {
-    m := &MatchesRequestBody_MatchesRequestBody_cursor{
-    }
-    return m
-}
-// CreateMatchesRequestBody_MatchesRequestBody_cursorFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateMatchesRequestBody_MatchesRequestBody_cursorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewMatchesRequestBody_MatchesRequestBody_cursor()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateMatchesRequestBody_cursorMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(MatchesRequestBody_cursorMember1able); ok {
-                result.SetMatchesRequestBodyCursorMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *MatchesRequestBody_MatchesRequestBody_cursor) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *MatchesRequestBody_MatchesRequestBody_cursor) GetIsComposedType()(bool) {
-    return true
-}
-// GetMatchesRequestBodyCursorMember1 gets the MatchesRequestBody_cursorMember1 property value. Composed type representation for type MatchesRequestBody_cursorMember1able
-// returns a MatchesRequestBody_cursorMember1able when successful
-func (m *MatchesRequestBody_MatchesRequestBody_cursor) GetMatchesRequestBodyCursorMember1()(MatchesRequestBody_cursorMember1able) {
-    return m.matchesRequestBody_cursorMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *MatchesRequestBody_MatchesRequestBody_cursor) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *MatchesRequestBody_MatchesRequestBody_cursor) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetMatchesRequestBodyCursorMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetMatchesRequestBodyCursorMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetMatchesRequestBodyCursorMember1 sets the MatchesRequestBody_cursorMember1 property value. Composed type representation for type MatchesRequestBody_cursorMember1able
-func (m *MatchesRequestBody_MatchesRequestBody_cursor) SetMatchesRequestBodyCursorMember1(value MatchesRequestBody_cursorMember1able)() {
-    m.matchesRequestBody_cursorMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *MatchesRequestBody_MatchesRequestBody_cursor) SetString(value *string)() {
-    m.string = value
-}
-type MatchesRequestBody_MatchesRequestBody_cursorable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetMatchesRequestBodyCursorMember1()(MatchesRequestBody_cursorMember1able)
-    GetString()(*string)
-    SetMatchesRequestBodyCursorMember1(value MatchesRequestBody_cursorMember1able)()
-    SetString(value *string)()
 }
 // NewMatchesRequestBody instantiates a new MatchesRequestBody and sets the default values.
 func NewMatchesRequestBody()(*MatchesRequestBody) {
@@ -146,8 +62,8 @@ func (m *MatchesRequestBody) GetCreatedBefore()(*string) {
     return m.createdBefore
 }
 // GetCursor gets the cursor property value. Opaque continuation cursor from a prior page's continueCursor.
-// returns a MatchesRequestBody_MatchesRequestBody_cursorable when successful
-func (m *MatchesRequestBody) GetCursor()(MatchesRequestBody_MatchesRequestBody_cursorable) {
+// returns a *string when successful
+func (m *MatchesRequestBody) GetCursor()(*string) {
     return m.cursor
 }
 // GetExcludeStatuses gets the excludeStatuses property value. Exclude matches with these MatchStatus codes; unknown values are ignored.
@@ -180,12 +96,12 @@ func (m *MatchesRequestBody) GetFieldDeserializers()(map[string]func(i878a80d233
         return nil
     }
     res["cursor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateMatchesRequestBody_MatchesRequestBody_cursorFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCursor(val.(MatchesRequestBody_MatchesRequestBody_cursorable))
+            m.SetCursor(val)
         }
         return nil
     }
@@ -318,7 +234,7 @@ func (m *MatchesRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef2
         }
     }
     {
-        err := writer.WriteObjectValue("cursor", m.GetCursor())
+        err := writer.WriteStringValue("cursor", m.GetCursor())
         if err != nil {
             return err
         }
@@ -386,7 +302,7 @@ func (m *MatchesRequestBody) SetCreatedBefore(value *string)() {
     m.createdBefore = value
 }
 // SetCursor sets the cursor property value. Opaque continuation cursor from a prior page's continueCursor.
-func (m *MatchesRequestBody) SetCursor(value MatchesRequestBody_MatchesRequestBody_cursorable)() {
+func (m *MatchesRequestBody) SetCursor(value *string)() {
     m.cursor = value
 }
 // SetExcludeStatuses sets the excludeStatuses property value. Exclude matches with these MatchStatus codes; unknown values are ignored.
@@ -422,7 +338,7 @@ type MatchesRequestBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetCreatedAfter()(*string)
     GetCreatedBefore()(*string)
-    GetCursor()(MatchesRequestBody_MatchesRequestBody_cursorable)
+    GetCursor()(*string)
     GetExcludeStatuses()([]string)
     GetGameId()(*string)
     GetIncludeStatuses()([]string)
@@ -432,7 +348,7 @@ type MatchesRequestBodyable interface {
     GetScheduledBefore()(*string)
     SetCreatedAfter(value *string)()
     SetCreatedBefore(value *string)()
-    SetCursor(value MatchesRequestBody_MatchesRequestBody_cursorable)()
+    SetCursor(value *string)()
     SetExcludeStatuses(value []string)()
     SetGameId(value *string)()
     SetIncludeStatuses(value []string)()

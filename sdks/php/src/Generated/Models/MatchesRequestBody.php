@@ -29,9 +29,9 @@ class MatchesRequestBody implements AdditionalDataHolder, Parsable
     private ?string $createdBefore = null;
     
     /**
-     * @var MatchesRequestBody_cursor|null $cursor Opaque continuation cursor from a prior page's continueCursor.
+     * @var string|null $cursor Opaque continuation cursor from a prior page's continueCursor.
     */
-    private ?MatchesRequestBody_cursor $cursor = null;
+    private ?string $cursor = null;
     
     /**
      * @var array<string>|null $excludeStatuses Exclude matches with these MatchStatus codes; unknown values are ignored.
@@ -111,9 +111,9 @@ class MatchesRequestBody implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the cursor property value. Opaque continuation cursor from a prior page's continueCursor.
-     * @return MatchesRequestBody_cursor|null
+     * @return string|null
     */
-    public function getCursor(): ?MatchesRequestBody_cursor {
+    public function getCursor(): ?string {
         return $this->cursor;
     }
 
@@ -134,7 +134,7 @@ class MatchesRequestBody implements AdditionalDataHolder, Parsable
         return  [
             'createdAfter' => fn(ParseNode $n) => $o->setCreatedAfter($n->getStringValue()),
             'createdBefore' => fn(ParseNode $n) => $o->setCreatedBefore($n->getStringValue()),
-            'cursor' => fn(ParseNode $n) => $o->setCursor($n->getObjectValue([MatchesRequestBody_cursor::class, 'createFromDiscriminatorValue'])),
+            'cursor' => fn(ParseNode $n) => $o->setCursor($n->getStringValue()),
             'excludeStatuses' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
                 if (is_array($val)) {
@@ -214,7 +214,7 @@ class MatchesRequestBody implements AdditionalDataHolder, Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('createdAfter', $this->getCreatedAfter());
         $writer->writeStringValue('createdBefore', $this->getCreatedBefore());
-        $writer->writeObjectValue('cursor', $this->getCursor());
+        $writer->writeStringValue('cursor', $this->getCursor());
         $writer->writeCollectionOfPrimitiveValues('excludeStatuses', $this->getExcludeStatuses());
         $writer->writeStringValue('gameId', $this->getGameId());
         $writer->writeCollectionOfPrimitiveValues('includeStatuses', $this->getIncludeStatuses());
@@ -251,9 +251,9 @@ class MatchesRequestBody implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the cursor property value. Opaque continuation cursor from a prior page's continueCursor.
-     * @param MatchesRequestBody_cursor|null $value Value to set for the cursor property.
+     * @param string|null $value Value to set for the cursor property.
     */
-    public function setCursor(?MatchesRequestBody_cursor $value): void {
+    public function setCursor(?string $value): void {
         $this->cursor = $value;
     }
 

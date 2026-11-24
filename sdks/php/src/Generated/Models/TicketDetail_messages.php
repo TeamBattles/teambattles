@@ -14,9 +14,9 @@ class TicketDetail_messages implements Parsable
     private ?string $content = null;
     
     /**
-     * @var TicketDetail_messages_createdAt|null $createdAt The createdAt property
+     * @var string|null $createdAt The createdAt property
     */
-    private ?TicketDetail_messages_createdAt $createdAt = null;
+    private ?string $createdAt = null;
     
     /**
      * @var string|null $id The id property
@@ -52,9 +52,9 @@ class TicketDetail_messages implements Parsable
 
     /**
      * Gets the createdAt property value. The createdAt property
-     * @return TicketDetail_messages_createdAt|null
+     * @return string|null
     */
-    public function getCreatedAt(): ?TicketDetail_messages_createdAt {
+    public function getCreatedAt(): ?string {
         return $this->createdAt;
     }
 
@@ -66,7 +66,7 @@ class TicketDetail_messages implements Parsable
         $o = $this;
         return  [
             'content' => fn(ParseNode $n) => $o->setContent($n->getStringValue()),
-            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([TicketDetail_messages_createdAt::class, 'createFromDiscriminatorValue'])),
+            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'isOwnMessage' => fn(ParseNode $n) => $o->setIsOwnMessage($n->getBooleanValue()),
             'isSystem' => fn(ParseNode $n) => $o->setIsSystem($n->getBooleanValue()),
@@ -103,7 +103,7 @@ class TicketDetail_messages implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('content', $this->getContent());
-        $writer->writeObjectValue('createdAt', $this->getCreatedAt());
+        $writer->writeStringValue('createdAt', $this->getCreatedAt());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeBooleanValue('isOwnMessage', $this->getIsOwnMessage());
         $writer->writeBooleanValue('isSystem', $this->getIsSystem());
@@ -119,9 +119,9 @@ class TicketDetail_messages implements Parsable
 
     /**
      * Sets the createdAt property value. The createdAt property
-     * @param TicketDetail_messages_createdAt|null $value Value to set for the createdAt property.
+     * @param string|null $value Value to set for the createdAt property.
     */
-    public function setCreatedAt(?TicketDetail_messages_createdAt $value): void {
+    public function setCreatedAt(?string $value): void {
         $this->createdAt = $value;
     }
 

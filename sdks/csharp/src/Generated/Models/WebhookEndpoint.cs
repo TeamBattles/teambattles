@@ -38,27 +38,15 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Human label, or null.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_label? Label { get; set; }
+        public string? Label { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_label Label { get; set; }
+        public string Label { get; set; }
 #endif
         /// <summary>Epoch ms of the last successful delivery, or null.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastDeliveredAt? LastDeliveredAt { get; set; }
-#nullable restore
-#else
-        public global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastDeliveredAt LastDeliveredAt { get; set; }
-#endif
+        public double? LastDeliveredAt { get; set; }
         /// <summary>Epoch ms of the last failed delivery, or null.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastFailedAt? LastFailedAt { get; set; }
-#nullable restore
-#else
-        public global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastFailedAt LastFailedAt { get; set; }
-#endif
+        public double? LastFailedAt { get; set; }
         /// <summary>Stringified bound scope id.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -110,9 +98,9 @@ namespace TeamBattles.Sdk.Models
                 { "failureCount", n => { FailureCount = n.GetIntValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isActive", n => { IsActive = n.GetBoolValue(); } },
-                { "label", n => { Label = n.GetObjectValue<global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_label>(global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_label.CreateFromDiscriminatorValue); } },
-                { "lastDeliveredAt", n => { LastDeliveredAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastDeliveredAt>(global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastDeliveredAt.CreateFromDiscriminatorValue); } },
-                { "lastFailedAt", n => { LastFailedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastFailedAt>(global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastFailedAt.CreateFromDiscriminatorValue); } },
+                { "label", n => { Label = n.GetStringValue(); } },
+                { "lastDeliveredAt", n => { LastDeliveredAt = n.GetDoubleValue(); } },
+                { "lastFailedAt", n => { LastFailedAt = n.GetDoubleValue(); } },
                 { "scopeId", n => { ScopeId = n.GetStringValue(); } },
                 { "scopeType", n => { ScopeType = n.GetEnumValue<global::TeamBattles.Sdk.Models.WebhookEndpoint_scopeType>(); } },
                 { "secretPrefix", n => { SecretPrefix = n.GetStringValue(); } },
@@ -132,206 +120,14 @@ namespace TeamBattles.Sdk.Models
             writer.WriteIntValue("failureCount", FailureCount);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("isActive", IsActive);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_label>("label", Label);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastDeliveredAt>("lastDeliveredAt", LastDeliveredAt);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastFailedAt>("lastFailedAt", LastFailedAt);
+            writer.WriteStringValue("label", Label);
+            writer.WriteDoubleValue("lastDeliveredAt", LastDeliveredAt);
+            writer.WriteDoubleValue("lastFailedAt", LastFailedAt);
             writer.WriteStringValue("scopeId", ScopeId);
             writer.WriteEnumValue<global::TeamBattles.Sdk.Models.WebhookEndpoint_scopeType>("scopeType", ScopeType);
             writer.WriteStringValue("secretPrefix", SecretPrefix);
             writer.WriteDoubleValue("updatedAt", UpdatedAt);
             writer.WriteStringValue("url", Url);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.WebhookEndpoint_labelMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WebhookEndpoint_label : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.WebhookEndpoint_labelMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.WebhookEndpoint_labelMember1? WebhookEndpointLabelMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.WebhookEndpoint_labelMember1 WebhookEndpointLabelMember1 { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_label"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_label CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_label();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.WebhookEndpointLabelMember1 = new global::TeamBattles.Sdk.Models.WebhookEndpoint_labelMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(WebhookEndpointLabelMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(WebhookEndpointLabelMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.WebhookEndpoint_labelMember1>(null, WebhookEndpointLabelMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="double"/>, <see cref="global::TeamBattles.Sdk.Models.WebhookEndpoint_lastDeliveredAtMember1"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WebhookEndpoint_lastDeliveredAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="double"/></summary>
-            public double? Double { get; set; }
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.WebhookEndpoint_lastDeliveredAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.WebhookEndpoint_lastDeliveredAtMember1? WebhookEndpointLastDeliveredAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.WebhookEndpoint_lastDeliveredAtMember1 WebhookEndpointLastDeliveredAtMember1 { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastDeliveredAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastDeliveredAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastDeliveredAt();
-                if(parseNode.GetDoubleValue() is double doubleValue)
-                {
-                    result.Double = doubleValue;
-                }
-                else {
-                    result.WebhookEndpointLastDeliveredAtMember1 = new global::TeamBattles.Sdk.Models.WebhookEndpoint_lastDeliveredAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(WebhookEndpointLastDeliveredAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(WebhookEndpointLastDeliveredAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Double != null)
-                {
-                    writer.WriteDoubleValue(null, Double);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.WebhookEndpoint_lastDeliveredAtMember1>(null, WebhookEndpointLastDeliveredAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="double"/>, <see cref="global::TeamBattles.Sdk.Models.WebhookEndpoint_lastFailedAtMember1"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WebhookEndpoint_lastFailedAt : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="double"/></summary>
-            public double? Double { get; set; }
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.WebhookEndpoint_lastFailedAtMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.WebhookEndpoint_lastFailedAtMember1? WebhookEndpointLastFailedAtMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.WebhookEndpoint_lastFailedAtMember1 WebhookEndpointLastFailedAtMember1 { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastFailedAt"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastFailedAt CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.WebhookEndpoint.WebhookEndpoint_lastFailedAt();
-                if(parseNode.GetDoubleValue() is double doubleValue)
-                {
-                    result.Double = doubleValue;
-                }
-                else {
-                    result.WebhookEndpointLastFailedAtMember1 = new global::TeamBattles.Sdk.Models.WebhookEndpoint_lastFailedAtMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(WebhookEndpointLastFailedAtMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(WebhookEndpointLastFailedAtMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Double != null)
-                {
-                    writer.WriteDoubleValue(null, Double);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.WebhookEndpoint_lastFailedAtMember1>(null, WebhookEndpointLastFailedAtMember1);
-                }
-            }
         }
     }
 }

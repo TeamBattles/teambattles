@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class TournamentRosterMember implements Parsable 
 {
     /**
-     * @var TournamentRosterMember_avatarUrl|null $avatarUrl Avatar image URL.
+     * @var string|null $avatarUrl Avatar image URL.
     */
-    private ?TournamentRosterMember_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
      * @var string|null $id User ID.
@@ -47,9 +47,9 @@ class TournamentRosterMember implements Parsable
 
     /**
      * Gets the avatarUrl property value. Avatar image URL.
-     * @return TournamentRosterMember_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?TournamentRosterMember_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
@@ -60,7 +60,7 @@ class TournamentRosterMember implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([TournamentRosterMember_avatarUrl::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'source' => fn(ParseNode $n) => $o->setSource($n->getStringValue()),
@@ -105,7 +105,7 @@ class TournamentRosterMember implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('source', $this->getSource());
@@ -114,9 +114,9 @@ class TournamentRosterMember implements Parsable
 
     /**
      * Sets the avatarUrl property value. Avatar image URL.
-     * @param TournamentRosterMember_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?TournamentRosterMember_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 

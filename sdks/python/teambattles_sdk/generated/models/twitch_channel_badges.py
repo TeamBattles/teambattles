@@ -6,8 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .twitch_badge_set import TwitchBadgeSet
-    from .twitch_channel_badges_broadcaster_id import TwitchChannelBadges_broadcaster_id
-    from .twitch_channel_badges_broadcaster_name import TwitchChannelBadges_broadcaster_name
 
 @dataclass
 class TwitchChannelBadges(Parsable):
@@ -17,9 +15,9 @@ class TwitchChannelBadges(Parsable):
     # Channel-specific Twitch chat badge sets.
     badges: Optional[list[TwitchBadgeSet]] = None
     # Resolved broadcaster (channel) id.
-    broadcaster_id: Optional[TwitchChannelBadges_broadcaster_id] = None
+    broadcaster_id: Optional[str] = None
     # Resolved broadcaster display name or login.
-    broadcaster_name: Optional[TwitchChannelBadges_broadcaster_name] = None
+    broadcaster_name: Optional[str] = None
     # Response generation time (ISO 8601).
     timestamp: Optional[str] = None
     
@@ -40,17 +38,13 @@ class TwitchChannelBadges(Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .twitch_badge_set import TwitchBadgeSet
-        from .twitch_channel_badges_broadcaster_id import TwitchChannelBadges_broadcaster_id
-        from .twitch_channel_badges_broadcaster_name import TwitchChannelBadges_broadcaster_name
 
         from .twitch_badge_set import TwitchBadgeSet
-        from .twitch_channel_badges_broadcaster_id import TwitchChannelBadges_broadcaster_id
-        from .twitch_channel_badges_broadcaster_name import TwitchChannelBadges_broadcaster_name
 
         fields: dict[str, Callable[[Any], None]] = {
             "badges": lambda n : setattr(self, 'badges', n.get_collection_of_object_values(TwitchBadgeSet)),
-            "broadcaster_id": lambda n : setattr(self, 'broadcaster_id', n.get_object_value(TwitchChannelBadges_broadcaster_id)),
-            "broadcaster_name": lambda n : setattr(self, 'broadcaster_name', n.get_object_value(TwitchChannelBadges_broadcaster_name)),
+            "broadcaster_id": lambda n : setattr(self, 'broadcaster_id', n.get_str_value()),
+            "broadcaster_name": lambda n : setattr(self, 'broadcaster_name', n.get_str_value()),
             "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
         }
         return fields
@@ -64,8 +58,8 @@ class TwitchChannelBadges(Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("badges", self.badges)
-        writer.write_object_value("broadcaster_id", self.broadcaster_id)
-        writer.write_object_value("broadcaster_name", self.broadcaster_name)
+        writer.write_str_value("broadcaster_id", self.broadcaster_id)
+        writer.write_str_value("broadcaster_name", self.broadcaster_name)
         writer.write_str_value("timestamp", self.timestamp)
     
 

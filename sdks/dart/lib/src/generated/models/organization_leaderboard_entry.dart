@@ -1,14 +1,13 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './api_organization_summary.dart';
-import './organization_leaderboard_entry_game_slug.dart';
 import './organization_leaderboard_entry_stats.dart';
 
 /// auto generated
 /// Organization leaderboard row.
 class OrganizationLeaderboardEntry implements Parsable {
     ///  The gameSlug property
-    OrganizationLeaderboardEntryGameSlug? gameSlug;
+    String? gameSlug;
     ///  Organization ID.
     String? id;
     ///  Small API-safe organization summary.
@@ -26,7 +25,7 @@ class OrganizationLeaderboardEntry implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['gameSlug'] = (node) => gameSlug = node.getObjectValue<OrganizationLeaderboardEntryGameSlug>(OrganizationLeaderboardEntryGameSlug.createFromDiscriminatorValue);
+        deserializerMap['gameSlug'] = (node) => gameSlug = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['organization'] = (node) => organization = node.getObjectValue<ApiOrganizationSummary>(ApiOrganizationSummary.createFromDiscriminatorValue);
         deserializerMap['rank'] = (node) => rank = node.getIntValue();
@@ -37,7 +36,7 @@ class OrganizationLeaderboardEntry implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<OrganizationLeaderboardEntryGameSlug>('gameSlug', gameSlug);
+        writer.writeStringValue('gameSlug', gameSlug);
         writer.writeStringValue('id', id);
         writer.writeObjectValue<ApiOrganizationSummary>('organization', organization);
         writer.writeIntValue('rank', rank);

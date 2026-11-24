@@ -5,12 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .api_organization_profile_avatar_url import ApiOrganizationProfile_avatarUrl
-    from .api_organization_profile_banner_url import ApiOrganizationProfile_bannerUrl
     from .api_organization_profile_created_at import ApiOrganizationProfile_createdAt
-    from .api_organization_profile_description import ApiOrganizationProfile_description
-    from .api_organization_profile_slug import ApiOrganizationProfile_slug
-    from .api_organization_profile_tag import ApiOrganizationProfile_tag
     from .profile_visibility import ProfileVisibility
 
 @dataclass
@@ -19,13 +14,13 @@ class ApiOrganizationProfile(Parsable):
     API-safe organization profile.
     """
     # The avatarUrl property
-    avatar_url: Optional[ApiOrganizationProfile_avatarUrl] = None
+    avatar_url: Optional[str] = None
     # The bannerUrl property
-    banner_url: Optional[ApiOrganizationProfile_bannerUrl] = None
+    banner_url: Optional[str] = None
     # The createdAt property
     created_at: Optional[ApiOrganizationProfile_createdAt] = None
     # The description property
-    description: Optional[ApiOrganizationProfile_description] = None
+    description: Optional[str] = None
     # The draws property
     draws: Optional[int] = None
     # Organization ID.
@@ -43,9 +38,9 @@ class ApiOrganizationProfile(Parsable):
     # Organization name.
     name: Optional[str] = None
     # The slug property
-    slug: Optional[ApiOrganizationProfile_slug] = None
+    slug: Optional[str] = None
     # The tag property
-    tag: Optional[ApiOrganizationProfile_tag] = None
+    tag: Optional[str] = None
     # The teamCount property
     team_count: Optional[int] = None
     # Public profile visibility setting.
@@ -69,27 +64,17 @@ class ApiOrganizationProfile(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .api_organization_profile_avatar_url import ApiOrganizationProfile_avatarUrl
-        from .api_organization_profile_banner_url import ApiOrganizationProfile_bannerUrl
         from .api_organization_profile_created_at import ApiOrganizationProfile_createdAt
-        from .api_organization_profile_description import ApiOrganizationProfile_description
-        from .api_organization_profile_slug import ApiOrganizationProfile_slug
-        from .api_organization_profile_tag import ApiOrganizationProfile_tag
         from .profile_visibility import ProfileVisibility
 
-        from .api_organization_profile_avatar_url import ApiOrganizationProfile_avatarUrl
-        from .api_organization_profile_banner_url import ApiOrganizationProfile_bannerUrl
         from .api_organization_profile_created_at import ApiOrganizationProfile_createdAt
-        from .api_organization_profile_description import ApiOrganizationProfile_description
-        from .api_organization_profile_slug import ApiOrganizationProfile_slug
-        from .api_organization_profile_tag import ApiOrganizationProfile_tag
         from .profile_visibility import ProfileVisibility
 
         fields: dict[str, Callable[[Any], None]] = {
-            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_object_value(ApiOrganizationProfile_avatarUrl)),
-            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_object_value(ApiOrganizationProfile_bannerUrl)),
+            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_str_value()),
+            "bannerUrl": lambda n : setattr(self, 'banner_url', n.get_str_value()),
             "createdAt": lambda n : setattr(self, 'created_at', n.get_object_value(ApiOrganizationProfile_createdAt)),
-            "description": lambda n : setattr(self, 'description', n.get_object_value(ApiOrganizationProfile_description)),
+            "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "draws": lambda n : setattr(self, 'draws', n.get_int_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isMember": lambda n : setattr(self, 'is_member', n.get_bool_value()),
@@ -98,8 +83,8 @@ class ApiOrganizationProfile(Parsable):
             "matchesPlayed": lambda n : setattr(self, 'matches_played', n.get_int_value()),
             "memberCount": lambda n : setattr(self, 'member_count', n.get_int_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "slug": lambda n : setattr(self, 'slug', n.get_object_value(ApiOrganizationProfile_slug)),
-            "tag": lambda n : setattr(self, 'tag', n.get_object_value(ApiOrganizationProfile_tag)),
+            "slug": lambda n : setattr(self, 'slug', n.get_str_value()),
+            "tag": lambda n : setattr(self, 'tag', n.get_str_value()),
             "teamCount": lambda n : setattr(self, 'team_count', n.get_int_value()),
             "visibility": lambda n : setattr(self, 'visibility', n.get_enum_value(ProfileVisibility)),
             "wins": lambda n : setattr(self, 'wins', n.get_int_value()),
@@ -114,10 +99,10 @@ class ApiOrganizationProfile(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("avatarUrl", self.avatar_url)
-        writer.write_object_value("bannerUrl", self.banner_url)
+        writer.write_str_value("avatarUrl", self.avatar_url)
+        writer.write_str_value("bannerUrl", self.banner_url)
         writer.write_object_value("createdAt", self.created_at)
-        writer.write_object_value("description", self.description)
+        writer.write_str_value("description", self.description)
         writer.write_int_value("draws", self.draws)
         writer.write_str_value("id", self.id)
         writer.write_bool_value("isMember", self.is_member)
@@ -126,8 +111,8 @@ class ApiOrganizationProfile(Parsable):
         writer.write_int_value("matchesPlayed", self.matches_played)
         writer.write_int_value("memberCount", self.member_count)
         writer.write_str_value("name", self.name)
-        writer.write_object_value("slug", self.slug)
-        writer.write_object_value("tag", self.tag)
+        writer.write_str_value("slug", self.slug)
+        writer.write_str_value("tag", self.tag)
         writer.write_int_value("teamCount", self.team_count)
         writer.write_enum_value("visibility", self.visibility)
         writer.write_int_value("wins", self.wins)

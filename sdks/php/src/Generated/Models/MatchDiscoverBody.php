@@ -18,9 +18,9 @@ class MatchDiscoverBody implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var MatchDiscoverBody_cursor|null $cursor The cursor property
+     * @var string|null $cursor The cursor property
     */
-    private ?MatchDiscoverBody_cursor $cursor = null;
+    private ?string $cursor = null;
     
     /**
      * @var string|null $gameId The gameId property
@@ -99,9 +99,9 @@ class MatchDiscoverBody implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the cursor property value. The cursor property
-     * @return MatchDiscoverBody_cursor|null
+     * @return string|null
     */
-    public function getCursor(): ?MatchDiscoverBody_cursor {
+    public function getCursor(): ?string {
         return $this->cursor;
     }
 
@@ -112,7 +112,7 @@ class MatchDiscoverBody implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'cursor' => fn(ParseNode $n) => $o->setCursor($n->getObjectValue([MatchDiscoverBody_cursor::class, 'createFromDiscriminatorValue'])),
+            'cursor' => fn(ParseNode $n) => $o->setCursor($n->getStringValue()),
             'gameId' => fn(ParseNode $n) => $o->setGameId($n->getStringValue()),
             'gameSlug' => fn(ParseNode $n) => $o->setGameSlug($n->getStringValue()),
             'leagueId' => fn(ParseNode $n) => $o->setLeagueId($n->getStringValue()),
@@ -211,7 +211,7 @@ class MatchDiscoverBody implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('cursor', $this->getCursor());
+        $writer->writeStringValue('cursor', $this->getCursor());
         $writer->writeStringValue('gameId', $this->getGameId());
         $writer->writeStringValue('gameSlug', $this->getGameSlug());
         $writer->writeStringValue('leagueId', $this->getLeagueId());
@@ -235,9 +235,9 @@ class MatchDiscoverBody implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the cursor property value. The cursor property
-     * @param MatchDiscoverBody_cursor|null $value Value to set for the cursor property.
+     * @param string|null $value Value to set for the cursor property.
     */
-    public function setCursor(?MatchDiscoverBody_cursor $value): void {
+    public function setCursor(?string $value): void {
         $this->cursor = $value;
     }
 

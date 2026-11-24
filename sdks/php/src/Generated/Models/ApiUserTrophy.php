@@ -17,14 +17,14 @@ class ApiUserTrophy implements Parsable
     private ?ApiUserTrophy_awardedAt $awardedAt = null;
     
     /**
-     * @var ApiUserTrophy_description|null $description The description property
+     * @var string|null $description The description property
     */
-    private ?ApiUserTrophy_description $description = null;
+    private ?string $description = null;
     
     /**
-     * @var ApiUserTrophy_iconUrl|null $iconUrl The iconUrl property
+     * @var string|null $iconUrl The iconUrl property
     */
-    private ?ApiUserTrophy_iconUrl $iconUrl = null;
+    private ?string $iconUrl = null;
     
     /**
      * @var string|null $id Trophy award ID.
@@ -32,14 +32,14 @@ class ApiUserTrophy implements Parsable
     private ?string $id = null;
     
     /**
-     * @var ApiUserTrophy_rarity|null $rarity The rarity property
+     * @var string|null $rarity The rarity property
     */
-    private ?ApiUserTrophy_rarity $rarity = null;
+    private ?string $rarity = null;
     
     /**
-     * @var ApiUserTrophy_title|null $title The title property
+     * @var string|null $title The title property
     */
-    private ?ApiUserTrophy_title $title = null;
+    private ?string $title = null;
     
     /**
      * @var string|null $trophyId Trophy definition ID.
@@ -65,9 +65,9 @@ class ApiUserTrophy implements Parsable
 
     /**
      * Gets the description property value. The description property
-     * @return ApiUserTrophy_description|null
+     * @return string|null
     */
-    public function getDescription(): ?ApiUserTrophy_description {
+    public function getDescription(): ?string {
         return $this->description;
     }
 
@@ -79,20 +79,20 @@ class ApiUserTrophy implements Parsable
         $o = $this;
         return  [
             'awardedAt' => fn(ParseNode $n) => $o->setAwardedAt($n->getObjectValue([ApiUserTrophy_awardedAt::class, 'createFromDiscriminatorValue'])),
-            'description' => fn(ParseNode $n) => $o->setDescription($n->getObjectValue([ApiUserTrophy_description::class, 'createFromDiscriminatorValue'])),
-            'iconUrl' => fn(ParseNode $n) => $o->setIconUrl($n->getObjectValue([ApiUserTrophy_iconUrl::class, 'createFromDiscriminatorValue'])),
+            'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
+            'iconUrl' => fn(ParseNode $n) => $o->setIconUrl($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'rarity' => fn(ParseNode $n) => $o->setRarity($n->getObjectValue([ApiUserTrophy_rarity::class, 'createFromDiscriminatorValue'])),
-            'title' => fn(ParseNode $n) => $o->setTitle($n->getObjectValue([ApiUserTrophy_title::class, 'createFromDiscriminatorValue'])),
+            'rarity' => fn(ParseNode $n) => $o->setRarity($n->getStringValue()),
+            'title' => fn(ParseNode $n) => $o->setTitle($n->getStringValue()),
             'trophyId' => fn(ParseNode $n) => $o->setTrophyId($n->getStringValue()),
         ];
     }
 
     /**
      * Gets the iconUrl property value. The iconUrl property
-     * @return ApiUserTrophy_iconUrl|null
+     * @return string|null
     */
-    public function getIconUrl(): ?ApiUserTrophy_iconUrl {
+    public function getIconUrl(): ?string {
         return $this->iconUrl;
     }
 
@@ -106,17 +106,17 @@ class ApiUserTrophy implements Parsable
 
     /**
      * Gets the rarity property value. The rarity property
-     * @return ApiUserTrophy_rarity|null
+     * @return string|null
     */
-    public function getRarity(): ?ApiUserTrophy_rarity {
+    public function getRarity(): ?string {
         return $this->rarity;
     }
 
     /**
      * Gets the title property value. The title property
-     * @return ApiUserTrophy_title|null
+     * @return string|null
     */
-    public function getTitle(): ?ApiUserTrophy_title {
+    public function getTitle(): ?string {
         return $this->title;
     }
 
@@ -134,11 +134,11 @@ class ApiUserTrophy implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('awardedAt', $this->getAwardedAt());
-        $writer->writeObjectValue('description', $this->getDescription());
-        $writer->writeObjectValue('iconUrl', $this->getIconUrl());
+        $writer->writeStringValue('description', $this->getDescription());
+        $writer->writeStringValue('iconUrl', $this->getIconUrl());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeObjectValue('rarity', $this->getRarity());
-        $writer->writeObjectValue('title', $this->getTitle());
+        $writer->writeStringValue('rarity', $this->getRarity());
+        $writer->writeStringValue('title', $this->getTitle());
         $writer->writeStringValue('trophyId', $this->getTrophyId());
     }
 
@@ -152,17 +152,17 @@ class ApiUserTrophy implements Parsable
 
     /**
      * Sets the description property value. The description property
-     * @param ApiUserTrophy_description|null $value Value to set for the description property.
+     * @param string|null $value Value to set for the description property.
     */
-    public function setDescription(?ApiUserTrophy_description $value): void {
+    public function setDescription(?string $value): void {
         $this->description = $value;
     }
 
     /**
      * Sets the iconUrl property value. The iconUrl property
-     * @param ApiUserTrophy_iconUrl|null $value Value to set for the iconUrl property.
+     * @param string|null $value Value to set for the iconUrl property.
     */
-    public function setIconUrl(?ApiUserTrophy_iconUrl $value): void {
+    public function setIconUrl(?string $value): void {
         $this->iconUrl = $value;
     }
 
@@ -176,17 +176,17 @@ class ApiUserTrophy implements Parsable
 
     /**
      * Sets the rarity property value. The rarity property
-     * @param ApiUserTrophy_rarity|null $value Value to set for the rarity property.
+     * @param string|null $value Value to set for the rarity property.
     */
-    public function setRarity(?ApiUserTrophy_rarity $value): void {
+    public function setRarity(?string $value): void {
         $this->rarity = $value;
     }
 
     /**
      * Sets the title property value. The title property
-     * @param ApiUserTrophy_title|null $value Value to set for the title property.
+     * @param string|null $value Value to set for the title property.
     */
-    public function setTitle(?ApiUserTrophy_title $value): void {
+    public function setTitle(?string $value): void {
         $this->title = $value;
     }
 

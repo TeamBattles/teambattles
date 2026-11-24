@@ -12,9 +12,9 @@ type LeagueProfile struct {
     // Currently active seasons.
     activeSeasons []LeagueProfile_activeSeasonsable
     // League avatar image URL.
-    avatarUrl LeagueProfile_LeagueProfile_avatarUrlable
+    avatarUrl *string
     // League banner image URL.
-    bannerUrl LeagueProfile_LeagueProfile_bannerUrlable
+    bannerUrl *string
     // Creation timestamp (epoch milliseconds).
     createdAt *float64
     // League description.
@@ -40,174 +40,6 @@ type LeagueProfile struct {
     // Number of teams in the league.
     teamCount *int32
 }
-// LeagueProfile_LeagueProfile_avatarUrl composed type wrapper for classes LeagueProfile_avatarUrlMember1able, string
-type LeagueProfile_LeagueProfile_avatarUrl struct {
-    // Composed type representation for type LeagueProfile_avatarUrlMember1able
-    leagueProfile_avatarUrlMember1 LeagueProfile_avatarUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewLeagueProfile_LeagueProfile_avatarUrl instantiates a new LeagueProfile_LeagueProfile_avatarUrl and sets the default values.
-func NewLeagueProfile_LeagueProfile_avatarUrl()(*LeagueProfile_LeagueProfile_avatarUrl) {
-    m := &LeagueProfile_LeagueProfile_avatarUrl{
-    }
-    return m
-}
-// CreateLeagueProfile_LeagueProfile_avatarUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateLeagueProfile_LeagueProfile_avatarUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewLeagueProfile_LeagueProfile_avatarUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateLeagueProfile_avatarUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(LeagueProfile_avatarUrlMember1able); ok {
-                result.SetLeagueProfileAvatarUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *LeagueProfile_LeagueProfile_avatarUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *LeagueProfile_LeagueProfile_avatarUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetLeagueProfileAvatarUrlMember1 gets the LeagueProfile_avatarUrlMember1 property value. Composed type representation for type LeagueProfile_avatarUrlMember1able
-// returns a LeagueProfile_avatarUrlMember1able when successful
-func (m *LeagueProfile_LeagueProfile_avatarUrl) GetLeagueProfileAvatarUrlMember1()(LeagueProfile_avatarUrlMember1able) {
-    return m.leagueProfile_avatarUrlMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *LeagueProfile_LeagueProfile_avatarUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *LeagueProfile_LeagueProfile_avatarUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetLeagueProfileAvatarUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetLeagueProfileAvatarUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetLeagueProfileAvatarUrlMember1 sets the LeagueProfile_avatarUrlMember1 property value. Composed type representation for type LeagueProfile_avatarUrlMember1able
-func (m *LeagueProfile_LeagueProfile_avatarUrl) SetLeagueProfileAvatarUrlMember1(value LeagueProfile_avatarUrlMember1able)() {
-    m.leagueProfile_avatarUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *LeagueProfile_LeagueProfile_avatarUrl) SetString(value *string)() {
-    m.string = value
-}
-// LeagueProfile_LeagueProfile_bannerUrl composed type wrapper for classes LeagueProfile_bannerUrlMember1able, string
-type LeagueProfile_LeagueProfile_bannerUrl struct {
-    // Composed type representation for type LeagueProfile_bannerUrlMember1able
-    leagueProfile_bannerUrlMember1 LeagueProfile_bannerUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewLeagueProfile_LeagueProfile_bannerUrl instantiates a new LeagueProfile_LeagueProfile_bannerUrl and sets the default values.
-func NewLeagueProfile_LeagueProfile_bannerUrl()(*LeagueProfile_LeagueProfile_bannerUrl) {
-    m := &LeagueProfile_LeagueProfile_bannerUrl{
-    }
-    return m
-}
-// CreateLeagueProfile_LeagueProfile_bannerUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateLeagueProfile_LeagueProfile_bannerUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewLeagueProfile_LeagueProfile_bannerUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateLeagueProfile_bannerUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(LeagueProfile_bannerUrlMember1able); ok {
-                result.SetLeagueProfileBannerUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *LeagueProfile_LeagueProfile_bannerUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *LeagueProfile_LeagueProfile_bannerUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetLeagueProfileBannerUrlMember1 gets the LeagueProfile_bannerUrlMember1 property value. Composed type representation for type LeagueProfile_bannerUrlMember1able
-// returns a LeagueProfile_bannerUrlMember1able when successful
-func (m *LeagueProfile_LeagueProfile_bannerUrl) GetLeagueProfileBannerUrlMember1()(LeagueProfile_bannerUrlMember1able) {
-    return m.leagueProfile_bannerUrlMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *LeagueProfile_LeagueProfile_bannerUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *LeagueProfile_LeagueProfile_bannerUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetLeagueProfileBannerUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetLeagueProfileBannerUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetLeagueProfileBannerUrlMember1 sets the LeagueProfile_bannerUrlMember1 property value. Composed type representation for type LeagueProfile_bannerUrlMember1able
-func (m *LeagueProfile_LeagueProfile_bannerUrl) SetLeagueProfileBannerUrlMember1(value LeagueProfile_bannerUrlMember1able)() {
-    m.leagueProfile_bannerUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *LeagueProfile_LeagueProfile_bannerUrl) SetString(value *string)() {
-    m.string = value
-}
-type LeagueProfile_LeagueProfile_avatarUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetLeagueProfileAvatarUrlMember1()(LeagueProfile_avatarUrlMember1able)
-    GetString()(*string)
-    SetLeagueProfileAvatarUrlMember1(value LeagueProfile_avatarUrlMember1able)()
-    SetString(value *string)()
-}
-type LeagueProfile_LeagueProfile_bannerUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetLeagueProfileBannerUrlMember1()(LeagueProfile_bannerUrlMember1able)
-    GetString()(*string)
-    SetLeagueProfileBannerUrlMember1(value LeagueProfile_bannerUrlMember1able)()
-    SetString(value *string)()
-}
 // NewLeagueProfile instantiates a new LeagueProfile and sets the default values.
 func NewLeagueProfile()(*LeagueProfile) {
     m := &LeagueProfile{
@@ -225,13 +57,13 @@ func (m *LeagueProfile) GetActiveSeasons()([]LeagueProfile_activeSeasonsable) {
     return m.activeSeasons
 }
 // GetAvatarUrl gets the avatarUrl property value. League avatar image URL.
-// returns a LeagueProfile_LeagueProfile_avatarUrlable when successful
-func (m *LeagueProfile) GetAvatarUrl()(LeagueProfile_LeagueProfile_avatarUrlable) {
+// returns a *string when successful
+func (m *LeagueProfile) GetAvatarUrl()(*string) {
     return m.avatarUrl
 }
 // GetBannerUrl gets the bannerUrl property value. League banner image URL.
-// returns a LeagueProfile_LeagueProfile_bannerUrlable when successful
-func (m *LeagueProfile) GetBannerUrl()(LeagueProfile_LeagueProfile_bannerUrlable) {
+// returns a *string when successful
+func (m *LeagueProfile) GetBannerUrl()(*string) {
     return m.bannerUrl
 }
 // GetCreatedAt gets the createdAt property value. Creation timestamp (epoch milliseconds).
@@ -265,22 +97,22 @@ func (m *LeagueProfile) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         return nil
     }
     res["avatarUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateLeagueProfile_LeagueProfile_avatarUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetAvatarUrl(val.(LeagueProfile_LeagueProfile_avatarUrlable))
+            m.SetAvatarUrl(val)
         }
         return nil
     }
     res["bannerUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateLeagueProfile_LeagueProfile_bannerUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetBannerUrl(val.(LeagueProfile_LeagueProfile_bannerUrlable))
+            m.SetBannerUrl(val)
         }
         return nil
     }
@@ -477,13 +309,13 @@ func (m *LeagueProfile) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
         }
     }
     {
-        err := writer.WriteObjectValue("avatarUrl", m.GetAvatarUrl())
+        err := writer.WriteStringValue("avatarUrl", m.GetAvatarUrl())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("bannerUrl", m.GetBannerUrl())
+        err := writer.WriteStringValue("bannerUrl", m.GetBannerUrl())
         if err != nil {
             return err
         }
@@ -573,11 +405,11 @@ func (m *LeagueProfile) SetActiveSeasons(value []LeagueProfile_activeSeasonsable
     m.activeSeasons = value
 }
 // SetAvatarUrl sets the avatarUrl property value. League avatar image URL.
-func (m *LeagueProfile) SetAvatarUrl(value LeagueProfile_LeagueProfile_avatarUrlable)() {
+func (m *LeagueProfile) SetAvatarUrl(value *string)() {
     m.avatarUrl = value
 }
 // SetBannerUrl sets the bannerUrl property value. League banner image URL.
-func (m *LeagueProfile) SetBannerUrl(value LeagueProfile_LeagueProfile_bannerUrlable)() {
+func (m *LeagueProfile) SetBannerUrl(value *string)() {
     m.bannerUrl = value
 }
 // SetCreatedAt sets the createdAt property value. Creation timestamp (epoch milliseconds).
@@ -631,8 +463,8 @@ func (m *LeagueProfile) SetTeamCount(value *int32)() {
 type LeagueProfileable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetActiveSeasons()([]LeagueProfile_activeSeasonsable)
-    GetAvatarUrl()(LeagueProfile_LeagueProfile_avatarUrlable)
-    GetBannerUrl()(LeagueProfile_LeagueProfile_bannerUrlable)
+    GetAvatarUrl()(*string)
+    GetBannerUrl()(*string)
     GetCreatedAt()(*float64)
     GetDescription()(*string)
     GetGames()([]LeagueProfile_gamesable)
@@ -646,8 +478,8 @@ type LeagueProfileable interface {
     GetStatus()(*string)
     GetTeamCount()(*int32)
     SetActiveSeasons(value []LeagueProfile_activeSeasonsable)()
-    SetAvatarUrl(value LeagueProfile_LeagueProfile_avatarUrlable)()
-    SetBannerUrl(value LeagueProfile_LeagueProfile_bannerUrlable)()
+    SetAvatarUrl(value *string)()
+    SetBannerUrl(value *string)()
     SetCreatedAt(value *float64)()
     SetDescription(value *string)()
     SetGames(value []LeagueProfile_gamesable)()

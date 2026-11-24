@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class TournamentSummary implements Parsable 
 {
     /**
-     * @var TournamentSummary_bannerUrl|null $bannerUrl Banner image URL.
+     * @var string|null $bannerUrl Banner image URL.
     */
-    private ?TournamentSummary_bannerUrl $bannerUrl = null;
+    private ?string $bannerUrl = null;
     
     /**
      * @var string|null $description Short tournament description.
@@ -37,9 +37,9 @@ class TournamentSummary implements Parsable
     private ?bool $isFeatured = null;
     
     /**
-     * @var TournamentSummary_logoUrl|null $logoUrl Logo image URL.
+     * @var string|null $logoUrl Logo image URL.
     */
-    private ?TournamentSummary_logoUrl $logoUrl = null;
+    private ?string $logoUrl = null;
     
     /**
      * @var int|null $maxParticipants Participant cap.
@@ -92,9 +92,9 @@ class TournamentSummary implements Parsable
 
     /**
      * Gets the bannerUrl property value. Banner image URL.
-     * @return TournamentSummary_bannerUrl|null
+     * @return string|null
     */
-    public function getBannerUrl(): ?TournamentSummary_bannerUrl {
+    public function getBannerUrl(): ?string {
         return $this->bannerUrl;
     }
 
@@ -113,12 +113,12 @@ class TournamentSummary implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getObjectValue([TournamentSummary_bannerUrl::class, 'createFromDiscriminatorValue'])),
+            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getStringValue()),
             'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
             'format' => fn(ParseNode $n) => $o->setFormat($n->getEnumValue(TournamentFormat::class)),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'isFeatured' => fn(ParseNode $n) => $o->setIsFeatured($n->getBooleanValue()),
-            'logoUrl' => fn(ParseNode $n) => $o->setLogoUrl($n->getObjectValue([TournamentSummary_logoUrl::class, 'createFromDiscriminatorValue'])),
+            'logoUrl' => fn(ParseNode $n) => $o->setLogoUrl($n->getStringValue()),
             'maxParticipants' => fn(ParseNode $n) => $o->setMaxParticipants($n->getIntegerValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'participantCount' => fn(ParseNode $n) => $o->setParticipantCount($n->getIntegerValue()),
@@ -156,9 +156,9 @@ class TournamentSummary implements Parsable
 
     /**
      * Gets the logoUrl property value. Logo image URL.
-     * @return TournamentSummary_logoUrl|null
+     * @return string|null
     */
-    public function getLogoUrl(): ?TournamentSummary_logoUrl {
+    public function getLogoUrl(): ?string {
         return $this->logoUrl;
     }
 
@@ -231,12 +231,12 @@ class TournamentSummary implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('bannerUrl', $this->getBannerUrl());
+        $writer->writeStringValue('bannerUrl', $this->getBannerUrl());
         $writer->writeStringValue('description', $this->getDescription());
         $writer->writeEnumValue('format', $this->getFormat());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeBooleanValue('isFeatured', $this->getIsFeatured());
-        $writer->writeObjectValue('logoUrl', $this->getLogoUrl());
+        $writer->writeStringValue('logoUrl', $this->getLogoUrl());
         $writer->writeIntegerValue('maxParticipants', $this->getMaxParticipants());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeIntegerValue('participantCount', $this->getParticipantCount());
@@ -249,9 +249,9 @@ class TournamentSummary implements Parsable
 
     /**
      * Sets the bannerUrl property value. Banner image URL.
-     * @param TournamentSummary_bannerUrl|null $value Value to set for the bannerUrl property.
+     * @param string|null $value Value to set for the bannerUrl property.
     */
-    public function setBannerUrl(?TournamentSummary_bannerUrl $value): void {
+    public function setBannerUrl(?string $value): void {
         $this->bannerUrl = $value;
     }
 
@@ -289,9 +289,9 @@ class TournamentSummary implements Parsable
 
     /**
      * Sets the logoUrl property value. Logo image URL.
-     * @param TournamentSummary_logoUrl|null $value Value to set for the logoUrl property.
+     * @param string|null $value Value to set for the logoUrl property.
     */
-    public function setLogoUrl(?TournamentSummary_logoUrl $value): void {
+    public function setLogoUrl(?string $value): void {
         $this->logoUrl = $value;
     }
 

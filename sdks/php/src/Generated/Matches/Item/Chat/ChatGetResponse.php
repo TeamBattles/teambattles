@@ -20,9 +20,9 @@ class ChatGetResponse implements Parsable
     private ?bool $hasMore = null;
     
     /**
-     * @var ChatGetResponse_nextCursor|null $nextCursor The nextCursor property
+     * @var string|null $nextCursor The nextCursor property
     */
-    private ?ChatGetResponse_nextCursor $nextCursor = null;
+    private ?string $nextCursor = null;
     
     /**
      * @var string|null $timestamp The timestamp property
@@ -55,7 +55,7 @@ class ChatGetResponse implements Parsable
         return  [
             'data' => fn(ParseNode $n) => $o->setData($n->getCollectionOfObjectValues([ChatMessage::class, 'createFromDiscriminatorValue'])),
             'hasMore' => fn(ParseNode $n) => $o->setHasMore($n->getBooleanValue()),
-            'nextCursor' => fn(ParseNode $n) => $o->setNextCursor($n->getObjectValue([ChatGetResponse_nextCursor::class, 'createFromDiscriminatorValue'])),
+            'nextCursor' => fn(ParseNode $n) => $o->setNextCursor($n->getStringValue()),
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
         ];
     }
@@ -70,9 +70,9 @@ class ChatGetResponse implements Parsable
 
     /**
      * Gets the nextCursor property value. The nextCursor property
-     * @return ChatGetResponse_nextCursor|null
+     * @return string|null
     */
-    public function getNextCursor(): ?ChatGetResponse_nextCursor {
+    public function getNextCursor(): ?string {
         return $this->nextCursor;
     }
 
@@ -91,7 +91,7 @@ class ChatGetResponse implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('data', $this->getData());
         $writer->writeBooleanValue('hasMore', $this->getHasMore());
-        $writer->writeObjectValue('nextCursor', $this->getNextCursor());
+        $writer->writeStringValue('nextCursor', $this->getNextCursor());
         $writer->writeStringValue('timestamp', $this->getTimestamp());
     }
 
@@ -113,9 +113,9 @@ class ChatGetResponse implements Parsable
 
     /**
      * Sets the nextCursor property value. The nextCursor property
-     * @param ChatGetResponse_nextCursor|null $value Value to set for the nextCursor property.
+     * @param string|null $value Value to set for the nextCursor property.
     */
-    public function setNextCursor(?ChatGetResponse_nextCursor $value): void {
+    public function setNextCursor(?string $value): void {
         $this->nextCursor = $value;
     }
 

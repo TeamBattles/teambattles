@@ -5,7 +5,6 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .match_discover_body_cursor import MatchDiscoverBody_cursor
     from .match_discover_body_match_type import MatchDiscoverBody_matchType
     from .match_discover_body_platform import MatchDiscoverBody_platform
     from .match_discover_body_region import MatchDiscoverBody_region
@@ -21,7 +20,7 @@ class MatchDiscoverBody(AdditionalDataHolder, Parsable):
     # The limit property
     limit: Optional[int] = 50
     # The cursor property
-    cursor: Optional[MatchDiscoverBody_cursor] = None
+    cursor: Optional[str] = None
     # The gameId property
     game_id: Optional[str] = None
     # The gameSlug property
@@ -57,18 +56,16 @@ class MatchDiscoverBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .match_discover_body_cursor import MatchDiscoverBody_cursor
         from .match_discover_body_match_type import MatchDiscoverBody_matchType
         from .match_discover_body_platform import MatchDiscoverBody_platform
         from .match_discover_body_region import MatchDiscoverBody_region
 
-        from .match_discover_body_cursor import MatchDiscoverBody_cursor
         from .match_discover_body_match_type import MatchDiscoverBody_matchType
         from .match_discover_body_platform import MatchDiscoverBody_platform
         from .match_discover_body_region import MatchDiscoverBody_region
 
         fields: dict[str, Callable[[Any], None]] = {
-            "cursor": lambda n : setattr(self, 'cursor', n.get_object_value(MatchDiscoverBody_cursor)),
+            "cursor": lambda n : setattr(self, 'cursor', n.get_str_value()),
             "gameId": lambda n : setattr(self, 'game_id', n.get_str_value()),
             "gameSlug": lambda n : setattr(self, 'game_slug', n.get_str_value()),
             "leagueId": lambda n : setattr(self, 'league_id', n.get_str_value()),
@@ -90,7 +87,7 @@ class MatchDiscoverBody(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("cursor", self.cursor)
+        writer.write_str_value("cursor", self.cursor)
         writer.write_str_value("gameId", self.game_id)
         writer.write_str_value("gameSlug", self.game_slug)
         writer.write_str_value("leagueId", self.league_id)

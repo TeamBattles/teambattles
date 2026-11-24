@@ -10,11 +10,11 @@ import (
 // ApiUserProfile aPI-safe public user profile.
 type ApiUserProfile struct {
     // Avatar image URL, when set.
-    avatarUrl ApiUserProfile_ApiUserProfile_avatarUrlable
+    avatarUrl *string
     // Banner image URL, when set.
-    bannerUrl ApiUserProfile_ApiUserProfile_bannerUrlable
+    bannerUrl *string
     // Public profile bio.
-    bio ApiUserProfile_ApiUserProfile_bioable
+    bio *string
     // The createdAt property
     createdAt ApiUserProfile_ApiUserProfile_createdAtable
     // User ID.
@@ -22,242 +22,11 @@ type ApiUserProfile struct {
     // The isVerified property
     isVerified *bool
     // Display name, when set.
-    name ApiUserProfile_ApiUserProfile_nameable
+    name *string
     // User handle, when set.
-    username ApiUserProfile_ApiUserProfile_usernameable
+    username *string
     // Public profile visibility setting.
     visibility *ProfileVisibility
-}
-// ApiUserProfile_ApiUserProfile_avatarUrl composed type wrapper for classes ApiUserProfile_avatarUrlMember1able, string
-type ApiUserProfile_ApiUserProfile_avatarUrl struct {
-    // Composed type representation for type ApiUserProfile_avatarUrlMember1able
-    apiUserProfile_avatarUrlMember1 ApiUserProfile_avatarUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserProfile_ApiUserProfile_avatarUrl instantiates a new ApiUserProfile_ApiUserProfile_avatarUrl and sets the default values.
-func NewApiUserProfile_ApiUserProfile_avatarUrl()(*ApiUserProfile_ApiUserProfile_avatarUrl) {
-    m := &ApiUserProfile_ApiUserProfile_avatarUrl{
-    }
-    return m
-}
-// CreateApiUserProfile_ApiUserProfile_avatarUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserProfile_ApiUserProfile_avatarUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserProfile_ApiUserProfile_avatarUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserProfile_avatarUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserProfile_avatarUrlMember1able); ok {
-                result.SetApiUserProfileAvatarUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserProfileAvatarUrlMember1 gets the ApiUserProfile_avatarUrlMember1 property value. Composed type representation for type ApiUserProfile_avatarUrlMember1able
-// returns a ApiUserProfile_avatarUrlMember1able when successful
-func (m *ApiUserProfile_ApiUserProfile_avatarUrl) GetApiUserProfileAvatarUrlMember1()(ApiUserProfile_avatarUrlMember1able) {
-    return m.apiUserProfile_avatarUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserProfile_ApiUserProfile_avatarUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserProfile_ApiUserProfile_avatarUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserProfile_ApiUserProfile_avatarUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserProfile_ApiUserProfile_avatarUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserProfileAvatarUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserProfileAvatarUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserProfileAvatarUrlMember1 sets the ApiUserProfile_avatarUrlMember1 property value. Composed type representation for type ApiUserProfile_avatarUrlMember1able
-func (m *ApiUserProfile_ApiUserProfile_avatarUrl) SetApiUserProfileAvatarUrlMember1(value ApiUserProfile_avatarUrlMember1able)() {
-    m.apiUserProfile_avatarUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserProfile_ApiUserProfile_avatarUrl) SetString(value *string)() {
-    m.string = value
-}
-// ApiUserProfile_ApiUserProfile_bannerUrl composed type wrapper for classes ApiUserProfile_bannerUrlMember1able, string
-type ApiUserProfile_ApiUserProfile_bannerUrl struct {
-    // Composed type representation for type ApiUserProfile_bannerUrlMember1able
-    apiUserProfile_bannerUrlMember1 ApiUserProfile_bannerUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserProfile_ApiUserProfile_bannerUrl instantiates a new ApiUserProfile_ApiUserProfile_bannerUrl and sets the default values.
-func NewApiUserProfile_ApiUserProfile_bannerUrl()(*ApiUserProfile_ApiUserProfile_bannerUrl) {
-    m := &ApiUserProfile_ApiUserProfile_bannerUrl{
-    }
-    return m
-}
-// CreateApiUserProfile_ApiUserProfile_bannerUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserProfile_ApiUserProfile_bannerUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserProfile_ApiUserProfile_bannerUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserProfile_bannerUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserProfile_bannerUrlMember1able); ok {
-                result.SetApiUserProfileBannerUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserProfileBannerUrlMember1 gets the ApiUserProfile_bannerUrlMember1 property value. Composed type representation for type ApiUserProfile_bannerUrlMember1able
-// returns a ApiUserProfile_bannerUrlMember1able when successful
-func (m *ApiUserProfile_ApiUserProfile_bannerUrl) GetApiUserProfileBannerUrlMember1()(ApiUserProfile_bannerUrlMember1able) {
-    return m.apiUserProfile_bannerUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserProfile_ApiUserProfile_bannerUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserProfile_ApiUserProfile_bannerUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserProfile_ApiUserProfile_bannerUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserProfile_ApiUserProfile_bannerUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserProfileBannerUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserProfileBannerUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserProfileBannerUrlMember1 sets the ApiUserProfile_bannerUrlMember1 property value. Composed type representation for type ApiUserProfile_bannerUrlMember1able
-func (m *ApiUserProfile_ApiUserProfile_bannerUrl) SetApiUserProfileBannerUrlMember1(value ApiUserProfile_bannerUrlMember1able)() {
-    m.apiUserProfile_bannerUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserProfile_ApiUserProfile_bannerUrl) SetString(value *string)() {
-    m.string = value
-}
-// ApiUserProfile_ApiUserProfile_bio composed type wrapper for classes ApiUserProfile_bioMember1able, string
-type ApiUserProfile_ApiUserProfile_bio struct {
-    // Composed type representation for type ApiUserProfile_bioMember1able
-    apiUserProfile_bioMember1 ApiUserProfile_bioMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserProfile_ApiUserProfile_bio instantiates a new ApiUserProfile_ApiUserProfile_bio and sets the default values.
-func NewApiUserProfile_ApiUserProfile_bio()(*ApiUserProfile_ApiUserProfile_bio) {
-    m := &ApiUserProfile_ApiUserProfile_bio{
-    }
-    return m
-}
-// CreateApiUserProfile_ApiUserProfile_bioFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserProfile_ApiUserProfile_bioFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserProfile_ApiUserProfile_bio()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserProfile_bioMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserProfile_bioMember1able); ok {
-                result.SetApiUserProfileBioMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserProfileBioMember1 gets the ApiUserProfile_bioMember1 property value. Composed type representation for type ApiUserProfile_bioMember1able
-// returns a ApiUserProfile_bioMember1able when successful
-func (m *ApiUserProfile_ApiUserProfile_bio) GetApiUserProfileBioMember1()(ApiUserProfile_bioMember1able) {
-    return m.apiUserProfile_bioMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserProfile_ApiUserProfile_bio) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserProfile_ApiUserProfile_bio) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserProfile_ApiUserProfile_bio) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserProfile_ApiUserProfile_bio) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserProfileBioMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserProfileBioMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserProfileBioMember1 sets the ApiUserProfile_bioMember1 property value. Composed type representation for type ApiUserProfile_bioMember1able
-func (m *ApiUserProfile_ApiUserProfile_bio) SetApiUserProfileBioMember1(value ApiUserProfile_bioMember1able)() {
-    m.apiUserProfile_bioMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserProfile_ApiUserProfile_bio) SetString(value *string)() {
-    m.string = value
 }
 // ApiUserProfile_ApiUserProfile_createdAt composed type wrapper for classes ApiUserProfile_createdAtMember1able, string
 type ApiUserProfile_ApiUserProfile_createdAt struct {
@@ -336,200 +105,11 @@ func (m *ApiUserProfile_ApiUserProfile_createdAt) SetApiUserProfileCreatedAtMemb
 func (m *ApiUserProfile_ApiUserProfile_createdAt) SetString(value *string)() {
     m.string = value
 }
-// ApiUserProfile_ApiUserProfile_name composed type wrapper for classes ApiUserProfile_nameMember1able, string
-type ApiUserProfile_ApiUserProfile_name struct {
-    // Composed type representation for type ApiUserProfile_nameMember1able
-    apiUserProfile_nameMember1 ApiUserProfile_nameMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserProfile_ApiUserProfile_name instantiates a new ApiUserProfile_ApiUserProfile_name and sets the default values.
-func NewApiUserProfile_ApiUserProfile_name()(*ApiUserProfile_ApiUserProfile_name) {
-    m := &ApiUserProfile_ApiUserProfile_name{
-    }
-    return m
-}
-// CreateApiUserProfile_ApiUserProfile_nameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserProfile_ApiUserProfile_nameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserProfile_ApiUserProfile_name()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserProfile_nameMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserProfile_nameMember1able); ok {
-                result.SetApiUserProfileNameMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserProfileNameMember1 gets the ApiUserProfile_nameMember1 property value. Composed type representation for type ApiUserProfile_nameMember1able
-// returns a ApiUserProfile_nameMember1able when successful
-func (m *ApiUserProfile_ApiUserProfile_name) GetApiUserProfileNameMember1()(ApiUserProfile_nameMember1able) {
-    return m.apiUserProfile_nameMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserProfile_ApiUserProfile_name) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserProfile_ApiUserProfile_name) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserProfile_ApiUserProfile_name) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserProfile_ApiUserProfile_name) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserProfileNameMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserProfileNameMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserProfileNameMember1 sets the ApiUserProfile_nameMember1 property value. Composed type representation for type ApiUserProfile_nameMember1able
-func (m *ApiUserProfile_ApiUserProfile_name) SetApiUserProfileNameMember1(value ApiUserProfile_nameMember1able)() {
-    m.apiUserProfile_nameMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserProfile_ApiUserProfile_name) SetString(value *string)() {
-    m.string = value
-}
-// ApiUserProfile_ApiUserProfile_username composed type wrapper for classes ApiUserProfile_usernameMember1able, string
-type ApiUserProfile_ApiUserProfile_username struct {
-    // Composed type representation for type ApiUserProfile_usernameMember1able
-    apiUserProfile_usernameMember1 ApiUserProfile_usernameMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiUserProfile_ApiUserProfile_username instantiates a new ApiUserProfile_ApiUserProfile_username and sets the default values.
-func NewApiUserProfile_ApiUserProfile_username()(*ApiUserProfile_ApiUserProfile_username) {
-    m := &ApiUserProfile_ApiUserProfile_username{
-    }
-    return m
-}
-// CreateApiUserProfile_ApiUserProfile_usernameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiUserProfile_ApiUserProfile_usernameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiUserProfile_ApiUserProfile_username()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiUserProfile_usernameMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiUserProfile_usernameMember1able); ok {
-                result.SetApiUserProfileUsernameMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiUserProfileUsernameMember1 gets the ApiUserProfile_usernameMember1 property value. Composed type representation for type ApiUserProfile_usernameMember1able
-// returns a ApiUserProfile_usernameMember1able when successful
-func (m *ApiUserProfile_ApiUserProfile_username) GetApiUserProfileUsernameMember1()(ApiUserProfile_usernameMember1able) {
-    return m.apiUserProfile_usernameMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiUserProfile_ApiUserProfile_username) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiUserProfile_ApiUserProfile_username) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiUserProfile_ApiUserProfile_username) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiUserProfile_ApiUserProfile_username) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiUserProfileUsernameMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiUserProfileUsernameMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiUserProfileUsernameMember1 sets the ApiUserProfile_usernameMember1 property value. Composed type representation for type ApiUserProfile_usernameMember1able
-func (m *ApiUserProfile_ApiUserProfile_username) SetApiUserProfileUsernameMember1(value ApiUserProfile_usernameMember1able)() {
-    m.apiUserProfile_usernameMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiUserProfile_ApiUserProfile_username) SetString(value *string)() {
-    m.string = value
-}
-type ApiUserProfile_ApiUserProfile_avatarUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserProfileAvatarUrlMember1()(ApiUserProfile_avatarUrlMember1able)
-    GetString()(*string)
-    SetApiUserProfileAvatarUrlMember1(value ApiUserProfile_avatarUrlMember1able)()
-    SetString(value *string)()
-}
-type ApiUserProfile_ApiUserProfile_bannerUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserProfileBannerUrlMember1()(ApiUserProfile_bannerUrlMember1able)
-    GetString()(*string)
-    SetApiUserProfileBannerUrlMember1(value ApiUserProfile_bannerUrlMember1able)()
-    SetString(value *string)()
-}
-type ApiUserProfile_ApiUserProfile_bioable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserProfileBioMember1()(ApiUserProfile_bioMember1able)
-    GetString()(*string)
-    SetApiUserProfileBioMember1(value ApiUserProfile_bioMember1able)()
-    SetString(value *string)()
-}
 type ApiUserProfile_ApiUserProfile_createdAtable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetApiUserProfileCreatedAtMember1()(ApiUserProfile_createdAtMember1able)
     GetString()(*string)
     SetApiUserProfileCreatedAtMember1(value ApiUserProfile_createdAtMember1able)()
-    SetString(value *string)()
-}
-type ApiUserProfile_ApiUserProfile_nameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserProfileNameMember1()(ApiUserProfile_nameMember1able)
-    GetString()(*string)
-    SetApiUserProfileNameMember1(value ApiUserProfile_nameMember1able)()
-    SetString(value *string)()
-}
-type ApiUserProfile_ApiUserProfile_usernameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiUserProfileUsernameMember1()(ApiUserProfile_usernameMember1able)
-    GetString()(*string)
-    SetApiUserProfileUsernameMember1(value ApiUserProfile_usernameMember1able)()
     SetString(value *string)()
 }
 // NewApiUserProfile instantiates a new ApiUserProfile and sets the default values.
@@ -544,18 +124,18 @@ func CreateApiUserProfileFromDiscriminatorValue(parseNode i878a80d2330e89d268963
     return NewApiUserProfile(), nil
 }
 // GetAvatarUrl gets the avatarUrl property value. Avatar image URL, when set.
-// returns a ApiUserProfile_ApiUserProfile_avatarUrlable when successful
-func (m *ApiUserProfile) GetAvatarUrl()(ApiUserProfile_ApiUserProfile_avatarUrlable) {
+// returns a *string when successful
+func (m *ApiUserProfile) GetAvatarUrl()(*string) {
     return m.avatarUrl
 }
 // GetBannerUrl gets the bannerUrl property value. Banner image URL, when set.
-// returns a ApiUserProfile_ApiUserProfile_bannerUrlable when successful
-func (m *ApiUserProfile) GetBannerUrl()(ApiUserProfile_ApiUserProfile_bannerUrlable) {
+// returns a *string when successful
+func (m *ApiUserProfile) GetBannerUrl()(*string) {
     return m.bannerUrl
 }
 // GetBio gets the bio property value. Public profile bio.
-// returns a ApiUserProfile_ApiUserProfile_bioable when successful
-func (m *ApiUserProfile) GetBio()(ApiUserProfile_ApiUserProfile_bioable) {
+// returns a *string when successful
+func (m *ApiUserProfile) GetBio()(*string) {
     return m.bio
 }
 // GetCreatedAt gets the createdAt property value. The createdAt property
@@ -568,32 +148,32 @@ func (m *ApiUserProfile) GetCreatedAt()(ApiUserProfile_ApiUserProfile_createdAta
 func (m *ApiUserProfile) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["avatarUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserProfile_ApiUserProfile_avatarUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetAvatarUrl(val.(ApiUserProfile_ApiUserProfile_avatarUrlable))
+            m.SetAvatarUrl(val)
         }
         return nil
     }
     res["bannerUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserProfile_ApiUserProfile_bannerUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetBannerUrl(val.(ApiUserProfile_ApiUserProfile_bannerUrlable))
+            m.SetBannerUrl(val)
         }
         return nil
     }
     res["bio"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserProfile_ApiUserProfile_bioFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetBio(val.(ApiUserProfile_ApiUserProfile_bioable))
+            m.SetBio(val)
         }
         return nil
     }
@@ -628,22 +208,22 @@ func (m *ApiUserProfile) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserProfile_ApiUserProfile_nameFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetName(val.(ApiUserProfile_ApiUserProfile_nameable))
+            m.SetName(val)
         }
         return nil
     }
     res["username"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiUserProfile_ApiUserProfile_usernameFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetUsername(val.(ApiUserProfile_ApiUserProfile_usernameable))
+            m.SetUsername(val)
         }
         return nil
     }
@@ -670,13 +250,13 @@ func (m *ApiUserProfile) GetIsVerified()(*bool) {
     return m.isVerified
 }
 // GetName gets the name property value. Display name, when set.
-// returns a ApiUserProfile_ApiUserProfile_nameable when successful
-func (m *ApiUserProfile) GetName()(ApiUserProfile_ApiUserProfile_nameable) {
+// returns a *string when successful
+func (m *ApiUserProfile) GetName()(*string) {
     return m.name
 }
 // GetUsername gets the username property value. User handle, when set.
-// returns a ApiUserProfile_ApiUserProfile_usernameable when successful
-func (m *ApiUserProfile) GetUsername()(ApiUserProfile_ApiUserProfile_usernameable) {
+// returns a *string when successful
+func (m *ApiUserProfile) GetUsername()(*string) {
     return m.username
 }
 // GetVisibility gets the visibility property value. Public profile visibility setting.
@@ -687,19 +267,19 @@ func (m *ApiUserProfile) GetVisibility()(*ProfileVisibility) {
 // Serialize serializes information the current object
 func (m *ApiUserProfile) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("avatarUrl", m.GetAvatarUrl())
+        err := writer.WriteStringValue("avatarUrl", m.GetAvatarUrl())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("bannerUrl", m.GetBannerUrl())
+        err := writer.WriteStringValue("bannerUrl", m.GetBannerUrl())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("bio", m.GetBio())
+        err := writer.WriteStringValue("bio", m.GetBio())
         if err != nil {
             return err
         }
@@ -723,13 +303,13 @@ func (m *ApiUserProfile) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteObjectValue("name", m.GetName())
+        err := writer.WriteStringValue("name", m.GetName())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("username", m.GetUsername())
+        err := writer.WriteStringValue("username", m.GetUsername())
         if err != nil {
             return err
         }
@@ -744,15 +324,15 @@ func (m *ApiUserProfile) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     return nil
 }
 // SetAvatarUrl sets the avatarUrl property value. Avatar image URL, when set.
-func (m *ApiUserProfile) SetAvatarUrl(value ApiUserProfile_ApiUserProfile_avatarUrlable)() {
+func (m *ApiUserProfile) SetAvatarUrl(value *string)() {
     m.avatarUrl = value
 }
 // SetBannerUrl sets the bannerUrl property value. Banner image URL, when set.
-func (m *ApiUserProfile) SetBannerUrl(value ApiUserProfile_ApiUserProfile_bannerUrlable)() {
+func (m *ApiUserProfile) SetBannerUrl(value *string)() {
     m.bannerUrl = value
 }
 // SetBio sets the bio property value. Public profile bio.
-func (m *ApiUserProfile) SetBio(value ApiUserProfile_ApiUserProfile_bioable)() {
+func (m *ApiUserProfile) SetBio(value *string)() {
     m.bio = value
 }
 // SetCreatedAt sets the createdAt property value. The createdAt property
@@ -768,11 +348,11 @@ func (m *ApiUserProfile) SetIsVerified(value *bool)() {
     m.isVerified = value
 }
 // SetName sets the name property value. Display name, when set.
-func (m *ApiUserProfile) SetName(value ApiUserProfile_ApiUserProfile_nameable)() {
+func (m *ApiUserProfile) SetName(value *string)() {
     m.name = value
 }
 // SetUsername sets the username property value. User handle, when set.
-func (m *ApiUserProfile) SetUsername(value ApiUserProfile_ApiUserProfile_usernameable)() {
+func (m *ApiUserProfile) SetUsername(value *string)() {
     m.username = value
 }
 // SetVisibility sets the visibility property value. Public profile visibility setting.
@@ -781,22 +361,22 @@ func (m *ApiUserProfile) SetVisibility(value *ProfileVisibility)() {
 }
 type ApiUserProfileable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAvatarUrl()(ApiUserProfile_ApiUserProfile_avatarUrlable)
-    GetBannerUrl()(ApiUserProfile_ApiUserProfile_bannerUrlable)
-    GetBio()(ApiUserProfile_ApiUserProfile_bioable)
+    GetAvatarUrl()(*string)
+    GetBannerUrl()(*string)
+    GetBio()(*string)
     GetCreatedAt()(ApiUserProfile_ApiUserProfile_createdAtable)
     GetId()(*string)
     GetIsVerified()(*bool)
-    GetName()(ApiUserProfile_ApiUserProfile_nameable)
-    GetUsername()(ApiUserProfile_ApiUserProfile_usernameable)
+    GetName()(*string)
+    GetUsername()(*string)
     GetVisibility()(*ProfileVisibility)
-    SetAvatarUrl(value ApiUserProfile_ApiUserProfile_avatarUrlable)()
-    SetBannerUrl(value ApiUserProfile_ApiUserProfile_bannerUrlable)()
-    SetBio(value ApiUserProfile_ApiUserProfile_bioable)()
+    SetAvatarUrl(value *string)()
+    SetBannerUrl(value *string)()
+    SetBio(value *string)()
     SetCreatedAt(value ApiUserProfile_ApiUserProfile_createdAtable)()
     SetId(value *string)()
     SetIsVerified(value *bool)()
-    SetName(value ApiUserProfile_ApiUserProfile_nameable)()
-    SetUsername(value ApiUserProfile_ApiUserProfile_usernameable)()
+    SetName(value *string)()
+    SetUsername(value *string)()
     SetVisibility(value *ProfileVisibility)()
 }

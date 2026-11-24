@@ -5,7 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .api_match_team_avatar_url import ApiMatchTeam_avatarUrl
     from .api_match_team_score import ApiMatchTeam_score
 
 @dataclass
@@ -14,7 +13,7 @@ class ApiMatchTeam(Parsable):
     Team summary embedded in SP-2 match reads.
     """
     # Team avatar URL.
-    avatar_url: Optional[ApiMatchTeam_avatarUrl] = None
+    avatar_url: Optional[str] = None
     # Team ID.
     id: Optional[str] = None
     # Team name.
@@ -40,14 +39,12 @@ class ApiMatchTeam(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .api_match_team_avatar_url import ApiMatchTeam_avatarUrl
         from .api_match_team_score import ApiMatchTeam_score
 
-        from .api_match_team_avatar_url import ApiMatchTeam_avatarUrl
         from .api_match_team_score import ApiMatchTeam_score
 
         fields: dict[str, Callable[[Any], None]] = {
-            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_object_value(ApiMatchTeam_avatarUrl)),
+            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "score": lambda n : setattr(self, 'score', n.get_object_value(ApiMatchTeam_score)),
@@ -63,7 +60,7 @@ class ApiMatchTeam(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("avatarUrl", self.avatar_url)
+        writer.write_str_value("avatarUrl", self.avatar_url)
         writer.write_str_value("id", self.id)
         writer.write_str_value("name", self.name)
         writer.write_object_value("score", self.score)

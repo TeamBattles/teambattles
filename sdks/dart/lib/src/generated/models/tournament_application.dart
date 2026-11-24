@@ -1,6 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './tournament_application_team_avatar_url.dart';
 
 /// auto generated
 /// A team application awaiting organizer review.
@@ -12,7 +11,7 @@ class TournamentApplication implements Parsable {
     ///  Application time (epoch milliseconds).
     double? registeredAt;
     ///  Applying team's avatar URL.
-    TournamentApplicationTeamAvatarUrl? teamAvatarUrl;
+    String? teamAvatarUrl;
     ///  Applying team's ID.
     String? teamId;
     ///  Applying team's display name.
@@ -29,7 +28,7 @@ class TournamentApplication implements Parsable {
         deserializerMap['appliedByUserId'] = (node) => appliedByUserId = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['registeredAt'] = (node) => registeredAt = node.getDoubleValue();
-        deserializerMap['teamAvatarUrl'] = (node) => teamAvatarUrl = node.getObjectValue<TournamentApplicationTeamAvatarUrl>(TournamentApplicationTeamAvatarUrl.createFromDiscriminatorValue);
+        deserializerMap['teamAvatarUrl'] = (node) => teamAvatarUrl = node.getStringValue();
         deserializerMap['teamId'] = (node) => teamId = node.getStringValue();
         deserializerMap['teamName'] = (node) => teamName = node.getStringValue();
         return deserializerMap;
@@ -41,7 +40,7 @@ class TournamentApplication implements Parsable {
         writer.writeStringValue('appliedByUserId', appliedByUserId);
         writer.writeStringValue('id', id);
         writer.writeDoubleValue('registeredAt', registeredAt);
-        writer.writeObjectValue<TournamentApplicationTeamAvatarUrl>('teamAvatarUrl', teamAvatarUrl);
+        writer.writeStringValue('teamAvatarUrl', teamAvatarUrl);
         writer.writeStringValue('teamId', teamId);
         writer.writeStringValue('teamName', teamName);
     }

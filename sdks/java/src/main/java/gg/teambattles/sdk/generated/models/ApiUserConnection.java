@@ -36,11 +36,11 @@ public class ApiUserConnection implements Parsable {
     /**
      * The url property
      */
-    private ApiUserConnectionUrl url;
+    private String url;
     /**
      * The username property
      */
-    private ApiUserConnectionUsername username;
+    private String username;
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param parseNode The parse node to use to read the discriminator value and create the object
@@ -71,8 +71,8 @@ public class ApiUserConnection implements Parsable {
         deserializerMap.put("isPrimary", (n) -> { this.setIsPrimary(n.getBooleanValue()); });
         deserializerMap.put("isVerified", (n) -> { this.setIsVerified(n.getBooleanValue()); });
         deserializerMap.put("platform", (n) -> { this.setPlatform(n.getStringValue()); });
-        deserializerMap.put("url", (n) -> { this.setUrl(n.getObjectValue(ApiUserConnectionUrl::createFromDiscriminatorValue)); });
-        deserializerMap.put("username", (n) -> { this.setUsername(n.getObjectValue(ApiUserConnectionUsername::createFromDiscriminatorValue)); });
+        deserializerMap.put("url", (n) -> { this.setUrl(n.getStringValue()); });
+        deserializerMap.put("username", (n) -> { this.setUsername(n.getStringValue()); });
         return deserializerMap;
     }
     /**
@@ -109,18 +109,18 @@ public class ApiUserConnection implements Parsable {
     }
     /**
      * Gets the url property value. The url property
-     * @return a {@link ApiUserConnectionUrl}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiUserConnectionUrl getUrl() {
+    public String getUrl() {
         return this.url;
     }
     /**
      * Gets the username property value. The username property
-     * @return a {@link ApiUserConnectionUsername}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiUserConnectionUsername getUsername() {
+    public String getUsername() {
         return this.username;
     }
     /**
@@ -134,8 +134,8 @@ public class ApiUserConnection implements Parsable {
         writer.writeBooleanValue("isPrimary", this.getIsPrimary());
         writer.writeBooleanValue("isVerified", this.getIsVerified());
         writer.writeStringValue("platform", this.getPlatform());
-        writer.writeObjectValue("url", this.getUrl());
-        writer.writeObjectValue("username", this.getUsername());
+        writer.writeStringValue("url", this.getUrl());
+        writer.writeStringValue("username", this.getUsername());
     }
     /**
      * Sets the connectedAt property value. The connectedAt property
@@ -176,14 +176,14 @@ public class ApiUserConnection implements Parsable {
      * Sets the url property value. The url property
      * @param value Value to set for the url property.
      */
-    public void setUrl(@jakarta.annotation.Nullable final ApiUserConnectionUrl value) {
+    public void setUrl(@jakarta.annotation.Nullable final String value) {
         this.url = value;
     }
     /**
      * Sets the username property value. The username property
      * @param value Value to set for the username property.
      */
-    public void setUsername(@jakarta.annotation.Nullable final ApiUserConnectionUsername value) {
+    public void setUsername(@jakarta.annotation.Nullable final String value) {
         this.username = value;
     }
     /**
@@ -260,172 +260,6 @@ public class ApiUserConnection implements Parsable {
          */
         public void setApiUserConnectionConnectedAtMember1(@jakarta.annotation.Nullable final ApiUserConnectionConnectedAtMember1 value) {
             this.apiUserConnectionConnectedAtMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiUserConnectionUrlMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiUserConnectionUrl implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiUserConnectionUrlMember1}
-         */
-        private ApiUserConnectionUrlMember1 apiUserConnectionUrlMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiUserConnectionUrl}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiUserConnectionUrl createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiUserConnectionUrl result = new ApiUserConnectionUrl();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiUserConnectionUrlMember1(new ApiUserConnectionUrlMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiUserConnection_urlMember1 property value. Composed type representation for type {@link ApiUserConnectionUrlMember1}
-         * @return a {@link ApiUserConnectionUrlMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiUserConnectionUrlMember1 getApiUserConnectionUrlMember1() {
-            return this.apiUserConnectionUrlMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiUserConnectionUrlMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiUserConnectionUrlMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiUserConnectionUrlMember1());
-            }
-        }
-        /**
-         * Sets the ApiUserConnection_urlMember1 property value. Composed type representation for type {@link ApiUserConnectionUrlMember1}
-         * @param value Value to set for the ApiUserConnection_urlMember1 property.
-         */
-        public void setApiUserConnectionUrlMember1(@jakarta.annotation.Nullable final ApiUserConnectionUrlMember1 value) {
-            this.apiUserConnectionUrlMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiUserConnectionUsernameMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiUserConnectionUsername implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiUserConnectionUsernameMember1}
-         */
-        private ApiUserConnectionUsernameMember1 apiUserConnectionUsernameMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiUserConnectionUsername}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiUserConnectionUsername createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiUserConnectionUsername result = new ApiUserConnectionUsername();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiUserConnectionUsernameMember1(new ApiUserConnectionUsernameMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiUserConnection_usernameMember1 property value. Composed type representation for type {@link ApiUserConnectionUsernameMember1}
-         * @return a {@link ApiUserConnectionUsernameMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiUserConnectionUsernameMember1 getApiUserConnectionUsernameMember1() {
-            return this.apiUserConnectionUsernameMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiUserConnectionUsernameMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiUserConnectionUsernameMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiUserConnectionUsernameMember1());
-            }
-        }
-        /**
-         * Sets the ApiUserConnection_usernameMember1 property value. Composed type representation for type {@link ApiUserConnectionUsernameMember1}
-         * @param value Value to set for the ApiUserConnection_usernameMember1 property.
-         */
-        public void setApiUserConnectionUsernameMember1(@jakarta.annotation.Nullable final ApiUserConnectionUsernameMember1 value) {
-            this.apiUserConnectionUsernameMember1 = value;
         }
         /**
          * Sets the string property value. Composed type representation for type {@link String}

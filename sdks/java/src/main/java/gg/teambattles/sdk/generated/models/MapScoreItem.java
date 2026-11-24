@@ -1,9 +1,7 @@
 package gg.teambattles.sdk.generated.models;
 
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +18,7 @@ public class MapScoreItem implements Parsable {
     /**
      * Creation time (ISO 8601).
      */
-    private MapScoreItemCreatedAt createdAt;
+    private String createdAt;
     /**
      * The creatorTeamScore property
      */
@@ -69,10 +67,10 @@ public class MapScoreItem implements Parsable {
     }
     /**
      * Gets the createdAt property value. Creation time (ISO 8601).
-     * @return a {@link MapScoreItemCreatedAt}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public MapScoreItemCreatedAt getCreatedAt() {
+    public String getCreatedAt() {
         return this.createdAt;
     }
     /**
@@ -91,7 +89,7 @@ public class MapScoreItem implements Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(9);
         deserializerMap.put("confirmedBy", (n) -> { this.setConfirmedBy(n.getObjectValue(ScoreConfirmer::createFromDiscriminatorValue)); });
-        deserializerMap.put("createdAt", (n) -> { this.setCreatedAt(n.getObjectValue(MapScoreItemCreatedAt::createFromDiscriminatorValue)); });
+        deserializerMap.put("createdAt", (n) -> { this.setCreatedAt(n.getStringValue()); });
         deserializerMap.put("creatorTeamScore", (n) -> { this.setCreatorTeamScore(n.getIntegerValue()); });
         deserializerMap.put("mapId", (n) -> { this.setMapId(n.getStringValue()); });
         deserializerMap.put("mapIndex", (n) -> { this.setMapIndex(n.getIntegerValue()); });
@@ -156,7 +154,7 @@ public class MapScoreItem implements Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeObjectValue("confirmedBy", this.getConfirmedBy());
-        writer.writeObjectValue("createdAt", this.getCreatedAt());
+        writer.writeStringValue("createdAt", this.getCreatedAt());
         writer.writeIntegerValue("creatorTeamScore", this.getCreatorTeamScore());
         writer.writeStringValue("mapId", this.getMapId());
         writer.writeIntegerValue("mapIndex", this.getMapIndex());
@@ -176,7 +174,7 @@ public class MapScoreItem implements Parsable {
      * Sets the createdAt property value. Creation time (ISO 8601).
      * @param value Value to set for the createdAt property.
      */
-    public void setCreatedAt(@jakarta.annotation.Nullable final MapScoreItemCreatedAt value) {
+    public void setCreatedAt(@jakarta.annotation.Nullable final String value) {
         this.createdAt = value;
     }
     /**
@@ -227,88 +225,5 @@ public class MapScoreItem implements Parsable {
      */
     public void setSubmittedBy(@jakarta.annotation.Nullable final ScoreSubmitter value) {
         this.submittedBy = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link MapScoreItemCreatedAtMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class MapScoreItemCreatedAt implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link MapScoreItemCreatedAtMember1}
-         */
-        private MapScoreItemCreatedAtMember1 mapScoreItemCreatedAtMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link MapScoreItemCreatedAt}
-         */
-        @jakarta.annotation.Nonnull
-        public static MapScoreItemCreatedAt createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final MapScoreItemCreatedAt result = new MapScoreItemCreatedAt();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setMapScoreItemCreatedAtMember1(new MapScoreItemCreatedAtMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getMapScoreItemCreatedAtMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getMapScoreItemCreatedAtMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the MapScoreItem_createdAtMember1 property value. Composed type representation for type {@link MapScoreItemCreatedAtMember1}
-         * @return a {@link MapScoreItemCreatedAtMember1}
-         */
-        @jakarta.annotation.Nullable
-        public MapScoreItemCreatedAtMember1 getMapScoreItemCreatedAtMember1() {
-            return this.mapScoreItemCreatedAtMember1;
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getMapScoreItemCreatedAtMember1());
-            }
-        }
-        /**
-         * Sets the MapScoreItem_createdAtMember1 property value. Composed type representation for type {@link MapScoreItemCreatedAtMember1}
-         * @param value Value to set for the MapScoreItem_createdAtMember1 property.
-         */
-        public void setMapScoreItemCreatedAtMember1(@jakarta.annotation.Nullable final MapScoreItemCreatedAtMember1 value) {
-            this.mapScoreItemCreatedAtMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
     }
 }

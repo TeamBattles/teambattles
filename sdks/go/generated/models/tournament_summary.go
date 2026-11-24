@@ -10,7 +10,7 @@ import (
 // TournamentSummary summary view of a tournament for discovery.
 type TournamentSummary struct {
     // Banner image URL.
-    bannerUrl TournamentSummary_TournamentSummary_bannerUrlable
+    bannerUrl *string
     // Short tournament description.
     description *string
     // Bracket format of a tournament.
@@ -22,7 +22,7 @@ type TournamentSummary struct {
     // Whether the featured placement is live at request time.
     isFeatured *bool
     // Logo image URL.
-    logoUrl TournamentSummary_TournamentSummary_logoUrlable
+    logoUrl *string
     // Participant cap.
     maxParticipants *int32
     // Tournament display name.
@@ -40,174 +40,6 @@ type TournamentSummary struct {
     // Lifecycle status of a tournament.
     status *TournamentStatus
 }
-// TournamentSummary_TournamentSummary_bannerUrl composed type wrapper for classes string, TournamentSummary_bannerUrlMember1able
-type TournamentSummary_TournamentSummary_bannerUrl struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TournamentSummary_bannerUrlMember1able
-    tournamentSummary_bannerUrlMember1 TournamentSummary_bannerUrlMember1able
-}
-// NewTournamentSummary_TournamentSummary_bannerUrl instantiates a new TournamentSummary_TournamentSummary_bannerUrl and sets the default values.
-func NewTournamentSummary_TournamentSummary_bannerUrl()(*TournamentSummary_TournamentSummary_bannerUrl) {
-    m := &TournamentSummary_TournamentSummary_bannerUrl{
-    }
-    return m
-}
-// CreateTournamentSummary_TournamentSummary_bannerUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTournamentSummary_TournamentSummary_bannerUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTournamentSummary_TournamentSummary_bannerUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTournamentSummary_bannerUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TournamentSummary_bannerUrlMember1able); ok {
-                result.SetTournamentSummaryBannerUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TournamentSummary_TournamentSummary_bannerUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TournamentSummary_TournamentSummary_bannerUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TournamentSummary_TournamentSummary_bannerUrl) GetString()(*string) {
-    return m.string
-}
-// GetTournamentSummaryBannerUrlMember1 gets the TournamentSummary_bannerUrlMember1 property value. Composed type representation for type TournamentSummary_bannerUrlMember1able
-// returns a TournamentSummary_bannerUrlMember1able when successful
-func (m *TournamentSummary_TournamentSummary_bannerUrl) GetTournamentSummaryBannerUrlMember1()(TournamentSummary_bannerUrlMember1able) {
-    return m.tournamentSummary_bannerUrlMember1
-}
-// Serialize serializes information the current object
-func (m *TournamentSummary_TournamentSummary_bannerUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTournamentSummaryBannerUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTournamentSummaryBannerUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TournamentSummary_TournamentSummary_bannerUrl) SetString(value *string)() {
-    m.string = value
-}
-// SetTournamentSummaryBannerUrlMember1 sets the TournamentSummary_bannerUrlMember1 property value. Composed type representation for type TournamentSummary_bannerUrlMember1able
-func (m *TournamentSummary_TournamentSummary_bannerUrl) SetTournamentSummaryBannerUrlMember1(value TournamentSummary_bannerUrlMember1able)() {
-    m.tournamentSummary_bannerUrlMember1 = value
-}
-// TournamentSummary_TournamentSummary_logoUrl composed type wrapper for classes string, TournamentSummary_logoUrlMember1able
-type TournamentSummary_TournamentSummary_logoUrl struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TournamentSummary_logoUrlMember1able
-    tournamentSummary_logoUrlMember1 TournamentSummary_logoUrlMember1able
-}
-// NewTournamentSummary_TournamentSummary_logoUrl instantiates a new TournamentSummary_TournamentSummary_logoUrl and sets the default values.
-func NewTournamentSummary_TournamentSummary_logoUrl()(*TournamentSummary_TournamentSummary_logoUrl) {
-    m := &TournamentSummary_TournamentSummary_logoUrl{
-    }
-    return m
-}
-// CreateTournamentSummary_TournamentSummary_logoUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTournamentSummary_TournamentSummary_logoUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTournamentSummary_TournamentSummary_logoUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTournamentSummary_logoUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TournamentSummary_logoUrlMember1able); ok {
-                result.SetTournamentSummaryLogoUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TournamentSummary_TournamentSummary_logoUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TournamentSummary_TournamentSummary_logoUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TournamentSummary_TournamentSummary_logoUrl) GetString()(*string) {
-    return m.string
-}
-// GetTournamentSummaryLogoUrlMember1 gets the TournamentSummary_logoUrlMember1 property value. Composed type representation for type TournamentSummary_logoUrlMember1able
-// returns a TournamentSummary_logoUrlMember1able when successful
-func (m *TournamentSummary_TournamentSummary_logoUrl) GetTournamentSummaryLogoUrlMember1()(TournamentSummary_logoUrlMember1able) {
-    return m.tournamentSummary_logoUrlMember1
-}
-// Serialize serializes information the current object
-func (m *TournamentSummary_TournamentSummary_logoUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTournamentSummaryLogoUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTournamentSummaryLogoUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TournamentSummary_TournamentSummary_logoUrl) SetString(value *string)() {
-    m.string = value
-}
-// SetTournamentSummaryLogoUrlMember1 sets the TournamentSummary_logoUrlMember1 property value. Composed type representation for type TournamentSummary_logoUrlMember1able
-func (m *TournamentSummary_TournamentSummary_logoUrl) SetTournamentSummaryLogoUrlMember1(value TournamentSummary_logoUrlMember1able)() {
-    m.tournamentSummary_logoUrlMember1 = value
-}
-type TournamentSummary_TournamentSummary_bannerUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTournamentSummaryBannerUrlMember1()(TournamentSummary_bannerUrlMember1able)
-    SetString(value *string)()
-    SetTournamentSummaryBannerUrlMember1(value TournamentSummary_bannerUrlMember1able)()
-}
-type TournamentSummary_TournamentSummary_logoUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTournamentSummaryLogoUrlMember1()(TournamentSummary_logoUrlMember1able)
-    SetString(value *string)()
-    SetTournamentSummaryLogoUrlMember1(value TournamentSummary_logoUrlMember1able)()
-}
 // NewTournamentSummary instantiates a new TournamentSummary and sets the default values.
 func NewTournamentSummary()(*TournamentSummary) {
     m := &TournamentSummary{
@@ -220,8 +52,8 @@ func CreateTournamentSummaryFromDiscriminatorValue(parseNode i878a80d2330e89d268
     return NewTournamentSummary(), nil
 }
 // GetBannerUrl gets the bannerUrl property value. Banner image URL.
-// returns a TournamentSummary_TournamentSummary_bannerUrlable when successful
-func (m *TournamentSummary) GetBannerUrl()(TournamentSummary_TournamentSummary_bannerUrlable) {
+// returns a *string when successful
+func (m *TournamentSummary) GetBannerUrl()(*string) {
     return m.bannerUrl
 }
 // GetDescription gets the description property value. Short tournament description.
@@ -234,12 +66,12 @@ func (m *TournamentSummary) GetDescription()(*string) {
 func (m *TournamentSummary) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["bannerUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTournamentSummary_TournamentSummary_bannerUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetBannerUrl(val.(TournamentSummary_TournamentSummary_bannerUrlable))
+            m.SetBannerUrl(val)
         }
         return nil
     }
@@ -294,12 +126,12 @@ func (m *TournamentSummary) GetFieldDeserializers()(map[string]func(i878a80d2330
         return nil
     }
     res["logoUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTournamentSummary_TournamentSummary_logoUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetLogoUrl(val.(TournamentSummary_TournamentSummary_logoUrlable))
+            m.SetLogoUrl(val)
         }
         return nil
     }
@@ -406,8 +238,8 @@ func (m *TournamentSummary) GetIsFeatured()(*bool) {
     return m.isFeatured
 }
 // GetLogoUrl gets the logoUrl property value. Logo image URL.
-// returns a TournamentSummary_TournamentSummary_logoUrlable when successful
-func (m *TournamentSummary) GetLogoUrl()(TournamentSummary_TournamentSummary_logoUrlable) {
+// returns a *string when successful
+func (m *TournamentSummary) GetLogoUrl()(*string) {
     return m.logoUrl
 }
 // GetMaxParticipants gets the maxParticipants property value. Participant cap.
@@ -453,7 +285,7 @@ func (m *TournamentSummary) GetStatus()(*TournamentStatus) {
 // Serialize serializes information the current object
 func (m *TournamentSummary) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("bannerUrl", m.GetBannerUrl())
+        err := writer.WriteStringValue("bannerUrl", m.GetBannerUrl())
         if err != nil {
             return err
         }
@@ -490,7 +322,7 @@ func (m *TournamentSummary) Serialize(writer i878a80d2330e89d26896388a3f487eef27
         }
     }
     {
-        err := writer.WriteObjectValue("logoUrl", m.GetLogoUrl())
+        err := writer.WriteStringValue("logoUrl", m.GetLogoUrl())
         if err != nil {
             return err
         }
@@ -547,7 +379,7 @@ func (m *TournamentSummary) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     return nil
 }
 // SetBannerUrl sets the bannerUrl property value. Banner image URL.
-func (m *TournamentSummary) SetBannerUrl(value TournamentSummary_TournamentSummary_bannerUrlable)() {
+func (m *TournamentSummary) SetBannerUrl(value *string)() {
     m.bannerUrl = value
 }
 // SetDescription sets the description property value. Short tournament description.
@@ -571,7 +403,7 @@ func (m *TournamentSummary) SetIsFeatured(value *bool)() {
     m.isFeatured = value
 }
 // SetLogoUrl sets the logoUrl property value. Logo image URL.
-func (m *TournamentSummary) SetLogoUrl(value TournamentSummary_TournamentSummary_logoUrlable)() {
+func (m *TournamentSummary) SetLogoUrl(value *string)() {
     m.logoUrl = value
 }
 // SetMaxParticipants sets the maxParticipants property value. Participant cap.
@@ -608,13 +440,13 @@ func (m *TournamentSummary) SetStatus(value *TournamentStatus)() {
 }
 type TournamentSummaryable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBannerUrl()(TournamentSummary_TournamentSummary_bannerUrlable)
+    GetBannerUrl()(*string)
     GetDescription()(*string)
     GetFormat()(*TournamentFormat)
     GetGame()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
     GetId()(*string)
     GetIsFeatured()(*bool)
-    GetLogoUrl()(TournamentSummary_TournamentSummary_logoUrlable)
+    GetLogoUrl()(*string)
     GetMaxParticipants()(*int32)
     GetName()(*string)
     GetParticipantCount()(*int32)
@@ -623,13 +455,13 @@ type TournamentSummaryable interface {
     GetSlug()(*string)
     GetStartsAt()(*float64)
     GetStatus()(*TournamentStatus)
-    SetBannerUrl(value TournamentSummary_TournamentSummary_bannerUrlable)()
+    SetBannerUrl(value *string)()
     SetDescription(value *string)()
     SetFormat(value *TournamentFormat)()
     SetGame(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
     SetId(value *string)()
     SetIsFeatured(value *bool)()
-    SetLogoUrl(value TournamentSummary_TournamentSummary_logoUrlable)()
+    SetLogoUrl(value *string)()
     SetMaxParticipants(value *int32)()
     SetName(value *string)()
     SetParticipantCount(value *int32)()

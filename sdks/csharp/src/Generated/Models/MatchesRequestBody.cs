@@ -34,10 +34,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>Opaque continuation cursor from a prior page&apos;s continueCursor.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.MatchesRequestBody.MatchesRequestBody_cursor? Cursor { get; set; }
+        public string? Cursor { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.MatchesRequestBody.MatchesRequestBody_cursor Cursor { get; set; }
+        public string Cursor { get; set; }
 #endif
         /// <summary>Exclude matches with these MatchStatus codes; unknown values are ignored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -117,7 +117,7 @@ namespace TeamBattles.Sdk.Models
             {
                 { "createdAfter", n => { CreatedAfter = n.GetStringValue(); } },
                 { "createdBefore", n => { CreatedBefore = n.GetStringValue(); } },
-                { "cursor", n => { Cursor = n.GetObjectValue<global::TeamBattles.Sdk.Models.MatchesRequestBody.MatchesRequestBody_cursor>(global::TeamBattles.Sdk.Models.MatchesRequestBody.MatchesRequestBody_cursor.CreateFromDiscriminatorValue); } },
+                { "cursor", n => { Cursor = n.GetStringValue(); } },
                 { "excludeStatuses", n => { ExcludeStatuses = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "gameId", n => { GameId = n.GetStringValue(); } },
                 { "includeStatuses", n => { IncludeStatuses = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
@@ -136,7 +136,7 @@ namespace TeamBattles.Sdk.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("createdAfter", CreatedAfter);
             writer.WriteStringValue("createdBefore", CreatedBefore);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.MatchesRequestBody.MatchesRequestBody_cursor>("cursor", Cursor);
+            writer.WriteStringValue("cursor", Cursor);
             writer.WriteCollectionOfPrimitiveValues<string>("excludeStatuses", ExcludeStatuses);
             writer.WriteStringValue("gameId", GameId);
             writer.WriteCollectionOfPrimitiveValues<string>("includeStatuses", IncludeStatuses);
@@ -145,74 +145,6 @@ namespace TeamBattles.Sdk.Models
             writer.WriteStringValue("scheduledAfter", ScheduledAfter);
             writer.WriteStringValue("scheduledBefore", ScheduledBefore);
             writer.WriteAdditionalData(AdditionalData);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.MatchesRequestBody_cursorMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class MatchesRequestBody_cursor : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.MatchesRequestBody_cursorMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.MatchesRequestBody_cursorMember1? MatchesRequestBodyCursorMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.MatchesRequestBody_cursorMember1 MatchesRequestBodyCursorMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.MatchesRequestBody.MatchesRequestBody_cursor"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.MatchesRequestBody.MatchesRequestBody_cursor CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.MatchesRequestBody.MatchesRequestBody_cursor();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.MatchesRequestBodyCursorMember1 = new global::TeamBattles.Sdk.Models.MatchesRequestBody_cursorMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(MatchesRequestBodyCursorMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(MatchesRequestBodyCursorMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.MatchesRequestBody_cursorMember1>(null, MatchesRequestBodyCursorMember1);
-                }
-            }
         }
     }
 }

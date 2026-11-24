@@ -7,7 +7,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .leaderboard_sort_by import LeaderboardSortBy
     from .team_leaderboard_entry import TeamLeaderboardEntry
-    from .team_leaderboard_response_game_slug import TeamLeaderboardResponse_gameSlug
 
 @dataclass
 class TeamLeaderboardResponse(Parsable):
@@ -15,7 +14,7 @@ class TeamLeaderboardResponse(Parsable):
     Team leaderboard response.
     """
     # The gameSlug property
-    game_slug: Optional[TeamLeaderboardResponse_gameSlug] = None
+    game_slug: Optional[str] = None
     # Supported leaderboard sort field.
     sort_by: Optional[LeaderboardSortBy] = None
     # The teams property
@@ -41,14 +40,12 @@ class TeamLeaderboardResponse(Parsable):
         """
         from .leaderboard_sort_by import LeaderboardSortBy
         from .team_leaderboard_entry import TeamLeaderboardEntry
-        from .team_leaderboard_response_game_slug import TeamLeaderboardResponse_gameSlug
 
         from .leaderboard_sort_by import LeaderboardSortBy
         from .team_leaderboard_entry import TeamLeaderboardEntry
-        from .team_leaderboard_response_game_slug import TeamLeaderboardResponse_gameSlug
 
         fields: dict[str, Callable[[Any], None]] = {
-            "gameSlug": lambda n : setattr(self, 'game_slug', n.get_object_value(TeamLeaderboardResponse_gameSlug)),
+            "gameSlug": lambda n : setattr(self, 'game_slug', n.get_str_value()),
             "sortBy": lambda n : setattr(self, 'sort_by', n.get_enum_value(LeaderboardSortBy)),
             "teams": lambda n : setattr(self, 'teams', n.get_collection_of_object_values(TeamLeaderboardEntry)),
             "timestamp": lambda n : setattr(self, 'timestamp', n.get_str_value()),
@@ -63,7 +60,7 @@ class TeamLeaderboardResponse(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("gameSlug", self.game_slug)
+        writer.write_str_value("gameSlug", self.game_slug)
         writer.write_enum_value("sortBy", self.sort_by)
         writer.write_collection_of_object_values("teams", self.teams)
         writer.write_str_value("timestamp", self.timestamp)

@@ -2,15 +2,7 @@
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './game_detail_team.dart';
 import './game_match_detail_accepted_team_score.dart';
-import './game_match_detail_completed_at.dart';
-import './game_match_detail_created_at.dart';
 import './game_match_detail_creator_team_score.dart';
-import './game_match_detail_league_id.dart';
-import './game_match_detail_league_season_id.dart';
-import './game_match_detail_loser_team_id.dart';
-import './game_match_detail_scheduled_at.dart';
-import './game_match_detail_started_at.dart';
-import './game_match_detail_winner_team_id.dart';
 import './match_status.dart';
 
 /// auto generated
@@ -23,9 +15,9 @@ class GameMatchDetail implements Parsable {
     ///  Number of maps in the series (1, 3, 5, or 7).
     int? bestOf;
     ///  Completion time (ISO 8601).
-    GameMatchDetailCompletedAt? completedAt;
+    String? completedAt;
     ///  Creation time (ISO 8601).
-    GameMatchDetailCreatedAt? createdAt;
+    String? createdAt;
     ///  The creatorTeam property
     GameDetailTeam? creatorTeam;
     ///  The creatorTeamScore property
@@ -37,19 +29,19 @@ class GameMatchDetail implements Parsable {
     ///  The id property
     String? id;
     ///  League this match belongs to, if any (SP-7 league wave).
-    GameMatchDetailLeagueId? leagueId;
+    String? leagueId;
     ///  League season this match belongs to, if any.
-    GameMatchDetailLeagueSeasonId? leagueSeasonId;
+    String? leagueSeasonId;
     ///  Losing team ID once the match completes.
-    GameMatchDetailLoserTeamId? loserTeamId;
+    String? loserTeamId;
     ///  Scheduled start time (ISO 8601).
-    GameMatchDetailScheduledAt? scheduledAt;
+    String? scheduledAt;
     ///  Actual start time (ISO 8601).
-    GameMatchDetailStartedAt? startedAt;
+    String? startedAt;
     ///  Lifecycle status of a match.
     MatchStatus? status;
     ///  Winning team ID once the match completes.
-    GameMatchDetailWinnerTeamId? winnerTeamId;
+    String? winnerTeamId;
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object
     static GameMatchDetail createFromDiscriminatorValue(ParseNode parseNode) {
@@ -62,20 +54,20 @@ class GameMatchDetail implements Parsable {
         deserializerMap['acceptedTeam'] = (node) => acceptedTeam = node.getObjectValue<GameDetailTeam>(GameDetailTeam.createFromDiscriminatorValue);
         deserializerMap['acceptedTeamScore'] = (node) => acceptedTeamScore = node.getObjectValue<GameMatchDetailAcceptedTeamScore>(GameMatchDetailAcceptedTeamScore.createFromDiscriminatorValue);
         deserializerMap['bestOf'] = (node) => bestOf = node.getIntValue();
-        deserializerMap['completedAt'] = (node) => completedAt = node.getObjectValue<GameMatchDetailCompletedAt>(GameMatchDetailCompletedAt.createFromDiscriminatorValue);
-        deserializerMap['createdAt'] = (node) => createdAt = node.getObjectValue<GameMatchDetailCreatedAt>(GameMatchDetailCreatedAt.createFromDiscriminatorValue);
+        deserializerMap['completedAt'] = (node) => completedAt = node.getStringValue();
+        deserializerMap['createdAt'] = (node) => createdAt = node.getStringValue();
         deserializerMap['creatorTeam'] = (node) => creatorTeam = node.getObjectValue<GameDetailTeam>(GameDetailTeam.createFromDiscriminatorValue);
         deserializerMap['creatorTeamScore'] = (node) => creatorTeamScore = node.getObjectValue<GameMatchDetailCreatorTeamScore>(GameMatchDetailCreatorTeamScore.createFromDiscriminatorValue);
         deserializerMap['gameId'] = (node) => gameId = node.getStringValue();
         deserializerMap['gameMode'] = (node) => gameMode = node.getStringValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
-        deserializerMap['leagueId'] = (node) => leagueId = node.getObjectValue<GameMatchDetailLeagueId>(GameMatchDetailLeagueId.createFromDiscriminatorValue);
-        deserializerMap['leagueSeasonId'] = (node) => leagueSeasonId = node.getObjectValue<GameMatchDetailLeagueSeasonId>(GameMatchDetailLeagueSeasonId.createFromDiscriminatorValue);
-        deserializerMap['loserTeamId'] = (node) => loserTeamId = node.getObjectValue<GameMatchDetailLoserTeamId>(GameMatchDetailLoserTeamId.createFromDiscriminatorValue);
-        deserializerMap['scheduledAt'] = (node) => scheduledAt = node.getObjectValue<GameMatchDetailScheduledAt>(GameMatchDetailScheduledAt.createFromDiscriminatorValue);
-        deserializerMap['startedAt'] = (node) => startedAt = node.getObjectValue<GameMatchDetailStartedAt>(GameMatchDetailStartedAt.createFromDiscriminatorValue);
+        deserializerMap['leagueId'] = (node) => leagueId = node.getStringValue();
+        deserializerMap['leagueSeasonId'] = (node) => leagueSeasonId = node.getStringValue();
+        deserializerMap['loserTeamId'] = (node) => loserTeamId = node.getStringValue();
+        deserializerMap['scheduledAt'] = (node) => scheduledAt = node.getStringValue();
+        deserializerMap['startedAt'] = (node) => startedAt = node.getStringValue();
         deserializerMap['status'] = (node) => status = node.getEnumValue<MatchStatus>((stringValue) => MatchStatus.values.where((enumVal) => enumVal.value == stringValue).firstOrNull);
-        deserializerMap['winnerTeamId'] = (node) => winnerTeamId = node.getObjectValue<GameMatchDetailWinnerTeamId>(GameMatchDetailWinnerTeamId.createFromDiscriminatorValue);
+        deserializerMap['winnerTeamId'] = (node) => winnerTeamId = node.getStringValue();
         return deserializerMap;
     }
     /// Serializes information the current object
@@ -85,19 +77,19 @@ class GameMatchDetail implements Parsable {
         writer.writeObjectValue<GameDetailTeam>('acceptedTeam', acceptedTeam);
         writer.writeObjectValue<GameMatchDetailAcceptedTeamScore>('acceptedTeamScore', acceptedTeamScore);
         writer.writeIntValue('bestOf', bestOf);
-        writer.writeObjectValue<GameMatchDetailCompletedAt>('completedAt', completedAt);
-        writer.writeObjectValue<GameMatchDetailCreatedAt>('createdAt', createdAt);
+        writer.writeStringValue('completedAt', completedAt);
+        writer.writeStringValue('createdAt', createdAt);
         writer.writeObjectValue<GameDetailTeam>('creatorTeam', creatorTeam);
         writer.writeObjectValue<GameMatchDetailCreatorTeamScore>('creatorTeamScore', creatorTeamScore);
         writer.writeStringValue('gameId', gameId);
         writer.writeStringValue('gameMode', gameMode);
         writer.writeStringValue('id', id);
-        writer.writeObjectValue<GameMatchDetailLeagueId>('leagueId', leagueId);
-        writer.writeObjectValue<GameMatchDetailLeagueSeasonId>('leagueSeasonId', leagueSeasonId);
-        writer.writeObjectValue<GameMatchDetailLoserTeamId>('loserTeamId', loserTeamId);
-        writer.writeObjectValue<GameMatchDetailScheduledAt>('scheduledAt', scheduledAt);
-        writer.writeObjectValue<GameMatchDetailStartedAt>('startedAt', startedAt);
+        writer.writeStringValue('leagueId', leagueId);
+        writer.writeStringValue('leagueSeasonId', leagueSeasonId);
+        writer.writeStringValue('loserTeamId', loserTeamId);
+        writer.writeStringValue('scheduledAt', scheduledAt);
+        writer.writeStringValue('startedAt', startedAt);
         writer.writeEnumValue<MatchStatus>('status', status, (e) => e?.value);
-        writer.writeObjectValue<GameMatchDetailWinnerTeamId>('winnerTeamId', winnerTeamId);
+        writer.writeStringValue('winnerTeamId', winnerTeamId);
     }
 }

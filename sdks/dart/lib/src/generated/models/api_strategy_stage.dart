@@ -1,6 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './api_strategy_stage_label.dart';
 
 /// auto generated
 /// A single playback stage of a strategy.
@@ -10,7 +9,7 @@ class ApiStrategyStage implements Parsable {
     ///  Stable stage id within the strategy.
     String? id;
     ///  Author stage label, when set.
-    ApiStrategyStageLabel? label;
+    String? label;
     ///  Registered map level for this stage. Omitted values use the map default.
     String? levelId;
     /// Creates a new instance of the appropriate class based on discriminator value
@@ -24,7 +23,7 @@ class ApiStrategyStage implements Parsable {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['durationMs'] = (node) => durationMs = node.getIntValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
-        deserializerMap['label'] = (node) => label = node.getObjectValue<ApiStrategyStageLabel>(ApiStrategyStageLabel.createFromDiscriminatorValue);
+        deserializerMap['label'] = (node) => label = node.getStringValue();
         deserializerMap['levelId'] = (node) => levelId = node.getStringValue();
         return deserializerMap;
     }
@@ -34,7 +33,7 @@ class ApiStrategyStage implements Parsable {
     void serialize(SerializationWriter writer) {
         writer.writeIntValue('durationMs', durationMs);
         writer.writeStringValue('id', id);
-        writer.writeObjectValue<ApiStrategyStageLabel>('label', label);
+        writer.writeStringValue('label', label);
         writer.writeStringValue('levelId', levelId);
     }
 }

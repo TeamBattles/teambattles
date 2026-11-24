@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class OrganizationLeaderboardEntry implements Parsable 
 {
     /**
-     * @var OrganizationLeaderboardEntry_gameSlug|null $gameSlug The gameSlug property
+     * @var string|null $gameSlug The gameSlug property
     */
-    private ?OrganizationLeaderboardEntry_gameSlug $gameSlug = null;
+    private ?string $gameSlug = null;
     
     /**
      * @var string|null $id Organization ID.
@@ -52,7 +52,7 @@ class OrganizationLeaderboardEntry implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'gameSlug' => fn(ParseNode $n) => $o->setGameSlug($n->getObjectValue([OrganizationLeaderboardEntry_gameSlug::class, 'createFromDiscriminatorValue'])),
+            'gameSlug' => fn(ParseNode $n) => $o->setGameSlug($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'organization' => fn(ParseNode $n) => $o->setOrganization($n->getObjectValue([ApiOrganizationSummary::class, 'createFromDiscriminatorValue'])),
             'rank' => fn(ParseNode $n) => $o->setRank($n->getIntegerValue()),
@@ -62,9 +62,9 @@ class OrganizationLeaderboardEntry implements Parsable
 
     /**
      * Gets the gameSlug property value. The gameSlug property
-     * @return OrganizationLeaderboardEntry_gameSlug|null
+     * @return string|null
     */
-    public function getGameSlug(): ?OrganizationLeaderboardEntry_gameSlug {
+    public function getGameSlug(): ?string {
         return $this->gameSlug;
     }
 
@@ -105,7 +105,7 @@ class OrganizationLeaderboardEntry implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('gameSlug', $this->getGameSlug());
+        $writer->writeStringValue('gameSlug', $this->getGameSlug());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeObjectValue('organization', $this->getOrganization());
         $writer->writeIntegerValue('rank', $this->getRank());
@@ -114,9 +114,9 @@ class OrganizationLeaderboardEntry implements Parsable
 
     /**
      * Sets the gameSlug property value. The gameSlug property
-     * @param OrganizationLeaderboardEntry_gameSlug|null $value Value to set for the gameSlug property.
+     * @param string|null $value Value to set for the gameSlug property.
     */
-    public function setGameSlug(?OrganizationLeaderboardEntry_gameSlug $value): void {
+    public function setGameSlug(?string $value): void {
         $this->gameSlug = $value;
     }
 

@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ApiUserOrganizationMembership implements Parsable 
 {
     /**
-     * @var ApiUserOrganizationMembership_avatarUrl|null $avatarUrl The avatarUrl property
+     * @var string|null $avatarUrl The avatarUrl property
     */
-    private ?ApiUserOrganizationMembership_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
      * @var string|null $id Organization ID.
@@ -37,14 +37,14 @@ class ApiUserOrganizationMembership implements Parsable
     private ?string $role = null;
     
     /**
-     * @var ApiUserOrganizationMembership_slug|null $slug The slug property
+     * @var string|null $slug The slug property
     */
-    private ?ApiUserOrganizationMembership_slug $slug = null;
+    private ?string $slug = null;
     
     /**
-     * @var ApiUserOrganizationMembership_tag|null $tag The tag property
+     * @var string|null $tag The tag property
     */
-    private ?ApiUserOrganizationMembership_tag $tag = null;
+    private ?string $tag = null;
     
     /**
      * @var ProfileVisibility|null $visibility Public profile visibility setting.
@@ -62,9 +62,9 @@ class ApiUserOrganizationMembership implements Parsable
 
     /**
      * Gets the avatarUrl property value. The avatarUrl property
-     * @return ApiUserOrganizationMembership_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?ApiUserOrganizationMembership_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
@@ -75,13 +75,13 @@ class ApiUserOrganizationMembership implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([ApiUserOrganizationMembership_avatarUrl::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'joinedAt' => fn(ParseNode $n) => $o->setJoinedAt($n->getObjectValue([ApiUserOrganizationMembership_joinedAt::class, 'createFromDiscriminatorValue'])),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'role' => fn(ParseNode $n) => $o->setRole($n->getStringValue()),
-            'slug' => fn(ParseNode $n) => $o->setSlug($n->getObjectValue([ApiUserOrganizationMembership_slug::class, 'createFromDiscriminatorValue'])),
-            'tag' => fn(ParseNode $n) => $o->setTag($n->getObjectValue([ApiUserOrganizationMembership_tag::class, 'createFromDiscriminatorValue'])),
+            'slug' => fn(ParseNode $n) => $o->setSlug($n->getStringValue()),
+            'tag' => fn(ParseNode $n) => $o->setTag($n->getStringValue()),
             'visibility' => fn(ParseNode $n) => $o->setVisibility($n->getEnumValue(ProfileVisibility::class)),
         ];
     }
@@ -120,17 +120,17 @@ class ApiUserOrganizationMembership implements Parsable
 
     /**
      * Gets the slug property value. The slug property
-     * @return ApiUserOrganizationMembership_slug|null
+     * @return string|null
     */
-    public function getSlug(): ?ApiUserOrganizationMembership_slug {
+    public function getSlug(): ?string {
         return $this->slug;
     }
 
     /**
      * Gets the tag property value. The tag property
-     * @return ApiUserOrganizationMembership_tag|null
+     * @return string|null
     */
-    public function getTag(): ?ApiUserOrganizationMembership_tag {
+    public function getTag(): ?string {
         return $this->tag;
     }
 
@@ -147,21 +147,21 @@ class ApiUserOrganizationMembership implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeObjectValue('joinedAt', $this->getJoinedAt());
         $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('role', $this->getRole());
-        $writer->writeObjectValue('slug', $this->getSlug());
-        $writer->writeObjectValue('tag', $this->getTag());
+        $writer->writeStringValue('slug', $this->getSlug());
+        $writer->writeStringValue('tag', $this->getTag());
         $writer->writeEnumValue('visibility', $this->getVisibility());
     }
 
     /**
      * Sets the avatarUrl property value. The avatarUrl property
-     * @param ApiUserOrganizationMembership_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?ApiUserOrganizationMembership_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 
@@ -199,17 +199,17 @@ class ApiUserOrganizationMembership implements Parsable
 
     /**
      * Sets the slug property value. The slug property
-     * @param ApiUserOrganizationMembership_slug|null $value Value to set for the slug property.
+     * @param string|null $value Value to set for the slug property.
     */
-    public function setSlug(?ApiUserOrganizationMembership_slug $value): void {
+    public function setSlug(?string $value): void {
         $this->slug = $value;
     }
 
     /**
      * Sets the tag property value. The tag property
-     * @param ApiUserOrganizationMembership_tag|null $value Value to set for the tag property.
+     * @param string|null $value Value to set for the tag property.
     */
-    public function setTag(?ApiUserOrganizationMembership_tag $value): void {
+    public function setTag(?string $value): void {
         $this->tag = $value;
     }
 

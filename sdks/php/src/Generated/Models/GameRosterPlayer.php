@@ -17,9 +17,9 @@ class GameRosterPlayer implements Parsable
     private ?bool $isCheckedIn = null;
     
     /**
-     * @var GameRosterPlayer_name|null $name Player's display name, or null if unset.
+     * @var string|null $name Player's display name, or null if unset.
     */
-    private ?GameRosterPlayer_name $name = null;
+    private ?string $name = null;
     
     /**
      * @var string|null $teamId ID of the team the player belongs to.
@@ -32,9 +32,9 @@ class GameRosterPlayer implements Parsable
     private ?string $userId = null;
     
     /**
-     * @var GameRosterPlayer_username|null $username Player's username, or null if unset.
+     * @var string|null $username Player's username, or null if unset.
     */
-    private ?GameRosterPlayer_username $username = null;
+    private ?string $username = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -53,10 +53,10 @@ class GameRosterPlayer implements Parsable
         $o = $this;
         return  [
             'isCheckedIn' => fn(ParseNode $n) => $o->setIsCheckedIn($n->getBooleanValue()),
-            'name' => fn(ParseNode $n) => $o->setName($n->getObjectValue([GameRosterPlayer_name::class, 'createFromDiscriminatorValue'])),
+            'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
             'teamId' => fn(ParseNode $n) => $o->setTeamId($n->getStringValue()),
             'userId' => fn(ParseNode $n) => $o->setUserId($n->getStringValue()),
-            'username' => fn(ParseNode $n) => $o->setUsername($n->getObjectValue([GameRosterPlayer_username::class, 'createFromDiscriminatorValue'])),
+            'username' => fn(ParseNode $n) => $o->setUsername($n->getStringValue()),
         ];
     }
 
@@ -70,9 +70,9 @@ class GameRosterPlayer implements Parsable
 
     /**
      * Gets the name property value. Player's display name, or null if unset.
-     * @return GameRosterPlayer_name|null
+     * @return string|null
     */
-    public function getName(): ?GameRosterPlayer_name {
+    public function getName(): ?string {
         return $this->name;
     }
 
@@ -94,9 +94,9 @@ class GameRosterPlayer implements Parsable
 
     /**
      * Gets the username property value. Player's username, or null if unset.
-     * @return GameRosterPlayer_username|null
+     * @return string|null
     */
-    public function getUsername(): ?GameRosterPlayer_username {
+    public function getUsername(): ?string {
         return $this->username;
     }
 
@@ -106,10 +106,10 @@ class GameRosterPlayer implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeBooleanValue('isCheckedIn', $this->getIsCheckedIn());
-        $writer->writeObjectValue('name', $this->getName());
+        $writer->writeStringValue('name', $this->getName());
         $writer->writeStringValue('teamId', $this->getTeamId());
         $writer->writeStringValue('userId', $this->getUserId());
-        $writer->writeObjectValue('username', $this->getUsername());
+        $writer->writeStringValue('username', $this->getUsername());
     }
 
     /**
@@ -122,9 +122,9 @@ class GameRosterPlayer implements Parsable
 
     /**
      * Sets the name property value. Player's display name, or null if unset.
-     * @param GameRosterPlayer_name|null $value Value to set for the name property.
+     * @param string|null $value Value to set for the name property.
     */
-    public function setName(?GameRosterPlayer_name $value): void {
+    public function setName(?string $value): void {
         $this->name = $value;
     }
 
@@ -146,9 +146,9 @@ class GameRosterPlayer implements Parsable
 
     /**
      * Sets the username property value. Player's username, or null if unset.
-     * @param GameRosterPlayer_username|null $value Value to set for the username property.
+     * @param string|null $value Value to set for the username property.
     */
-    public function setUsername(?GameRosterPlayer_username $value): void {
+    public function setUsername(?string $value): void {
         $this->username = $value;
     }
 

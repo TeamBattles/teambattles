@@ -10,269 +10,17 @@ import (
 // ApiTeamSummary small API-safe team summary.
 type ApiTeamSummary struct {
     // The avatarUrl property
-    avatarUrl ApiTeamSummary_ApiTeamSummary_avatarUrlable
+    avatarUrl *string
     // Team ID.
     id *string
     // Team name.
     name *string
     // The slug property
-    slug ApiTeamSummary_ApiTeamSummary_slugable
+    slug *string
     // The tag property
-    tag ApiTeamSummary_ApiTeamSummary_tagable
+    tag *string
     // Public profile visibility setting.
     visibility *ProfileVisibility
-}
-// ApiTeamSummary_ApiTeamSummary_avatarUrl composed type wrapper for classes ApiTeamSummary_avatarUrlMember1able, string
-type ApiTeamSummary_ApiTeamSummary_avatarUrl struct {
-    // Composed type representation for type ApiTeamSummary_avatarUrlMember1able
-    apiTeamSummary_avatarUrlMember1 ApiTeamSummary_avatarUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiTeamSummary_ApiTeamSummary_avatarUrl instantiates a new ApiTeamSummary_ApiTeamSummary_avatarUrl and sets the default values.
-func NewApiTeamSummary_ApiTeamSummary_avatarUrl()(*ApiTeamSummary_ApiTeamSummary_avatarUrl) {
-    m := &ApiTeamSummary_ApiTeamSummary_avatarUrl{
-    }
-    return m
-}
-// CreateApiTeamSummary_ApiTeamSummary_avatarUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiTeamSummary_ApiTeamSummary_avatarUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiTeamSummary_ApiTeamSummary_avatarUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiTeamSummary_avatarUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiTeamSummary_avatarUrlMember1able); ok {
-                result.SetApiTeamSummaryAvatarUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiTeamSummaryAvatarUrlMember1 gets the ApiTeamSummary_avatarUrlMember1 property value. Composed type representation for type ApiTeamSummary_avatarUrlMember1able
-// returns a ApiTeamSummary_avatarUrlMember1able when successful
-func (m *ApiTeamSummary_ApiTeamSummary_avatarUrl) GetApiTeamSummaryAvatarUrlMember1()(ApiTeamSummary_avatarUrlMember1able) {
-    return m.apiTeamSummary_avatarUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiTeamSummary_ApiTeamSummary_avatarUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiTeamSummary_ApiTeamSummary_avatarUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiTeamSummary_ApiTeamSummary_avatarUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiTeamSummary_ApiTeamSummary_avatarUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiTeamSummaryAvatarUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiTeamSummaryAvatarUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiTeamSummaryAvatarUrlMember1 sets the ApiTeamSummary_avatarUrlMember1 property value. Composed type representation for type ApiTeamSummary_avatarUrlMember1able
-func (m *ApiTeamSummary_ApiTeamSummary_avatarUrl) SetApiTeamSummaryAvatarUrlMember1(value ApiTeamSummary_avatarUrlMember1able)() {
-    m.apiTeamSummary_avatarUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiTeamSummary_ApiTeamSummary_avatarUrl) SetString(value *string)() {
-    m.string = value
-}
-// ApiTeamSummary_ApiTeamSummary_slug composed type wrapper for classes ApiTeamSummary_slugMember1able, string
-type ApiTeamSummary_ApiTeamSummary_slug struct {
-    // Composed type representation for type ApiTeamSummary_slugMember1able
-    apiTeamSummary_slugMember1 ApiTeamSummary_slugMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiTeamSummary_ApiTeamSummary_slug instantiates a new ApiTeamSummary_ApiTeamSummary_slug and sets the default values.
-func NewApiTeamSummary_ApiTeamSummary_slug()(*ApiTeamSummary_ApiTeamSummary_slug) {
-    m := &ApiTeamSummary_ApiTeamSummary_slug{
-    }
-    return m
-}
-// CreateApiTeamSummary_ApiTeamSummary_slugFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiTeamSummary_ApiTeamSummary_slugFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiTeamSummary_ApiTeamSummary_slug()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiTeamSummary_slugMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiTeamSummary_slugMember1able); ok {
-                result.SetApiTeamSummarySlugMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiTeamSummarySlugMember1 gets the ApiTeamSummary_slugMember1 property value. Composed type representation for type ApiTeamSummary_slugMember1able
-// returns a ApiTeamSummary_slugMember1able when successful
-func (m *ApiTeamSummary_ApiTeamSummary_slug) GetApiTeamSummarySlugMember1()(ApiTeamSummary_slugMember1able) {
-    return m.apiTeamSummary_slugMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiTeamSummary_ApiTeamSummary_slug) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiTeamSummary_ApiTeamSummary_slug) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiTeamSummary_ApiTeamSummary_slug) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiTeamSummary_ApiTeamSummary_slug) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiTeamSummarySlugMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiTeamSummarySlugMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiTeamSummarySlugMember1 sets the ApiTeamSummary_slugMember1 property value. Composed type representation for type ApiTeamSummary_slugMember1able
-func (m *ApiTeamSummary_ApiTeamSummary_slug) SetApiTeamSummarySlugMember1(value ApiTeamSummary_slugMember1able)() {
-    m.apiTeamSummary_slugMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiTeamSummary_ApiTeamSummary_slug) SetString(value *string)() {
-    m.string = value
-}
-// ApiTeamSummary_ApiTeamSummary_tag composed type wrapper for classes ApiTeamSummary_tagMember1able, string
-type ApiTeamSummary_ApiTeamSummary_tag struct {
-    // Composed type representation for type ApiTeamSummary_tagMember1able
-    apiTeamSummary_tagMember1 ApiTeamSummary_tagMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiTeamSummary_ApiTeamSummary_tag instantiates a new ApiTeamSummary_ApiTeamSummary_tag and sets the default values.
-func NewApiTeamSummary_ApiTeamSummary_tag()(*ApiTeamSummary_ApiTeamSummary_tag) {
-    m := &ApiTeamSummary_ApiTeamSummary_tag{
-    }
-    return m
-}
-// CreateApiTeamSummary_ApiTeamSummary_tagFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiTeamSummary_ApiTeamSummary_tagFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiTeamSummary_ApiTeamSummary_tag()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiTeamSummary_tagMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiTeamSummary_tagMember1able); ok {
-                result.SetApiTeamSummaryTagMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiTeamSummaryTagMember1 gets the ApiTeamSummary_tagMember1 property value. Composed type representation for type ApiTeamSummary_tagMember1able
-// returns a ApiTeamSummary_tagMember1able when successful
-func (m *ApiTeamSummary_ApiTeamSummary_tag) GetApiTeamSummaryTagMember1()(ApiTeamSummary_tagMember1able) {
-    return m.apiTeamSummary_tagMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiTeamSummary_ApiTeamSummary_tag) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiTeamSummary_ApiTeamSummary_tag) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiTeamSummary_ApiTeamSummary_tag) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiTeamSummary_ApiTeamSummary_tag) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiTeamSummaryTagMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiTeamSummaryTagMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiTeamSummaryTagMember1 sets the ApiTeamSummary_tagMember1 property value. Composed type representation for type ApiTeamSummary_tagMember1able
-func (m *ApiTeamSummary_ApiTeamSummary_tag) SetApiTeamSummaryTagMember1(value ApiTeamSummary_tagMember1able)() {
-    m.apiTeamSummary_tagMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiTeamSummary_ApiTeamSummary_tag) SetString(value *string)() {
-    m.string = value
-}
-type ApiTeamSummary_ApiTeamSummary_avatarUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiTeamSummaryAvatarUrlMember1()(ApiTeamSummary_avatarUrlMember1able)
-    GetString()(*string)
-    SetApiTeamSummaryAvatarUrlMember1(value ApiTeamSummary_avatarUrlMember1able)()
-    SetString(value *string)()
-}
-type ApiTeamSummary_ApiTeamSummary_slugable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiTeamSummarySlugMember1()(ApiTeamSummary_slugMember1able)
-    GetString()(*string)
-    SetApiTeamSummarySlugMember1(value ApiTeamSummary_slugMember1able)()
-    SetString(value *string)()
-}
-type ApiTeamSummary_ApiTeamSummary_tagable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiTeamSummaryTagMember1()(ApiTeamSummary_tagMember1able)
-    GetString()(*string)
-    SetApiTeamSummaryTagMember1(value ApiTeamSummary_tagMember1able)()
-    SetString(value *string)()
 }
 // NewApiTeamSummary instantiates a new ApiTeamSummary and sets the default values.
 func NewApiTeamSummary()(*ApiTeamSummary) {
@@ -286,8 +34,8 @@ func CreateApiTeamSummaryFromDiscriminatorValue(parseNode i878a80d2330e89d268963
     return NewApiTeamSummary(), nil
 }
 // GetAvatarUrl gets the avatarUrl property value. The avatarUrl property
-// returns a ApiTeamSummary_ApiTeamSummary_avatarUrlable when successful
-func (m *ApiTeamSummary) GetAvatarUrl()(ApiTeamSummary_ApiTeamSummary_avatarUrlable) {
+// returns a *string when successful
+func (m *ApiTeamSummary) GetAvatarUrl()(*string) {
     return m.avatarUrl
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -295,12 +43,12 @@ func (m *ApiTeamSummary) GetAvatarUrl()(ApiTeamSummary_ApiTeamSummary_avatarUrla
 func (m *ApiTeamSummary) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["avatarUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiTeamSummary_ApiTeamSummary_avatarUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetAvatarUrl(val.(ApiTeamSummary_ApiTeamSummary_avatarUrlable))
+            m.SetAvatarUrl(val)
         }
         return nil
     }
@@ -325,22 +73,22 @@ func (m *ApiTeamSummary) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["slug"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiTeamSummary_ApiTeamSummary_slugFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSlug(val.(ApiTeamSummary_ApiTeamSummary_slugable))
+            m.SetSlug(val)
         }
         return nil
     }
     res["tag"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiTeamSummary_ApiTeamSummary_tagFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetTag(val.(ApiTeamSummary_ApiTeamSummary_tagable))
+            m.SetTag(val)
         }
         return nil
     }
@@ -367,13 +115,13 @@ func (m *ApiTeamSummary) GetName()(*string) {
     return m.name
 }
 // GetSlug gets the slug property value. The slug property
-// returns a ApiTeamSummary_ApiTeamSummary_slugable when successful
-func (m *ApiTeamSummary) GetSlug()(ApiTeamSummary_ApiTeamSummary_slugable) {
+// returns a *string when successful
+func (m *ApiTeamSummary) GetSlug()(*string) {
     return m.slug
 }
 // GetTag gets the tag property value. The tag property
-// returns a ApiTeamSummary_ApiTeamSummary_tagable when successful
-func (m *ApiTeamSummary) GetTag()(ApiTeamSummary_ApiTeamSummary_tagable) {
+// returns a *string when successful
+func (m *ApiTeamSummary) GetTag()(*string) {
     return m.tag
 }
 // GetVisibility gets the visibility property value. Public profile visibility setting.
@@ -384,7 +132,7 @@ func (m *ApiTeamSummary) GetVisibility()(*ProfileVisibility) {
 // Serialize serializes information the current object
 func (m *ApiTeamSummary) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("avatarUrl", m.GetAvatarUrl())
+        err := writer.WriteStringValue("avatarUrl", m.GetAvatarUrl())
         if err != nil {
             return err
         }
@@ -402,13 +150,13 @@ func (m *ApiTeamSummary) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteObjectValue("slug", m.GetSlug())
+        err := writer.WriteStringValue("slug", m.GetSlug())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("tag", m.GetTag())
+        err := writer.WriteStringValue("tag", m.GetTag())
         if err != nil {
             return err
         }
@@ -423,7 +171,7 @@ func (m *ApiTeamSummary) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     return nil
 }
 // SetAvatarUrl sets the avatarUrl property value. The avatarUrl property
-func (m *ApiTeamSummary) SetAvatarUrl(value ApiTeamSummary_ApiTeamSummary_avatarUrlable)() {
+func (m *ApiTeamSummary) SetAvatarUrl(value *string)() {
     m.avatarUrl = value
 }
 // SetId sets the id property value. Team ID.
@@ -435,11 +183,11 @@ func (m *ApiTeamSummary) SetName(value *string)() {
     m.name = value
 }
 // SetSlug sets the slug property value. The slug property
-func (m *ApiTeamSummary) SetSlug(value ApiTeamSummary_ApiTeamSummary_slugable)() {
+func (m *ApiTeamSummary) SetSlug(value *string)() {
     m.slug = value
 }
 // SetTag sets the tag property value. The tag property
-func (m *ApiTeamSummary) SetTag(value ApiTeamSummary_ApiTeamSummary_tagable)() {
+func (m *ApiTeamSummary) SetTag(value *string)() {
     m.tag = value
 }
 // SetVisibility sets the visibility property value. Public profile visibility setting.
@@ -448,16 +196,16 @@ func (m *ApiTeamSummary) SetVisibility(value *ProfileVisibility)() {
 }
 type ApiTeamSummaryable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAvatarUrl()(ApiTeamSummary_ApiTeamSummary_avatarUrlable)
+    GetAvatarUrl()(*string)
     GetId()(*string)
     GetName()(*string)
-    GetSlug()(ApiTeamSummary_ApiTeamSummary_slugable)
-    GetTag()(ApiTeamSummary_ApiTeamSummary_tagable)
+    GetSlug()(*string)
+    GetTag()(*string)
     GetVisibility()(*ProfileVisibility)
-    SetAvatarUrl(value ApiTeamSummary_ApiTeamSummary_avatarUrlable)()
+    SetAvatarUrl(value *string)()
     SetId(value *string)()
     SetName(value *string)()
-    SetSlug(value ApiTeamSummary_ApiTeamSummary_slugable)()
-    SetTag(value ApiTeamSummary_ApiTeamSummary_tagable)()
+    SetSlug(value *string)()
+    SetTag(value *string)()
     SetVisibility(value *ProfileVisibility)()
 }

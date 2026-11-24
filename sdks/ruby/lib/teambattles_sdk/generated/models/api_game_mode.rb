@@ -44,7 +44,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the descriptionKey property value. The descriptionKey property
-                ## @return a api_game_mode_description_key
+                ## @return a string
                 ## 
                 def description_key
                     return @description_key
@@ -63,13 +63,13 @@ module TeamBattlesSdk
                 ## 
                 def get_field_deserializers()
                     return {
-                        "descriptionKey" => lambda {|n| @description_key = n.get_object_value(lambda {|pn| ApiGameMode::ApiGameModeDescriptionKey.create_from_discriminator_value(pn) }) },
+                        "descriptionKey" => lambda {|n| @description_key = n.get_string_value() },
                         "id" => lambda {|n| @id = n.get_string_value() },
-                        "image" => lambda {|n| @image = n.get_object_value(lambda {|pn| ApiGameMode::ApiGameModeImage.create_from_discriminator_value(pn) }) },
+                        "image" => lambda {|n| @image = n.get_string_value() },
                         "mapIds" => lambda {|n| @map_ids = n.get_collection_of_primitive_values(String) },
                         "nameKey" => lambda {|n| @name_key = n.get_string_value() },
-                        "rewardBonus" => lambda {|n| @reward_bonus = n.get_object_value(lambda {|pn| ApiGameMode::ApiGameModeRewardBonus.create_from_discriminator_value(pn) }) },
-                        "shortName" => lambda {|n| @short_name = n.get_object_value(lambda {|pn| ApiGameMode::ApiGameModeShortName.create_from_discriminator_value(pn) }) },
+                        "rewardBonus" => lambda {|n| @reward_bonus = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
+                        "shortName" => lambda {|n| @short_name = n.get_string_value() },
                         "supportsDraftToggle" => lambda {|n| @supports_draft_toggle = n.get_boolean_value() },
                     }
                 end
@@ -90,7 +90,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the image property value. The image property
-                ## @return a api_game_mode_image
+                ## @return a string
                 ## 
                 def image
                     return @image
@@ -135,7 +135,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the rewardBonus property value. The rewardBonus property
-                ## @return a api_game_mode_reward_bonus
+                ## @return a double
                 ## 
                 def reward_bonus
                     return @reward_bonus
@@ -155,18 +155,18 @@ module TeamBattlesSdk
                 ## 
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
-                    writer.write_object_value("descriptionKey", @description_key)
+                    writer.write_string_value("descriptionKey", @description_key)
                     writer.write_string_value("id", @id)
-                    writer.write_object_value("image", @image)
+                    writer.write_string_value("image", @image)
                     writer.write_collection_of_primitive_values("mapIds", @map_ids)
                     writer.write_string_value("nameKey", @name_key)
                     writer.write_object_value("rewardBonus", @reward_bonus)
-                    writer.write_object_value("shortName", @short_name)
+                    writer.write_string_value("shortName", @short_name)
                     writer.write_boolean_value("supportsDraftToggle", @supports_draft_toggle)
                 end
                 ## 
                 ## Gets the shortName property value. The shortName property
-                ## @return a api_game_mode_short_name
+                ## @return a string
                 ## 
                 def short_name
                     return @short_name
@@ -193,290 +193,6 @@ module TeamBattlesSdk
                 ## 
                 def supports_draft_toggle=(value)
                     @supports_draft_toggle = value
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiGameModeDescriptionKeyMember1, string
-                class ApiGameModeDescriptionKey
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiGameModeDescriptionKeyMember1
-                    @api_game_mode_description_key_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiGameMode_descriptionKeyMember1 property value. Composed type representation for type ApiGameModeDescriptionKeyMember1
-                    ## @return a api_game_mode_description_key_member1
-                    ## 
-                    def api_game_mode_description_key_member1
-                        return @api_game_mode_description_key_member1
-                    end
-                    ## 
-                    ## Sets the ApiGameMode_descriptionKeyMember1 property value. Composed type representation for type ApiGameModeDescriptionKeyMember1
-                    ## @param value Value to set for the ApiGameMode_descriptionKeyMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_game_mode_description_key_member1=(value)
-                        @api_game_mode_description_key_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_game_mode_description_key
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiGameModeDescriptionKey.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiGameMode_descriptionKeyMember1" => lambda {|n| @api_game_mode_description_key_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiGameModeDescriptionKeyMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiGameMode_descriptionKeyMember1", @api_game_mode_description_key_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiGameModeImageMember1, string
-                class ApiGameModeImage
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiGameModeImageMember1
-                    @api_game_mode_image_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiGameMode_imageMember1 property value. Composed type representation for type ApiGameModeImageMember1
-                    ## @return a api_game_mode_image_member1
-                    ## 
-                    def api_game_mode_image_member1
-                        return @api_game_mode_image_member1
-                    end
-                    ## 
-                    ## Sets the ApiGameMode_imageMember1 property value. Composed type representation for type ApiGameModeImageMember1
-                    ## @param value Value to set for the ApiGameMode_imageMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_game_mode_image_member1=(value)
-                        @api_game_mode_image_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_game_mode_image
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiGameModeImage.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiGameMode_imageMember1" => lambda {|n| @api_game_mode_image_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiGameModeImageMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiGameMode_imageMember1", @api_game_mode_image_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiGameModeRewardBonusMember1, Double
-                class ApiGameModeRewardBonus
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiGameModeRewardBonusMember1
-                    @api_game_mode_reward_bonus_member1
-                    ## 
-                    # Composed type representation for type Double
-                    @double
-                    ## 
-                    ## Gets the ApiGameMode_rewardBonusMember1 property value. Composed type representation for type ApiGameModeRewardBonusMember1
-                    ## @return a api_game_mode_reward_bonus_member1
-                    ## 
-                    def api_game_mode_reward_bonus_member1
-                        return @api_game_mode_reward_bonus_member1
-                    end
-                    ## 
-                    ## Sets the ApiGameMode_rewardBonusMember1 property value. Composed type representation for type ApiGameModeRewardBonusMember1
-                    ## @param value Value to set for the ApiGameMode_rewardBonusMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_game_mode_reward_bonus_member1=(value)
-                        @api_game_mode_reward_bonus_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_game_mode_reward_bonus
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiGameModeRewardBonus.new
-                    end
-                    ## 
-                    ## Gets the double property value. Composed type representation for type Double
-                    ## @return a double
-                    ## 
-                    def double
-                        return @double
-                    end
-                    ## 
-                    ## Sets the double property value. Composed type representation for type Double
-                    ## @param value Value to set for the double property.
-                    ## @return a void
-                    ## 
-                    def double=(value)
-                        @double = value
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiGameMode_rewardBonusMember1" => lambda {|n| @api_game_mode_reward_bonus_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiGameModeRewardBonusMember1.create_from_discriminator_value(pn) }) },
-                            "double" => lambda {|n| @double = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiGameMode_rewardBonusMember1", @api_game_mode_reward_bonus_member1)
-                        writer.write_object_value("double", @double)
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes ApiGameModeShortNameMember1, string
-                class ApiGameModeShortName
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type ApiGameModeShortNameMember1
-                    @api_game_mode_short_name_member1
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    ## Gets the ApiGameMode_shortNameMember1 property value. Composed type representation for type ApiGameModeShortNameMember1
-                    ## @return a api_game_mode_short_name_member1
-                    ## 
-                    def api_game_mode_short_name_member1
-                        return @api_game_mode_short_name_member1
-                    end
-                    ## 
-                    ## Sets the ApiGameMode_shortNameMember1 property value. Composed type representation for type ApiGameModeShortNameMember1
-                    ## @param value Value to set for the ApiGameMode_shortNameMember1 property.
-                    ## @return a void
-                    ## 
-                    def api_game_mode_short_name_member1=(value)
-                        @api_game_mode_short_name_member1 = value
-                    end
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a api_game_mode_short_name
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return ApiGameModeShortName.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "ApiGameMode_shortNameMember1" => lambda {|n| @api_game_mode_short_name_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::ApiGameModeShortNameMember1.create_from_discriminator_value(pn) }) },
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("ApiGameMode_shortNameMember1", @api_game_mode_short_name_member1)
-                        writer.write_string_value("string", @string)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
                 end
             end
         end

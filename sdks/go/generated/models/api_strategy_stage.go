@@ -14,93 +14,9 @@ type ApiStrategyStage struct {
     // Stable stage id within the strategy.
     id *string
     // Author stage label, when set.
-    label ApiStrategyStage_ApiStrategyStage_labelable
+    label *string
     // Registered map level for this stage. Omitted values use the map default.
     levelId *string
-}
-// ApiStrategyStage_ApiStrategyStage_label composed type wrapper for classes ApiStrategyStage_labelMember1able, string
-type ApiStrategyStage_ApiStrategyStage_label struct {
-    // Composed type representation for type ApiStrategyStage_labelMember1able
-    apiStrategyStage_labelMember1 ApiStrategyStage_labelMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiStrategyStage_ApiStrategyStage_label instantiates a new ApiStrategyStage_ApiStrategyStage_label and sets the default values.
-func NewApiStrategyStage_ApiStrategyStage_label()(*ApiStrategyStage_ApiStrategyStage_label) {
-    m := &ApiStrategyStage_ApiStrategyStage_label{
-    }
-    return m
-}
-// CreateApiStrategyStage_ApiStrategyStage_labelFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiStrategyStage_ApiStrategyStage_labelFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiStrategyStage_ApiStrategyStage_label()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiStrategyStage_labelMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiStrategyStage_labelMember1able); ok {
-                result.SetApiStrategyStageLabelMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiStrategyStageLabelMember1 gets the ApiStrategyStage_labelMember1 property value. Composed type representation for type ApiStrategyStage_labelMember1able
-// returns a ApiStrategyStage_labelMember1able when successful
-func (m *ApiStrategyStage_ApiStrategyStage_label) GetApiStrategyStageLabelMember1()(ApiStrategyStage_labelMember1able) {
-    return m.apiStrategyStage_labelMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiStrategyStage_ApiStrategyStage_label) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiStrategyStage_ApiStrategyStage_label) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiStrategyStage_ApiStrategyStage_label) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiStrategyStage_ApiStrategyStage_label) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiStrategyStageLabelMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiStrategyStageLabelMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiStrategyStageLabelMember1 sets the ApiStrategyStage_labelMember1 property value. Composed type representation for type ApiStrategyStage_labelMember1able
-func (m *ApiStrategyStage_ApiStrategyStage_label) SetApiStrategyStageLabelMember1(value ApiStrategyStage_labelMember1able)() {
-    m.apiStrategyStage_labelMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiStrategyStage_ApiStrategyStage_label) SetString(value *string)() {
-    m.string = value
-}
-type ApiStrategyStage_ApiStrategyStage_labelable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiStrategyStageLabelMember1()(ApiStrategyStage_labelMember1able)
-    GetString()(*string)
-    SetApiStrategyStageLabelMember1(value ApiStrategyStage_labelMember1able)()
-    SetString(value *string)()
 }
 // NewApiStrategyStage instantiates a new ApiStrategyStage and sets the default values.
 func NewApiStrategyStage()(*ApiStrategyStage) {
@@ -143,12 +59,12 @@ func (m *ApiStrategyStage) GetFieldDeserializers()(map[string]func(i878a80d2330e
         return nil
     }
     res["label"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiStrategyStage_ApiStrategyStage_labelFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetLabel(val.(ApiStrategyStage_ApiStrategyStage_labelable))
+            m.SetLabel(val)
         }
         return nil
     }
@@ -170,8 +86,8 @@ func (m *ApiStrategyStage) GetId()(*string) {
     return m.id
 }
 // GetLabel gets the label property value. Author stage label, when set.
-// returns a ApiStrategyStage_ApiStrategyStage_labelable when successful
-func (m *ApiStrategyStage) GetLabel()(ApiStrategyStage_ApiStrategyStage_labelable) {
+// returns a *string when successful
+func (m *ApiStrategyStage) GetLabel()(*string) {
     return m.label
 }
 // GetLevelId gets the levelId property value. Registered map level for this stage. Omitted values use the map default.
@@ -194,7 +110,7 @@ func (m *ApiStrategyStage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
         }
     }
     {
-        err := writer.WriteObjectValue("label", m.GetLabel())
+        err := writer.WriteStringValue("label", m.GetLabel())
         if err != nil {
             return err
         }
@@ -216,7 +132,7 @@ func (m *ApiStrategyStage) SetId(value *string)() {
     m.id = value
 }
 // SetLabel sets the label property value. Author stage label, when set.
-func (m *ApiStrategyStage) SetLabel(value ApiStrategyStage_ApiStrategyStage_labelable)() {
+func (m *ApiStrategyStage) SetLabel(value *string)() {
     m.label = value
 }
 // SetLevelId sets the levelId property value. Registered map level for this stage. Omitted values use the map default.
@@ -227,10 +143,10 @@ type ApiStrategyStageable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetDurationMs()(*int32)
     GetId()(*string)
-    GetLabel()(ApiStrategyStage_ApiStrategyStage_labelable)
+    GetLabel()(*string)
     GetLevelId()(*string)
     SetDurationMs(value *int32)()
     SetId(value *string)()
-    SetLabel(value ApiStrategyStage_ApiStrategyStage_labelable)()
+    SetLabel(value *string)()
     SetLevelId(value *string)()
 }

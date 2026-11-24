@@ -1,7 +1,6 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './api_match_detail.dart';
-import './match_discover_page_next_cursor.dart';
 
 /// auto generated
 /// SP-2 open-match discovery page.
@@ -11,7 +10,7 @@ class MatchDiscoverPage implements Parsable {
     ///  The hasMore property
     bool? hasMore;
     ///  The nextCursor property
-    MatchDiscoverPageNextCursor? nextCursor;
+    String? nextCursor;
     ///  The timestamp property
     String? timestamp;
     /// Creates a new instance of the appropriate class based on discriminator value
@@ -25,7 +24,7 @@ class MatchDiscoverPage implements Parsable {
         var deserializerMap = <String, void Function(ParseNode)>{};
         deserializerMap['data'] = (node) => data = node.getCollectionOfObjectValues<ApiMatchDetail>(ApiMatchDetail.createFromDiscriminatorValue);
         deserializerMap['hasMore'] = (node) => hasMore = node.getBoolValue();
-        deserializerMap['nextCursor'] = (node) => nextCursor = node.getObjectValue<MatchDiscoverPageNextCursor>(MatchDiscoverPageNextCursor.createFromDiscriminatorValue);
+        deserializerMap['nextCursor'] = (node) => nextCursor = node.getStringValue();
         deserializerMap['timestamp'] = (node) => timestamp = node.getStringValue();
         return deserializerMap;
     }
@@ -35,7 +34,7 @@ class MatchDiscoverPage implements Parsable {
     void serialize(SerializationWriter writer) {
         writer.writeCollectionOfObjectValues<ApiMatchDetail>('data', data);
         writer.writeBoolValue('hasMore', value:hasMore);
-        writer.writeObjectValue<MatchDiscoverPageNextCursor>('nextCursor', nextCursor);
+        writer.writeStringValue('nextCursor', nextCursor);
         writer.writeStringValue('timestamp', timestamp);
     }
 }

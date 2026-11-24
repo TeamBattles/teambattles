@@ -12,11 +12,11 @@ type TwitchRecordedStream struct {
     // Seconds from the start to the end, or to when it was last seen live.
     duration_seconds *int32
     // Stream end (ISO 8601); null while it was still live at the last pass.
-    ended_at TwitchRecordedStream_TwitchRecordedStream_ended_atable
+    ended_at *string
     // Category name, when Twitch reported one.
-    game TwitchRecordedStream_TwitchRecordedStream_gameable
+    game *string
     // CDN host the recording was found on; null unless recording is available.
-    host TwitchRecordedStream_TwitchRecordedStream_hostable
+    host *string
     // Channel login when the stream ran; part of the recording path.
     login *string
     // Unix second used in the recording path; null unless recording is available.
@@ -24,244 +24,13 @@ type TwitchRecordedStream struct {
     // available: found on Twitch's video CDN. unverified: not checked yet, or not found. removed: Twitch deleted it (only sent when the index keeps removed recordings).
     recording *TwitchRecordedStream_recording
     // When the recording was found removed (ISO 8601), else null.
-    removed_at TwitchRecordedStream_TwitchRecordedStream_removed_atable
+    removed_at *string
     // Stream start (ISO 8601).
     started_at *string
     // Twitch stream (broadcast) id.
     stream_id *string
     // Stream title, when Twitch reported one.
-    title TwitchRecordedStream_TwitchRecordedStream_titleable
-}
-// TwitchRecordedStream_TwitchRecordedStream_ended_at composed type wrapper for classes string, TwitchRecordedStream_ended_atMember1able
-type TwitchRecordedStream_TwitchRecordedStream_ended_at struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TwitchRecordedStream_ended_atMember1able
-    twitchRecordedStream_ended_atMember1 TwitchRecordedStream_ended_atMember1able
-}
-// NewTwitchRecordedStream_TwitchRecordedStream_ended_at instantiates a new TwitchRecordedStream_TwitchRecordedStream_ended_at and sets the default values.
-func NewTwitchRecordedStream_TwitchRecordedStream_ended_at()(*TwitchRecordedStream_TwitchRecordedStream_ended_at) {
-    m := &TwitchRecordedStream_TwitchRecordedStream_ended_at{
-    }
-    return m
-}
-// CreateTwitchRecordedStream_TwitchRecordedStream_ended_atFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTwitchRecordedStream_TwitchRecordedStream_ended_atFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTwitchRecordedStream_TwitchRecordedStream_ended_at()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTwitchRecordedStream_ended_atMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TwitchRecordedStream_ended_atMember1able); ok {
-                result.SetTwitchRecordedStreamEndedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_ended_at) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_ended_at) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_ended_at) GetString()(*string) {
-    return m.string
-}
-// GetTwitchRecordedStreamEndedAtMember1 gets the TwitchRecordedStream_ended_atMember1 property value. Composed type representation for type TwitchRecordedStream_ended_atMember1able
-// returns a TwitchRecordedStream_ended_atMember1able when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_ended_at) GetTwitchRecordedStreamEndedAtMember1()(TwitchRecordedStream_ended_atMember1able) {
-    return m.twitchRecordedStream_ended_atMember1
-}
-// Serialize serializes information the current object
-func (m *TwitchRecordedStream_TwitchRecordedStream_ended_at) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTwitchRecordedStreamEndedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTwitchRecordedStreamEndedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TwitchRecordedStream_TwitchRecordedStream_ended_at) SetString(value *string)() {
-    m.string = value
-}
-// SetTwitchRecordedStreamEndedAtMember1 sets the TwitchRecordedStream_ended_atMember1 property value. Composed type representation for type TwitchRecordedStream_ended_atMember1able
-func (m *TwitchRecordedStream_TwitchRecordedStream_ended_at) SetTwitchRecordedStreamEndedAtMember1(value TwitchRecordedStream_ended_atMember1able)() {
-    m.twitchRecordedStream_ended_atMember1 = value
-}
-// TwitchRecordedStream_TwitchRecordedStream_game composed type wrapper for classes string, TwitchRecordedStream_gameMember1able
-type TwitchRecordedStream_TwitchRecordedStream_game struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TwitchRecordedStream_gameMember1able
-    twitchRecordedStream_gameMember1 TwitchRecordedStream_gameMember1able
-}
-// NewTwitchRecordedStream_TwitchRecordedStream_game instantiates a new TwitchRecordedStream_TwitchRecordedStream_game and sets the default values.
-func NewTwitchRecordedStream_TwitchRecordedStream_game()(*TwitchRecordedStream_TwitchRecordedStream_game) {
-    m := &TwitchRecordedStream_TwitchRecordedStream_game{
-    }
-    return m
-}
-// CreateTwitchRecordedStream_TwitchRecordedStream_gameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTwitchRecordedStream_TwitchRecordedStream_gameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTwitchRecordedStream_TwitchRecordedStream_game()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTwitchRecordedStream_gameMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TwitchRecordedStream_gameMember1able); ok {
-                result.SetTwitchRecordedStreamGameMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_game) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_game) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_game) GetString()(*string) {
-    return m.string
-}
-// GetTwitchRecordedStreamGameMember1 gets the TwitchRecordedStream_gameMember1 property value. Composed type representation for type TwitchRecordedStream_gameMember1able
-// returns a TwitchRecordedStream_gameMember1able when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_game) GetTwitchRecordedStreamGameMember1()(TwitchRecordedStream_gameMember1able) {
-    return m.twitchRecordedStream_gameMember1
-}
-// Serialize serializes information the current object
-func (m *TwitchRecordedStream_TwitchRecordedStream_game) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTwitchRecordedStreamGameMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTwitchRecordedStreamGameMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TwitchRecordedStream_TwitchRecordedStream_game) SetString(value *string)() {
-    m.string = value
-}
-// SetTwitchRecordedStreamGameMember1 sets the TwitchRecordedStream_gameMember1 property value. Composed type representation for type TwitchRecordedStream_gameMember1able
-func (m *TwitchRecordedStream_TwitchRecordedStream_game) SetTwitchRecordedStreamGameMember1(value TwitchRecordedStream_gameMember1able)() {
-    m.twitchRecordedStream_gameMember1 = value
-}
-// TwitchRecordedStream_TwitchRecordedStream_host composed type wrapper for classes string, TwitchRecordedStream_hostMember1able
-type TwitchRecordedStream_TwitchRecordedStream_host struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TwitchRecordedStream_hostMember1able
-    twitchRecordedStream_hostMember1 TwitchRecordedStream_hostMember1able
-}
-// NewTwitchRecordedStream_TwitchRecordedStream_host instantiates a new TwitchRecordedStream_TwitchRecordedStream_host and sets the default values.
-func NewTwitchRecordedStream_TwitchRecordedStream_host()(*TwitchRecordedStream_TwitchRecordedStream_host) {
-    m := &TwitchRecordedStream_TwitchRecordedStream_host{
-    }
-    return m
-}
-// CreateTwitchRecordedStream_TwitchRecordedStream_hostFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTwitchRecordedStream_TwitchRecordedStream_hostFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTwitchRecordedStream_TwitchRecordedStream_host()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTwitchRecordedStream_hostMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TwitchRecordedStream_hostMember1able); ok {
-                result.SetTwitchRecordedStreamHostMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_host) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_host) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_host) GetString()(*string) {
-    return m.string
-}
-// GetTwitchRecordedStreamHostMember1 gets the TwitchRecordedStream_hostMember1 property value. Composed type representation for type TwitchRecordedStream_hostMember1able
-// returns a TwitchRecordedStream_hostMember1able when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_host) GetTwitchRecordedStreamHostMember1()(TwitchRecordedStream_hostMember1able) {
-    return m.twitchRecordedStream_hostMember1
-}
-// Serialize serializes information the current object
-func (m *TwitchRecordedStream_TwitchRecordedStream_host) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTwitchRecordedStreamHostMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTwitchRecordedStreamHostMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TwitchRecordedStream_TwitchRecordedStream_host) SetString(value *string)() {
-    m.string = value
-}
-// SetTwitchRecordedStreamHostMember1 sets the TwitchRecordedStream_hostMember1 property value. Composed type representation for type TwitchRecordedStream_hostMember1able
-func (m *TwitchRecordedStream_TwitchRecordedStream_host) SetTwitchRecordedStreamHostMember1(value TwitchRecordedStream_hostMember1able)() {
-    m.twitchRecordedStream_hostMember1 = value
+    title *string
 }
 // TwitchRecordedStream_TwitchRecordedStream_path_timestamp composed type wrapper for classes int32, TwitchRecordedStream_path_timestampMember1able
 type TwitchRecordedStream_TwitchRecordedStream_path_timestamp struct {
@@ -340,201 +109,12 @@ func (m *TwitchRecordedStream_TwitchRecordedStream_path_timestamp) SetInteger(va
 func (m *TwitchRecordedStream_TwitchRecordedStream_path_timestamp) SetTwitchRecordedStreamPathTimestampMember1(value TwitchRecordedStream_path_timestampMember1able)() {
     m.twitchRecordedStream_path_timestampMember1 = value
 }
-// TwitchRecordedStream_TwitchRecordedStream_removed_at composed type wrapper for classes string, TwitchRecordedStream_removed_atMember1able
-type TwitchRecordedStream_TwitchRecordedStream_removed_at struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TwitchRecordedStream_removed_atMember1able
-    twitchRecordedStream_removed_atMember1 TwitchRecordedStream_removed_atMember1able
-}
-// NewTwitchRecordedStream_TwitchRecordedStream_removed_at instantiates a new TwitchRecordedStream_TwitchRecordedStream_removed_at and sets the default values.
-func NewTwitchRecordedStream_TwitchRecordedStream_removed_at()(*TwitchRecordedStream_TwitchRecordedStream_removed_at) {
-    m := &TwitchRecordedStream_TwitchRecordedStream_removed_at{
-    }
-    return m
-}
-// CreateTwitchRecordedStream_TwitchRecordedStream_removed_atFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTwitchRecordedStream_TwitchRecordedStream_removed_atFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTwitchRecordedStream_TwitchRecordedStream_removed_at()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTwitchRecordedStream_removed_atMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TwitchRecordedStream_removed_atMember1able); ok {
-                result.SetTwitchRecordedStreamRemovedAtMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_removed_at) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_removed_at) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_removed_at) GetString()(*string) {
-    return m.string
-}
-// GetTwitchRecordedStreamRemovedAtMember1 gets the TwitchRecordedStream_removed_atMember1 property value. Composed type representation for type TwitchRecordedStream_removed_atMember1able
-// returns a TwitchRecordedStream_removed_atMember1able when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_removed_at) GetTwitchRecordedStreamRemovedAtMember1()(TwitchRecordedStream_removed_atMember1able) {
-    return m.twitchRecordedStream_removed_atMember1
-}
-// Serialize serializes information the current object
-func (m *TwitchRecordedStream_TwitchRecordedStream_removed_at) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTwitchRecordedStreamRemovedAtMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTwitchRecordedStreamRemovedAtMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TwitchRecordedStream_TwitchRecordedStream_removed_at) SetString(value *string)() {
-    m.string = value
-}
-// SetTwitchRecordedStreamRemovedAtMember1 sets the TwitchRecordedStream_removed_atMember1 property value. Composed type representation for type TwitchRecordedStream_removed_atMember1able
-func (m *TwitchRecordedStream_TwitchRecordedStream_removed_at) SetTwitchRecordedStreamRemovedAtMember1(value TwitchRecordedStream_removed_atMember1able)() {
-    m.twitchRecordedStream_removed_atMember1 = value
-}
-// TwitchRecordedStream_TwitchRecordedStream_title composed type wrapper for classes string, TwitchRecordedStream_titleMember1able
-type TwitchRecordedStream_TwitchRecordedStream_title struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TwitchRecordedStream_titleMember1able
-    twitchRecordedStream_titleMember1 TwitchRecordedStream_titleMember1able
-}
-// NewTwitchRecordedStream_TwitchRecordedStream_title instantiates a new TwitchRecordedStream_TwitchRecordedStream_title and sets the default values.
-func NewTwitchRecordedStream_TwitchRecordedStream_title()(*TwitchRecordedStream_TwitchRecordedStream_title) {
-    m := &TwitchRecordedStream_TwitchRecordedStream_title{
-    }
-    return m
-}
-// CreateTwitchRecordedStream_TwitchRecordedStream_titleFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTwitchRecordedStream_TwitchRecordedStream_titleFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTwitchRecordedStream_TwitchRecordedStream_title()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTwitchRecordedStream_titleMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TwitchRecordedStream_titleMember1able); ok {
-                result.SetTwitchRecordedStreamTitleMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_title) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_title) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_title) GetString()(*string) {
-    return m.string
-}
-// GetTwitchRecordedStreamTitleMember1 gets the TwitchRecordedStream_titleMember1 property value. Composed type representation for type TwitchRecordedStream_titleMember1able
-// returns a TwitchRecordedStream_titleMember1able when successful
-func (m *TwitchRecordedStream_TwitchRecordedStream_title) GetTwitchRecordedStreamTitleMember1()(TwitchRecordedStream_titleMember1able) {
-    return m.twitchRecordedStream_titleMember1
-}
-// Serialize serializes information the current object
-func (m *TwitchRecordedStream_TwitchRecordedStream_title) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTwitchRecordedStreamTitleMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTwitchRecordedStreamTitleMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TwitchRecordedStream_TwitchRecordedStream_title) SetString(value *string)() {
-    m.string = value
-}
-// SetTwitchRecordedStreamTitleMember1 sets the TwitchRecordedStream_titleMember1 property value. Composed type representation for type TwitchRecordedStream_titleMember1able
-func (m *TwitchRecordedStream_TwitchRecordedStream_title) SetTwitchRecordedStreamTitleMember1(value TwitchRecordedStream_titleMember1able)() {
-    m.twitchRecordedStream_titleMember1 = value
-}
-type TwitchRecordedStream_TwitchRecordedStream_ended_atable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTwitchRecordedStreamEndedAtMember1()(TwitchRecordedStream_ended_atMember1able)
-    SetString(value *string)()
-    SetTwitchRecordedStreamEndedAtMember1(value TwitchRecordedStream_ended_atMember1able)()
-}
-type TwitchRecordedStream_TwitchRecordedStream_gameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTwitchRecordedStreamGameMember1()(TwitchRecordedStream_gameMember1able)
-    SetString(value *string)()
-    SetTwitchRecordedStreamGameMember1(value TwitchRecordedStream_gameMember1able)()
-}
-type TwitchRecordedStream_TwitchRecordedStream_hostable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTwitchRecordedStreamHostMember1()(TwitchRecordedStream_hostMember1able)
-    SetString(value *string)()
-    SetTwitchRecordedStreamHostMember1(value TwitchRecordedStream_hostMember1able)()
-}
 type TwitchRecordedStream_TwitchRecordedStream_path_timestampable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetInteger()(*int32)
     GetTwitchRecordedStreamPathTimestampMember1()(TwitchRecordedStream_path_timestampMember1able)
     SetInteger(value *int32)()
     SetTwitchRecordedStreamPathTimestampMember1(value TwitchRecordedStream_path_timestampMember1able)()
-}
-type TwitchRecordedStream_TwitchRecordedStream_removed_atable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTwitchRecordedStreamRemovedAtMember1()(TwitchRecordedStream_removed_atMember1able)
-    SetString(value *string)()
-    SetTwitchRecordedStreamRemovedAtMember1(value TwitchRecordedStream_removed_atMember1able)()
-}
-type TwitchRecordedStream_TwitchRecordedStream_titleable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTwitchRecordedStreamTitleMember1()(TwitchRecordedStream_titleMember1able)
-    SetString(value *string)()
-    SetTwitchRecordedStreamTitleMember1(value TwitchRecordedStream_titleMember1able)()
 }
 // NewTwitchRecordedStream instantiates a new TwitchRecordedStream and sets the default values.
 func NewTwitchRecordedStream()(*TwitchRecordedStream) {
@@ -553,8 +133,8 @@ func (m *TwitchRecordedStream) GetDurationSeconds()(*int32) {
     return m.duration_seconds
 }
 // GetEndedAt gets the ended_at property value. Stream end (ISO 8601); null while it was still live at the last pass.
-// returns a TwitchRecordedStream_TwitchRecordedStream_ended_atable when successful
-func (m *TwitchRecordedStream) GetEndedAt()(TwitchRecordedStream_TwitchRecordedStream_ended_atable) {
+// returns a *string when successful
+func (m *TwitchRecordedStream) GetEndedAt()(*string) {
     return m.ended_at
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -572,32 +152,32 @@ func (m *TwitchRecordedStream) GetFieldDeserializers()(map[string]func(i878a80d2
         return nil
     }
     res["ended_at"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTwitchRecordedStream_TwitchRecordedStream_ended_atFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetEndedAt(val.(TwitchRecordedStream_TwitchRecordedStream_ended_atable))
+            m.SetEndedAt(val)
         }
         return nil
     }
     res["game"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTwitchRecordedStream_TwitchRecordedStream_gameFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetGame(val.(TwitchRecordedStream_TwitchRecordedStream_gameable))
+            m.SetGame(val)
         }
         return nil
     }
     res["host"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTwitchRecordedStream_TwitchRecordedStream_hostFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetHost(val.(TwitchRecordedStream_TwitchRecordedStream_hostable))
+            m.SetHost(val)
         }
         return nil
     }
@@ -632,12 +212,12 @@ func (m *TwitchRecordedStream) GetFieldDeserializers()(map[string]func(i878a80d2
         return nil
     }
     res["removed_at"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTwitchRecordedStream_TwitchRecordedStream_removed_atFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetRemovedAt(val.(TwitchRecordedStream_TwitchRecordedStream_removed_atable))
+            m.SetRemovedAt(val)
         }
         return nil
     }
@@ -662,25 +242,25 @@ func (m *TwitchRecordedStream) GetFieldDeserializers()(map[string]func(i878a80d2
         return nil
     }
     res["title"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTwitchRecordedStream_TwitchRecordedStream_titleFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetTitle(val.(TwitchRecordedStream_TwitchRecordedStream_titleable))
+            m.SetTitle(val)
         }
         return nil
     }
     return res
 }
 // GetGame gets the game property value. Category name, when Twitch reported one.
-// returns a TwitchRecordedStream_TwitchRecordedStream_gameable when successful
-func (m *TwitchRecordedStream) GetGame()(TwitchRecordedStream_TwitchRecordedStream_gameable) {
+// returns a *string when successful
+func (m *TwitchRecordedStream) GetGame()(*string) {
     return m.game
 }
 // GetHost gets the host property value. CDN host the recording was found on; null unless recording is available.
-// returns a TwitchRecordedStream_TwitchRecordedStream_hostable when successful
-func (m *TwitchRecordedStream) GetHost()(TwitchRecordedStream_TwitchRecordedStream_hostable) {
+// returns a *string when successful
+func (m *TwitchRecordedStream) GetHost()(*string) {
     return m.host
 }
 // GetLogin gets the login property value. Channel login when the stream ran; part of the recording path.
@@ -699,8 +279,8 @@ func (m *TwitchRecordedStream) GetRecording()(*TwitchRecordedStream_recording) {
     return m.recording
 }
 // GetRemovedAt gets the removed_at property value. When the recording was found removed (ISO 8601), else null.
-// returns a TwitchRecordedStream_TwitchRecordedStream_removed_atable when successful
-func (m *TwitchRecordedStream) GetRemovedAt()(TwitchRecordedStream_TwitchRecordedStream_removed_atable) {
+// returns a *string when successful
+func (m *TwitchRecordedStream) GetRemovedAt()(*string) {
     return m.removed_at
 }
 // GetStartedAt gets the started_at property value. Stream start (ISO 8601).
@@ -714,8 +294,8 @@ func (m *TwitchRecordedStream) GetStreamId()(*string) {
     return m.stream_id
 }
 // GetTitle gets the title property value. Stream title, when Twitch reported one.
-// returns a TwitchRecordedStream_TwitchRecordedStream_titleable when successful
-func (m *TwitchRecordedStream) GetTitle()(TwitchRecordedStream_TwitchRecordedStream_titleable) {
+// returns a *string when successful
+func (m *TwitchRecordedStream) GetTitle()(*string) {
     return m.title
 }
 // Serialize serializes information the current object
@@ -727,19 +307,19 @@ func (m *TwitchRecordedStream) Serialize(writer i878a80d2330e89d26896388a3f487ee
         }
     }
     {
-        err := writer.WriteObjectValue("ended_at", m.GetEndedAt())
+        err := writer.WriteStringValue("ended_at", m.GetEndedAt())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("game", m.GetGame())
+        err := writer.WriteStringValue("game", m.GetGame())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("host", m.GetHost())
+        err := writer.WriteStringValue("host", m.GetHost())
         if err != nil {
             return err
         }
@@ -764,7 +344,7 @@ func (m *TwitchRecordedStream) Serialize(writer i878a80d2330e89d26896388a3f487ee
         }
     }
     {
-        err := writer.WriteObjectValue("removed_at", m.GetRemovedAt())
+        err := writer.WriteStringValue("removed_at", m.GetRemovedAt())
         if err != nil {
             return err
         }
@@ -782,7 +362,7 @@ func (m *TwitchRecordedStream) Serialize(writer i878a80d2330e89d26896388a3f487ee
         }
     }
     {
-        err := writer.WriteObjectValue("title", m.GetTitle())
+        err := writer.WriteStringValue("title", m.GetTitle())
         if err != nil {
             return err
         }
@@ -794,15 +374,15 @@ func (m *TwitchRecordedStream) SetDurationSeconds(value *int32)() {
     m.duration_seconds = value
 }
 // SetEndedAt sets the ended_at property value. Stream end (ISO 8601); null while it was still live at the last pass.
-func (m *TwitchRecordedStream) SetEndedAt(value TwitchRecordedStream_TwitchRecordedStream_ended_atable)() {
+func (m *TwitchRecordedStream) SetEndedAt(value *string)() {
     m.ended_at = value
 }
 // SetGame sets the game property value. Category name, when Twitch reported one.
-func (m *TwitchRecordedStream) SetGame(value TwitchRecordedStream_TwitchRecordedStream_gameable)() {
+func (m *TwitchRecordedStream) SetGame(value *string)() {
     m.game = value
 }
 // SetHost sets the host property value. CDN host the recording was found on; null unless recording is available.
-func (m *TwitchRecordedStream) SetHost(value TwitchRecordedStream_TwitchRecordedStream_hostable)() {
+func (m *TwitchRecordedStream) SetHost(value *string)() {
     m.host = value
 }
 // SetLogin sets the login property value. Channel login when the stream ran; part of the recording path.
@@ -818,7 +398,7 @@ func (m *TwitchRecordedStream) SetRecording(value *TwitchRecordedStream_recordin
     m.recording = value
 }
 // SetRemovedAt sets the removed_at property value. When the recording was found removed (ISO 8601), else null.
-func (m *TwitchRecordedStream) SetRemovedAt(value TwitchRecordedStream_TwitchRecordedStream_removed_atable)() {
+func (m *TwitchRecordedStream) SetRemovedAt(value *string)() {
     m.removed_at = value
 }
 // SetStartedAt sets the started_at property value. Stream start (ISO 8601).
@@ -830,31 +410,31 @@ func (m *TwitchRecordedStream) SetStreamId(value *string)() {
     m.stream_id = value
 }
 // SetTitle sets the title property value. Stream title, when Twitch reported one.
-func (m *TwitchRecordedStream) SetTitle(value TwitchRecordedStream_TwitchRecordedStream_titleable)() {
+func (m *TwitchRecordedStream) SetTitle(value *string)() {
     m.title = value
 }
 type TwitchRecordedStreamable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetDurationSeconds()(*int32)
-    GetEndedAt()(TwitchRecordedStream_TwitchRecordedStream_ended_atable)
-    GetGame()(TwitchRecordedStream_TwitchRecordedStream_gameable)
-    GetHost()(TwitchRecordedStream_TwitchRecordedStream_hostable)
+    GetEndedAt()(*string)
+    GetGame()(*string)
+    GetHost()(*string)
     GetLogin()(*string)
     GetPathTimestamp()(TwitchRecordedStream_TwitchRecordedStream_path_timestampable)
     GetRecording()(*TwitchRecordedStream_recording)
-    GetRemovedAt()(TwitchRecordedStream_TwitchRecordedStream_removed_atable)
+    GetRemovedAt()(*string)
     GetStartedAt()(*string)
     GetStreamId()(*string)
-    GetTitle()(TwitchRecordedStream_TwitchRecordedStream_titleable)
+    GetTitle()(*string)
     SetDurationSeconds(value *int32)()
-    SetEndedAt(value TwitchRecordedStream_TwitchRecordedStream_ended_atable)()
-    SetGame(value TwitchRecordedStream_TwitchRecordedStream_gameable)()
-    SetHost(value TwitchRecordedStream_TwitchRecordedStream_hostable)()
+    SetEndedAt(value *string)()
+    SetGame(value *string)()
+    SetHost(value *string)()
     SetLogin(value *string)()
     SetPathTimestamp(value TwitchRecordedStream_TwitchRecordedStream_path_timestampable)()
     SetRecording(value *TwitchRecordedStream_recording)()
-    SetRemovedAt(value TwitchRecordedStream_TwitchRecordedStream_removed_atable)()
+    SetRemovedAt(value *string)()
     SetStartedAt(value *string)()
     SetStreamId(value *string)()
-    SetTitle(value TwitchRecordedStream_TwitchRecordedStream_titleable)()
+    SetTitle(value *string)()
 }

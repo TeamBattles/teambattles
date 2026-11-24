@@ -14,9 +14,9 @@ class ChatMessage implements Parsable
     private ?string $content = null;
     
     /**
-     * @var ChatMessage_createdAt|null $createdAt The createdAt property
+     * @var string|null $createdAt The createdAt property
     */
-    private ?ChatMessage_createdAt $createdAt = null;
+    private ?string $createdAt = null;
     
     /**
      * @var string|null $id The id property
@@ -24,9 +24,9 @@ class ChatMessage implements Parsable
     private ?string $id = null;
     
     /**
-     * @var ChatMessage_replyToId|null $replyToId The replyToId property
+     * @var string|null $replyToId The replyToId property
     */
-    private ?ChatMessage_replyToId $replyToId = null;
+    private ?string $replyToId = null;
     
     /**
      * @var string|null $senderUserId The senderUserId property
@@ -34,9 +34,9 @@ class ChatMessage implements Parsable
     private ?string $senderUserId = null;
     
     /**
-     * @var ChatMessage_senderUsername|null $senderUsername The senderUsername property
+     * @var string|null $senderUsername The senderUsername property
     */
-    private ?ChatMessage_senderUsername $senderUsername = null;
+    private ?string $senderUsername = null;
     
     /**
      * @var string|null $teamId The teamId property
@@ -62,9 +62,9 @@ class ChatMessage implements Parsable
 
     /**
      * Gets the createdAt property value. The createdAt property
-     * @return ChatMessage_createdAt|null
+     * @return string|null
     */
-    public function getCreatedAt(): ?ChatMessage_createdAt {
+    public function getCreatedAt(): ?string {
         return $this->createdAt;
     }
 
@@ -76,11 +76,11 @@ class ChatMessage implements Parsable
         $o = $this;
         return  [
             'content' => fn(ParseNode $n) => $o->setContent($n->getStringValue()),
-            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([ChatMessage_createdAt::class, 'createFromDiscriminatorValue'])),
+            'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'replyToId' => fn(ParseNode $n) => $o->setReplyToId($n->getObjectValue([ChatMessage_replyToId::class, 'createFromDiscriminatorValue'])),
+            'replyToId' => fn(ParseNode $n) => $o->setReplyToId($n->getStringValue()),
             'senderUserId' => fn(ParseNode $n) => $o->setSenderUserId($n->getStringValue()),
-            'senderUsername' => fn(ParseNode $n) => $o->setSenderUsername($n->getObjectValue([ChatMessage_senderUsername::class, 'createFromDiscriminatorValue'])),
+            'senderUsername' => fn(ParseNode $n) => $o->setSenderUsername($n->getStringValue()),
             'teamId' => fn(ParseNode $n) => $o->setTeamId($n->getStringValue()),
         ];
     }
@@ -95,9 +95,9 @@ class ChatMessage implements Parsable
 
     /**
      * Gets the replyToId property value. The replyToId property
-     * @return ChatMessage_replyToId|null
+     * @return string|null
     */
-    public function getReplyToId(): ?ChatMessage_replyToId {
+    public function getReplyToId(): ?string {
         return $this->replyToId;
     }
 
@@ -111,9 +111,9 @@ class ChatMessage implements Parsable
 
     /**
      * Gets the senderUsername property value. The senderUsername property
-     * @return ChatMessage_senderUsername|null
+     * @return string|null
     */
-    public function getSenderUsername(): ?ChatMessage_senderUsername {
+    public function getSenderUsername(): ?string {
         return $this->senderUsername;
     }
 
@@ -131,11 +131,11 @@ class ChatMessage implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('content', $this->getContent());
-        $writer->writeObjectValue('createdAt', $this->getCreatedAt());
+        $writer->writeStringValue('createdAt', $this->getCreatedAt());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeObjectValue('replyToId', $this->getReplyToId());
+        $writer->writeStringValue('replyToId', $this->getReplyToId());
         $writer->writeStringValue('senderUserId', $this->getSenderUserId());
-        $writer->writeObjectValue('senderUsername', $this->getSenderUsername());
+        $writer->writeStringValue('senderUsername', $this->getSenderUsername());
         $writer->writeStringValue('teamId', $this->getTeamId());
     }
 
@@ -149,9 +149,9 @@ class ChatMessage implements Parsable
 
     /**
      * Sets the createdAt property value. The createdAt property
-     * @param ChatMessage_createdAt|null $value Value to set for the createdAt property.
+     * @param string|null $value Value to set for the createdAt property.
     */
-    public function setCreatedAt(?ChatMessage_createdAt $value): void {
+    public function setCreatedAt(?string $value): void {
         $this->createdAt = $value;
     }
 
@@ -165,9 +165,9 @@ class ChatMessage implements Parsable
 
     /**
      * Sets the replyToId property value. The replyToId property
-     * @param ChatMessage_replyToId|null $value Value to set for the replyToId property.
+     * @param string|null $value Value to set for the replyToId property.
     */
-    public function setReplyToId(?ChatMessage_replyToId $value): void {
+    public function setReplyToId(?string $value): void {
         $this->replyToId = $value;
     }
 
@@ -181,9 +181,9 @@ class ChatMessage implements Parsable
 
     /**
      * Sets the senderUsername property value. The senderUsername property
-     * @param ChatMessage_senderUsername|null $value Value to set for the senderUsername property.
+     * @param string|null $value Value to set for the senderUsername property.
     */
-    public function setSenderUsername(?ChatMessage_senderUsername $value): void {
+    public function setSenderUsername(?string $value): void {
         $this->senderUsername = $value;
     }
 

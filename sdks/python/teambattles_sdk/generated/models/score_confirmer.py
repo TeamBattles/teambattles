@@ -4,16 +4,13 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .score_confirmer_confirmed_at import ScoreConfirmer_confirmedAt
-
 @dataclass
 class ScoreConfirmer(Parsable):
     """
     Identity of the captain who confirmed a score.
     """
     # Confirmation time (ISO 8601).
-    confirmed_at: Optional[ScoreConfirmer_confirmedAt] = None
+    confirmed_at: Optional[str] = None
     # The teamId property
     team_id: Optional[str] = None
     # The userId property
@@ -35,12 +32,8 @@ class ScoreConfirmer(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .score_confirmer_confirmed_at import ScoreConfirmer_confirmedAt
-
-        from .score_confirmer_confirmed_at import ScoreConfirmer_confirmedAt
-
         fields: dict[str, Callable[[Any], None]] = {
-            "confirmedAt": lambda n : setattr(self, 'confirmed_at', n.get_object_value(ScoreConfirmer_confirmedAt)),
+            "confirmedAt": lambda n : setattr(self, 'confirmed_at', n.get_str_value()),
             "teamId": lambda n : setattr(self, 'team_id', n.get_str_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
@@ -54,7 +47,7 @@ class ScoreConfirmer(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("confirmedAt", self.confirmed_at)
+        writer.write_str_value("confirmedAt", self.confirmed_at)
         writer.write_str_value("teamId", self.team_id)
         writer.write_str_value("userId", self.user_id)
     

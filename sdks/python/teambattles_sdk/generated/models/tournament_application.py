@@ -4,9 +4,6 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .tournament_application_team_avatar_url import TournamentApplication_teamAvatarUrl
-
 @dataclass
 class TournamentApplication(Parsable):
     """
@@ -19,7 +16,7 @@ class TournamentApplication(Parsable):
     # Application time (epoch milliseconds).
     registered_at: Optional[float] = None
     # Applying team's avatar URL.
-    team_avatar_url: Optional[TournamentApplication_teamAvatarUrl] = None
+    team_avatar_url: Optional[str] = None
     # Applying team's ID.
     team_id: Optional[str] = None
     # Applying team's display name.
@@ -41,15 +38,11 @@ class TournamentApplication(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .tournament_application_team_avatar_url import TournamentApplication_teamAvatarUrl
-
-        from .tournament_application_team_avatar_url import TournamentApplication_teamAvatarUrl
-
         fields: dict[str, Callable[[Any], None]] = {
             "appliedByUserId": lambda n : setattr(self, 'applied_by_user_id', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "registeredAt": lambda n : setattr(self, 'registered_at', n.get_float_value()),
-            "teamAvatarUrl": lambda n : setattr(self, 'team_avatar_url', n.get_object_value(TournamentApplication_teamAvatarUrl)),
+            "teamAvatarUrl": lambda n : setattr(self, 'team_avatar_url', n.get_str_value()),
             "teamId": lambda n : setattr(self, 'team_id', n.get_str_value()),
             "teamName": lambda n : setattr(self, 'team_name', n.get_str_value()),
         }
@@ -66,7 +59,7 @@ class TournamentApplication(Parsable):
         writer.write_str_value("appliedByUserId", self.applied_by_user_id)
         writer.write_str_value("id", self.id)
         writer.write_float_value("registeredAt", self.registered_at)
-        writer.write_object_value("teamAvatarUrl", self.team_avatar_url)
+        writer.write_str_value("teamAvatarUrl", self.team_avatar_url)
         writer.write_str_value("teamId", self.team_id)
         writer.write_str_value("teamName", self.team_name)
     

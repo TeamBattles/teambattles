@@ -113,9 +113,9 @@ module TeamBattlesSdk
                         "failureCount" => lambda {|n| @failure_count = n.get_number_value() },
                         "id" => lambda {|n| @id = n.get_string_value() },
                         "isActive" => lambda {|n| @is_active = n.get_boolean_value() },
-                        "label" => lambda {|n| @label = n.get_object_value(lambda {|pn| WebhookEndpoint::WebhookEndpointLabel.create_from_discriminator_value(pn) }) },
-                        "lastDeliveredAt" => lambda {|n| @last_delivered_at = n.get_object_value(lambda {|pn| WebhookEndpoint::WebhookEndpointLastDeliveredAt.create_from_discriminator_value(pn) }) },
-                        "lastFailedAt" => lambda {|n| @last_failed_at = n.get_object_value(lambda {|pn| WebhookEndpoint::WebhookEndpointLastFailedAt.create_from_discriminator_value(pn) }) },
+                        "label" => lambda {|n| @label = n.get_string_value() },
+                        "lastDeliveredAt" => lambda {|n| @last_delivered_at = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
+                        "lastFailedAt" => lambda {|n| @last_failed_at = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
                         "scopeId" => lambda {|n| @scope_id = n.get_string_value() },
                         "scopeType" => lambda {|n| @scope_type = n.get_enum_value(TeamBattlesSdk::Generated::Models::WebhookEndpointScopeType) },
                         "secretPrefix" => lambda {|n| @secret_prefix = n.get_string_value() },
@@ -155,7 +155,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the label property value. Human label, or null.
-                ## @return a webhook_endpoint_label
+                ## @return a string
                 ## 
                 def label
                     return @label
@@ -170,7 +170,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the lastDeliveredAt property value. Epoch ms of the last successful delivery, or null.
-                ## @return a webhook_endpoint_last_delivered_at
+                ## @return a double
                 ## 
                 def last_delivered_at
                     return @last_delivered_at
@@ -185,7 +185,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the lastFailedAt property value. Epoch ms of the last failed delivery, or null.
-                ## @return a webhook_endpoint_last_failed_at
+                ## @return a double
                 ## 
                 def last_failed_at
                     return @last_failed_at
@@ -255,7 +255,7 @@ module TeamBattlesSdk
                     writer.write_number_value("failureCount", @failure_count)
                     writer.write_string_value("id", @id)
                     writer.write_boolean_value("isActive", @is_active)
-                    writer.write_object_value("label", @label)
+                    writer.write_string_value("label", @label)
                     writer.write_object_value("lastDeliveredAt", @last_delivered_at)
                     writer.write_object_value("lastFailedAt", @last_failed_at)
                     writer.write_string_value("scopeId", @scope_id)
@@ -293,219 +293,6 @@ module TeamBattlesSdk
                 ## 
                 def url=(value)
                     @url = value
-                end
-
-                ## 
-                # Composed type wrapper for classes string, WebhookEndpointLabelMember1
-                class WebhookEndpointLabel
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type WebhookEndpointLabelMember1
-                    @webhook_endpoint_label_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a webhook_endpoint_label
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return WebhookEndpointLabel.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "WebhookEndpoint_labelMember1" => lambda {|n| @webhook_endpoint_label_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::WebhookEndpointLabelMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("WebhookEndpoint_labelMember1", @webhook_endpoint_label_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the WebhookEndpoint_labelMember1 property value. Composed type representation for type WebhookEndpointLabelMember1
-                    ## @return a webhook_endpoint_label_member1
-                    ## 
-                    def webhook_endpoint_label_member1
-                        return @webhook_endpoint_label_member1
-                    end
-                    ## 
-                    ## Sets the WebhookEndpoint_labelMember1 property value. Composed type representation for type WebhookEndpointLabelMember1
-                    ## @param value Value to set for the WebhookEndpoint_labelMember1 property.
-                    ## @return a void
-                    ## 
-                    def webhook_endpoint_label_member1=(value)
-                        @webhook_endpoint_label_member1 = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes Double, WebhookEndpointLastDeliveredAtMember1
-                class WebhookEndpointLastDeliveredAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type Double
-                    @double
-                    ## 
-                    # Composed type representation for type WebhookEndpointLastDeliveredAtMember1
-                    @webhook_endpoint_last_delivered_at_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a webhook_endpoint_last_delivered_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return WebhookEndpointLastDeliveredAt.new
-                    end
-                    ## 
-                    ## Gets the double property value. Composed type representation for type Double
-                    ## @return a double
-                    ## 
-                    def double
-                        return @double
-                    end
-                    ## 
-                    ## Sets the double property value. Composed type representation for type Double
-                    ## @param value Value to set for the double property.
-                    ## @return a void
-                    ## 
-                    def double=(value)
-                        @double = value
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "double" => lambda {|n| @double = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
-                            "WebhookEndpoint_lastDeliveredAtMember1" => lambda {|n| @webhook_endpoint_last_delivered_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::WebhookEndpointLastDeliveredAtMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("double", @double)
-                        writer.write_object_value("WebhookEndpoint_lastDeliveredAtMember1", @webhook_endpoint_last_delivered_at_member1)
-                    end
-                    ## 
-                    ## Gets the WebhookEndpoint_lastDeliveredAtMember1 property value. Composed type representation for type WebhookEndpointLastDeliveredAtMember1
-                    ## @return a webhook_endpoint_last_delivered_at_member1
-                    ## 
-                    def webhook_endpoint_last_delivered_at_member1
-                        return @webhook_endpoint_last_delivered_at_member1
-                    end
-                    ## 
-                    ## Sets the WebhookEndpoint_lastDeliveredAtMember1 property value. Composed type representation for type WebhookEndpointLastDeliveredAtMember1
-                    ## @param value Value to set for the WebhookEndpoint_lastDeliveredAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def webhook_endpoint_last_delivered_at_member1=(value)
-                        @webhook_endpoint_last_delivered_at_member1 = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes Double, WebhookEndpointLastFailedAtMember1
-                class WebhookEndpointLastFailedAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type Double
-                    @double
-                    ## 
-                    # Composed type representation for type WebhookEndpointLastFailedAtMember1
-                    @webhook_endpoint_last_failed_at_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a webhook_endpoint_last_failed_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return WebhookEndpointLastFailedAt.new
-                    end
-                    ## 
-                    ## Gets the double property value. Composed type representation for type Double
-                    ## @return a double
-                    ## 
-                    def double
-                        return @double
-                    end
-                    ## 
-                    ## Sets the double property value. Composed type representation for type Double
-                    ## @param value Value to set for the double property.
-                    ## @return a void
-                    ## 
-                    def double=(value)
-                        @double = value
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "double" => lambda {|n| @double = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
-                            "WebhookEndpoint_lastFailedAtMember1" => lambda {|n| @webhook_endpoint_last_failed_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::WebhookEndpointLastFailedAtMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("double", @double)
-                        writer.write_object_value("WebhookEndpoint_lastFailedAtMember1", @webhook_endpoint_last_failed_at_member1)
-                    end
-                    ## 
-                    ## Gets the WebhookEndpoint_lastFailedAtMember1 property value. Composed type representation for type WebhookEndpointLastFailedAtMember1
-                    ## @return a webhook_endpoint_last_failed_at_member1
-                    ## 
-                    def webhook_endpoint_last_failed_at_member1
-                        return @webhook_endpoint_last_failed_at_member1
-                    end
-                    ## 
-                    ## Sets the WebhookEndpoint_lastFailedAtMember1 property value. Composed type representation for type WebhookEndpointLastFailedAtMember1
-                    ## @param value Value to set for the WebhookEndpoint_lastFailedAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def webhook_endpoint_last_failed_at_member1=(value)
-                        @webhook_endpoint_last_failed_at_member1 = value
-                    end
                 end
             end
         end

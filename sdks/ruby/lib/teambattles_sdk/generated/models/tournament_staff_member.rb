@@ -32,7 +32,7 @@ module TeamBattlesSdk
                 @username
                 ## 
                 ## Gets the avatarUrl property value. Avatar image URL.
-                ## @return a tournament_staff_member_avatar_url
+                ## @return a string
                 ## 
                 def avatar_url
                     return @avatar_url
@@ -75,7 +75,7 @@ module TeamBattlesSdk
                 ## 
                 def get_field_deserializers()
                     return {
-                        "avatarUrl" => lambda {|n| @avatar_url = n.get_object_value(lambda {|pn| TournamentStaffMember::TournamentStaffMemberAvatarUrl.create_from_discriminator_value(pn) }) },
+                        "avatarUrl" => lambda {|n| @avatar_url = n.get_string_value() },
                         "createdAt" => lambda {|n| @created_at = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
                         "id" => lambda {|n| @id = n.get_string_value() },
                         "name" => lambda {|n| @name = n.get_string_value() },
@@ -136,7 +136,7 @@ module TeamBattlesSdk
                 ## 
                 def serialize(writer)
                     raise StandardError, 'writer cannot be null' if writer.nil?
-                    writer.write_object_value("avatarUrl", @avatar_url)
+                    writer.write_string_value("avatarUrl", @avatar_url)
                     writer.write_object_value("createdAt", @created_at)
                     writer.write_string_value("id", @id)
                     writer.write_string_value("name", @name)
@@ -173,77 +173,6 @@ module TeamBattlesSdk
                 ## 
                 def username=(value)
                     @username = value
-                end
-
-                ## 
-                # Composed type wrapper for classes string, TournamentStaffMemberAvatarUrlMember1
-                class TournamentStaffMemberAvatarUrl
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type TournamentStaffMemberAvatarUrlMember1
-                    @tournament_staff_member_avatar_url_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a tournament_staff_member_avatar_url
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return TournamentStaffMemberAvatarUrl.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "TournamentStaffMember_avatarUrlMember1" => lambda {|n| @tournament_staff_member_avatar_url_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::TournamentStaffMemberAvatarUrlMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("TournamentStaffMember_avatarUrlMember1", @tournament_staff_member_avatar_url_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the TournamentStaffMember_avatarUrlMember1 property value. Composed type representation for type TournamentStaffMemberAvatarUrlMember1
-                    ## @return a tournament_staff_member_avatar_url_member1
-                    ## 
-                    def tournament_staff_member_avatar_url_member1
-                        return @tournament_staff_member_avatar_url_member1
-                    end
-                    ## 
-                    ## Sets the TournamentStaffMember_avatarUrlMember1 property value. Composed type representation for type TournamentStaffMemberAvatarUrlMember1
-                    ## @param value Value to set for the TournamentStaffMember_avatarUrlMember1 property.
-                    ## @return a void
-                    ## 
-                    def tournament_staff_member_avatar_url_member1=(value)
-                        @tournament_staff_member_avatar_url_member1 = value
-                    end
                 end
             end
         end

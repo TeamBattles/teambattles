@@ -2,14 +2,12 @@
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './tournament_format.dart';
 import './tournament_status.dart';
-import './tournament_summary_banner_url.dart';
-import './tournament_summary_logo_url.dart';
 
 /// auto generated
 /// Summary view of a tournament for discovery.
 class TournamentSummary implements Parsable {
     ///  Banner image URL.
-    TournamentSummaryBannerUrl? bannerUrl;
+    String? bannerUrl;
     ///  Short tournament description.
     String? description;
     ///  Bracket format of a tournament.
@@ -21,7 +19,7 @@ class TournamentSummary implements Parsable {
     ///  Whether the featured placement is live at request time.
     bool? isFeatured;
     ///  Logo image URL.
-    TournamentSummaryLogoUrl? logoUrl;
+    String? logoUrl;
     ///  Participant cap.
     int? maxParticipants;
     ///  Tournament display name.
@@ -47,13 +45,13 @@ class TournamentSummary implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['bannerUrl'] = (node) => bannerUrl = node.getObjectValue<TournamentSummaryBannerUrl>(TournamentSummaryBannerUrl.createFromDiscriminatorValue);
+        deserializerMap['bannerUrl'] = (node) => bannerUrl = node.getStringValue();
         deserializerMap['description'] = (node) => description = node.getStringValue();
         deserializerMap['format'] = (node) => format = node.getEnumValue<TournamentFormat>((stringValue) => TournamentFormat.values.where((enumVal) => enumVal.value == stringValue).firstOrNull);
         deserializerMap['game'] = (node) => game = node.getObjectValue<UntypedNode>(UntypedNode.createFromDiscriminatorValue);
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['isFeatured'] = (node) => isFeatured = node.getBoolValue();
-        deserializerMap['logoUrl'] = (node) => logoUrl = node.getObjectValue<TournamentSummaryLogoUrl>(TournamentSummaryLogoUrl.createFromDiscriminatorValue);
+        deserializerMap['logoUrl'] = (node) => logoUrl = node.getStringValue();
         deserializerMap['maxParticipants'] = (node) => maxParticipants = node.getIntValue();
         deserializerMap['name'] = (node) => name = node.getStringValue();
         deserializerMap['participantCount'] = (node) => participantCount = node.getIntValue();
@@ -68,13 +66,13 @@ class TournamentSummary implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<TournamentSummaryBannerUrl>('bannerUrl', bannerUrl);
+        writer.writeStringValue('bannerUrl', bannerUrl);
         writer.writeStringValue('description', description);
         writer.writeEnumValue<TournamentFormat>('format', format, (e) => e?.value);
         writer.writeObjectValue<UntypedNode>('game', game);
         writer.writeStringValue('id', id);
         writer.writeBoolValue('isFeatured', value:isFeatured);
-        writer.writeObjectValue<TournamentSummaryLogoUrl>('logoUrl', logoUrl);
+        writer.writeStringValue('logoUrl', logoUrl);
         writer.writeIntValue('maxParticipants', maxParticipants);
         writer.writeStringValue('name', name);
         writer.writeIntValue('participantCount', participantCount);

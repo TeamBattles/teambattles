@@ -12,14 +12,14 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class ApiOrganizationProfile implements Parsable 
 {
     /**
-     * @var ApiOrganizationProfile_avatarUrl|null $avatarUrl The avatarUrl property
+     * @var string|null $avatarUrl The avatarUrl property
     */
-    private ?ApiOrganizationProfile_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
-     * @var ApiOrganizationProfile_bannerUrl|null $bannerUrl The bannerUrl property
+     * @var string|null $bannerUrl The bannerUrl property
     */
-    private ?ApiOrganizationProfile_bannerUrl $bannerUrl = null;
+    private ?string $bannerUrl = null;
     
     /**
      * @var ApiOrganizationProfile_createdAt|null $createdAt The createdAt property
@@ -27,9 +27,9 @@ class ApiOrganizationProfile implements Parsable
     private ?ApiOrganizationProfile_createdAt $createdAt = null;
     
     /**
-     * @var ApiOrganizationProfile_description|null $description The description property
+     * @var string|null $description The description property
     */
-    private ?ApiOrganizationProfile_description $description = null;
+    private ?string $description = null;
     
     /**
      * @var int|null $draws The draws property
@@ -72,14 +72,14 @@ class ApiOrganizationProfile implements Parsable
     private ?string $name = null;
     
     /**
-     * @var ApiOrganizationProfile_slug|null $slug The slug property
+     * @var string|null $slug The slug property
     */
-    private ?ApiOrganizationProfile_slug $slug = null;
+    private ?string $slug = null;
     
     /**
-     * @var ApiOrganizationProfile_tag|null $tag The tag property
+     * @var string|null $tag The tag property
     */
-    private ?ApiOrganizationProfile_tag $tag = null;
+    private ?string $tag = null;
     
     /**
      * @var int|null $teamCount The teamCount property
@@ -107,17 +107,17 @@ class ApiOrganizationProfile implements Parsable
 
     /**
      * Gets the avatarUrl property value. The avatarUrl property
-     * @return ApiOrganizationProfile_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?ApiOrganizationProfile_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
     /**
      * Gets the bannerUrl property value. The bannerUrl property
-     * @return ApiOrganizationProfile_bannerUrl|null
+     * @return string|null
     */
-    public function getBannerUrl(): ?ApiOrganizationProfile_bannerUrl {
+    public function getBannerUrl(): ?string {
         return $this->bannerUrl;
     }
 
@@ -131,9 +131,9 @@ class ApiOrganizationProfile implements Parsable
 
     /**
      * Gets the description property value. The description property
-     * @return ApiOrganizationProfile_description|null
+     * @return string|null
     */
-    public function getDescription(): ?ApiOrganizationProfile_description {
+    public function getDescription(): ?string {
         return $this->description;
     }
 
@@ -152,10 +152,10 @@ class ApiOrganizationProfile implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([ApiOrganizationProfile_avatarUrl::class, 'createFromDiscriminatorValue'])),
-            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getObjectValue([ApiOrganizationProfile_bannerUrl::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
+            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getStringValue()),
             'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getObjectValue([ApiOrganizationProfile_createdAt::class, 'createFromDiscriminatorValue'])),
-            'description' => fn(ParseNode $n) => $o->setDescription($n->getObjectValue([ApiOrganizationProfile_description::class, 'createFromDiscriminatorValue'])),
+            'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
             'draws' => fn(ParseNode $n) => $o->setDraws($n->getIntegerValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'isMember' => fn(ParseNode $n) => $o->setIsMember($n->getBooleanValue()),
@@ -164,8 +164,8 @@ class ApiOrganizationProfile implements Parsable
             'matchesPlayed' => fn(ParseNode $n) => $o->setMatchesPlayed($n->getIntegerValue()),
             'memberCount' => fn(ParseNode $n) => $o->setMemberCount($n->getIntegerValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
-            'slug' => fn(ParseNode $n) => $o->setSlug($n->getObjectValue([ApiOrganizationProfile_slug::class, 'createFromDiscriminatorValue'])),
-            'tag' => fn(ParseNode $n) => $o->setTag($n->getObjectValue([ApiOrganizationProfile_tag::class, 'createFromDiscriminatorValue'])),
+            'slug' => fn(ParseNode $n) => $o->setSlug($n->getStringValue()),
+            'tag' => fn(ParseNode $n) => $o->setTag($n->getStringValue()),
             'teamCount' => fn(ParseNode $n) => $o->setTeamCount($n->getIntegerValue()),
             'visibility' => fn(ParseNode $n) => $o->setVisibility($n->getEnumValue(ProfileVisibility::class)),
             'wins' => fn(ParseNode $n) => $o->setWins($n->getIntegerValue()),
@@ -230,17 +230,17 @@ class ApiOrganizationProfile implements Parsable
 
     /**
      * Gets the slug property value. The slug property
-     * @return ApiOrganizationProfile_slug|null
+     * @return string|null
     */
-    public function getSlug(): ?ApiOrganizationProfile_slug {
+    public function getSlug(): ?string {
         return $this->slug;
     }
 
     /**
      * Gets the tag property value. The tag property
-     * @return ApiOrganizationProfile_tag|null
+     * @return string|null
     */
-    public function getTag(): ?ApiOrganizationProfile_tag {
+    public function getTag(): ?string {
         return $this->tag;
     }
 
@@ -273,10 +273,10 @@ class ApiOrganizationProfile implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
-        $writer->writeObjectValue('bannerUrl', $this->getBannerUrl());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('bannerUrl', $this->getBannerUrl());
         $writer->writeObjectValue('createdAt', $this->getCreatedAt());
-        $writer->writeObjectValue('description', $this->getDescription());
+        $writer->writeStringValue('description', $this->getDescription());
         $writer->writeIntegerValue('draws', $this->getDraws());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeBooleanValue('isMember', $this->getIsMember());
@@ -285,8 +285,8 @@ class ApiOrganizationProfile implements Parsable
         $writer->writeIntegerValue('matchesPlayed', $this->getMatchesPlayed());
         $writer->writeIntegerValue('memberCount', $this->getMemberCount());
         $writer->writeStringValue('name', $this->getName());
-        $writer->writeObjectValue('slug', $this->getSlug());
-        $writer->writeObjectValue('tag', $this->getTag());
+        $writer->writeStringValue('slug', $this->getSlug());
+        $writer->writeStringValue('tag', $this->getTag());
         $writer->writeIntegerValue('teamCount', $this->getTeamCount());
         $writer->writeEnumValue('visibility', $this->getVisibility());
         $writer->writeIntegerValue('wins', $this->getWins());
@@ -294,17 +294,17 @@ class ApiOrganizationProfile implements Parsable
 
     /**
      * Sets the avatarUrl property value. The avatarUrl property
-     * @param ApiOrganizationProfile_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?ApiOrganizationProfile_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 
     /**
      * Sets the bannerUrl property value. The bannerUrl property
-     * @param ApiOrganizationProfile_bannerUrl|null $value Value to set for the bannerUrl property.
+     * @param string|null $value Value to set for the bannerUrl property.
     */
-    public function setBannerUrl(?ApiOrganizationProfile_bannerUrl $value): void {
+    public function setBannerUrl(?string $value): void {
         $this->bannerUrl = $value;
     }
 
@@ -318,9 +318,9 @@ class ApiOrganizationProfile implements Parsable
 
     /**
      * Sets the description property value. The description property
-     * @param ApiOrganizationProfile_description|null $value Value to set for the description property.
+     * @param string|null $value Value to set for the description property.
     */
-    public function setDescription(?ApiOrganizationProfile_description $value): void {
+    public function setDescription(?string $value): void {
         $this->description = $value;
     }
 
@@ -390,17 +390,17 @@ class ApiOrganizationProfile implements Parsable
 
     /**
      * Sets the slug property value. The slug property
-     * @param ApiOrganizationProfile_slug|null $value Value to set for the slug property.
+     * @param string|null $value Value to set for the slug property.
     */
-    public function setSlug(?ApiOrganizationProfile_slug $value): void {
+    public function setSlug(?string $value): void {
         $this->slug = $value;
     }
 
     /**
      * Sets the tag property value. The tag property
-     * @param ApiOrganizationProfile_tag|null $value Value to set for the tag property.
+     * @param string|null $value Value to set for the tag property.
     */
-    public function setTag(?ApiOrganizationProfile_tag $value): void {
+    public function setTag(?string $value): void {
         $this->tag = $value;
     }
 

@@ -86,7 +86,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the deliveredAt property value. Epoch ms of successful delivery, or null.
-                ## @return a webhook_delivery_delivered_at
+                ## @return a double
                 ## 
                 def delivered_at
                     return @delivered_at
@@ -101,7 +101,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the errorMessage property value. Last error message, or null.
-                ## @return a webhook_delivery_error_message
+                ## @return a string
                 ## 
                 def error_message
                     return @error_message
@@ -137,13 +137,13 @@ module TeamBattlesSdk
                     return {
                         "attemptCount" => lambda {|n| @attempt_count = n.get_number_value() },
                         "createdAt" => lambda {|n| @created_at = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
-                        "deliveredAt" => lambda {|n| @delivered_at = n.get_object_value(lambda {|pn| WebhookDelivery::WebhookDeliveryDeliveredAt.create_from_discriminator_value(pn) }) },
-                        "errorMessage" => lambda {|n| @error_message = n.get_object_value(lambda {|pn| WebhookDelivery::WebhookDeliveryErrorMessage.create_from_discriminator_value(pn) }) },
+                        "deliveredAt" => lambda {|n| @delivered_at = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
+                        "errorMessage" => lambda {|n| @error_message = n.get_string_value() },
                         "event" => lambda {|n| @event = n.get_string_value() },
                         "id" => lambda {|n| @id = n.get_string_value() },
                         "idempotencyId" => lambda {|n| @idempotency_id = n.get_string_value() },
                         "isTest" => lambda {|n| @is_test = n.get_boolean_value() },
-                        "nextAttemptAt" => lambda {|n| @next_attempt_at = n.get_object_value(lambda {|pn| WebhookDelivery::WebhookDeliveryNextAttemptAt.create_from_discriminator_value(pn) }) },
+                        "nextAttemptAt" => lambda {|n| @next_attempt_at = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
                         "status" => lambda {|n| @status = n.get_enum_value(TeamBattlesSdk::Generated::Models::WebhookDeliveryStatus) },
                         "statusCode" => lambda {|n| @status_code = n.get_object_value(lambda {|pn| WebhookDelivery::WebhookDeliveryStatusCode.create_from_discriminator_value(pn) }) },
                         "updatedAt" => lambda {|n| @updated_at = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
@@ -196,7 +196,7 @@ module TeamBattlesSdk
                 end
                 ## 
                 ## Gets the nextAttemptAt property value. Epoch ms of the next scheduled retry, or null.
-                ## @return a webhook_delivery_next_attempt_at
+                ## @return a double
                 ## 
                 def next_attempt_at
                     return @next_attempt_at
@@ -219,7 +219,7 @@ module TeamBattlesSdk
                     writer.write_number_value("attemptCount", @attempt_count)
                     writer.write_object_value("createdAt", @created_at)
                     writer.write_object_value("deliveredAt", @delivered_at)
-                    writer.write_object_value("errorMessage", @error_message)
+                    writer.write_string_value("errorMessage", @error_message)
                     writer.write_string_value("event", @event)
                     writer.write_string_value("id", @id)
                     writer.write_string_value("idempotencyId", @idempotency_id)
@@ -273,219 +273,6 @@ module TeamBattlesSdk
                 ## 
                 def updated_at=(value)
                     @updated_at = value
-                end
-
-                ## 
-                # Composed type wrapper for classes Double, WebhookDeliveryDeliveredAtMember1
-                class WebhookDeliveryDeliveredAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type Double
-                    @double
-                    ## 
-                    # Composed type representation for type WebhookDeliveryDeliveredAtMember1
-                    @webhook_delivery_delivered_at_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a webhook_delivery_delivered_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return WebhookDeliveryDeliveredAt.new
-                    end
-                    ## 
-                    ## Gets the double property value. Composed type representation for type Double
-                    ## @return a double
-                    ## 
-                    def double
-                        return @double
-                    end
-                    ## 
-                    ## Sets the double property value. Composed type representation for type Double
-                    ## @param value Value to set for the double property.
-                    ## @return a void
-                    ## 
-                    def double=(value)
-                        @double = value
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "double" => lambda {|n| @double = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
-                            "WebhookDelivery_deliveredAtMember1" => lambda {|n| @webhook_delivery_delivered_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::WebhookDeliveryDeliveredAtMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("double", @double)
-                        writer.write_object_value("WebhookDelivery_deliveredAtMember1", @webhook_delivery_delivered_at_member1)
-                    end
-                    ## 
-                    ## Gets the WebhookDelivery_deliveredAtMember1 property value. Composed type representation for type WebhookDeliveryDeliveredAtMember1
-                    ## @return a webhook_delivery_delivered_at_member1
-                    ## 
-                    def webhook_delivery_delivered_at_member1
-                        return @webhook_delivery_delivered_at_member1
-                    end
-                    ## 
-                    ## Sets the WebhookDelivery_deliveredAtMember1 property value. Composed type representation for type WebhookDeliveryDeliveredAtMember1
-                    ## @param value Value to set for the WebhookDelivery_deliveredAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def webhook_delivery_delivered_at_member1=(value)
-                        @webhook_delivery_delivered_at_member1 = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes string, WebhookDeliveryErrorMessageMember1
-                class WebhookDeliveryErrorMessage
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type string
-                    @string
-                    ## 
-                    # Composed type representation for type WebhookDeliveryErrorMessageMember1
-                    @webhook_delivery_error_message_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a webhook_delivery_error_message
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return WebhookDeliveryErrorMessage.new
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "string" => lambda {|n| @string = n.get_string_value() },
-                            "WebhookDelivery_errorMessageMember1" => lambda {|n| @webhook_delivery_error_message_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::WebhookDeliveryErrorMessageMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_string_value("string", @string)
-                        writer.write_object_value("WebhookDelivery_errorMessageMember1", @webhook_delivery_error_message_member1)
-                    end
-                    ## 
-                    ## Gets the string property value. Composed type representation for type string
-                    ## @return a string
-                    ## 
-                    def string
-                        return @string
-                    end
-                    ## 
-                    ## Sets the string property value. Composed type representation for type string
-                    ## @param value Value to set for the string property.
-                    ## @return a void
-                    ## 
-                    def string=(value)
-                        @string = value
-                    end
-                    ## 
-                    ## Gets the WebhookDelivery_errorMessageMember1 property value. Composed type representation for type WebhookDeliveryErrorMessageMember1
-                    ## @return a webhook_delivery_error_message_member1
-                    ## 
-                    def webhook_delivery_error_message_member1
-                        return @webhook_delivery_error_message_member1
-                    end
-                    ## 
-                    ## Sets the WebhookDelivery_errorMessageMember1 property value. Composed type representation for type WebhookDeliveryErrorMessageMember1
-                    ## @param value Value to set for the WebhookDelivery_errorMessageMember1 property.
-                    ## @return a void
-                    ## 
-                    def webhook_delivery_error_message_member1=(value)
-                        @webhook_delivery_error_message_member1 = value
-                    end
-                end
-
-                ## 
-                # Composed type wrapper for classes Double, WebhookDeliveryNextAttemptAtMember1
-                class WebhookDeliveryNextAttemptAt
-                    include MicrosoftKiotaAbstractions::Parsable
-                    ## 
-                    # Composed type representation for type Double
-                    @double
-                    ## 
-                    # Composed type representation for type WebhookDeliveryNextAttemptAtMember1
-                    @webhook_delivery_next_attempt_at_member1
-                    ## 
-                    ## Creates a new instance of the appropriate class based on discriminator value
-                    ## @param parse_node The parse node to use to read the discriminator value and create the object
-                    ## @return a webhook_delivery_next_attempt_at
-                    ## 
-                    def self.create_from_discriminator_value(parse_node)
-                        raise StandardError, 'parse_node cannot be null' if parse_node.nil?
-                        return WebhookDeliveryNextAttemptAt.new
-                    end
-                    ## 
-                    ## Gets the double property value. Composed type representation for type Double
-                    ## @return a double
-                    ## 
-                    def double
-                        return @double
-                    end
-                    ## 
-                    ## Sets the double property value. Composed type representation for type Double
-                    ## @param value Value to set for the double property.
-                    ## @return a void
-                    ## 
-                    def double=(value)
-                        @double = value
-                    end
-                    ## 
-                    ## The deserialization information for the current model
-                    ## @return a i_dictionary
-                    ## 
-                    def get_field_deserializers()
-                        return {
-                            "double" => lambda {|n| @double = n.get_object_value(lambda {|pn| Double.create_from_discriminator_value(pn) }) },
-                            "WebhookDelivery_nextAttemptAtMember1" => lambda {|n| @webhook_delivery_next_attempt_at_member1 = n.get_object_value(lambda {|pn| TeamBattlesSdk::Generated::Models::WebhookDeliveryNextAttemptAtMember1.create_from_discriminator_value(pn) }) },
-                        }
-                    end
-                    ## 
-                    ## Serializes information the current object
-                    ## @param writer Serialization writer to use to serialize this model
-                    ## @return a void
-                    ## 
-                    def serialize(writer)
-                        raise StandardError, 'writer cannot be null' if writer.nil?
-                        writer.write_object_value("double", @double)
-                        writer.write_object_value("WebhookDelivery_nextAttemptAtMember1", @webhook_delivery_next_attempt_at_member1)
-                    end
-                    ## 
-                    ## Gets the WebhookDelivery_nextAttemptAtMember1 property value. Composed type representation for type WebhookDeliveryNextAttemptAtMember1
-                    ## @return a webhook_delivery_next_attempt_at_member1
-                    ## 
-                    def webhook_delivery_next_attempt_at_member1
-                        return @webhook_delivery_next_attempt_at_member1
-                    end
-                    ## 
-                    ## Sets the WebhookDelivery_nextAttemptAtMember1 property value. Composed type representation for type WebhookDeliveryNextAttemptAtMember1
-                    ## @param value Value to set for the WebhookDelivery_nextAttemptAtMember1 property.
-                    ## @return a void
-                    ## 
-                    def webhook_delivery_next_attempt_at_member1=(value)
-                        @webhook_delivery_next_attempt_at_member1 = value
-                    end
                 end
 
                 ## 

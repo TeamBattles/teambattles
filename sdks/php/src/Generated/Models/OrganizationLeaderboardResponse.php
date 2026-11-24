@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class OrganizationLeaderboardResponse implements Parsable 
 {
     /**
-     * @var OrganizationLeaderboardResponse_gameSlug|null $gameSlug The gameSlug property
+     * @var string|null $gameSlug The gameSlug property
     */
-    private ?OrganizationLeaderboardResponse_gameSlug $gameSlug = null;
+    private ?string $gameSlug = null;
     
     /**
      * @var array<OrganizationLeaderboardEntry>|null $organizations The organizations property
@@ -47,7 +47,7 @@ class OrganizationLeaderboardResponse implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'gameSlug' => fn(ParseNode $n) => $o->setGameSlug($n->getObjectValue([OrganizationLeaderboardResponse_gameSlug::class, 'createFromDiscriminatorValue'])),
+            'gameSlug' => fn(ParseNode $n) => $o->setGameSlug($n->getStringValue()),
             'organizations' => fn(ParseNode $n) => $o->setOrganizations($n->getCollectionOfObjectValues([OrganizationLeaderboardEntry::class, 'createFromDiscriminatorValue'])),
             'sortBy' => fn(ParseNode $n) => $o->setSortBy($n->getEnumValue(LeaderboardSortBy::class)),
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
@@ -56,9 +56,9 @@ class OrganizationLeaderboardResponse implements Parsable
 
     /**
      * Gets the gameSlug property value. The gameSlug property
-     * @return OrganizationLeaderboardResponse_gameSlug|null
+     * @return string|null
     */
-    public function getGameSlug(): ?OrganizationLeaderboardResponse_gameSlug {
+    public function getGameSlug(): ?string {
         return $this->gameSlug;
     }
 
@@ -91,7 +91,7 @@ class OrganizationLeaderboardResponse implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('gameSlug', $this->getGameSlug());
+        $writer->writeStringValue('gameSlug', $this->getGameSlug());
         $writer->writeCollectionOfObjectValues('organizations', $this->getOrganizations());
         $writer->writeEnumValue('sortBy', $this->getSortBy());
         $writer->writeStringValue('timestamp', $this->getTimestamp());
@@ -99,9 +99,9 @@ class OrganizationLeaderboardResponse implements Parsable
 
     /**
      * Sets the gameSlug property value. The gameSlug property
-     * @param OrganizationLeaderboardResponse_gameSlug|null $value Value to set for the gameSlug property.
+     * @param string|null $value Value to set for the gameSlug property.
     */
-    public function setGameSlug(?OrganizationLeaderboardResponse_gameSlug $value): void {
+    public function setGameSlug(?string $value): void {
         $this->gameSlug = $value;
     }
 

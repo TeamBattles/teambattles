@@ -16,10 +16,10 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The avatarUrl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_avatarUrl? AvatarUrl { get; set; }
+        public string? AvatarUrl { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_avatarUrl AvatarUrl { get; set; }
+        public string AvatarUrl { get; set; }
 #endif
         /// <summary>Team ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,18 +64,18 @@ namespace TeamBattles.Sdk.Models
         /// <summary>The slug property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_slug? Slug { get; set; }
+        public string? Slug { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_slug Slug { get; set; }
+        public string Slug { get; set; }
 #endif
         /// <summary>The tag property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_tag? Tag { get; set; }
+        public string? Tag { get; set; }
 #nullable restore
 #else
-        public global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_tag Tag { get; set; }
+        public string Tag { get; set; }
 #endif
         /// <summary>Public profile visibility setting.</summary>
         public global::TeamBattles.Sdk.Models.ProfileVisibility? Visibility { get; set; }
@@ -97,14 +97,14 @@ namespace TeamBattles.Sdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "avatarUrl", n => { AvatarUrl = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_avatarUrl>(global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_avatarUrl.CreateFromDiscriminatorValue); } },
+                { "avatarUrl", n => { AvatarUrl = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "joinedAt", n => { JoinedAt = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_joinedAt>(global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_joinedAt.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "organization", n => { Organization = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiOrganizationSummary>(global::TeamBattles.Sdk.Models.ApiOrganizationSummary.CreateFromDiscriminatorValue); } },
                 { "role", n => { Role = n.GetStringValue(); } },
-                { "slug", n => { Slug = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_slug>(global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_slug.CreateFromDiscriminatorValue); } },
-                { "tag", n => { Tag = n.GetObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_tag>(global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_tag.CreateFromDiscriminatorValue); } },
+                { "slug", n => { Slug = n.GetStringValue(); } },
+                { "tag", n => { Tag = n.GetStringValue(); } },
                 { "visibility", n => { Visibility = n.GetEnumValue<global::TeamBattles.Sdk.Models.ProfileVisibility>(); } },
             };
         }
@@ -115,83 +115,15 @@ namespace TeamBattles.Sdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_avatarUrl>("avatarUrl", AvatarUrl);
+            writer.WriteStringValue("avatarUrl", AvatarUrl);
             writer.WriteStringValue("id", Id);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_joinedAt>("joinedAt", JoinedAt);
             writer.WriteStringValue("name", Name);
             writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiOrganizationSummary>("organization", Organization);
             writer.WriteStringValue("role", Role);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_slug>("slug", Slug);
-            writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_tag>("tag", Tag);
+            writer.WriteStringValue("slug", Slug);
+            writer.WriteStringValue("tag", Tag);
             writer.WriteEnumValue<global::TeamBattles.Sdk.Models.ProfileVisibility>("visibility", Visibility);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiUserTeamMembership_avatarUrlMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiUserTeamMembership_avatarUrl : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiUserTeamMembership_avatarUrlMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiUserTeamMembership_avatarUrlMember1? ApiUserTeamMembershipAvatarUrlMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiUserTeamMembership_avatarUrlMember1 ApiUserTeamMembershipAvatarUrlMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_avatarUrl"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_avatarUrl CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_avatarUrl();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiUserTeamMembershipAvatarUrlMember1 = new global::TeamBattles.Sdk.Models.ApiUserTeamMembership_avatarUrlMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiUserTeamMembershipAvatarUrlMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiUserTeamMembershipAvatarUrlMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership_avatarUrlMember1>(null, ApiUserTeamMembershipAvatarUrlMember1);
-                }
-            }
         }
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiUserTeamMembership_joinedAtMember1"/>, <see cref="string"/>
@@ -258,142 +190,6 @@ namespace TeamBattles.Sdk.Models
                 }
                 else {
                     writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership_joinedAtMember1>(null, ApiUserTeamMembershipJoinedAtMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiUserTeamMembership_slugMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiUserTeamMembership_slug : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiUserTeamMembership_slugMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiUserTeamMembership_slugMember1? ApiUserTeamMembershipSlugMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiUserTeamMembership_slugMember1 ApiUserTeamMembershipSlugMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_slug"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_slug CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_slug();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiUserTeamMembershipSlugMember1 = new global::TeamBattles.Sdk.Models.ApiUserTeamMembership_slugMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiUserTeamMembershipSlugMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiUserTeamMembershipSlugMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership_slugMember1>(null, ApiUserTeamMembershipSlugMember1);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::TeamBattles.Sdk.Models.ApiUserTeamMembership_tagMember1"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ApiUserTeamMembership_tag : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::TeamBattles.Sdk.Models.ApiUserTeamMembership_tagMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::TeamBattles.Sdk.Models.ApiUserTeamMembership_tagMember1? ApiUserTeamMembershipTagMember1 { get; set; }
-#nullable restore
-#else
-            public global::TeamBattles.Sdk.Models.ApiUserTeamMembership_tagMember1 ApiUserTeamMembershipTagMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_tag"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_tag CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::TeamBattles.Sdk.Models.ApiUserTeamMembership.ApiUserTeamMembership_tag();
-                if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                else {
-                    result.ApiUserTeamMembershipTagMember1 = new global::TeamBattles.Sdk.Models.ApiUserTeamMembership_tagMember1();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ApiUserTeamMembershipTagMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ApiUserTeamMembershipTagMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-                else {
-                    writer.WriteObjectValue<global::TeamBattles.Sdk.Models.ApiUserTeamMembership_tagMember1>(null, ApiUserTeamMembershipTagMember1);
                 }
             }
         }

@@ -17,14 +17,14 @@ class LeagueProfile implements Parsable
     private ?array $activeSeasons = null;
     
     /**
-     * @var LeagueProfile_avatarUrl|null $avatarUrl League avatar image URL.
+     * @var string|null $avatarUrl League avatar image URL.
     */
-    private ?LeagueProfile_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
-     * @var LeagueProfile_bannerUrl|null $bannerUrl League banner image URL.
+     * @var string|null $bannerUrl League banner image URL.
     */
-    private ?LeagueProfile_bannerUrl $bannerUrl = null;
+    private ?string $bannerUrl = null;
     
     /**
      * @var float|null $createdAt Creation timestamp (epoch milliseconds).
@@ -100,17 +100,17 @@ class LeagueProfile implements Parsable
 
     /**
      * Gets the avatarUrl property value. League avatar image URL.
-     * @return LeagueProfile_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?LeagueProfile_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
     /**
      * Gets the bannerUrl property value. League banner image URL.
-     * @return LeagueProfile_bannerUrl|null
+     * @return string|null
     */
-    public function getBannerUrl(): ?LeagueProfile_bannerUrl {
+    public function getBannerUrl(): ?string {
         return $this->bannerUrl;
     }
 
@@ -138,8 +138,8 @@ class LeagueProfile implements Parsable
         $o = $this;
         return  [
             'activeSeasons' => fn(ParseNode $n) => $o->setActiveSeasons($n->getCollectionOfObjectValues([LeagueProfile_activeSeasons::class, 'createFromDiscriminatorValue'])),
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([LeagueProfile_avatarUrl::class, 'createFromDiscriminatorValue'])),
-            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getObjectValue([LeagueProfile_bannerUrl::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
+            'bannerUrl' => fn(ParseNode $n) => $o->setBannerUrl($n->getStringValue()),
             'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getFloatValue()),
             'description' => fn(ParseNode $n) => $o->setDescription($n->getStringValue()),
             'games' => fn(ParseNode $n) => $o->setGames($n->getCollectionOfObjectValues([LeagueProfile_games::class, 'createFromDiscriminatorValue'])),
@@ -232,8 +232,8 @@ class LeagueProfile implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('activeSeasons', $this->getActiveSeasons());
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
-        $writer->writeObjectValue('bannerUrl', $this->getBannerUrl());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('bannerUrl', $this->getBannerUrl());
         $writer->writeFloatValue('createdAt', $this->getCreatedAt());
         $writer->writeStringValue('description', $this->getDescription());
         $writer->writeCollectionOfObjectValues('games', $this->getGames());
@@ -257,17 +257,17 @@ class LeagueProfile implements Parsable
 
     /**
      * Sets the avatarUrl property value. League avatar image URL.
-     * @param LeagueProfile_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?LeagueProfile_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 
     /**
      * Sets the bannerUrl property value. League banner image URL.
-     * @param LeagueProfile_bannerUrl|null $value Value to set for the bannerUrl property.
+     * @param string|null $value Value to set for the bannerUrl property.
     */
-    public function setBannerUrl(?LeagueProfile_bannerUrl $value): void {
+    public function setBannerUrl(?string $value): void {
         $this->bannerUrl = $value;
     }
 

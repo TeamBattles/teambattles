@@ -4,23 +4,19 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .api_game_map_cover_image import ApiGameMap_coverImage
-    from .api_game_map_minimap_image import ApiGameMap_minimapImage
-
 @dataclass
 class ApiGameMap(Parsable):
     """
     Static game map definition.
     """
     # The coverImage property
-    cover_image: Optional[ApiGameMap_coverImage] = None
+    cover_image: Optional[str] = None
     # The id property
     id: Optional[str] = None
     # The isReleased property
     is_released: Optional[bool] = None
     # The minimapImage property
-    minimap_image: Optional[ApiGameMap_minimapImage] = None
+    minimap_image: Optional[str] = None
     # The nameKey property
     name_key: Optional[str] = None
     
@@ -40,17 +36,11 @@ class ApiGameMap(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .api_game_map_cover_image import ApiGameMap_coverImage
-        from .api_game_map_minimap_image import ApiGameMap_minimapImage
-
-        from .api_game_map_cover_image import ApiGameMap_coverImage
-        from .api_game_map_minimap_image import ApiGameMap_minimapImage
-
         fields: dict[str, Callable[[Any], None]] = {
-            "coverImage": lambda n : setattr(self, 'cover_image', n.get_object_value(ApiGameMap_coverImage)),
+            "coverImage": lambda n : setattr(self, 'cover_image', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isReleased": lambda n : setattr(self, 'is_released', n.get_bool_value()),
-            "minimapImage": lambda n : setattr(self, 'minimap_image', n.get_object_value(ApiGameMap_minimapImage)),
+            "minimapImage": lambda n : setattr(self, 'minimap_image', n.get_str_value()),
             "nameKey": lambda n : setattr(self, 'name_key', n.get_str_value()),
         }
         return fields
@@ -63,10 +53,10 @@ class ApiGameMap(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("coverImage", self.cover_image)
+        writer.write_str_value("coverImage", self.cover_image)
         writer.write_str_value("id", self.id)
         writer.write_bool_value("isReleased", self.is_released)
-        writer.write_object_value("minimapImage", self.minimap_image)
+        writer.write_str_value("minimapImage", self.minimap_image)
         writer.write_str_value("nameKey", self.name_key)
     
 

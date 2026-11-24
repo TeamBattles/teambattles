@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class LeagueSeasonOptions implements Parsable 
 {
     /**
-     * @var LeagueSeasonOptions_defaultSeasonId|null $defaultSeasonId Recommended default option.
+     * @var string|null $defaultSeasonId Recommended default option.
     */
-    private ?LeagueSeasonOptions_defaultSeasonId $defaultSeasonId = null;
+    private ?string $defaultSeasonId = null;
     
     /**
      * @var array<LeagueSeasonOptions_seasons>|null $seasons Season selector options for a league game.
@@ -37,9 +37,9 @@ class LeagueSeasonOptions implements Parsable
 
     /**
      * Gets the defaultSeasonId property value. Recommended default option.
-     * @return LeagueSeasonOptions_defaultSeasonId|null
+     * @return string|null
     */
-    public function getDefaultSeasonId(): ?LeagueSeasonOptions_defaultSeasonId {
+    public function getDefaultSeasonId(): ?string {
         return $this->defaultSeasonId;
     }
 
@@ -50,7 +50,7 @@ class LeagueSeasonOptions implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'defaultSeasonId' => fn(ParseNode $n) => $o->setDefaultSeasonId($n->getObjectValue([LeagueSeasonOptions_defaultSeasonId::class, 'createFromDiscriminatorValue'])),
+            'defaultSeasonId' => fn(ParseNode $n) => $o->setDefaultSeasonId($n->getStringValue()),
             'seasons' => fn(ParseNode $n) => $o->setSeasons($n->getCollectionOfObjectValues([LeagueSeasonOptions_seasons::class, 'createFromDiscriminatorValue'])),
             'timestamp' => fn(ParseNode $n) => $o->setTimestamp($n->getStringValue()),
         ];
@@ -77,16 +77,16 @@ class LeagueSeasonOptions implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('defaultSeasonId', $this->getDefaultSeasonId());
+        $writer->writeStringValue('defaultSeasonId', $this->getDefaultSeasonId());
         $writer->writeCollectionOfObjectValues('seasons', $this->getSeasons());
         $writer->writeStringValue('timestamp', $this->getTimestamp());
     }
 
     /**
      * Sets the defaultSeasonId property value. Recommended default option.
-     * @param LeagueSeasonOptions_defaultSeasonId|null $value Value to set for the defaultSeasonId property.
+     * @param string|null $value Value to set for the defaultSeasonId property.
     */
-    public function setDefaultSeasonId(?LeagueSeasonOptions_defaultSeasonId $value): void {
+    public function setDefaultSeasonId(?string $value): void {
         $this->defaultSeasonId = $value;
     }
 

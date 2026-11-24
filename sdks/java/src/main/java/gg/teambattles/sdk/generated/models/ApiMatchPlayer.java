@@ -1,9 +1,7 @@
 package gg.teambattles.sdk.generated.models;
 
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,11 +18,11 @@ public class ApiMatchPlayer implements Parsable {
     /**
      * The avatarUrl property
      */
-    private ApiMatchPlayerAvatarUrl avatarUrl;
+    private String avatarUrl;
     /**
      * The checkedInAt property
      */
-    private ApiMatchPlayerCheckedInAt checkedInAt;
+    private String checkedInAt;
     /**
      * The id property
      */
@@ -36,7 +34,7 @@ public class ApiMatchPlayer implements Parsable {
     /**
      * The name property
      */
-    private ApiMatchPlayerName name;
+    private String name;
     /**
      * The rosterType property
      */
@@ -52,7 +50,7 @@ public class ApiMatchPlayer implements Parsable {
     /**
      * The username property
      */
-    private ApiMatchPlayerUsername username;
+    private String username;
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param parseNode The parse node to use to read the discriminator value and create the object
@@ -73,18 +71,18 @@ public class ApiMatchPlayer implements Parsable {
     }
     /**
      * Gets the avatarUrl property value. The avatarUrl property
-     * @return a {@link ApiMatchPlayerAvatarUrl}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiMatchPlayerAvatarUrl getAvatarUrl() {
+    public String getAvatarUrl() {
         return this.avatarUrl;
     }
     /**
      * Gets the checkedInAt property value. The checkedInAt property
-     * @return a {@link ApiMatchPlayerCheckedInAt}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiMatchPlayerCheckedInAt getCheckedInAt() {
+    public String getCheckedInAt() {
         return this.checkedInAt;
     }
     /**
@@ -95,15 +93,15 @@ public class ApiMatchPlayer implements Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(10);
         deserializerMap.put("attendanceStatus", (n) -> { this.setAttendanceStatus(n.getEnumValue(ApiMatchPlayerAttendanceStatus::forValue)); });
-        deserializerMap.put("avatarUrl", (n) -> { this.setAvatarUrl(n.getObjectValue(ApiMatchPlayerAvatarUrl::createFromDiscriminatorValue)); });
-        deserializerMap.put("checkedInAt", (n) -> { this.setCheckedInAt(n.getObjectValue(ApiMatchPlayerCheckedInAt::createFromDiscriminatorValue)); });
+        deserializerMap.put("avatarUrl", (n) -> { this.setAvatarUrl(n.getStringValue()); });
+        deserializerMap.put("checkedInAt", (n) -> { this.setCheckedInAt(n.getStringValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
         deserializerMap.put("isCheckedIn", (n) -> { this.setIsCheckedIn(n.getBooleanValue()); });
-        deserializerMap.put("name", (n) -> { this.setName(n.getObjectValue(ApiMatchPlayerName::createFromDiscriminatorValue)); });
+        deserializerMap.put("name", (n) -> { this.setName(n.getStringValue()); });
         deserializerMap.put("rosterType", (n) -> { this.setRosterType(n.getEnumValue(ApiMatchPlayerRosterType::forValue)); });
         deserializerMap.put("teamId", (n) -> { this.setTeamId(n.getStringValue()); });
         deserializerMap.put("userId", (n) -> { this.setUserId(n.getStringValue()); });
-        deserializerMap.put("username", (n) -> { this.setUsername(n.getObjectValue(ApiMatchPlayerUsername::createFromDiscriminatorValue)); });
+        deserializerMap.put("username", (n) -> { this.setUsername(n.getStringValue()); });
         return deserializerMap;
     }
     /**
@@ -124,10 +122,10 @@ public class ApiMatchPlayer implements Parsable {
     }
     /**
      * Gets the name property value. The name property
-     * @return a {@link ApiMatchPlayerName}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiMatchPlayerName getName() {
+    public String getName() {
         return this.name;
     }
     /**
@@ -156,10 +154,10 @@ public class ApiMatchPlayer implements Parsable {
     }
     /**
      * Gets the username property value. The username property
-     * @return a {@link ApiMatchPlayerUsername}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiMatchPlayerUsername getUsername() {
+    public String getUsername() {
         return this.username;
     }
     /**
@@ -169,15 +167,15 @@ public class ApiMatchPlayer implements Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeEnumValue("attendanceStatus", this.getAttendanceStatus());
-        writer.writeObjectValue("avatarUrl", this.getAvatarUrl());
-        writer.writeObjectValue("checkedInAt", this.getCheckedInAt());
+        writer.writeStringValue("avatarUrl", this.getAvatarUrl());
+        writer.writeStringValue("checkedInAt", this.getCheckedInAt());
         writer.writeStringValue("id", this.getId());
         writer.writeBooleanValue("isCheckedIn", this.getIsCheckedIn());
-        writer.writeObjectValue("name", this.getName());
+        writer.writeStringValue("name", this.getName());
         writer.writeEnumValue("rosterType", this.getRosterType());
         writer.writeStringValue("teamId", this.getTeamId());
         writer.writeStringValue("userId", this.getUserId());
-        writer.writeObjectValue("username", this.getUsername());
+        writer.writeStringValue("username", this.getUsername());
     }
     /**
      * Sets the attendanceStatus property value. The attendanceStatus property
@@ -190,14 +188,14 @@ public class ApiMatchPlayer implements Parsable {
      * Sets the avatarUrl property value. The avatarUrl property
      * @param value Value to set for the avatarUrl property.
      */
-    public void setAvatarUrl(@jakarta.annotation.Nullable final ApiMatchPlayerAvatarUrl value) {
+    public void setAvatarUrl(@jakarta.annotation.Nullable final String value) {
         this.avatarUrl = value;
     }
     /**
      * Sets the checkedInAt property value. The checkedInAt property
      * @param value Value to set for the checkedInAt property.
      */
-    public void setCheckedInAt(@jakarta.annotation.Nullable final ApiMatchPlayerCheckedInAt value) {
+    public void setCheckedInAt(@jakarta.annotation.Nullable final String value) {
         this.checkedInAt = value;
     }
     /**
@@ -218,7 +216,7 @@ public class ApiMatchPlayer implements Parsable {
      * Sets the name property value. The name property
      * @param value Value to set for the name property.
      */
-    public void setName(@jakarta.annotation.Nullable final ApiMatchPlayerName value) {
+    public void setName(@jakarta.annotation.Nullable final String value) {
         this.name = value;
     }
     /**
@@ -246,339 +244,7 @@ public class ApiMatchPlayer implements Parsable {
      * Sets the username property value. The username property
      * @param value Value to set for the username property.
      */
-    public void setUsername(@jakarta.annotation.Nullable final ApiMatchPlayerUsername value) {
+    public void setUsername(@jakarta.annotation.Nullable final String value) {
         this.username = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiMatchPlayerAvatarUrlMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiMatchPlayerAvatarUrl implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiMatchPlayerAvatarUrlMember1}
-         */
-        private ApiMatchPlayerAvatarUrlMember1 apiMatchPlayerAvatarUrlMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiMatchPlayerAvatarUrl}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiMatchPlayerAvatarUrl createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiMatchPlayerAvatarUrl result = new ApiMatchPlayerAvatarUrl();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiMatchPlayerAvatarUrlMember1(new ApiMatchPlayerAvatarUrlMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiMatchPlayer_avatarUrlMember1 property value. Composed type representation for type {@link ApiMatchPlayerAvatarUrlMember1}
-         * @return a {@link ApiMatchPlayerAvatarUrlMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiMatchPlayerAvatarUrlMember1 getApiMatchPlayerAvatarUrlMember1() {
-            return this.apiMatchPlayerAvatarUrlMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiMatchPlayerAvatarUrlMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiMatchPlayerAvatarUrlMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiMatchPlayerAvatarUrlMember1());
-            }
-        }
-        /**
-         * Sets the ApiMatchPlayer_avatarUrlMember1 property value. Composed type representation for type {@link ApiMatchPlayerAvatarUrlMember1}
-         * @param value Value to set for the ApiMatchPlayer_avatarUrlMember1 property.
-         */
-        public void setApiMatchPlayerAvatarUrlMember1(@jakarta.annotation.Nullable final ApiMatchPlayerAvatarUrlMember1 value) {
-            this.apiMatchPlayerAvatarUrlMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiMatchPlayerCheckedInAtMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiMatchPlayerCheckedInAt implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiMatchPlayerCheckedInAtMember1}
-         */
-        private ApiMatchPlayerCheckedInAtMember1 apiMatchPlayerCheckedInAtMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiMatchPlayerCheckedInAt}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiMatchPlayerCheckedInAt createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiMatchPlayerCheckedInAt result = new ApiMatchPlayerCheckedInAt();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiMatchPlayerCheckedInAtMember1(new ApiMatchPlayerCheckedInAtMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiMatchPlayer_checkedInAtMember1 property value. Composed type representation for type {@link ApiMatchPlayerCheckedInAtMember1}
-         * @return a {@link ApiMatchPlayerCheckedInAtMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiMatchPlayerCheckedInAtMember1 getApiMatchPlayerCheckedInAtMember1() {
-            return this.apiMatchPlayerCheckedInAtMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiMatchPlayerCheckedInAtMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiMatchPlayerCheckedInAtMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiMatchPlayerCheckedInAtMember1());
-            }
-        }
-        /**
-         * Sets the ApiMatchPlayer_checkedInAtMember1 property value. Composed type representation for type {@link ApiMatchPlayerCheckedInAtMember1}
-         * @param value Value to set for the ApiMatchPlayer_checkedInAtMember1 property.
-         */
-        public void setApiMatchPlayerCheckedInAtMember1(@jakarta.annotation.Nullable final ApiMatchPlayerCheckedInAtMember1 value) {
-            this.apiMatchPlayerCheckedInAtMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiMatchPlayerNameMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiMatchPlayerName implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiMatchPlayerNameMember1}
-         */
-        private ApiMatchPlayerNameMember1 apiMatchPlayerNameMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiMatchPlayerName}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiMatchPlayerName createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiMatchPlayerName result = new ApiMatchPlayerName();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiMatchPlayerNameMember1(new ApiMatchPlayerNameMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiMatchPlayer_nameMember1 property value. Composed type representation for type {@link ApiMatchPlayerNameMember1}
-         * @return a {@link ApiMatchPlayerNameMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiMatchPlayerNameMember1 getApiMatchPlayerNameMember1() {
-            return this.apiMatchPlayerNameMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiMatchPlayerNameMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiMatchPlayerNameMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiMatchPlayerNameMember1());
-            }
-        }
-        /**
-         * Sets the ApiMatchPlayer_nameMember1 property value. Composed type representation for type {@link ApiMatchPlayerNameMember1}
-         * @param value Value to set for the ApiMatchPlayer_nameMember1 property.
-         */
-        public void setApiMatchPlayerNameMember1(@jakarta.annotation.Nullable final ApiMatchPlayerNameMember1 value) {
-            this.apiMatchPlayerNameMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiMatchPlayerUsernameMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiMatchPlayerUsername implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiMatchPlayerUsernameMember1}
-         */
-        private ApiMatchPlayerUsernameMember1 apiMatchPlayerUsernameMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiMatchPlayerUsername}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiMatchPlayerUsername createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiMatchPlayerUsername result = new ApiMatchPlayerUsername();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiMatchPlayerUsernameMember1(new ApiMatchPlayerUsernameMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiMatchPlayer_usernameMember1 property value. Composed type representation for type {@link ApiMatchPlayerUsernameMember1}
-         * @return a {@link ApiMatchPlayerUsernameMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiMatchPlayerUsernameMember1 getApiMatchPlayerUsernameMember1() {
-            return this.apiMatchPlayerUsernameMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiMatchPlayerUsernameMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiMatchPlayerUsernameMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiMatchPlayerUsernameMember1());
-            }
-        }
-        /**
-         * Sets the ApiMatchPlayer_usernameMember1 property value. Composed type representation for type {@link ApiMatchPlayerUsernameMember1}
-         * @param value Value to set for the ApiMatchPlayer_usernameMember1 property.
-         */
-        public void setApiMatchPlayerUsernameMember1(@jakarta.annotation.Nullable final ApiMatchPlayerUsernameMember1 value) {
-            this.apiMatchPlayerUsernameMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
     }
 }

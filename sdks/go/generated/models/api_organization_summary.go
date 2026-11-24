@@ -10,269 +10,17 @@ import (
 // ApiOrganizationSummary small API-safe organization summary.
 type ApiOrganizationSummary struct {
     // The avatarUrl property
-    avatarUrl ApiOrganizationSummary_ApiOrganizationSummary_avatarUrlable
+    avatarUrl *string
     // Organization ID.
     id *string
     // Organization name.
     name *string
     // The slug property
-    slug ApiOrganizationSummary_ApiOrganizationSummary_slugable
+    slug *string
     // The tag property
-    tag ApiOrganizationSummary_ApiOrganizationSummary_tagable
+    tag *string
     // Public profile visibility setting.
     visibility *ProfileVisibility
-}
-// ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl composed type wrapper for classes ApiOrganizationSummary_avatarUrlMember1able, string
-type ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl struct {
-    // Composed type representation for type ApiOrganizationSummary_avatarUrlMember1able
-    apiOrganizationSummary_avatarUrlMember1 ApiOrganizationSummary_avatarUrlMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiOrganizationSummary_ApiOrganizationSummary_avatarUrl instantiates a new ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl and sets the default values.
-func NewApiOrganizationSummary_ApiOrganizationSummary_avatarUrl()(*ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl) {
-    m := &ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl{
-    }
-    return m
-}
-// CreateApiOrganizationSummary_ApiOrganizationSummary_avatarUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiOrganizationSummary_ApiOrganizationSummary_avatarUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiOrganizationSummary_ApiOrganizationSummary_avatarUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiOrganizationSummary_avatarUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiOrganizationSummary_avatarUrlMember1able); ok {
-                result.SetApiOrganizationSummaryAvatarUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiOrganizationSummaryAvatarUrlMember1 gets the ApiOrganizationSummary_avatarUrlMember1 property value. Composed type representation for type ApiOrganizationSummary_avatarUrlMember1able
-// returns a ApiOrganizationSummary_avatarUrlMember1able when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl) GetApiOrganizationSummaryAvatarUrlMember1()(ApiOrganizationSummary_avatarUrlMember1able) {
-    return m.apiOrganizationSummary_avatarUrlMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiOrganizationSummaryAvatarUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiOrganizationSummaryAvatarUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiOrganizationSummaryAvatarUrlMember1 sets the ApiOrganizationSummary_avatarUrlMember1 property value. Composed type representation for type ApiOrganizationSummary_avatarUrlMember1able
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl) SetApiOrganizationSummaryAvatarUrlMember1(value ApiOrganizationSummary_avatarUrlMember1able)() {
-    m.apiOrganizationSummary_avatarUrlMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_avatarUrl) SetString(value *string)() {
-    m.string = value
-}
-// ApiOrganizationSummary_ApiOrganizationSummary_slug composed type wrapper for classes ApiOrganizationSummary_slugMember1able, string
-type ApiOrganizationSummary_ApiOrganizationSummary_slug struct {
-    // Composed type representation for type ApiOrganizationSummary_slugMember1able
-    apiOrganizationSummary_slugMember1 ApiOrganizationSummary_slugMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiOrganizationSummary_ApiOrganizationSummary_slug instantiates a new ApiOrganizationSummary_ApiOrganizationSummary_slug and sets the default values.
-func NewApiOrganizationSummary_ApiOrganizationSummary_slug()(*ApiOrganizationSummary_ApiOrganizationSummary_slug) {
-    m := &ApiOrganizationSummary_ApiOrganizationSummary_slug{
-    }
-    return m
-}
-// CreateApiOrganizationSummary_ApiOrganizationSummary_slugFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiOrganizationSummary_ApiOrganizationSummary_slugFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiOrganizationSummary_ApiOrganizationSummary_slug()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiOrganizationSummary_slugMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiOrganizationSummary_slugMember1able); ok {
-                result.SetApiOrganizationSummarySlugMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiOrganizationSummarySlugMember1 gets the ApiOrganizationSummary_slugMember1 property value. Composed type representation for type ApiOrganizationSummary_slugMember1able
-// returns a ApiOrganizationSummary_slugMember1able when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_slug) GetApiOrganizationSummarySlugMember1()(ApiOrganizationSummary_slugMember1able) {
-    return m.apiOrganizationSummary_slugMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_slug) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_slug) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_slug) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_slug) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiOrganizationSummarySlugMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiOrganizationSummarySlugMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiOrganizationSummarySlugMember1 sets the ApiOrganizationSummary_slugMember1 property value. Composed type representation for type ApiOrganizationSummary_slugMember1able
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_slug) SetApiOrganizationSummarySlugMember1(value ApiOrganizationSummary_slugMember1able)() {
-    m.apiOrganizationSummary_slugMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_slug) SetString(value *string)() {
-    m.string = value
-}
-// ApiOrganizationSummary_ApiOrganizationSummary_tag composed type wrapper for classes ApiOrganizationSummary_tagMember1able, string
-type ApiOrganizationSummary_ApiOrganizationSummary_tag struct {
-    // Composed type representation for type ApiOrganizationSummary_tagMember1able
-    apiOrganizationSummary_tagMember1 ApiOrganizationSummary_tagMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewApiOrganizationSummary_ApiOrganizationSummary_tag instantiates a new ApiOrganizationSummary_ApiOrganizationSummary_tag and sets the default values.
-func NewApiOrganizationSummary_ApiOrganizationSummary_tag()(*ApiOrganizationSummary_ApiOrganizationSummary_tag) {
-    m := &ApiOrganizationSummary_ApiOrganizationSummary_tag{
-    }
-    return m
-}
-// CreateApiOrganizationSummary_ApiOrganizationSummary_tagFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateApiOrganizationSummary_ApiOrganizationSummary_tagFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewApiOrganizationSummary_ApiOrganizationSummary_tag()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateApiOrganizationSummary_tagMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(ApiOrganizationSummary_tagMember1able); ok {
-                result.SetApiOrganizationSummaryTagMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetApiOrganizationSummaryTagMember1 gets the ApiOrganizationSummary_tagMember1 property value. Composed type representation for type ApiOrganizationSummary_tagMember1able
-// returns a ApiOrganizationSummary_tagMember1able when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_tag) GetApiOrganizationSummaryTagMember1()(ApiOrganizationSummary_tagMember1able) {
-    return m.apiOrganizationSummary_tagMember1
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_tag) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_tag) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_tag) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_tag) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetApiOrganizationSummaryTagMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetApiOrganizationSummaryTagMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetApiOrganizationSummaryTagMember1 sets the ApiOrganizationSummary_tagMember1 property value. Composed type representation for type ApiOrganizationSummary_tagMember1able
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_tag) SetApiOrganizationSummaryTagMember1(value ApiOrganizationSummary_tagMember1able)() {
-    m.apiOrganizationSummary_tagMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *ApiOrganizationSummary_ApiOrganizationSummary_tag) SetString(value *string)() {
-    m.string = value
-}
-type ApiOrganizationSummary_ApiOrganizationSummary_avatarUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiOrganizationSummaryAvatarUrlMember1()(ApiOrganizationSummary_avatarUrlMember1able)
-    GetString()(*string)
-    SetApiOrganizationSummaryAvatarUrlMember1(value ApiOrganizationSummary_avatarUrlMember1able)()
-    SetString(value *string)()
-}
-type ApiOrganizationSummary_ApiOrganizationSummary_slugable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiOrganizationSummarySlugMember1()(ApiOrganizationSummary_slugMember1able)
-    GetString()(*string)
-    SetApiOrganizationSummarySlugMember1(value ApiOrganizationSummary_slugMember1able)()
-    SetString(value *string)()
-}
-type ApiOrganizationSummary_ApiOrganizationSummary_tagable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApiOrganizationSummaryTagMember1()(ApiOrganizationSummary_tagMember1able)
-    GetString()(*string)
-    SetApiOrganizationSummaryTagMember1(value ApiOrganizationSummary_tagMember1able)()
-    SetString(value *string)()
 }
 // NewApiOrganizationSummary instantiates a new ApiOrganizationSummary and sets the default values.
 func NewApiOrganizationSummary()(*ApiOrganizationSummary) {
@@ -286,8 +34,8 @@ func CreateApiOrganizationSummaryFromDiscriminatorValue(parseNode i878a80d2330e8
     return NewApiOrganizationSummary(), nil
 }
 // GetAvatarUrl gets the avatarUrl property value. The avatarUrl property
-// returns a ApiOrganizationSummary_ApiOrganizationSummary_avatarUrlable when successful
-func (m *ApiOrganizationSummary) GetAvatarUrl()(ApiOrganizationSummary_ApiOrganizationSummary_avatarUrlable) {
+// returns a *string when successful
+func (m *ApiOrganizationSummary) GetAvatarUrl()(*string) {
     return m.avatarUrl
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -295,12 +43,12 @@ func (m *ApiOrganizationSummary) GetAvatarUrl()(ApiOrganizationSummary_ApiOrgani
 func (m *ApiOrganizationSummary) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["avatarUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiOrganizationSummary_ApiOrganizationSummary_avatarUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetAvatarUrl(val.(ApiOrganizationSummary_ApiOrganizationSummary_avatarUrlable))
+            m.SetAvatarUrl(val)
         }
         return nil
     }
@@ -325,22 +73,22 @@ func (m *ApiOrganizationSummary) GetFieldDeserializers()(map[string]func(i878a80
         return nil
     }
     res["slug"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiOrganizationSummary_ApiOrganizationSummary_slugFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSlug(val.(ApiOrganizationSummary_ApiOrganizationSummary_slugable))
+            m.SetSlug(val)
         }
         return nil
     }
     res["tag"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiOrganizationSummary_ApiOrganizationSummary_tagFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetTag(val.(ApiOrganizationSummary_ApiOrganizationSummary_tagable))
+            m.SetTag(val)
         }
         return nil
     }
@@ -367,13 +115,13 @@ func (m *ApiOrganizationSummary) GetName()(*string) {
     return m.name
 }
 // GetSlug gets the slug property value. The slug property
-// returns a ApiOrganizationSummary_ApiOrganizationSummary_slugable when successful
-func (m *ApiOrganizationSummary) GetSlug()(ApiOrganizationSummary_ApiOrganizationSummary_slugable) {
+// returns a *string when successful
+func (m *ApiOrganizationSummary) GetSlug()(*string) {
     return m.slug
 }
 // GetTag gets the tag property value. The tag property
-// returns a ApiOrganizationSummary_ApiOrganizationSummary_tagable when successful
-func (m *ApiOrganizationSummary) GetTag()(ApiOrganizationSummary_ApiOrganizationSummary_tagable) {
+// returns a *string when successful
+func (m *ApiOrganizationSummary) GetTag()(*string) {
     return m.tag
 }
 // GetVisibility gets the visibility property value. Public profile visibility setting.
@@ -384,7 +132,7 @@ func (m *ApiOrganizationSummary) GetVisibility()(*ProfileVisibility) {
 // Serialize serializes information the current object
 func (m *ApiOrganizationSummary) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("avatarUrl", m.GetAvatarUrl())
+        err := writer.WriteStringValue("avatarUrl", m.GetAvatarUrl())
         if err != nil {
             return err
         }
@@ -402,13 +150,13 @@ func (m *ApiOrganizationSummary) Serialize(writer i878a80d2330e89d26896388a3f487
         }
     }
     {
-        err := writer.WriteObjectValue("slug", m.GetSlug())
+        err := writer.WriteStringValue("slug", m.GetSlug())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("tag", m.GetTag())
+        err := writer.WriteStringValue("tag", m.GetTag())
         if err != nil {
             return err
         }
@@ -423,7 +171,7 @@ func (m *ApiOrganizationSummary) Serialize(writer i878a80d2330e89d26896388a3f487
     return nil
 }
 // SetAvatarUrl sets the avatarUrl property value. The avatarUrl property
-func (m *ApiOrganizationSummary) SetAvatarUrl(value ApiOrganizationSummary_ApiOrganizationSummary_avatarUrlable)() {
+func (m *ApiOrganizationSummary) SetAvatarUrl(value *string)() {
     m.avatarUrl = value
 }
 // SetId sets the id property value. Organization ID.
@@ -435,11 +183,11 @@ func (m *ApiOrganizationSummary) SetName(value *string)() {
     m.name = value
 }
 // SetSlug sets the slug property value. The slug property
-func (m *ApiOrganizationSummary) SetSlug(value ApiOrganizationSummary_ApiOrganizationSummary_slugable)() {
+func (m *ApiOrganizationSummary) SetSlug(value *string)() {
     m.slug = value
 }
 // SetTag sets the tag property value. The tag property
-func (m *ApiOrganizationSummary) SetTag(value ApiOrganizationSummary_ApiOrganizationSummary_tagable)() {
+func (m *ApiOrganizationSummary) SetTag(value *string)() {
     m.tag = value
 }
 // SetVisibility sets the visibility property value. Public profile visibility setting.
@@ -448,16 +196,16 @@ func (m *ApiOrganizationSummary) SetVisibility(value *ProfileVisibility)() {
 }
 type ApiOrganizationSummaryable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAvatarUrl()(ApiOrganizationSummary_ApiOrganizationSummary_avatarUrlable)
+    GetAvatarUrl()(*string)
     GetId()(*string)
     GetName()(*string)
-    GetSlug()(ApiOrganizationSummary_ApiOrganizationSummary_slugable)
-    GetTag()(ApiOrganizationSummary_ApiOrganizationSummary_tagable)
+    GetSlug()(*string)
+    GetTag()(*string)
     GetVisibility()(*ProfileVisibility)
-    SetAvatarUrl(value ApiOrganizationSummary_ApiOrganizationSummary_avatarUrlable)()
+    SetAvatarUrl(value *string)()
     SetId(value *string)()
     SetName(value *string)()
-    SetSlug(value ApiOrganizationSummary_ApiOrganizationSummary_slugable)()
-    SetTag(value ApiOrganizationSummary_ApiOrganizationSummary_tagable)()
+    SetSlug(value *string)()
+    SetTag(value *string)()
     SetVisibility(value *ProfileVisibility)()
 }

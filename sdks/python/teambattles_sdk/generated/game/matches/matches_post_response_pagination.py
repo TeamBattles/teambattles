@@ -4,13 +4,10 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .matches_post_response_pagination_cursor import MatchesPostResponse_pagination_cursor
-
 @dataclass
 class MatchesPostResponse_pagination(Parsable):
     # The cursor property
-    cursor: Optional[MatchesPostResponse_pagination_cursor] = None
+    cursor: Optional[str] = None
     # The hasMore property
     has_more: Optional[bool] = None
     
@@ -30,12 +27,8 @@ class MatchesPostResponse_pagination(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .matches_post_response_pagination_cursor import MatchesPostResponse_pagination_cursor
-
-        from .matches_post_response_pagination_cursor import MatchesPostResponse_pagination_cursor
-
         fields: dict[str, Callable[[Any], None]] = {
-            "cursor": lambda n : setattr(self, 'cursor', n.get_object_value(MatchesPostResponse_pagination_cursor)),
+            "cursor": lambda n : setattr(self, 'cursor', n.get_str_value()),
             "hasMore": lambda n : setattr(self, 'has_more', n.get_bool_value()),
         }
         return fields
@@ -48,7 +41,7 @@ class MatchesPostResponse_pagination(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("cursor", self.cursor)
+        writer.write_str_value("cursor", self.cursor)
         writer.write_bool_value("hasMore", self.has_more)
     
 

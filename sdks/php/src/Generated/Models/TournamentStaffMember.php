@@ -12,9 +12,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class TournamentStaffMember implements Parsable 
 {
     /**
-     * @var TournamentStaffMember_avatarUrl|null $avatarUrl Avatar image URL.
+     * @var string|null $avatarUrl Avatar image URL.
     */
-    private ?TournamentStaffMember_avatarUrl $avatarUrl = null;
+    private ?string $avatarUrl = null;
     
     /**
      * @var float|null $createdAt Time the row was added (epoch milliseconds).
@@ -57,9 +57,9 @@ class TournamentStaffMember implements Parsable
 
     /**
      * Gets the avatarUrl property value. Avatar image URL.
-     * @return TournamentStaffMember_avatarUrl|null
+     * @return string|null
     */
-    public function getAvatarUrl(): ?TournamentStaffMember_avatarUrl {
+    public function getAvatarUrl(): ?string {
         return $this->avatarUrl;
     }
 
@@ -78,7 +78,7 @@ class TournamentStaffMember implements Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getObjectValue([TournamentStaffMember_avatarUrl::class, 'createFromDiscriminatorValue'])),
+            'avatarUrl' => fn(ParseNode $n) => $o->setAvatarUrl($n->getStringValue()),
             'createdAt' => fn(ParseNode $n) => $o->setCreatedAt($n->getFloatValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'name' => fn(ParseNode $n) => $o->setName($n->getStringValue()),
@@ -133,7 +133,7 @@ class TournamentStaffMember implements Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeObjectValue('avatarUrl', $this->getAvatarUrl());
+        $writer->writeStringValue('avatarUrl', $this->getAvatarUrl());
         $writer->writeFloatValue('createdAt', $this->getCreatedAt());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeStringValue('name', $this->getName());
@@ -144,9 +144,9 @@ class TournamentStaffMember implements Parsable
 
     /**
      * Sets the avatarUrl property value. Avatar image URL.
-     * @param TournamentStaffMember_avatarUrl|null $value Value to set for the avatarUrl property.
+     * @param string|null $value Value to set for the avatarUrl property.
     */
-    public function setAvatarUrl(?TournamentStaffMember_avatarUrl $value): void {
+    public function setAvatarUrl(?string $value): void {
         $this->avatarUrl = $value;
     }
 

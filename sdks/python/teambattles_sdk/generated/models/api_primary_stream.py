@@ -5,12 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .api_primary_stream_game_name import ApiPrimaryStream_gameName
-    from .api_primary_stream_last_live_at import ApiPrimaryStream_lastLiveAt
-    from .api_primary_stream_started_at import ApiPrimaryStream_startedAt
-    from .api_primary_stream_stream_url import ApiPrimaryStream_streamUrl
-    from .api_primary_stream_thumbnail_url import ApiPrimaryStream_thumbnailUrl
-    from .api_primary_stream_title import ApiPrimaryStream_title
     from .api_primary_stream_viewer_count import ApiPrimaryStream_viewerCount
     from .stream_platform import StreamPlatform
 
@@ -20,19 +14,19 @@ class ApiPrimaryStream(Parsable):
     The user's primary (highest-viewer) live stream.
     """
     # Game/category being streamed, when known.
-    game_name: Optional[ApiPrimaryStream_gameName] = None
+    game_name: Optional[str] = None
     # ISO timestamp the user was last observed live, when known.
-    last_live_at: Optional[ApiPrimaryStream_lastLiveAt] = None
+    last_live_at: Optional[str] = None
     # Supported streaming platform.
     platform: Optional[StreamPlatform] = None
     # Stream start time (platform-provided ISO timestamp), when known.
-    started_at: Optional[ApiPrimaryStream_startedAt] = None
+    started_at: Optional[str] = None
     # Watch URL, when known.
-    stream_url: Optional[ApiPrimaryStream_streamUrl] = None
+    stream_url: Optional[str] = None
     # Stream thumbnail URL, when known.
-    thumbnail_url: Optional[ApiPrimaryStream_thumbnailUrl] = None
+    thumbnail_url: Optional[str] = None
     # Stream title, when known.
-    title: Optional[ApiPrimaryStream_title] = None
+    title: Optional[str] = None
     # Current viewer count, when known.
     viewer_count: Optional[ApiPrimaryStream_viewerCount] = None
     
@@ -52,32 +46,20 @@ class ApiPrimaryStream(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .api_primary_stream_game_name import ApiPrimaryStream_gameName
-        from .api_primary_stream_last_live_at import ApiPrimaryStream_lastLiveAt
-        from .api_primary_stream_started_at import ApiPrimaryStream_startedAt
-        from .api_primary_stream_stream_url import ApiPrimaryStream_streamUrl
-        from .api_primary_stream_thumbnail_url import ApiPrimaryStream_thumbnailUrl
-        from .api_primary_stream_title import ApiPrimaryStream_title
         from .api_primary_stream_viewer_count import ApiPrimaryStream_viewerCount
         from .stream_platform import StreamPlatform
 
-        from .api_primary_stream_game_name import ApiPrimaryStream_gameName
-        from .api_primary_stream_last_live_at import ApiPrimaryStream_lastLiveAt
-        from .api_primary_stream_started_at import ApiPrimaryStream_startedAt
-        from .api_primary_stream_stream_url import ApiPrimaryStream_streamUrl
-        from .api_primary_stream_thumbnail_url import ApiPrimaryStream_thumbnailUrl
-        from .api_primary_stream_title import ApiPrimaryStream_title
         from .api_primary_stream_viewer_count import ApiPrimaryStream_viewerCount
         from .stream_platform import StreamPlatform
 
         fields: dict[str, Callable[[Any], None]] = {
-            "gameName": lambda n : setattr(self, 'game_name', n.get_object_value(ApiPrimaryStream_gameName)),
-            "lastLiveAt": lambda n : setattr(self, 'last_live_at', n.get_object_value(ApiPrimaryStream_lastLiveAt)),
+            "gameName": lambda n : setattr(self, 'game_name', n.get_str_value()),
+            "lastLiveAt": lambda n : setattr(self, 'last_live_at', n.get_str_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_enum_value(StreamPlatform)),
-            "startedAt": lambda n : setattr(self, 'started_at', n.get_object_value(ApiPrimaryStream_startedAt)),
-            "streamUrl": lambda n : setattr(self, 'stream_url', n.get_object_value(ApiPrimaryStream_streamUrl)),
-            "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_object_value(ApiPrimaryStream_thumbnailUrl)),
-            "title": lambda n : setattr(self, 'title', n.get_object_value(ApiPrimaryStream_title)),
+            "startedAt": lambda n : setattr(self, 'started_at', n.get_str_value()),
+            "streamUrl": lambda n : setattr(self, 'stream_url', n.get_str_value()),
+            "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
+            "title": lambda n : setattr(self, 'title', n.get_str_value()),
             "viewerCount": lambda n : setattr(self, 'viewer_count', n.get_object_value(ApiPrimaryStream_viewerCount)),
         }
         return fields
@@ -90,13 +72,13 @@ class ApiPrimaryStream(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("gameName", self.game_name)
-        writer.write_object_value("lastLiveAt", self.last_live_at)
+        writer.write_str_value("gameName", self.game_name)
+        writer.write_str_value("lastLiveAt", self.last_live_at)
         writer.write_enum_value("platform", self.platform)
-        writer.write_object_value("startedAt", self.started_at)
-        writer.write_object_value("streamUrl", self.stream_url)
-        writer.write_object_value("thumbnailUrl", self.thumbnail_url)
-        writer.write_object_value("title", self.title)
+        writer.write_str_value("startedAt", self.started_at)
+        writer.write_str_value("streamUrl", self.stream_url)
+        writer.write_str_value("thumbnailUrl", self.thumbnail_url)
+        writer.write_str_value("title", self.title)
         writer.write_object_value("viewerCount", self.viewer_count)
     
 

@@ -1,6 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './match_discover_body_cursor.dart';
 import './match_discover_body_match_type.dart';
 import './match_discover_body_platform.dart';
 import './match_discover_body_region.dart';
@@ -12,7 +11,7 @@ class MatchDiscoverBody implements AdditionalDataHolder, Parsable {
     @override
     Map<String, Object?> additionalData;
     ///  The cursor property
-    MatchDiscoverBodyCursor? cursor;
+    String? cursor;
     ///  The gameId property
     String? gameId;
     ///  The gameSlug property
@@ -46,7 +45,7 @@ class MatchDiscoverBody implements AdditionalDataHolder, Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['cursor'] = (node) => cursor = node.getObjectValue<MatchDiscoverBodyCursor>(MatchDiscoverBodyCursor.createFromDiscriminatorValue);
+        deserializerMap['cursor'] = (node) => cursor = node.getStringValue();
         deserializerMap['gameId'] = (node) => gameId = node.getStringValue();
         deserializerMap['gameSlug'] = (node) => gameSlug = node.getStringValue();
         deserializerMap['leagueId'] = (node) => leagueId = node.getStringValue();
@@ -63,7 +62,7 @@ class MatchDiscoverBody implements AdditionalDataHolder, Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<MatchDiscoverBodyCursor>('cursor', cursor);
+        writer.writeStringValue('cursor', cursor);
         writer.writeStringValue('gameId', gameId);
         writer.writeStringValue('gameSlug', gameSlug);
         writer.writeStringValue('leagueId', leagueId);

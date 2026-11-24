@@ -17,9 +17,9 @@ class ApiOwnConnection implements Parsable
     private ?ApiOwnConnection_connectedAt $connectedAt = null;
     
     /**
-     * @var ApiOwnConnection_gamingPlatform|null $gamingPlatform Gaming platform (e.g. pc / console), when set.
+     * @var string|null $gamingPlatform Gaming platform (e.g. pc / console), when set.
     */
-    private ?ApiOwnConnection_gamingPlatform $gamingPlatform = null;
+    private ?string $gamingPlatform = null;
     
     /**
      * @var string|null $id Connection ID.
@@ -47,9 +47,9 @@ class ApiOwnConnection implements Parsable
     private ?string $platform = null;
     
     /**
-     * @var ApiOwnConnection_region|null $region Connection region, when set.
+     * @var string|null $region Connection region, when set.
     */
-    private ?ApiOwnConnection_region $region = null;
+    private ?string $region = null;
     
     /**
      * @var bool|null $showOnProfile Whether the owner has chosen to show this connection on their profile.
@@ -57,14 +57,14 @@ class ApiOwnConnection implements Parsable
     private ?bool $showOnProfile = null;
     
     /**
-     * @var ApiOwnConnection_url|null $url The url property
+     * @var string|null $url The url property
     */
-    private ?ApiOwnConnection_url $url = null;
+    private ?string $url = null;
     
     /**
-     * @var ApiOwnConnection_username|null $username The username property
+     * @var string|null $username The username property
     */
-    private ?ApiOwnConnection_username $username = null;
+    private ?string $username = null;
     
     /**
      * Creates a new instance of the appropriate class based on discriminator value
@@ -91,24 +91,24 @@ class ApiOwnConnection implements Parsable
         $o = $this;
         return  [
             'connectedAt' => fn(ParseNode $n) => $o->setConnectedAt($n->getObjectValue([ApiOwnConnection_connectedAt::class, 'createFromDiscriminatorValue'])),
-            'gamingPlatform' => fn(ParseNode $n) => $o->setGamingPlatform($n->getObjectValue([ApiOwnConnection_gamingPlatform::class, 'createFromDiscriminatorValue'])),
+            'gamingPlatform' => fn(ParseNode $n) => $o->setGamingPlatform($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
             'isPrimary' => fn(ParseNode $n) => $o->setIsPrimary($n->getBooleanValue()),
             'isSelfReported' => fn(ParseNode $n) => $o->setIsSelfReported($n->getBooleanValue()),
             'isVerified' => fn(ParseNode $n) => $o->setIsVerified($n->getBooleanValue()),
             'platform' => fn(ParseNode $n) => $o->setPlatform($n->getStringValue()),
-            'region' => fn(ParseNode $n) => $o->setRegion($n->getObjectValue([ApiOwnConnection_region::class, 'createFromDiscriminatorValue'])),
+            'region' => fn(ParseNode $n) => $o->setRegion($n->getStringValue()),
             'showOnProfile' => fn(ParseNode $n) => $o->setShowOnProfile($n->getBooleanValue()),
-            'url' => fn(ParseNode $n) => $o->setUrl($n->getObjectValue([ApiOwnConnection_url::class, 'createFromDiscriminatorValue'])),
-            'username' => fn(ParseNode $n) => $o->setUsername($n->getObjectValue([ApiOwnConnection_username::class, 'createFromDiscriminatorValue'])),
+            'url' => fn(ParseNode $n) => $o->setUrl($n->getStringValue()),
+            'username' => fn(ParseNode $n) => $o->setUsername($n->getStringValue()),
         ];
     }
 
     /**
      * Gets the gamingPlatform property value. Gaming platform (e.g. pc / console), when set.
-     * @return ApiOwnConnection_gamingPlatform|null
+     * @return string|null
     */
-    public function getGamingPlatform(): ?ApiOwnConnection_gamingPlatform {
+    public function getGamingPlatform(): ?string {
         return $this->gamingPlatform;
     }
 
@@ -154,9 +154,9 @@ class ApiOwnConnection implements Parsable
 
     /**
      * Gets the region property value. Connection region, when set.
-     * @return ApiOwnConnection_region|null
+     * @return string|null
     */
-    public function getRegion(): ?ApiOwnConnection_region {
+    public function getRegion(): ?string {
         return $this->region;
     }
 
@@ -170,17 +170,17 @@ class ApiOwnConnection implements Parsable
 
     /**
      * Gets the url property value. The url property
-     * @return ApiOwnConnection_url|null
+     * @return string|null
     */
-    public function getUrl(): ?ApiOwnConnection_url {
+    public function getUrl(): ?string {
         return $this->url;
     }
 
     /**
      * Gets the username property value. The username property
-     * @return ApiOwnConnection_username|null
+     * @return string|null
     */
-    public function getUsername(): ?ApiOwnConnection_username {
+    public function getUsername(): ?string {
         return $this->username;
     }
 
@@ -190,16 +190,16 @@ class ApiOwnConnection implements Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('connectedAt', $this->getConnectedAt());
-        $writer->writeObjectValue('gamingPlatform', $this->getGamingPlatform());
+        $writer->writeStringValue('gamingPlatform', $this->getGamingPlatform());
         $writer->writeStringValue('id', $this->getId());
         $writer->writeBooleanValue('isPrimary', $this->getIsPrimary());
         $writer->writeBooleanValue('isSelfReported', $this->getIsSelfReported());
         $writer->writeBooleanValue('isVerified', $this->getIsVerified());
         $writer->writeStringValue('platform', $this->getPlatform());
-        $writer->writeObjectValue('region', $this->getRegion());
+        $writer->writeStringValue('region', $this->getRegion());
         $writer->writeBooleanValue('showOnProfile', $this->getShowOnProfile());
-        $writer->writeObjectValue('url', $this->getUrl());
-        $writer->writeObjectValue('username', $this->getUsername());
+        $writer->writeStringValue('url', $this->getUrl());
+        $writer->writeStringValue('username', $this->getUsername());
     }
 
     /**
@@ -212,9 +212,9 @@ class ApiOwnConnection implements Parsable
 
     /**
      * Sets the gamingPlatform property value. Gaming platform (e.g. pc / console), when set.
-     * @param ApiOwnConnection_gamingPlatform|null $value Value to set for the gamingPlatform property.
+     * @param string|null $value Value to set for the gamingPlatform property.
     */
-    public function setGamingPlatform(?ApiOwnConnection_gamingPlatform $value): void {
+    public function setGamingPlatform(?string $value): void {
         $this->gamingPlatform = $value;
     }
 
@@ -260,9 +260,9 @@ class ApiOwnConnection implements Parsable
 
     /**
      * Sets the region property value. Connection region, when set.
-     * @param ApiOwnConnection_region|null $value Value to set for the region property.
+     * @param string|null $value Value to set for the region property.
     */
-    public function setRegion(?ApiOwnConnection_region $value): void {
+    public function setRegion(?string $value): void {
         $this->region = $value;
     }
 
@@ -276,17 +276,17 @@ class ApiOwnConnection implements Parsable
 
     /**
      * Sets the url property value. The url property
-     * @param ApiOwnConnection_url|null $value Value to set for the url property.
+     * @param string|null $value Value to set for the url property.
     */
-    public function setUrl(?ApiOwnConnection_url $value): void {
+    public function setUrl(?string $value): void {
         $this->url = $value;
     }
 
     /**
      * Sets the username property value. The username property
-     * @param ApiOwnConnection_username|null $value Value to set for the username property.
+     * @param string|null $value Value to set for the username property.
     */
-    public function setUsername(?ApiOwnConnection_username $value): void {
+    public function setUsername(?string $value): void {
         $this->username = $value;
     }
 

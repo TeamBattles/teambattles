@@ -1,9 +1,7 @@
 package gg.teambattles.sdk.generated.models;
 
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +14,7 @@ public class ApiGameMap implements Parsable {
     /**
      * The coverImage property
      */
-    private ApiGameMapCoverImage coverImage;
+    private String coverImage;
     /**
      * The id property
      */
@@ -28,7 +26,7 @@ public class ApiGameMap implements Parsable {
     /**
      * The minimapImage property
      */
-    private ApiGameMapMinimapImage minimapImage;
+    private String minimapImage;
     /**
      * The nameKey property
      */
@@ -45,10 +43,10 @@ public class ApiGameMap implements Parsable {
     }
     /**
      * Gets the coverImage property value. The coverImage property
-     * @return a {@link ApiGameMapCoverImage}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiGameMapCoverImage getCoverImage() {
+    public String getCoverImage() {
         return this.coverImage;
     }
     /**
@@ -58,10 +56,10 @@ public class ApiGameMap implements Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(5);
-        deserializerMap.put("coverImage", (n) -> { this.setCoverImage(n.getObjectValue(ApiGameMapCoverImage::createFromDiscriminatorValue)); });
+        deserializerMap.put("coverImage", (n) -> { this.setCoverImage(n.getStringValue()); });
         deserializerMap.put("id", (n) -> { this.setId(n.getStringValue()); });
         deserializerMap.put("isReleased", (n) -> { this.setIsReleased(n.getBooleanValue()); });
-        deserializerMap.put("minimapImage", (n) -> { this.setMinimapImage(n.getObjectValue(ApiGameMapMinimapImage::createFromDiscriminatorValue)); });
+        deserializerMap.put("minimapImage", (n) -> { this.setMinimapImage(n.getStringValue()); });
         deserializerMap.put("nameKey", (n) -> { this.setNameKey(n.getStringValue()); });
         return deserializerMap;
     }
@@ -83,10 +81,10 @@ public class ApiGameMap implements Parsable {
     }
     /**
      * Gets the minimapImage property value. The minimapImage property
-     * @return a {@link ApiGameMapMinimapImage}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public ApiGameMapMinimapImage getMinimapImage() {
+    public String getMinimapImage() {
         return this.minimapImage;
     }
     /**
@@ -103,17 +101,17 @@ public class ApiGameMap implements Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeObjectValue("coverImage", this.getCoverImage());
+        writer.writeStringValue("coverImage", this.getCoverImage());
         writer.writeStringValue("id", this.getId());
         writer.writeBooleanValue("isReleased", this.getIsReleased());
-        writer.writeObjectValue("minimapImage", this.getMinimapImage());
+        writer.writeStringValue("minimapImage", this.getMinimapImage());
         writer.writeStringValue("nameKey", this.getNameKey());
     }
     /**
      * Sets the coverImage property value. The coverImage property
      * @param value Value to set for the coverImage property.
      */
-    public void setCoverImage(@jakarta.annotation.Nullable final ApiGameMapCoverImage value) {
+    public void setCoverImage(@jakarta.annotation.Nullable final String value) {
         this.coverImage = value;
     }
     /**
@@ -134,7 +132,7 @@ public class ApiGameMap implements Parsable {
      * Sets the minimapImage property value. The minimapImage property
      * @param value Value to set for the minimapImage property.
      */
-    public void setMinimapImage(@jakarta.annotation.Nullable final ApiGameMapMinimapImage value) {
+    public void setMinimapImage(@jakarta.annotation.Nullable final String value) {
         this.minimapImage = value;
     }
     /**
@@ -143,171 +141,5 @@ public class ApiGameMap implements Parsable {
      */
     public void setNameKey(@jakarta.annotation.Nullable final String value) {
         this.nameKey = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiGameMapCoverImageMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiGameMapCoverImage implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiGameMapCoverImageMember1}
-         */
-        private ApiGameMapCoverImageMember1 apiGameMapCoverImageMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiGameMapCoverImage}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiGameMapCoverImage createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiGameMapCoverImage result = new ApiGameMapCoverImage();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiGameMapCoverImageMember1(new ApiGameMapCoverImageMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiGameMap_coverImageMember1 property value. Composed type representation for type {@link ApiGameMapCoverImageMember1}
-         * @return a {@link ApiGameMapCoverImageMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiGameMapCoverImageMember1 getApiGameMapCoverImageMember1() {
-            return this.apiGameMapCoverImageMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiGameMapCoverImageMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiGameMapCoverImageMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiGameMapCoverImageMember1());
-            }
-        }
-        /**
-         * Sets the ApiGameMap_coverImageMember1 property value. Composed type representation for type {@link ApiGameMapCoverImageMember1}
-         * @param value Value to set for the ApiGameMap_coverImageMember1 property.
-         */
-        public void setApiGameMapCoverImageMember1(@jakarta.annotation.Nullable final ApiGameMapCoverImageMember1 value) {
-            this.apiGameMapCoverImageMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiGameMapMinimapImageMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiGameMapMinimapImage implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiGameMapMinimapImageMember1}
-         */
-        private ApiGameMapMinimapImageMember1 apiGameMapMinimapImageMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiGameMapMinimapImage}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiGameMapMinimapImage createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiGameMapMinimapImage result = new ApiGameMapMinimapImage();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setApiGameMapMinimapImageMember1(new ApiGameMapMinimapImageMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiGameMap_minimapImageMember1 property value. Composed type representation for type {@link ApiGameMapMinimapImageMember1}
-         * @return a {@link ApiGameMapMinimapImageMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiGameMapMinimapImageMember1 getApiGameMapMinimapImageMember1() {
-            return this.apiGameMapMinimapImageMember1;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiGameMapMinimapImageMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiGameMapMinimapImageMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getApiGameMapMinimapImageMember1());
-            }
-        }
-        /**
-         * Sets the ApiGameMap_minimapImageMember1 property value. Composed type representation for type {@link ApiGameMapMinimapImageMember1}
-         * @param value Value to set for the ApiGameMap_minimapImageMember1 property.
-         */
-        public void setApiGameMapMinimapImageMember1(@jakarta.annotation.Nullable final ApiGameMapMinimapImageMember1 value) {
-            this.apiGameMapMinimapImageMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
     }
 }

@@ -10,7 +10,7 @@ import (
 // TournamentStaffMember one tournament staff assignment.
 type TournamentStaffMember struct {
     // Avatar image URL.
-    avatarUrl TournamentStaffMember_TournamentStaffMember_avatarUrlable
+    avatarUrl *string
     // Time the row was added (epoch milliseconds).
     createdAt *float64
     // Staff row ID.
@@ -24,90 +24,6 @@ type TournamentStaffMember struct {
     // Username.
     username *string
 }
-// TournamentStaffMember_TournamentStaffMember_avatarUrl composed type wrapper for classes string, TournamentStaffMember_avatarUrlMember1able
-type TournamentStaffMember_TournamentStaffMember_avatarUrl struct {
-    // Composed type representation for type string
-    string *string
-    // Composed type representation for type TournamentStaffMember_avatarUrlMember1able
-    tournamentStaffMember_avatarUrlMember1 TournamentStaffMember_avatarUrlMember1able
-}
-// NewTournamentStaffMember_TournamentStaffMember_avatarUrl instantiates a new TournamentStaffMember_TournamentStaffMember_avatarUrl and sets the default values.
-func NewTournamentStaffMember_TournamentStaffMember_avatarUrl()(*TournamentStaffMember_TournamentStaffMember_avatarUrl) {
-    m := &TournamentStaffMember_TournamentStaffMember_avatarUrl{
-    }
-    return m
-}
-// CreateTournamentStaffMember_TournamentStaffMember_avatarUrlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateTournamentStaffMember_TournamentStaffMember_avatarUrlFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewTournamentStaffMember_TournamentStaffMember_avatarUrl()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateTournamentStaffMember_avatarUrlMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(TournamentStaffMember_avatarUrlMember1able); ok {
-                result.SetTournamentStaffMemberAvatarUrlMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TournamentStaffMember_TournamentStaffMember_avatarUrl) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *TournamentStaffMember_TournamentStaffMember_avatarUrl) GetIsComposedType()(bool) {
-    return true
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *TournamentStaffMember_TournamentStaffMember_avatarUrl) GetString()(*string) {
-    return m.string
-}
-// GetTournamentStaffMemberAvatarUrlMember1 gets the TournamentStaffMember_avatarUrlMember1 property value. Composed type representation for type TournamentStaffMember_avatarUrlMember1able
-// returns a TournamentStaffMember_avatarUrlMember1able when successful
-func (m *TournamentStaffMember_TournamentStaffMember_avatarUrl) GetTournamentStaffMemberAvatarUrlMember1()(TournamentStaffMember_avatarUrlMember1able) {
-    return m.tournamentStaffMember_avatarUrlMember1
-}
-// Serialize serializes information the current object
-func (m *TournamentStaffMember_TournamentStaffMember_avatarUrl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetTournamentStaffMemberAvatarUrlMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetTournamentStaffMemberAvatarUrlMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *TournamentStaffMember_TournamentStaffMember_avatarUrl) SetString(value *string)() {
-    m.string = value
-}
-// SetTournamentStaffMemberAvatarUrlMember1 sets the TournamentStaffMember_avatarUrlMember1 property value. Composed type representation for type TournamentStaffMember_avatarUrlMember1able
-func (m *TournamentStaffMember_TournamentStaffMember_avatarUrl) SetTournamentStaffMemberAvatarUrlMember1(value TournamentStaffMember_avatarUrlMember1able)() {
-    m.tournamentStaffMember_avatarUrlMember1 = value
-}
-type TournamentStaffMember_TournamentStaffMember_avatarUrlable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetString()(*string)
-    GetTournamentStaffMemberAvatarUrlMember1()(TournamentStaffMember_avatarUrlMember1able)
-    SetString(value *string)()
-    SetTournamentStaffMemberAvatarUrlMember1(value TournamentStaffMember_avatarUrlMember1able)()
-}
 // NewTournamentStaffMember instantiates a new TournamentStaffMember and sets the default values.
 func NewTournamentStaffMember()(*TournamentStaffMember) {
     m := &TournamentStaffMember{
@@ -120,8 +36,8 @@ func CreateTournamentStaffMemberFromDiscriminatorValue(parseNode i878a80d2330e89
     return NewTournamentStaffMember(), nil
 }
 // GetAvatarUrl gets the avatarUrl property value. Avatar image URL.
-// returns a TournamentStaffMember_TournamentStaffMember_avatarUrlable when successful
-func (m *TournamentStaffMember) GetAvatarUrl()(TournamentStaffMember_TournamentStaffMember_avatarUrlable) {
+// returns a *string when successful
+func (m *TournamentStaffMember) GetAvatarUrl()(*string) {
     return m.avatarUrl
 }
 // GetCreatedAt gets the createdAt property value. Time the row was added (epoch milliseconds).
@@ -134,12 +50,12 @@ func (m *TournamentStaffMember) GetCreatedAt()(*float64) {
 func (m *TournamentStaffMember) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["avatarUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTournamentStaffMember_TournamentStaffMember_avatarUrlFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetAvatarUrl(val.(TournamentStaffMember_TournamentStaffMember_avatarUrlable))
+            m.SetAvatarUrl(val)
         }
         return nil
     }
@@ -233,7 +149,7 @@ func (m *TournamentStaffMember) GetUsername()(*string) {
 // Serialize serializes information the current object
 func (m *TournamentStaffMember) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("avatarUrl", m.GetAvatarUrl())
+        err := writer.WriteStringValue("avatarUrl", m.GetAvatarUrl())
         if err != nil {
             return err
         }
@@ -278,7 +194,7 @@ func (m *TournamentStaffMember) Serialize(writer i878a80d2330e89d26896388a3f487e
     return nil
 }
 // SetAvatarUrl sets the avatarUrl property value. Avatar image URL.
-func (m *TournamentStaffMember) SetAvatarUrl(value TournamentStaffMember_TournamentStaffMember_avatarUrlable)() {
+func (m *TournamentStaffMember) SetAvatarUrl(value *string)() {
     m.avatarUrl = value
 }
 // SetCreatedAt sets the createdAt property value. Time the row was added (epoch milliseconds).
@@ -307,14 +223,14 @@ func (m *TournamentStaffMember) SetUsername(value *string)() {
 }
 type TournamentStaffMemberable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAvatarUrl()(TournamentStaffMember_TournamentStaffMember_avatarUrlable)
+    GetAvatarUrl()(*string)
     GetCreatedAt()(*float64)
     GetId()(*string)
     GetName()(*string)
     GetRole()(*TournamentStaffRole)
     GetUserId()(*string)
     GetUsername()(*string)
-    SetAvatarUrl(value TournamentStaffMember_TournamentStaffMember_avatarUrlable)()
+    SetAvatarUrl(value *string)()
     SetCreatedAt(value *float64)()
     SetId(value *string)()
     SetName(value *string)()

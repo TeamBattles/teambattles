@@ -1,12 +1,11 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './score_confirmer_confirmed_at.dart';
 
 /// auto generated
 /// Identity of the captain who confirmed a score.
 class ScoreConfirmer implements Parsable {
     ///  Confirmation time (ISO 8601).
-    ScoreConfirmerConfirmedAt? confirmedAt;
+    String? confirmedAt;
     ///  The teamId property
     String? teamId;
     ///  The userId property
@@ -20,7 +19,7 @@ class ScoreConfirmer implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['confirmedAt'] = (node) => confirmedAt = node.getObjectValue<ScoreConfirmerConfirmedAt>(ScoreConfirmerConfirmedAt.createFromDiscriminatorValue);
+        deserializerMap['confirmedAt'] = (node) => confirmedAt = node.getStringValue();
         deserializerMap['teamId'] = (node) => teamId = node.getStringValue();
         deserializerMap['userId'] = (node) => userId = node.getStringValue();
         return deserializerMap;
@@ -29,7 +28,7 @@ class ScoreConfirmer implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<ScoreConfirmerConfirmedAt>('confirmedAt', confirmedAt);
+        writer.writeStringValue('confirmedAt', confirmedAt);
         writer.writeStringValue('teamId', teamId);
         writer.writeStringValue('userId', userId);
     }

@@ -4,7 +4,7 @@
 // @ts-ignore
 import { createChatMessageFromDiscriminatorValue, createErrorEscapedFromDiscriminatorValue, createSendChatMessageResponseFromDiscriminatorValue, serializeChatMessage, serializeSendChatMessageRequestBody, serializeSendChatMessageResponse, type ChatMessage, type ErrorEscaped, type SendChatMessageRequestBody, type SendChatMessageResponse } from '../../../models/index.js';
 // @ts-ignore
-import { type AdditionalDataHolder, type BaseRequestBuilder, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
+import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
 
 export interface ChatGetResponse extends Parsable {
     /**
@@ -18,14 +18,11 @@ export interface ChatGetResponse extends Parsable {
     /**
      * The nextCursor property
      */
-    nextCursor?: ChatGetResponse_nextCursorMember1 | string | null;
+    nextCursor?: string | null;
     /**
      * The timestamp property
      */
     timestamp?: string | null;
-}
-export type ChatGetResponse_nextCursor = ChatGetResponse_nextCursorMember1 | string;
-export interface ChatGetResponse_nextCursorMember1 extends AdditionalDataHolder, Parsable {
 }
 /**
  * Builds and executes requests for operations under /matches/{matchId}/chat
@@ -87,24 +84,6 @@ export interface ChatRequestBuilderGetQueryParameters {
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {ChatGetResponse_nextCursorMember1 | string}
- */
-// @ts-ignore
-export function createChatGetResponse_nextCursorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoChatGetResponse_nextCursor;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {ChatGetResponse_nextCursorMember1}
- */
-// @ts-ignore
-export function createChatGetResponse_nextCursorMember1FromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoChatGetResponse_nextCursorMember1;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ChatGetResponse}
  */
 // @ts-ignore
@@ -121,30 +100,8 @@ export function deserializeIntoChatGetResponse(chatGetResponse: Partial<ChatGetR
     return {
         "data": n => { chatGetResponse.data = n.getCollectionOfObjectValues<ChatMessage>(createChatMessageFromDiscriminatorValue); },
         "hasMore": n => { chatGetResponse.hasMore = n.getBooleanValue(); },
-        "nextCursor": n => { chatGetResponse.nextCursor = n.getObjectValue<ChatGetResponse_nextCursorMember1>(createChatGetResponse_nextCursorMember1FromDiscriminatorValue) ?? n.getStringValue(); },
+        "nextCursor": n => { chatGetResponse.nextCursor = n.getStringValue(); },
         "timestamp": n => { chatGetResponse.timestamp = n.getStringValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param ChatGetResponse_nextCursor The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoChatGetResponse_nextCursor(chatGetResponse_nextCursor: Partial<Parsable | ChatGetResponse_nextCursorMember1 | string> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "" : n => { chatGetResponse_nextCursor = n.getStringValue()},
-        ...deserializeIntoChatGetResponse_nextCursorMember1(chatGetResponse_nextCursor as ChatGetResponse_nextCursorMember1),
-    }
-}
-/**
- * The deserialization information for the current model
- * @param ChatGetResponse_nextCursorMember1 The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoChatGetResponse_nextCursorMember1(chatGetResponse_nextCursorMember1: Partial<ChatGetResponse_nextCursorMember1> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
     }
 }
 /**
@@ -158,34 +115,8 @@ export function serializeChatGetResponse(writer: SerializationWriter, chatGetRes
     if (!chatGetResponse || isSerializingDerivedType) { return; }
     writer.writeCollectionOfObjectValues<ChatMessage>("data", chatGetResponse.data, serializeChatMessage);
     writer.writeBooleanValue("hasMore", chatGetResponse.hasMore);
-    if ( typeof chatGetResponse.nextCursor === "string") {
-        writer.writeStringValue("nextCursor", chatGetResponse.nextCursor as string);
-    }
-    else {
-        writer.writeObjectValue<ChatGetResponse_nextCursorMember1>("nextCursor", chatGetResponse.nextCursor as ChatGetResponse_nextCursorMember1 | undefined | null, serializeChatGetResponse_nextCursor);
-    }
+    writer.writeStringValue("nextCursor", chatGetResponse.nextCursor);
     writer.writeStringValue("timestamp", chatGetResponse.timestamp);
-}
-/**
- * Serializes information the current object
- * @param ChatGetResponse_nextCursor The instance to serialize from.
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeChatGetResponse_nextCursor(writer: SerializationWriter, chatGetResponse_nextCursor: Partial<Parsable | ChatGetResponse_nextCursorMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    serializeChatGetResponse_nextCursorMember1(writer, chatGetResponse_nextCursor as ChatGetResponse_nextCursorMember1);
-}
-/**
- * Serializes information the current object
- * @param ChatGetResponse_nextCursorMember1 The instance to serialize from.
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeChatGetResponse_nextCursorMember1(writer: SerializationWriter, chatGetResponse_nextCursorMember1: Partial<ChatGetResponse_nextCursorMember1> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!chatGetResponse_nextCursorMember1 || isSerializingDerivedType) { return; }
-    writer.writeAdditionalData(chatGetResponse_nextCursorMember1.additionalData);
 }
 /**
  * Uri template for the request builder.

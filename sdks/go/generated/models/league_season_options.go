@@ -10,95 +10,11 @@ import (
 // LeagueSeasonOptions season selector options.
 type LeagueSeasonOptions struct {
     // Recommended default option.
-    defaultSeasonId LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonIdable
+    defaultSeasonId *string
     // Season selector options for a league game.
     seasons []LeagueSeasonOptions_seasonsable
     // Response generation time (ISO 8601).
     timestamp *string
-}
-// LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId composed type wrapper for classes LeagueSeasonOptions_defaultSeasonIdMember1able, string
-type LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId struct {
-    // Composed type representation for type LeagueSeasonOptions_defaultSeasonIdMember1able
-    leagueSeasonOptions_defaultSeasonIdMember1 LeagueSeasonOptions_defaultSeasonIdMember1able
-    // Composed type representation for type string
-    string *string
-}
-// NewLeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId instantiates a new LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId and sets the default values.
-func NewLeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId()(*LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId) {
-    m := &LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId{
-    }
-    return m
-}
-// CreateLeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateLeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonIdFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewLeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId()
-    if parseNode != nil {
-        if val, err := parseNode.GetStringValue(); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            result.SetString(val)
-        } else if val, err := parseNode.GetObjectValue(CreateLeagueSeasonOptions_defaultSeasonIdMember1FromDiscriminatorValue); val != nil {
-            if err != nil {
-                return nil, err
-            }
-            if cast, ok := val.(LeagueSeasonOptions_defaultSeasonIdMember1able); ok {
-                result.SetLeagueSeasonOptionsDefaultSeasonIdMember1(cast)
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId) GetIsComposedType()(bool) {
-    return true
-}
-// GetLeagueSeasonOptionsDefaultSeasonIdMember1 gets the LeagueSeasonOptions_defaultSeasonIdMember1 property value. Composed type representation for type LeagueSeasonOptions_defaultSeasonIdMember1able
-// returns a LeagueSeasonOptions_defaultSeasonIdMember1able when successful
-func (m *LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId) GetLeagueSeasonOptionsDefaultSeasonIdMember1()(LeagueSeasonOptions_defaultSeasonIdMember1able) {
-    return m.leagueSeasonOptions_defaultSeasonIdMember1
-}
-// GetString gets the string property value. Composed type representation for type string
-// returns a *string when successful
-func (m *LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId) GetString()(*string) {
-    return m.string
-}
-// Serialize serializes information the current object
-func (m *LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetString() != nil {
-        err := writer.WriteStringValue("", m.GetString())
-        if err != nil {
-            return err
-        }
-    } else if m.GetLeagueSeasonOptionsDefaultSeasonIdMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetLeagueSeasonOptionsDefaultSeasonIdMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetLeagueSeasonOptionsDefaultSeasonIdMember1 sets the LeagueSeasonOptions_defaultSeasonIdMember1 property value. Composed type representation for type LeagueSeasonOptions_defaultSeasonIdMember1able
-func (m *LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId) SetLeagueSeasonOptionsDefaultSeasonIdMember1(value LeagueSeasonOptions_defaultSeasonIdMember1able)() {
-    m.leagueSeasonOptions_defaultSeasonIdMember1 = value
-}
-// SetString sets the string property value. Composed type representation for type string
-func (m *LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonId) SetString(value *string)() {
-    m.string = value
-}
-type LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonIdable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetLeagueSeasonOptionsDefaultSeasonIdMember1()(LeagueSeasonOptions_defaultSeasonIdMember1able)
-    GetString()(*string)
-    SetLeagueSeasonOptionsDefaultSeasonIdMember1(value LeagueSeasonOptions_defaultSeasonIdMember1able)()
-    SetString(value *string)()
 }
 // NewLeagueSeasonOptions instantiates a new LeagueSeasonOptions and sets the default values.
 func NewLeagueSeasonOptions()(*LeagueSeasonOptions) {
@@ -112,8 +28,8 @@ func CreateLeagueSeasonOptionsFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewLeagueSeasonOptions(), nil
 }
 // GetDefaultSeasonId gets the defaultSeasonId property value. Recommended default option.
-// returns a LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonIdable when successful
-func (m *LeagueSeasonOptions) GetDefaultSeasonId()(LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonIdable) {
+// returns a *string when successful
+func (m *LeagueSeasonOptions) GetDefaultSeasonId()(*string) {
     return m.defaultSeasonId
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -121,12 +37,12 @@ func (m *LeagueSeasonOptions) GetDefaultSeasonId()(LeagueSeasonOptions_LeagueSea
 func (m *LeagueSeasonOptions) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["defaultSeasonId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateLeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonIdFromDiscriminatorValue)
+        val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDefaultSeasonId(val.(LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonIdable))
+            m.SetDefaultSeasonId(val)
         }
         return nil
     }
@@ -171,7 +87,7 @@ func (m *LeagueSeasonOptions) GetTimestamp()(*string) {
 // Serialize serializes information the current object
 func (m *LeagueSeasonOptions) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("defaultSeasonId", m.GetDefaultSeasonId())
+        err := writer.WriteStringValue("defaultSeasonId", m.GetDefaultSeasonId())
         if err != nil {
             return err
         }
@@ -197,7 +113,7 @@ func (m *LeagueSeasonOptions) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetDefaultSeasonId sets the defaultSeasonId property value. Recommended default option.
-func (m *LeagueSeasonOptions) SetDefaultSeasonId(value LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonIdable)() {
+func (m *LeagueSeasonOptions) SetDefaultSeasonId(value *string)() {
     m.defaultSeasonId = value
 }
 // SetSeasons sets the seasons property value. Season selector options for a league game.
@@ -210,10 +126,10 @@ func (m *LeagueSeasonOptions) SetTimestamp(value *string)() {
 }
 type LeagueSeasonOptionsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDefaultSeasonId()(LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonIdable)
+    GetDefaultSeasonId()(*string)
     GetSeasons()([]LeagueSeasonOptions_seasonsable)
     GetTimestamp()(*string)
-    SetDefaultSeasonId(value LeagueSeasonOptions_LeagueSeasonOptions_defaultSeasonIdable)()
+    SetDefaultSeasonId(value *string)()
     SetSeasons(value []LeagueSeasonOptions_seasonsable)()
     SetTimestamp(value *string)()
 }

@@ -40,7 +40,7 @@ public class ApiGameRank implements Parsable {
     /**
      * Skill rating, when set.
      */
-    private ApiGameRankSr sr;
+    private Double sr;
     /**
      * Top 250 ladder position (1-250), when applicable.
      */
@@ -84,7 +84,7 @@ public class ApiGameRank implements Parsable {
         deserializerMap.put("isTop250", (n) -> { this.setIsTop250(n.getBooleanValue()); });
         deserializerMap.put("mode", (n) -> { this.setMode(n.getStringValue()); });
         deserializerMap.put("source", (n) -> { this.setSource(n.getEnumValue(ApiGameRankSource::forValue)); });
-        deserializerMap.put("sr", (n) -> { this.setSr(n.getObjectValue(ApiGameRankSr::createFromDiscriminatorValue)); });
+        deserializerMap.put("sr", (n) -> { this.setSr(n.getDoubleValue()); });
         deserializerMap.put("top250Rank", (n) -> { this.setTop250Rank(n.getObjectValue(ApiGameRankTop250Rank::createFromDiscriminatorValue)); });
         deserializerMap.put("updatedAt", (n) -> { this.setUpdatedAt(n.getStringValue()); });
         deserializerMap.put("winstreak", (n) -> { this.setWinstreak(n.getIntegerValue()); });
@@ -132,10 +132,10 @@ public class ApiGameRank implements Parsable {
     }
     /**
      * Gets the sr property value. Skill rating, when set.
-     * @return a {@link ApiGameRankSr}
+     * @return a {@link Double}
      */
     @jakarta.annotation.Nullable
-    public ApiGameRankSr getSr() {
+    public Double getSr() {
         return this.sr;
     }
     /**
@@ -174,7 +174,7 @@ public class ApiGameRank implements Parsable {
         writer.writeBooleanValue("isTop250", this.getIsTop250());
         writer.writeStringValue("mode", this.getMode());
         writer.writeEnumValue("source", this.getSource());
-        writer.writeObjectValue("sr", this.getSr());
+        writer.writeDoubleValue("sr", this.getSr());
         writer.writeObjectValue("top250Rank", this.getTop250Rank());
         writer.writeStringValue("updatedAt", this.getUpdatedAt());
         writer.writeIntegerValue("winstreak", this.getWinstreak());
@@ -225,7 +225,7 @@ public class ApiGameRank implements Parsable {
      * Sets the sr property value. Skill rating, when set.
      * @param value Value to set for the sr property.
      */
-    public void setSr(@jakarta.annotation.Nullable final ApiGameRankSr value) {
+    public void setSr(@jakarta.annotation.Nullable final Double value) {
         this.sr = value;
     }
     /**
@@ -248,89 +248,6 @@ public class ApiGameRank implements Parsable {
      */
     public void setWinstreak(@jakarta.annotation.Nullable final Integer value) {
         this.winstreak = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link ApiGameRankSrMember1}, {@link Double}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class ApiGameRankSr implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link ApiGameRankSrMember1}
-         */
-        private ApiGameRankSrMember1 apiGameRankSrMember1;
-        /**
-         * Composed type representation for type {@link Double}
-         */
-        private Double doubleEscaped;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link ApiGameRankSr}
-         */
-        @jakarta.annotation.Nonnull
-        public static ApiGameRankSr createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final ApiGameRankSr result = new ApiGameRankSr();
-            if (parseNode.getDoubleValue() != null) {
-                result.setDouble(parseNode.getDoubleValue());
-            } else {
-                result.setApiGameRankSrMember1(new ApiGameRankSrMember1());
-            }
-            return result;
-        }
-        /**
-         * Gets the ApiGameRank_srMember1 property value. Composed type representation for type {@link ApiGameRankSrMember1}
-         * @return a {@link ApiGameRankSrMember1}
-         */
-        @jakarta.annotation.Nullable
-        public ApiGameRankSrMember1 getApiGameRankSrMember1() {
-            return this.apiGameRankSrMember1;
-        }
-        /**
-         * Gets the double property value. Composed type representation for type {@link Double}
-         * @return a {@link Double}
-         */
-        @jakarta.annotation.Nullable
-        public Double getDouble() {
-            return this.doubleEscaped;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getApiGameRankSrMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getApiGameRankSrMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getDouble() != null) {
-                writer.writeDoubleValue(null, this.getDouble());
-            } else {
-                writer.writeObjectValue(null, this.getApiGameRankSrMember1());
-            }
-        }
-        /**
-         * Sets the ApiGameRank_srMember1 property value. Composed type representation for type {@link ApiGameRankSrMember1}
-         * @param value Value to set for the ApiGameRank_srMember1 property.
-         */
-        public void setApiGameRankSrMember1(@jakarta.annotation.Nullable final ApiGameRankSrMember1 value) {
-            this.apiGameRankSrMember1 = value;
-        }
-        /**
-         * Sets the double property value. Composed type representation for type {@link Double}
-         * @param value Value to set for the double property.
-         */
-        public void setDouble(@jakarta.annotation.Nullable final Double value) {
-            this.doubleEscaped = value;
-        }
     }
     /**
      * Composed type wrapper for classes {@link ApiGameRankTop250RankMember1}, {@link Integer}

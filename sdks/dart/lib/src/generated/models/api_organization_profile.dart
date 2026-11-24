@@ -1,24 +1,19 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './api_organization_profile_avatar_url.dart';
-import './api_organization_profile_banner_url.dart';
 import './api_organization_profile_created_at.dart';
-import './api_organization_profile_description.dart';
-import './api_organization_profile_slug.dart';
-import './api_organization_profile_tag.dart';
 import './profile_visibility.dart';
 
 /// auto generated
 /// API-safe organization profile.
 class ApiOrganizationProfile implements Parsable {
     ///  The avatarUrl property
-    ApiOrganizationProfileAvatarUrl? avatarUrl;
+    String? avatarUrl;
     ///  The bannerUrl property
-    ApiOrganizationProfileBannerUrl? bannerUrl;
+    String? bannerUrl;
     ///  The createdAt property
     ApiOrganizationProfileCreatedAt? createdAt;
     ///  The description property
-    ApiOrganizationProfileDescription? description;
+    String? description;
     ///  The draws property
     int? draws;
     ///  Organization ID.
@@ -36,9 +31,9 @@ class ApiOrganizationProfile implements Parsable {
     ///  Organization name.
     String? name;
     ///  The slug property
-    ApiOrganizationProfileSlug? slug;
+    String? slug;
     ///  The tag property
-    ApiOrganizationProfileTag? tag;
+    String? tag;
     ///  The teamCount property
     int? teamCount;
     ///  Public profile visibility setting.
@@ -54,10 +49,10 @@ class ApiOrganizationProfile implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getObjectValue<ApiOrganizationProfileAvatarUrl>(ApiOrganizationProfileAvatarUrl.createFromDiscriminatorValue);
-        deserializerMap['bannerUrl'] = (node) => bannerUrl = node.getObjectValue<ApiOrganizationProfileBannerUrl>(ApiOrganizationProfileBannerUrl.createFromDiscriminatorValue);
+        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getStringValue();
+        deserializerMap['bannerUrl'] = (node) => bannerUrl = node.getStringValue();
         deserializerMap['createdAt'] = (node) => createdAt = node.getObjectValue<ApiOrganizationProfileCreatedAt>(ApiOrganizationProfileCreatedAt.createFromDiscriminatorValue);
-        deserializerMap['description'] = (node) => description = node.getObjectValue<ApiOrganizationProfileDescription>(ApiOrganizationProfileDescription.createFromDiscriminatorValue);
+        deserializerMap['description'] = (node) => description = node.getStringValue();
         deserializerMap['draws'] = (node) => draws = node.getIntValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['isMember'] = (node) => isMember = node.getBoolValue();
@@ -66,8 +61,8 @@ class ApiOrganizationProfile implements Parsable {
         deserializerMap['matchesPlayed'] = (node) => matchesPlayed = node.getIntValue();
         deserializerMap['memberCount'] = (node) => memberCount = node.getIntValue();
         deserializerMap['name'] = (node) => name = node.getStringValue();
-        deserializerMap['slug'] = (node) => slug = node.getObjectValue<ApiOrganizationProfileSlug>(ApiOrganizationProfileSlug.createFromDiscriminatorValue);
-        deserializerMap['tag'] = (node) => tag = node.getObjectValue<ApiOrganizationProfileTag>(ApiOrganizationProfileTag.createFromDiscriminatorValue);
+        deserializerMap['slug'] = (node) => slug = node.getStringValue();
+        deserializerMap['tag'] = (node) => tag = node.getStringValue();
         deserializerMap['teamCount'] = (node) => teamCount = node.getIntValue();
         deserializerMap['visibility'] = (node) => visibility = node.getEnumValue<ProfileVisibility>((stringValue) => ProfileVisibility.values.where((enumVal) => enumVal.value == stringValue).firstOrNull);
         deserializerMap['wins'] = (node) => wins = node.getIntValue();
@@ -77,10 +72,10 @@ class ApiOrganizationProfile implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<ApiOrganizationProfileAvatarUrl>('avatarUrl', avatarUrl);
-        writer.writeObjectValue<ApiOrganizationProfileBannerUrl>('bannerUrl', bannerUrl);
+        writer.writeStringValue('avatarUrl', avatarUrl);
+        writer.writeStringValue('bannerUrl', bannerUrl);
         writer.writeObjectValue<ApiOrganizationProfileCreatedAt>('createdAt', createdAt);
-        writer.writeObjectValue<ApiOrganizationProfileDescription>('description', description);
+        writer.writeStringValue('description', description);
         writer.writeIntValue('draws', draws);
         writer.writeStringValue('id', id);
         writer.writeBoolValue('isMember', value:isMember);
@@ -89,8 +84,8 @@ class ApiOrganizationProfile implements Parsable {
         writer.writeIntValue('matchesPlayed', matchesPlayed);
         writer.writeIntValue('memberCount', memberCount);
         writer.writeStringValue('name', name);
-        writer.writeObjectValue<ApiOrganizationProfileSlug>('slug', slug);
-        writer.writeObjectValue<ApiOrganizationProfileTag>('tag', tag);
+        writer.writeStringValue('slug', slug);
+        writer.writeStringValue('tag', tag);
         writer.writeIntValue('teamCount', teamCount);
         writer.writeEnumValue<ProfileVisibility>('visibility', visibility, (e) => e?.value);
         writer.writeIntValue('wins', wins);

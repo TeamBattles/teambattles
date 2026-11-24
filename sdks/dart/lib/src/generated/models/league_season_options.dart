@@ -1,13 +1,12 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './league_season_options_default_season_id.dart';
 import './league_season_options_seasons.dart';
 
 /// auto generated
 /// Season selector options.
 class LeagueSeasonOptions implements Parsable {
     ///  Recommended default option.
-    LeagueSeasonOptionsDefaultSeasonId? defaultSeasonId;
+    String? defaultSeasonId;
     ///  Season selector options for a league game.
     Iterable<LeagueSeasonOptionsSeasons>? seasons;
     ///  Response generation time (ISO 8601).
@@ -21,7 +20,7 @@ class LeagueSeasonOptions implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['defaultSeasonId'] = (node) => defaultSeasonId = node.getObjectValue<LeagueSeasonOptionsDefaultSeasonId>(LeagueSeasonOptionsDefaultSeasonId.createFromDiscriminatorValue);
+        deserializerMap['defaultSeasonId'] = (node) => defaultSeasonId = node.getStringValue();
         deserializerMap['seasons'] = (node) => seasons = node.getCollectionOfObjectValues<LeagueSeasonOptionsSeasons>(LeagueSeasonOptionsSeasons.createFromDiscriminatorValue);
         deserializerMap['timestamp'] = (node) => timestamp = node.getStringValue();
         return deserializerMap;
@@ -30,7 +29,7 @@ class LeagueSeasonOptions implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<LeagueSeasonOptionsDefaultSeasonId>('defaultSeasonId', defaultSeasonId);
+        writer.writeStringValue('defaultSeasonId', defaultSeasonId);
         writer.writeCollectionOfObjectValues<LeagueSeasonOptionsSeasons>('seasons', seasons);
         writer.writeStringValue('timestamp', timestamp);
     }

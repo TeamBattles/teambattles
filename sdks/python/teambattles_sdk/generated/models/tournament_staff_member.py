@@ -5,7 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .tournament_staff_member_avatar_url import TournamentStaffMember_avatarUrl
     from .tournament_staff_role import TournamentStaffRole
 
 @dataclass
@@ -14,7 +13,7 @@ class TournamentStaffMember(Parsable):
     One tournament staff assignment.
     """
     # Avatar image URL.
-    avatar_url: Optional[TournamentStaffMember_avatarUrl] = None
+    avatar_url: Optional[str] = None
     # Time the row was added (epoch milliseconds).
     created_at: Optional[float] = None
     # Staff row ID.
@@ -44,14 +43,12 @@ class TournamentStaffMember(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .tournament_staff_member_avatar_url import TournamentStaffMember_avatarUrl
         from .tournament_staff_role import TournamentStaffRole
 
-        from .tournament_staff_member_avatar_url import TournamentStaffMember_avatarUrl
         from .tournament_staff_role import TournamentStaffRole
 
         fields: dict[str, Callable[[Any], None]] = {
-            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_object_value(TournamentStaffMember_avatarUrl)),
+            "avatarUrl": lambda n : setattr(self, 'avatar_url', n.get_str_value()),
             "createdAt": lambda n : setattr(self, 'created_at', n.get_float_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
@@ -69,7 +66,7 @@ class TournamentStaffMember(Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("avatarUrl", self.avatar_url)
+        writer.write_str_value("avatarUrl", self.avatar_url)
         writer.write_float_value("createdAt", self.created_at)
         writer.write_str_value("id", self.id)
         writer.write_str_value("name", self.name)

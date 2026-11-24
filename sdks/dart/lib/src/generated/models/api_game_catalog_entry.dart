@@ -1,11 +1,5 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './api_game_catalog_entry_banner_image.dart';
-import './api_game_catalog_entry_convex_id.dart';
-import './api_game_catalog_entry_cover_image.dart';
-import './api_game_catalog_entry_description_key.dart';
-import './api_game_catalog_entry_rules_link.dart';
-import './api_game_catalog_entry_short_name_key.dart';
 import './api_game_map.dart';
 import './api_game_mode.dart';
 import './api_game_mode_map_pool.dart';
@@ -15,17 +9,17 @@ import './api_game_playlist.dart';
 /// Static public game catalog entry.
 class ApiGameCatalogEntry implements Parsable {
     ///  The bannerImage property
-    ApiGameCatalogEntryBannerImage? bannerImage;
+    String? bannerImage;
     ///  The category property
     String? category;
     ///  Active Convex games-table ID, when available for match APIs.
-    ApiGameCatalogEntryConvexId? convexId;
+    String? convexId;
     ///  The coverImage property
-    ApiGameCatalogEntryCoverImage? coverImage;
+    String? coverImage;
     ///  The defaultTeamSize property
     int? defaultTeamSize;
     ///  The descriptionKey property
-    ApiGameCatalogEntryDescriptionKey? descriptionKey;
+    String? descriptionKey;
     ///  The hasCompetitiveMode property
     bool? hasCompetitiveMode;
     ///  Static public game ID/slug.
@@ -45,9 +39,9 @@ class ApiGameCatalogEntry implements Parsable {
     ///  The playlists property
     Iterable<ApiGamePlaylist>? playlists;
     ///  The rulesLink property
-    ApiGameCatalogEntryRulesLink? rulesLink;
+    String? rulesLink;
     ///  The shortNameKey property
-    ApiGameCatalogEntryShortNameKey? shortNameKey;
+    String? shortNameKey;
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object
     static ApiGameCatalogEntry createFromDiscriminatorValue(ParseNode parseNode) {
@@ -57,12 +51,12 @@ class ApiGameCatalogEntry implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['bannerImage'] = (node) => bannerImage = node.getObjectValue<ApiGameCatalogEntryBannerImage>(ApiGameCatalogEntryBannerImage.createFromDiscriminatorValue);
+        deserializerMap['bannerImage'] = (node) => bannerImage = node.getStringValue();
         deserializerMap['category'] = (node) => category = node.getStringValue();
-        deserializerMap['convexId'] = (node) => convexId = node.getObjectValue<ApiGameCatalogEntryConvexId>(ApiGameCatalogEntryConvexId.createFromDiscriminatorValue);
-        deserializerMap['coverImage'] = (node) => coverImage = node.getObjectValue<ApiGameCatalogEntryCoverImage>(ApiGameCatalogEntryCoverImage.createFromDiscriminatorValue);
+        deserializerMap['convexId'] = (node) => convexId = node.getStringValue();
+        deserializerMap['coverImage'] = (node) => coverImage = node.getStringValue();
         deserializerMap['defaultTeamSize'] = (node) => defaultTeamSize = node.getIntValue();
-        deserializerMap['descriptionKey'] = (node) => descriptionKey = node.getObjectValue<ApiGameCatalogEntryDescriptionKey>(ApiGameCatalogEntryDescriptionKey.createFromDiscriminatorValue);
+        deserializerMap['descriptionKey'] = (node) => descriptionKey = node.getStringValue();
         deserializerMap['hasCompetitiveMode'] = (node) => hasCompetitiveMode = node.getBoolValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['isAvailableForMatchApi'] = (node) => isAvailableForMatchApi = node.getBoolValue();
@@ -72,20 +66,20 @@ class ApiGameCatalogEntry implements Parsable {
         deserializerMap['modes'] = (node) => modes = node.getCollectionOfObjectValues<ApiGameMode>(ApiGameMode.createFromDiscriminatorValue);
         deserializerMap['nameKey'] = (node) => nameKey = node.getStringValue();
         deserializerMap['playlists'] = (node) => playlists = node.getCollectionOfObjectValues<ApiGamePlaylist>(ApiGamePlaylist.createFromDiscriminatorValue);
-        deserializerMap['rulesLink'] = (node) => rulesLink = node.getObjectValue<ApiGameCatalogEntryRulesLink>(ApiGameCatalogEntryRulesLink.createFromDiscriminatorValue);
-        deserializerMap['shortNameKey'] = (node) => shortNameKey = node.getObjectValue<ApiGameCatalogEntryShortNameKey>(ApiGameCatalogEntryShortNameKey.createFromDiscriminatorValue);
+        deserializerMap['rulesLink'] = (node) => rulesLink = node.getStringValue();
+        deserializerMap['shortNameKey'] = (node) => shortNameKey = node.getStringValue();
         return deserializerMap;
     }
     /// Serializes information the current object
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<ApiGameCatalogEntryBannerImage>('bannerImage', bannerImage);
+        writer.writeStringValue('bannerImage', bannerImage);
         writer.writeStringValue('category', category);
-        writer.writeObjectValue<ApiGameCatalogEntryConvexId>('convexId', convexId);
-        writer.writeObjectValue<ApiGameCatalogEntryCoverImage>('coverImage', coverImage);
+        writer.writeStringValue('convexId', convexId);
+        writer.writeStringValue('coverImage', coverImage);
         writer.writeIntValue('defaultTeamSize', defaultTeamSize);
-        writer.writeObjectValue<ApiGameCatalogEntryDescriptionKey>('descriptionKey', descriptionKey);
+        writer.writeStringValue('descriptionKey', descriptionKey);
         writer.writeBoolValue('hasCompetitiveMode', value:hasCompetitiveMode);
         writer.writeStringValue('id', id);
         writer.writeBoolValue('isAvailableForMatchApi', value:isAvailableForMatchApi);
@@ -95,7 +89,7 @@ class ApiGameCatalogEntry implements Parsable {
         writer.writeCollectionOfObjectValues<ApiGameMode>('modes', modes);
         writer.writeStringValue('nameKey', nameKey);
         writer.writeCollectionOfObjectValues<ApiGamePlaylist>('playlists', playlists);
-        writer.writeObjectValue<ApiGameCatalogEntryRulesLink>('rulesLink', rulesLink);
-        writer.writeObjectValue<ApiGameCatalogEntryShortNameKey>('shortNameKey', shortNameKey);
+        writer.writeStringValue('rulesLink', rulesLink);
+        writer.writeStringValue('shortNameKey', shortNameKey);
     }
 }

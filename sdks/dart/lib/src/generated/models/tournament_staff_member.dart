@@ -1,13 +1,12 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
-import './tournament_staff_member_avatar_url.dart';
 import './tournament_staff_role.dart';
 
 /// auto generated
 /// One tournament staff assignment.
 class TournamentStaffMember implements Parsable {
     ///  Avatar image URL.
-    TournamentStaffMemberAvatarUrl? avatarUrl;
+    String? avatarUrl;
     ///  Time the row was added (epoch milliseconds).
     double? createdAt;
     ///  Staff row ID.
@@ -29,7 +28,7 @@ class TournamentStaffMember implements Parsable {
     @override
     Map<String, void Function(ParseNode)> getFieldDeserializers() {
         var deserializerMap = <String, void Function(ParseNode)>{};
-        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getObjectValue<TournamentStaffMemberAvatarUrl>(TournamentStaffMemberAvatarUrl.createFromDiscriminatorValue);
+        deserializerMap['avatarUrl'] = (node) => avatarUrl = node.getStringValue();
         deserializerMap['createdAt'] = (node) => createdAt = node.getDoubleValue();
         deserializerMap['id'] = (node) => id = node.getStringValue();
         deserializerMap['name'] = (node) => name = node.getStringValue();
@@ -42,7 +41,7 @@ class TournamentStaffMember implements Parsable {
     ///  [writer] Serialization writer to use to serialize this model
     @override
     void serialize(SerializationWriter writer) {
-        writer.writeObjectValue<TournamentStaffMemberAvatarUrl>('avatarUrl', avatarUrl);
+        writer.writeStringValue('avatarUrl', avatarUrl);
         writer.writeDoubleValue('createdAt', createdAt);
         writer.writeStringValue('id', id);
         writer.writeStringValue('name', name);

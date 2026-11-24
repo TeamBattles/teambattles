@@ -22,9 +22,9 @@ class UserMatch implements Parsable
     private ?int $bestOf = null;
     
     /**
-     * @var UserMatch_completedAt|null $completedAt Completion time (ISO 8601).
+     * @var string|null $completedAt Completion time (ISO 8601).
     */
-    private ?UserMatch_completedAt $completedAt = null;
+    private ?string $completedAt = null;
     
     /**
      * @var Team|null $creatorTeam The creatorTeam property
@@ -47,14 +47,14 @@ class UserMatch implements Parsable
     private ?string $id = null;
     
     /**
-     * @var UserMatch_scheduledAt|null $scheduledAt Scheduled start time (ISO 8601).
+     * @var string|null $scheduledAt Scheduled start time (ISO 8601).
     */
-    private ?UserMatch_scheduledAt $scheduledAt = null;
+    private ?string $scheduledAt = null;
     
     /**
-     * @var UserMatch_startedAt|null $startedAt Actual start time (ISO 8601).
+     * @var string|null $startedAt Actual start time (ISO 8601).
     */
-    private ?UserMatch_startedAt $startedAt = null;
+    private ?string $startedAt = null;
     
     /**
      * @var MatchStatus|null $status Lifecycle status of a match.
@@ -88,9 +88,9 @@ class UserMatch implements Parsable
 
     /**
      * Gets the completedAt property value. Completion time (ISO 8601).
-     * @return UserMatch_completedAt|null
+     * @return string|null
     */
-    public function getCompletedAt(): ?UserMatch_completedAt {
+    public function getCompletedAt(): ?string {
         return $this->completedAt;
     }
 
@@ -111,13 +111,13 @@ class UserMatch implements Parsable
         return  [
             'acceptedTeam' => fn(ParseNode $n) => $o->setAcceptedTeam($n->getObjectValue([Team::class, 'createFromDiscriminatorValue'])),
             'bestOf' => fn(ParseNode $n) => $o->setBestOf($n->getIntegerValue()),
-            'completedAt' => fn(ParseNode $n) => $o->setCompletedAt($n->getObjectValue([UserMatch_completedAt::class, 'createFromDiscriminatorValue'])),
+            'completedAt' => fn(ParseNode $n) => $o->setCompletedAt($n->getStringValue()),
             'creatorTeam' => fn(ParseNode $n) => $o->setCreatorTeam($n->getObjectValue([Team::class, 'createFromDiscriminatorValue'])),
             'game' => fn(ParseNode $n) => $o->setGame($n->getObjectValue([Game::class, 'createFromDiscriminatorValue'])),
             'gameMode' => fn(ParseNode $n) => $o->setGameMode($n->getStringValue()),
             'id' => fn(ParseNode $n) => $o->setId($n->getStringValue()),
-            'scheduledAt' => fn(ParseNode $n) => $o->setScheduledAt($n->getObjectValue([UserMatch_scheduledAt::class, 'createFromDiscriminatorValue'])),
-            'startedAt' => fn(ParseNode $n) => $o->setStartedAt($n->getObjectValue([UserMatch_startedAt::class, 'createFromDiscriminatorValue'])),
+            'scheduledAt' => fn(ParseNode $n) => $o->setScheduledAt($n->getStringValue()),
+            'startedAt' => fn(ParseNode $n) => $o->setStartedAt($n->getStringValue()),
             'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(MatchStatus::class)),
         ];
     }
@@ -148,17 +148,17 @@ class UserMatch implements Parsable
 
     /**
      * Gets the scheduledAt property value. Scheduled start time (ISO 8601).
-     * @return UserMatch_scheduledAt|null
+     * @return string|null
     */
-    public function getScheduledAt(): ?UserMatch_scheduledAt {
+    public function getScheduledAt(): ?string {
         return $this->scheduledAt;
     }
 
     /**
      * Gets the startedAt property value. Actual start time (ISO 8601).
-     * @return UserMatch_startedAt|null
+     * @return string|null
     */
-    public function getStartedAt(): ?UserMatch_startedAt {
+    public function getStartedAt(): ?string {
         return $this->startedAt;
     }
 
@@ -177,13 +177,13 @@ class UserMatch implements Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('acceptedTeam', $this->getAcceptedTeam());
         $writer->writeIntegerValue('bestOf', $this->getBestOf());
-        $writer->writeObjectValue('completedAt', $this->getCompletedAt());
+        $writer->writeStringValue('completedAt', $this->getCompletedAt());
         $writer->writeObjectValue('creatorTeam', $this->getCreatorTeam());
         $writer->writeObjectValue('game', $this->getGame());
         $writer->writeStringValue('gameMode', $this->getGameMode());
         $writer->writeStringValue('id', $this->getId());
-        $writer->writeObjectValue('scheduledAt', $this->getScheduledAt());
-        $writer->writeObjectValue('startedAt', $this->getStartedAt());
+        $writer->writeStringValue('scheduledAt', $this->getScheduledAt());
+        $writer->writeStringValue('startedAt', $this->getStartedAt());
         $writer->writeEnumValue('status', $this->getStatus());
     }
 
@@ -205,9 +205,9 @@ class UserMatch implements Parsable
 
     /**
      * Sets the completedAt property value. Completion time (ISO 8601).
-     * @param UserMatch_completedAt|null $value Value to set for the completedAt property.
+     * @param string|null $value Value to set for the completedAt property.
     */
-    public function setCompletedAt(?UserMatch_completedAt $value): void {
+    public function setCompletedAt(?string $value): void {
         $this->completedAt = $value;
     }
 
@@ -245,17 +245,17 @@ class UserMatch implements Parsable
 
     /**
      * Sets the scheduledAt property value. Scheduled start time (ISO 8601).
-     * @param UserMatch_scheduledAt|null $value Value to set for the scheduledAt property.
+     * @param string|null $value Value to set for the scheduledAt property.
     */
-    public function setScheduledAt(?UserMatch_scheduledAt $value): void {
+    public function setScheduledAt(?string $value): void {
         $this->scheduledAt = $value;
     }
 
     /**
      * Sets the startedAt property value. Actual start time (ISO 8601).
-     * @param UserMatch_startedAt|null $value Value to set for the startedAt property.
+     * @param string|null $value Value to set for the startedAt property.
     */
-    public function setStartedAt(?UserMatch_startedAt $value): void {
+    public function setStartedAt(?string $value): void {
         $this->startedAt = $value;
     }
 

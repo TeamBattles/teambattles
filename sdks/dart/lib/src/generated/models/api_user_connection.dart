@@ -1,8 +1,6 @@
 // ignore_for_file: type=lint
 import 'package:microsoft_kiota_abstractions/microsoft_kiota_abstractions.dart';
 import './api_user_connection_connected_at.dart';
-import './api_user_connection_url.dart';
-import './api_user_connection_username.dart';
 
 /// auto generated
 /// API-safe public account connection.
@@ -18,9 +16,9 @@ class ApiUserConnection implements Parsable {
     ///  Connected platform.
     String? platform;
     ///  The url property
-    ApiUserConnectionUrl? url;
+    String? url;
     ///  The username property
-    ApiUserConnectionUsername? username;
+    String? username;
     /// Creates a new instance of the appropriate class based on discriminator value
     ///  [parseNode] The parse node to use to read the discriminator value and create the object
     static ApiUserConnection createFromDiscriminatorValue(ParseNode parseNode) {
@@ -35,8 +33,8 @@ class ApiUserConnection implements Parsable {
         deserializerMap['isPrimary'] = (node) => isPrimary = node.getBoolValue();
         deserializerMap['isVerified'] = (node) => isVerified = node.getBoolValue();
         deserializerMap['platform'] = (node) => platform = node.getStringValue();
-        deserializerMap['url'] = (node) => url = node.getObjectValue<ApiUserConnectionUrl>(ApiUserConnectionUrl.createFromDiscriminatorValue);
-        deserializerMap['username'] = (node) => username = node.getObjectValue<ApiUserConnectionUsername>(ApiUserConnectionUsername.createFromDiscriminatorValue);
+        deserializerMap['url'] = (node) => url = node.getStringValue();
+        deserializerMap['username'] = (node) => username = node.getStringValue();
         return deserializerMap;
     }
     /// Serializes information the current object
@@ -48,7 +46,7 @@ class ApiUserConnection implements Parsable {
         writer.writeBoolValue('isPrimary', value:isPrimary);
         writer.writeBoolValue('isVerified', value:isVerified);
         writer.writeStringValue('platform', platform);
-        writer.writeObjectValue<ApiUserConnectionUrl>('url', url);
-        writer.writeObjectValue<ApiUserConnectionUsername>('username', username);
+        writer.writeStringValue('url', url);
+        writer.writeStringValue('username', username);
     }
 }

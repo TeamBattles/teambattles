@@ -1,9 +1,7 @@
 package gg.teambattles.sdk.generated.models;
 
-import com.microsoft.kiota.serialization.ComposedTypeWrapper;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
-import com.microsoft.kiota.serialization.ParseNodeHelper;
 import com.microsoft.kiota.serialization.SerializationWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +18,7 @@ public class GameMatchRostersResponse implements Parsable {
     /**
      * ID of the team that accepted the match, or null if unaccepted.
      */
-    private GameMatchRostersResponseAcceptedTeamId acceptedTeamId;
+    private String acceptedTeamId;
     /**
      * Players on the creator team.
      */
@@ -53,10 +51,10 @@ public class GameMatchRostersResponse implements Parsable {
     }
     /**
      * Gets the acceptedTeamId property value. ID of the team that accepted the match, or null if unaccepted.
-     * @return a {@link GameMatchRostersResponseAcceptedTeamId}
+     * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public GameMatchRostersResponseAcceptedTeamId getAcceptedTeamId() {
+    public String getAcceptedTeamId() {
         return this.acceptedTeamId;
     }
     /**
@@ -83,7 +81,7 @@ public class GameMatchRostersResponse implements Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(5);
         deserializerMap.put("acceptedRoster", (n) -> { this.setAcceptedRoster(n.getCollectionOfObjectValues(GameRosterPlayer::createFromDiscriminatorValue)); });
-        deserializerMap.put("acceptedTeamId", (n) -> { this.setAcceptedTeamId(n.getObjectValue(GameMatchRostersResponseAcceptedTeamId::createFromDiscriminatorValue)); });
+        deserializerMap.put("acceptedTeamId", (n) -> { this.setAcceptedTeamId(n.getStringValue()); });
         deserializerMap.put("creatorRoster", (n) -> { this.setCreatorRoster(n.getCollectionOfObjectValues(GameRosterPlayer::createFromDiscriminatorValue)); });
         deserializerMap.put("creatorTeamId", (n) -> { this.setCreatorTeamId(n.getStringValue()); });
         deserializerMap.put("timestamp", (n) -> { this.setTimestamp(n.getStringValue()); });
@@ -104,7 +102,7 @@ public class GameMatchRostersResponse implements Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeCollectionOfObjectValues("acceptedRoster", this.getAcceptedRoster());
-        writer.writeObjectValue("acceptedTeamId", this.getAcceptedTeamId());
+        writer.writeStringValue("acceptedTeamId", this.getAcceptedTeamId());
         writer.writeCollectionOfObjectValues("creatorRoster", this.getCreatorRoster());
         writer.writeStringValue("creatorTeamId", this.getCreatorTeamId());
         writer.writeStringValue("timestamp", this.getTimestamp());
@@ -120,7 +118,7 @@ public class GameMatchRostersResponse implements Parsable {
      * Sets the acceptedTeamId property value. ID of the team that accepted the match, or null if unaccepted.
      * @param value Value to set for the acceptedTeamId property.
      */
-    public void setAcceptedTeamId(@jakarta.annotation.Nullable final GameMatchRostersResponseAcceptedTeamId value) {
+    public void setAcceptedTeamId(@jakarta.annotation.Nullable final String value) {
         this.acceptedTeamId = value;
     }
     /**
@@ -143,88 +141,5 @@ public class GameMatchRostersResponse implements Parsable {
      */
     public void setTimestamp(@jakarta.annotation.Nullable final String value) {
         this.timestamp = value;
-    }
-    /**
-     * Composed type wrapper for classes {@link GameMatchRostersResponseAcceptedTeamIdMember1}, {@link String}
-     */
-    @jakarta.annotation.Generated("com.microsoft.kiota")
-    public static class GameMatchRostersResponseAcceptedTeamId implements ComposedTypeWrapper, Parsable {
-        /**
-         * Composed type representation for type {@link GameMatchRostersResponseAcceptedTeamIdMember1}
-         */
-        private GameMatchRostersResponseAcceptedTeamIdMember1 gameMatchRostersResponseAcceptedTeamIdMember1;
-        /**
-         * Composed type representation for type {@link String}
-         */
-        private String string;
-        /**
-         * Creates a new instance of the appropriate class based on discriminator value
-         * @param parseNode The parse node to use to read the discriminator value and create the object
-         * @return a {@link GameMatchRostersResponseAcceptedTeamId}
-         */
-        @jakarta.annotation.Nonnull
-        public static GameMatchRostersResponseAcceptedTeamId createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
-            Objects.requireNonNull(parseNode);
-            final GameMatchRostersResponseAcceptedTeamId result = new GameMatchRostersResponseAcceptedTeamId();
-            if (parseNode.getStringValue() != null) {
-                result.setString(parseNode.getStringValue());
-            } else {
-                result.setGameMatchRostersResponseAcceptedTeamIdMember1(new GameMatchRostersResponseAcceptedTeamIdMember1());
-            }
-            return result;
-        }
-        /**
-         * The deserialization information for the current model
-         * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
-         */
-        @jakarta.annotation.Nonnull
-        public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-            if (this.getGameMatchRostersResponseAcceptedTeamIdMember1() != null) {
-                return ParseNodeHelper.mergeDeserializersForIntersectionWrapper(this.getGameMatchRostersResponseAcceptedTeamIdMember1());
-            }
-            return new HashMap<String, java.util.function.Consumer<ParseNode>>();
-        }
-        /**
-         * Gets the GameMatchRostersResponse_acceptedTeamIdMember1 property value. Composed type representation for type {@link GameMatchRostersResponseAcceptedTeamIdMember1}
-         * @return a {@link GameMatchRostersResponseAcceptedTeamIdMember1}
-         */
-        @jakarta.annotation.Nullable
-        public GameMatchRostersResponseAcceptedTeamIdMember1 getGameMatchRostersResponseAcceptedTeamIdMember1() {
-            return this.gameMatchRostersResponseAcceptedTeamIdMember1;
-        }
-        /**
-         * Gets the string property value. Composed type representation for type {@link String}
-         * @return a {@link String}
-         */
-        @jakarta.annotation.Nullable
-        public String getString() {
-            return this.string;
-        }
-        /**
-         * Serializes information the current object
-         * @param writer Serialization writer to use to serialize this model
-         */
-        public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
-            Objects.requireNonNull(writer);
-            if (this.getString() != null) {
-                writer.writeStringValue(null, this.getString());
-            } else {
-                writer.writeObjectValue(null, this.getGameMatchRostersResponseAcceptedTeamIdMember1());
-            }
-        }
-        /**
-         * Sets the GameMatchRostersResponse_acceptedTeamIdMember1 property value. Composed type representation for type {@link GameMatchRostersResponseAcceptedTeamIdMember1}
-         * @param value Value to set for the GameMatchRostersResponse_acceptedTeamIdMember1 property.
-         */
-        public void setGameMatchRostersResponseAcceptedTeamIdMember1(@jakarta.annotation.Nullable final GameMatchRostersResponseAcceptedTeamIdMember1 value) {
-            this.gameMatchRostersResponseAcceptedTeamIdMember1 = value;
-        }
-        /**
-         * Sets the string property value. Composed type representation for type {@link String}
-         * @param value Value to set for the string property.
-         */
-        public void setString(@jakarta.annotation.Nullable final String value) {
-            this.string = value;
-        }
     }
 }

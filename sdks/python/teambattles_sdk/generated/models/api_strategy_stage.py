@@ -4,9 +4,6 @@ from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .api_strategy_stage_label import ApiStrategyStage_label
-
 @dataclass
 class ApiStrategyStage(Parsable):
     """
@@ -17,7 +14,7 @@ class ApiStrategyStage(Parsable):
     # Stable stage id within the strategy.
     id: Optional[str] = None
     # Author stage label, when set.
-    label: Optional[ApiStrategyStage_label] = None
+    label: Optional[str] = None
     # Registered map level for this stage. Omitted values use the map default.
     level_id: Optional[str] = None
     
@@ -37,14 +34,10 @@ class ApiStrategyStage(Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .api_strategy_stage_label import ApiStrategyStage_label
-
-        from .api_strategy_stage_label import ApiStrategyStage_label
-
         fields: dict[str, Callable[[Any], None]] = {
             "durationMs": lambda n : setattr(self, 'duration_ms', n.get_int_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "label": lambda n : setattr(self, 'label', n.get_object_value(ApiStrategyStage_label)),
+            "label": lambda n : setattr(self, 'label', n.get_str_value()),
             "levelId": lambda n : setattr(self, 'level_id', n.get_str_value()),
         }
         return fields
@@ -59,7 +52,7 @@ class ApiStrategyStage(Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_int_value("durationMs", self.duration_ms)
         writer.write_str_value("id", self.id)
-        writer.write_object_value("label", self.label)
+        writer.write_str_value("label", self.label)
         writer.write_str_value("levelId", self.level_id)
     
 
