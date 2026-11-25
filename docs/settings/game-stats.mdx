@@ -12,9 +12,12 @@ Game Stats lets you track your competitive rank for supported games and display 
 | Call of Duty: Black Ops 7 | Manual | Ranked Play, Warzone Ranked | SR-based (Bronze through Top 250)       |
 | Valorant                  | API    | Competitive                 | Tier-based (Iron 1 through Radiant)     |
 | League of Legends         | API    | Solo/Duo, Flex              | Tier-based (Iron IV through Challenger) |
+| Deadlock                  | Live   | Ranked                      | Tier-based (Initiate 1 through Eternus) |
 
 - **Manual** games require you to enter your Skill Rating (SR) directly.
 - **API** games sync your rank automatically from the Riot Games API.
+- **Live** games read your rank from your Steam connection every time it is shown. There is nothing
+  to sync and no Sync button.
 
 ## Setting Up Manual Ranks (BO7)
 
@@ -37,6 +40,24 @@ Game Stats lets you track your competitive rank for supported games and display 
 	API rank data is cached for 15 minutes. If you click Sync again within that window, the cached
 	data is returned. After 15 minutes, a fresh fetch is performed.
 </Note>
+
+## Deadlock (Steam)
+
+<Steps>
+	<Step title="Connect Steam">Go to **Settings > Connections** and add Steam with your numeric 17-digit Steam ID or a numeric profile link (`steamcommunity.com/profiles/...`), not a custom profile name</Step>
+	<Step title="Check the Game Stats card">Open **Settings > Game Stats**. The Deadlock card shows your rank, your progress through the current subrank where there is one, and the Steam account name behind the ID, so you can confirm it is yours.</Step>
+</Steps>
+
+Deadlock stats come from [deadlock-api.com](https://deadlock-api.com), a third-party Deadlock stats
+service, and are never stored on TeamBattles. The card also tells you when:
+
+- you have no Steam connection, with a link to Connections
+- the Steam ID on your connection cannot be read
+- deadlock-api.com has no data for the ID, including when you asked them to delete your data
+- deadlock-api.com cannot be reached right now
+
+The card previews your rank only. Your daily and season record and your last match are overlay
+widgets: see [Widgets](/tools/battles-overlay/widgets#deadlock).
 
 ## What's Displayed
 

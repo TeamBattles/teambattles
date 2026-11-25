@@ -26,12 +26,71 @@ visibility flags on the underlying record: user-scoped endpoints require the own
 | `GET /api/v1/overlay/org/[id]/stats`                  | Organization Stats widget                  |
 | `GET /api/v1/overlay/leaderboard/top-players`         | Top 3 Players widget                       |
 | `GET /api/v1/overlay/simple/[gameId]`                 | Simple Overlay (no-account flow)           |
+| `GET /api/v1/overlay/config/[configId]/deadlock/[part]` | Deadlock widgets in a saved overlay      |
+| `GET /api/v1/overlay/simple/deadlock/rank`            | Simple Overlay Deadlock Ranked             |
+| `GET /api/v1/overlay/simple/deadlock/session`         | Simple Overlay Deadlock Session            |
+| `GET /api/v1/overlay/simple/deadlock/last-match`      | Simple Overlay Deadlock Last Match         |
+| `GET /api/v1/overlay/simple/deadlock/search`          | Simple Overlay Steam name search           |
 | `POST /api/v1/overlay/dock/auth`                      | OBS Dock device-flow request               |
 | `GET /api/v1/overlay/dock/auth`                       | OBS Dock device-flow poll                  |
 
 A render URL is `https://teambattles.gg/overlay/render/{configId}`, optionally with
 `?widget=<widgetKey>` to render a single widget. It carries the config id and nothing else - there
 is no key parameter and no secret in the URL.
+
+## Deadlock endpoints
+
+Deadlock stats are fetched live from [deadlock-api.com](https://deadlock-api.com) and never stored.
+The config-keyed endpoint resolves the overlay owner's Steam ID on the server. The `simple` rank,
+session, and last-match endpoints take a Steam ID in the query string, and the search endpoint takes
+part of a Steam name.
+
+| Endpoint                                      | Parameters                                                       |
+| --------------------------------------------- | ---------------------------------------------------------------- |
+| `config/[configId]/deadlock/[part]`           | `part` is `rank`, `session`, or `last-match`; `since` on session |
+| `simple/deadlock/rank`                        | `steam`                                                          |
+| `simple/deadlock/session`                     | `steam`, `since`                                                 |
+| `simple/deadlock/last-match`                  | `steam`                                                          |
+| `simple/deadlock/search`                      | `q`, 3 to 32 characters                                          |
+
+- `steam` is a 17-digit SteamID64, a 32-bit account id, `[U:1:N]`, or a
+  `steamcommunity.com/profiles/<SteamID64>` link. Anything else answers `400`.
+- `since` is the Unix time, in seconds, of the viewer's local midnight. It must be a multiple of 900,
+  not in the future, and no more than 26 hours ago, or the endpoint answers `400`.
+
+The rank, session, and last-match endpoints answer `200` with `{ data, reason }`. `data` is the
+widget's data, or `null` when there is nothing to show:
+
+```json No data
+{ "data": null, "reason": "not_found" }
+```
+
+| Part         | `data`                                                                                                   |
+| ------------ | -------------------------------------------------------------------------------------------------------- |
+| `rank`       | Rank card data with `displayName` and `apiData: { badge, tier, subrank, progress }`; `progress` is `{ current, max }` or `null` |
+| `session`    | `{ today, season, updatedAt }`: `today` is `{ wins, losses, winRate }`; `season` adds `name`, `kd`, and `topHero`, or is `null` with no ranked season running |
+| `last-match` | `{ hero, won, kills, deaths, assists, souls, durationS, startedAt, ranked, rankedDelta, updatedAt }`     |
+
+When `data` is `null`, `reason` says why:
+
+| `reason`      | Meaning                                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------------------- |
+| `not_found`   | deadlock-api.com has no data for the player, including one who asked it to delete their data, or no match qualifies for Last Match |
+| `no_steam`    | Config-keyed only: the owner has no Steam connection, or its Steam ID cannot be read                        |
+| `unavailable` | Config-keyed only: the config does not exist, the owner's profile is Private or banned, or that widget is off in the config |
+
+A `200` carries `Cache-Control: public, max-age=120`. When deadlock-api.com fails or times out, the
+endpoint answers `503` with `Retry-After: 30`, no `Cache-Control`, and
+`{ "error": "UPSTREAM_UNAVAILABLE" }`, so a client should keep the last data it showed.
+
+The search endpoint answers `{ "players": [...] }` with up to six entries of
+`{ accountId, name, avatarUrl, matchesLast30d }`, cached for 300 seconds. deadlock-api.com only lists
+accounts with recent matches, so an empty list does not mean the account does not exist.
+
+<Note>
+	The config-keyed endpoint never returns the owner's Steam ID or Steam name. Its rank answer
+	carries the owner's TeamBattles display name; the `simple` rank answer carries the Steam name.
+</Note>
 
 ## API-key endpoints (owner management)
 
@@ -74,7 +133,9 @@ string, so it can be constructed without calling anything first.
 
 Manual games (currently Black Ops 7) read `sr` and `winstreak` straight from the URL and never
 refresh. API-backed games (Valorant, League of Legends) resolve rank from the Riot Games API and
-poll every 300 seconds.
+poll every 300 seconds. Deadlock (`game=dl`, `mode` of `ranked`, `session`, or `last_match`) puts
+the Steam account id in `username`, reads the `simple/deadlock` endpoints above, and polls every 120
+seconds.
 
 ## OBS Dock device authorization
 

@@ -408,6 +408,44 @@ Keys are only needed if you are connecting something to TeamBattles yourself. Th
   editor and delete ones you no longer use. You will need to move or delete any strategy still using
   a map before you can remove it.
 
+## Battles Overlay Issues
+
+For everything else about the overlay, see
+[Overlay troubleshooting](/tools/battles-overlay/troubleshooting).
+
+**"My Deadlock widget says 'No Deadlock data yet' or 'No Deadlock data for this Steam ID'"**
+
+- Full overlay: open Settings > Connections and make sure Steam is added with your numeric 17-digit
+  Steam ID, not a custom profile name, and that your profile is not set to Private
+- Simple Overlay: compare the Steam ID you typed in the form with the one on your Steam profile, then
+  copy a fresh link. A custom profile link shows the notice straight away
+- Last Match needs at least one ranked or unranked standard match. Private-lobby matches do not count
+- Deadlock stats come from deadlock-api.com. If you asked them to delete your data, there is no data
+  to show: Ranked and Last Match keep the notice, and Session shows `0W - 0L`
+
+**"My Deadlock widgets show the wrong player, Unranked, or nothing"**
+
+- Deadlock gives you no rank until your placement matches are done, so Unranked is normal until then
+- A mistyped Steam ID is not reported as an error, because deadlock-api.com answers for an ID it has
+  never seen the same way as for a new player:
+  - Full overlay: Ranked shows Unranked, Session shows `0W - 0L`, and Last Match shows "No Deadlock
+    data yet"
+  - Simple Overlay: Ranked and Last Match show "No Deadlock data for this Steam ID", and Session shows
+    `0W - 0L`
+- If the mistyped ID belongs to another player, all three widgets show that player's stats. The
+  Deadlock card in Settings > Game Stats shows the Steam name behind the ID on your connection, so
+  you can check it is yours
+
+**"My Deadlock stats are a few minutes behind"**
+
+- A finished match can take a few minutes to appear. TeamBattles keeps each answer for about two
+  minutes, and a shorter overlay Refresh setting does not speed that up
+
+**"My Deadlock widget kept showing old numbers"**
+
+- If deadlock-api.com stops answering, the widget keeps the last numbers it received and updates
+  again once the service is back. Reloading the source during an outage clears them until it answers
+
 
 ## Link preview shows no image or a stale image
 

@@ -79,6 +79,64 @@ If you do have a match on:
    interval.
 3. **Check the match itself.** It has to be scheduled or in progress, not finished or cancelled.
 
+## A Deadlock widget says "No Deadlock data yet"
+
+In the full overlay the widget is dimmed and reads "No Deadlock data yet - check your Steam ID in
+Settings > Connections". In the [Simple Overlay](/tools/battles-overlay/simple) it reads "No Deadlock
+data for this Steam ID" instead.
+
+1. **Check your Steam ID.** For the full overlay, open
+   [Settings > Connections](https://teambattles.gg/settings/connections) and make sure Steam is added
+   with your numeric Steam ID (17 digits), not a custom profile name. The Deadlock card in
+   [Settings > Game Stats](https://teambattles.gg/settings/game-stats) tells you when the ID cannot be
+   read. For the Simple Overlay, compare the ID you typed in the form with the one on your Steam
+   profile, then copy a fresh link. A custom profile link, or anything that is not a Steam ID, shows
+   the notice straight away.
+2. **Check your profile visibility.** For the full overlay, your profile must not be set to Private.
+   See [Visibility and Privacy](/tools/battles-overlay/visibility).
+3. **Check you have played.** Last Match has nothing to show until you have a ranked or unranked
+   standard match. Private-lobby matches do not count.
+4. **Wait for the next refresh.** If deadlock-api.com could not be reached when the overlay first
+   loaded, the widget fills in once it can.
+5. **Remember where the stats come from.** Deadlock stats come from deadlock-api.com. If you asked
+   them to delete your data, there is no data to show: Ranked and Last Match keep this notice, and
+   Session shows `0W - 0L`.
+
+## The Deadlock rank card shows Unranked
+
+1. **You may still be in placement.** Deadlock gives you no rank until your placement matches are
+   done, so the card shows **Unranked**. It moves after a ranked match is recorded.
+2. **Check the Steam ID.** See [A Deadlock widget shows the wrong player, or nothing](#a-deadlock-widget-shows-the-wrong-player-or-nothing).
+
+## A Deadlock widget shows the wrong player, or nothing
+
+A mistyped Steam ID is not reported as an error. deadlock-api.com answers for an ID it has never
+seen the same way as for a new player, so what you see depends on the overlay:
+
+| Widget     | Full overlay           | Simple Overlay                         |
+| ---------- | ---------------------- | -------------------------------------- |
+| Ranked     | Unranked               | "No Deadlock data for this Steam ID"   |
+| Session    | `0W - 0L`              | `0W - 0L`                              |
+| Last Match | "No Deadlock data yet" | "No Deadlock data for this Steam ID"   |
+
+If the mistyped ID belongs to another player, all three widgets show that player's stats. The
+Deadlock card in [Settings > Game Stats](https://teambattles.gg/settings/game-stats) shows the Steam
+name behind the ID on your connection, so you can check it is yours. For the Simple Overlay, compare
+the ID you typed with the one on your Steam profile.
+
+## Deadlock stats are a few minutes behind
+
+A match can take a few minutes to show up after it ends. TeamBattles keeps each answer from
+deadlock-api.com for about two minutes, so there is nothing to fix, and a **Refresh** setting below
+two minutes does not make Deadlock numbers move faster.
+
+## A Deadlock widget kept old numbers
+
+If deadlock-api.com stops answering, the widgets keep showing the last numbers they received instead
+of an error or a blank space, and update again on their own once it is back. Reloading the source
+during an outage clears those numbers, so the widget shows its no-data notice until the service
+answers.
+
 ## The OBS Dock will not connect to OBS
 
 ### The connection is switched off

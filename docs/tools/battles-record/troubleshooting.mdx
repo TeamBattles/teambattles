@@ -207,6 +207,17 @@ Check the error message in logs:
 3. **Browser cache** - Clear cookies and try again
 4. **Reset password** - Use CLI to reset if locked out
 
+### "Client Version Is Too New for This Server"
+
+Battles Record 2.0.0 shows this when the app connects to a 2.0.0 server, including the one built into
+the desktop app. Update to 2.0.1 or later, which accepts any app from the server's own major version:
+
+1. **Desktop app** - Install the latest release from GitHub. It includes the updated server
+2. **Docker** - Pull the latest image and recreate the container (see
+   [Updating](/tools/battles-record/installation#updating))
+
+If the message says the client version is **too old** instead, update the desktop app.
+
 ### Dashboard Slow/Unresponsive
 
 1. **Many recordings** - Archive or delete old recordings

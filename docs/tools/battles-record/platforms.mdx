@@ -197,13 +197,15 @@ The dashboard shows real-time channel status:
 
 ## Channel Name Handling
 
-### YouTube Name Normalization
+### Name Normalization
 
-When adding a YouTube channel, names are automatically normalized:
+Every channel name is normalized the same way, whether you add it in the app or from Battles Replay:
 
-- The `@` prefix is added to YouTube handles if not already present (e.g., `BaianotTV1` becomes `@BaianotTV1`)
-- Full YouTube URLs (starting with `http://` or `https://`) are preserved as-is
-- Twitch and Kick names are not modified
+- Names are trimmed and stored in lowercase, since Twitch logins, Kick slugs and YouTube handles ignore case (e.g., `xQc` becomes `xqc`)
+- The `@` prefix is added to YouTube handles if not already present (e.g., `BaianotTV1` becomes `@baianottv1`)
+- Full URLs (starting with `http://` or `https://`) are preserved as-is, because their paths can be case-sensitive
+
+Channels added before 2.0.2 keep the names they were stored with.
 
 ### Duplicate Detection
 

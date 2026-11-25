@@ -3,8 +3,8 @@ title: "Simple Overlay"
 description: "Put your game rank on stream in under a minute, with no account"
 ---
 
-The Simple Overlay shows one thing: your rank in a game. There is no sign-in and nothing to save.
-Pick your game, fill in the form, copy the link.
+The Simple Overlay shows one thing: your rank in a game, or for Deadlock your record or last match.
+There is no sign-in and nothing to save. Pick your game, fill in the form, copy the link.
 
 Open it at [teambattles.gg/overlay/simple](https://teambattles.gg/overlay/simple).
 
@@ -12,12 +12,12 @@ Open it at [teambattles.gg/overlay/simple](https://teambattles.gg/overlay/simple
 
 <Steps>
 	<Step title="Pick your game and mode">
-		Choose Call of Duty: Black Ops 7, Valorant, or League of Legends, then the mode you want to
-		show.
+		Choose Call of Duty: Black Ops 7, Valorant, League of Legends, or Deadlock, then the mode you
+		want to show.
 	</Step>
 	<Step title="Fill in your details">
 		Enter your in-game name and choose how the widget should look. Black Ops 7 asks for your SR;
-		Valorant and League of Legends ask for your region instead.
+		Valorant and League of Legends ask for your region instead. Deadlock asks for your Steam ID.
 	</Step>
 	<Step title="Copy the link">
 		The link updates as you type. Copy it and add it as a browser source in your streaming
@@ -32,6 +32,36 @@ Open it at [teambattles.gg/overlay/simple](https://teambattles.gg/overlay/simple
 | Call of Duty: Black Ops 7 | You type it in                   | Ranked Play, Warzone Ranked |
 | Valorant                  | Pulled from your Riot account    | Competitive                 |
 | League of Legends         | Pulled from your Riot account    | Solo/Duo, Flex              |
+| Deadlock                  | Pulled from your Steam ID        | Ranked, Session, Last Match |
+
+## Deadlock
+
+For Deadlock, the form asks for your Steam account instead of a name. Paste your Steam ID or a
+profile link into the **Steam ID or profile link** box, or type at least three characters of your
+Steam name into **Search your Steam name** and pick yourself from the list. Each result shows an
+avatar, a name, and how many matches that player has had in the last 30 days. The search only lists
+accounts with recent Deadlock matches, so if you do not appear, paste your Steam ID or profile link
+instead.
+
+The **Steam ID or profile link** box accepts:
+
+- Your 17-digit Steam ID, such as `76561198012345678`
+- Your Steam account number, the shorter form of the ID
+- The `[U:1:12345678]` form
+- A numeric profile link, such as `steamcommunity.com/profiles/76561198012345678`
+
+Custom profile links, such as `steamcommunity.com/id/yourname`, are not accepted. The form tells you
+so when you paste one: use your numeric profile link or the name search instead.
+
+Ranked is your rank card. Session shows your record for today and the season, and Last Match shows
+your most recent match. See [Widgets](/tools/battles-overlay/widgets#deadlock) for what each line
+means. If there is no Deadlock data for the ID in the link, the source shows a dimmed "No Deadlock
+data for this Steam ID" notice; see
+[Troubleshooting](/tools/battles-overlay/troubleshooting#a-deadlock-widget-says-no-deadlock-data-yet).
+
+Deadlock widgets in the Simple Overlay always show the teambattles.gg watermark, because a Steam ID
+is not tied to a TeamBattles account. The [full editor](/tools/battles-overlay/editor) removes it on
+Basic and up.
 
 ## Appearance options
 
@@ -43,10 +73,16 @@ Open it at [teambattles.gg/overlay/simple](https://teambattles.gg/overlay/simple
 | Animated    | On, Off                   | On         |
 | Size        | 0.5x to 2.0x              | 1.0x       |
 
+Orientation and Animated only apply to rank widgets. Deadlock Session and Last Match have a single
+layout, so the form hides both options for them.
+
 ## Keeping it up to date
 
 **Valorant and League of Legends** refresh on their own every five minutes. Set it up once and leave
 it running.
+
+**Deadlock** refreshes on its own every two minutes. Stats for a match you just finished can take a
+few minutes to appear.
 
 **Black Ops 7** shows the SR you typed in and does not change on its own. When your rank moves, go
 back to [the form](https://teambattles.gg/overlay/simple), enter your new SR, and paste the fresh
@@ -54,15 +90,15 @@ link over the old one in your streaming software.
 
 ## Simple Overlay or the full editor?
 
-| Feature                | Simple Overlay | Full editor           |
-| ---------------------- | -------------- | --------------------- |
-| Account needed         | No             | Yes                   |
-| Widgets on screen      | One            | Seven, plus game ranks|
-| Custom colors          | No             | Yes                   |
-| How often it refreshes | Every 5 minutes| Every 30 to 300 seconds |
-| Watermark              | Always shown   | Removed on Basic and up |
-| Drag-and-drop layout   | No             | Yes                   |
-| Saved overlays         | None           | Up to 5               |
+| Feature                | Simple Overlay       | Full editor              |
+| ---------------------- | -------------------- | ------------------------ |
+| Account needed         | No                   | Yes                      |
+| Widgets on screen      | One                  | Seven, plus game widgets |
+| Custom colors          | No                   | Yes                      |
+| How often it refreshes | Every 2 to 5 minutes | Every 30 to 300 seconds  |
+| Watermark              | Always shown         | Removed on Basic and up  |
+| Drag-and-drop layout   | No                   | Yes                      |
+| Saved overlays         | None                 | Up to 5                  |
 
 <Tip>
 	Start with the Simple Overlay. Move to the [full editor](/tools/battles-overlay/editor) when you

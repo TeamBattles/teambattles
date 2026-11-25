@@ -3,7 +3,7 @@ title: "Widgets"
 description: "What each Battles Overlay widget shows on stream"
 ---
 
-Battles Overlay has seven widgets, plus a rank widget for each game you play. Turn on the ones you
+Battles Overlay has seven widgets, plus game widgets for the games you play. Turn on the ones you
 want in the editor and arrange them however you like.
 
 Every widget fills in from your public profile, so nothing here needs a password or a key. If one
@@ -11,16 +11,18 @@ appears empty on stream, check [Visibility and Privacy](/tools/battles-overlay/v
 
 ## At a glance
 
-| Widget             | Shows                            | Size on screen |
-| ------------------ | -------------------------------- | -------------- |
-| User Stats         | Your own record                  | 300 x 120      |
-| Team Stats         | A team you are on                | 300 x 120      |
-| Organization Stats | An organization you belong to    | 280 x 100      |
-| Active Match       | Your live match and its score    | 400 x 150      |
-| Leaderboard Rank   | Where you sit on the leaderboard | 200 x 80       |
-| Top 3 Players      | The current top three            | 250 x 180      |
-| Referral Code      | Your referral code and total     | 200 x 80       |
-| Game Rank          | Your rank in a specific game     | 320 x 100      |
+| Widget              | Shows                             | Size on screen |
+| ------------------- | --------------------------------- | -------------- |
+| User Stats          | Your own record                   | 300 x 120      |
+| Team Stats          | A team you are on                 | 300 x 120      |
+| Organization Stats  | An organization you belong to     | 280 x 100      |
+| Active Match        | Your live match and its score     | 400 x 150      |
+| Leaderboard Rank    | Where you sit on the leaderboard  | 200 x 80       |
+| Top 3 Players       | The current top three             | 250 x 180      |
+| Referral Code       | Your referral code and total      | 200 x 80       |
+| Game Rank           | Your rank in a specific game      | 320 x 100      |
+| Deadlock Session    | Your record today and this season | 480 x 200      |
+| Deadlock Last Match | Your most recent Deadlock match   | 480 x 200      |
 
 Sizes are approximate, and the **Size** slider in the editor scales all of them together. You only
 need them if you add each widget to your stream as its own source rather than using the full
@@ -99,7 +101,7 @@ Your referral code and how many people have used it - handy if you want viewers 
 
 ## Game Rank
 
-A rank badge for a specific game, found under **Game ranks** in the editor.
+A rank badge for a specific game, found under **Game widgets** in the editor.
 
 - The game's rank badge
 - Your tier or division
@@ -113,9 +115,69 @@ separately and they appear as separate widgets.
 	For Black Ops 7, enter your SR in
 	[Settings > Game Stats](https://teambattles.gg/settings/game-stats). For Valorant and League of
 	Legends, link your Riot account in Settings > Connections, then sync your rank from Game Stats.
+	For Deadlock, add your Steam ID in
+	[Settings > Connections](https://teambattles.gg/settings/connections) - there is nothing to sync.
 </Note>
 
-Game rank widgets have two extras in the editor's Style step:
+Game rank widgets have two extras in the editor's Style step. Both switches appear only once a rank
+widget is turned on:
 
 - **Animation** - effects such as the winstreak flame, which you can switch off
 - **Orientation** - stand the widget upright instead of laying it out sideways
+
+## Deadlock
+
+Deadlock has three widgets, found under **Deadlock** in the editor's **Game widgets** group:
+**Ranked**, **Session**, and **Last Match**. They read the Steam ID on your Steam connection in
+[Settings > Connections](https://teambattles.gg/settings/connections), and their numbers come from
+[deadlock-api.com](https://deadlock-api.com), a third-party Deadlock stats service. TeamBattles
+keeps each answer for about two minutes, so the widgets refresh at most that often.
+
+Turn on more than one and they start in the same spot, so drag them apart in the editor's Arrange
+step. Only the Ranked widget uses the Orientation option above; Session and Last Match have one
+layout. Animation has no effect on any Deadlock widget, because Deadlock has no winstreak flame.
+
+### Deadlock Ranked
+
+Your rank card.
+
+- The rank badge
+- Your tier and subrank, such as "Oracle 5". Tiers run from Initiate up to Eternus, with six
+  subranks in each
+- Your name
+- Your progress through the current subrank, such as `250 / 1,000`. Unranked, Eternus, and any rank
+  whose progress is not available show none
+
+Players without a rank yet, including anyone still in their placement matches, show as **Unranked**.
+Only ranked matches change your rank.
+
+### Deadlock Session
+
+Your record for the day and for the season, on two lines.
+
+- **TODAY** - wins and losses, plus your win rate once you have played a match today. It counts your
+  ranked and unranked standard matches since midnight in the time zone of the computer running your
+  stream. A stream left running past midnight moves on to the new day by itself. With no matches
+  yet it reads `0W - 0L`
+- **SEASON** - wins, losses, win rate, K/D (kills divided by deaths), and the hero you have played
+  most, with their portrait. It counts ranked matches in the current ranked season only. Before
+  your first ranked match of the season it reads just `0 - 0`, and the line is left out when there
+  is no ranked season running
+
+### Deadlock Last Match
+
+Your most recent ranked or unranked standard match.
+
+- The hero you played, with their portrait
+- **WIN** or **LOSS**
+- Your rank progress change, such as `+350`, on ranked matches
+- Kills, deaths, and assists
+- Souls, such as `45.5k`
+- How long the match lasted, such as `35:07`
+- How long ago it started, such as `2h ago`
+
+<Note>
+	Private-lobby matches never count towards Session or Last Match. New matches can take a few
+	minutes to show up after they finish. If a Deadlock widget is empty or looks wrong, see
+	[Troubleshooting](/tools/battles-overlay/troubleshooting).
+</Note>

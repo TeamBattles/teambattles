@@ -4,7 +4,7 @@ description: "Save VODs, record live streams, and watch chat alongside them, fro
 ---
 
 Battles Replay is a browser extension for Twitch and Kick. Save a past broadcast, record a live one
-as it happens, and read the chat back in sync with the video. Pair it with the
+as it happens, and read the chat back in sync with the video. Connect it to the
 [Battles Record](/tools/battles-record) desktop app and you can also save from YouTube, Instagram,
 TikTok, and over a thousand other sites.
 
@@ -42,6 +42,29 @@ Everything happens on your own computer. Nothing you save is uploaded anywhere.
 - **Pick a quality yourself** from the gear icon in the player controls
 - **Light on memory**, so a long recording does not slow your computer down
 - **Chat from before you arrived** - up to 100 recent messages load when you open it
+
+### Proxies
+
+- **Bring your own proxy** - add up to 20 from the shield button beside Discord, or Settings >
+  **Proxy**, as `host:port` or `user:password@host:port`. None are built in
+- **May avoid ads on some channels** - Twitch decides whether a stream carries ads from the address
+  that asks for it, so a stream requested through a proxy may come without them. It depends on the
+  proxy and the channel, and it is not guaranteed
+- **Two modes** - **Ad** sends only the requests that decide ads through the proxy. **All** sends
+  every stream request through it. The video itself always downloads directly
+- **Anonymous** - on by default, so live streams are requested as if you were logged out. Turn it
+  off to use your Twitch login on twitch.tv, so subscriber and Turbo benefits apply
+- **Never stops a stream** - if the proxy fails, the stream plays without it, and the shield button
+  shows Inactive with the reason and a **Retry** button
+- **Explained in the app** - the **?** button covers each setting and the downsides of using a
+  proxy, such as slower starts and the proxy's owner seeing your address
+
+<Note>
+	Proxies apply to live Twitch streams in Battles Replay's own player. They do not change past
+	broadcasts, Kick, or the player on twitch.tv. Chrome and Edge cannot sign in to a SOCKS proxy, so
+	a SOCKS proxy there must be one without a username and password. If a VPN or another extension
+	already sets your browser's proxy, Battles Replay leaves it alone and tells you.
+</Note>
 
 ### Chat replay
 
@@ -115,14 +138,17 @@ of the player opens the full set, with a preview as you hover each one.
 
 - **Save from 1000+ sites** including YouTube, Instagram, and TikTok, handled by the
   [Battles Record](/tools/battles-record) desktop app
-- **Pair once** with a 6-digit code
+- **Connect by approval** - select **Connect** in the extension settings and allow it in Battles
+  Record on the same computer, with no code to copy
 - **Choose a format** - resolution, file size, or audio only
+- **Unpublished Twitch streams too**, in Source quality, named after the stream and its date
 - **Sign-in when you allow it** - turn on Twitch or Instagram account access so subscriber-only or
   private videos save; everything else downloads as a public visitor
 - **See the connection** at a glance in the extension header
 - **Send a channel to Battles Record** to be recorded automatically, straight from the player
-- **Everything stays in step** across every device connected to the same Battles Record
-- **Connect to another computer** by entering its address, over an encrypted (WSS) connection
+- **Everything stays in step** across every browser connected to the same Battles Record
+- **Errors in plain words** - when a download or library install fails in Battles Record, the
+  extension says why
 
 ### Browsing beyond Twitch and Kick
 
@@ -206,9 +232,10 @@ You need Chrome 121 or later, or Firefox 140 or later (Firefox for Android 142 o
 	<Step title="Install Battles Record">
 		Download the [Battles Record](/tools/battles-record) desktop app
 	</Step>
-	<Step title="Pair the two">
-		In the extension's Settings tab, select **Open secure settings**, then enter the 6-digit code
-		shown in the desktop app under Battles Record
+	<Step title="Connect the two">
+		With Battles Record open on the same computer, select **Open secure settings** in the
+		extension's Settings tab, then **Connect** under Battles Record, and approve the request in the
+		desktop app. Battles Record on another computer is not supported
 	</Step>
 	<Step title="Go to the video">
 		Use the site dropdown to pick Twitch, Kick, or Other, or just open the extension on any
@@ -340,10 +367,13 @@ Open the gear icon in the chat header to change how it looks:
 | Recent source history   | How many minutes of a live stream are kept ready to save (1 to 120)               | 30 min        |
 | Auto-download           | Save the kept history each time it reaches its limit                              | Off           |
 | Use recorded source     | Play Twitch live streams from Twitch's own recording                              | On            |
+| Use proxy               | Send live Twitch stream requests through a proxy you added                        | Off           |
+| Proxy mode              | Ad sends only the requests that decide ads through the proxy, All sends them all  | Ad            |
+| Anonymous               | Request live streams as if you were logged out                                    | On            |
 | Player button           | Add the chat button to Twitch's own player                                        | On            |
 | Twitch connection       | Connect Twitch for live chat                                                      | Not connected |
 | Kick connection         | Connect Kick for live chat                                                        | Not connected |
-| Battles Record          | Connect the Battles Record desktop app                                            | Not connected |
+| Battles Record          | Connect the Battles Record desktop app on this computer                           | Not connected |
 | Download filter         | Which downloads to show                                                           | All           |
 | Keyboard shortcuts      | Change, add, or turn off shortcuts                                                | Enabled       |
 | Live notifications      | Tell me when a followed channel goes live                                         | Off           |
@@ -355,6 +385,10 @@ Video is processed on your own computer and saved straight to your device. From 
 extension asks teambattles.gg for the history of channels you open in it and, while **Index streamers
 I watch** is on, sends it the Twitch ids of channels you watch, follow or favorite. It never sends
 your account or cookies.
+
+Proxies you add stay in the extension on your computer and are used only to connect to that proxy.
+Nothing about them is sent to TeamBattles. The proxy's owner can see your address and that you are
+connecting to Twitch.
 
 [Read the privacy policy](https://teambattles.gg/tools/battles-replay/privacy)
 
@@ -368,6 +402,46 @@ your account or cookies.
 - For a long video as one file, the [Battles Record](/tools/battles-record) desktop app
 
 ## Changelog
+
+<Accordion title="v3.3.0 - November 24, 2026">
+### Added
+
+- **Proxies** - Add your own proxies and Battles Replay can send a live Twitch stream's requests through one. Twitch decides whether a stream carries ads from the address that asks for it, so this may avoid ads on some channels. It depends on the proxy and the channel, and it is not guaranteed. Open the new shield button beside Discord, or Settings > Proxy, add a proxy and turn on Use proxy. It covers live Twitch streams in Battles Replay's own player only, not past broadcasts, Kick or the player on twitch.tv
+- **Saved Proxies** - Add up to 20 as `host:port`, `user:password@host:port`, or with `http://`, `https://`, `socks5://` or `socks4://` in front. None are built in. A proxy's password stays in the extension and the list shows only the address and username. Chrome and Edge cannot sign in to a SOCKS proxy, so a SOCKS proxy there must be one without a username and password
+- **Mode** - **Ad**, the default, sends only the requests that decide ads through the proxy. **All** sends every stream request through it. The video itself always downloads directly, in both modes
+- **Anonymous** - On by default, which is what earlier versions always did: live streams are requested as if you were logged out. Turn it off to use your Twitch login on twitch.tv, so subscriber and Turbo benefits apply. Your login goes only to Twitch, with that one request, and is never stored. With Anonymous off and the All mode, the login travels through the proxy: the proxy cannot read it, but Twitch sees your account coming from the proxy's address
+- **Proxy Status** - The shield button's color and tooltip show whether the proxy is off, ready, in use, inactive or needs attention. A proxy that stops working shows Inactive with the reason (could not connect, too slow, wrong username or password, or refused by Twitch) and a Retry button. If ads still show through a proxy, the Proxy settings say so
+- **Never Stops a Stream** - A proxied request that fails or takes longer than 4 seconds is sent again directly, so a bad proxy cannot stop playback
+- **Proxy Help** - The ? button explains each setting and lists the downsides of using a proxy: no guarantee, slower starts, the proxy's owner sees your address, free proxies fail often, Twitch refuses some proxies, and Twitch sees your login coming from the proxy's location
+- **Ad Tip** - The first time an ad shows on a live Twitch stream while Use proxy is off, a one-time tip points you to the Proxy settings
+
+### Changed
+
+- **Proxy Comes First** - With Use proxy on and the proxy working, a live Twitch stream plays the live feed through the proxy, whatever Use recorded source says. If that does not start, the earlier order applies
+- **Changes Apply at Once** - Changing a proxy setting while a live Twitch stream is playing restarts the stream so the change takes effect
+- **Connect to Battles Record by Approval** - No more pair code. Open Battles Record on this computer, select Connect in the Battles Record settings and approve the request in the app. If Battles Record's local service is stopped, the app offers to start it. If the app says no, or nobody answers within about two minutes, the reason is shown with a Try again button. Connecting a new browser needs Battles Record 2.0.0 or later; a browser already paired with an older version keeps working
+- **Battles Record Errors in Plain Words** - Failed downloads and library installs from Battles Record say why in plain words, with Battles Record's own detail on a second line. Library installs no longer time out with an error while they are still running
+- **Download Errors** - Failed downloads, and pauses or cancels that did not go through, show on a card that matches the rest of Battles Replay instead of plain red text
+- **Narrow Window** - The Discord and Support buttons show just their icons whenever the Battles Replay window is 720 px wide or less, not only on a small screen
+- **Removing a Channel from Recording** - Works in the player for a channel that was already in Battles Record's list
+
+### Removed
+
+- **Pair Codes and Remote Servers** - Battles Record on another computer is no longer supported. A saved remote address and its pairing are cleared on update. The Port field stays for a non-standard setup
+
+### Fixed
+
+- **Unpublished Streams in Battles Record** - Download via Battles Record works for unpublished Twitch streams instead of stopping at "Failed to extract video information". They download in Source quality and are named after the stream and its date. Needs Battles Record 2.0.0 or later
+- **Battles Record Downloads List** - A download sent to Battles Record shows its title and a Twitch badge in Downloads straight away, instead of Untitled Stream and Other until you reloaded the page, and names its quality once, as you picked it
+- **Battles Record Download Options** - Follow the video you switch to, instead of keeping the first video's title and formats
+
+### Permissions
+
+- **Chrome and Edge** - Ask you to approve a new permission after the update and keep Battles Replay turned off until you do. It is used only to send Twitch's stream requests through your proxy and to answer the proxy's own sign-in
+- **Firefox** - Asks once, from the extension's settings page, the first time you need a proxy (Allow in settings)
+- **Shared Routing in Chrome and Edge** - Chrome can only route by site, so while a stream is starting through the proxy, other Twitch requests from your browser may briefly use the proxy too, and other sites skip a proxy set in your computer's settings. With the All mode this lasts for as long as the stream plays. If a VPN or another extension already sets your browser's proxy, Battles Replay leaves it alone and says so
+- **Nothing New Sent to TeamBattles** - The only new party is the proxy you add
+</Accordion>
 
 <Accordion title="v3.2.0 - November 23, 2026">
 ### Added

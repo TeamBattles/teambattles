@@ -18,6 +18,7 @@ organization it is showing is visible to the public.
 | Active Match       | Your current match   | Your profile is not set to Private                                |
 | Referral Code      | Your referral code   | Your profile is not set to Private, and you have a referral code  |
 | Game Rank          | Your rank in a game  | Your profile is not set to Private, and a rank set in Game Stats  |
+| Deadlock Ranked, Session, Last Match | Your Deadlock rank, record, or last match | Your profile is not set to Private, the widget is turned on in this overlay, and a readable Steam ID on your Steam connection |
 | Team Stats         | A team you are on    | A team chosen in the editor, with its profile set to Public       |
 | Organization Stats | An organization      | An organization chosen in the editor, set to Public               |
 | Top 3 Players      | The public top three | Nothing - it always works                                         |
@@ -43,6 +44,12 @@ organization owner can change it from the team or organization settings page.
 Only what is already public on your profile: the wins, losses, streaks, ranks, and match scores that
 anyone visiting your profile page would see. Your email address, settings, and private matches never
 appear on an overlay.
+
+Deadlock widgets are the one exception to "already on your profile": their stats come from
+deadlock-api.com, looked up with the Steam ID on your connection. They only answer for an overlay
+that has that widget turned on, and the overlay data carries your TeamBattles name and the stats,
+never your Steam ID or Steam name. A Steam ID that is missing or cannot be read leaves the widget on
+its "No Deadlock data yet" notice. See [Widgets](/tools/battles-overlay/widgets#deadlock).
 
 ## Building your own integration
 
